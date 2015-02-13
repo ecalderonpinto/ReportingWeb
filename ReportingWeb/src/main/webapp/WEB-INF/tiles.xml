@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="base.template" template="/WEB-INF/views/basetemplate.jsp" />
+	<definition name="login" template="/index.jsp" />
+
+	<definition name="test.sdm" extends="base.template">
+		<put-attribute name="body" value="/WEB-INF/spring/jsp/testSDM.jsp" />
+		<put-list-attribute name="resourcesCss">
+			<add-attribute value="layout/login.css" />
+			<add-attribute value="design/login.css" />
+		</put-list-attribute>
+		<put-list-attribute name="resourcesJs">
+		</put-list-attribute>
+	</definition>
+
+	<definition name="error.500" extends="base.template">
+		<put-attribute name="body" value="/WEB-INF/spring/jsp/error/500.jsp" />
+		<put-list-attribute name="resourcesCss">
+			<add-attribute value="layout/error.css" />
+			<add-attribute value="design/error.css" />
+		</put-list-attribute>
+		<put-list-attribute name="resourcesJs">
+		</put-list-attribute>
+	</definition>
+
+	<definition name="message.security.details" extends="base.template">
+		<put-attribute name="body"
+			value="/WEB-INF/spring/jsp/securities/messageSecurityDetails.jsp" />
+		<put-list-attribute name="resourcesCss">
+			<add-attribute value="layout/error.css" />
+			<add-attribute value="design/error.css" />
+		</put-list-attribute>
+		<put-list-attribute name="resourcesJs">
+		</put-list-attribute>
+	</definition>
+
+	<definition name="message.security.original" extends="base.template">
+		<put-attribute name="body"
+			value="/WEB-INF/spring/jsp/securities/messageSecurityOriginalPopUp.jsp" />
+		<put-list-attribute name="resourcesCss">
+			<add-attribute value="layout/error.css" />
+			<add-attribute value="design/error.css" />
+		</put-list-attribute>
+		<put-list-attribute name="resourcesJs">
+		</put-list-attribute>
+	</definition>
+	<definition name="admin.normalization.load" extends="base.template">
+		<put-attribute name="body"
+			value="/WEB-INF/spring/jsp/admin/normalizationConfig.jsp" />
+		<put-list-attribute name="resourcesCss">
+			<add-attribute value="layout/error.css" />
+			<add-attribute value="design/error.css" />
+		</put-list-attribute>
+		<put-list-attribute name="resourcesJs">
+		</put-list-attribute>
+	</definition>
+
+	<definition name="event.static.list" extends="base.template">
+		<put-attribute name="body"
+			value="/WEB-INF/spring/jsp/statics/eventList.jsp" />
+		<put-list-attribute name="resourcesCss">
+			<add-attribute value="layout/error.css" />
+			<add-attribute value="design/error.css" />
+		</put-list-attribute>
+		<put-list-attribute name="resourcesJs">
+		</put-list-attribute>
+	</definition>
+
+	<definition name="event.group.list" extends="base.template">
+		<put-attribute name="body"
+			value="/WEB-INF/spring/jsp/group/eventGroupList.jsp" />
+		<put-list-attribute name="resourcesCss">
+			<add-attribute value="layout/error.css" />
+			<add-attribute value="design/error.css" />
+		</put-list-attribute>
+		<put-list-attribute name="resourcesJs">
+		</put-list-attribute>
+	</definition>
+
+	<definition name="error.500" extends="base.template">
+		<put-attribute name="body" value="/WEB-INF/spring/jsp/error/500.jsp" />
+		<put-list-attribute name="resourcesCss">
+			<add-attribute value="layout/error.css" />
+			<add-attribute value="design/error.css" />
+		</put-list-attribute>
+		<put-list-attribute name="resourcesJs">
+		</put-list-attribute>
+	</definition>
+
+	<definition name="message.security.details" extends="base.template">
+		<put-attribute name="body"
+			value="/WEB-INF/spring/jsp/securities/messageSecurityDetails.jsp" />
+		<put-list-attribute name="resourcesCss">
+			<add-attribute value="layout/error.css" />
+			<add-attribute value="design/error.css" />
+		</put-list-attribute>
+		<put-list-attribute name="resourcesJs">
+		</put-list-attribute>
+	</definition>
+
+	<definition name="message.security.original" extends="base.template">
+		<put-attribute name="body"
+			value="/WEB-INF/spring/jsp/securities/messageSecurityOriginalPopUp.jsp" />
+		<put-list-attribute name="resourcesCss">
+			<add-attribute value="layout/error.css" />
+			<add-attribute value="design/error.css" />
+		</put-list-attribute>
+		<put-list-attribute name="resourcesJs">
+		</put-list-attribute>
+	</definition>
+	<definition name="admin.normalization.load" extends="base.template">
+		<put-attribute name="body"
+			value="/WEB-INF/spring/jsp/admin/normalizationConfig.jsp" />
+		<put-list-attribute name="resourcesCss">
+			<add-attribute value="layout/error.css" />
+			<add-attribute value="design/error.css" />
+		</put-list-attribute>
+		<put-list-attribute name="resourcesJs">
+		</put-list-attribute>
+	</definition>
+
+</tiles-definitions>
