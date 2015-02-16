@@ -18,7 +18,15 @@ public class LoginController {
 	
 	@RequestMapping(value="login.do", method=RequestMethod.GET)
 	public String login(Locale locale, Model model){
-		System.out.println("Login Controller");
+		
+		System.out.println("Login Controller - login");
 		return "login";
+	}
+	
+	@RequestMapping(value="index.do", method=RequestMethod.GET)
+	public String index(Locale locale, Model model){
+		
+		System.out.println("Login Controller - index");
+		return "dashboard";
 	}
 }
