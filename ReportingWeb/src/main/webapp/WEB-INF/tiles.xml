@@ -6,6 +6,8 @@
 <tiles-definitions>
 	<definition name="base.template" template="/template.jsp" />
 	<definition name="login" template="/index.jsp" />
+	<definition name="test" template="/index.jsp" />
+
 
 	<definition name="dashboard" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - Scheduler Dashboard" />
