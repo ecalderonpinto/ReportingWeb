@@ -23,7 +23,7 @@ public class RawData {
 		this.aplicationContext = aplicationContext;
 	}
 
-	public void FileRawToData(LoadFile loadFile) {
+	public void FileRawToData(LoadFile loadFile, ReportExecution reportExecution) {
 
 		// from a file, we move raw to data
 
@@ -45,12 +45,12 @@ public class RawData {
 			System.out.println("DEBUG_" + "RawData "
 					+ loadRawData.getLoadRawDataType() + " "
 					+ loadRawData.getLoadRawDataText());
-			this.RawToData(loadRawData);
+			this.RawToData(loadRawData, reportExecution);
 		}
 
 	}
 
-	public void RawToData(LoadRawData loadRawData) {
+	public void RawToData(LoadRawData loadRawData, ReportExecution reportExecution) {
 
 		// create new aifmdData with war data
 		ReportData reportData = new ReportData();
@@ -64,8 +64,9 @@ public class RawData {
 		reportData.setReportField(reportField);
 
 		// report
-		ReportExecution reportExecution = new ReportExecution();
-		reportExecution.setReportCatalog(reportField.getReportCatalog());
+		//ReportExecution reportExecution = new ReportExecution();
+		//reportExecution.setReportCatalog(reportField.getReportCatalog());
+		
 		reportData.setAuditor(new VersionAuditor("admin"));
 		reportData.setReportExecution(reportExecution);
 

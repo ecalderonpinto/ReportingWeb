@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 
+import com.entities.dao.common.ErrorDAO;
 import com.entities.dao.loader.FileColumDAO;
 import com.entities.dao.loader.FileConfigDAO;
 import com.entities.dao.loader.LoadFileDAO;
@@ -22,6 +23,7 @@ import com.entities.dao.reportingtool.ReportDataDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.dao.reportingtool.ReportFieldListDAO;
+import com.entities.entity.common.Error;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileConfig;
 import com.entities.entity.loader.LoadFile;
@@ -390,6 +392,9 @@ public class InstallEntities {
 					"AIFMD2014", "|", "SIMPLE", "*", null, null, null,
 					versionAdmin);
 
+			FileColum fileColum0 = new FileColum(null, fileConfig, "type",
+					new BigDecimal(0), "type", "", "format", null, null,
+					versionAdmin);
 			FileColum fileColum1 = new FileColum(null, fileConfig, "type",
 					new BigDecimal(1), "ID_GESTORA", "", "format", null, null,
 					versionAdmin);
@@ -581,25 +586,30 @@ public class InstallEntities {
 					"type", new BigDecimal(61), "CancelledRecordFlag", "",
 					"format", null, null, versionAdmin);
 
-			
 			ReportData reportData1 = new ReportData(null, reportField1,
 					reportExecution, null, null, "GB", null, null, versionAdmin);
 			ReportData reportData2 = new ReportData(null, reportField2,
-					reportExecution, null, null, "1.2", null, null, versionAdmin);
+					reportExecution, null, null, "1.2", null, null,
+					versionAdmin);
 			ReportData reportData3 = new ReportData(null, reportField3,
-					reportExecution, null, null, "2014-09-01", null, null, versionAdmin);
+					reportExecution, null, null, "2014-09-01", null, null,
+					versionAdmin);
 			ReportData reportData4 = new ReportData(null, reportField4,
-					reportExecution, null, null, "INIT", null, null, versionAdmin);
+					reportExecution, null, null, "INIT", null, null,
+					versionAdmin);
 			ReportData reportData5 = new ReportData(null, reportField5,
 					reportExecution, null, null, "2", null, null, versionAdmin);
 			ReportData reportData6 = new ReportData(null, reportField6,
-					reportExecution, null, null, "2014-09-01", null, null, versionAdmin);
+					reportExecution, null, null, "2014-09-01", null, null,
+					versionAdmin);
 			ReportData reportData7 = new ReportData(null, reportField7,
-					reportExecution, null, null, "2014-12-31", null, null, versionAdmin);
+					reportExecution, null, null, "2014-12-31", null, null,
+					versionAdmin);
 			ReportData reportData8 = new ReportData(null, reportField8,
 					reportExecution, null, null, "Q4", null, null, versionAdmin);
 			ReportData reportData9 = new ReportData(null, reportField9,
-					reportExecution, null, null, "2014", null, null, versionAdmin);
+					reportExecution, null, null, "2014", null, null,
+					versionAdmin);
 			ReportData reportData10 = new ReportData(null, reportField10,
 					reportExecution, null, null, "QH", null, null, versionAdmin);
 			ReportData reportData11 = new ReportData(null, reportField11,
@@ -607,60 +617,122 @@ public class InstallEntities {
 			ReportData reportData12 = new ReportData(null, reportField12,
 					reportExecution, null, null, "1", null, null, versionAdmin);
 			ReportData reportData13 = new ReportData(null, reportField13,
-					reportExecution, null, null, "false", null, null, versionAdmin);
+					reportExecution, null, null, "false", null, null,
+					versionAdmin);
 			ReportData reportData14 = new ReportData(null, reportField14,
 					reportExecution, null, null, "25", null, null, versionAdmin);
 			ReportData reportData15 = new ReportData(null, reportField15,
-					reportExecution, null, null, "Descripcion pregunta", null, null, versionAdmin);
+					reportExecution, null, null, "Descripcion pregunta", null,
+					null, versionAdmin);
 			ReportData reportData16 = new ReportData(null, reportField16,
 					reportExecution, null, null, "4", null, null, versionAdmin);
 			ReportData reportData17 = new ReportData(null, reportField17,
 					reportExecution, null, null, "GB", null, null, versionAdmin);
 			ReportData reportData18 = new ReportData(null, reportField18,
-					reportExecution, null, null, "474286", null, null, versionAdmin);
+					reportExecution, null, null, "474286", null, null,
+					versionAdmin);
 			ReportData reportData19 = new ReportData(null, reportField19,
-					reportExecution, null, null, "AIFM 1", null, null, versionAdmin);
+					reportExecution, null, null, "AIFM 1", null, null,
+					versionAdmin);
 			ReportData reportData20 = new ReportData(null, reportField20,
-					reportExecution, null, null, "true", null, null, versionAdmin);
+					reportExecution, null, null, "true", null, null,
+					versionAdmin);
 			ReportData reportData21 = new ReportData(null, reportField21,
-					reportExecution, null, null, "false", null, null, versionAdmin);
+					reportExecution, null, null, "false", null, null,
+					versionAdmin);
 			ReportData reportData22 = new ReportData(null, reportField22,
-					reportExecution, null, null, "969500AA77L4ZJXJ0T02", null, null, versionAdmin);
+					reportExecution, null, null, "969500AA77L4ZJXJ0T02", null,
+					null, versionAdmin);
 			ReportData reportData23 = new ReportData(null, reportField23,
-					reportExecution, null, null, "TESTGB21XXX", null, null, versionAdmin);
+					reportExecution, null, null, "TESTGB21XXX", null, null,
+					versionAdmin);
 
-			
-			LoadFile loadFile = new LoadFile(department, fileConfig, date1, "Fichero1.txt", null, null, versionAdmin);
-			
-			LoadRaw loadRaw = new LoadRaw(loadFile, new BigDecimal(1), "SIMPLE", null, null, null, versionAdmin);
-			
-			LoadRawData loadRawData1 = new LoadRawData(fileColum1, loadRaw, "GESTORA1", "TEXT", versionAdmin);
-			LoadRawData loadRawData2 = new LoadRawData(fileColum2, loadRaw, "01-10-2014", "DATE", versionAdmin);
-			LoadRawData loadRawData3 = new LoadRawData(fileColum3, loadRaw, "GB", "TEXT", versionAdmin);
-			LoadRawData loadRawData4 = new LoadRawData(fileColum4, loadRaw, "FIRST", "TEXT", versionAdmin);
-			LoadRawData loadRawData5 = new LoadRawData(fileColum5, loadRaw, "2", "TEXT", versionAdmin);
-			LoadRawData loadRawData6 = new LoadRawData(fileColum6, loadRaw, "01-10-2014", "DATE", versionAdmin);
-			LoadRawData loadRawData7 = new LoadRawData(fileColum7, loadRaw, "31-12-2014", "DATE", versionAdmin);
-			LoadRawData loadRawData8 = new LoadRawData(fileColum8, loadRaw, "Q4", "TEXT", versionAdmin);
-			LoadRawData loadRawData9 = new LoadRawData(fileColum9, loadRaw, "2014", "TEXT", versionAdmin);
-			LoadRawData loadRawData10 = new LoadRawData(fileColum10, loadRaw, "QH", "TEXT", versionAdmin);
-			LoadRawData loadRawData11 = new LoadRawData(fileColum11, loadRaw, "Q4", "TEXT", versionAdmin);
-			LoadRawData loadRawData12 = new LoadRawData(fileColum12, loadRaw, "false", "TEXT", versionAdmin);
-			LoadRawData loadRawData13 = new LoadRawData(fileColum13, loadRaw, "4", "TEXT", versionAdmin);
-			LoadRawData loadRawData14 = new LoadRawData(fileColum14, loadRaw, "GB", "TEXT", versionAdmin);
-			LoadRawData loadRawData15 = new LoadRawData(fileColum15, loadRaw, "474286", "TEXT", versionAdmin);
-			LoadRawData loadRawData16 = new LoadRawData(fileColum16, loadRaw, "AIFM 1", "TEXT", versionAdmin);
-			LoadRawData loadRawData17 = new LoadRawData(fileColum17, loadRaw, "true", "TEXT", versionAdmin);
-			LoadRawData loadRawData18 = new LoadRawData(fileColum18, loadRaw, "false", "TEXT", versionAdmin);
-			LoadRawData loadRawData19 = new LoadRawData(fileColum19, loadRaw, "969500AA77L4ZJXJ0T02", "TEXT", versionAdmin);
-			LoadRawData loadRawData20 = new LoadRawData(fileColum20, loadRaw, "TESTGB21XXX", "TEXT", versionAdmin);
-			LoadRawData loadRawData21 = new LoadRawData(fileColum21, loadRaw, "1", "TEXT", versionAdmin);
-			LoadRawData loadRawData22 = new LoadRawData(fileColum22, loadRaw, "XXX", "TEXT", versionAdmin);
-			LoadRawData loadRawData23 = new LoadRawData(fileColum23, loadRaw, "", "TEXT", versionAdmin);
-			
-			
-			// DAO 
-			
+			LoadFile loadFile = new LoadFile(department, fileConfig, date1,
+					"Fichero1.txt", null, null, versionAdmin);
+
+			LoadRaw loadRaw = new LoadRaw(loadFile, new BigDecimal(1),
+					"SIMPLE", null, null, null, versionAdmin);
+
+			LoadRawData loadRawData1 = new LoadRawData(fileColum1, loadRaw,
+					"GESTORA1", "TEXT", versionAdmin);
+			LoadRawData loadRawData2 = new LoadRawData(fileColum2, loadRaw,
+					"01-10-2014", "DATE", versionAdmin);
+			LoadRawData loadRawData3 = new LoadRawData(fileColum3, loadRaw,
+					"GB", "TEXT", versionAdmin);
+			LoadRawData loadRawData4 = new LoadRawData(fileColum4, loadRaw,
+					"FIRST", "TEXT", versionAdmin);
+			LoadRawData loadRawData5 = new LoadRawData(fileColum5, loadRaw,
+					"2", "TEXT", versionAdmin);
+			LoadRawData loadRawData6 = new LoadRawData(fileColum6, loadRaw,
+					"01-10-2014", "DATE", versionAdmin);
+			LoadRawData loadRawData7 = new LoadRawData(fileColum7, loadRaw,
+					"31-12-2014", "DATE", versionAdmin);
+			LoadRawData loadRawData8 = new LoadRawData(fileColum8, loadRaw,
+					"Q4", "TEXT", versionAdmin);
+			LoadRawData loadRawData9 = new LoadRawData(fileColum9, loadRaw,
+					"2014", "TEXT", versionAdmin);
+			LoadRawData loadRawData10 = new LoadRawData(fileColum10, loadRaw,
+					"QH", "TEXT", versionAdmin);
+			LoadRawData loadRawData11 = new LoadRawData(fileColum11, loadRaw,
+					"Q4", "TEXT", versionAdmin);
+			LoadRawData loadRawData12 = new LoadRawData(fileColum12, loadRaw,
+					"false", "TEXT", versionAdmin);
+			LoadRawData loadRawData13 = new LoadRawData(fileColum13, loadRaw,
+					"4", "TEXT", versionAdmin);
+			LoadRawData loadRawData14 = new LoadRawData(fileColum14, loadRaw,
+					"GB", "TEXT", versionAdmin);
+			LoadRawData loadRawData15 = new LoadRawData(fileColum15, loadRaw,
+					"474286", "TEXT", versionAdmin);
+			LoadRawData loadRawData16 = new LoadRawData(fileColum16, loadRaw,
+					"AIFM 1", "TEXT", versionAdmin);
+			LoadRawData loadRawData17 = new LoadRawData(fileColum17, loadRaw,
+					"true", "TEXT", versionAdmin);
+			LoadRawData loadRawData18 = new LoadRawData(fileColum18, loadRaw,
+					"false", "TEXT", versionAdmin);
+			LoadRawData loadRawData19 = new LoadRawData(fileColum19, loadRaw,
+					"969500AA77L4ZJXJ0T02", "TEXT", versionAdmin);
+			LoadRawData loadRawData20 = new LoadRawData(fileColum20, loadRaw,
+					"TESTGB21XXX", "TEXT", versionAdmin);
+			LoadRawData loadRawData21 = new LoadRawData(fileColum21, loadRaw,
+					"1", "TEXT", versionAdmin);
+			LoadRawData loadRawData22 = new LoadRawData(fileColum22, loadRaw,
+					"XXX", "TEXT", versionAdmin);
+			LoadRawData loadRawData23 = new LoadRawData(fileColum23, loadRaw,
+					"", "TEXT", versionAdmin);
+
+			Error error1 = new Error("LOADER", "Error load", "1",
+					"Error in load file", "Reload file", null, null, null,
+					versionAdmin);
+			Error error2 = new Error("CONTROLLER", "Error controller", "1",
+					"Error in servlet", "Reload page", null, null, null,
+					versionAdmin);
+			Error error3 = new Error("VALIDATOR", "Error validator", "1",
+					"Error in validation", "Revise fields", null, null, null,
+					versionAdmin);
+			Error error4 = new Error("NORMALIZER", "Error normalizer", "1",
+					"Error in normalize process", "Reload file", null, null, null,
+					versionAdmin);
+			Error error5 = new Error("CREATION", "Error load", "1",
+					"Error in creation", "Revise conditions", null, null, null,
+					versionAdmin);
+			Error error6 = new Error("SYNTAXIS", "Error load", "1",
+					"Error in syntaxis", "Revise format", null, null, null,
+					versionAdmin);
+			Error error7 = new Error("SEMANTIC", "Error sematinc", "1",
+					"Error in semantic", "Revise rules", null, null, null,
+					versionAdmin);
+			Error error8 = new Error("TRANSLATE", "Error load", "1",
+					"Error in load file", "Reload file", null, null, null,
+					versionAdmin);
+			Error error9 = new Error("STATUS", "Error status", "1",
+					"Error in status checker", "Revise report", null, null, null,
+					versionAdmin);
+			Error error10 = new Error("REPORTING", "Error report", "1",
+					"Error in report", "Revise report", null, null, null,
+					versionAdmin);
+
+			// DAO
+
 			CompanyDAO companyDAO = (CompanyDAO) aplicationContext
 					.getBean("companyDAO");
 			companyDAO.create(company);
@@ -799,6 +871,7 @@ public class InstallEntities {
 
 			FileColumDAO fileColumDAO = (FileColumDAO) aplicationContext
 					.getBean("fileColumDAO");
+			fileColumDAO.create(fileColum0);
 			fileColumDAO.create(fileColum1);
 			fileColumDAO.create(fileColum2);
 			fileColumDAO.create(fileColum3);
@@ -860,7 +933,7 @@ public class InstallEntities {
 			fileColumDAO.create(fileColum59);
 			fileColumDAO.create(fileColum60);
 			fileColumDAO.create(fileColum61);
-			
+
 			ReportDataDAO reportDataDAO = (ReportDataDAO) aplicationContext
 					.getBean("reportDataDAO");
 			reportDataDAO.create(reportData1);
@@ -886,15 +959,15 @@ public class InstallEntities {
 			reportDataDAO.create(reportData21);
 			reportDataDAO.create(reportData22);
 			reportDataDAO.create(reportData23);
-			
+
 			LoadFileDAO loadFileDAO = (LoadFileDAO) aplicationContext
 					.getBean("loadFileDAO");
 			loadFileDAO.create(loadFile);
-			
+
 			LoadRawDAO loadRawDAO = (LoadRawDAO) aplicationContext
 					.getBean("loadRawDAO");
 			loadRawDAO.create(loadRaw);
-			
+
 			LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) aplicationContext
 					.getBean("loadRawDataDAO");
 			loadRawDataDAO.create(loadRawData1);
@@ -921,6 +994,19 @@ public class InstallEntities {
 			loadRawDataDAO.create(loadRawData22);
 			loadRawDataDAO.create(loadRawData23);
 			
+			
+			ErrorDAO errorDAO = (ErrorDAO) aplicationContext
+					.getBean("errorDAO");
+			errorDAO.create(error1);
+			errorDAO.create(error2);
+			errorDAO.create(error3);
+			errorDAO.create(error4);
+			errorDAO.create(error5);
+			errorDAO.create(error6);
+			errorDAO.create(error7);
+			errorDAO.create(error8);
+			errorDAO.create(error9);
+			errorDAO.create(error10);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -930,22 +1016,27 @@ public class InstallEntities {
 
 	public void deleteEntities(ApplicationContext aplicationContext) {
 
+
+		ErrorDAO errorDAO = (ErrorDAO) aplicationContext
+				.getBean("errorDAO");
+		errorDAO.deleteAll();
+		
 		LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) aplicationContext
 				.getBean("loadRawDataDAO");
 		loadRawDataDAO.deleteAll();
-		
+
 		LoadRawDAO loadRawDAO = (LoadRawDAO) aplicationContext
 				.getBean("loadRawDAO");
 		loadRawDAO.deleteAll();
-		
+
 		LoadFileDAO loadFileDAO = (LoadFileDAO) aplicationContext
 				.getBean("loadFileDAO");
 		loadFileDAO.deleteAll();
-		
+
 		ReportDataDAO reportDataDAO = (ReportDataDAO) aplicationContext
 				.getBean("reportDataDAO");
 		reportDataDAO.deleteAll();
-		
+
 		FileColumDAO fileColumDAO = (FileColumDAO) aplicationContext
 				.getBean("fileColumDAO");
 		fileColumDAO.deleteAll();

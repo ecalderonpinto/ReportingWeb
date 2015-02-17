@@ -1,13 +1,16 @@
 package com.reportingtool.validator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.context.ApplicationContext;
 
+import com.entities.dao.common.ErrorDAO;
 import com.entities.dao.reportingtool.ReportDataErrorDAO;
 import com.entities.dao.reportingtool.ReportFieldListDAO;
+import com.entities.entity.common.Error;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportExecution;
@@ -105,13 +108,17 @@ public class Syntactic {
 
 	public void createReportDataError(ReportData reportData,
 			String type, String text) {
-		ReportDataError reportDataError = new ReportDataError();
-
-		// reportDataError.setStatus();
-		reportDataError.setReportDataErrorText(text);
-		reportDataError.setReportDataErrorType(type);
-		reportDataError.setReportData(reportData);
-		reportDataError.setAuditor(new VersionAuditor("error"));
+		
+		ErrorDAO errorDAO = (ErrorDAO) aplicationContext
+				.getBean("errorDAO");
+		Error errorExample = new Error();
+		errorExample.setErrorType("SYNTAXIS");
+		List<Error> errors = new ArrayList<Error>(errorDAO.findByExample(errorExample));
+		Error error = new Error();
+		error = errors.get(0);
+		
+		ReportDataError reportDataError = new ReportDataError(reportData, error, type, text, new VersionAuditor("error"));
+		
 
 		System.out.println("DEBUG_" + "Syntactic: error final: "
 				+ reportDataError.getReportDataErrorText()

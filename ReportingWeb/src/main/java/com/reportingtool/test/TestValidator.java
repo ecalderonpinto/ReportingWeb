@@ -11,6 +11,7 @@ import com.reportingtool.normalizer.Translate;
 import com.reportingtool.validator.RawData;
 import com.reportingtool.validator.Status;
 import com.reportingtool.validator.Syntactic;
+import com.entities.dao.loader.FileColumListDAO;
 import com.entities.dao.loader.LoadFileDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.loader.LoadFile;
@@ -19,26 +20,23 @@ import com.entities.entity.loader.LoadRawData;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
 
-
 public class TestValidator {
 
-	
 	public void process(ApplicationContext aplicationContext) {
 
-
 		try {
-			
+
 			LoadFile loadFileExample = new LoadFile();
 			loadFileExample.setLoadFileName("Fichero1.txt");
 
-			
 			LoadFileDAO loadFileDAO = (LoadFileDAO) aplicationContext
-					.getBean("loadFileDAO");			
-			List<LoadFile> loadFiles = loadFileDAO.findByExample(loadFileExample);
-			
+					.getBean("loadFileDAO");
+			List<LoadFile> loadFiles = loadFileDAO
+					.findByExample(loadFileExample);
+
 			// proceso el primer elemento, puede no haber
 			LoadFile loadFile = loadFiles.get(0);
-			
+
 			List<LoadRaw> loadRaws = new ArrayList<LoadRaw>(
 					loadFile.getLoadRaws());
 
@@ -55,9 +53,17 @@ public class TestValidator {
 				}
 			}
 
-			RawData rawData = new RawData(aplicationContext);
-			rawData.FileRawToData(loadFile);
+			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) aplicationContext
+					.getBean("fileColumListDAO");
+			ReportExecution reportExecutionExample = new ReportExecution();
+			reportExecutionExample.setReportPeriodType("Q1");
+			reportExecutionExample.setReportPeriodYear("2014");
+			List<ReportExecution> reportExecutions = new ArrayList<ReportExecution>(
+					reportExecutionDAO.findByExample(reportExecutionExample));
+			ReportExecution reportExecution = reportExecutions.get(0);
 
+			RawData rawData = new RawData(aplicationContext);
+			rawData.FileRawToData(loadFile, reportExecution);
 
 		} catch (Exception e) {
 			System.out.println("ERROR_" + "TestValidator 1");
@@ -69,16 +75,15 @@ public class TestValidator {
 			ReportExecution reportExecutionExample = new ReportExecution();
 			reportExecutionExample.setReportPeriodYear("2014");
 			reportExecutionExample.setReportPeriodType("Q1");
-			
+
 			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) aplicationContext
 					.getBean("reportExecutionDAO");
-			List<ReportExecution> reportExecutions = reportExecutionDAO.findByExample(reportExecutionExample);
+			List<ReportExecution> reportExecutions = reportExecutionDAO
+					.findByExample(reportExecutionExample);
 
 			// proceso el primer elemento, puede no haber
 			ReportExecution reportExecution = reportExecutions.get(0);
 
-			
-			
 			System.out.println("DEBUG_" + "TestValidator: ReportExecution: "
 					+ reportExecution.getReportPeriodType() + " "
 					+ reportExecution.getReportPeriodYear());
@@ -98,22 +103,19 @@ public class TestValidator {
 				syntactic.validRegex(reportData);
 			}
 
-			System.out.println("DEBUG_" + "TestValidator checking AIFMD Status");
+			System.out
+					.println("DEBUG_" + "TestValidator checking AIFMD Status");
 			Status status = new Status(aplicationContext);
 			status.checkAIFMDStatus(reportExecution);
-			
-			
+
 			System.out.println("DEBUG_" + "TestValidator generating XML");
 			GeneratorXML generatorXML = new GeneratorXML(aplicationContext);
 			generatorXML.generateXML(reportExecution);
-			
-		
 
 		} catch (Exception e) {
 			System.out.println("ERROR_" + "TestValidator 2");
 			e.printStackTrace();
 		}
-		
 
 	}
 

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.entities.entity.InstallEntities;
 import com.reportingtool.test.TestValidator;
 
 @Controller
@@ -22,16 +23,28 @@ public class TestController {
 	public String login(Locale locale, Model model){
 		
 		// TO DO
-		
-		
-		
 		TestValidator testValidator = new TestValidator();
 		testValidator.process(aplicationContext);
-		
-		
 		
 		System.out.println("Test");
 		return "test";
 	}
+	
+	@RequestMapping(value="install.do", method=RequestMethod.GET)
+	public String install(Locale locale, Model model){
+		
+		// TO DO
+		InstallEntities installLoader = new InstallEntities();
+		//installLoader.installTest(aplicationContext);
+		installLoader.deleteEntities(aplicationContext);
+		installLoader.installEntitiesFull(aplicationContext);
+		
+		System.out.println("Installed");
+		return "install";
+	}
+	
+	
+	
+	
 	
 }

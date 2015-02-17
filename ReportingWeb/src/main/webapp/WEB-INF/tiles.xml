@@ -7,6 +7,7 @@
 	<definition name="base.template" template="/template.jsp" />
 	<definition name="login" template="/index.jsp" />
 	<definition name="test" template="/index.jsp" />
+	<definition name="install" template="/index.jsp" />
 
 
 	<definition name="dashboard" extends="base.template">
