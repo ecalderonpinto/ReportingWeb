@@ -15,17 +15,17 @@ public class TestHibernate {
 			
 			
 			// in servlet this context is @autowired, here doesn't work !!!
-			ApplicationContext aplicationContext = new ClassPathXmlApplicationContext(
+			ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
 					"applicationContext.xml");
 			
 			
 			InstallEntities installLoader = new InstallEntities();
 			
-			//installLoader.installTest(aplicationContext);
+			//installLoader.installTest(applicationContext);
 			
-			installLoader.deleteEntities(aplicationContext);
+			installLoader.deleteEntities(applicationContext);
 			
-			installLoader.installEntitiesFull(aplicationContext);
+			installLoader.installEntitiesFull(applicationContext);
 			
 			
 			

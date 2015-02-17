@@ -14,10 +14,10 @@ import com.entities.entity.reportingtool.ReportField;
 
 public class Status {
 	
-	private ApplicationContext aplicationContext;
+	private ApplicationContext applicationContext;
 
-	public Status (ApplicationContext aplicationContext) {
-		this.aplicationContext = aplicationContext;
+	public Status (ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
 	}
 	
 

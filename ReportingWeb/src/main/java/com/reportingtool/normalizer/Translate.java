@@ -14,10 +14,10 @@ import com.entities.entity.loader.LoadRawData;
 public class Translate {
 	
 	
-	private ApplicationContext aplicationContext;
+	private ApplicationContext applicationContext;
 	
-	public Translate (ApplicationContext aplicationContext) {
-		this.aplicationContext = aplicationContext;
+	public Translate (ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
 	}
 
 	// main function to translate raw values
@@ -26,7 +26,7 @@ public class Translate {
 		// find config of column
 		FileColum fileColum = loadRawData.getFileColum();
 
-		FileColumListDAO fileColumListDAO = (FileColumListDAO) aplicationContext
+		FileColumListDAO fileColumListDAO = (FileColumListDAO) applicationContext
 				.getBean("fileColumListDAO");
 		
 		FileColumList fileColumListExample = new FileColumList();

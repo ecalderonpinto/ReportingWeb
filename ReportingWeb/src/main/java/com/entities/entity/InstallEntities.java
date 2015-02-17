@@ -49,7 +49,7 @@ public class InstallEntities {
 
 	}
 
-	public void installTest(ApplicationContext aplicationContext) {
+	public void installTest(ApplicationContext applicationContext) {
 
 		// Company company = new Company("Santander Asset Manager", "Spain",
 		// "SAM", "", null, null, null, null, new VersionAuditor("admin"));
@@ -57,7 +57,7 @@ public class InstallEntities {
 		// Company company2 = new Company("Santander Asset Manager2", "Spain",
 		// "SAM2", "", null, null, null, null, new VersionAuditor("admin"));
 
-		CompanyDAO companyDAO = (CompanyDAO) aplicationContext
+		CompanyDAO companyDAO = (CompanyDAO) applicationContext
 				.getBean("companyDAO");
 
 		// companyDAO.create(company);
@@ -83,7 +83,7 @@ public class InstallEntities {
 		// companyDAO.create(company);
 	}
 
-	public void installEntitiesFull(ApplicationContext aplicationContext) {
+	public void installEntitiesFull(ApplicationContext applicationContext) {
 
 		try {
 
@@ -763,30 +763,30 @@ public class InstallEntities {
 
 			// DAO
 
-			CompanyDAO companyDAO = (CompanyDAO) aplicationContext
+			CompanyDAO companyDAO = (CompanyDAO) applicationContext
 					.getBean("companyDAO");
 			companyDAO.create(company);
 
-			DepartmentDAO departmentDAO = (DepartmentDAO) aplicationContext
+			DepartmentDAO departmentDAO = (DepartmentDAO) applicationContext
 					.getBean("departmentDAO");
 			departmentDAO.create(department);
 
-			FundDAO fundDAO = (FundDAO) aplicationContext.getBean("fundDAO");
+			FundDAO fundDAO = (FundDAO) applicationContext.getBean("fundDAO");
 			fundDAO.create(fund);
 
-			FundGroupDAO fundGroupDAO = (FundGroupDAO) aplicationContext
+			FundGroupDAO fundGroupDAO = (FundGroupDAO) applicationContext
 					.getBean("fundGroupDAO");
 			fundGroupDAO.create(fundGroup);
 
-			ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) aplicationContext
+			ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
 					.getBean("reportCatalogDAO");
 			reportCatalogDAO.create(reportCatalog);
 
-			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) aplicationContext
+			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 					.getBean("reportExecutionDAO");
 			reportExecutionDAO.create(reportExecution);
 
-			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) aplicationContext
+			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
 					.getBean("reportFieldDAO");
 			reportFieldDAO.create(reportField1);
 			reportFieldDAO.create(reportField2);
@@ -859,11 +859,11 @@ public class InstallEntities {
 			reportFieldDAO.create(reportField69);
 			reportFieldDAO.create(reportField70);
 
-			ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) aplicationContext
+			ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) applicationContext
 					.getBean("reportFieldListDAO");
 			reportFieldListDAO.deleteAll();
 
-			reportFieldListDAO = (ReportFieldListDAO) aplicationContext
+			reportFieldListDAO = (ReportFieldListDAO) applicationContext
 					.getBean("reportFieldListDAO");
 			reportFieldListDAO.create(reportFieldList1);
 			reportFieldListDAO.create(reportFieldList2);
@@ -895,11 +895,11 @@ public class InstallEntities {
 			reportFieldListDAO.create(reportFieldList28);
 			reportFieldListDAO.create(reportFieldList29);
 
-			FileConfigDAO fileConfigDAO = (FileConfigDAO) aplicationContext
+			FileConfigDAO fileConfigDAO = (FileConfigDAO) applicationContext
 					.getBean("fileConfigDAO");
 			fileConfigDAO.create(fileConfig);
 
-			FileColumDAO fileColumDAO = (FileColumDAO) aplicationContext
+			FileColumDAO fileColumDAO = (FileColumDAO) applicationContext
 					.getBean("fileColumDAO");
 			fileColumDAO.create(fileColum0);
 			fileColumDAO.create(fileColum1);
@@ -964,7 +964,7 @@ public class InstallEntities {
 			fileColumDAO.create(fileColum60);
 			fileColumDAO.create(fileColum61);
 
-			ReportDataDAO reportDataDAO = (ReportDataDAO) aplicationContext
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 					.getBean("reportDataDAO");
 			reportDataDAO.create(reportData1);
 			reportDataDAO.create(reportData2);
@@ -1000,15 +1000,15 @@ public class InstallEntities {
 			reportDataDAO.create(reportData32);
 			reportDataDAO.create(reportData33);
 
-			LoadFileDAO loadFileDAO = (LoadFileDAO) aplicationContext
+			LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
 					.getBean("loadFileDAO");
 			loadFileDAO.create(loadFile);
 
-			LoadRawDAO loadRawDAO = (LoadRawDAO) aplicationContext
+			LoadRawDAO loadRawDAO = (LoadRawDAO) applicationContext
 					.getBean("loadRawDAO");
 			loadRawDAO.create(loadRaw);
 
-			LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) aplicationContext
+			LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext
 					.getBean("loadRawDataDAO");
 			loadRawDataDAO.create(loadRawData1);
 			loadRawDataDAO.create(loadRawData2);
@@ -1035,7 +1035,7 @@ public class InstallEntities {
 			loadRawDataDAO.create(loadRawData23);
 			
 			
-			ErrorDAO errorDAO = (ErrorDAO) aplicationContext
+			ErrorDAO errorDAO = (ErrorDAO) applicationContext
 					.getBean("errorDAO");
 			errorDAO.create(error1);
 			errorDAO.create(error2);
@@ -1054,78 +1054,78 @@ public class InstallEntities {
 
 	}
 
-	public void deleteEntities(ApplicationContext aplicationContext) {
+	public void deleteEntities(ApplicationContext applicationContext) {
 
 		
-		ReportErrorDAO reportErrorDAO = (ReportErrorDAO) aplicationContext
+		ReportErrorDAO reportErrorDAO = (ReportErrorDAO) applicationContext
 				.getBean("reportErrorDAO");
 		reportErrorDAO.deleteAll();
 		
-		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) aplicationContext
+		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) applicationContext
 				.getBean("reportDataErrorDAO");
 		reportDataErrorDAO.deleteAll();
 		
-		LoadErrorDAO loadErrorDAO = (LoadErrorDAO) aplicationContext
+		LoadErrorDAO loadErrorDAO = (LoadErrorDAO) applicationContext
 				.getBean("loadErrorDAO");
 		loadErrorDAO.deleteAll();
 		
 
-		ErrorDAO errorDAO = (ErrorDAO) aplicationContext
+		ErrorDAO errorDAO = (ErrorDAO) applicationContext
 				.getBean("errorDAO");
 		errorDAO.deleteAll();
 		
-		LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) aplicationContext
+		LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext
 				.getBean("loadRawDataDAO");
 		loadRawDataDAO.deleteAll();
 
-		LoadRawDAO loadRawDAO = (LoadRawDAO) aplicationContext
+		LoadRawDAO loadRawDAO = (LoadRawDAO) applicationContext
 				.getBean("loadRawDAO");
 		loadRawDAO.deleteAll();
 
-		LoadFileDAO loadFileDAO = (LoadFileDAO) aplicationContext
+		LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
 				.getBean("loadFileDAO");
 		loadFileDAO.deleteAll();
 
-		ReportDataDAO reportDataDAO = (ReportDataDAO) aplicationContext
+		ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 				.getBean("reportDataDAO");
 		reportDataDAO.deleteAll();
 
-		FileColumDAO fileColumDAO = (FileColumDAO) aplicationContext
+		FileColumDAO fileColumDAO = (FileColumDAO) applicationContext
 				.getBean("fileColumDAO");
 		fileColumDAO.deleteAll();
 
-		FileConfigDAO fileConfigDAO = (FileConfigDAO) aplicationContext
+		FileConfigDAO fileConfigDAO = (FileConfigDAO) applicationContext
 				.getBean("fileConfigDAO");
 		fileConfigDAO.deleteAll();
 
-		ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) aplicationContext
+		ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) applicationContext
 				.getBean("reportFieldListDAO");
 		reportFieldListDAO.deleteAll();
 
-		ReportFieldDAO reportFieldDAO = (ReportFieldDAO) aplicationContext
+		ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
 				.getBean("reportFieldDAO");
 		reportFieldDAO.deleteAll();
 
-		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) aplicationContext
+		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
 		reportExecutionDAO.deleteAll();
 
-		ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) aplicationContext
+		ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
 				.getBean("reportCatalogDAO");
 		reportCatalogDAO.deleteAll();
 
-		FundGroupDAO fundGroupDAO = (FundGroupDAO) aplicationContext
+		FundGroupDAO fundGroupDAO = (FundGroupDAO) applicationContext
 				.getBean("fundGroupDAO");
 		fundGroupDAO.deleteAll();
 
-		FundDAO fundDAO = (FundDAO) aplicationContext.getBean("fundDAO");
+		FundDAO fundDAO = (FundDAO) applicationContext.getBean("fundDAO");
 		fundDAO.deleteAll();
 
-		DepartmentDAO departmentDAO = (DepartmentDAO) aplicationContext
+		DepartmentDAO departmentDAO = (DepartmentDAO) applicationContext
 				.getBean("departmentDAO");
 		departmentDAO.deleteAll();
 
-		CompanyDAO companyDAO = (CompanyDAO) aplicationContext
+		CompanyDAO companyDAO = (CompanyDAO) applicationContext
 				.getBean("companyDAO");
 		companyDAO.deleteAll();
 

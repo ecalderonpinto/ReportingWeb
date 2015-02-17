@@ -22,14 +22,14 @@ import com.entities.entity.reportingtool.ReportExecution;
 
 public class TestValidator {
 
-	public void process(ApplicationContext aplicationContext) {
+	public void process(ApplicationContext applicationContext) {
 
 		try {
 
 			LoadFile loadFileExample = new LoadFile();
 			loadFileExample.setLoadFileName("Fichero1.txt");
 
-			LoadFileDAO loadFileDAO = (LoadFileDAO) aplicationContext
+			LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
 					.getBean("loadFileDAO");
 			List<LoadFile> loadFiles = loadFileDAO
 					.findByExample(loadFileExample);
@@ -45,15 +45,15 @@ public class TestValidator {
 				List<LoadRawData> aifmdRawDatas = new ArrayList<LoadRawData>(
 						loadRaw.getLoadRawDatas());
 				for (LoadRawData aifmdRawData : aifmdRawDatas) {
-					Translate translate = new Translate(aplicationContext);
+					Translate translate = new Translate(applicationContext);
 					translate.translateRaw(aifmdRawData);
 
-					Format format = new Format(aplicationContext);
+					Format format = new Format(applicationContext);
 					format.formatRaw(aifmdRawData);
 				}
 			}
 
-			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) aplicationContext
+			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 					.getBean("reportExecutionDAO");
 			ReportExecution reportExecutionExample = new ReportExecution();
 			reportExecutionExample.setReportPeriodType("Q1");
@@ -62,7 +62,7 @@ public class TestValidator {
 					reportExecutionDAO.findByExample(reportExecutionExample));
 			ReportExecution reportExecution = reportExecutions.get(0);
 
-			RawData rawData = new RawData(aplicationContext);
+			RawData rawData = new RawData(applicationContext);
 			rawData.FileRawToData(loadFile, reportExecution);
 
 		} catch (Exception e) {
@@ -76,7 +76,7 @@ public class TestValidator {
 			reportExecutionExample.setReportPeriodYear("2014");
 			reportExecutionExample.setReportPeriodType("Q1");
 
-			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) aplicationContext
+			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 					.getBean("reportExecutionDAO");
 			List<ReportExecution> reportExecutions = reportExecutionDAO
 					.findByExample(reportExecutionExample);
@@ -88,7 +88,7 @@ public class TestValidator {
 					+ reportExecution.getReportPeriodType() + " "
 					+ reportExecution.getReportPeriodYear());
 
-			Syntactic syntactic = new Syntactic(aplicationContext);
+			Syntactic syntactic = new Syntactic(applicationContext);
 
 			List<ReportData> reportDatas = new ArrayList<ReportData>(
 					reportExecution.getReportDatas());
@@ -105,11 +105,11 @@ public class TestValidator {
 
 			System.out
 					.println("DEBUG_" + "TestValidator checking AIFMD Status");
-			Status status = new Status(aplicationContext);
+			Status status = new Status(applicationContext);
 			status.checkAIFMDStatus(reportExecution);
 
 			System.out.println("DEBUG_" + "TestValidator generating XML");
-			GeneratorXML generatorXML = new GeneratorXML(aplicationContext);
+			GeneratorXML generatorXML = new GeneratorXML(applicationContext);
 			generatorXML.generateXML(reportExecution);
 
 		} catch (Exception e) {

@@ -20,10 +20,10 @@ import com.entities.utilities.hibernate.VersionAuditor;
 
 public class Syntactic {
 
-	private ApplicationContext aplicationContext;
+	private ApplicationContext applicationContext;
 
-	public Syntactic(ApplicationContext aplicationContext) {
-		this.aplicationContext = aplicationContext;
+	public Syntactic(ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
 	}
 
 	public void validInValueList(ReportData reportData) {
@@ -31,7 +31,7 @@ public class Syntactic {
 
 		ReportField reportField = reportData.getReportField();
 
-		ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) aplicationContext
+		ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) applicationContext
 				.getBean("reportFieldListDAO");
 
 		ReportFieldList reportFieldListExample = new ReportFieldList();
@@ -109,7 +109,7 @@ public class Syntactic {
 	public void createReportDataError(ReportData reportData,
 			String type, String text) {
 		
-		ErrorDAO errorDAO = (ErrorDAO) aplicationContext
+		ErrorDAO errorDAO = (ErrorDAO) applicationContext
 				.getBean("errorDAO");
 		Error errorExample = new Error();
 		errorExample.setErrorType("SYNTAXIS");
@@ -125,7 +125,7 @@ public class Syntactic {
 				+ reportDataError.getReportDataErrorType()
 				+ reportDataError.getReportData());
 
-		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) aplicationContext
+		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) applicationContext
 				.getBean("reportDataErrorDAO");
 
 		reportDataErrorDAO.create(reportDataError);

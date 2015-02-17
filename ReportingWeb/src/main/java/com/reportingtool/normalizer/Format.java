@@ -14,10 +14,10 @@ public class Format {
 	public static final String dateTimePattern = "yyyy-MM-ddTHH:mm:ss";
 	public static final String datePattern = "yyyy-MM-dd";
 	
-	private ApplicationContext aplicationContext;
+	private ApplicationContext applicationContext;
 	
-	public Format (ApplicationContext aplicationContext) {
-		this.aplicationContext = aplicationContext;
+	public Format (ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
 	}
 
 	// main function to format aifmdRawData

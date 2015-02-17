@@ -17,10 +17,10 @@ import com.entities.utilities.hibernate.VersionAuditor;
 
 public class RawData {
 	
-	private ApplicationContext aplicationContext;
+	private ApplicationContext applicationContext;
 	
-	public RawData (ApplicationContext aplicationContext) {
-		this.aplicationContext = aplicationContext;
+	public RawData (ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
 	}
 
 	public void FileRawToData(LoadFile loadFile, ReportExecution reportExecution) {
@@ -71,7 +71,7 @@ public class RawData {
 		reportData.setReportExecution(reportExecution);
 
 		// save new aifmdData
-		ReportDataDAO reportDataDAO = (ReportDataDAO) aplicationContext
+		ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 				.getBean("reportDataDAO");
 
 		reportDataDAO.create(reportData);

@@ -4,10 +4,10 @@ import org.springframework.context.ApplicationContext;
 
 public class Semantic {
 
-	private ApplicationContext aplicationContext;
+	private ApplicationContext applicationContext;
 
-	public Semantic(ApplicationContext aplicationContext) {
-		this.aplicationContext = aplicationContext;
+	public Semantic(ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
 	}
 
 }

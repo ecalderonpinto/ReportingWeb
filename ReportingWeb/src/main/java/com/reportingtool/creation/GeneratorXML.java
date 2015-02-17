@@ -26,10 +26,10 @@ import org.w3c.dom.Element;
 
 public class GeneratorXML {
 
-	private ApplicationContext aplicationContext;
+	private ApplicationContext applicationContext;
 
-	public GeneratorXML(ApplicationContext aplicationContext) {
-		this.aplicationContext = aplicationContext;
+	public GeneratorXML(ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
 	}
 
 	public void generateXML(ReportExecution reportExecution) {

@@ -17,14 +17,14 @@ import com.reportingtool.test.TestValidator;
 public class TestController {
 
 	@Autowired
-	ApplicationContext aplicationContext;
+	ApplicationContext applicationContext;
 	
 	@RequestMapping(value="test.do", method=RequestMethod.GET)
 	public String login(Locale locale, Model model){
 		
 		// TO DO
 		TestValidator testValidator = new TestValidator();
-		testValidator.process(aplicationContext);
+		testValidator.process(applicationContext);
 		
 		System.out.println("Test");
 		return "test";
@@ -35,9 +35,9 @@ public class TestController {
 		
 		// TO DO
 		InstallEntities installLoader = new InstallEntities();
-		//installLoader.installTest(aplicationContext);
-		installLoader.deleteEntities(aplicationContext);
-		installLoader.installEntitiesFull(aplicationContext);
+		//installLoader.installTest(applicationContext);
+		installLoader.deleteEntities(applicationContext);
+		installLoader.installEntitiesFull(applicationContext);
 		
 		System.out.println("Installed");
 		return "install";
