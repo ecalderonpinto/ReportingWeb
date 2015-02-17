@@ -1,22 +1,17 @@
 package com.reportingtool.validator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.context.ApplicationContext;
 
-import com.entities.dao.common.ErrorDAO;
-import com.entities.dao.reportingtool.ReportDataErrorDAO;
 import com.entities.dao.reportingtool.ReportFieldListDAO;
-import com.entities.entity.common.Error;
 import com.entities.entity.reportingtool.ReportData;
-import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
-import com.entities.utilities.hibernate.VersionAuditor;
+import com.reportingtool.utilities.ReportingErrorManager;
 
 public class Syntactic {
 
@@ -62,7 +57,7 @@ public class Syntactic {
 			// not valid
 
 			// create a message of error
-			createReportDataError(reportData, "VALUE", "NOT IN VALUE LIST: "
+			ReportingErrorManager.createReportDataError(applicationContext, "SYNTAXIS", reportData, "VALUE", "NOT IN VALUE LIST: "
 					+ reportData.getReportDataText());
 		}
 	}
@@ -95,40 +90,14 @@ public class Syntactic {
 			} else {
 				// not valid, bad Regex
 
-				createReportDataError(reportData, "REGEX",
+				ReportingErrorManager.createReportDataError(applicationContext, "SYNTAXIS", reportData, "REGEX",
 						"BAD REGEX FOUND: " + reportData.getReportDataText()
 								+ " <> " + reportData.getReportDataText());
 			}
 		} else {
 			// not valid, is empty
-			createReportDataError(reportData, "EMPTY", "EMPTY FIELD");
+			ReportingErrorManager.createReportDataError(applicationContext, "SYNTAXIS", reportData, "EMPTY", "EMPTY FIELD");
 		}
-
-	}
-
-	public void createReportDataError(ReportData reportData,
-			String type, String text) {
-		
-		ErrorDAO errorDAO = (ErrorDAO) applicationContext
-				.getBean("errorDAO");
-		Error errorExample = new Error();
-		errorExample.setErrorType("SYNTAXIS");
-		List<Error> errors = new ArrayList<Error>(errorDAO.findByExample(errorExample));
-		Error error = new Error();
-		error = errors.get(0);
-		
-		ReportDataError reportDataError = new ReportDataError(reportData, error, type, text, new VersionAuditor("error"));
-		
-
-		System.out.println("DEBUG_" + "Syntactic: error final: "
-				+ reportDataError.getReportDataErrorText()
-				+ reportDataError.getReportDataErrorType()
-				+ reportDataError.getReportData());
-
-		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) applicationContext
-				.getBean("reportDataErrorDAO");
-
-		reportDataErrorDAO.create(reportDataError);
 
 	}
 

@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.common.ErrorDAO;
 import com.entities.dao.loader.FileColumDAO;
+import com.entities.dao.loader.FileColumListDAO;
 import com.entities.dao.loader.FileConfigDAO;
 import com.entities.dao.loader.LoadErrorDAO;
 import com.entities.dao.loader.LoadFileDAO;
@@ -28,6 +29,7 @@ import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.dao.reportingtool.ReportFieldListDAO;
 import com.entities.entity.common.Error;
 import com.entities.entity.loader.FileColum;
+import com.entities.entity.loader.FileColumList;
 import com.entities.entity.loader.FileConfig;
 import com.entities.entity.loader.LoadFile;
 import com.entities.entity.loader.LoadRaw;
@@ -652,27 +654,25 @@ public class InstallEntities {
 			ReportData reportData24 = new ReportData(null, reportField24,
 					reportExecution, null, null, "GB", null, null, versionAdmin);
 			ReportData reportData25 = new ReportData(null, reportField25,
-					reportExecution, null, null, "UK", null,
-					null, versionAdmin);
+					reportExecution, null, null, "UK", null, null, versionAdmin);
 			ReportData reportData26 = new ReportData(null, reportField26,
 					reportExecution, null, null, "1", null, null, versionAdmin);
 			ReportData reportData27 = new ReportData(null, reportField27,
-					reportExecution, null, null, "XXX", null, null, versionAdmin);
-			ReportData reportData28 = new ReportData(null, reportField28,
-					reportExecution, null, null, "", null, null,
+					reportExecution, null, null, "XXX", null, null,
 					versionAdmin);
+			ReportData reportData28 = new ReportData(null, reportField28,
+					reportExecution, null, null, "", null, null, versionAdmin);
 			ReportData reportData29 = new ReportData(null, reportField29,
 					reportExecution, null, null, "452000000", null, null,
 					versionAdmin);
 			ReportData reportData30 = new ReportData(null, reportField30,
-					reportExecution, null, null, "2", null, null,
-					versionAdmin);
+					reportExecution, null, null, "2", null, null, versionAdmin);
 			ReportData reportData31 = new ReportData(null, reportField31,
 					reportExecution, null, null, "MIC", null, null,
 					versionAdmin);
 			ReportData reportData32 = new ReportData(null, reportField32,
-					reportExecution, null, null, "XEUR", null,
-					null, versionAdmin);
+					reportExecution, null, null, "XEUR", null, null,
+					versionAdmin);
 			ReportData reportData33 = new ReportData(null, reportField33,
 					reportExecution, null, null, "42800000", null, null,
 					versionAdmin);
@@ -740,8 +740,8 @@ public class InstallEntities {
 					"Error in validation", "Revise fields", null, null, null,
 					versionAdmin);
 			Error error4 = new Error("NORMALIZER", "Error normalizer", "1",
-					"Error in normalize process", "Reload file", null, null, null,
-					versionAdmin);
+					"Error in normalize process", "Reload file", null, null,
+					null, versionAdmin);
 			Error error5 = new Error("CREATION", "Error load", "1",
 					"Error in creation", "Revise conditions", null, null, null,
 					versionAdmin);
@@ -755,11 +755,14 @@ public class InstallEntities {
 					"Error in load file", "Reload file", null, null, null,
 					versionAdmin);
 			Error error9 = new Error("STATUS", "Error status", "1",
-					"Error in status checker", "Revise report", null, null, null,
-					versionAdmin);
+					"Error in status checker", "Revise report", null, null,
+					null, versionAdmin);
 			Error error10 = new Error("REPORTING", "Error report", "1",
 					"Error in report", "Revise report", null, null, null,
 					versionAdmin);
+
+			FileColumList fileColumList1 = new FileColumList(fileColum4,
+					"TEXT", "FIRST", "INIT", versionAdmin);
 
 			// DAO
 
@@ -1033,8 +1036,7 @@ public class InstallEntities {
 			loadRawDataDAO.create(loadRawData21);
 			loadRawDataDAO.create(loadRawData22);
 			loadRawDataDAO.create(loadRawData23);
-			
-			
+
 			ErrorDAO errorDAO = (ErrorDAO) applicationContext
 					.getBean("errorDAO");
 			errorDAO.create(error1);
@@ -1047,6 +1049,13 @@ public class InstallEntities {
 			errorDAO.create(error8);
 			errorDAO.create(error9);
 			errorDAO.create(error10);
+			
+			
+			FileColumListDAO fileColumListDAO = (FileColumListDAO) applicationContext
+					.getBean("fileColumListDAO");
+			fileColumListDAO.create(fileColumList1);
+			
+			 
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1056,24 +1065,25 @@ public class InstallEntities {
 
 	public void deleteEntities(ApplicationContext applicationContext) {
 
+		FileColumListDAO fileColumListDAO = (FileColumListDAO) applicationContext
+				.getBean("fileColumListDAO");
+		fileColumListDAO.deleteAll();
 		
 		ReportErrorDAO reportErrorDAO = (ReportErrorDAO) applicationContext
 				.getBean("reportErrorDAO");
 		reportErrorDAO.deleteAll();
-		
+
 		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) applicationContext
 				.getBean("reportDataErrorDAO");
 		reportDataErrorDAO.deleteAll();
-		
+
 		LoadErrorDAO loadErrorDAO = (LoadErrorDAO) applicationContext
 				.getBean("loadErrorDAO");
 		loadErrorDAO.deleteAll();
-		
 
-		ErrorDAO errorDAO = (ErrorDAO) applicationContext
-				.getBean("errorDAO");
+		ErrorDAO errorDAO = (ErrorDAO) applicationContext.getBean("errorDAO");
 		errorDAO.deleteAll();
-		
+
 		LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext
 				.getBean("loadRawDataDAO");
 		loadRawDataDAO.deleteAll();

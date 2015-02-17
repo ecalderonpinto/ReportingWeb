@@ -5,18 +5,19 @@ import java.util.Date;
 
 import org.springframework.context.ApplicationContext;
 
+import com.entities.dao.loader.LoadRawDataDAO;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.LoadRawData;
-
+import com.reportingtool.utilities.ReportingErrorManager;
 
 public class Format {
 
 	public static final String dateTimePattern = "yyyy-MM-ddTHH:mm:ss";
 	public static final String datePattern = "yyyy-MM-dd";
-	
+
 	private ApplicationContext applicationContext;
-	
-	public Format (ApplicationContext applicationContext) {
+
+	public Format(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}
 
@@ -41,17 +42,17 @@ public class Format {
 		return loadRawData;
 	}
 
-	public LoadRawData dateFormat(LoadRawData reportRawData) {
-		String dateText = reportRawData.getLoadRawDataText();
+	public LoadRawData dateFormat(LoadRawData loadRawData) {
+		String dateText = loadRawData.getLoadRawDataText();
 
 		// find config of column
-		FileColum fileColum = reportRawData.getFileColum();
+		FileColum fileColum = loadRawData.getFileColum();
 
 		// only accept format yyyy-MM-dd
 		String dateFormat = fileColum.getColumFormat();
 
 		System.out.println("DEBUG_" + "FormatDate "
-				+ reportRawData.getLoadRawDataText() + " format "
+				+ loadRawData.getLoadRawDataText() + " format "
 				+ fileColum.getColumFormat());
 
 		String newstring = "";
@@ -62,17 +63,24 @@ public class Format {
 			// SimpleDateFormat#format() to format a Date into a String in a
 			// certain pattern
 			newstring = new SimpleDateFormat(datePattern).format(date);
+
 		} catch (Exception e) {
 			e.printStackTrace();
+			// create loadError
+			ReportingErrorManager.createLoadError(applicationContext,
+					"NORMALIZER", loadRawData.getLoadRaw().getLoadFile(),
+					"FORMAT",
+					"INVALID DATE FORMAT: " + loadRawData.getLoadRawDataText()
+							+ " " + fileColum.getColumFormat());
 		}
 
 		System.out.println("DEBUG_" + "FormatDate Orig: " + dateText + " New "
 				+ newstring);
 
 		// set final date
-		reportRawData.setLoadRawDataText(newstring);
+		loadRawData.setLoadRawDataText(newstring);
 
-		return reportRawData;
+		return loadRawData;
 	}
 
 	public LoadRawData dateTimeFormat(LoadRawData loadRawData) {
@@ -94,6 +102,15 @@ public class Format {
 			newstring = new SimpleDateFormat(dateTimePattern).format(date);
 		} catch (Exception e) {
 			e.printStackTrace();
+			// create loadError
+			ReportingErrorManager.createLoadError(
+					applicationContext,
+					"NORMALIZER",
+					loadRawData.getLoadRaw().getLoadFile(),
+					"FORMAT",
+					"INVALID DATETIME FORMAT: "
+							+ loadRawData.getLoadRawDataText() + " "
+							+ fileColum.getColumFormat());
 		}
 
 		System.out.println("DEBUG_" + "FormatDateTime Orig: " + dateText
@@ -101,6 +118,10 @@ public class Format {
 
 		// set final date
 		loadRawData.setLoadRawDataText(newstring);
+
+		LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext
+				.getBean("loadRawDataDAO");
+		loadRawDataDAO.edit(loadRawData);
 
 		return loadRawData;
 	}
@@ -121,7 +142,7 @@ public class Format {
 
 		// only acept format #.# removing spaces, characters and ',' '.' of
 		// thousands
-		String numberFormat =  fileColum.getColumFormat();
+		String numberFormat = fileColum.getColumFormat();
 
 		int dot = numberFormat.indexOf(".");
 		int comma = numberFormat.indexOf(",");
@@ -144,6 +165,10 @@ public class Format {
 
 		// set the final number
 		loadRawData.setLoadRawDataText(number);
+
+		LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext
+				.getBean("loadRawDataDAO");
+		loadRawDataDAO.edit(loadRawData);
 
 		return loadRawData;
 	}

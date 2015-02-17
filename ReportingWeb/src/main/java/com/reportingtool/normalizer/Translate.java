@@ -6,17 +6,16 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.loader.FileColumListDAO;
+import com.entities.dao.loader.LoadRawDataDAO;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileColumList;
 import com.entities.entity.loader.LoadRawData;
 
-
 public class Translate {
-	
-	
+
 	private ApplicationContext applicationContext;
-	
-	public Translate (ApplicationContext applicationContext) {
+
+	public Translate(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}
 
@@ -25,14 +24,8 @@ public class Translate {
 
 		// find config of column
 		FileColum fileColum = loadRawData.getFileColum();
-
-		FileColumListDAO fileColumListDAO = (FileColumListDAO) applicationContext
-				.getBean("fileColumListDAO");
 		
-		FileColumList fileColumListExample = new FileColumList();
-		fileColumListExample.setFileColum(fileColum);
-		List<FileColumList> fileColumLists = new ArrayList<FileColumList>(
-				fileColumListDAO.findByExample(fileColumListExample));
+		List<FileColumList> fileColumLists =  new ArrayList<FileColumList>(fileColum.getFileColumLists());
 		
 		System.out.println("DEBUG_" + "Translate: fileColum " +fileColum.getColumName());
 		
@@ -54,7 +47,12 @@ public class Translate {
 			System.out.println("DEBUG_" + "Translate: Orig " + valueOrig
 					+ " Dest " + valueDest);
 
+			// save new value
 			loadRawData.setLoadRawDataText(valueDest);
+			
+			LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext
+					.getBean("loadRawDataDAO");
+			loadRawDataDAO.edit(loadRawData);
 		}
 
 		return loadRawData;
