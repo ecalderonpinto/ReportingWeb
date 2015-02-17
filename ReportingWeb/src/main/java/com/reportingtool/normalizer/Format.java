@@ -3,8 +3,8 @@ package com.reportingtool.normalizer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.entity.loader.FileColum;
-import com.entity.loader.LoadRawData;
+import com.entities.entity.loader.FileColum;
+import com.entities.entity.loader.LoadRawData;
 
 
 public class Format {

@@ -10,14 +10,13 @@ import com.reportingtool.normalizer.Translate;
 import com.reportingtool.validator.RawData;
 import com.reportingtool.validator.Status;
 import com.reportingtool.validator.Syntactic;
-
-import com.entity.loader.LoadFile;
-import com.dao.loader.LoadFileDAO;
-import com.entity.loader.LoadRaw;
-import com.entity.loader.LoadRawData;
-import com.entity.reportingtool.ReportData;
-import com.entity.reportingtool.ReportExecution;
-import com.dao.reportingtool.ReportExecutionDAO;
+import com.entities.dao.loader.LoadFileDAO;
+import com.entities.dao.reportingtool.ReportExecutionDAO;
+import com.entities.entity.loader.LoadFile;
+import com.entities.entity.loader.LoadRaw;
+import com.entities.entity.loader.LoadRawData;
+import com.entities.entity.reportingtool.ReportData;
+import com.entities.entity.reportingtool.ReportExecution;
 
 
 public class TestValidator {

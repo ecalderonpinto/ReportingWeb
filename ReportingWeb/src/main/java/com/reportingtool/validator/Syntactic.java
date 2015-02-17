@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.entity.reportingtool.ReportData;
-import com.entity.reportingtool.ReportDataError;
-import com.entity.reportingtool.ReportExecution;
-import com.entity.reportingtool.ReportField;
-import com.entity.reportingtool.ReportFieldList;
-import com.dao.reportingtool.ReportFieldListDAO;
+import com.entities.dao.reportingtool.ReportFieldListDAO;
+import com.entities.entity.reportingtool.ReportData;
+import com.entities.entity.reportingtool.ReportDataError;
+import com.entities.entity.reportingtool.ReportExecution;
+import com.entities.entity.reportingtool.ReportField;
+import com.entities.entity.reportingtool.ReportFieldList;
 
 public class Syntactic {
 

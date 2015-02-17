@@ -3,10 +3,10 @@ package com.reportingtool.normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.entity.loader.FileColum;
-import com.entity.loader.FileColumList;
-import com.dao.loader.FileColumListDAO;
-import com.entity.loader.LoadRawData;
+import com.entities.dao.loader.FileColumListDAO;
+import com.entities.entity.loader.FileColum;
+import com.entities.entity.loader.FileColumList;
+import com.entities.entity.loader.LoadRawData;
 
 
 public class Translate {

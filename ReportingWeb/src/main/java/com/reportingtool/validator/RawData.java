@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import com.entity.loader.FileColum;
-import com.entity.loader.LoadFile;
-import com.entity.loader.LoadRawData;
-import com.entity.loader.LoadRaw;
-import com.entity.reportingtool.ReportData;
-import com.entity.reportingtool.ReportExecution;
-import com.entity.reportingtool.ReportField;
+
+
+import com.entities.entity.loader.FileColum;
+import com.entities.entity.loader.LoadFile;
+import com.entities.entity.loader.LoadRaw;
+import com.entities.entity.loader.LoadRawData;
+import com.entities.entity.reportingtool.ReportData;
+import com.entities.entity.reportingtool.ReportExecution;
+import com.entities.entity.reportingtool.ReportField;
 
 public class RawData {
 

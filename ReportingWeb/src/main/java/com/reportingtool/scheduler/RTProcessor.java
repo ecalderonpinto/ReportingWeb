@@ -1,8 +1,8 @@
 package com.reportingtool.scheduler;
 
-import com.entity.loader.LoadFile;
-import com.entity.loader.LoadRaw;
-import com.entity.loader.LoadError;
+import com.entities.entity.loader.LoadError;
+import com.entities.entity.loader.LoadFile;
+import com.entities.entity.loader.LoadRaw;
 
 /**
  * 
@@ -51,10 +51,11 @@ public class RTProcessor {
 		boolean result = false;
 	
 		//Create LoadRaw Object;
+		/*
 		this.loadRaw = new LoadRaw();
 		this.loadRaw.setLoadFile(loadFile);
 		this.loadRaw.set
-		
+		*/
 		//Split line;
 		
 		//Create aifmdRawDatas Objects;

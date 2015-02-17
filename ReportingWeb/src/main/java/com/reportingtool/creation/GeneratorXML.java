@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.entity.reportingtool.ReportCatalog;
-import com.entity.reportingtool.ReportData;
-import com.entity.reportingtool.ReportExecution;
-import com.entity.reportingtool.ReportField;
+import com.entities.entity.reportingtool.ReportCatalog;
+import com.entities.entity.reportingtool.ReportData;
+import com.entities.entity.reportingtool.ReportExecution;
+import com.entities.entity.reportingtool.ReportField;
 
 import java.io.File;
 

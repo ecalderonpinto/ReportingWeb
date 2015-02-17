@@ -11,9 +11,9 @@ import java.util.Set;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 
-import com.entity.loader.FileConfig;
-import com.entity.loader.LoadFile;
-import com.entity.usermanager.User;
+import com.entities.entity.loader.FileConfig;
+import com.entities.entity.loader.LoadFile;
+import com.entities.entity.usermanager.User;
 
 /**
  * 
@@ -65,17 +65,18 @@ public class RTLoader {
 		}
 	}
 	
-	public UserMngUsers getLoadUser(){
+	public User getLoadUser(){
 		return this.loadUser;
 	}
 	
-	public void setLoadUser(UserMngUsers user){
+	public void setLoadUser(User user){
 		this.loadUser = user;
 	}
 
 	public boolean run() {
 		
 		//Create LoadFile Object;
+		/*
 		loadFile = new LoadFile();
 		loadFile.setfileConfig(this.fileConfig);
 		loadFile.setAssetManagement(this.fileConfig.getAssetManagement());
@@ -118,7 +119,7 @@ public class RTLoader {
 			
 			loadFile.getLoadRaws().add(loadRaw);
 		}
-		
+		*/
 		return true;
 	}
 	
