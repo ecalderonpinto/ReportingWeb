@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -70,7 +71,7 @@ public class FundGroup implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FUND_ID", nullable = false)
+	@JoinColumn(name = "FUND_ID", nullable = false, foreignKey=@ForeignKey(name="T_FUND_GROUP_FK_FUND"))
 	public Fund getFund() {
 		return this.fund;
 	}
@@ -80,7 +81,7 @@ public class FundGroup implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "DEPARTMENT_ID", nullable = false)
+	@JoinColumn(name = "DEPARTMENT_ID", nullable = false, foreignKey=@ForeignKey(name="T_FUND_GROUP_FK_DEPT"))
 	public Department getDepartment() {
 		return this.department;
 	}

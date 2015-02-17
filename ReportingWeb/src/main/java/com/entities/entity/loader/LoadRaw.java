@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -79,7 +80,7 @@ public class LoadRaw implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "LOAD_FILE_ID", nullable = false)
+	@JoinColumn(name = "LOAD_FILE_ID", nullable = false, foreignKey=@ForeignKey(name="T_LOAD_RAW_FK_LOAD_FILE"))
 	public LoadFile getLoadFile() {
 		return this.loadFile;
 	}

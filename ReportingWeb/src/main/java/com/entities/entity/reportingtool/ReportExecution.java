@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -118,7 +119,7 @@ public class ReportExecution implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_CATALOG_ID", nullable = false)
+	@JoinColumn(name = "REPORT_CATALOG_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_EXE_FK_CATALOG"))
 	public ReportCatalog getReportCatalog() {
 		return this.reportCatalog;
 	}
@@ -128,7 +129,7 @@ public class ReportExecution implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "COMPANY_ID", nullable = false)
+	@JoinColumn(name = "COMPANY_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_EXE_FK_COMPANY"))
 	public Company getCompany() {
 		return this.company;
 	}
@@ -138,7 +139,7 @@ public class ReportExecution implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FUND_ID")
+	@JoinColumn(name = "FUND_ID", foreignKey=@ForeignKey(name="T_REPORT_EXE_FK_FUND"))
 	public Fund getFund() {
 		return this.fund;
 	}

@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -87,7 +88,7 @@ public class FileConfig implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "DEPARTMENT_ID")
+	@JoinColumn(name = "DEPARTMENT_ID", foreignKey=@ForeignKey(name="T_FILE_CONFIG_FK_DPTO"))
 	public Department getDepartment() {
 		return this.department;
 	}

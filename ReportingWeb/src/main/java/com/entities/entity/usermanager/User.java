@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -77,7 +78,7 @@ public class User implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ROL_ID", nullable = false)
+	@JoinColumn(name = "ROL_ID", nullable = false, foreignKey=@ForeignKey(name="T_USER_FK_ROL_ID"))
 	public UserRol getUserRol() {
 		return this.userRol;
 	}

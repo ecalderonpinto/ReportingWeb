@@ -14,6 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -89,7 +90,7 @@ public class FileColum implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_FIELD_ID")
+	@JoinColumn(name = "REPORT_FIELD_ID", foreignKey=@ForeignKey(name="T_FILE_COLUM_FK_REPORT_FIELD"))
 	public ReportField getReportField() {
 		return this.reportField;
 	}
@@ -99,7 +100,7 @@ public class FileColum implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FILE_CONFIG_ID", nullable = false)
+	@JoinColumn(name = "FILE_CONFIG_ID", nullable = false, foreignKey=@ForeignKey(name="T_FILE_COLUM_FK_FILE_CONFIG"))
 	public FileConfig getFileConfig() {
 		return this.fileConfig;
 	}

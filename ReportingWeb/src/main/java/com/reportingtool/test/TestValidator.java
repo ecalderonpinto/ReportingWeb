@@ -54,7 +54,7 @@ public class TestValidator {
 			}
 
 			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) aplicationContext
-					.getBean("fileColumListDAO");
+					.getBean("reportExecutionDAO");
 			ReportExecution reportExecutionExample = new ReportExecution();
 			reportExecutionExample.setReportPeriodType("Q1");
 			reportExecutionExample.setReportPeriodYear("2014");

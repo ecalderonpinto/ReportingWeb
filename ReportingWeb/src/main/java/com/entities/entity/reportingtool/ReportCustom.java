@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -73,7 +74,7 @@ public class ReportCustom implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_CATALOG_ID")
+	@JoinColumn(name = "REPORT_CATALOG_ID", foreignKey=@ForeignKey(name="T_REPORT_CUST_FK_CATALOG"))
 	public ReportCatalog getReportCatalog() {
 		return this.reportCatalog;
 	}
@@ -83,7 +84,7 @@ public class ReportCustom implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "COMPANY_ID", nullable = false)
+	@JoinColumn(name = "COMPANY_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_CUST_FK_COMPANY"))
 	public Company getCompany() {
 		return this.company;
 	}
@@ -93,7 +94,7 @@ public class ReportCustom implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_FIELD_ID")
+	@JoinColumn(name = "REPORT_FIELD_ID", foreignKey=@ForeignKey(name="T_REPORT_CUST_FK_FIELD"))
 	public ReportField getReportField() {
 		return this.reportField;
 	}

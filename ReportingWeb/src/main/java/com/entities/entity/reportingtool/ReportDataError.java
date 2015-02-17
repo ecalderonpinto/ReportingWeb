@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -74,7 +75,7 @@ public class ReportDataError implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_DATA_ID", nullable = false)
+	@JoinColumn(name = "REPORT_DATA_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_DATA_ERROR_FK_DATA"))
 	public ReportData getReportData() {
 		return this.reportData;
 	}
@@ -84,7 +85,7 @@ public class ReportDataError implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ERROR_ID", nullable = false)
+	@JoinColumn(name = "ERROR_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_DATA_ERROR_FK_ERROR"))
 	public Error getError() {
 		return this.error;
 	}

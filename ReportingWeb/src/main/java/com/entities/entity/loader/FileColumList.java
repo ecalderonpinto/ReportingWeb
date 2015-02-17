@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -70,7 +71,7 @@ public class FileColumList implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FILE_COLUM_ID", nullable = false)
+	@JoinColumn(name = "FILE_COLUM_ID", nullable = false, foreignKey=@ForeignKey(name="T_FILE_COLUM_LIST_FK_FILE_COL"))
 	public FileColum getFileColum() {
 		return this.fileColum;
 	}
