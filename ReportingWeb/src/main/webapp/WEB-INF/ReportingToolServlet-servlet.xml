@@ -25,11 +25,62 @@
 	-->
 	<context:component-scan base-package="com.reportingtool" />
 	
+	<!-- start: Tiles View Resolver -->
 	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
 	</beans:bean>
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions" value="/WEB-INF/tiles.xml" />
 	</beans:bean>
+	<!-- end: Tiles View Resolver -->
+	
+	<!-- start: Quartz Configuration -->
+	<!-- Job simple. Al lanzar la planificación se hará 
+				el método <targetMethod> de la clase <targetObjetc> -->
+    <beans:bean id="testJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <beans:property name="targetObject" ref="testBean" />
+        <beans:property name="targetMethod" value="printMessage" />
+    </beans:bean>
+    <!-- Configuración del Trigger asignándole el job anterior -->
+    <beans:bean id="cronTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <beans:property name="jobDetail" ref="testJob" />
+        <beans:property name="cronExpression" value="0 0/1 * 1/1 * ? *" />
+    </beans:bean>
+    <!-- Scheduler Factory Bean to Configure Quartz Scheduler -->
+    <beans:bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <beans:property name="jobDetails">
+            <beans:list>
+                <beans:ref bean="testJob" />
+            </beans:list>
+        </beans:property>
+ 
+        <beans:property name="triggers">
+            <beans:list>
+                <beans:ref bean="cronTrigger" />
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
+    <!-- Run the job every 2 seconds with initial delay of 1 second -->
+    <!--
+    <beans:bean id="simpleTrigger"  class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <beans:property name="jobDetail" ref="simpleJobDetail" />
+        <beans:property name="startDelay" value="1000" />
+        <beans:property name="repeatInterval" value="2000" />
+    </beans:bean>
+ 	-->
+    <!-- For times when you need more complex processing, passing data to the scheduled job -->
+    <!--
+    <beans:bean name="complexJobDetail"    class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <beans:property name="jobClass" value="com.websystique.spring.quartz.ScheduledJob" />
+        <beans:property name="jobDataMap">
+            <beans:map>
+                <beans:entry key="anotherBean" value-ref="anotherBean" />
+            </beans:map>
+        </beans:property>
+        <beans:property name="durability" value="true" />
+    </beans:bean>
+    -->
+	<!-- end: Quartz Configuration -->
 	
 </beans:beans>
