@@ -13,6 +13,7 @@ import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
+import com.entities.utilities.hibernate.VersionAuditor;
 
 public class Syntactic {
 
@@ -110,6 +111,7 @@ public class Syntactic {
 		reportDataError.setReportDataErrorText(text);
 		reportDataError.setReportDataErrorType(type);
 		reportDataError.setReportData(reportData);
+		reportDataError.setAuditor(new VersionAuditor("error"));
 
 		System.out.println("DEBUG_" + "Syntactic: error final: "
 				+ reportDataError.getReportDataErrorText()

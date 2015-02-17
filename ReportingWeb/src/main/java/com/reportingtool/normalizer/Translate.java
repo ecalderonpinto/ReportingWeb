@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.loader.FileColumListDAO;
-import com.entities.dao.reportingtool.ReportDataDAO;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileColumList;
 import com.entities.entity.loader.LoadRawData;
@@ -27,13 +26,13 @@ public class Translate {
 		// find config of column
 		FileColum fileColum = loadRawData.getFileColum();
 
-		FileColumListDAO fileColumValueDAO = (FileColumListDAO) aplicationContext
-				.getBean("fileColumValueDAO");
+		FileColumListDAO fileColumListDAO = (FileColumListDAO) aplicationContext
+				.getBean("fileColumListDAO");
 		
-		FileColumList fileColumValue1 = new FileColumList();
-		fileColumValue1.setFileColum(fileColum);
+		FileColumList fileColumListExample = new FileColumList();
+		fileColumListExample.setFileColum(fileColum);
 		List<FileColumList> fileColumLists = new ArrayList<FileColumList>(
-				fileColumValueDAO.findByExample(fileColumValue1));
+				fileColumListDAO.findByExample(fileColumListExample));
 		
 		System.out.println("DEBUG_" + "Translate: fileColum " +fileColum.getColumName());
 		

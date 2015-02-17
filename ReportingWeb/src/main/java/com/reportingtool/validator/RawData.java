@@ -13,6 +13,7 @@ import com.entities.entity.loader.LoadRawData;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
+import com.entities.utilities.hibernate.VersionAuditor;
 
 public class RawData {
 	
@@ -65,7 +66,7 @@ public class RawData {
 		// report
 		ReportExecution reportExecution = new ReportExecution();
 		reportExecution.setReportCatalog(reportField.getReportCatalog());
-
+		reportData.setAuditor(new VersionAuditor("admin"));
 		reportData.setReportExecution(reportExecution);
 
 		// save new aifmdData

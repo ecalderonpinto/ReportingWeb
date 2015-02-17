@@ -12,6 +12,29 @@
 	<bean id="errorDAO" class="com.entities.dao.common.ErrorDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="fileColumDAO" class="com.entities.dao.loader.FileColumDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="fileColumListDAO" class="com.entities.dao.loader.FileColumListDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="fileConfigDAO" class="com.entities.dao.loader.FileConfigDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="loadErrorDAO" class="com.entities.dao.loader.LoadErrorDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="loadFileDAO" class="com.entities.dao.loader.LoadFileDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="loadRawDAO" class="com.entities.dao.loader.LoadRawDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="loadRawDataDAO" class="com.entities.dao.loader.LoadRawDataDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	<bean id="companyDAO" class="com.entities.dao.reportingtool.CompanyDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -27,6 +50,21 @@
 	<bean id="reportCatalogDAO" class="com.entities.dao.reportingtool.ReportCatalogDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="reportCustomDAO" class="com.entities.dao.reportingtool.ReportCustomDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="reportDataDAO" class="com.entities.dao.reportingtool.ReportDataDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="reportDataErrorDAO" class="com.entities.dao.reportingtool.ReportDataErrorDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="reportDataLongDAO" class="com.entities.dao.reportingtool.ReportDataLongDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="reportErrorDAO" class="com.entities.dao.reportingtool.ReportErrorDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean id="reportExecutionDAO" class="com.entities.dao.reportingtool.ReportExecutionDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -36,24 +74,8 @@
 	<bean id="reportFieldListDAO" class="com.entities.dao.reportingtool.ReportFieldListDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="fileConfigDAO" class="com.entities.dao.loader.FileConfigDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="fileColumDAO" class="com.entities.dao.loader.FileColumDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="reportDataDAO" class="com.entities.dao.reportingtool.ReportDataDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="loadFileDAO" class="com.entities.dao.loader.LoadFileDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="loadRawDAO" class="com.entities.dao.loader.LoadRawDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="loadRawDataDAO" class="com.entities.dao.loader.LoadRawDataDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
+	
 	
 	<!-- org.apache.commons.dbcp.BasicDataSource -->
 	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
@@ -70,30 +92,30 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.entity.common.Error</value>
-				<value>com.entity.loader.FileColum</value>
-				<value>com.entity.loader.FileColumList</value>
-				<value>com.entity.loader.FileConfig</value>
-				<value>com.entity.loader.LoadError</value>
-				<value>com.entity.loader.LoadFile</value>
-				<value>com.entity.loader.LoadRaw</value>
-				<value>com.entity.loader.LoadRawData</value>
-				<value>com.entity.reportingtool.Company</value>
-				<value>com.entity.reportingtool.Fund</value>
-				<value>com.entity.reportingtool.FundGroup</value>
-				<value>com.entity.reportingtool.Department</value>
-				<value>com.entity.reportingtool.ReportCatalog</value>
-				<value>com.entity.reportingtool.ReportCustom</value>
-				<value>com.entity.reportingtool.ReportData</value>
-				<value>com.entity.reportingtool.ReportDataError</value>
-				<value>com.entity.reportingtool.ReportDataLong</value>
-				<value>com.entity.reportingtool.ReportError</value>
-				<value>com.entity.reportingtool.ReportExecution</value>
-				<value>com.entity.reportingtool.ReportField</value>
-				<value>com.entity.reportingtool.ReportFieldList</value>
-				<value>com.entity.usermanager.User</value>
-				<value>com.entity.usermanager.UserRol</value>
-				<value>com.entity.usermanager.UserRolPermission</value>
+				<value>com.entities.entity.common.Error</value>
+				<value>com.entities.entity.loader.FileColum</value>
+				<value>com.entities.entity.loader.FileColumList</value>
+				<value>com.entities.entity.loader.FileConfig</value>
+				<value>com.entities.entity.loader.LoadError</value>
+				<value>com.entities.entity.loader.LoadFile</value>
+				<value>com.entities.entity.loader.LoadRaw</value>
+				<value>com.entities.entity.loader.LoadRawData</value>
+				<value>com.entities.entity.reportingtool.Company</value>
+				<value>com.entities.entity.reportingtool.Fund</value>
+				<value>com.entities.entity.reportingtool.FundGroup</value>
+				<value>com.entities.entity.reportingtool.Department</value>
+				<value>com.entities.entity.reportingtool.ReportCatalog</value>
+				<value>com.entities.entity.reportingtool.ReportCustom</value>
+				<value>com.entities.entity.reportingtool.ReportData</value>
+				<value>com.entities.entity.reportingtool.ReportDataError</value>
+				<value>com.entities.entity.reportingtool.ReportDataLong</value>
+				<value>com.entities.entity.reportingtool.ReportError</value>
+				<value>com.entities.entity.reportingtool.ReportExecution</value>
+				<value>com.entities.entity.reportingtool.ReportField</value>
+				<value>com.entities.entity.reportingtool.ReportFieldList</value>
+				<value>com.entities.entity.usermanager.User</value>
+				<value>com.entities.entity.usermanager.UserRol</value>
+				<value>com.entities.entity.usermanager.UserRolPermission</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
