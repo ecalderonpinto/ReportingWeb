@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import com.entities.dao.common.ErrorDAO;
 import com.entities.dao.loader.FileColumDAO;
 import com.entities.dao.loader.FileConfigDAO;
+import com.entities.dao.loader.LoadErrorDAO;
 import com.entities.dao.loader.LoadFileDAO;
 import com.entities.dao.loader.LoadRawDAO;
 import com.entities.dao.loader.LoadRawDataDAO;
@@ -20,6 +21,8 @@ import com.entities.dao.reportingtool.FundDAO;
 import com.entities.dao.reportingtool.FundGroupDAO;
 import com.entities.dao.reportingtool.ReportCatalogDAO;
 import com.entities.dao.reportingtool.ReportDataDAO;
+import com.entities.dao.reportingtool.ReportDataErrorDAO;
+import com.entities.dao.reportingtool.ReportErrorDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.dao.reportingtool.ReportFieldListDAO;
@@ -646,6 +649,33 @@ public class InstallEntities {
 			ReportData reportData23 = new ReportData(null, reportField23,
 					reportExecution, null, null, "TESTGB21XXX", null, null,
 					versionAdmin);
+			ReportData reportData24 = new ReportData(null, reportField24,
+					reportExecution, null, null, "GB", null, null, versionAdmin);
+			ReportData reportData25 = new ReportData(null, reportField25,
+					reportExecution, null, null, "UK", null,
+					null, versionAdmin);
+			ReportData reportData26 = new ReportData(null, reportField26,
+					reportExecution, null, null, "1", null, null, versionAdmin);
+			ReportData reportData27 = new ReportData(null, reportField27,
+					reportExecution, null, null, "XXX", null, null, versionAdmin);
+			ReportData reportData28 = new ReportData(null, reportField28,
+					reportExecution, null, null, "", null, null,
+					versionAdmin);
+			ReportData reportData29 = new ReportData(null, reportField29,
+					reportExecution, null, null, "452000000", null, null,
+					versionAdmin);
+			ReportData reportData30 = new ReportData(null, reportField30,
+					reportExecution, null, null, "2", null, null,
+					versionAdmin);
+			ReportData reportData31 = new ReportData(null, reportField31,
+					reportExecution, null, null, "MIC", null, null,
+					versionAdmin);
+			ReportData reportData32 = new ReportData(null, reportField32,
+					reportExecution, null, null, "XEUR", null,
+					null, versionAdmin);
+			ReportData reportData33 = new ReportData(null, reportField33,
+					reportExecution, null, null, "42800000", null, null,
+					versionAdmin);
 
 			LoadFile loadFile = new LoadFile(department, fileConfig, date1,
 					"Fichero1.txt", null, null, versionAdmin);
@@ -959,6 +989,16 @@ public class InstallEntities {
 			reportDataDAO.create(reportData21);
 			reportDataDAO.create(reportData22);
 			reportDataDAO.create(reportData23);
+			reportDataDAO.create(reportData24);
+			reportDataDAO.create(reportData25);
+			reportDataDAO.create(reportData26);
+			reportDataDAO.create(reportData27);
+			reportDataDAO.create(reportData28);
+			reportDataDAO.create(reportData29);
+			reportDataDAO.create(reportData30);
+			reportDataDAO.create(reportData31);
+			reportDataDAO.create(reportData32);
+			reportDataDAO.create(reportData33);
 
 			LoadFileDAO loadFileDAO = (LoadFileDAO) aplicationContext
 					.getBean("loadFileDAO");
@@ -1016,6 +1056,19 @@ public class InstallEntities {
 
 	public void deleteEntities(ApplicationContext aplicationContext) {
 
+		
+		ReportErrorDAO reportErrorDAO = (ReportErrorDAO) aplicationContext
+				.getBean("reportErrorDAO");
+		reportErrorDAO.deleteAll();
+		
+		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) aplicationContext
+				.getBean("reportDataErrorDAO");
+		reportDataErrorDAO.deleteAll();
+		
+		LoadErrorDAO loadErrorDAO = (LoadErrorDAO) aplicationContext
+				.getBean("loadErrorDAO");
+		loadErrorDAO.deleteAll();
+		
 
 		ErrorDAO errorDAO = (ErrorDAO) aplicationContext
 				.getBean("errorDAO");

@@ -25,10 +25,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class GeneratorXML {
-	
+
 	private ApplicationContext aplicationContext;
-	
-	public GeneratorXML (ApplicationContext aplicationContext) {
+
+	public GeneratorXML(ApplicationContext aplicationContext) {
 		this.aplicationContext = aplicationContext;
 	}
 
@@ -39,8 +39,7 @@ public class GeneratorXML {
 				+ reportExecution.getReportCatalog().getReportLevel() + " "
 				+ reportExecution.getReportPeriodType() + " "
 				+ reportExecution.getReportPeriodYear() + " "
-				+ reportExecution.getReportCatalog().getReportCatalogName()
-				);
+				+ reportExecution.getReportCatalog().getReportCatalogName());
 
 		if (reportCatalog.getReportLevel().contains("FUND")) {
 
@@ -106,6 +105,10 @@ public class GeneratorXML {
 
 			// http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
 
+			
+			System.out.println(reportMap.toString());
+			
+			
 			// root elements
 			Document doc = docBuilder.newDocument();
 			Element rootElement = doc.createElement("AIFMReportingInfo");
@@ -243,116 +246,116 @@ public class GeneratorXML {
 			 * </AIFMCompleteDescription>
 			 */
 
-			
 			Element elementAIFMCompleteDescription = doc
 					.createElement("AIFMCompleteDescription");
 			recordInfo.appendChild(elementAIFMCompleteDescription);
-			
-			Element elementAIFMIdentifier = doc
-					.createElement("AIFMIdentifier");
+
+			Element elementAIFMIdentifier = doc.createElement("AIFMIdentifier");
 			elementAIFMCompleteDescription.appendChild(elementAIFMIdentifier);
-			
+
 			Element elementAIFMIdentifierLEI = doc
 					.createElement("AIFMIdentifierLEI");
 			elementAIFMIdentifierLEI.appendChild(doc.createTextNode(reportMap
 					.get("AIFMIdentifierLEI")));
 			elementAIFMIdentifier.appendChild(elementAIFMIdentifierLEI);
-			
+
 			Element elementAIFMIdentifierBIC = doc
 					.createElement("AIFMIdentifierBIC");
 			elementAIFMIdentifierBIC.appendChild(doc.createTextNode(reportMap
 					.get("AIFMIdentifierBIC")));
 			elementAIFMIdentifier.appendChild(elementAIFMIdentifierBIC);
-			
+
 			Element elementAIFMPrincipalMarkets = doc
 					.createElement("AIFMPrincipalMarkets");
-			elementAIFMCompleteDescription.appendChild(elementAIFMPrincipalMarkets);
-			
+			elementAIFMCompleteDescription
+					.appendChild(elementAIFMPrincipalMarkets);
+
 			// market ranking 1
 			Element elementAIFMFivePrincipalMarket1 = doc
 					.createElement("AIFMFivePrincipalMarket");
-			elementAIFMPrincipalMarkets.appendChild(elementAIFMFivePrincipalMarket1);
-			
-			Element elementRanking1 = doc
-					.createElement("Ranking");
+			elementAIFMPrincipalMarkets
+					.appendChild(elementAIFMFivePrincipalMarket1);
+
+			Element elementRanking1 = doc.createElement("Ranking");
 			elementRanking1.appendChild(doc.createTextNode("1"));
 			elementAIFMFivePrincipalMarket1.appendChild(elementRanking1);
-			
+
 			Element elementMarketIdentification1 = doc
 					.createElement("MarketIdentification");
-			elementAIFMFivePrincipalMarket1.appendChild(elementMarketIdentification1);
-			
+			elementAIFMFivePrincipalMarket1
+					.appendChild(elementMarketIdentification1);
+
 			Element elementMarketCodeType1 = doc
 					.createElement("MarketCodeType");
 			elementMarketCodeType1.appendChild(doc.createTextNode(reportMap
 					.get("MarketCodeType1")));
 			elementMarketIdentification1.appendChild(elementMarketCodeType1);
-			
-			Element elementMarketCode1 = doc
-					.createElement("MarketCodeType");
-			elementMarketCode1.appendChild(doc.createTextNode(reportMap
-					.get("MarketCodeType1")));
-			elementMarketIdentification1.appendChild(elementMarketCode1);
-			
+
+			if (reportMap.get("MarketCode1") != null) {
+				Element elementMarketCode1 = doc.createElement("MarketCode");
+				elementMarketCode1.appendChild(doc.createTextNode(reportMap
+						.get("MarketCode1")));
+				elementMarketIdentification1.appendChild(elementMarketCode1);
+			}
+
 			Element elementAggregatedValueAmount1 = doc
 					.createElement("AggregatedValueAmount");
-			elementAggregatedValueAmount1.appendChild(doc.createTextNode(reportMap
-					.get("MarketCodeType1")));
-			elementAIFMFivePrincipalMarket1.appendChild(elementAggregatedValueAmount1);
-			
+			elementAggregatedValueAmount1.appendChild(doc
+					.createTextNode(reportMap.get("MarketAggregatedValueAmount1")));
+			elementAIFMFivePrincipalMarket1
+					.appendChild(elementAggregatedValueAmount1);
+
 			// market ranking 2
 			Element elementAIFMFivePrincipalMarket2 = doc
 					.createElement("AIFMFivePrincipalMarket");
-			elementAIFMPrincipalMarkets.appendChild(elementAIFMFivePrincipalMarket2);
-			
-			Element elementRanking2 = doc
-					.createElement("Ranking");
+			elementAIFMPrincipalMarkets
+					.appendChild(elementAIFMFivePrincipalMarket2);
+
+			Element elementRanking2 = doc.createElement("Ranking");
 			elementRanking2.appendChild(doc.createTextNode("2"));
 			elementAIFMFivePrincipalMarket2.appendChild(elementRanking2);
-			
+
 			Element elementMarketIdentification2 = doc
 					.createElement("MarketIdentification");
-			elementAIFMFivePrincipalMarket2.appendChild(elementMarketIdentification2);
-			
+			elementAIFMFivePrincipalMarket2
+					.appendChild(elementMarketIdentification2);
+
 			Element elementMarketCodeType2 = doc
 					.createElement("MarketCodeType");
 			elementMarketCodeType2.appendChild(doc.createTextNode(reportMap
 					.get("MarketCodeType2")));
 			elementMarketIdentification2.appendChild(elementMarketCodeType2);
-			
-			Element elementMarketCode2 = doc
-					.createElement("MarketCodeType");
-			elementMarketCode2.appendChild(doc.createTextNode(reportMap
-					.get("MarketCodeType2")));
-			elementMarketIdentification2.appendChild(elementMarketCode2);
-			
+
+			if (reportMap.get("MarketCode2") != null) {
+				Element elementMarketCode2 = doc.createElement("MarketCode");
+				elementMarketCode2.appendChild(doc.createTextNode(reportMap
+						.get("MarketCode2")));
+				elementMarketIdentification2.appendChild(elementMarketCode2);
+			}
+
 			Element elementAggregatedValueAmount2 = doc
 					.createElement("AggregatedValueAmount");
-			elementAggregatedValueAmount2.appendChild(doc.createTextNode(reportMap
-					.get("MarketCodeType2")));
-			elementAIFMFivePrincipalMarket2.appendChild(elementAggregatedValueAmount2);
-			
-			
-			
-			
-			
-			
+			elementAggregatedValueAmount2.appendChild(doc
+					.createTextNode(reportMap.get("MarketAggregatedValueAmount2")));
+			elementAIFMFivePrincipalMarket2
+					.appendChild(elementAggregatedValueAmount2);
+
 			// write the content into xml file
 			TransformerFactory transformerFactory = TransformerFactory
 					.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
 
-			
 			String path = "D:\\file.xml";
-			//StreamResult result = new StreamResult(new File(path));
+			// StreamResult result = new StreamResult(new File(path));
 
 			// Output to console for testing
 			StreamResult result = new StreamResult(System.out);
 
 			transformer.transform(source, result);
 
-			//System.out.println("DEBUG_" + "GeneratorXML: File saved " + path);
+			// System.out.println("DEBUG_" + "GeneratorXML: File saved " +
+			// path);
 
 		} catch (ParserConfigurationException pce) {
 			pce.printStackTrace();

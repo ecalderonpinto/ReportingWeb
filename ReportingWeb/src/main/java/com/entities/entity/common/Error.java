@@ -140,8 +140,7 @@ public class Error implements VersionableAdapter {
 		this.errorAction = errorAction;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_DATA_ERROR_ID")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "error")
 	public Set<ReportDataError> getReportDataErrors() {
 		return this.reportDataErrors;
 	}
