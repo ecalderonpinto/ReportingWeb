@@ -3,6 +3,8 @@ package com.reportingtool.normalizer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.context.ApplicationContext;
+
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.LoadRawData;
 
@@ -11,6 +13,12 @@ public class Format {
 
 	public static final String dateTimePattern = "yyyy-MM-ddTHH:mm:ss";
 	public static final String datePattern = "yyyy-MM-dd";
+	
+	private ApplicationContext aplicationContext;
+	
+	public Format (ApplicationContext aplicationContext) {
+		this.aplicationContext = aplicationContext;
+	}
 
 	// main function to format aifmdRawData
 	public LoadRawData formatRaw(LoadRawData loadRawData) {

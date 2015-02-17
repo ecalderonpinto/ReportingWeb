@@ -3,9 +3,9 @@ package com.reportingtool.validator;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
 
-
-
+import com.entities.dao.reportingtool.ReportDataDAO;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.LoadFile;
 import com.entities.entity.loader.LoadRaw;
@@ -15,6 +15,12 @@ import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
 
 public class RawData {
+	
+	private ApplicationContext aplicationContext;
+	
+	public RawData (ApplicationContext aplicationContext) {
+		this.aplicationContext = aplicationContext;
+	}
 
 	public void FileRawToData(LoadFile loadFile) {
 
@@ -63,7 +69,10 @@ public class RawData {
 		reportData.setReportExecution(reportExecution);
 
 		// save new aifmdData
-		// aifmdDataDAO.merge(aifmdData);
+		ReportDataDAO reportDataDAO = (ReportDataDAO) aplicationContext
+				.getBean("reportDataDAO");
+
+		reportDataDAO.create(reportData);
 
 	}
 }

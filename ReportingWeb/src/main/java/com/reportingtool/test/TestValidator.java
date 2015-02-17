@@ -1,8 +1,9 @@
 package com.reportingtool.test;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.context.ApplicationContext;
 
 import com.reportingtool.creation.GeneratorXML;
 import com.reportingtool.normalizer.Format;
@@ -21,7 +22,8 @@ import com.entities.entity.reportingtool.ReportExecution;
 
 public class TestValidator {
 
-	public void process() {
+	
+	public void process(ApplicationContext aplicationContext) {
 
 
 		try {
@@ -29,7 +31,9 @@ public class TestValidator {
 			LoadFile loadFileExample = new LoadFile();
 			loadFileExample.setLoadFileName("Fichero1.txt");
 
-			LoadFileDAO loadFileDAO = new LoadFileDAO();
+			
+			LoadFileDAO loadFileDAO = (LoadFileDAO) aplicationContext
+					.getBean("loadFileDAO");			
 			List<LoadFile> loadFiles = loadFileDAO.findByExample(loadFileExample);
 			
 			// proceso el primer elemento, puede no haber
@@ -43,15 +47,15 @@ public class TestValidator {
 				List<LoadRawData> aifmdRawDatas = new ArrayList<LoadRawData>(
 						loadRaw.getLoadRawDatas());
 				for (LoadRawData aifmdRawData : aifmdRawDatas) {
-					Translate translate = new Translate();
+					Translate translate = new Translate(aplicationContext);
 					translate.translateRaw(aifmdRawData);
 
-					Format format = new Format();
+					Format format = new Format(aplicationContext);
 					format.formatRaw(aifmdRawData);
 				}
 			}
 
-			RawData rawData = new RawData();
+			RawData rawData = new RawData(aplicationContext);
 			rawData.FileRawToData(loadFile);
 
 
@@ -66,7 +70,8 @@ public class TestValidator {
 			reportExecutionExample.setReportPeriodYear("2014");
 			reportExecutionExample.setReportPeriodType("Q1");
 			
-			ReportExecutionDAO reportExecutionDAO = new ReportExecutionDAO();
+			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) aplicationContext
+					.getBean("reportExecutionDAO");
 			List<ReportExecution> reportExecutions = reportExecutionDAO.findByExample(reportExecutionExample);
 
 			// proceso el primer elemento, puede no haber
@@ -78,7 +83,7 @@ public class TestValidator {
 					+ reportExecution.getReportPeriodType() + " "
 					+ reportExecution.getReportPeriodYear());
 
-			Syntactic syntactic = new Syntactic();
+			Syntactic syntactic = new Syntactic(aplicationContext);
 
 			List<ReportData> reportDatas = new ArrayList<ReportData>(
 					reportExecution.getReportDatas());
@@ -94,12 +99,12 @@ public class TestValidator {
 			}
 
 			System.out.println("DEBUG_" + "TestValidator checking AIFMD Status");
-			Status status = new Status();
+			Status status = new Status(aplicationContext);
 			status.checkAIFMDStatus(reportExecution);
 			
 			
 			System.out.println("DEBUG_" + "TestValidator generating XML");
-			GeneratorXML generatorXML = new GeneratorXML();
+			GeneratorXML generatorXML = new GeneratorXML(aplicationContext);
 			generatorXML.generateXML(reportExecution);
 			
 		

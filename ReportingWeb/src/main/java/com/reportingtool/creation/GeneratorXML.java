@@ -20,10 +20,17 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.springframework.context.ApplicationContext;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class GeneratorXML {
+	
+	private ApplicationContext aplicationContext;
+	
+	public GeneratorXML (ApplicationContext aplicationContext) {
+		this.aplicationContext = aplicationContext;
+	}
 
 	public void generateXML(ReportExecution reportExecution) {
 		ReportCatalog reportCatalog = reportExecution.getReportCatalog();

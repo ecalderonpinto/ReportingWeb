@@ -3,13 +3,23 @@ package com.reportingtool.normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+
 import com.entities.dao.loader.FileColumListDAO;
+import com.entities.dao.reportingtool.ReportDataDAO;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileColumList;
 import com.entities.entity.loader.LoadRawData;
 
 
 public class Translate {
+	
+	
+	private ApplicationContext aplicationContext;
+	
+	public Translate (ApplicationContext aplicationContext) {
+		this.aplicationContext = aplicationContext;
+	}
 
 	// main function to translate raw values
 	public LoadRawData translateRaw(LoadRawData loadRawData) {
@@ -17,7 +27,8 @@ public class Translate {
 		// find config of column
 		FileColum fileColum = loadRawData.getFileColum();
 
-		FileColumListDAO fileColumValueDAO = new FileColumListDAO();
+		FileColumListDAO fileColumValueDAO = (FileColumListDAO) aplicationContext
+				.getBean("fileColumValueDAO");
 		
 		FileColumList fileColumValue1 = new FileColumList();
 		fileColumValue1.setFileColum(fileColum);

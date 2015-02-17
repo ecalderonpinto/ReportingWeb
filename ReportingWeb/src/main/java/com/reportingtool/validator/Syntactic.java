@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.context.ApplicationContext;
+
+import com.entities.dao.reportingtool.ReportDataErrorDAO;
 import com.entities.dao.reportingtool.ReportFieldListDAO;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportDataError;
@@ -13,13 +16,19 @@ import com.entities.entity.reportingtool.ReportFieldList;
 
 public class Syntactic {
 
+	private ApplicationContext aplicationContext;
+
+	public Syntactic(ApplicationContext aplicationContext) {
+		this.aplicationContext = aplicationContext;
+	}
+
 	public void validInValueList(ReportData reportData) {
 		// Check if exists in value list
 
 		ReportField reportField = reportData.getReportField();
 
-		ReportFieldListDAO reportFieldListDAO = new ReportFieldListDAO();
-		
+		ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) aplicationContext
+				.getBean("reportFieldListDAO");
 
 		ReportFieldList reportFieldListExample = new ReportFieldList();
 		reportFieldListExample.setReportFieldListType(reportField
@@ -27,7 +36,6 @@ public class Syntactic {
 
 		List<ReportFieldList> reportFieldLists = reportFieldListDAO
 				.findByExample(reportFieldListExample);
-
 
 		Boolean hasFieldValue = true;
 		for (ReportFieldList reportFieldList : reportFieldLists) {
@@ -83,11 +91,8 @@ public class Syntactic {
 			} else {
 				// not valid, bad Regex
 
-				createReportDataError(
-						reportData,
-						"REGEX",
-						"BAD REGEX FOUND: "
-								+ reportData.getReportDataText()
+				createReportDataError(reportData, "REGEX",
+						"BAD REGEX FOUND: " + reportData.getReportDataText()
 								+ " <> " + reportData.getReportDataText());
 			}
 		} else {
@@ -97,7 +102,7 @@ public class Syntactic {
 
 	}
 
-	public static void createReportDataError(ReportData reportData,
+	public void createReportDataError(ReportData reportData,
 			String type, String text) {
 		ReportDataError reportDataError = new ReportDataError();
 
@@ -111,16 +116,14 @@ public class Syntactic {
 				+ reportDataError.getReportDataErrorType()
 				+ reportDataError.getReportData());
 
-		// AifmdDataValidDAO aifmdDataValidDAO = new AifmdDataValidDAO();
-		// Session session = aifmdDataValidDAO.getSession();
-		// session.beginTransaction();
+		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) aplicationContext
+				.getBean("reportDataErrorDAO");
 
-		// aifmdDataValidDAO.merge(reportDataError);
+		reportDataErrorDAO.create(reportDataError);
 
-		// session.close();
 	}
 
-	public void validAifmdReportResult(ReportExecution reportExecution) {
+	public void validReportExecution(ReportExecution reportExecution) {
 		// validation of full report
 	}
 }

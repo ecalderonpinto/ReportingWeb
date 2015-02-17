@@ -3,14 +3,23 @@ package com.reportingtool.validator;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
 
-;
+
 
 public class Status {
+	
+	private ApplicationContext aplicationContext;
+
+	public Status (ApplicationContext aplicationContext) {
+		this.aplicationContext = aplicationContext;
+	}
+	
 
 	// main function to check Status of a report
 	public void checkStatus(ReportExecution reportExecution) {
