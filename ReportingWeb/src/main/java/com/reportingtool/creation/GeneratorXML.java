@@ -4,13 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.entities.entity.reportingtool.ReportCatalog;
-import com.entities.entity.reportingtool.ReportData;
-import com.entities.entity.reportingtool.ReportExecution;
-import com.entities.entity.reportingtool.ReportField;
-
-import java.io.File;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -23,6 +16,12 @@ import javax.xml.transform.stream.StreamResult;
 import org.springframework.context.ApplicationContext;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import com.entities.entity.reportingtool.ReportCatalog;
+import com.entities.entity.reportingtool.ReportData;
+import com.entities.entity.reportingtool.ReportExecution;
+import com.entities.entity.reportingtool.ReportField;
+import com.reportingtool.utilities.ReportingErrorManager;
 
 public class GeneratorXML {
 
@@ -43,14 +42,14 @@ public class GeneratorXML {
 
 		if (reportCatalog.getReportLevel().contains("FUND")) {
 
-			// generate AIF report with aifmdDatas
+			// generate AIF report
 			generateXMLAIF(reportExecution);
 
 		}
 
 		if (reportCatalog.getReportLevel().contains("COMPANY")) {
 
-			// generate AIFMD report with aifmdDatas
+			// generate AIFMD report
 			generateXMLAIFMD(reportExecution);
 
 		}
@@ -105,10 +104,8 @@ public class GeneratorXML {
 
 			// http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
 
-			
 			System.out.println(reportMap.toString());
-			
-			
+
 			// root elements
 			Document doc = docBuilder.newDocument();
 			Element rootElement = doc.createElement("AIFMReportingInfo");
@@ -301,7 +298,8 @@ public class GeneratorXML {
 			Element elementAggregatedValueAmount1 = doc
 					.createElement("AggregatedValueAmount");
 			elementAggregatedValueAmount1.appendChild(doc
-					.createTextNode(reportMap.get("MarketAggregatedValueAmount1")));
+					.createTextNode(reportMap
+							.get("MarketAggregatedValueAmount1")));
 			elementAIFMFivePrincipalMarket1
 					.appendChild(elementAggregatedValueAmount1);
 
@@ -336,7 +334,8 @@ public class GeneratorXML {
 			Element elementAggregatedValueAmount2 = doc
 					.createElement("AggregatedValueAmount");
 			elementAggregatedValueAmount2.appendChild(doc
-					.createTextNode(reportMap.get("MarketAggregatedValueAmount2")));
+					.createTextNode(reportMap
+							.get("MarketAggregatedValueAmount2")));
 			elementAIFMFivePrincipalMarket2
 					.appendChild(elementAggregatedValueAmount2);
 
@@ -359,8 +358,14 @@ public class GeneratorXML {
 
 		} catch (ParserConfigurationException pce) {
 			pce.printStackTrace();
+			ReportingErrorManager.createReportError(applicationContext,
+					"CREATION", reportExecution, "FAIL",
+					"Fail when parsing XML");
 		} catch (TransformerException tfe) {
 			tfe.printStackTrace();
+			ReportingErrorManager.createReportError(applicationContext,
+					"CREATION", reportExecution, "FAIL",
+					"Fail when transforming XML");
 		}
 
 	}

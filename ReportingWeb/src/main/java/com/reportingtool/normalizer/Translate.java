@@ -24,13 +24,14 @@ public class Translate {
 
 		// find config of column
 		FileColum fileColum = loadRawData.getFileColum();
-		
-		List<FileColumList> fileColumLists =  new ArrayList<FileColumList>(fileColum.getFileColumLists());
-		
-		System.out.println("DEBUG_" + "Translate: fileColum " +fileColum.getColumName());
-		
-		System.out.println("DEBUG_" + "Translate: "
+
+		List<FileColumList> fileColumLists = new ArrayList<FileColumList>(
+				fileColum.getFileColumLists());
+
+		System.out.println("DEBUG_" + "Translate: fileColum "
+				+ fileColum.getColumName() + " "
 				+ loadRawData.getLoadRawDataText());
+
 		// a column may or may not have something to translate
 
 		if (!fileColumLists.isEmpty()) {
@@ -49,7 +50,7 @@ public class Translate {
 
 			// save new value
 			loadRawData.setLoadRawDataText(valueDest);
-			
+
 			LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext
 					.getBean("loadRawDataDAO");
 			loadRawDataDAO.edit(loadRawData);

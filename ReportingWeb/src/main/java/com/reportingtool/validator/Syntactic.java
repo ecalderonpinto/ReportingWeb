@@ -57,8 +57,9 @@ public class Syntactic {
 			// not valid
 
 			// create a message of error
-			ReportingErrorManager.createReportDataError(applicationContext, "SYNTAXIS", reportData, "VALUE", "NOT IN VALUE LIST: "
-					+ reportData.getReportDataText());
+			ReportingErrorManager.createReportDataError(applicationContext,
+					"SYNTAXIS", reportData, "VALUE", "NOT IN VALUE LIST: "
+							+ reportData.getReportDataText());
 		}
 	}
 
@@ -90,13 +91,15 @@ public class Syntactic {
 			} else {
 				// not valid, bad Regex
 
-				ReportingErrorManager.createReportDataError(applicationContext, "SYNTAXIS", reportData, "REGEX",
-						"BAD REGEX FOUND: " + reportData.getReportDataText()
-								+ " <> " + reportData.getReportDataText());
+				ReportingErrorManager.createReportDataError(applicationContext,
+						"SYNTAXIS", reportData, "REGEX", "BAD REGEX FOUND: "
+								+ reportData.getReportDataText() + " <> "
+								+ reportData.getReportDataText());
 			}
 		} else {
 			// not valid, is empty
-			ReportingErrorManager.createReportDataError(applicationContext, "SYNTAXIS", reportData, "EMPTY", "EMPTY FIELD");
+			ReportingErrorManager.createReportDataError(applicationContext,
+					"SYNTAXIS", reportData, "EMPTY", "EMPTY FIELD");
 		}
 
 	}

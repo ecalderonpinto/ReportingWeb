@@ -26,12 +26,6 @@ public class RawData {
 	public void FileRawToData(LoadFile loadFile, ReportExecution reportExecution) {
 
 		// from a file, we move raw to data
-
-		// obtengo la lista de raw del fichero que viene
-//		LoadFileDAO loadFileDAO = new LoadFileDAO();
-//
-//		List<LoadFile> loadFiles = new ArrayList<LoadFile>(
-//				loadFileDAO.findByExample(loadFile));
 		
 		List<LoadRaw> loadRaws = new ArrayList<LoadRaw>(loadFile.getLoadRaws());
 		
@@ -52,7 +46,7 @@ public class RawData {
 
 	public void RawToData(LoadRawData loadRawData, ReportExecution reportExecution) {
 
-		// create new aifmdData with war data
+		// create new reportData with war data
 		ReportData reportData = new ReportData();
 
 		// text
@@ -62,15 +56,15 @@ public class RawData {
 		FileColum fileColum = loadRawData.getFileColum();
 		ReportField reportField = fileColum.getReportField();
 		reportData.setReportField(reportField);
-
-		// report
-		//ReportExecution reportExecution = new ReportExecution();
-		//reportExecution.setReportCatalog(reportField.getReportCatalog());
 		
-		reportData.setAuditor(new VersionAuditor("admin"));
+		// report
 		reportData.setReportExecution(reportExecution);
+		
+		// user
+		reportData.setAuditor(new VersionAuditor("admin"));
+		
 
-		// save new aifmdData
+		// save new reportData
 		ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 				.getBean("reportDataDAO");
 

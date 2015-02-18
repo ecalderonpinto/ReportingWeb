@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 
+import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
@@ -28,14 +29,14 @@ public class Status {
 
 		if (reportCatalog.getReportLevel().equals("AIF")) {
 
-			// check AIF report with aifmdDatas
+			// check AIF report
 			checkAIFStatus(reportExecution);
 
 		}
 
 		if (reportCatalog.getReportLevel().equals("AIFMD")) {
 
-			// check AIFMD report with aifmdDatas
+			// check AIFMD report
 			checkAIFMDStatus(reportExecution);
 
 		}
@@ -85,8 +86,6 @@ public class Status {
 							+ reportField.getReportFieldName());
 					finalStatus = false;
 					// set status to in creation, it has al least one field
-					// not populated
-					reportExecution.setReportStatus("CREATION");
 				}
 			}
 
@@ -94,7 +93,12 @@ public class Status {
 		// all fields has to be correct to change status to prepared
 		if (finalStatus) {
 			reportExecution.setReportStatus("PREPARED");
+		} else {
+			reportExecution.setReportStatus("CREATION");
 		}
+		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
+				.getBean("reportExecutionDAO");
+		reportExecutionDAO.edit(reportExecution);
 
 		return reportExecution;
 	}

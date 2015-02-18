@@ -21,7 +21,7 @@ public class Format {
 		this.applicationContext = applicationContext;
 	}
 
-	// main function to format aifmdRawData
+	// main function to format loadRawData
 	public LoadRawData formatRaw(LoadRawData loadRawData) {
 
 		System.out.println("DEBUG_" + "Format: "

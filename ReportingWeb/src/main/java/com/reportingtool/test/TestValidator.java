@@ -53,69 +53,69 @@ public class TestValidator {
 				}
 			}
 
-//			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
-//					.getBean("reportExecutionDAO");
-//			ReportExecution reportExecutionExample = new ReportExecution();
-//			reportExecutionExample.setReportPeriodType("Q1");
-//			reportExecutionExample.setReportPeriodYear("2014");
-//			List<ReportExecution> reportExecutions = new ArrayList<ReportExecution>(
-//					reportExecutionDAO.findByExample(reportExecutionExample));
-//			ReportExecution reportExecution = reportExecutions.get(0);
-//
-//			RawData rawData = new RawData(applicationContext);
-//			rawData.FileRawToData(loadFile, reportExecution);
+			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
+					.getBean("reportExecutionDAO");
+			ReportExecution reportExecutionExample = new ReportExecution();
+			reportExecutionExample.setReportPeriodType("Q1");
+			reportExecutionExample.setReportPeriodYear("2014");
+			List<ReportExecution> reportExecutions = new ArrayList<ReportExecution>(
+					reportExecutionDAO.findByExample(reportExecutionExample));
+			ReportExecution reportExecution = reportExecutions.get(0);
+
+			RawData rawData = new RawData(applicationContext);
+			rawData.FileRawToData(loadFile, reportExecution);
 
 		} catch (Exception e) {
 			System.out.println("ERROR_" + "TestValidator 1");
 			e.printStackTrace();
 		}
 
-//		try {
-//
-//			ReportExecution reportExecutionExample = new ReportExecution();
-//			reportExecutionExample.setReportPeriodYear("2014");
-//			reportExecutionExample.setReportPeriodType("Q1");
-//
-//			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
-//					.getBean("reportExecutionDAO");
-//			List<ReportExecution> reportExecutions = reportExecutionDAO
-//					.findByExample(reportExecutionExample);
-//
-//			// proceso el primer elemento, puede no haber
-//			ReportExecution reportExecution = reportExecutions.get(0);
-//
-//			System.out.println("DEBUG_" + "TestValidator: ReportExecution: "
-//					+ reportExecution.getReportPeriodType() + " "
-//					+ reportExecution.getReportPeriodYear());
-//
-//			Syntactic syntactic = new Syntactic(applicationContext);
-//
-//			List<ReportData> reportDatas = new ArrayList<ReportData>(
-//					reportExecution.getReportDatas());
-//
-//			System.out.println("DEBUG_" + "TestValidator: starting for list: "
-//					+ reportDatas);
-//			for (ReportData reportData : reportDatas) {
-//				System.out.println("DEBUG_" + "TestValidator: "
-//						+ reportData.getReportDataDate() + " "
-//						+ reportData.getReportDataText());
-//				syntactic.validInValueList(reportData);
-//				syntactic.validRegex(reportData);
-//			}
-//
-//			System.out
-//					.println("DEBUG_" + "TestValidator checking AIFMD Status");
-//			Status status = new Status(applicationContext);
-//			status.checkAIFMDStatus(reportExecution);
-//
-//			System.out.println("DEBUG_" + "TestValidator generating XML");
-//			GeneratorXML generatorXML = new GeneratorXML(applicationContext);
-//			generatorXML.generateXML(reportExecution);
-//
-//		} catch (Exception e) {
-//			System.out.println("ERROR_" + "TestValidator 2");
-//			e.printStackTrace();
-//		}
+		try {
+
+			ReportExecution reportExecutionExample = new ReportExecution();
+			reportExecutionExample.setReportPeriodYear("2014");
+			reportExecutionExample.setReportPeriodType("Q1");
+
+			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
+					.getBean("reportExecutionDAO");
+			List<ReportExecution> reportExecutions = reportExecutionDAO
+					.findByExample(reportExecutionExample);
+
+			// proceso el primer elemento, puede no haber
+			ReportExecution reportExecution = reportExecutions.get(0);
+
+			System.out.println("DEBUG_" + "TestValidator: ReportExecution: "
+					+ reportExecution.getReportPeriodType() + " "
+					+ reportExecution.getReportPeriodYear());
+
+			Syntactic syntactic = new Syntactic(applicationContext);
+
+			List<ReportData> reportDatas = new ArrayList<ReportData>(
+					reportExecution.getReportDatas());
+
+			System.out.println("DEBUG_" + "TestValidator: starting for list: "
+					+ reportDatas);
+			for (ReportData reportData : reportDatas) {
+				System.out.println("DEBUG_" + "TestValidator: "
+						+ reportData.getReportDataDate() + " "
+						+ reportData.getReportDataText());
+				syntactic.validInValueList(reportData);
+				syntactic.validRegex(reportData);
+			}
+
+			System.out
+					.println("DEBUG_" + "TestValidator checking AIFMD Status");
+			Status status = new Status(applicationContext);
+			status.checkAIFMDStatus(reportExecution);
+
+			System.out.println("DEBUG_" + "TestValidator generating XML");
+			GeneratorXML generatorXML = new GeneratorXML(applicationContext);
+			generatorXML.generateXML(reportExecution);
+
+		} catch (Exception e) {
+			System.out.println("ERROR_" + "TestValidator 2");
+			e.printStackTrace();
+		}
 
 	}
 
