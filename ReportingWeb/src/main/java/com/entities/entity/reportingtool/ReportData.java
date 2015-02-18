@@ -41,6 +41,7 @@ public class ReportData implements VersionableAdapter {
 	private Date reportDataDate;
 	private BigDecimal reportDataNumber;
 	private String reportDataText;
+	private String reportDataBlock;
 	private String reportDataLock;
 	private Set<ReportDataError> reportDataErrors = new HashSet(0);
 
@@ -145,6 +146,15 @@ public class ReportData implements VersionableAdapter {
 
 	public void setReportDataText(String reportDataText) {
 		this.reportDataText = reportDataText;
+	}
+	
+	@Column(name = "REPORT_DATA_BLOCK", length = 10)
+	public String getReportDataBlock() {
+		return this.reportDataBlock;
+	}
+
+	public void setReportDataBlock(String reportDataBlock) {
+		this.reportDataBlock = reportDataBlock;
 	}
 
 	@Column(name = "REPORT_DATA_LOCK", length = 1)
