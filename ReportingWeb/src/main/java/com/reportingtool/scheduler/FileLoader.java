@@ -3,7 +3,6 @@ package com.reportingtool.scheduler;
 import java.io.File;
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -24,7 +23,7 @@ import com.entities.utilities.hibernate.VersionAuditor;
  * 
  * @author Esteban Calderon
  * 
- * Carga un fichero;
+ *         Carga un fichero;
  *
  */
 public class FileLoader {
@@ -32,7 +31,6 @@ public class FileLoader {
 	public FileConfig fileConfig;
 	public File file;
 	public User loadUser;
-	public LoadFile loadFile;
 
 	public FileLoader() {
 	}
@@ -46,12 +44,12 @@ public class FileLoader {
 		this.setInputFile(inputFile);
 		this.fileConfig = fileConfig;
 	}
-	
-	public FileConfig getFileConfig(){
+
+	public FileConfig getFileConfig() {
 		return this.fileConfig;
 	}
-	
-	public void setFileConfig(FileConfig fileConfig){
+
+	public void setFileConfig(FileConfig fileConfig) {
 		this.fileConfig = fileConfig;
 	}
 
@@ -69,68 +67,65 @@ public class FileLoader {
 			throw new RuntimeException("The input file doesn't exist...");
 		}
 	}
-	
-	public User getLoadUser(){
+
+	public User getLoadUser() {
 		return this.loadUser;
 	}
-	
-	public void setLoadUser(User user){
+
+	public void setLoadUser(User user) {
 		this.loadUser = user;
 	}
-	
-	public boolean run() {
-		
-		//Create LoadFile Object;
-		System.out.println("Creating LoadFile Object...");
-		this.loadFile = new LoadFile(this.fileConfig.getDepartment(), 
-				this.fileConfig, 
-				new Date(), 
-				this.file.getName(), 
-				new HashSet<LoadError>(), 
-				new HashSet<LoadRaw>(), 
-				new VersionAuditor("admin"));
-		
-		//Get records of the load file;
-		System.out.println("Get records of the load file...");
-		List<String> records = LoaderUtilities.loadFileInList(this.file);
-		
-		//Process records and update LoadFile Object;
-		System.out.println("Process records and update LoadFile Object...");
-		for(int i=0;i<records.size();i++){
-			String record = records.get(i);
-			//Create LoadRaw Object;
-			LoadRaw loadRaw = new LoadRaw(loadFile, new BigDecimal(i), 
-					null, null, null, 
-					new HashSet<LoadRawData>(), 
+
+	public LoadFile run() {
+		try {
+			// Create LoadFile Object;
+			LoadFile loadFile = new LoadFile(this.fileConfig.getDepartment(),
+					this.fileConfig, new Date(), this.file.getName(),
+					new HashSet<LoadError>(), new HashSet<LoadRaw>(),
 					new VersionAuditor("admin"));
-			
-			try {
-				loadRaw.setLoadRawBlob(new SerialBlob(record.getBytes()));
-			} catch (SerialException e) {
-				//this.loadFile.getLoadErrors().add()
-			} catch (SQLException e) {
-				//this.loadFile.getLoadErrors().add()
-			}
-						
-			//Split line;
-			System.out.println("Split line...");
-			String [] columns = record.split(fileConfig.getFileSeparator());
-			
-			//Create LoadRawDatas Objects;
-			System.out.println("Creating LoadRawDatas objects...");
-			System.out.println("FileColumns size: " + fileConfig.getFileColums().size());
-			for(FileColum fileColum : fileConfig.getFileColums()){
-				LoadRawData loadRawData = new LoadRawData(fileColum, 
-						loadRaw, 
-						columns[fileColum.getColumNumber().intValue()], 
-						fileColum.getColumType(), 
+
+			// Get records of the load file;
+			List<String> records = LoaderUtilities.loadFileInList(this.file);
+
+			// Process records and update LoadFile Object;
+			for (int i = 0; i < records.size(); i++) {
+				String record = records.get(i);
+				// Create LoadRaw Object;
+				LoadRaw loadRaw = new LoadRaw(loadFile, new BigDecimal(i),
+						null, null, null, new HashSet<LoadRawData>(),
 						new VersionAuditor("admin"));
-				loadRaw.getLoadRawDatas().add(loadRawData);
+				try {
+					loadRaw.setLoadRawBlob(new SerialBlob(record.getBytes()));
+				} catch (SerialException e) {
+					// this.loadFile.getLoadErrors().add()
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// this.loadFile.getLoadErrors().add()
+					e.printStackTrace();
+				}
+
+				// Split line;
+				String[] columns = record.split(fileConfig.getFileSeparator());
+
+				// Create LoadRawDatas Objects;
+				for (FileColum fileColum : fileConfig.getFileColums()) {
+					LoadRawData loadRawData = new LoadRawData(fileColum,
+							loadRaw, columns[fileColum.getColumNumber()
+									.intValue()], fileColum.getColumType(),
+							new VersionAuditor("admin"));
+					loadRaw.getLoadRawDatas().add(loadRawData);
+				}
+
+				// Set LoadRaw in LoadFile
+				loadFile.getLoadRaws().add(loadRaw);
 			}
-			
-			loadFile.getLoadRaws().add(loadRaw);
+
+			return loadFile;
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		return true;
+
+		return null;
 	}
 }

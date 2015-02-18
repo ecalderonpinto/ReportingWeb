@@ -13,38 +13,46 @@ import com.entities.entity.InstallEntities;
 import com.reportingtool.test.TestValidator;
 
 @Controller
-@RequestMapping(value="/")
+@RequestMapping(value = "/")
 public class TestController {
 
 	@Autowired
 	ApplicationContext applicationContext;
-	
-	@RequestMapping(value="test.do", method=RequestMethod.GET)
-	public String login(Locale locale, Model model){
-		
+
+	@RequestMapping(value = "test.do", method = RequestMethod.GET)
+	public String login(Locale locale, Model model) {
+
 		// TO DO
 		TestValidator testValidator = new TestValidator();
 		testValidator.process(applicationContext);
-		
+
 		System.out.println("Test");
 		return "test";
 	}
-	
-	@RequestMapping(value="install.do", method=RequestMethod.GET)
-	public String install(Locale locale, Model model){
-		
+
+	@RequestMapping(value = "install.do", method = RequestMethod.GET)
+	public String install(Locale locale, Model model) {
+
 		// TO DO
 		InstallEntities installLoader = new InstallEntities();
-		//installLoader.installTest(applicationContext);
+		// installLoader.installTest(applicationContext);
 		installLoader.deleteEntities(applicationContext);
 		installLoader.installEntitiesFull(applicationContext);
-		
+
 		System.out.println("Installed");
 		return "install";
 	}
-	
-	
-	
-	
-	
+
+	@RequestMapping(value = "loader.do", method = RequestMethod.GET)
+	public String loader(Locale locale, Model model) {
+
+			/*			
+			if (sfb.isRunning())
+				System.out.println("Running");
+			else
+				System.out.println("No");
+				*/
+
+		return "install";
+	}
 }
