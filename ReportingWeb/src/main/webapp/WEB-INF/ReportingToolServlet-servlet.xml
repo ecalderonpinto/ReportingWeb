@@ -23,7 +23,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	-->
-	<context:component-scan base-package="com.reportingtool" />
+	<context:component-scan base-package="com" />
 	
 	<!-- start: Tiles View Resolver -->
 	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -38,8 +38,8 @@
 	<!-- Job simple. Al lanzar la planificación se hará 
 				el método <targetMethod> de la clase <targetObjetc> -->
     <beans:bean id="testJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <beans:property name="targetObject" ref="testBean" />
-        <beans:property name="targetMethod" value="printMessage" />
+        <beans:property name="targetObject" ref="loaderJob" />
+        <beans:property name="targetMethod" value="run" />
     </beans:bean>
     <!-- Configuración del Trigger asignándole el job anterior -->
     <beans:bean id="cronTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
