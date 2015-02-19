@@ -734,38 +734,38 @@ public class InstallEntities {
 					"1.1", "11", versionField, null, null, null, versionAdmin);
 			ReportField reportField4 = new ReportField(reportCatalog, "A",
 					"FilingType", ".{4}", "", "AIFMRecordInfo", "FILLING",
-					"1.1.1", "11", versionField, null, null, null, versionAdmin);
+					"1.1.01", "11", versionField, null, null, null, versionAdmin);
 			ReportField reportField5 = new ReportField(reportCatalog, "N",
 					"AIFMContentType", "[0-9]{1}", "", "AIFMRecordInfo",
-					"AIFM_TYPE", "1.1.2", "11", versionField, null, null, null,
+					"AIFM_TYPE", "1.1.02", "11", versionField, null, null, null,
 					versionAdmin);
 			ReportField reportField6 = new ReportField(reportCatalog, "D",
 					"ReportingPeriodStartDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}",
-					"", "AIFMRecordInfo", "DATE", "1.1.3", "11", versionField,
+					"", "AIFMRecordInfo", "DATE", "1.1.03", "11", versionField,
 					null, null, null, versionAdmin);
 			ReportField reportField7 = new ReportField(reportCatalog, "D",
 					"ReportingPeriodEndDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}", "",
-					"AIFMRecordInfo", "DATE", "1.1.4", "11", versionField,
+					"AIFMRecordInfo", "DATE", "1.1.04", "11", versionField,
 					null, null, null, versionAdmin);
 			ReportField reportField8 = new ReportField(reportCatalog, "A",
 					"ReportingPeriodType", ".{2}", "", "AIFMRecordInfo",
-					"PERIOD", "1.1.5", "11", versionField, null, null, null,
+					"PERIOD", "1.1.05", "11", versionField, null, null, null,
 					versionAdmin);
 			ReportField reportField9 = new ReportField(reportCatalog, "N",
 					"ReportingPeriodYear", "[0-9]{4}", "", "AIFMRecordInfo",
-					"YEAR", "1.1.6", "11", versionField, null, null, null,
+					"YEAR", "1.1.06", "11", versionField, null, null, null,
 					versionAdmin);
 			ReportField reportField10 = new ReportField(reportCatalog, "A",
 					"AIFMReportingObligationChangeFrequencyCode", ".{2}", "",
-					"AIFMRecordInfo", "AIFM_CHANGE_FREQ", "1.1.7", "01",
+					"AIFMRecordInfo", "AIFM_CHANGE_FREQ", "1.1.07", "01",
 					versionField, null, null, null, versionAdmin);
 			ReportField reportField11 = new ReportField(reportCatalog, "N",
 					"AIFMReportingObligationChangeContentsCode", "[0-9]{1}",
-					"", "AIFMRecordInfo", "AIFM_CHANGE_CONTENT", "1.1.8", "01",
+					"", "AIFMRecordInfo", "AIFM_CHANGE_CONTENT", "1.1.08", "01",
 					versionField, null, null, null, versionAdmin);
 			ReportField reportField12 = new ReportField(reportCatalog, "A",
 					"AIFMReportingObligationChangeQuarter", ".{2}", "",
-					"AIFMRecordInfo", "QUARTER", "1.1.9", "01", versionField,
+					"AIFMRecordInfo", "QUARTER", "1.1.09", "01", versionField,
 					null, null, null, versionAdmin);
 			ReportField reportField13 = new ReportField(reportCatalog, "B",
 					"LastReportingFlag", "true|false", "", "AIFMRecordInfo",
