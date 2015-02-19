@@ -3,9 +3,7 @@ package com.reportingtool.utilities;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
 
 import com.entities.dao.common.ErrorDAO;
 import com.entities.dao.loader.LoadErrorDAO;

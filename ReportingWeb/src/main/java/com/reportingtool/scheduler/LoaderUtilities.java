@@ -10,11 +10,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.context.ApplicationContext;
-
-import com.entities.entity.loader.LoadFile;
-import com.reportingtool.utilities.ReportingErrorManager;
-
 public class LoaderUtilities {
 
 	public static boolean maskFile(String file, String prefix, String sufix) {
