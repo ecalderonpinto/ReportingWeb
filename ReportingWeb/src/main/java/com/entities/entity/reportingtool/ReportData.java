@@ -65,14 +65,15 @@ public class ReportData implements VersionableAdapter {
 	public ReportData(ReportDataLong reportDataLong, ReportField reportField,
 			ReportExecution reportExecution, Date reportDataDate,
 			BigDecimal reportDataNumber, String reportDataText,
-			String reportDataLock, Set<ReportDataError> reportDataErrors,
-			VersionAuditor versionAuditor) {
+			String reportDataBlock, String reportDataLock,
+			Set<ReportDataError> reportDataErrors, VersionAuditor versionAuditor) {
 		this.reportDataLong = reportDataLong;
 		this.reportField = reportField;
 		this.reportExecution = reportExecution;
 		this.reportDataDate = reportDataDate;
 		this.reportDataNumber = reportDataNumber;
 		this.reportDataText = reportDataText;
+		this.reportDataBlock = reportDataBlock;
 		this.reportDataLock = reportDataLock;
 		this.reportDataErrors = reportDataErrors;
 		this.versionAuditor = versionAuditor;
@@ -91,7 +92,7 @@ public class ReportData implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_DATA_LONG_ID", foreignKey=@ForeignKey(name="T_REPORT_DATA_FK_DATA_LONG"))
+	@JoinColumn(name = "REPORT_DATA_LONG_ID", foreignKey = @ForeignKey(name = "T_REPORT_DATA_FK_DATA_LONG"))
 	public ReportDataLong getReportDataLong() {
 		return this.reportDataLong;
 	}
@@ -101,7 +102,7 @@ public class ReportData implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_FIELD_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_DATA_FK_REPORT_FLD"))
+	@JoinColumn(name = "REPORT_FIELD_ID", nullable = false, foreignKey = @ForeignKey(name = "T_REPORT_DATA_FK_REPORT_FLD"))
 	public ReportField getReportField() {
 		return this.reportField;
 	}
@@ -111,7 +112,7 @@ public class ReportData implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_EXECUTION_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_DATA_FK_REPORT_EXE"))
+	@JoinColumn(name = "REPORT_EXECUTION_ID", nullable = false, foreignKey = @ForeignKey(name = "T_REPORT_DATA_FK_REPORT_EXE"))
 	public ReportExecution getReportExecution() {
 		return this.reportExecution;
 	}
@@ -147,7 +148,7 @@ public class ReportData implements VersionableAdapter {
 	public void setReportDataText(String reportDataText) {
 		this.reportDataText = reportDataText;
 	}
-	
+
 	@Column(name = "REPORT_DATA_BLOCK", length = 10)
 	public String getReportDataBlock() {
 		return this.reportDataBlock;

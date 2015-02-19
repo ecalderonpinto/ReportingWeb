@@ -56,6 +56,8 @@ public class InstallEntities {
 		try {
 			VersionAuditor versionAdmin = new VersionAuditor("admin");
 
+			String versionField = "1.2";
+
 			Company company = new Company("Bankia Valores", "Spain", "BNK", "",
 					null, null, null, null, versionAdmin);
 			Department department = new Department(company,
@@ -66,8 +68,8 @@ public class InstallEntities {
 			FundGroup fundGroup = new FundGroup(fund, department,
 					"VALUE FUNDS", "", versionAdmin);
 
-			ReportCatalog reportCatalog = new ReportCatalog("1.2", "FUND",
-					"AIF 2014", "", null, null, null, versionAdmin);
+			ReportCatalog reportCatalog = new ReportCatalog(versionField,
+					"FUND", "AIF 2014", "", null, null, null, versionAdmin);
 
 			String str1 = "2014-01-01";
 			String str2 = "2014-12-31";
@@ -80,393 +82,450 @@ public class InstallEntities {
 					"CREATION", null, null, null, null, null, null, null, null,
 					null, null, null, null, versionAdmin);
 
-			
-			ReportField reportField1 = new ReportField(reportCatalog, "A",
-					"ReportingMemberState", ".{2}", "", "", "COUNTRY", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField2 = new ReportField(reportCatalog, "A",
-					"Version", "([0-9])+\\.([0-9])+", "", "", "VERSION", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField3 = new ReportField(reportCatalog, "D",
-					"CreationDateAndTime",
-					"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}",
-					"", "", "DATETIME", "1.2", null, null, null, versionAdmin);
-			ReportField reportField4 = new ReportField(reportCatalog, "A",
-					"FilingType", ".{4}", "", "", "FILLING", "1.2", null, null,
-					null, versionAdmin);
-			ReportField reportField5 = new ReportField(reportCatalog, "N",
-					"AIFContentType", "[0-9]{1}", "", "", "AIF_TYPE", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField6 = new ReportField(reportCatalog, "D",
-					"ReportingPeriodStartDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}",
-					"", "", "DATE", "1.2", null, null, null, versionAdmin);
-			ReportField reportField7 = new ReportField(reportCatalog, "D",
-					"ReportingPeriodEndDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}", "",
-					"", "DATE", "1.2", null, null, null, versionAdmin);
-			ReportField reportField8 = new ReportField(reportCatalog, "A",
-					"ReportingPeriodType", ".{2}", "", "", "PERIOD", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField9 = new ReportField(reportCatalog, "N",
-					"ReportingPeriodYear", "[0-9]{4}", "", "", "YEAR", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField10 = new ReportField(reportCatalog, "A",
-					"AIFReportingObligationChangeFrequencyCode", ".{2}", "",
-					"", "AIFM_CHANGE_FREQ", "1.2", null, null, null,
-					versionAdmin);
-			ReportField reportField11 = new ReportField(reportCatalog, "N",
-					"AIFMReportingObligationChangeContentsCode", "[0-9]{1}",
-					"", "", "AIFM_CHANGE_CONTENT", "1.2", null, null, null,
-					versionAdmin);
-			ReportField reportField12 = new ReportField(reportCatalog, "A",
-					"AIFMReportingObligationChangeQuarter", ".{2}", "", "",
-					"QUARTER", "1.2", null, null, null, versionAdmin);
-			ReportField reportField13 = new ReportField(reportCatalog, "B",
-					"LastReportingFlag", "true|false", "", "", "BOOLEAN",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField14 = new ReportField(reportCatalog, "N",
-					"QuestionNumber", "[0-9]{0,3}", "", "", "QUESTION", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField15 = new ReportField(reportCatalog, "Z",
-					"AssumptionDescription", ".{0,300}", "", "", "DESCRIPTION",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField16 = new ReportField(reportCatalog, "A",
-					"AIFMReportingCode", ".{1}", "", "", "REPORT_CODE", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField17 = new ReportField(reportCatalog, "A",
-					"AIFJurisdiction", ".{2}", "", "", "COUNTRY", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField18 = new ReportField(reportCatalog, "Z",
-					"AIFMNationalCode", ".{0,30}", "", "", "NATIONAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField19 = new ReportField(reportCatalog, "Z",
-					"AIFName", ".{0,300}", "", "", "AIFM_NAME", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField20 = new ReportField(reportCatalog, "B",
-					"AIFEEAFlag", "true|false", "", "", "BOOLEAN", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField21 = new ReportField(reportCatalog, "A",
-					"AIFDomicile", ".{2}", "", "", "COUNTRY", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField22 = new ReportField(reportCatalog, "D",
-					"InceptionDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}", "",
-					"", "DATE", "1.2", null, null, null, versionAdmin);
-			ReportField reportField23 = new ReportField(reportCatalog, "B",
-					"AIFNoReportingFlag", "true|false", "", "", "BOOLEAN", "1.2",
-					null, null, null, versionAdmin);
-			
-			ReportField reportField24 = new ReportField(reportCatalog, "A",
-					"AIFIdentifierLEI", ".{20}", "", "AIFIdentification", "LEI", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField25 = new ReportField(reportCatalog, "A",
-					"AIFIdentifierISIN", "[A-Z]{2}([A-Z]|[0-9]){9}[0-9]", "", "", "ISIN", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField26 = new ReportField(reportCatalog, "A",
-					"AIFIdentifierCUSIP", ".{9}", "", "AIFIdentification", "CUSIP", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField27 = new ReportField(reportCatalog, "A",
-					"AIFIdentifierSEDOL", ".{7}", "", "AIFIdentification", "SEDOL", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField28 = new ReportField(reportCatalog, "A",
-					"AIFIdentifierTicker", ".{20}", "", "AIFIdentification", "TICKER", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField29 = new ReportField(reportCatalog, "A",
-					"AIFIdentifierRIC", ".{20}", "", "AIFIdentification", "RIC", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField30 = new ReportField(reportCatalog, "A",
-					"AIFIdentifierECB", ".{20}", "", "AIFIdentification", "ECB", "1.2", null,
-					null, null, versionAdmin);
-			
-			ReportField reportField31 = new ReportField(reportCatalog, "A",
-					"ReportingMemberState1", ".{2}", "", "", "COUNTRY", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField32 = new ReportField(reportCatalog, "A",
-					"AIFNationalCode1", ".{30}", "", "", "NATIONAL", "1.2", null,
-					null, null, versionAdmin);
-			
-			ReportField reportField33 = new ReportField(reportCatalog, "B",
-					"ShareClassFlag", "true|false", "", "ShareClassIdentifier", "BOOLEAN", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField34 = new ReportField(reportCatalog, "Z",
-					"ShareClassNationalCode", ".{0,30}", "", "ShareClassIdentifier", "NATIONAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField35 = new ReportField(reportCatalog, "A",
-					"ShareClassIdentifierISIN", "[A-Z]{2}([A-Z]|[0-9]){9}[0-9]", "", "ShareClassIdentifier", "ISIN", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField36 = new ReportField(reportCatalog, "A",
-					"ShareClassIdentifierSEDOL", ".{7}", "", "ShareClassIdentifier", "SEDOL", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField37 = new ReportField(reportCatalog, "A",
-					"ShareClassIdentifierCUSIP", ".{9}", "", "ShareClassIdentifier", "CUSIP", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField38 = new ReportField(reportCatalog, "A",
-					"ShareClassIdentifierTicker", ".{20}", "", "ShareClassIdentifier", "TICKER", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField39 = new ReportField(reportCatalog, "A",
-					"ShareClassIdentifierRIC", ".{20}", "", "ShareClassIdentifier", "RIC", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField40 = new ReportField(reportCatalog, "Z",
-					"ShareClassName", ".{0,300}", "", "ShareClassIdentifier", "SHARECLASS", "1.2",
-					null, null, null, versionAdmin);
-			
-			ReportField reportField41 = new ReportField(reportCatalog, "A",
-					"AIFMasterFeederStatus", ".{6}", "", "", "FEEDER", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField42 = new ReportField(reportCatalog, "Z",
-					"AIFName", ".{0,300}", "", "MasterAIFIdentification", "AIFM_NAME", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField43 = new ReportField(reportCatalog, "A",
-					"ReportingMemberState", ".{2}", "", "MasterAIFIdentification", "COUNTRY", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField44 = new ReportField(reportCatalog, "Z",
-					"AIFMNationalCode", ".{0,30}", "", "MasterAIFIdentification", "NATIONAL", "1.2",
-					null, null, null, versionAdmin);
-			
-			ReportField reportField45 = new ReportField(reportCatalog, "Z",
-					"EntityName", ".{0,300}", "", "PrimeBrokerIdentification", "NAME", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField46 = new ReportField(reportCatalog, "A",
-					"EntityIdentificationLEI", ".{20}", "", "PrimeBrokerIdentification", "LEI", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField47 = new ReportField(reportCatalog, "A",
-					"EntityIdentificationBIC", ".{11}", "", "PrimeBrokerIdentification", "BIC", "1.2", null,
-					null, null, versionAdmin);
-			
-			ReportField reportField48 = new ReportField(reportCatalog, "N",
-					"AUMAmountInBaseCurrency", "[0-9]{0,15}?", "", "AIFBaseCurrencyDescription",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-			ReportField reportField49 = new ReportField(reportCatalog, "A",
-					"BaseCurrency", ".{3}", "", "AIFBaseCurrencyDescription", "CURRENCY", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField50 = new ReportField(reportCatalog, "N",
-					"FXEURRate", "[0-9]{1,15}(\\.[0-9]{1,4})?", "", "AIFBaseCurrencyDescription", "DECIMAL",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField51 = new ReportField(reportCatalog, "A",
-					"FXEURReferenceRateType", ".{3}", "", "AIFBaseCurrencyDescription", "FXRATE", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField52 = new ReportField(reportCatalog, "Z",
-					"FXEUROtherReferenceRateDescription", ".{0,300}", "", "AIFBaseCurrencyDescription",
-					"DESCRIPTION", "1.2", null, null, null, versionAdmin);
-			
-			ReportField reportField53 = new ReportField(reportCatalog, "N",
-					"AIFNetAssetValue", "[+|-]?[0-9]{1,15}", "", "", "DECIMAL",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField54 = new ReportField(reportCatalog, "A",
-					"FirstFundingSourceCountry", ".{2}", "", "", "COUNTRY", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField55 = new ReportField(reportCatalog, "A",
-					"SecondFundingSourceCountry", ".{2}", "", "", "COUNTRY", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField56 = new ReportField(reportCatalog, "A",
-					"ThirdFundingSourceCountry", ".{2}", "", "", "COUNTRY", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField57 = new ReportField(reportCatalog, "A",
-					"PredominantAIFType", ".{4}", "", "", "AFITYPE", "1.2",
-					null, null, null, versionAdmin);
-			
-			ReportField reportField58 = new ReportField(reportCatalog, "A",
-					"HedgeFundStrategyType", ".{9}", "", "HedgeFundStrategy", "HEDGE_FUND", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField59 = new ReportField(reportCatalog, "A",
-					"PrimaryStrategyFlag", "true|false", "", "HedgeFundStrategy", "BOOLEAN", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField60 = new ReportField(reportCatalog, "A",
-					"StrategyNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "HedgeFundStrategy", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField61 = new ReportField(reportCatalog, "A",
-					"PrivateEquityFundStrategyType", ".{9}", "", "PrivateEquityFundInvestmentStrategy", "PRIVATE_FUND", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField62 = new ReportField(reportCatalog, "A",
-					"PrimaryStrategyFlag", "true|false", "", "PrivateEquityFundInvestmentStrategy", "BOOLEAN", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField63 = new ReportField(reportCatalog, "A",
-					"StrategyNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})", "", "PrivateEquityFundInvestmentStrategy", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField64 = new ReportField(reportCatalog, "A",
-					"FundOfFundsStrategyType", ".{9}", "", "FundOfFundsStrategy", "FUND_FUND", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField65 = new ReportField(reportCatalog, "A",
-					"PrimaryStrategyFlag", "true|false", "", "FundOfFundsStrategy", "BOOLEAN", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField66 = new ReportField(reportCatalog, "A",
-					"StrategyNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "FundOfFundsStrategy", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField67 = new ReportField(reportCatalog, "A",
-					"OtherFundStrategyType", ".{9}", "", "OtherFundStrategy", "OTHER_FUND", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField68 = new ReportField(reportCatalog, "A",
-					"PrimaryStrategyFlag", "true|false", "", "OtherFundStrategy", "BOOLEAN", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField69 = new ReportField(reportCatalog, "A",
-					"StrategyNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "OtherFundStrategy", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField70 = new ReportField(reportCatalog, "Z",
-					"StrategyTypeOtherDescription", ".{300}", "", "", "DESCRIPTION", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField71 = new ReportField(reportCatalog, "A",
-					"RealEstateFundStrategyType", ".{9}", "", "RealEstateFundStrategy", "REAL_FUND", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField72 = new ReportField(reportCatalog, "A",
-					"PrimaryStrategyFlag", "true|false", "", "RealEstateFundStrategy", "BOOLEAN", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField73 = new ReportField(reportCatalog, "A",
-					"StrategyNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "RealEstateFundStrategy", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			
-			ReportField reportField74 = new ReportField(reportCatalog, "N",
-					"HFTTransactionNumber", "[0-9]{0,15}?", "", "",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-			ReportField reportField75 = new ReportField(reportCatalog, "N",
-					"HFTBuySellMarketValue", "[0-9]{0,15}?", "", "",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-			
-			ReportField reportField76 = new ReportField(reportCatalog, "N",
-					"Ranking", "[0-9]{1}", "", "MainInstrumentTraded", "RANKING5",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField77 = new ReportField(reportCatalog, "Z",
-					"SubAssetType", ".{12}", "", "MainInstrumentTraded", "SUB_ASSET", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField78 = new ReportField(reportCatalog, "A",
-					"InstrumentCodeType", ".{4}", "", "MainInstrumentTraded", "INSTR_TYPE", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField79 = new ReportField(reportCatalog, "Z",
-					"InstrumentName", ".{300}", "", "MainInstrumentTraded", "INSTR_NAME", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField80 = new ReportField(reportCatalog, "A",
-					"ISINInstrumentIdentification", "[A-Z]{2}([A-Z]|[0-9]){9}[0-9]", "", "MainInstrumentTraded", "ISIN", "1.2", null, null,
-					null, versionAdmin);
-			ReportField reportField81 = new ReportField(reportCatalog, "A",
-					"AIIExchangeCode", ".{4}", "", "AIIInstrumentIdentification",
-					"MIC", "1.2", null, null, null, versionAdmin);
-			ReportField reportField82 = new ReportField(reportCatalog, "A",
-					"AIIProductCode", ".{1,12}", "", "AIIInstrumentIdentification",
-					"AII_CODE", "1.2", null, null, null, versionAdmin);
-			ReportField reportField83 = new ReportField(reportCatalog, "A",
-					"AIIDerivativeType", ".{1}", "", "AIIInstrumentIdentification",
-					"AII_DERIV", "1.2", null, null, null, versionAdmin);
-			ReportField reportField84 = new ReportField(reportCatalog, "A",
-					"AIIPutCallIdentifier", ".{1}", "", "AIIInstrumentIdentification",
-					"AII_PUT", "1.2", null, null, null, versionAdmin);
-			ReportField reportField85 = new ReportField(reportCatalog, "D",
-					"AIIExpiryDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}", "", "AIIInstrumentIdentification",
-					"DATE", "1.2", null, null, null, versionAdmin);
-			ReportField reportField86 = new ReportField(reportCatalog, "N",
-					"AIIStrikePrice", "[0-9]{1,15}(\\.[0-9]{1,4})?", "", "AIIInstrumentIdentification",
-					"DECIMAL", "1.2", null, null, null, versionAdmin);
-			ReportField reportField87 = new ReportField(reportCatalog, "A",
-					"PositionType", ".{1}", "", "MainInstrumentTraded", "POS_TYPE", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField88 = new ReportField(reportCatalog, "N",
-					"PositionValue", "[0-9]{0,15}?", "", "MainInstrumentTraded",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-			ReportField reportField89 = new ReportField(reportCatalog, "A",
-					"ShortPositionHedgingRate", "[0-9]{1,15}(\\.[0-9]{1,4})?", "", "MainInstrumentTraded", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			
-			ReportField reportField90 = new ReportField(reportCatalog, "N",
-					"AfricaNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "NAVGeographicalFocus", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField91 = new ReportField(reportCatalog, "N",
-					"AsiaPacificNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "NAVGeographicalFocus", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField92 = new ReportField(reportCatalog, "N",
-					"EuropeNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "NAVGeographicalFocus", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField93 = new ReportField(reportCatalog, "N",
-					"EEANAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "NAVGeographicalFocus", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField94 = new ReportField(reportCatalog, "N",
-					"MiddleEastNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "NAVGeographicalFocus", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField95 = new ReportField(reportCatalog, "N",
-					"NorthAmericaNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "NAVGeographicalFocus", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField96 = new ReportField(reportCatalog, "N",
-					"SouthAmericaNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "NAVGeographicalFocus", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField97 = new ReportField(reportCatalog, "N",
-					"SupraNationalNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "NAVGeographicalFocus", "DECIMAL", "1.2",
-					null, null, null, versionAdmin);
-			
-			ReportField reportField98 = new ReportField(reportCatalog, "N",
-					"AfricaAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "", "AUMGeographicalFocus", "PERCENT", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField99 = new ReportField(reportCatalog, "N",
-					"AsiaPacificAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "", "AUMGeographicalFocus", "PERCENT", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField100 = new ReportField(reportCatalog, "N",
-					"EuropeAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "", "AUMGeographicalFocus", "PERCENT", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField101 = new ReportField(reportCatalog, "N",
-					"EEAAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "", "AUMGeographicalFocus", "PERCENT", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField102 = new ReportField(reportCatalog, "N",
-					"MiddleEastAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "", "AUMGeographicalFocus", "PERCENT", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField103 = new ReportField(reportCatalog, "N",
-					"NorthAmericaAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "", "AUMGeographicalFocus", "PERCENT", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField104 = new ReportField(reportCatalog, "N",
-					"SouthAmericaAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "", "AUMGeographicalFocus", "PERCENT", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField105 = new ReportField(reportCatalog, "N",
-					"SupraNationalAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "", "AUMGeographicalFocus", "PERCENT", "1.2",
-					null, null, null, versionAdmin);
-			
-			ReportField reportField106 = new ReportField(reportCatalog, "N",
-					"Ranking", "[0-9]{1,2}", "", "PrincipalExposure", "RANKING10", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField107 = new ReportField(reportCatalog, "A",
-					"AssetMacroType", ".{3}", "", "PrincipalExposure", "ASSET_TYPE", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField108 = new ReportField(reportCatalog, "Z",
-					"SubAssetType", ".{12}", "", "PrincipalExposure", "SUB_ASSET", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField109 = new ReportField(reportCatalog, "A",
-					"PositionType", ".{1}", "", "PrincipalExposure", "POS_TYPE", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField110 = new ReportField(reportCatalog, "N",
-					"AggregatedValueAmount", "[0-9]{1,15}?", "", "PrincipalExposure", "NUMBER", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField111 = new ReportField(reportCatalog, "N",
-					"AggregatedValueRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "", "PrincipalExposure", "PERCENT", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField112 = new ReportField(reportCatalog, "Z",
-					"EntityName", ".{300}", "", "CounterpartyIdentification", "NAME", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField113 = new ReportField(reportCatalog, "A",
-					"EntityIdentificationLEI", ".{20}", "", "CounterpartyIdentification", "LEI", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField114 = new ReportField(reportCatalog, "A",
-					"EntityIdentificationBIC", ".{11}", "", "CounterpartyIdentification", "BIC", "1.2", null,
-					null, null, versionAdmin);
-			
-			ReportField reportField115 = new ReportField(reportCatalog, "N",
-					"Ranking", "[0-9]{1,2}", "", "PortfolioConcentration", "RANKING5", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField116 = new ReportField(reportCatalog, "A",
-					"AssetType", ".{3}", "", "PortfolioConcentration", "ASSET_TYPE", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField117 = new ReportField(reportCatalog, "A",
-					"PositionType", ".{1}", "", "PortfolioConcentration", "POS_TYPE", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField118 = new ReportField(reportCatalog, "A",
-					"MarketCodeType", ".{4}", "", "MarketIdentification", "MARKET", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField119 = new ReportField(reportCatalog, "A",
-					"MarketCode", ".{4}", "", "MarketIdentification", "MIC", "1.2", null, null,
-					null, versionAdmin);
-			ReportField reportField120 = new ReportField(reportCatalog, "N",
-					"AggregatedValueAmount", "[0-9]{0,15}?", "", "PortfolioConcentration",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-			ReportField reportField121 = new ReportField(reportCatalog, "N",
-					"AggregatedValueRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "", "PortfolioConcentration", "PERCENT", "1.2",
-					null, null, null, versionAdmin);
-			
-			
-			
-			
-			
-			
+//			ReportField reportField1 = new ReportField(reportCatalog, "A",
+//					"ReportingMemberState", ".{2}", "", "", "COUNTRY",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField2 = new ReportField(reportCatalog, "A",
+//					"Version", "([0-9])+\\.([0-9])+", "", "", "VERSION",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField3 = new ReportField(reportCatalog, "D",
+//					"CreationDateAndTime",
+//					"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}",
+//					"", "", "DATETIME", versionField, null, null, null,
+//					versionAdmin);
+//			ReportField reportField4 = new ReportField(reportCatalog, "A",
+//					"FilingType", ".{4}", "", "", "FILLING", versionField,
+//					null, null, null, versionAdmin);
+//			ReportField reportField5 = new ReportField(reportCatalog, "N",
+//					"AIFContentType", "[0-9]{1}", "", "", "AIF_TYPE",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField6 = new ReportField(reportCatalog, "D",
+//					"ReportingPeriodStartDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}",
+//					"", "", "DATE", versionField, null, null, null,
+//					versionAdmin);
+//			ReportField reportField7 = new ReportField(reportCatalog, "D",
+//					"ReportingPeriodEndDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}", "",
+//					"", "DATE", versionField, null, null, null, versionAdmin);
+//			ReportField reportField8 = new ReportField(reportCatalog, "A",
+//					"ReportingPeriodType", ".{2}", "", "", "PERIOD",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField9 = new ReportField(reportCatalog, "N",
+//					"ReportingPeriodYear", "[0-9]{4}", "", "", "YEAR",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField10 = new ReportField(reportCatalog, "A",
+//					"AIFReportingObligationChangeFrequencyCode", ".{2}", "",
+//					"", "AIFM_CHANGE_FREQ", versionField, null, null, null,
+//					versionAdmin);
+//			ReportField reportField11 = new ReportField(reportCatalog, "N",
+//					"AIFMReportingObligationChangeContentsCode", "[0-9]{1}",
+//					"", "", "AIFM_CHANGE_CONTENT", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField12 = new ReportField(reportCatalog, "A",
+//					"AIFMReportingObligationChangeQuarter", ".{2}", "", "",
+//					"QUARTER", versionField, null, null, null, versionAdmin);
+//			ReportField reportField13 = new ReportField(reportCatalog, "B",
+//					"LastReportingFlag", "true|false", "", "", "BOOLEAN",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField14 = new ReportField(reportCatalog, "N",
+//					"QuestionNumber", "[0-9]{0,3}", "", "", "QUESTION",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField15 = new ReportField(reportCatalog, "Z",
+//					"AssumptionDescription", ".{0,300}", "", "", "DESCRIPTION",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField16 = new ReportField(reportCatalog, "A",
+//					"AIFMReportingCode", ".{1}", "", "", "REPORT_CODE",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField17 = new ReportField(reportCatalog, "A",
+//					"AIFJurisdiction", ".{2}", "", "", "COUNTRY", versionField,
+//					null, null, null, versionAdmin);
+//			ReportField reportField18 = new ReportField(reportCatalog, "Z",
+//					"AIFMNationalCode", ".{0,30}", "", "", "NATIONAL",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField19 = new ReportField(reportCatalog, "Z",
+//					"AIFName", ".{0,300}", "", "", "AIFM_NAME", versionField,
+//					null, null, null, versionAdmin);
+//			ReportField reportField20 = new ReportField(reportCatalog, "B",
+//					"AIFEEAFlag", "true|false", "", "", "BOOLEAN",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField21 = new ReportField(reportCatalog, "A",
+//					"AIFDomicile", ".{2}", "", "", "COUNTRY", versionField,
+//					null, null, null, versionAdmin);
+//			ReportField reportField22 = new ReportField(reportCatalog, "D",
+//					"InceptionDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}", "", "",
+//					"DATE", versionField, null, null, null, versionAdmin);
+//			ReportField reportField23 = new ReportField(reportCatalog, "B",
+//					"AIFNoReportingFlag", "true|false", "", "", "BOOLEAN",
+//					versionField, null, null, null, versionAdmin);
+//
+//			ReportField reportField24 = new ReportField(reportCatalog, "A",
+//					"AIFIdentifierLEI", ".{20}", "", "AIFIdentification",
+//					"LEI", versionField, null, null, null, versionAdmin);
+//			ReportField reportField25 = new ReportField(reportCatalog, "A",
+//					"AIFIdentifierISIN", "[A-Z]{2}([A-Z]|[0-9]){9}[0-9]", "",
+//					"", "ISIN", versionField, null, null, null, versionAdmin);
+//			ReportField reportField26 = new ReportField(reportCatalog, "A",
+//					"AIFIdentifierCUSIP", ".{9}", "", "AIFIdentification",
+//					"CUSIP", versionField, null, null, null, versionAdmin);
+//			ReportField reportField27 = new ReportField(reportCatalog, "A",
+//					"AIFIdentifierSEDOL", ".{7}", "", "AIFIdentification",
+//					"SEDOL", versionField, null, null, null, versionAdmin);
+//			ReportField reportField28 = new ReportField(reportCatalog, "A",
+//					"AIFIdentifierTicker", ".{20}", "", "AIFIdentification",
+//					"TICKER", versionField, null, null, null, versionAdmin);
+//			ReportField reportField29 = new ReportField(reportCatalog, "A",
+//					"AIFIdentifierRIC", ".{20}", "", "AIFIdentification",
+//					"RIC", versionField, null, null, null, versionAdmin);
+//			ReportField reportField30 = new ReportField(reportCatalog, "A",
+//					"AIFIdentifierECB", ".{20}", "", "AIFIdentification",
+//					"ECB", versionField, null, null, null, versionAdmin);
+//
+//			ReportField reportField31 = new ReportField(reportCatalog, "A",
+//					"ReportingMemberState1", ".{2}", "", "", "COUNTRY",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField32 = new ReportField(reportCatalog, "A",
+//					"AIFNationalCode1", ".{30}", "", "", "NATIONAL",
+//					versionField, null, null, null, versionAdmin);
+//
+//			ReportField reportField33 = new ReportField(reportCatalog, "B",
+//					"ShareClassFlag", "true|false", "", "ShareClassIdentifier",
+//					"BOOLEAN", versionField, null, null, null, versionAdmin);
+//			ReportField reportField34 = new ReportField(reportCatalog, "Z",
+//					"ShareClassNationalCode", ".{0,30}", "",
+//					"ShareClassIdentifier", "NATIONAL", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField35 = new ReportField(reportCatalog, "A",
+//					"ShareClassIdentifierISIN",
+//					"[A-Z]{2}([A-Z]|[0-9]){9}[0-9]", "",
+//					"ShareClassIdentifier", "ISIN", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField36 = new ReportField(reportCatalog, "A",
+//					"ShareClassIdentifierSEDOL", ".{7}", "",
+//					"ShareClassIdentifier", "SEDOL", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField37 = new ReportField(reportCatalog, "A",
+//					"ShareClassIdentifierCUSIP", ".{9}", "",
+//					"ShareClassIdentifier", "CUSIP", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField38 = new ReportField(reportCatalog, "A",
+//					"ShareClassIdentifierTicker", ".{20}", "",
+//					"ShareClassIdentifier", "TICKER", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField39 = new ReportField(reportCatalog, "A",
+//					"ShareClassIdentifierRIC", ".{20}", "",
+//					"ShareClassIdentifier", "RIC", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField40 = new ReportField(reportCatalog, "Z",
+//					"ShareClassName", ".{0,300}", "", "ShareClassIdentifier",
+//					"SHARECLASS", versionField, null, null, null, versionAdmin);
+//
+//			ReportField reportField41 = new ReportField(reportCatalog, "A",
+//					"AIFMasterFeederStatus", ".{6}", "", "", "FEEDER",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField42 = new ReportField(reportCatalog, "Z",
+//					"AIFName", ".{0,300}", "", "MasterAIFIdentification",
+//					"AIFM_NAME", versionField, null, null, null, versionAdmin);
+//			ReportField reportField43 = new ReportField(reportCatalog, "A",
+//					"ReportingMemberState", ".{2}", "",
+//					"MasterAIFIdentification", "COUNTRY", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField44 = new ReportField(reportCatalog, "Z",
+//					"AIFMNationalCode", ".{0,30}", "",
+//					"MasterAIFIdentification", "NATIONAL", versionField, null,
+//					null, null, versionAdmin);
+//
+//			ReportField reportField45 = new ReportField(reportCatalog, "Z",
+//					"EntityName", ".{0,300}", "", "PrimeBrokerIdentification",
+//					"NAME", versionField, null, null, null, versionAdmin);
+//			ReportField reportField46 = new ReportField(reportCatalog, "A",
+//					"EntityIdentificationLEI", ".{20}", "",
+//					"PrimeBrokerIdentification", "LEI", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField47 = new ReportField(reportCatalog, "A",
+//					"EntityIdentificationBIC", ".{11}", "",
+//					"PrimeBrokerIdentification", "BIC", versionField, null,
+//					null, null, versionAdmin);
+//
+//			ReportField reportField48 = new ReportField(reportCatalog, "N",
+//					"AUMAmountInBaseCurrency", "[0-9]{0,15}?", "",
+//					"AIFBaseCurrencyDescription", "NUMBER", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField49 = new ReportField(reportCatalog, "A",
+//					"BaseCurrency", ".{3}", "", "AIFBaseCurrencyDescription",
+//					"CURRENCY", versionField, null, null, null, versionAdmin);
+//			ReportField reportField50 = new ReportField(reportCatalog, "N",
+//					"FXEURRate", "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
+//					"AIFBaseCurrencyDescription", "DECIMAL", versionField,
+//					null, null, null, versionAdmin);
+//			ReportField reportField51 = new ReportField(reportCatalog, "A",
+//					"FXEURReferenceRateType", ".{3}", "",
+//					"AIFBaseCurrencyDescription", "FXRATE", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField52 = new ReportField(reportCatalog, "Z",
+//					"FXEUROtherReferenceRateDescription", ".{0,300}", "",
+//					"AIFBaseCurrencyDescription", "DESCRIPTION", versionField,
+//					null, null, null, versionAdmin);
+//
+//			ReportField reportField53 = new ReportField(reportCatalog, "N",
+//					"AIFNetAssetValue", "[+|-]?[0-9]{1,15}", "", "", "DECIMAL",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField54 = new ReportField(reportCatalog, "A",
+//					"FirstFundingSourceCountry", ".{2}", "", "", "COUNTRY",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField55 = new ReportField(reportCatalog, "A",
+//					"SecondFundingSourceCountry", ".{2}", "", "", "COUNTRY",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField56 = new ReportField(reportCatalog, "A",
+//					"ThirdFundingSourceCountry", ".{2}", "", "", "COUNTRY",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField57 = new ReportField(reportCatalog, "A",
+//					"PredominantAIFType", ".{4}", "", "", "AFITYPE",
+//					versionField, null, null, null, versionAdmin);
+//
+//			ReportField reportField58 = new ReportField(reportCatalog, "A",
+//					"HedgeFundStrategyType", ".{9}", "", "HedgeFundStrategy",
+//					"HEDGE_FUND", versionField, null, null, null, versionAdmin);
+//			ReportField reportField59 = new ReportField(reportCatalog, "A",
+//					"PrimaryStrategyFlag", "true|false", "",
+//					"HedgeFundStrategy", "BOOLEAN", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField60 = new ReportField(reportCatalog, "A",
+//					"StrategyNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+//					"HedgeFundStrategy", "DECIMAL", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField61 = new ReportField(reportCatalog, "A",
+//					"PrivateEquityFundStrategyType", ".{9}", "",
+//					"PrivateEquityFundInvestmentStrategy", "PRIVATE_FUND",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField62 = new ReportField(reportCatalog, "A",
+//					"PrimaryStrategyFlag", "true|false", "",
+//					"PrivateEquityFundInvestmentStrategy", "BOOLEAN",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField63 = new ReportField(reportCatalog, "A",
+//					"StrategyNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})", "",
+//					"PrivateEquityFundInvestmentStrategy", "DECIMAL",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField64 = new ReportField(reportCatalog, "A",
+//					"FundOfFundsStrategyType", ".{9}", "",
+//					"FundOfFundsStrategy", "FUND_FUND", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField65 = new ReportField(reportCatalog, "A",
+//					"PrimaryStrategyFlag", "true|false", "",
+//					"FundOfFundsStrategy", "BOOLEAN", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField66 = new ReportField(reportCatalog, "A",
+//					"StrategyNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+//					"FundOfFundsStrategy", "DECIMAL", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField67 = new ReportField(reportCatalog, "A",
+//					"OtherFundStrategyType", ".{9}", "", "OtherFundStrategy",
+//					"OTHER_FUND", versionField, null, null, null, versionAdmin);
+//			ReportField reportField68 = new ReportField(reportCatalog, "A",
+//					"PrimaryStrategyFlag", "true|false", "",
+//					"OtherFundStrategy", "BOOLEAN", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField69 = new ReportField(reportCatalog, "A",
+//					"StrategyNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+//					"OtherFundStrategy", "DECIMAL", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField70 = new ReportField(reportCatalog, "Z",
+//					"StrategyTypeOtherDescription", ".{300}", "", "",
+//					"DESCRIPTION", versionField, null, null, null, versionAdmin);
+//			ReportField reportField71 = new ReportField(reportCatalog, "A",
+//					"RealEstateFundStrategyType", ".{9}", "",
+//					"RealEstateFundStrategy", "REAL_FUND", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField72 = new ReportField(reportCatalog, "A",
+//					"PrimaryStrategyFlag", "true|false", "",
+//					"RealEstateFundStrategy", "BOOLEAN", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField73 = new ReportField(reportCatalog, "A",
+//					"StrategyNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+//					"RealEstateFundStrategy", "DECIMAL", versionField, null,
+//					null, null, versionAdmin);
+//
+//			ReportField reportField74 = new ReportField(reportCatalog, "N",
+//					"HFTTransactionNumber", "[0-9]{0,15}?", "", "", "NUMBER",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField75 = new ReportField(reportCatalog, "N",
+//					"HFTBuySellMarketValue", "[0-9]{0,15}?", "", "", "NUMBER",
+//					versionField, null, null, null, versionAdmin);
+//
+//			ReportField reportField76 = new ReportField(reportCatalog, "N",
+//					"Ranking", "[0-9]{1}", "", "MainInstrumentTraded",
+//					"RANKING5", versionField, null, null, null, versionAdmin);
+//			ReportField reportField77 = new ReportField(reportCatalog, "Z",
+//					"SubAssetType", ".{12}", "", "MainInstrumentTraded",
+//					"SUB_ASSET", versionField, null, null, null, versionAdmin);
+//			ReportField reportField78 = new ReportField(reportCatalog, "A",
+//					"InstrumentCodeType", ".{4}", "", "MainInstrumentTraded",
+//					"INSTR_TYPE", versionField, null, null, null, versionAdmin);
+//			ReportField reportField79 = new ReportField(reportCatalog, "Z",
+//					"InstrumentName", ".{300}", "", "MainInstrumentTraded",
+//					"INSTR_NAME", versionField, null, null, null, versionAdmin);
+//			ReportField reportField80 = new ReportField(reportCatalog, "A",
+//					"ISINInstrumentIdentification",
+//					"[A-Z]{2}([A-Z]|[0-9]){9}[0-9]", "",
+//					"MainInstrumentTraded", "ISIN", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField81 = new ReportField(reportCatalog, "A",
+//					"AIIExchangeCode", ".{4}", "",
+//					"AIIInstrumentIdentification", "MIC", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField82 = new ReportField(reportCatalog, "A",
+//					"AIIProductCode", ".{1,12}", "",
+//					"AIIInstrumentIdentification", "AII_CODE", versionField,
+//					null, null, null, versionAdmin);
+//			ReportField reportField83 = new ReportField(reportCatalog, "A",
+//					"AIIDerivativeType", ".{1}", "",
+//					"AIIInstrumentIdentification", "AII_DERIV", versionField,
+//					null, null, null, versionAdmin);
+//			ReportField reportField84 = new ReportField(reportCatalog, "A",
+//					"AIIPutCallIdentifier", ".{1}", "",
+//					"AIIInstrumentIdentification", "AII_PUT", versionField,
+//					null, null, null, versionAdmin);
+//			ReportField reportField85 = new ReportField(reportCatalog, "D",
+//					"AIIExpiryDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}", "",
+//					"AIIInstrumentIdentification", "DATE", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField86 = new ReportField(reportCatalog, "N",
+//					"AIIStrikePrice", "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
+//					"AIIInstrumentIdentification", "DECIMAL", versionField,
+//					null, null, null, versionAdmin);
+//			ReportField reportField87 = new ReportField(reportCatalog, "A",
+//					"PositionType", ".{1}", "", "MainInstrumentTraded",
+//					"POS_TYPE", versionField, null, null, null, versionAdmin);
+//			ReportField reportField88 = new ReportField(reportCatalog, "N",
+//					"PositionValue", "[0-9]{0,15}?", "",
+//					"MainInstrumentTraded", "NUMBER", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField89 = new ReportField(reportCatalog, "A",
+//					"ShortPositionHedgingRate", "[0-9]{1,15}(\\.[0-9]{1,4})?",
+//					"", "MainInstrumentTraded", "DECIMAL", versionField, null,
+//					null, null, versionAdmin);
+//
+//			ReportField reportField90 = new ReportField(reportCatalog, "N",
+//					"AfricaNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+//					"NAVGeographicalFocus", "DECIMAL", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField91 = new ReportField(reportCatalog, "N",
+//					"AsiaPacificNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?",
+//					"", "NAVGeographicalFocus", "DECIMAL", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField92 = new ReportField(reportCatalog, "N",
+//					"EuropeNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+//					"NAVGeographicalFocus", "DECIMAL", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField93 = new ReportField(reportCatalog, "N",
+//					"EEANAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+//					"NAVGeographicalFocus", "DECIMAL", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField94 = new ReportField(reportCatalog, "N",
+//					"MiddleEastNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?",
+//					"", "NAVGeographicalFocus", "DECIMAL", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField95 = new ReportField(reportCatalog, "N",
+//					"NorthAmericaNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?",
+//					"", "NAVGeographicalFocus", "DECIMAL", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField96 = new ReportField(reportCatalog, "N",
+//					"SouthAmericaNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?",
+//					"", "NAVGeographicalFocus", "DECIMAL", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField97 = new ReportField(reportCatalog, "N",
+//					"SupraNationalNAVRate",
+//					"[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+//					"NAVGeographicalFocus", "DECIMAL", versionField, null,
+//					null, null, versionAdmin);
+//
+//			ReportField reportField98 = new ReportField(reportCatalog, "N",
+//					"AfricaAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+//					"AUMGeographicalFocus", "PERCENT", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField99 = new ReportField(reportCatalog, "N",
+//					"AsiaPacificAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+//					"AUMGeographicalFocus", "PERCENT", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField100 = new ReportField(reportCatalog, "N",
+//					"EuropeAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+//					"AUMGeographicalFocus", "PERCENT", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField101 = new ReportField(reportCatalog, "N",
+//					"EEAAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+//					"AUMGeographicalFocus", "PERCENT", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField102 = new ReportField(reportCatalog, "N",
+//					"MiddleEastAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+//					"AUMGeographicalFocus", "PERCENT", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField103 = new ReportField(reportCatalog, "N",
+//					"NorthAmericaAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+//					"AUMGeographicalFocus", "PERCENT", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField104 = new ReportField(reportCatalog, "N",
+//					"SouthAmericaAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+//					"AUMGeographicalFocus", "PERCENT", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField105 = new ReportField(reportCatalog, "N",
+//					"SupraNationalAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+//					"AUMGeographicalFocus", "PERCENT", versionField, null,
+//					null, null, versionAdmin);
+//
+//			ReportField reportField106 = new ReportField(reportCatalog, "N",
+//					"Ranking", "[0-9]{1,2}", "", "PrincipalExposure",
+//					"RANKING10", versionField, null, null, null, versionAdmin);
+//			ReportField reportField107 = new ReportField(reportCatalog, "A",
+//					"AssetMacroType", ".{3}", "", "PrincipalExposure",
+//					"ASSET_TYPE", versionField, null, null, null, versionAdmin);
+//			ReportField reportField108 = new ReportField(reportCatalog, "Z",
+//					"SubAssetType", ".{12}", "", "PrincipalExposure",
+//					"SUB_ASSET", versionField, null, null, null, versionAdmin);
+//			ReportField reportField109 = new ReportField(reportCatalog, "A",
+//					"PositionType", ".{1}", "", "PrincipalExposure",
+//					"POS_TYPE", versionField, null, null, null, versionAdmin);
+//			ReportField reportField110 = new ReportField(reportCatalog, "N",
+//					"AggregatedValueAmount", "[0-9]{1,15}?", "",
+//					"PrincipalExposure", "NUMBER", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField111 = new ReportField(reportCatalog, "N",
+//					"AggregatedValueRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+//					"PrincipalExposure", "PERCENT", versionField, null, null,
+//					null, versionAdmin);
+//			ReportField reportField112 = new ReportField(reportCatalog, "Z",
+//					"EntityName", ".{300}", "", "CounterpartyIdentification",
+//					"NAME", versionField, null, null, null, versionAdmin);
+//			ReportField reportField113 = new ReportField(reportCatalog, "A",
+//					"EntityIdentificationLEI", ".{20}", "",
+//					"CounterpartyIdentification", "LEI", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField114 = new ReportField(reportCatalog, "A",
+//					"EntityIdentificationBIC", ".{11}", "",
+//					"CounterpartyIdentification", "BIC", versionField, null,
+//					null, null, versionAdmin);
+//
+//			ReportField reportField115 = new ReportField(reportCatalog, "N",
+//					"Ranking", "[0-9]{1,2}", "", "PortfolioConcentration",
+//					"RANKING5", versionField, null, null, null, versionAdmin);
+//			ReportField reportField116 = new ReportField(reportCatalog, "A",
+//					"AssetType", ".{3}", "", "PortfolioConcentration",
+//					"ASSET_TYPE", versionField, null, null, null, versionAdmin);
+//			ReportField reportField117 = new ReportField(reportCatalog, "A",
+//					"PositionType", ".{1}", "", "PortfolioConcentration",
+//					"POS_TYPE", versionField, null, null, null, versionAdmin);
+//			ReportField reportField118 = new ReportField(reportCatalog, "A",
+//					"MarketCodeType", ".{4}", "", "MarketIdentification",
+//					"MARKET", versionField, null, null, null, versionAdmin);
+//			ReportField reportField119 = new ReportField(reportCatalog, "A",
+//					"MarketCode", ".{4}", "", "MarketIdentification", "MIC",
+//					versionField, null, null, null, versionAdmin);
+//			ReportField reportField120 = new ReportField(reportCatalog, "N",
+//					"AggregatedValueAmount", "[0-9]{0,15}?", "",
+//					"PortfolioConcentration", "NUMBER", versionField, null,
+//					null, null, versionAdmin);
+//			ReportField reportField121 = new ReportField(reportCatalog, "N",
+//					"AggregatedValueRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+//					"PortfolioConcentration", "PERCENT", versionField, null,
+//					null, null, versionAdmin);
+
 			// DAO
 
 			CompanyDAO companyDAO = (CompanyDAO) applicationContext
@@ -494,117 +553,117 @@ public class InstallEntities {
 
 			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
 					.getBean("reportFieldDAO");
-			reportFieldDAO.create(reportField1);
-			reportFieldDAO.create(reportField2);
-			reportFieldDAO.create(reportField3);
-			reportFieldDAO.create(reportField4);
-			reportFieldDAO.create(reportField5);
-			reportFieldDAO.create(reportField6);
-			reportFieldDAO.create(reportField7);
-			reportFieldDAO.create(reportField8);
-			reportFieldDAO.create(reportField9);
-			reportFieldDAO.create(reportField10);
-			reportFieldDAO.create(reportField11);
-			reportFieldDAO.create(reportField12);
-			reportFieldDAO.create(reportField13);
-			reportFieldDAO.create(reportField14);
-			reportFieldDAO.create(reportField15);
-			reportFieldDAO.create(reportField16);
-			reportFieldDAO.create(reportField17);
-			reportFieldDAO.create(reportField18);
-			reportFieldDAO.create(reportField19);
-			reportFieldDAO.create(reportField20);
-			reportFieldDAO.create(reportField21);
-			reportFieldDAO.create(reportField22);
-			reportFieldDAO.create(reportField23);
-			reportFieldDAO.create(reportField24);
-			reportFieldDAO.create(reportField25);
-			reportFieldDAO.create(reportField26);
-			reportFieldDAO.create(reportField27);
-			reportFieldDAO.create(reportField28);
-			reportFieldDAO.create(reportField29);
-			reportFieldDAO.create(reportField30);
-			reportFieldDAO.create(reportField31);
-			reportFieldDAO.create(reportField32);
-			reportFieldDAO.create(reportField33);
-			reportFieldDAO.create(reportField34);
-			reportFieldDAO.create(reportField35);
-			reportFieldDAO.create(reportField36);
-			reportFieldDAO.create(reportField37);
-			reportFieldDAO.create(reportField38);
-			reportFieldDAO.create(reportField39);
-			reportFieldDAO.create(reportField40);
-			reportFieldDAO.create(reportField41);
-			reportFieldDAO.create(reportField42);
-			reportFieldDAO.create(reportField43);
-			reportFieldDAO.create(reportField44);
-			reportFieldDAO.create(reportField45);
-			reportFieldDAO.create(reportField46);
-			reportFieldDAO.create(reportField47);
-			reportFieldDAO.create(reportField48);
-			reportFieldDAO.create(reportField49);
-			reportFieldDAO.create(reportField50);
-			reportFieldDAO.create(reportField51);
-			reportFieldDAO.create(reportField52);
-			reportFieldDAO.create(reportField53);
-			reportFieldDAO.create(reportField54);
-			reportFieldDAO.create(reportField55);
-			reportFieldDAO.create(reportField56);
-			reportFieldDAO.create(reportField57);
-			reportFieldDAO.create(reportField58);
-			reportFieldDAO.create(reportField59);
-			reportFieldDAO.create(reportField60);
-			reportFieldDAO.create(reportField61);
-			reportFieldDAO.create(reportField62);
-			reportFieldDAO.create(reportField63);
-			reportFieldDAO.create(reportField64);
-			reportFieldDAO.create(reportField65);
-			reportFieldDAO.create(reportField66);
-			reportFieldDAO.create(reportField67);
-			reportFieldDAO.create(reportField68);
-			reportFieldDAO.create(reportField69);
-			reportFieldDAO.create(reportField70);
-			reportFieldDAO.create(reportField71);
-			reportFieldDAO.create(reportField72);
-			reportFieldDAO.create(reportField73);
-			reportFieldDAO.create(reportField74);
-			reportFieldDAO.create(reportField75);
-			reportFieldDAO.create(reportField76);
-			reportFieldDAO.create(reportField77);
-			reportFieldDAO.create(reportField78);
-			reportFieldDAO.create(reportField79);
-			reportFieldDAO.create(reportField80);
-			reportFieldDAO.create(reportField81);
-			reportFieldDAO.create(reportField82);
-			reportFieldDAO.create(reportField83);
-			reportFieldDAO.create(reportField84);
-			reportFieldDAO.create(reportField85);
-			reportFieldDAO.create(reportField86);
-			reportFieldDAO.create(reportField87);
-			reportFieldDAO.create(reportField88);
-			reportFieldDAO.create(reportField89);
-			reportFieldDAO.create(reportField90);
-			reportFieldDAO.create(reportField91);
-			reportFieldDAO.create(reportField92);
-			reportFieldDAO.create(reportField93);
-			reportFieldDAO.create(reportField94);
-			reportFieldDAO.create(reportField95);
-			reportFieldDAO.create(reportField96);
-			reportFieldDAO.create(reportField97);
-			reportFieldDAO.create(reportField98);
-			reportFieldDAO.create(reportField99);
-			reportFieldDAO.create(reportField100);
-			reportFieldDAO.create(reportField110);
-			reportFieldDAO.create(reportField102);
-			reportFieldDAO.create(reportField103);
-			reportFieldDAO.create(reportField104);
-			reportFieldDAO.create(reportField105);
-			reportFieldDAO.create(reportField106);
-			reportFieldDAO.create(reportField107);
-			reportFieldDAO.create(reportField108);
-			reportFieldDAO.create(reportField109);
-			reportFieldDAO.create(reportField120);
-			reportFieldDAO.create(reportField121);
+//			reportFieldDAO.create(reportField1);
+//			reportFieldDAO.create(reportField2);
+//			reportFieldDAO.create(reportField3);
+//			reportFieldDAO.create(reportField4);
+//			reportFieldDAO.create(reportField5);
+//			reportFieldDAO.create(reportField6);
+//			reportFieldDAO.create(reportField7);
+//			reportFieldDAO.create(reportField8);
+//			reportFieldDAO.create(reportField9);
+//			reportFieldDAO.create(reportField10);
+//			reportFieldDAO.create(reportField11);
+//			reportFieldDAO.create(reportField12);
+//			reportFieldDAO.create(reportField13);
+//			reportFieldDAO.create(reportField14);
+//			reportFieldDAO.create(reportField15);
+//			reportFieldDAO.create(reportField16);
+//			reportFieldDAO.create(reportField17);
+//			reportFieldDAO.create(reportField18);
+//			reportFieldDAO.create(reportField19);
+//			reportFieldDAO.create(reportField20);
+//			reportFieldDAO.create(reportField21);
+//			reportFieldDAO.create(reportField22);
+//			reportFieldDAO.create(reportField23);
+//			reportFieldDAO.create(reportField24);
+//			reportFieldDAO.create(reportField25);
+//			reportFieldDAO.create(reportField26);
+//			reportFieldDAO.create(reportField27);
+//			reportFieldDAO.create(reportField28);
+//			reportFieldDAO.create(reportField29);
+//			reportFieldDAO.create(reportField30);
+//			reportFieldDAO.create(reportField31);
+//			reportFieldDAO.create(reportField32);
+//			reportFieldDAO.create(reportField33);
+//			reportFieldDAO.create(reportField34);
+//			reportFieldDAO.create(reportField35);
+//			reportFieldDAO.create(reportField36);
+//			reportFieldDAO.create(reportField37);
+//			reportFieldDAO.create(reportField38);
+//			reportFieldDAO.create(reportField39);
+//			reportFieldDAO.create(reportField40);
+//			reportFieldDAO.create(reportField41);
+//			reportFieldDAO.create(reportField42);
+//			reportFieldDAO.create(reportField43);
+//			reportFieldDAO.create(reportField44);
+//			reportFieldDAO.create(reportField45);
+//			reportFieldDAO.create(reportField46);
+//			reportFieldDAO.create(reportField47);
+//			reportFieldDAO.create(reportField48);
+//			reportFieldDAO.create(reportField49);
+//			reportFieldDAO.create(reportField50);
+//			reportFieldDAO.create(reportField51);
+//			reportFieldDAO.create(reportField52);
+//			reportFieldDAO.create(reportField53);
+//			reportFieldDAO.create(reportField54);
+//			reportFieldDAO.create(reportField55);
+//			reportFieldDAO.create(reportField56);
+//			reportFieldDAO.create(reportField57);
+//			reportFieldDAO.create(reportField58);
+//			reportFieldDAO.create(reportField59);
+//			reportFieldDAO.create(reportField60);
+//			reportFieldDAO.create(reportField61);
+//			reportFieldDAO.create(reportField62);
+//			reportFieldDAO.create(reportField63);
+//			reportFieldDAO.create(reportField64);
+//			reportFieldDAO.create(reportField65);
+//			reportFieldDAO.create(reportField66);
+//			reportFieldDAO.create(reportField67);
+//			reportFieldDAO.create(reportField68);
+//			reportFieldDAO.create(reportField69);
+//			reportFieldDAO.create(reportField70);
+//			reportFieldDAO.create(reportField71);
+//			reportFieldDAO.create(reportField72);
+//			reportFieldDAO.create(reportField73);
+//			reportFieldDAO.create(reportField74);
+//			reportFieldDAO.create(reportField75);
+//			reportFieldDAO.create(reportField76);
+//			reportFieldDAO.create(reportField77);
+//			reportFieldDAO.create(reportField78);
+//			reportFieldDAO.create(reportField79);
+//			reportFieldDAO.create(reportField80);
+//			reportFieldDAO.create(reportField81);
+//			reportFieldDAO.create(reportField82);
+//			reportFieldDAO.create(reportField83);
+//			reportFieldDAO.create(reportField84);
+//			reportFieldDAO.create(reportField85);
+//			reportFieldDAO.create(reportField86);
+//			reportFieldDAO.create(reportField87);
+//			reportFieldDAO.create(reportField88);
+//			reportFieldDAO.create(reportField89);
+//			reportFieldDAO.create(reportField90);
+//			reportFieldDAO.create(reportField91);
+//			reportFieldDAO.create(reportField92);
+//			reportFieldDAO.create(reportField93);
+//			reportFieldDAO.create(reportField94);
+//			reportFieldDAO.create(reportField95);
+//			reportFieldDAO.create(reportField96);
+//			reportFieldDAO.create(reportField97);
+//			reportFieldDAO.create(reportField98);
+//			reportFieldDAO.create(reportField99);
+//			reportFieldDAO.create(reportField100);
+//			reportFieldDAO.create(reportField110);
+//			reportFieldDAO.create(reportField102);
+//			reportFieldDAO.create(reportField103);
+//			reportFieldDAO.create(reportField104);
+//			reportFieldDAO.create(reportField105);
+//			reportFieldDAO.create(reportField106);
+//			reportFieldDAO.create(reportField107);
+//			reportFieldDAO.create(reportField108);
+//			reportFieldDAO.create(reportField109);
+//			reportFieldDAO.create(reportField120);
+//			reportFieldDAO.create(reportField121);
 //			reportFieldDAO.create(reportField122);
 //			reportFieldDAO.create(reportField123);
 //			reportFieldDAO.create(reportField124);
@@ -626,6 +685,8 @@ public class InstallEntities {
 
 			VersionAuditor versionAdmin = new VersionAuditor("admin");
 
+			String versionField = "1.2";
+
 			Company company = new Company("Santander Asset Manager", "Spain",
 					"SAM", "", null, null, null, null, versionAdmin);
 			Department department = new Department(company, "Risk department",
@@ -636,8 +697,8 @@ public class InstallEntities {
 			FundGroup fundGroup = new FundGroup(fund, department, "RISK FUNDS",
 					"", versionAdmin);
 
-			ReportCatalog reportCatalog = new ReportCatalog("1.2", "COMPANY",
-					"AIFMD 2014", "", null, null, null, versionAdmin);
+			ReportCatalog reportCatalog = new ReportCatalog(versionField,
+					"COMPANY", "AIFMD 2014", "", null, null, null, versionAdmin);
 
 			String str1 = "2014-01-01";
 			String str2 = "2014-12-31";
@@ -650,223 +711,236 @@ public class InstallEntities {
 					"CREATION", null, null, null, null, null, null, null, null,
 					null, null, null, null, versionAdmin);
 
+			// report Fields de AIFM
+			ReportField reportFieldx1 = new ReportField(reportCatalog, "X",
+					"AIFMReportingInfo", null, "", "<root>", null, "1", "11",
+					versionField, null, null, null, versionAdmin);
 			ReportField reportField1 = new ReportField(reportCatalog, "A",
-					"ReportingMemberState", ".{2}", "", "", "COUNTRY", "1.2",
-					null, null, null, versionAdmin);
+					"ReportingMemberState", ".{2}", "", "AIFMReportingInfo",
+					"COUNTRY", "1", "11", versionField, null, null, null,
+					versionAdmin);
 			ReportField reportField2 = new ReportField(reportCatalog, "A",
-					"Version", "([0-9])+\\.([0-9])+", "", "", "VERSION", "1.2",
-					null, null, null, versionAdmin);
+					"Version", "([0-9])+\\.([0-9])+", "", "AIFMReportingInfo",
+					"VERSION", "1", "11", versionField, null, null, null,
+					versionAdmin);
 			ReportField reportField3 = new ReportField(reportCatalog, "D",
 					"CreationDateAndTime",
 					"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}",
-					"", "", "DATETIME", "1.2", null, null, null, versionAdmin);
+					"", "AIFMReportingInfo", "DATETIME", "1", "11",
+					versionField, null, null, null, versionAdmin);
+
+			ReportField reportFieldx2 = new ReportField(reportCatalog, "X",
+					"AIFMRecordInfo", null, "", "AIFMReportingInfo", null,
+					"1.1", "11", versionField, null, null, null, versionAdmin);
 			ReportField reportField4 = new ReportField(reportCatalog, "A",
-					"FilingType", ".{4}", "", "", "FILLING", "1.2", null, null,
-					null, versionAdmin);
+					"FilingType", ".{4}", "", "AIFMRecordInfo", "FILLING",
+					"1.1.1", "11", versionField, null, null, null, versionAdmin);
 			ReportField reportField5 = new ReportField(reportCatalog, "N",
-					"AIFMContentType", "[0-9]{1}", "", "", "AIFM_TYPE", "1.2",
-					null, null, null, versionAdmin);
+					"AIFMContentType", "[0-9]{1}", "", "AIFMRecordInfo",
+					"AIFM_TYPE", "1.1.2", "11", versionField, null, null, null,
+					versionAdmin);
 			ReportField reportField6 = new ReportField(reportCatalog, "D",
 					"ReportingPeriodStartDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}",
-					"", "", "DATE", "1.2", null, null, null, versionAdmin);
+					"", "AIFMRecordInfo", "DATE", "1.1.3", "11", versionField,
+					null, null, null, versionAdmin);
 			ReportField reportField7 = new ReportField(reportCatalog, "D",
 					"ReportingPeriodEndDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}", "",
-					"", "DATE", "1.2", null, null, null, versionAdmin);
+					"AIFMRecordInfo", "DATE", "1.1.4", "11", versionField,
+					null, null, null, versionAdmin);
 			ReportField reportField8 = new ReportField(reportCatalog, "A",
-					"ReportingPeriodType", ".{2}", "", "", "PERIOD", "1.2",
-					null, null, null, versionAdmin);
+					"ReportingPeriodType", ".{2}", "", "AIFMRecordInfo",
+					"PERIOD", "1.1.5", "11", versionField, null, null, null,
+					versionAdmin);
 			ReportField reportField9 = new ReportField(reportCatalog, "N",
-					"ReportingPeriodYear", "[0-9]{4}", "", "", "YEAR", "1.2",
-					null, null, null, versionAdmin);
+					"ReportingPeriodYear", "[0-9]{4}", "", "AIFMRecordInfo",
+					"YEAR", "1.1.6", "11", versionField, null, null, null,
+					versionAdmin);
 			ReportField reportField10 = new ReportField(reportCatalog, "A",
 					"AIFMReportingObligationChangeFrequencyCode", ".{2}", "",
-					"", "AIFM_CHANGE_FREQ", "1.2", null, null, null,
-					versionAdmin);
+					"AIFMRecordInfo", "AIFM_CHANGE_FREQ", "1.1.7", "01",
+					versionField, null, null, null, versionAdmin);
 			ReportField reportField11 = new ReportField(reportCatalog, "N",
 					"AIFMReportingObligationChangeContentsCode", "[0-9]{1}",
-					"", "", "AIFM_CHANGE_CONTENT", "1.2", null, null, null,
-					versionAdmin);
+					"", "AIFMRecordInfo", "AIFM_CHANGE_CONTENT", "1.1.8", "01",
+					versionField, null, null, null, versionAdmin);
 			ReportField reportField12 = new ReportField(reportCatalog, "A",
-					"AIFMReportingObligationChangeQuarter", ".{2}", "", "",
-					"QUARTER", "1.2", null, null, null, versionAdmin);
+					"AIFMReportingObligationChangeQuarter", ".{2}", "",
+					"AIFMRecordInfo", "QUARTER", "1.1.9", "01", versionField,
+					null, null, null, versionAdmin);
 			ReportField reportField13 = new ReportField(reportCatalog, "B",
-					"LastReportingFlag", "true|false", "", "", "BOOLEAN",
-					"1.2", null, null, null, versionAdmin);
+					"LastReportingFlag", "true|false", "", "AIFMRecordInfo",
+					"BOOLEAN", "1.1.10", "11", versionField, null, null, null,
+					versionAdmin);
+
+			ReportField reportFieldx3 = new ReportField(reportCatalog, "X",
+					"Assumptions", null, "", "AIFMRecordInfo", null, "1.1.11",
+					"01", versionField, null, null, null, versionAdmin);
+			ReportField reportFieldx4 = new ReportField(reportCatalog, "X",
+					"Assumption", null, "", "Assumptions", null, "1.1.11.1",
+					"0n", versionField, null, null, null, versionAdmin);
 			ReportField reportField14 = new ReportField(reportCatalog, "N",
-					"QuestionNumber", "[0-9]{0,3}", "", "Assumption", "QUESTION", "1.2",
-					null, null, null, versionAdmin);
+					"QuestionNumber", "[0-9]{0,3}", "", "Assumption",
+					"QUESTION", "1.1.11.1.1", "0n", versionField, null, null,
+					null, versionAdmin);
 			ReportField reportField15 = new ReportField(reportCatalog, "Z",
-					"AssumptionDescription", ".{0,300}", "Assumption", "", "DESCRIPTION",
-					"1.2", null, null, null, versionAdmin);
+					"AssumptionDescription", ".{0,300}", "", "Assumption",
+					"DESCRIPTION", "1.1.11.1.2", "0n", versionField, null,
+					null, null, versionAdmin);
+
 			ReportField reportField16 = new ReportField(reportCatalog, "A",
-					"AIFMReportingCode", ".{1}", "", "", "REPORT_CODE", "1.2",
-					null, null, null, versionAdmin);
+					"AIFMReportingCode", ".{1}", "", "AIFMRecordInfo",
+					"REPORT_CODE", "1.1.12", "11", versionField, null, null,
+					null, versionAdmin);
 			ReportField reportField17 = new ReportField(reportCatalog, "A",
-					"AIFMJurisdiction", ".{2}", "", "", "COUNTRY", "1.2", null,
-					null, null, versionAdmin);
+					"AIFMJurisdiction", ".{2}", "", "AIFMRecordInfo",
+					"COUNTRY", "1.1.13", "11", versionField, null, null, null,
+					versionAdmin);
 			ReportField reportField18 = new ReportField(reportCatalog, "Z",
-					"AIFMNationalCode", ".{0,30}", "", "", "NATIONAL", "1.2",
-					null, null, null, versionAdmin);
+					"AIFMNationalCode", ".{0,30}", "", "AIFMRecordInfo",
+					"NATIONAL", "1.1.14", "11", versionField, null, null, null,
+					versionAdmin);
 			ReportField reportField19 = new ReportField(reportCatalog, "Z",
-					"AIFMName", ".{0,300}", "", "", "AIFM_NAME", "1.2", null,
-					null, null, versionAdmin);
+					"AIFMName", ".{0,300}", "", "AIFMRecordInfo", "AIFM_NAME",
+					"1.1.15", "11", versionField, null, null, null,
+					versionAdmin);
 			ReportField reportField20 = new ReportField(reportCatalog, "B",
-					"AIFMEEAFlag", "true|false", "", "", "BOOLEAN", "1.2",
-					null, null, null, versionAdmin);
+					"AIFMEEAFlag", "true|false", "", "AIFMRecordInfo",
+					"BOOLEAN", "1.1.16", "11", versionField, null, null, null,
+					versionAdmin);
 			ReportField reportField21 = new ReportField(reportCatalog, "B",
-					"AIFMNoReportingFlag", "true|false", "", "", "BOOLEAN",
-					"1.2", null, null, null, versionAdmin);
+					"AIFMNoReportingFlag", "true|false", "", "AIFMRecordInfo",
+					"BOOLEAN", "1.1.17", "11", versionField, null, null, null,
+					versionAdmin);
+
+			ReportField reportFieldx5 = new ReportField(reportCatalog, "X",
+					"AIFMCompleteDescription", null, "", "AIFMRecordInfo",
+					null, "1.1.18", "11", versionField, null, null, null,
+					versionAdmin);
+			ReportField reportFieldx6 = new ReportField(reportCatalog, "X",
+					"AIFMIdentifier", null, "", "AIFMCompleteDescription",
+					null, "1.1.18.1", "01", versionField, null, null, null,
+					versionAdmin);
 			ReportField reportField22 = new ReportField(reportCatalog, "A",
-					"AIFMIdentifierLEI", ".{20}", "", "AIFMIdentifier", "LEI", "1.2", null,
-					null, null, versionAdmin);
+					"AIFMIdentifierLEI", ".{20}", "", "AIFMIdentifier", "LEI",
+					"1.1.18.1.1", "01", versionField, null, null, null,
+					versionAdmin);
 			ReportField reportField23 = new ReportField(reportCatalog, "A",
-					"AIFMIdentifierBIC", ".{11}", "", "AIFMIdentifier", "BIC", "1.2", null,
-					null, null, versionAdmin);
+					"AIFMIdentifierBIC", ".{11}", "", "AIFMIdentifier", "BIC",
+					"1.1.18.1.2", "01", versionField, null, null, null,
+					versionAdmin);
+
 			ReportField reportField24 = new ReportField(reportCatalog, "A",
-					"ReportingMemberState1", ".{2}", "", "", "COUNTRY", "1.2",
-					null, null, null, versionAdmin);
+					"ReportingMemberState", ".{2}", "",
+					"AIFMCompleteDescription", "COUNTRY", "1.1.18.1.3", "01",
+					versionField, null, null, null, versionAdmin);
 			ReportField reportField25 = new ReportField(reportCatalog, "Z",
-					"AIFMNationalCode1", ".{0,30}", "", "", "", "1.2", null,
-					null, null, versionAdmin);
+					"AIFMNationalCode", ".{0,30}", "",
+					"AIFMCompleteDescription", "NATIONAL", "1.1.18.1.4", "01",
+					versionField, null, null, null, versionAdmin);
 
+			ReportField reportFieldx7 = new ReportField(reportCatalog, "X",
+					"AIFMPrincipalMarkets", null, "",
+					"AIFMCompleteDescription", null, "1.1.18.2", "11",
+					versionField, null, null, null, versionAdmin);
+			ReportField reportFieldx8 = new ReportField(reportCatalog, "X",
+					"AIFMFivePrincipalMarket", null, "",
+					"AIFMPrincipalMarkets", null, "1.1.18.2.1", "15",
+					versionField, null, null, null, versionAdmin);
 			ReportField reportField26 = new ReportField(reportCatalog, "N",
-					"MarketRanking1", "[0-9]{1}", "", "AIFMFivePrincipalMarket1", "RANKING5",
-					"1.2", null, null, null, versionAdmin);
+					"Ranking", "[0-9]{1}", "", "AIFMFivePrincipalMarket",
+					"RANKING5", "1.1.18.2.1.1", "15", versionField, null, null,
+					null, versionAdmin);
+			ReportField reportFieldx9 = new ReportField(reportCatalog, "X",
+					"MarketIdentification", null, "",
+					"AIFMFivePrincipalMarket", null, "1.1.18.2.1.2", "15",
+					versionField, null, null, null, versionAdmin);
 			ReportField reportField27 = new ReportField(reportCatalog, "A",
-					"MarketCodeType1", ".{4}", "", "AIFMFivePrincipalMarket1", "MARKET", "1.2", null,
-					null, null, versionAdmin);
+					"MarketCodeType", ".{4}", "", "MarketIdentification",
+					"MARKET", "1.1.18.2.1.2.1", "15", versionField, null, null,
+					null, versionAdmin);
 			ReportField reportField28 = new ReportField(reportCatalog, "A",
-					"MarketCode1", ".{4}", "", "AIFMFivePrincipalMarket1", "MIC", "1.2", null, null,
-					null, versionAdmin);
+					"MarketCode", ".{4}", "", "MarketIdentification", "MIC",
+					"1.1.18.2.1.2.2", "05", versionField, null, null, null,
+					versionAdmin);
 			ReportField reportField29 = new ReportField(reportCatalog, "N",
-					"MarketAggregatedValueAmount1", "[0-9]{0,15}?", "", "AIFMFivePrincipalMarket1",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
+					"AggregatedValueAmount", "[0-9]{0,15}?", "",
+					"AIFMFivePrincipalMarket", "NUMBER", "1.1.18.2.1.3", "15",
+					versionField, null, null, null, versionAdmin);
+
+			ReportField reportFieldx10 = new ReportField(reportCatalog, "X",
+					"AIFMPrincipalInstruments", null, "",
+					"AIFMCompleteDescription", null, "1.1.18.3", "11",
+					versionField, null, null, null, versionAdmin);
+			ReportField reportFieldx11 = new ReportField(reportCatalog, "X",
+					"AIFMPrincipalInstrument", null, "",
+					"AIFMPrincipalInstruments", null, "1.1.18.3.1", "15",
+					versionField, null, null, null, versionAdmin);
+
 			ReportField reportField30 = new ReportField(reportCatalog, "N",
-					"MarketRanking2", "[0-9]{1}", "", "AIFMFivePrincipalMarket2", "RANKING5",
-					"1.2", null, null, null, versionAdmin);
+					"Ranking", "[0-9]{1}", "", "AIFMPrincipalInstrument",
+					"RANKING5", "1.1.18.3.1.1", "15", versionField, null, null,
+					null, versionAdmin);
 			ReportField reportField31 = new ReportField(reportCatalog, "A",
-					"MarketCodeType2", ".{4}", "", "AIFMFivePrincipalMarket2", "MARKET", "1.2", null,
+					"SubAssetType1", ".{11}", "", "AIFMPrincipalInstrument",
+					"SUB_ASSET", "1.1.18.3.1.2", "15", versionField, null,
 					null, null, versionAdmin);
-			ReportField reportField32 = new ReportField(reportCatalog, "A",
-					"MarketCode2", ".{4}", "", "AIFMFivePrincipalMarket2", "MIC", "1.2", null, null,
-					null, versionAdmin);
+			ReportField reportField32 = new ReportField(reportCatalog, "N",
+					"AggregatedValueAmount", "[0-9]{0,15}?", "",
+					"AIFMPrincipalInstrument", "NUMBER", "1.1.18.3.1.3", "15",
+					versionField, null, null, null, versionAdmin);
+
 			ReportField reportField33 = new ReportField(reportCatalog, "N",
-					"MarketAggregatedValueAmount2", "[0-9]{0,15}?", "", "AIFMFivePrincipalMarket2",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
+					"AUMAmountInEuro", "[0-9]{0,15}?", "",
+					"AIFMCompleteDescription", "NUMBER", "1.1.18.4", "11",
+					versionField, null, null, null, versionAdmin);
 			ReportField reportField34 = new ReportField(reportCatalog, "N",
-					"MarketRanking3", "[0-9]{1}", "", "AIFMFivePrincipalMarket3", "RANKING5",
-					"1.2", null, null, null, versionAdmin);
+					"AUMAmountInBaseCurrency", "[0-9]{0,15}?", "",
+					"AIFMCompleteDescription", "NUMBER", "1.1.18.5", "01",
+					versionField, null, null, null, versionAdmin);
+
+			ReportField reportFieldx12 = new ReportField(reportCatalog, "X",
+					"AIFMBaseCurrencyDescription", null, "",
+					"AIFMCompleteDescription", null, "1.1.18.6", "01",
+					versionField, null, null, null, versionAdmin);
 			ReportField reportField35 = new ReportField(reportCatalog, "A",
-					"MarketCodeType3", ".{4}", "", "AIFMFivePrincipalMarket3", "MARKET", "1.2", null,
-					null, null, versionAdmin);
+					"BaseCurrency", ".{3}", "", "AIFMBaseCurrencyDescription",
+					"CURRENCY", "1.1.18.6.1", "01", versionField, null, null,
+					null, versionAdmin);
 			ReportField reportField36 = new ReportField(reportCatalog, "A",
-					"MarketCode3", ".{4}", "", "AIFMFivePrincipalMarket3", "MIC", "1.2", null, null,
-					null, versionAdmin);
+					"FXEURReferenceRateType", ".{3}", "",
+					"AIFMBaseCurrencyDescription", "FXRATE", "1.1.18.6.2",
+					"01", versionField, null, null, null, versionAdmin);
 			ReportField reportField37 = new ReportField(reportCatalog, "N",
-					"MarketAggregatedValueAmount3", "[0-9]{0,15}?", "", "AIFMFivePrincipalMarket3",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-			ReportField reportField38 = new ReportField(reportCatalog, "N",
-					"MarketRanking4", "[0-9]{1}", "", "AIFMFivePrincipalMarket4", "RANKING5",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField39 = new ReportField(reportCatalog, "A",
-					"MarketCodeType4", ".{4}", "", "AIFMFivePrincipalMarket4", "MARKET", "1.2", null,
+					"FXEURRate", "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
+					"AIFMBaseCurrencyDescription", "DECIMAL", "1.1.18.6.3",
+					"01", versionField, null, null, null, versionAdmin);
+			ReportField reportField38 = new ReportField(reportCatalog, "Z",
+					"FXEUROtherReferenceRateDescription", ".{0,300}", "",
+					"AIFMBaseCurrencyDescription", "DESCRIPTION", "1.1.18.6.4",
+					"01", versionField, null, null, null, versionAdmin);
+
+			ReportField reportFieldx13 = new ReportField(reportCatalog, "X",
+					"CancellationAIFMRecordInfo", null, "",
+					"AIFMReportingInfo", null, "1.2", "01", versionField, null,
 					null, null, versionAdmin);
+			ReportField reportField39 = new ReportField(reportCatalog, "Z",
+					"CancelledAIFMNationalCode", ".{0,30}", "",
+					"CancellationAIFMRecordInfo", "NATIONAL", "1.2.1", "01",
+					versionField, null, null, null, versionAdmin);
 			ReportField reportField40 = new ReportField(reportCatalog, "A",
-					"MarketCode4", ".{4}", "", "AIFMFivePrincipalMarket4", "MIC", "1.2", null, null,
-					null, versionAdmin);
-			ReportField reportField41 = new ReportField(reportCatalog, "N",
-					"MarketAggregatedValueAmount4", "[0-9]{0,15}?", "", "AIFMFivePrincipalMarket4",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-			ReportField reportField42 = new ReportField(reportCatalog, "N",
-					"MarketRanking5", "[0-9]{1}", "", "AIFMFivePrincipalMarket5", "RANKING5",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField43 = new ReportField(reportCatalog, "A",
-					"MarketCodeType5", ".{4}", "", "AIFMFivePrincipalMarket5", "MARKET", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField44 = new ReportField(reportCatalog, "A",
-					"MarketCode5", ".{4}", "", "AIFMFivePrincipalMarket5", "MIC", "1.2", null, null,
-					null, versionAdmin);
-			ReportField reportField45 = new ReportField(reportCatalog, "N",
-					"MarketAggregatedValueAmount5", "[0-9]{0,15}?", "", "AIFMFivePrincipalMarket5",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
+					"CancelledReportingPeriodType", ".{2}", "",
+					"CancellationAIFMRecordInfo", "PERIOD", "1.2.2", "01",
+					versionField, null, null, null, versionAdmin);
+			ReportField reportField41 = new ReportField(reportCatalog, "D",
+					"CancelledReportingPeriodYear", "[0-9]{4}?", "",
+					"CancellationAIFMRecordInfo", "YEAR", "1.2.3", "01",
+					versionField, null, null, null, versionAdmin);
+			ReportField reportField42 = new ReportField(reportCatalog, "A",
+					"CancelledRecordFlag", ".{1}", "",
+					"CancellationAIFMRecordInfo", "FLAG", "1.2.4", "01",
+					versionField, null, null, null, versionAdmin);
 
-			ReportField reportField46 = new ReportField(reportCatalog, "N",
-					"InstrumentRanking1", "[0-9]{1}", "", "AIFMPrincipalInstrument1", "RANKING5",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField47 = new ReportField(reportCatalog, "A",
-					"SubAssetType1", ".{11}", "", "AIFMPrincipalInstrument1", "SUB_ASSET", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField48 = new ReportField(reportCatalog, "N",
-					"InstrumentAggregatedValueAmount1", "[0-9]{0,15}?", "", "AIFMPrincipalInstrument1",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-			ReportField reportField49 = new ReportField(reportCatalog, "N",
-					"InstrumentRanking2", "[0-9]{1}", "", "AIFMPrincipalInstrument2", "RANKING",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField50 = new ReportField(reportCatalog, "A",
-					"SubAssetType2", ".{11}", "", "AIFMPrincipalInstrument2", "SUB_ASSET", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField51 = new ReportField(reportCatalog, "N",
-					"InstrumentAggregatedValueAmount2", "[0-9]{0,15}?", "", "AIFMPrincipalInstrument2",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-			ReportField reportField52 = new ReportField(reportCatalog, "N",
-					"InstrumentRanking3", "[0-9]{1}", "", "AIFMPrincipalInstrument3", "RANKING5",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField53 = new ReportField(reportCatalog, "A",
-					"SubAssetType3", ".{11}", "", "AIFMPrincipalInstrument3", "SUB_ASSET", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField54 = new ReportField(reportCatalog, "N",
-					"InstrumentAggregatedValueAmount3", "[0-9]{0,15}?", "", "AIFMPrincipalInstrument3",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-			ReportField reportField55 = new ReportField(reportCatalog, "type",
-					"InstrumentRanking4", "[0-9]{1}", "", "AIFMPrincipalInstrument4", "RANKING5",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField56 = new ReportField(reportCatalog, "A",
-					"SubAssetType4", ".{11}", "", "AIFMPrincipalInstrument4", "SUB_ASSET", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField57 = new ReportField(reportCatalog, "N",
-					"InstrumentAggregatedValueAmount4", "[0-9]{0,15}?", "", "AIFMPrincipalInstrument4",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-			ReportField reportField58 = new ReportField(reportCatalog, "N",
-					"InstrumentRanking5", "[0-9]{1}", "", "AIFMPrincipalInstrument5", "RANKING5",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField59 = new ReportField(reportCatalog, "A",
-					"SubAssetType5", ".{11}", "", "AIFMPrincipalInstrument5", "SUB_ASSET", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField60 = new ReportField(reportCatalog, "N",
-					"InstrumentAggregatedValueAmount5", "[0-9]{0,15}?", "", "AIFMPrincipalInstrument5",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-
-			ReportField reportField61 = new ReportField(reportCatalog, "N",
-					"AUMAmountInEuro", "[0-9]{0,15}?", "", "", "NUMBER", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField62 = new ReportField(reportCatalog, "N",
-					"AUMAmountInBaseCurrency", "[0-9]{0,15}?", "", "",
-					"NUMBER", "1.2", null, null, null, versionAdmin);
-			ReportField reportField63 = new ReportField(reportCatalog, "A",
-					"BaseCurrency", ".{3}", "", "AIFMBaseCurrencyDescription", "CURRENCY", "1.2", null,
-					null, null, versionAdmin);
-			ReportField reportField64 = new ReportField(reportCatalog, "A",
-					"FXEURReferenceRateType", ".{3}", "", "AIFMBaseCurrencyDescription", "FXRATE", "1.2",
-					null, null, null, versionAdmin);
-			ReportField reportField65 = new ReportField(reportCatalog, "N",
-					"FXEURRate", "[0-9]{1,15}(\\.[0-9]{1,4})?", "", "AIFMBaseCurrencyDescription", "DECIMAL",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField66 = new ReportField(reportCatalog, "Z",
-					"FXEUROtherReferenceRateDescription", ".{0,300}", "", "AIFMBaseCurrencyDescription",
-					"DESCRIPTION", "1.2", null, null, null, versionAdmin);
-			ReportField reportField67 = new ReportField(reportCatalog, "Z",
-					"CancelledAIFMNationalCode", ".{0,30}", "", "CancellationAIFMRecordInfo", "NATIONAL",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField68 = new ReportField(reportCatalog, "A",
-					"CancelledReportingPeriodType", ".{2}", "", "CancellationAIFMRecordInfo", "PERIOD",
-					"1.2", null, null, null, versionAdmin);
-			ReportField reportField69 = new ReportField(reportCatalog, "D",
-					"CancelledReportingPeriodYear", "[0-9]{4}?", "", "CancellationAIFMRecordInfo",
-					"YEAR", "1.2", null, null, null, versionAdmin);
-			ReportField reportField70 = new ReportField(reportCatalog, "A",
-					"CancelledRecordFlag", ".{1}", "", "CancellationAIFMRecordInfo", "FLAG", "1.2", null,
-					null, null, versionAdmin);
-
+			// report Field List
 			ReportFieldList reportFieldList1 = new ReportFieldList("FILLING",
 					"AMND", "2", versionAdmin);
 			ReportFieldList reportFieldList2 = new ReportFieldList("FILLING",
@@ -998,216 +1072,232 @@ public class InstallEntities {
 			FileColum fileColum21 = new FileColum(reportField29, fileConfig,
 					"type", new BigDecimal(21), "MarketAggregatedValueAmount1",
 					"", "format", null, null, versionAdmin);
-			FileColum fileColum22 = new FileColum(reportField30, fileConfig,
+			FileColum fileColum22 = new FileColum(reportField26, fileConfig,
 					"type", new BigDecimal(22), "AIFMFivePrincipalMarket2", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum23 = new FileColum(reportField31, fileConfig,
+			FileColum fileColum23 = new FileColum(reportField27, fileConfig,
 					"type", new BigDecimal(23), "MarketCodeType2", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum24 = new FileColum(reportField32, fileConfig,
+			FileColum fileColum24 = new FileColum(reportField28, fileConfig,
 					"type", new BigDecimal(24), "MarketCode2", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum25 = new FileColum(reportField33, fileConfig,
+			FileColum fileColum25 = new FileColum(reportField29, fileConfig,
 					"type", new BigDecimal(25), "MarketAggregatedValueAmount2",
 					"", "format", null, null, versionAdmin);
-			FileColum fileColum26 = new FileColum(reportField34, fileConfig,
+			FileColum fileColum26 = new FileColum(reportField26, fileConfig,
 					"type", new BigDecimal(26), "AIFMFivePrincipalMarket3", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum27 = new FileColum(reportField35, fileConfig,
+			FileColum fileColum27 = new FileColum(reportField27, fileConfig,
 					"type", new BigDecimal(27), "MarketCodeType3", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum28 = new FileColum(reportField36, fileConfig,
+			FileColum fileColum28 = new FileColum(reportField28, fileConfig,
 					"type", new BigDecimal(28), "MarketCode3", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum29 = new FileColum(reportField37, fileConfig,
+			FileColum fileColum29 = new FileColum(reportField29, fileConfig,
 					"type", new BigDecimal(29), "MarketAggregatedValueAmount3",
 					"", "format", null, null, versionAdmin);
-			FileColum fileColum30 = new FileColum(reportField38, fileConfig,
+			FileColum fileColum30 = new FileColum(reportField26, fileConfig,
 					"type", new BigDecimal(30), "AIFMFivePrincipalMarket4", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum31 = new FileColum(reportField39, fileConfig,
+			FileColum fileColum31 = new FileColum(reportField27, fileConfig,
 					"type", new BigDecimal(31), "MarketCodeType4", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum32 = new FileColum(reportField40, fileConfig,
+			FileColum fileColum32 = new FileColum(reportField28, fileConfig,
 					"type", new BigDecimal(32), "MarketCode4", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum33 = new FileColum(reportField41, fileConfig,
+			FileColum fileColum33 = new FileColum(reportField29, fileConfig,
 					"type", new BigDecimal(33), "MarketAggregatedValueAmount4",
 					"", "format", null, null, versionAdmin);
-			FileColum fileColum34 = new FileColum(reportField42, fileConfig,
+			FileColum fileColum34 = new FileColum(reportField26, fileConfig,
 					"type", new BigDecimal(34), "AIFMFivePrincipalMarket5", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum35 = new FileColum(reportField43, fileConfig,
+			FileColum fileColum35 = new FileColum(reportField27, fileConfig,
 					"type", new BigDecimal(35), "MarketCodeType5", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum36 = new FileColum(reportField44, fileConfig,
+			FileColum fileColum36 = new FileColum(reportField28, fileConfig,
 					"type", new BigDecimal(36), "MarketCode5", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum37 = new FileColum(reportField45, fileConfig,
+			FileColum fileColum37 = new FileColum(reportField29, fileConfig,
 					"type", new BigDecimal(37), "MarketAggregatedValueAmount5",
 					"", "format", null, null, versionAdmin);
-			FileColum fileColum38 = new FileColum(reportField46, fileConfig,
+			FileColum fileColum38 = new FileColum(reportField30, fileConfig,
 					"type", new BigDecimal(38), "AIFMPrincipalInstrument1", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum39 = new FileColum(reportField47, fileConfig,
+			FileColum fileColum39 = new FileColum(reportField31, fileConfig,
 					"type", new BigDecimal(39), "SubAssetType1", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum40 = new FileColum(reportField48, fileConfig,
+			FileColum fileColum40 = new FileColum(reportField32, fileConfig,
 					"type", new BigDecimal(40),
 					"InstrumentAggregatedValueAmount1", "", "format", null,
 					null, versionAdmin);
-			FileColum fileColum41 = new FileColum(reportField49, fileConfig,
+			FileColum fileColum41 = new FileColum(reportField30, fileConfig,
 					"type", new BigDecimal(41), "AIFMPrincipalInstrument2", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum42 = new FileColum(reportField50, fileConfig,
+			FileColum fileColum42 = new FileColum(reportField31, fileConfig,
 					"type", new BigDecimal(42), "SubAssetType2", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum43 = new FileColum(reportField51, fileConfig,
+			FileColum fileColum43 = new FileColum(reportField32, fileConfig,
 					"type", new BigDecimal(43),
 					"InstrumentAggregatedValueAmount2", "", "format", null,
 					null, versionAdmin);
-			FileColum fileColum44 = new FileColum(reportField52, fileConfig,
+			FileColum fileColum44 = new FileColum(reportField30, fileConfig,
 					"type", new BigDecimal(44), "AIFMPrincipalInstrument3", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum45 = new FileColum(reportField53, fileConfig,
+			FileColum fileColum45 = new FileColum(reportField31, fileConfig,
 					"type", new BigDecimal(45), "SubAssetType3", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum46 = new FileColum(reportField54, fileConfig,
+			FileColum fileColum46 = new FileColum(reportField32, fileConfig,
 					"type", new BigDecimal(46),
 					"InstrumentAggregatedValueAmount3", "", "format", null,
 					null, versionAdmin);
-			FileColum fileColum47 = new FileColum(reportField55, fileConfig,
+			FileColum fileColum47 = new FileColum(reportField30, fileConfig,
 					"type", new BigDecimal(47), "AIFMPrincipalInstrument4", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum48 = new FileColum(reportField56, fileConfig,
+			FileColum fileColum48 = new FileColum(reportField31, fileConfig,
 					"type", new BigDecimal(48), "SubAssetType4", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum49 = new FileColum(reportField57, fileConfig,
+			FileColum fileColum49 = new FileColum(reportField32, fileConfig,
 					"type", new BigDecimal(49),
 					"InstrumentAggregatedValueAmount4", "", "format", null,
 					null, versionAdmin);
-			FileColum fileColum50 = new FileColum(reportField58, fileConfig,
+			FileColum fileColum50 = new FileColum(reportField30, fileConfig,
 					"type", new BigDecimal(50), "AIFMPrincipalInstrument5", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum51 = new FileColum(reportField59, fileConfig,
+			FileColum fileColum51 = new FileColum(reportField31, fileConfig,
 					"type", new BigDecimal(51), "SubAssetType5", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum52 = new FileColum(reportField60, fileConfig,
+			FileColum fileColum52 = new FileColum(reportField32, fileConfig,
 					"type", new BigDecimal(52),
 					"InstrumentAggregatedValueAmount5", "", "format", null,
 					null, versionAdmin);
-			FileColum fileColum53 = new FileColum(reportField61, fileConfig,
+			FileColum fileColum53 = new FileColum(reportField33, fileConfig,
 					"type", new BigDecimal(53), "AUMAmountInEuro", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum54 = new FileColum(reportField62, fileConfig,
+			FileColum fileColum54 = new FileColum(reportField35, fileConfig,
 					"type", new BigDecimal(54), "BaseCurrency", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum55 = new FileColum(reportField63, fileConfig,
+			FileColum fileColum55 = new FileColum(reportField36, fileConfig,
 					"type", new BigDecimal(55), "AUMAmountInBaseCurrency", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum56 = new FileColum(reportField64, fileConfig,
+			FileColum fileColum56 = new FileColum(reportField37, fileConfig,
 					"type", new BigDecimal(56), "FXEURReferenceRateType", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum57 = new FileColum(reportField65, fileConfig,
+			FileColum fileColum57 = new FileColum(reportField38, fileConfig,
 					"type", new BigDecimal(57), "FXEURRate", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum58 = new FileColum(reportField66, fileConfig,
+			FileColum fileColum58 = new FileColum(reportField39, fileConfig,
 					"type", new BigDecimal(58), "CancelledAIFMNationalCode",
 					"", "format", null, null, versionAdmin);
-			FileColum fileColum59 = new FileColum(reportField67, fileConfig,
+			FileColum fileColum59 = new FileColum(reportField40, fileConfig,
 					"type", new BigDecimal(59), "CancelledReportingPeriodType",
 					"", "format", null, null, versionAdmin);
-			FileColum fileColum60 = new FileColum(reportField68, fileConfig,
+			FileColum fileColum60 = new FileColum(reportField41, fileConfig,
 					"type", new BigDecimal(60), "CancelledReportingPeriodYear",
 					"", "format", null, null, versionAdmin);
-			FileColum fileColum61 = new FileColum(reportField69, fileConfig,
+			FileColum fileColum61 = new FileColum(reportField42, fileConfig,
 					"type", new BigDecimal(61), "CancelledRecordFlag", "",
 					"format", null, null, versionAdmin);
 
 			ReportData reportData1 = new ReportData(null, reportField1,
-					reportExecution, null, null, "GB", null, null, versionAdmin);
+					reportExecution, null, null, "GB", null, null, null,
+					versionAdmin);
 			ReportData reportData2 = new ReportData(null, reportField2,
-					reportExecution, null, null, "1.2", null, null,
+					reportExecution, null, null, "1.2", null, null, null,
 					versionAdmin);
 			ReportData reportData3 = new ReportData(null, reportField3,
 					reportExecution, null, null, "2014-09-01", null, null,
-					versionAdmin);
+					null, versionAdmin);
 			ReportData reportData4 = new ReportData(null, reportField4,
-					reportExecution, null, null, "INIT", null, null,
+					reportExecution, null, null, "INIT", null, null, null,
 					versionAdmin);
 			ReportData reportData5 = new ReportData(null, reportField5,
-					reportExecution, null, null, "2", null, null, versionAdmin);
+					reportExecution, null, null, "2", null, null, null,
+					versionAdmin);
 			ReportData reportData6 = new ReportData(null, reportField6,
 					reportExecution, null, null, "2014-09-01", null, null,
-					versionAdmin);
+					null, versionAdmin);
 			ReportData reportData7 = new ReportData(null, reportField7,
 					reportExecution, null, null, "2014-12-31", null, null,
-					versionAdmin);
+					null, versionAdmin);
 			ReportData reportData8 = new ReportData(null, reportField8,
-					reportExecution, null, null, "Q4", null, null, versionAdmin);
+					reportExecution, null, null, "Q4", null, null, null,
+					versionAdmin);
 			ReportData reportData9 = new ReportData(null, reportField9,
-					reportExecution, null, null, "2014", null, null,
+					reportExecution, null, null, "2014", null, null, null,
 					versionAdmin);
 			ReportData reportData10 = new ReportData(null, reportField10,
-					reportExecution, null, null, "QH", null, null, versionAdmin);
+					reportExecution, null, null, "QH", null, null, null,
+					versionAdmin);
 			ReportData reportData11 = new ReportData(null, reportField11,
-					reportExecution, null, null, "Q4", null, null, versionAdmin);
+					reportExecution, null, null, "Q4", null, null, null,
+					versionAdmin);
 			ReportData reportData12 = new ReportData(null, reportField12,
-					reportExecution, null, null, "1", null, null, versionAdmin);
+					reportExecution, null, null, "1", null, null, null,
+					versionAdmin);
 			ReportData reportData13 = new ReportData(null, reportField13,
-					reportExecution, null, null, "false", null, null,
+					reportExecution, null, null, "false", null, null, null,
 					versionAdmin);
 			ReportData reportData14 = new ReportData(null, reportField14,
-					reportExecution, null, null, "25", null, null, versionAdmin);
+					reportExecution, null, null, "25", "1", null, null,
+					versionAdmin);
 			ReportData reportData15 = new ReportData(null, reportField15,
-					reportExecution, null, null, "Descripcion pregunta", null,
-					null, versionAdmin);
+					reportExecution, null, null, "Descripcion pregunta", "1",
+					null, null, versionAdmin);
 			ReportData reportData16 = new ReportData(null, reportField16,
-					reportExecution, null, null, "4", null, null, versionAdmin);
+					reportExecution, null, null, "4", null, null, null,
+					versionAdmin);
 			ReportData reportData17 = new ReportData(null, reportField17,
-					reportExecution, null, null, "GB", null, null, versionAdmin);
+					reportExecution, null, null, "GB", null, null, null,
+					versionAdmin);
 			ReportData reportData18 = new ReportData(null, reportField18,
-					reportExecution, null, null, "474286", null, null,
+					reportExecution, null, null, "474286", null, null, null,
 					versionAdmin);
 			ReportData reportData19 = new ReportData(null, reportField19,
-					reportExecution, null, null, "AIFM 1", null, null,
+					reportExecution, null, null, "AIFM 1", null, null, null,
 					versionAdmin);
 			ReportData reportData20 = new ReportData(null, reportField20,
-					reportExecution, null, null, "true", null, null,
+					reportExecution, null, null, "true", null, null, null,
 					versionAdmin);
 			ReportData reportData21 = new ReportData(null, reportField21,
-					reportExecution, null, null, "false", null, null,
+					reportExecution, null, null, "false", null, null, null,
 					versionAdmin);
 			ReportData reportData22 = new ReportData(null, reportField22,
 					reportExecution, null, null, "969500AA77L4ZJXJ0T02", null,
-					null, versionAdmin);
+					null, null, versionAdmin);
 			ReportData reportData23 = new ReportData(null, reportField23,
 					reportExecution, null, null, "TESTGB21XXX", null, null,
-					versionAdmin);
+					null, versionAdmin);
 			ReportData reportData24 = new ReportData(null, reportField24,
-					reportExecution, null, null, "GB", null, null, versionAdmin);
+					reportExecution, null, null, "GB", null, null, null,
+					versionAdmin);
 			ReportData reportData25 = new ReportData(null, reportField25,
-					reportExecution, null, null, "UK", null, null, versionAdmin);
+					reportExecution, null, null, "UK", null, null, null,
+					versionAdmin);
+
 			ReportData reportData26 = new ReportData(null, reportField26,
-					reportExecution, null, null, "1", null, null, versionAdmin);
+					reportExecution, null, null, "1", "1", null, null,
+					versionAdmin);
 			ReportData reportData27 = new ReportData(null, reportField27,
-					reportExecution, null, null, "XXX", null, null,
+					reportExecution, null, null, "XXX", "1", null, null,
 					versionAdmin);
 			ReportData reportData28 = new ReportData(null, reportField28,
-					reportExecution, null, null, "", null, null, versionAdmin);
+					reportExecution, null, null, "", "1", null, null,
+					versionAdmin);
 			ReportData reportData29 = new ReportData(null, reportField29,
-					reportExecution, null, null, "452000000", null, null,
+					reportExecution, null, null, "452000000", "1", null, null,
 					versionAdmin);
-			ReportData reportData30 = new ReportData(null, reportField30,
-					reportExecution, null, null, "2", null, null, versionAdmin);
-			ReportData reportData31 = new ReportData(null, reportField31,
-					reportExecution, null, null, "MIC", null, null,
+
+			ReportData reportData30 = new ReportData(null, reportField26,
+					reportExecution, null, null, "2", "2", null, null,
 					versionAdmin);
-			ReportData reportData32 = new ReportData(null, reportField32,
-					reportExecution, null, null, "XEUR", null, null,
+			ReportData reportData31 = new ReportData(null, reportField27,
+					reportExecution, null, null, "MIC", "2", null, null,
 					versionAdmin);
-			ReportData reportData33 = new ReportData(null, reportField33,
-					reportExecution, null, null, "42800000", null, null,
+			ReportData reportData32 = new ReportData(null, reportField28,
+					reportExecution, null, null, "XEUR", "2", null, null,
+					versionAdmin);
+			ReportData reportData33 = new ReportData(null, reportField29,
+					reportExecution, null, null, "42800000", "2", null, null,
 					versionAdmin);
 
 			LoadFile loadFile = new LoadFile(department, fileConfig, date1,
@@ -1366,34 +1456,19 @@ public class InstallEntities {
 			reportFieldDAO.create(reportField40);
 			reportFieldDAO.create(reportField41);
 			reportFieldDAO.create(reportField42);
-			reportFieldDAO.create(reportField43);
-			reportFieldDAO.create(reportField44);
-			reportFieldDAO.create(reportField45);
-			reportFieldDAO.create(reportField46);
-			reportFieldDAO.create(reportField47);
-			reportFieldDAO.create(reportField48);
-			reportFieldDAO.create(reportField49);
-			reportFieldDAO.create(reportField50);
-			reportFieldDAO.create(reportField51);
-			reportFieldDAO.create(reportField52);
-			reportFieldDAO.create(reportField53);
-			reportFieldDAO.create(reportField54);
-			reportFieldDAO.create(reportField55);
-			reportFieldDAO.create(reportField56);
-			reportFieldDAO.create(reportField57);
-			reportFieldDAO.create(reportField58);
-			reportFieldDAO.create(reportField59);
-			reportFieldDAO.create(reportField60);
-			reportFieldDAO.create(reportField61);
-			reportFieldDAO.create(reportField62);
-			reportFieldDAO.create(reportField63);
-			reportFieldDAO.create(reportField64);
-			reportFieldDAO.create(reportField65);
-			reportFieldDAO.create(reportField66);
-			reportFieldDAO.create(reportField67);
-			reportFieldDAO.create(reportField68);
-			reportFieldDAO.create(reportField69);
-			reportFieldDAO.create(reportField70);
+			reportFieldDAO.create(reportFieldx1);
+			reportFieldDAO.create(reportFieldx2);
+			reportFieldDAO.create(reportFieldx3);
+			reportFieldDAO.create(reportFieldx4);
+			reportFieldDAO.create(reportFieldx5);
+			reportFieldDAO.create(reportFieldx6);
+			reportFieldDAO.create(reportFieldx7);
+			reportFieldDAO.create(reportFieldx8);
+			reportFieldDAO.create(reportFieldx9);
+			reportFieldDAO.create(reportFieldx10);
+			reportFieldDAO.create(reportFieldx11);
+			reportFieldDAO.create(reportFieldx12);
+			reportFieldDAO.create(reportFieldx13);
 
 			ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) applicationContext
 					.getBean("reportFieldListDAO");

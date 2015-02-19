@@ -39,6 +39,8 @@ public class ReportField implements VersionableAdapter {
 	private String reportFieldDesc;
 	private String reportFieldSection;
 	private String reportFieldMask;
+	private String reportFieldOrder;
+	private String reportFieldRepe;
 	private String reportFieldVersion;
 	private Set<FileColum> fileColums = new HashSet(0);
 	private Set<ReportData> reportDatas = new HashSet(0);
@@ -66,7 +68,8 @@ public class ReportField implements VersionableAdapter {
 	public ReportField(ReportCatalog reportCatalog, String reportFieldType,
 			String reportFieldName, String reportFieldFormat,
 			String reportFieldDesc, String reportFieldSection,
-			String reportFieldMask, String reportFieldVersion,
+			String reportFieldMask, String reportFieldOrder,
+			String reportFieldRepe, String reportFieldVersion,
 			Set<FileColum> fileColums, Set<ReportData> reportDatas,
 			Set<ReportCustom> reportCustoms, VersionAuditor versionAuditor) {
 		this.reportCatalog = reportCatalog;
@@ -76,6 +79,8 @@ public class ReportField implements VersionableAdapter {
 		this.reportFieldDesc = reportFieldDesc;
 		this.reportFieldSection = reportFieldSection;
 		this.reportFieldMask = reportFieldMask;
+		this.reportFieldOrder = reportFieldOrder;
+		this.reportFieldRepe = reportFieldRepe;
 		this.reportFieldVersion = reportFieldVersion;
 		this.fileColums = fileColums;
 		this.reportDatas = reportDatas;
@@ -96,7 +101,7 @@ public class ReportField implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_CATALOG_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_FLD_FK_REPORT_CTLG"))
+	@JoinColumn(name = "REPORT_CATALOG_ID", nullable = false, foreignKey = @ForeignKey(name = "T_REPORT_FLD_FK_REPORT_CTLG"))
 	public ReportCatalog getReportCatalog() {
 		return this.reportCatalog;
 	}
@@ -157,6 +162,24 @@ public class ReportField implements VersionableAdapter {
 
 	public void setReportFieldMask(String reportFieldMask) {
 		this.reportFieldMask = reportFieldMask;
+	}
+
+	@Column(name = "REPORT_FIELD_ORDER", length = 40)
+	public String getReportFieldOrder() {
+		return this.reportFieldOrder;
+	}
+
+	public void setReportFieldOrder(String reportFieldOrder) {
+		this.reportFieldOrder = reportFieldOrder;
+	}
+
+	@Column(name = "REPORT_FIELD_REPE", length = 2)
+	public String getReportFieldRepe() {
+		return this.reportFieldRepe;
+	}
+
+	public void setReportFieldRepe(String reportFieldRepe) {
+		this.reportFieldRepe = reportFieldRepe;
 	}
 
 	@Column(name = "REPORT_FIELD_VERSION", length = 10)
