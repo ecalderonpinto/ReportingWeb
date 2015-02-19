@@ -1,6 +1,8 @@
 package com.reportingtool.scheduler;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Date;
@@ -10,6 +12,8 @@ import java.util.List;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 
+import org.springframework.context.ApplicationContext;
+
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileConfig;
 import com.entities.entity.loader.LoadError;
@@ -18,6 +22,7 @@ import com.entities.entity.loader.LoadRaw;
 import com.entities.entity.loader.LoadRawData;
 import com.entities.entity.usermanager.User;
 import com.entities.utilities.hibernate.VersionAuditor;
+import com.reportingtool.utilities.ReportingErrorManager;
 
 /**
  * 
@@ -76,56 +81,42 @@ public class FileLoader {
 		this.loadUser = user;
 	}
 
-	public LoadFile run() {
-		try {
-			// Create LoadFile Object;
-			LoadFile loadFile = new LoadFile(this.fileConfig.getDepartment(),
-					this.fileConfig, new Date(), this.file.getName(),
-					new HashSet<LoadError>(), new HashSet<LoadRaw>(),
-					new VersionAuditor("admin"));
+	public LoadFile run() throws FileNotFoundException, IOException,
+			SerialException, SQLException {
 
-			// Get records of the load file;
-			List<String> records = LoaderUtilities.loadFileInList(this.file);
+		// Create LoadFile Object;
+		LoadFile loadFile = new LoadFile(this.fileConfig.getDepartment(),
+				this.fileConfig, new Date(), this.file.getName(),
+				new HashSet<LoadError>(), new HashSet<LoadRaw>(),
+				new VersionAuditor("admin"));
 
-			// Process records and update LoadFile Object;
-			for (int i = 0; i < records.size(); i++) {
-				String record = records.get(i);
-				// Create LoadRaw Object;
-				LoadRaw loadRaw = new LoadRaw(loadFile, new BigDecimal(i),
-						null, null, null, new HashSet<LoadRawData>(),
-						new VersionAuditor("admin"));
-				try {
-					loadRaw.setLoadRawBlob(new SerialBlob(record.getBytes()));
-				} catch (SerialException e) {
-					// this.loadFile.getLoadErrors().add()
-					e.printStackTrace();
-				} catch (SQLException e) {
-					// this.loadFile.getLoadErrors().add()
-					e.printStackTrace();
-				}
+		// Get records of the load file;
+		List<String> records = LoaderUtilities.loadFileInList(this.file);
 
-				// Split line;
-				String[] columns = record.split(fileConfig.getFileSeparator());
+		// Process records and update LoadFile Object;
+		for (int i = 0; i < records.size(); i++) {
+			String record = records.get(i);
+			// Create LoadRaw Object;
+			LoadRaw loadRaw = new LoadRaw(loadFile, new BigDecimal(i), null,
+					null, null, new HashSet<LoadRawData>(), new VersionAuditor(
+							"admin"));
+			loadRaw.setLoadRawBlob(new SerialBlob(record.getBytes()));
 
-				// Create LoadRawDatas Objects;
-				for (FileColum fileColum : fileConfig.getFileColums()) {
-					LoadRawData loadRawData = new LoadRawData(fileColum,
-							loadRaw, columns[fileColum.getColumNumber()
-									.intValue()], fileColum.getColumType(),
-							new VersionAuditor("admin"));
-					loadRaw.getLoadRawDatas().add(loadRawData);
-				}
+			// Split line;
+			String[] columns = record.split(fileConfig.getFileSeparator());
 
-				// Set LoadRaw in LoadFile
-				loadFile.getLoadRaws().add(loadRaw);
+			// Create LoadRawDatas Objects;
+			for (FileColum fileColum : fileConfig.getFileColums()) {
+				LoadRawData loadRawData = new LoadRawData(fileColum, loadRaw,
+						columns[fileColum.getColumNumber().intValue()],
+						fileColum.getColumType(), new VersionAuditor("admin"));
+				loadRaw.getLoadRawDatas().add(loadRawData);
 			}
 
-			return loadFile;
-
-		} catch (Exception e) {
-			e.printStackTrace();
+			// Set LoadRaw in LoadFile
+			loadFile.getLoadRaws().add(loadRaw);
 		}
 
-		return null;
+		return loadFile;
 	}
 }

@@ -1,7 +1,12 @@
 package com.reportingtool.scheduler;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +16,7 @@ import com.entities.dao.loader.FileConfigDAO;
 import com.entities.dao.loader.LoadFileDAO;
 import com.entities.entity.loader.FileConfig;
 import com.entities.entity.loader.LoadFile;
+import com.reportingtool.utilities.ReportingErrorManager;
 
 @Component("loaderJob")
 public class FileLoaderJob {
@@ -22,8 +28,9 @@ public class FileLoaderJob {
 
 	public void run() {
 
-		try {
+		LoadFile loadFile = null;
 
+		try {
 			File input = new File(inputDirectory);
 
 			// Load FileConfigs;
@@ -36,11 +43,13 @@ public class FileLoaderJob {
 			for (File f : files) {
 				// For each file create a LoadFile running a FileLoader;
 				FileLoader fl = new FileLoader(fileConfigs.get(0), f);
-				LoadFile loadFile = fl.run();
+				loadFile = fl.run();
 				if (loadFile != null) {
 					System.out.println(f.getName() + " is goint to be loader");
 				} else {
-					System.out.println(f.getName() + " failed");
+					ReportingErrorManager.createLoadError(applicationContext,
+							"LOADER", loadFile, "PARSING",
+							"Error parsing " + f.getName() + " file");
 				}
 
 				// Save LoadFile in DataBase;
@@ -49,19 +58,38 @@ public class FileLoaderJob {
 				loadFileDAO.create(loadFile);
 
 				// Rename and delete file;
-				if (f.renameTo(new File(outputDirectory + "/" + f.getName()
+				if (!f.renameTo(new File(outputDirectory + "/" + f.getName()
 						+ ".done")))
-					System.out.println("renombrado");
-				else
-					System.out.println("problemas al renombrar");
+					ReportingErrorManager.createLoadError(applicationContext,
+							"LOADER", loadFile, "FILE MANAGE",
+							"Manage error file " + f.getName()
+									+ ", it can not be rename to DONE status");
 				f.deleteOnExit();
 			}
 
+		} catch (SerialException e) {
+			ReportingErrorManager.createLoadError(applicationContext, "LOADER",
+					loadFile, "BLOB PROCESS", "Error processing BLOB data");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			ReportingErrorManager.createLoadError(applicationContext, "LOADER",
+					loadFile, "SQL", e.getMessage());
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			ReportingErrorManager
+					.createLoadError(applicationContext, "LOADER", loadFile,
+							"FILE", "File not found [" + e.getMessage() + "]");
+			e.printStackTrace();
+		} catch (IOException e) {
+			ReportingErrorManager.createLoadError(applicationContext, "LOADER",
+					loadFile, "IO Error",
+					"Input/Output error: " + e.getMessage());
+			e.printStackTrace();
 		} catch (Exception e) {
+			ReportingErrorManager.createLoadError(applicationContext, "LOADER",
+					loadFile, "LOAD ERROR", e.getMessage());
 			e.printStackTrace();
 		}
-
-		System.out.println("Job ENDED");
 	}
 
 }

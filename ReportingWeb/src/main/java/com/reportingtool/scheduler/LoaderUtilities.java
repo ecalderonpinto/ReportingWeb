@@ -10,44 +10,43 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+
+import com.entities.entity.loader.LoadFile;
+import com.reportingtool.utilities.ReportingErrorManager;
 
 public class LoaderUtilities {
 
-	public static boolean maskFile(String file, String prefix,
-			String sufix) {
+	public static boolean maskFile(String file, String prefix, String sufix) {
 
 		return file.startsWith(prefix) && file.endsWith(sufix);
 	}
-	
-	public static boolean maskFile(String file, String mask){
-		
-		String [] parts = mask.split("[*]");
+
+	public static boolean maskFile(String file, String mask) {
+
+		String[] parts = mask.split("[*]");
 		return maskFile(file, parts[0], parts[1]);
 	}
-	
-	public static List<String> loadFileInList(File input) {
-		
+
+	public static List<String> loadFileInList(File input)
+			throws FileNotFoundException, IOException {
+
 		List<String> result = new ArrayList<String>();
-		try {
-			FileInputStream fstream = new FileInputStream(input);
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			String strLine;
-			while ((strLine = br.readLine()) != null) {
-				result.add(strLine);
-			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+
+		FileInputStream fstream = new FileInputStream(input);
+		DataInputStream in = new DataInputStream(fstream);
+		BufferedReader br = new BufferedReader(new InputStreamReader(in));
+		String strLine;
+		while ((strLine = br.readLine()) != null) {
+			result.add(strLine);
 		}
-		
+		br.close();
+
 		return result;
 	}
-	
-	public static List<String> loadFileInList(String input){
-		
+
+	public static List<String> loadFileInList(String input) throws FileNotFoundException, IOException {
+
 		File file = new File(input);
 		return loadFileInList(file);
 	}
