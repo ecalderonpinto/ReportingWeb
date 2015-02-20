@@ -110,6 +110,7 @@
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
 						<li><a href="Login"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+						<li><a href="dataManager.do"><i class="icon-envelope"></i><span class="hidden-tablet"> Data Manager</span></a></li>
 						<li><a href="ReportsList?r=aifm"><i class="icon-list-alt"></i><span class="hidden-tablet"> AIFM Reports</span></a></li>
 						<li><a href="ReportsList?r=aif"><i class="icon-list-alt"></i><span class="hidden-tablet"> AIF Reports</span></a></li>
 						<li>

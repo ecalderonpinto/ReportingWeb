@@ -8,11 +8,24 @@
 	<definition name="login" template="/index.jsp" />
 	<definition name="test" template="/index.jsp" />
 	<definition name="install" template="/index.jsp" />
+	<definition name="datamanager" template="/index.jsp" />
 
 
 	<definition name="dashboard" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - Scheduler Dashboard" />
 		<put-attribute name="mainContent" value="/dashboard.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="datamanager" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Data Manager" />
+		<put-attribute name="mainContent" value="/datamanager.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="companydetail" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - DM - Company Detail" />
+		<put-attribute name="mainContent" value="/companydetail.jsp" />
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 
