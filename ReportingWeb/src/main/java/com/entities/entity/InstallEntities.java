@@ -1229,10 +1229,10 @@ public class InstallEntities {
 					reportExecution, null, null, "QH", null, null, null,
 					versionAdmin);
 			ReportData reportData11 = new ReportData(null, reportField11,
-					reportExecution, null, null, "Q4", null, null, null,
+					reportExecution, null, null, "13", null, null, null,
 					versionAdmin);
 			ReportData reportData12 = new ReportData(null, reportField12,
-					reportExecution, null, null, "1", null, null, null,
+					reportExecution, null, null, "Q1", null, null, null,
 					versionAdmin);
 			ReportData reportData13 = new ReportData(null, reportField13,
 					reportExecution, null, null, "false", null, null, null,
@@ -1299,6 +1299,49 @@ public class InstallEntities {
 			ReportData reportData33 = new ReportData(null, reportField29,
 					reportExecution, null, null, "42800000", "2", null, null,
 					versionAdmin);
+			
+			ReportData reportData34 = new ReportData(null, reportField30,
+					reportExecution, null, null, "2", "2", null, null,
+					versionAdmin);
+			ReportData reportData35 = new ReportData(null, reportField31,
+					reportExecution, null, null, "MIC", "2", null, null,
+					versionAdmin);
+			ReportData reportData36 = new ReportData(null, reportField32,
+					reportExecution, null, null, "XEUR", "2", null, null,
+					versionAdmin);
+			
+			ReportData reportData37 = new ReportData(null, reportField33,
+					reportExecution, null, null, "5500000", "2", null, null,
+					versionAdmin);
+			ReportData reportData38 = new ReportData(null, reportField34,
+					reportExecution, null, null, "51000", "2", null, null,
+					versionAdmin);
+			ReportData reportData39 = new ReportData(null, reportField35,
+					reportExecution, null, null, "USD", "2", null, null,
+					versionAdmin);
+			ReportData reportData40 = new ReportData(null, reportField36,
+					reportExecution, null, null, "7253950", "2", null, null,
+					versionAdmin);
+			ReportData reportData41 = new ReportData(null, reportField37,
+					reportExecution, null, null, "ECB", "2", null, null,
+					versionAdmin);
+			ReportData reportData42 = new ReportData(null, reportField38,
+					reportExecution, null, null, "12345678901234.7535", "2", null, null,
+					versionAdmin);
+			
+			ReportData reportData43 = new ReportData(null, reportField39,
+					reportExecution, null, null, "Id2", "2", null, null,
+					versionAdmin);
+			ReportData reportData44 = new ReportData(null, reportField40,
+					reportExecution, null, null, "X1", "2", null, null,
+					versionAdmin);
+			ReportData reportData45 = new ReportData(null, reportField41,
+					reportExecution, null, null, "2014", "2", null, null,
+					versionAdmin);
+			ReportData reportData46 = new ReportData(null, reportField42,
+					reportExecution, null, null, "2014", "2", null, null,
+					versionAdmin);
+
 
 			LoadFile loadFile = new LoadFile(department, fileConfig, date1,
 					"Fichero1.txt", null, null, versionAdmin);
@@ -1610,6 +1653,19 @@ public class InstallEntities {
 			reportDataDAO.create(reportData31);
 			reportDataDAO.create(reportData32);
 			reportDataDAO.create(reportData33);
+			reportDataDAO.create(reportData34);
+			reportDataDAO.create(reportData35);
+			reportDataDAO.create(reportData36);
+			reportDataDAO.create(reportData37);
+			reportDataDAO.create(reportData38);
+			reportDataDAO.create(reportData39);
+			reportDataDAO.create(reportData40);
+			reportDataDAO.create(reportData41);
+			reportDataDAO.create(reportData42);
+			reportDataDAO.create(reportData43);
+			reportDataDAO.create(reportData44);
+			reportDataDAO.create(reportData45);
+			reportDataDAO.create(reportData46);
 
 			LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
 					.getBean("loadFileDAO");
