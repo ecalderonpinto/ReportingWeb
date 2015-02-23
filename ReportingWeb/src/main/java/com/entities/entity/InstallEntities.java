@@ -1,6 +1,7 @@
 package com.entities.entity;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -712,29 +713,54 @@ public class InstallEntities {
 					null, null, null, null, versionAdmin);
 
 			// report Fields de AIFM
-			ReportField reportFieldx1 = new ReportField(reportCatalog, "X",
-					"AIFMReportingInfo", null, "", "<root>", null, "1", "11",
+			
+			
+			
+			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
+					.getBean("reportFieldDAO");
+			
+			
+			ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
+					.getBean("reportCatalogDAO");
+			reportCatalogDAO.create(reportCatalog);
+			
+			
+			ReportField reportFieldx1 = new ReportField(reportCatalog, null, "X",
+					"AIFMReportingInfo", new BigInteger("0"), null, "", "<root>", null, "1", "11",
 					versionField, null, null, null, versionAdmin);
-			ReportField reportField1 = new ReportField(reportCatalog, "A",
-					"ReportingMemberState", ".{2}", "", "AIFMReportingInfo",
+			reportFieldDAO.create(reportFieldx1);
+			//reportFieldx1 = reportFieldDAO.findByExample(reportFieldx1).get(0);
+			
+			
+			ReportField reportField1 = new ReportField(reportCatalog, reportFieldx1, "A",
+					"ReportingMemberState", new BigInteger("1"), ".{2}", "", "AIFMReportingInfo",
 					"COUNTRY", "1", "11", versionField, null, null, null,
 					versionAdmin);
-			ReportField reportField2 = new ReportField(reportCatalog, "A",
-					"Version", "([0-9])+\\.([0-9])+", "", "AIFMReportingInfo",
+			reportFieldDAO.create(reportField1);
+			
+			ReportField reportField2 = new ReportField(reportCatalog, reportFieldx1, "A",
+					"Version", new BigInteger("2"), "([0-9])+\\.([0-9])+", "", "AIFMReportingInfo",
 					"VERSION", "1", "11", versionField, null, null, null,
 					versionAdmin);
-			ReportField reportField3 = new ReportField(reportCatalog, "D",
-					"CreationDateAndTime",
+			reportFieldDAO.create(reportField2);
+			ReportField reportField3 = new ReportField(reportCatalog, reportFieldx1, "D",
+					"CreationDateAndTime", new BigInteger("3"),
 					"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}",
 					"", "AIFMReportingInfo", "DATETIME", "1", "11",
 					versionField, null, null, null, versionAdmin);
-
-			ReportField reportFieldx2 = new ReportField(reportCatalog, "X",
-					"AIFMRecordInfo", null, "", "AIFMReportingInfo", null,
+			reportFieldDAO.create(reportField3);
+			
+			ReportField reportFieldx2 = new ReportField(reportCatalog, reportFieldx1, "X",
+					"AIFMRecordInfo", new BigInteger("0"), null, "", "AIFMReportingInfo", null,
 					"1.1", "11", versionField, null, null, null, versionAdmin);
-			ReportField reportField4 = new ReportField(reportCatalog, "A",
-					"FilingType", ".{4}", "", "AIFMRecordInfo", "FILLING",
+			reportFieldDAO.create(reportFieldx2);
+			//reportFieldx2 = reportFieldDAO.findByExample(reportFieldx2).get(0);
+			
+			ReportField reportField4 = new ReportField(reportCatalog, reportFieldx2, "A",
+					"FilingType", new BigInteger("5"), ".{4}", "", "AIFMRecordInfo", "FILLING",
 					"1.1.01", "11", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField4);
+			/*
 			ReportField reportField5 = new ReportField(reportCatalog, "N",
 					"AIFMContentType", "[0-9]{1}", "", "AIFMRecordInfo",
 					"AIFM_TYPE", "1.1.02", "11", versionField, null, null, null,
@@ -939,7 +965,7 @@ public class InstallEntities {
 					"CancelledRecordFlag", ".{1}", "",
 					"CancellationAIFMRecordInfo", "FLAG", "1.2.4", "01",
 					versionField, null, null, null, versionAdmin);
-
+*/
 			// report Field List
 			ReportFieldList reportFieldList1 = new ReportFieldList("FILLING",
 					"AMND", "2", versionAdmin);
@@ -1019,6 +1045,7 @@ public class InstallEntities {
 			FileColum fileColum4 = new FileColum(reportField4, fileConfig,
 					"type", new BigDecimal(4), "FilingType", "", "format",
 					null, null, versionAdmin);
+		/*	
 			FileColum fileColum5 = new FileColum(reportField6, fileConfig,
 					"type", new BigDecimal(5), "ReportingPeriodStartDate", "",
 					"format", null, null, versionAdmin);
@@ -1197,7 +1224,7 @@ public class InstallEntities {
 			FileColum fileColum61 = new FileColum(reportField42, fileConfig,
 					"type", new BigDecimal(61), "CancelledRecordFlag", "",
 					"format", null, null, versionAdmin);
-
+*/
 			ReportData reportData1 = new ReportData(null, reportField1,
 					reportExecution, null, null, "GB", null, null, null,
 					versionAdmin);
@@ -1210,6 +1237,7 @@ public class InstallEntities {
 			ReportData reportData4 = new ReportData(null, reportField4,
 					reportExecution, null, null, "INIT", null, null, null,
 					versionAdmin);
+			/*
 			ReportData reportData5 = new ReportData(null, reportField5,
 					reportExecution, null, null, "2", null, null, null,
 					versionAdmin);
@@ -1341,7 +1369,7 @@ public class InstallEntities {
 			ReportData reportData46 = new ReportData(null, reportField42,
 					reportExecution, null, null, "2014", "2", null, null,
 					versionAdmin);
-
+*/
 
 			LoadFile loadFile = new LoadFile(department, fileConfig, date1,
 					"Fichero1.txt", null, null, versionAdmin);
@@ -1357,6 +1385,7 @@ public class InstallEntities {
 					"GB", "TEXT", versionAdmin);
 			LoadRawData loadRawData4 = new LoadRawData(fileColum4, loadRaw,
 					"FIRST", "TEXT", versionAdmin);
+			/*
 			LoadRawData loadRawData5 = new LoadRawData(fileColum5, loadRaw,
 					"2", "TEXT", versionAdmin);
 			LoadRawData loadRawData6 = new LoadRawData(fileColum6, loadRaw,
@@ -1395,7 +1424,7 @@ public class InstallEntities {
 					"XXX", "TEXT", versionAdmin);
 			LoadRawData loadRawData23 = new LoadRawData(fileColum23, loadRaw,
 					"", "TEXT", versionAdmin);
-
+*/
 			Error error1 = new Error("LOADER", "Error load", "1",
 					"Error in load file", "Reload file", null, null, null,
 					versionAdmin);
@@ -1447,20 +1476,17 @@ public class InstallEntities {
 					.getBean("fundGroupDAO");
 			fundGroupDAO.create(fundGroup);
 
-			ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
-					.getBean("reportCatalogDAO");
-			reportCatalogDAO.create(reportCatalog);
-
 			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 					.getBean("reportExecutionDAO");
 			reportExecutionDAO.create(reportExecution);
 
-			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
-					.getBean("reportFieldDAO");
-			reportFieldDAO.create(reportField1);
-			reportFieldDAO.create(reportField2);
-			reportFieldDAO.create(reportField3);
-			reportFieldDAO.create(reportField4);
+//			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
+//					.getBean("reportFieldDAO");
+//			reportFieldDAO.create(reportField1);
+//			reportFieldDAO.create(reportField2);
+//			reportFieldDAO.create(reportField3);
+//			reportFieldDAO.create(reportField4);
+			/*
 			reportFieldDAO.create(reportField5);
 			reportFieldDAO.create(reportField6);
 			reportFieldDAO.create(reportField7);
@@ -1499,8 +1525,10 @@ public class InstallEntities {
 			reportFieldDAO.create(reportField40);
 			reportFieldDAO.create(reportField41);
 			reportFieldDAO.create(reportField42);
-			reportFieldDAO.create(reportFieldx1);
-			reportFieldDAO.create(reportFieldx2);
+			*/
+//			reportFieldDAO.create(reportFieldx1);
+//			reportFieldDAO.create(reportFieldx2);
+			/*
 			reportFieldDAO.create(reportFieldx3);
 			reportFieldDAO.create(reportFieldx4);
 			reportFieldDAO.create(reportFieldx5);
@@ -1512,7 +1540,7 @@ public class InstallEntities {
 			reportFieldDAO.create(reportFieldx11);
 			reportFieldDAO.create(reportFieldx12);
 			reportFieldDAO.create(reportFieldx13);
-
+*/
 			ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) applicationContext
 					.getBean("reportFieldListDAO");
 			reportFieldListDAO.deleteAll();
@@ -1560,6 +1588,7 @@ public class InstallEntities {
 			fileColumDAO.create(fileColum2);
 			fileColumDAO.create(fileColum3);
 			fileColumDAO.create(fileColum4);
+			/*
 			fileColumDAO.create(fileColum5);
 			fileColumDAO.create(fileColum6);
 			fileColumDAO.create(fileColum7);
@@ -1617,13 +1646,14 @@ public class InstallEntities {
 			fileColumDAO.create(fileColum59);
 			fileColumDAO.create(fileColum60);
 			fileColumDAO.create(fileColum61);
-
+*/
 			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 					.getBean("reportDataDAO");
 			reportDataDAO.create(reportData1);
 			reportDataDAO.create(reportData2);
 			reportDataDAO.create(reportData3);
 			reportDataDAO.create(reportData4);
+			/*
 			reportDataDAO.create(reportData5);
 			reportDataDAO.create(reportData6);
 			reportDataDAO.create(reportData7);
@@ -1666,7 +1696,7 @@ public class InstallEntities {
 			reportDataDAO.create(reportData44);
 			reportDataDAO.create(reportData45);
 			reportDataDAO.create(reportData46);
-
+*/
 			LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
 					.getBean("loadFileDAO");
 			loadFileDAO.create(loadFile);
@@ -1681,6 +1711,7 @@ public class InstallEntities {
 			loadRawDataDAO.create(loadRawData2);
 			loadRawDataDAO.create(loadRawData3);
 			loadRawDataDAO.create(loadRawData4);
+			/*
 			loadRawDataDAO.create(loadRawData5);
 			loadRawDataDAO.create(loadRawData6);
 			loadRawDataDAO.create(loadRawData7);
@@ -1700,7 +1731,7 @@ public class InstallEntities {
 			loadRawDataDAO.create(loadRawData21);
 			loadRawDataDAO.create(loadRawData22);
 			loadRawDataDAO.create(loadRawData23);
-
+*/
 			ErrorDAO errorDAO = (ErrorDAO) applicationContext
 					.getBean("errorDAO");
 			errorDAO.create(error1);

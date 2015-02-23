@@ -2,6 +2,7 @@ package com.entities.entity.reportingtool;
 
 // Generated 11-feb-2015 17:15:14 by Hibernate Tools 4.0.0
 
+import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -33,9 +35,10 @@ public class ReportField implements VersionableAdapter {
 
 	private long id;
 	private ReportCatalog reportCatalog;
+	private ReportField reportFieldParent;
 	private String reportFieldType;
 	private String reportFieldName;
-	private int reportFieldNum;
+	private BigInteger reportFieldNum;
 	private String reportFieldFormat;
 	private String reportFieldDesc;
 	private String reportFieldSection;
@@ -57,7 +60,7 @@ public class ReportField implements VersionableAdapter {
 	}
 
 	public ReportField(long reportFieldId, ReportCatalog reportCatalog,
-			String reportFieldType, String reportFieldName, int reportFieldNum,
+			String reportFieldType, String reportFieldName, BigInteger reportFieldNum,
 			VersionAuditor versionAuditor) {
 		this.id = reportFieldId;
 		this.reportCatalog = reportCatalog;
@@ -67,14 +70,17 @@ public class ReportField implements VersionableAdapter {
 		this.versionAuditor = versionAuditor;
 	}
 
-	public ReportField(ReportCatalog reportCatalog, String reportFieldType,
-			String reportFieldName, int reportFieldNum, String reportFieldFormat,
-			String reportFieldDesc, String reportFieldSection,
-			String reportFieldMask, String reportFieldOrder,
-			String reportFieldRepe, String reportFieldVersion,
-			Set<FileColum> fileColums, Set<ReportData> reportDatas,
-			Set<ReportCustom> reportCustoms, VersionAuditor versionAuditor) {
+	public ReportField(ReportCatalog reportCatalog,
+			ReportField reportFieldParent, String reportFieldType,
+			String reportFieldName, BigInteger reportFieldNum,
+			String reportFieldFormat, String reportFieldDesc,
+			String reportFieldSection, String reportFieldMask,
+			String reportFieldOrder, String reportFieldRepe,
+			String reportFieldVersion, Set<FileColum> fileColums,
+			Set<ReportData> reportDatas, Set<ReportCustom> reportCustoms,
+			VersionAuditor versionAuditor) {
 		this.reportCatalog = reportCatalog;
+		this.reportFieldParent = reportFieldParent;
 		this.reportFieldType = reportFieldType;
 		this.reportFieldName = reportFieldName;
 		this.reportFieldNum = reportFieldNum;
@@ -113,6 +119,16 @@ public class ReportField implements VersionableAdapter {
 		this.reportCatalog = reportCatalog;
 	}
 
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "REPORT_FIELD_PARENT", nullable = true, foreignKey = @ForeignKey(name = "T_REPORT_FLD_FK_REPORT_FLD"))
+	public ReportField getReportFieldParent() {
+		return this.reportFieldParent;
+	}
+
+	public void setReportFieldParent(ReportField reportFieldParent) {
+		this.reportFieldParent = reportFieldParent;
+	}
+
 	@Column(name = "REPORT_FIELD_TYPE", nullable = false, length = 40)
 	public String getReportFieldType() {
 		return this.reportFieldType;
@@ -130,13 +146,13 @@ public class ReportField implements VersionableAdapter {
 	public void setReportFieldName(String reportFieldName) {
 		this.reportFieldName = reportFieldName;
 	}
-	
-	@Column(name = "REPORT_FIELD_NUM")
-	public int getReportFieldNum() {
+
+	@Column(name = "REPORT_FIELD_NUM", nullable = true)
+	public BigInteger getReportFieldNum() {
 		return this.reportFieldNum;
 	}
 
-	public void setReportFieldNum(int reportFieldNum) {
+	public void setReportFieldNum(BigInteger reportFieldNum) {
 		this.reportFieldNum = reportFieldNum;
 	}
 
