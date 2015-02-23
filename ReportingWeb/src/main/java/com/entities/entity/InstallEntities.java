@@ -726,194 +726,194 @@ public class InstallEntities {
 			
 			
 			ReportField reportFieldx1 = new ReportField(reportCatalog, null, "X",
-					"AIFMReportingInfo", new BigInteger("0"), null, "", "<root>", null, "1", "11",
+					"AIFMReportingInfo", new BigInteger("0"), null, "", null, null, "1", "11",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx1);
 			ReportField reportField1 = new ReportField(reportCatalog, reportFieldx1, "A",
-					"ReportingMemberState", new BigInteger("1"), ".{2}", "", "AIFMReportingInfo",
+					"ReportingMemberState", new BigInteger("1"), ".{2}", "", "General Info",
 					"COUNTRY", "1", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField1);
 			ReportField reportField2 = new ReportField(reportCatalog, reportFieldx1, "A",
-					"Version", new BigInteger("2"), "([0-9])+\\.([0-9])+", "", "AIFMReportingInfo",
+					"Version", new BigInteger("2"), "([0-9])+\\.([0-9])+", "", "General Info",
 					"VERSION", "1", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField2);
 			ReportField reportField3 = new ReportField(reportCatalog, reportFieldx1, "D",
 					"CreationDateAndTime", new BigInteger("3"),
 					"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}",
-					"", "AIFMReportingInfo", "DATETIME", "1", "11",
+					"", "General Info", "DATETIME", "1", "11",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField3);
 			
 			ReportField reportFieldx2 = new ReportField(reportCatalog, reportFieldx1, "X",
-					"AIFMRecordInfo", new BigInteger("0"), null, "", "AIFMReportingInfo", null,
+					"AIFMRecordInfo", new BigInteger("0"), null, "", null, null,
 					"1.1", "11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx2);
 			ReportField reportField4 = new ReportField(reportCatalog, reportFieldx2, "A",
-					"FilingType", new BigInteger("4"), ".{4}", "", "AIFMRecordInfo", "FILLING",
+					"FilingType", new BigInteger("4"), ".{4}", "", "General Info", "FILLING",
 					"1.1.01", "11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField4);
 			ReportField reportField5 = new ReportField(reportCatalog, reportFieldx2, "N",
-					"AIFMContentType",  new BigInteger("5"), "[0-9]{1}", "", "AIFMRecordInfo",
+					"AIFMContentType",  new BigInteger("5"), "[0-9]{1}", "", "General Info",
 					"AIFM_TYPE", "1.1.02", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField5);
 			ReportField reportField6 = new ReportField(reportCatalog, reportFieldx2,"D",
 					"ReportingPeriodStartDate", new BigInteger("6"), "[0-9]{4}-[0-9]{2}-[0-9]{2}",
-					"", "AIFMRecordInfo", "DATE", "1.1.03", "11", versionField,
+					"", "General Info", "DATE", "1.1.03", "11", versionField,
 					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField6);
 			ReportField reportField7 = new ReportField(reportCatalog, reportFieldx2, "D",
 					"ReportingPeriodEndDate",  new BigInteger("7"), "[0-9]{4}-[0-9]{2}-[0-9]{2}", "",
-					"AIFMRecordInfo", "DATE", "1.1.04", "11", versionField,
+					"General Info", "DATE", "1.1.04", "11", versionField,
 					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField7);
 			ReportField reportField8 = new ReportField(reportCatalog, reportFieldx2, "A",
-					"ReportingPeriodType", new BigInteger("8"), ".{2}", "", "AIFMRecordInfo",
+					"ReportingPeriodType", new BigInteger("8"), ".{2}", "", "General Info",
 					"PERIOD", "1.1.05", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField8);
 			ReportField reportField9 = new ReportField(reportCatalog, reportFieldx2, "N",
-					"ReportingPeriodYear", new BigInteger("9"), "[0-9]{4}", "", "AIFMRecordInfo",
+					"ReportingPeriodYear", new BigInteger("9"), "[0-9]{4}", "", "General Info",
 					"YEAR", "1.1.06", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField9);
 			ReportField reportField10 = new ReportField(reportCatalog, reportFieldx2, "A",
 					"AIFMReportingObligationChangeFrequencyCode", new BigInteger("10"), ".{2}", "",
-					"AIFMRecordInfo", "AIFM_CHANGE_FREQ", "1.1.07", "01",
+					"General Info", "AIFM_CHANGE_FREQ", "1.1.07", "01",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField10);
 			ReportField reportField11 = new ReportField(reportCatalog, reportFieldx2, "N",
 					"AIFMReportingObligationChangeContentsCode", new BigInteger("11"), "[0-9]{1}",
-					"", "AIFMRecordInfo", "AIFM_CHANGE_CONTENT", "1.1.08", "01",
+					"", "General Info", "AIFM_CHANGE_CONTENT", "1.1.08", "01",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField11);
 			ReportField reportField12 = new ReportField(reportCatalog, reportFieldx2, "A",
 					"AIFMReportingObligationChangeQuarter", new BigInteger("12"), ".{2}", "",
-					"AIFMRecordInfo", "QUARTER", "1.1.09", "01", versionField,
+					"General Info", "QUARTER", "1.1.09", "01", versionField,
 					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField12);
 			ReportField reportField13 = new ReportField(reportCatalog, reportFieldx2, "B",
-					"LastReportingFlag", new BigInteger("13"), "true|false", "", "AIFMRecordInfo",
+					"LastReportingFlag", new BigInteger("13"), "true|false", "", "General Info",
 					"BOOLEAN", "1.1.10", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField13);
 
 			ReportField reportFieldx3 = new ReportField(reportCatalog, reportFieldx2, "X",
-					"Assumptions", new BigInteger("0"), null, "", "AIFMRecordInfo", null, "1.1.11",
+					"Assumptions", new BigInteger("0"), null, "", null, null, "1.1.11",
 					"01", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx3);
 			ReportField reportFieldx4 = new ReportField(reportCatalog, reportFieldx3, "X",
-					"Assumption", new BigInteger("0"), null, "", "Assumptions", null, "1.1.11.1",
+					"Assumption", new BigInteger("0"), null, "", null, null, "1.1.11.1",
 					"0n", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx4);
 			ReportField reportField14 = new ReportField(reportCatalog, reportFieldx4, "N",
-					"QuestionNumber",new BigInteger("14"),  "[0-9]{0,3}", "", "Assumption",
+					"QuestionNumber",new BigInteger("14"), "[0-9]{0,3}", "", "Assumptions",
 					"QUESTION", "1.1.11.1.1", "0n", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField14);
 			ReportField reportField15 = new ReportField(reportCatalog, reportFieldx4, "Z",
-					"AssumptionDescription", new BigInteger("15"), ".{0,300}", "", "Assumption",
+					"AssumptionDescription", new BigInteger("15"), ".{0,300}", "", "Assumptions",
 					"DESCRIPTION", "1.1.11.1.2", "0n", versionField, null,
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportField15);
 
 			ReportField reportField16 = new ReportField(reportCatalog, reportFieldx2, "A",
-					"AIFMReportingCode", new BigInteger("16"), ".{1}", "", "AIFMRecordInfo",
+					"AIFMReportingCode", new BigInteger("16"), ".{1}", "", "General Info",
 					"REPORT_CODE", "1.1.12", "11", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField16);
 			ReportField reportField17 = new ReportField(reportCatalog, reportFieldx2, "A",
-					"AIFMJurisdiction", new BigInteger("17"), ".{2}", "", "AIFMRecordInfo",
+					"AIFMJurisdiction", new BigInteger("17"), ".{2}", "", "General Info",
 					"COUNTRY", "1.1.13", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField17);
 			ReportField reportField18 = new ReportField(reportCatalog, reportFieldx2, "Z",
-					"AIFMNationalCode", new BigInteger("18"), ".{0,30}", "", "AIFMRecordInfo",
+					"AIFMNationalCode", new BigInteger("18"), ".{0,30}", "", "General Info",
 					"NATIONAL", "1.1.14", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField18);
 			ReportField reportField19 = new ReportField(reportCatalog, reportFieldx2, "Z",
-					"AIFMName", new BigInteger("19"), ".{0,300}", "", "AIFMRecordInfo", "AIFM_NAME",
+					"AIFMName", new BigInteger("19"), ".{0,300}", "", "General Info", "AIFM_NAME",
 					"1.1.15", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField19);
 			ReportField reportField20 = new ReportField(reportCatalog, reportFieldx2, "B",
-					"AIFMEEAFlag", new BigInteger("20"), "true|false", "", "AIFMRecordInfo",
+					"AIFMEEAFlag", new BigInteger("20"), "true|false", "", "General Info",
 					"BOOLEAN", "1.1.16", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField20);
 			ReportField reportField21 = new ReportField(reportCatalog, reportFieldx2, "B",
-					"AIFMNoReportingFlag", new BigInteger("21"), "true|false", "", "AIFMRecordInfo",
+					"AIFMNoReportingFlag", new BigInteger("21"), "true|false", "", "General Info",
 					"BOOLEAN", "1.1.17", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField21);
 
 			ReportField reportFieldx5 = new ReportField(reportCatalog,  reportFieldx2,"X",
-					"AIFMCompleteDescription", new BigInteger("13"), null, "", "AIFMRecordInfo",
+					"AIFMCompleteDescription", new BigInteger("13"), null, "", null,
 					null, "1.1.18", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportFieldx5);
 			ReportField reportFieldx6 = new ReportField(reportCatalog, reportFieldx5, "X",
-					"AIFMIdentifier", new BigInteger("0"), null, "", "AIFMCompleteDescription",
+					"AIFMIdentifier", new BigInteger("0"), null, "", null,
 					null, "1.1.18.1", "01", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportFieldx6);
 			ReportField reportField22 = new ReportField(reportCatalog, reportFieldx6, "A",
-					"AIFMIdentifierLEI", new BigInteger("22"), ".{20}", "", "AIFMIdentifier", "LEI",
+					"AIFMIdentifierLEI", new BigInteger("22"), ".{20}", "", "Complete Description", "LEI",
 					"1.1.18.1.1", "01", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField22);
 			ReportField reportField23 = new ReportField(reportCatalog, reportFieldx6, "A",
-					"AIFMIdentifierBIC", new BigInteger("23"), ".{11}", "", "AIFMIdentifier", "BIC",
+					"AIFMIdentifierBIC", new BigInteger("23"), ".{11}", "", "Complete Description", "BIC",
 					"1.1.18.1.2", "01", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField23);
 			ReportField reportField24 = new ReportField(reportCatalog, reportFieldx6, "A",
 					"ReportingMemberState", new BigInteger("24"), ".{2}", "",
-					"AIFMCompleteDescription", "COUNTRY", "1.1.18.1.3", "01",
+					null, "COUNTRY", "1.1.18.1.3", "01",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField24);
 			ReportField reportField25 = new ReportField(reportCatalog, reportFieldx6, "Z",
 					"AIFMNationalCode", new BigInteger("25"), ".{0,30}", "",
-					"AIFMCompleteDescription", "NATIONAL", "1.1.18.1.4", "01",
+					null, "NATIONAL", "1.1.18.1.4", "01",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField25);
 
 			ReportField reportFieldx7 = new ReportField(reportCatalog, reportFieldx5, "X",
 					"AIFMPrincipalMarkets", new BigInteger("0"), null, "",
-					"AIFMCompleteDescription", null, "1.1.18.2", "11",
+					null, null, "1.1.18.2", "11",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx7);
 			ReportField reportFieldx8 = new ReportField(reportCatalog, reportFieldx7, "X",
 					"AIFMFivePrincipalMarket", new BigInteger("0"), null, "",
-					"AIFMPrincipalMarkets", null, "1.1.18.2.1", "15",
+					null, null, "1.1.18.2.1", "15",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx8);
 			ReportField reportField26 = new ReportField(reportCatalog, reportFieldx8, "N",
-					"Ranking", new BigInteger("26"), "[0-9]{1}", "", "AIFMFivePrincipalMarket",
+					"Ranking", new BigInteger("26"), "[0-9]{1}", "", "Principal Markets",
 					"RANKING5", "1.1.18.2.1.1", "15", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField26);
 			ReportField reportFieldx9 = new ReportField(reportCatalog, reportFieldx8, "X",
 					"MarketIdentification", new BigInteger("0"), null, "",
-					"AIFMFivePrincipalMarket", null, "1.1.18.2.1.2", "15",
+					null, null, "1.1.18.2.1.2", "15",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx9);
 			ReportField reportField27 = new ReportField(reportCatalog, reportFieldx9, "A",
-					"MarketCodeType", new BigInteger("27"), ".{4}", "", "MarketIdentification",
+					"MarketCodeType", new BigInteger("27"), ".{4}", "", null,
 					"MARKET", "1.1.18.2.1.2.1", "15", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField27);
 			ReportField reportField28 = new ReportField(reportCatalog, reportFieldx9, "A",
-					"MarketCode", new BigInteger("28"), ".{4}", "", "MarketIdentification", "MIC",
+					"MarketCode", new BigInteger("28"), ".{4}", "", "Principal Markets", "MIC",
 					"1.1.18.2.1.2.2", "05", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField28);
 			ReportField reportField29 = new ReportField(reportCatalog, reportFieldx8, "N",
 					"AggregatedValueAmount", new BigInteger("29"), "[0-9]{0,15}?", "",
-					"AIFMFivePrincipalMarket", "NUMBER", "1.1.18.2.1.3", "15",
+					"Principal Markets", "NUMBER", "1.1.18.2.1.3", "15",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField29);
 
@@ -928,81 +928,81 @@ public class InstallEntities {
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx11);
 			ReportField reportField30 = new ReportField(reportCatalog, reportFieldx11, "N",
-					"Ranking", new BigInteger("30"), "[0-9]{1}", "", "AIFMPrincipalInstrument",
+					"Ranking", new BigInteger("30"), "[0-9]{1}", "", "Principal Instruments",
 					"RANKING5", "1.1.18.3.1.1", "15", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField30);
 			ReportField reportField31 = new ReportField(reportCatalog, reportFieldx11, "A",
-					"SubAssetType", new BigInteger("31"), ".{11}", "", "AIFMPrincipalInstrument",
+					"SubAssetType", new BigInteger("31"), ".{11}", "", "Principal Instruments",
 					"SUB_ASSET", "1.1.18.3.1.2", "15", versionField, null,
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportField31);
 			ReportField reportField32 = new ReportField(reportCatalog, reportFieldx11, "N",
 					"AggregatedValueAmount", new BigInteger("32"), "[0-9]{0,15}?", "",
-					"AIFMPrincipalInstrument", "NUMBER", "1.1.18.3.1.3", "15",
+					"Principal Instruments", "NUMBER", "1.1.18.3.1.3", "15",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField32);
 
 			ReportField reportField33 = new ReportField(reportCatalog, reportFieldx5, "N",
 					"AUMAmountInEuro", new BigInteger("43"), "[0-9]{0,15}?", "",
-					"AIFMCompleteDescription", "NUMBER", "1.1.18.4", "11",
+					null, "NUMBER", "1.1.18.4", "11",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField33);
 			ReportField reportField34 = new ReportField(reportCatalog, reportFieldx5, "N",
 					"AUMAmountInBaseCurrency", new BigInteger("134"), "[0-9]{0,15}?", "",
-					"AIFMCompleteDescription", "NUMBER", "1.1.18.5", "01",
+					null, "NUMBER", "1.1.18.5", "01",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField34);
 
 			ReportField reportFieldx12 = new ReportField(reportCatalog, reportFieldx5, "X",
 					"AIFMBaseCurrencyDescription", new BigInteger("0"), null, "",
-					"AIFMCompleteDescription", null, "1.1.18.6", "01",
+					null, null, "1.1.18.6", "01",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx12);
 			ReportField reportField35 = new ReportField(reportCatalog, reportFieldx12, "A",
-					"BaseCurrency", new BigInteger("35"), ".{3}", "", "AIFMBaseCurrencyDescription",
+					"BaseCurrency", new BigInteger("35"), ".{3}", "", null,
 					"CURRENCY", "1.1.18.6.1", "01", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField35);
 			ReportField reportField36 = new ReportField(reportCatalog, reportFieldx12, "A",
 					"FXEURReferenceRateType", new BigInteger("36"), ".{3}", "",
-					"AIFMBaseCurrencyDescription", "FXRATE", "1.1.18.6.2",
+					null, "FXRATE", "1.1.18.6.2",
 					"01", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField36);
 			ReportField reportField37 = new ReportField(reportCatalog, reportFieldx12, "N",
 					"FXEURRate", new BigInteger("37"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"AIFMBaseCurrencyDescription", "DECIMAL", "1.1.18.6.3",
+					null, "DECIMAL", "1.1.18.6.3",
 					"01", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField37);
 			ReportField reportField38 = new ReportField(reportCatalog, reportFieldx12, "Z",
 					"FXEUROtherReferenceRateDescription", new BigInteger("38"), ".{0,300}", "",
-					"AIFMBaseCurrencyDescription", "DESCRIPTION", "1.1.18.6.4",
+					null, "DESCRIPTION", "1.1.18.6.4",
 					"01", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField38);
 
 			ReportField reportFieldx13 = new ReportField(reportCatalog, reportFieldx1, "X",
 					"CancellationAIFMRecordInfo", new BigInteger("0"), null, "",
-					"AIFMReportingInfo", null, "1.2", "01", versionField, null,
+					null, null, "1.2", "01", versionField, null,
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx13);
 			ReportField reportField39 = new ReportField(reportCatalog, reportFieldx13, "Z",
 					"CancelledAIFMNationalCode", new BigInteger("39"), ".{0,30}", "",
-					"CancellationAIFMRecordInfo", "NATIONAL", "1.2.1", "01",
+					"Cancellation Info", "NATIONAL", "1.2.1", "01",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField39);
 			ReportField reportField40 = new ReportField(reportCatalog, reportFieldx13, "A",
 					"CancelledReportingPeriodType",new BigInteger("40"),  ".{2}", "",
-					"CancellationAIFMRecordInfo", "PERIOD", "1.2.2", "01",
+					"Cancellation Info", "PERIOD", "1.2.2", "01",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField40);
 			ReportField reportField41 = new ReportField(reportCatalog, reportFieldx13, "D",
 					"CancelledReportingPeriodYear", new BigInteger("41"), "[0-9]{4}?", "",
-					"CancellationAIFMRecordInfo", "YEAR", "1.2.3", "01",
+					"Cancellation Info", "YEAR", "1.2.3", "01",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField41);
 			ReportField reportField42 = new ReportField(reportCatalog, reportFieldx13, "A",
 					"CancelledRecordFlag",new BigInteger("42"),  ".{1}", "",
-					"CancellationAIFMRecordInfo", "FLAG", "1.2.4", "01",
+					"Cancellation Info", "FLAG", "1.2.4", "01",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField42);
 
