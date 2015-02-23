@@ -66,7 +66,7 @@ public class ReportFieldList implements VersionableAdapter {
 		this.id = reportFieldListId;
 	}
 
-	@Column(name = "REPORT_FIELD_LIST_TYPE", nullable = false, length = 40)
+	@Column(name = "REPORT_FIELD_LIST_TYPE", nullable = false)
 	public String getReportFieldListType() {
 		return this.reportFieldListType;
 	}

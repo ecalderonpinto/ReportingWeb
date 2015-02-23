@@ -88,20 +88,20 @@ public class TestValidator {
 					+ reportExecution.getReportPeriodType() + " "
 					+ reportExecution.getReportPeriodYear());
 
-//			Syntactic syntactic = new Syntactic(applicationContext);
-//
-//			List<ReportData> reportDatas = new ArrayList<ReportData>(
-//					reportExecution.getReportDatas());
-//
-//			System.out.println("DEBUG_" + "TestValidator: starting for list: "
-//					+ reportDatas);
-//			for (ReportData reportData : reportDatas) {
-//				System.out.println("DEBUG_" + "TestValidator: "
-//						+ reportData.getReportDataDate() + " "
-//						+ reportData.getReportDataText());
-//				syntactic.validInValueList(reportData);
-//				syntactic.validRegex(reportData);
-//			}
+			Syntactic syntactic = new Syntactic(applicationContext);
+
+			List<ReportData> reportDatas = new ArrayList<ReportData>(
+					reportExecution.getReportDatas());
+
+			System.out.println("DEBUG_" + "TestValidator: starting for list: "
+					+ reportDatas);
+			for (ReportData reportData : reportDatas) {
+				System.out.println("DEBUG_" + "TestValidator: "
+						+ reportData.getReportDataDate() + " "
+						+ reportData.getReportDataText());
+				syntactic.validInValueList(reportData);
+				syntactic.validRegex(reportData);
+			}
 //
 //			System.out
 //					.println("DEBUG_" + "TestValidator checking AIFMD Status");

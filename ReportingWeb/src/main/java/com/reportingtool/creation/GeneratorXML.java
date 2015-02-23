@@ -203,7 +203,8 @@ public class GeneratorXML {
 					if (reportData.getReportField().getReportFieldName()
 							.equals("Ranking")
 							&& reportData.getReportField()
-									.getReportFieldParent().getReportFieldName()
+									.getReportFieldParent()
+									.getReportFieldName()
 									.equals("AIFMFivePrincipalMarket")
 							&& Integer
 									.parseInt(reportData.getReportDataBlock()) == i) {
@@ -214,7 +215,8 @@ public class GeneratorXML {
 					if (reportData.getReportField().getReportFieldName()
 							.equals("AggregatedValueAmount")
 							&& reportData.getReportField()
-									.getReportFieldParent().getReportFieldName()
+									.getReportFieldParent()
+									.getReportFieldName()
 									.equals("AIFMFivePrincipalMarket")
 							&& Integer
 									.parseInt(reportData.getReportDataBlock()) == i)
@@ -274,18 +276,21 @@ public class GeneratorXML {
 					if (reportData.getReportField().getReportFieldName()
 							.equals("Ranking")
 							&& reportData.getReportField()
-									.getReportFieldSection()
+									.getReportFieldParent()
+									.getReportFieldName()
 									.equals("AIFMPrincipalInstrument")
 							&& Integer
 									.parseInt(reportData.getReportDataBlock()) == i) {
-						rankingInstrument = new BigInteger(reportData.getReportDataText());
+						rankingInstrument = new BigInteger(
+								reportData.getReportDataText());
 						rankingInstrumentFlag = true;
 					}
 
 					if (reportData.getReportField().getReportFieldName()
 							.equals("AggregatedValueAmount")
 							&& reportData.getReportField()
-									.getReportFieldSection()
+									.getReportFieldParent()
+									.getReportFieldName()
 									.equals("AIFMPrincipalInstrument")
 							&& Integer
 									.parseInt(reportData.getReportDataBlock()) == i)
@@ -298,20 +303,22 @@ public class GeneratorXML {
 									.parseInt(reportData.getReportDataBlock()) == i)
 						subAssetType = reportData.getReportDataText();
 
-
 				}
 				if (rankingInstrumentFlag) {
 					ComplexPrincipalInstrumentType complexPrincipalInstrumentType = objectFactoryAIFM
 							.createComplexPrincipalInstrumentType();
-					
+
 					complexPrincipalInstrumentType
 							.setAggregatedValueAmount(aggregatedValueAmountInstrument);
 
-					SubAssetTypeType subAssetTypeType = SubAssetTypeType.fromValue(subAssetType);
-					
-					complexPrincipalInstrumentType.setSubAssetType(subAssetTypeType);
-					
-					complexPrincipalInstrumentType.setRanking(rankingInstrument);
+					SubAssetTypeType subAssetTypeType = SubAssetTypeType
+							.fromValue(subAssetType);
+
+					complexPrincipalInstrumentType
+							.setSubAssetType(subAssetTypeType);
+
+					complexPrincipalInstrumentType
+							.setRanking(rankingInstrument);
 
 					complexPrincipalInstrumentTypeList
 							.add(complexPrincipalInstrumentType);
@@ -320,8 +327,6 @@ public class GeneratorXML {
 				}
 
 			}
-			
-			
 
 			// <AIFMCompleteDescription>
 			complexAIFMCompleteDescriptionType
@@ -461,8 +466,24 @@ public class GeneratorXML {
 			XMLGregorianCalendar creationDateAndTimeXML = XMLGregorianCalendarConverter
 					.asXMLGregorianCalendarDateTime(creationDateAndTime);
 			aifmReportingInfo.setCreationDateAndTime(creationDateAndTimeXML);
-			aifmReportingInfo.setReportingMemberState("GB");
-			aifmReportingInfo.setVersion("1.2");
+
+			String reportingMemberState = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("ReportingMemberState")
+						&& reportData.getReportField().getReportFieldParent()
+								.getReportFieldName().equals("AIFMReportingInfo"))
+					reportingMemberState = reportData.getReportDataText();
+			}
+			aifmReportingInfo.setReportingMemberState(reportingMemberState);
+			
+			String version = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("Version"))
+					version = reportData.getReportDataText();
+			}
+			aifmReportingInfo.setVersion(version);
 
 			// <CancellationAIFMRecordInfo>
 			String cancelledReportingPerioYearString = "";
@@ -501,8 +522,7 @@ public class GeneratorXML {
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
 						.equals("CancelledAIFMNationalCode"))
-					cancelledAIFMNationalCode = reportData
-							.getReportDataText();
+					cancelledAIFMNationalCode = reportData.getReportDataText();
 			}
 			complexCancellationAIFMRecordInfoType
 					.setCancelledAIFMNationalCode(cancelledAIFMNationalCode);
