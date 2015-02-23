@@ -45,13 +45,13 @@
 		<property name="targetMethod" value="run" />
 	</bean>
 	
-	<!-- Configuración del Trigger asignándole el job anterior -->
+	<!-- Configuración del Trigger asignándole el job anterior
 	<bean id="cronTrigger"
 		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="testJob" />
 		<property name="cronExpression" value="0/20 * * * * ?" />
 	</bean>
-	<!-- Scheduler Factory Bean to Configure Quartz Scheduler -->
+	<!- Scheduler Factory Bean to Configure Quartz Scheduler
 	<bean id="quartzBean" name="quartzBean"
 		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="transactionManager" ref="transactionManager" />
@@ -67,7 +67,7 @@
 			</list>
 		</property>
 	</bean>
-
+	-->
 	<!-- Run the job every 2 seconds with initial delay of 1 second -->
 	<!-- <beans:bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"> 
 		<beans:property name="jobDetail" ref="simpleJobDetail" /> <beans:property 

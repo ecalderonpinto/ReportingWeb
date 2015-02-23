@@ -24,45 +24,24 @@
 				</div>
 			</div>
 			<div class="box-content">
-				<fieldset>
-					<!-- CompanyName -->
-					<div class="control-group">
-						<label class="control-label" for="disabledInput"> <b>Name</b>
-						</label>
-						<div class="controls">
-							<form:input path="companyName" cssClass="input-xlarge disabled" />
-						</div>
-					</div>
-					<!-- /CompanyName -->
-					<!-- CompanyCountry -->
-					<div class="control-group">
-						<label class="control-label" for="disabledInput"> <b>Country</b>
-						</label>
-						<div class="controls">
-							<form:input path="companyCountry"
-								cssClass="input-xlarge disabled" />
-						</div>
-					</div>
-					<!-- /CompanyCountry -->
-					<!-- CompanyCode -->
-					<div class="control-group">
-						<label class="control-label" for="disabledInput"> <b>Code</b>
-						</label>
-						<div class="controls">
-							<form:input path="companyCode" cssClass="input-xlarge disabled" />
-						</div>
-					</div>
-					<!-- /CompanyCode -->
-					<!-- CompanyDesc -->
-					<div class="control-group">
-						<label class="control-label" for="disabledInput"> <b>Description</b>
-						</label>
-						<div class="controls">
-							<form:input path="companyDesc" cssClass="input-xlarge disabled" />
-						</div>
-					</div>
-					<!-- /CompanyDesc -->
-				</fieldset>
+				<table class="table table-striped table-bordered table-condensed">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Country</th>
+							<th>Code</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>${company.companyName}</td>
+							<td>${company.companyCountry}</td>
+							<td>${company.companyCode}</td>
+							<td>${company.companyDesc}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<!--/span-->
@@ -140,7 +119,7 @@
 								<td>${fund.fundDesc}</td>
 								<td>${fund.fundClass}</td>
 								<td>
-								<a class="btn btn-small" href="<c:url value="reports.do?id=${company.id}" />" >
+								<a class="btn btn-small" href="<c:url value="fundReports.do?id=${fund.id}" />" >
 									reports
 								</a>
 							</tr>

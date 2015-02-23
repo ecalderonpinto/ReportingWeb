@@ -28,6 +28,18 @@
 		<put-attribute name="mainContent" value="/companydetail.jsp" />
 		<put-attribute name="modalWindow" value="" />
 	</definition>
+	
+	<definition name="fundreports" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - DM - Fund Reports" />
+		<put-attribute name="mainContent" value="/fundreports.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="report" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Report" />
+		<put-attribute name="mainContent" value="/report.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
 
 	<definition name="scheduler/dashboard" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - Scheduler Dashboard" />
