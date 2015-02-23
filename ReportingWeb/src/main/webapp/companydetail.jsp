@@ -31,6 +31,7 @@
 							<th>Country</th>
 							<th>Code</th>
 							<th>Description</th>
+							<th>Reports</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -39,6 +40,9 @@
 							<td>${company.companyCountry}</td>
 							<td>${company.companyCode}</td>
 							<td>${company.companyDesc}</td>
+							<td><a class="btn btn-small"
+								href="<c:url value="companyReports.do?id=${company.id}" />">
+									reports </a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -85,7 +89,7 @@
 		</div>
 		<!--/span-->
 	</div>
-	
+
 	<div class="row-fluid sortable">
 		<div class="box span12">
 			<div class="box-header">
@@ -110,18 +114,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="fund" varStatus="status"
-							items="${company.funds}">
+						<c:forEach var="fund" varStatus="status" items="${company.funds}">
 							<tr>
 								<td>${fund.fundName}</td>
 								<td>${fund.fundIsin}</td>
 								<td>${fund.fundCode}</td>
 								<td>${fund.fundDesc}</td>
 								<td>${fund.fundClass}</td>
-								<td>
-								<a class="btn btn-small" href="<c:url value="fundReports.do?id=${fund.id}" />" >
-									reports
-								</a>
+								<td><a class="btn btn-small"
+									href="<c:url value="fundReports.do?id=${fund.id}" />">
+										reports </a>
 							</tr>
 						</c:forEach>
 					</tbody>

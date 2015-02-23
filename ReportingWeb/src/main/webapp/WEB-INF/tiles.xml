@@ -35,6 +35,12 @@
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 	
+	<definition name="companyreports" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - DM - Company Reports" />
+		<put-attribute name="mainContent" value="/companyreports.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
 	<definition name="report" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - Report" />
 		<put-attribute name="mainContent" value="/report.jsp" />
