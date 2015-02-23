@@ -35,6 +35,7 @@ public class ReportField implements VersionableAdapter {
 	private ReportCatalog reportCatalog;
 	private String reportFieldType;
 	private String reportFieldName;
+	private int reportFieldNum;
 	private String reportFieldFormat;
 	private String reportFieldDesc;
 	private String reportFieldSection;
@@ -56,17 +57,18 @@ public class ReportField implements VersionableAdapter {
 	}
 
 	public ReportField(long reportFieldId, ReportCatalog reportCatalog,
-			String reportFieldType, String reportFieldName,
+			String reportFieldType, String reportFieldName, int reportFieldNum,
 			VersionAuditor versionAuditor) {
 		this.id = reportFieldId;
 		this.reportCatalog = reportCatalog;
 		this.reportFieldType = reportFieldType;
 		this.reportFieldName = reportFieldName;
+		this.reportFieldNum = reportFieldNum;
 		this.versionAuditor = versionAuditor;
 	}
 
 	public ReportField(ReportCatalog reportCatalog, String reportFieldType,
-			String reportFieldName, String reportFieldFormat,
+			String reportFieldName, int reportFieldNum, String reportFieldFormat,
 			String reportFieldDesc, String reportFieldSection,
 			String reportFieldMask, String reportFieldOrder,
 			String reportFieldRepe, String reportFieldVersion,
@@ -75,6 +77,7 @@ public class ReportField implements VersionableAdapter {
 		this.reportCatalog = reportCatalog;
 		this.reportFieldType = reportFieldType;
 		this.reportFieldName = reportFieldName;
+		this.reportFieldNum = reportFieldNum;
 		this.reportFieldFormat = reportFieldFormat;
 		this.reportFieldDesc = reportFieldDesc;
 		this.reportFieldSection = reportFieldSection;
@@ -126,6 +129,15 @@ public class ReportField implements VersionableAdapter {
 
 	public void setReportFieldName(String reportFieldName) {
 		this.reportFieldName = reportFieldName;
+	}
+	
+	@Column(name = "REPORT_FIELD_NUM")
+	public int getReportFieldNum() {
+		return this.reportFieldNum;
+	}
+
+	public void setReportFieldNum(int reportFieldNum) {
+		this.reportFieldNum = reportFieldNum;
 	}
 
 	@Column(name = "REPORT_FIELD_FORMAT")
