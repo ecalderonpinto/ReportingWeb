@@ -74,6 +74,9 @@
 	<bean id="reportFieldListDAO" class="com.entities.dao.reportingtool.ReportFieldListDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="reportSemanticDAO" class="com.entities.dao.reportingtool.ReportSemanticDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	
 	
 	
@@ -113,6 +116,7 @@
 				<value>com.entities.entity.reportingtool.ReportExecution</value>
 				<value>com.entities.entity.reportingtool.ReportField</value>
 				<value>com.entities.entity.reportingtool.ReportFieldList</value>
+				<value>com.entities.entity.reportingtool.ReportSemantic</value>
 				<value>com.entities.entity.usermanager.User</value>
 				<value>com.entities.entity.usermanager.UserRol</value>
 				<value>com.entities.entity.usermanager.UserRolPermission</value>

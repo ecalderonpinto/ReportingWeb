@@ -15,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -23,6 +25,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import com.entities.entity.loader.LoadFile;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -54,6 +57,7 @@ public class ReportExecution implements VersionableAdapter {
 	private String reportLocked;
 	private Set<ReportData> reportDatas = new HashSet(0);
 	private Set<ReportError> reportErrors = new HashSet(0);
+	private Set<LoadFile> loadFiles = new HashSet(0);
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -119,7 +123,7 @@ public class ReportExecution implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_CATALOG_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_EXE_FK_CATALOG"))
+	@JoinColumn(name = "REPORT_CATALOG_ID", nullable = false, foreignKey = @ForeignKey(name = "T_REPORT_EXE_FK_CATALOG"))
 	public ReportCatalog getReportCatalog() {
 		return this.reportCatalog;
 	}
@@ -129,7 +133,7 @@ public class ReportExecution implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "COMPANY_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_EXE_FK_COMPANY"))
+	@JoinColumn(name = "COMPANY_ID", nullable = false, foreignKey = @ForeignKey(name = "T_REPORT_EXE_FK_COMPANY"))
 	public Company getCompany() {
 		return this.company;
 	}
@@ -139,7 +143,7 @@ public class ReportExecution implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FUND_ID", foreignKey=@ForeignKey(name="T_REPORT_EXE_FK_FUND"))
+	@JoinColumn(name = "FUND_ID", foreignKey = @ForeignKey(name = "T_REPORT_EXE_FK_FUND"))
 	public Fund getFund() {
 		return this.fund;
 	}
@@ -304,6 +308,16 @@ public class ReportExecution implements VersionableAdapter {
 
 	public void setReportErrors(Set<ReportError> reportErrors) {
 		this.reportErrors = reportErrors;
+	}
+
+	@ManyToMany
+	@JoinTable(name = "T_FILE_ASSIG_EXECUTION", joinColumns = { @JoinColumn(name = "REPORT_EXECUTION_ID", referencedColumnName = "REPORT_EXECUTION_ID") }, inverseJoinColumns = { @JoinColumn(name = "LOAD_FILE_ID", referencedColumnName = "LOAD_FILE_ID") })
+	public Set<LoadFile> getLoadFiles() {
+		return loadFiles;
+	}
+
+	public void setLoadFiles(Set<LoadFile> loadFiles) {
+		this.loadFiles = loadFiles;
 	}
 
 	public int getVersion() {
