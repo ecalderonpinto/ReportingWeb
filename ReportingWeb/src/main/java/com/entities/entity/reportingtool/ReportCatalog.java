@@ -35,6 +35,7 @@ public class ReportCatalog implements VersionableAdapter {
 	private Set<ReportCustom> reportCustoms = new HashSet(0);
 	private Set<ReportField> reportFields = new HashSet(0);
 	private Set<ReportExecution> reportExecutions = new HashSet(0);
+	private Set<ReportSemantic> reportSemantics = new HashSet(0);
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -142,6 +143,15 @@ public class ReportCatalog implements VersionableAdapter {
 
 	public void setReportExecutions(Set<ReportExecution> reportExecutions) {
 		this.reportExecutions = reportExecutions;
+	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportCatalog")
+	public Set<ReportSemantic> getReportSemantics() {
+		return this.reportSemantics;
+	}
+
+	public void setReportSemantics(Set<ReportSemantic> reportSemantics) {
+		this.reportSemantics = reportSemantics;
 	}
 
 	public int getVersion() {
