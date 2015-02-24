@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -87,7 +88,7 @@ public class GeneratorXML {
 				reportExecution.getReportDatas());
 
 		// show all reportData to make sure the content
-		HashMap<String, String> reportMap = new HashMap<String, String>();
+		Map<String, String> reportMap = new HashMap<String, String>();
 		for (ReportData reportData : reportDatas) {
 			// this hashmap contain the content and <name> of every field
 			reportMap.put(reportData.getReportField().getReportFieldName(),
@@ -610,7 +611,7 @@ public class GeneratorXML {
 	// * </AIFMReportingInfo>
 	// */
 	//
-	// HashMap<String, String> reportMap = new HashMap<String, String>();
+	// Map<String, String> reportMap = new HashMap<String, String>();
 	//
 	// for (ReportData reportData : reportDatas) {
 	// // this hashmap contain the content and <name> of every field
