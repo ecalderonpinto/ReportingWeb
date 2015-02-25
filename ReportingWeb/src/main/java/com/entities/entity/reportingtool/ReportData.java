@@ -149,7 +149,7 @@ public class ReportData implements VersionableAdapter {
 		this.reportDataText = reportDataText;
 	}
 
-	@Column(name = "REPORT_DATA_BLOCK", length = 10)
+	@Column(name = "REPORT_DATA_BLOCK", nullable=true, length = 10)
 	public String getReportDataBlock() {
 		return this.reportDataBlock;
 	}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -87,15 +88,13 @@ public class LoadsAsignToReportsController {
 		// Raw to Data
 		RawData rawData = new RawData(applicationContext);
 		rawData.fileRawToData(reportAssign.getReportExecution());
-
+		
 		// Syntactic analysis
 		Syntactic syntactic = new Syntactic(applicationContext);
 
-		List<ReportData> reportDatas = new ArrayList<ReportData>(reportAssign
-				.getReportExecution().getReportDatas());
-
 		System.out.println("DEBUG_" + "TestValidator: starting for list: "
-				+ reportDatas);
+				+ reportAssign.getReportExecution().getReportDatas());
+		Set<ReportData> reportDatas = reportAssign.getReportExecution().getReportDatas();
 		for (ReportData reportData : reportDatas) {
 			System.out.println("DEBUG_" + "TestValidator: "
 					+ reportData.getReportDataDate() + " "

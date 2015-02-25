@@ -155,7 +155,7 @@ public class FileColum implements VersionableAdapter {
 		this.columFormat = columFormat;
 	}
 	
-	@Column(name = "COLUM_BLOCK")
+	@Column(name = "COLUM_BLOCK", nullable=true)
 	public String getColumBlock() {
 		return this.columBlock;
 	}

@@ -116,7 +116,7 @@ public class LoadRawData implements VersionableAdapter {
 		this.loadRawDataType = loadRawDataType;
 	}
 	
-	@Column(name = "LOAD_RAW_DATA_BLOCK", nullable = false, length = 40)
+	@Column(name = "LOAD_RAW_DATA_BLOCK", nullable = true, length = 40)
 	public String getLoadRawDataBlock() {
 		return this.loadRawDataBlock;
 	}

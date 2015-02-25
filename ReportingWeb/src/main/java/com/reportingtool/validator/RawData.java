@@ -52,27 +52,44 @@ public class RawData {
 		if (reportField != null) {
 			// create new reportData with raw data
 			ReportData reportData = new ReportData();
-
 			// text
 			reportData.setReportDataText(loadRawData.getLoadRawDataText());
-			
-			//block
+			// block
 			reportData.setReportDataBlock(loadRawData.getLoadRawDataBlock());
-
 			// field
 			reportData.setReportField(reportField);
 
-			// report
-			reportData.setReportExecution(reportExecution);
+			boolean exist = false;
+			for (ReportData aux : reportExecution.getReportDatas()) {
 
-			// user
-			reportData.setAuditor(new VersionAuditor("admin"));
+				if (aux.getReportField().getId() == reportData.getReportField()
+						.getId()
+						&& ((aux.getReportDataBlock() == null && reportData
+								.getReportDataBlock() == null) || (aux
+								.getReportDataBlock() != null
+								&& reportData.getReportDataBlock() != null && aux
+								.getReportDataBlock().equals(
+										reportData.getReportDataBlock())))) {
+					System.out.println("Filtra Duplicado");
+					exist = true;
+					break;
+				}
+			}
 
-			// save new reportData
-			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
-					.getBean("reportDataDAO");
+			if (!exist) {
+				// report
+				reportData.setReportExecution(reportExecution);
+				// user
+				reportData.setAuditor(new VersionAuditor("admin"));
+				// save new reportData
+				ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+						.getBean("reportDataDAO");
 
-			reportDataDAO.create(reportData);
+				reportDataDAO.create(reportData);
+				
+				//add reportData in reportExecution object
+				reportExecution.getReportDatas().add(reportData);
+			}
 		}
 	}
 }
