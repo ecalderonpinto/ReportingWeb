@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.rowset.serial.SerialException;
@@ -16,6 +17,10 @@ import com.entities.dao.loader.FileConfigDAO;
 import com.entities.dao.loader.LoadFileDAO;
 import com.entities.entity.loader.FileConfig;
 import com.entities.entity.loader.LoadFile;
+import com.entities.entity.loader.LoadRaw;
+import com.entities.entity.loader.LoadRawData;
+import com.reportingtool.normalizer.Format;
+import com.reportingtool.normalizer.Translate;
 import com.reportingtool.utilities.ReportingErrorManager;
 
 @Component("loaderJob")
@@ -65,6 +70,17 @@ public class FileLoaderJob {
 							"Manage error file " + f.getName()
 									+ ", it can not be rename to DONE status");
 				f.deleteOnExit();
+				
+				//Validate Proccess;
+				for (LoadRaw loadRaw : loadFile.getLoadRaws()) {
+					for (LoadRawData loadRawData : loadRaw.getLoadRawDatas()) {
+						Translate translate = new Translate(applicationContext);
+						translate.translateRaw(loadRawData);
+
+						Format format = new Format(applicationContext);
+						format.formatRaw(loadRawData);
+					}
+				}
 			}
 
 		} catch (SerialException e) {

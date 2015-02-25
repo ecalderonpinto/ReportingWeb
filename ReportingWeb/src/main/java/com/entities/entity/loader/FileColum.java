@@ -40,6 +40,7 @@ public class FileColum implements VersionableAdapter {
 	private String columName;
 	private String columDesc;
 	private String columFormat;
+	private String columBlock;
 	private Set<LoadRawData> loadRawDatas = new HashSet(0);
 	private Set<FileColumList> fileColumLists = new HashSet(0);
 
@@ -153,7 +154,16 @@ public class FileColum implements VersionableAdapter {
 	public void setColumFormat(String columFormat) {
 		this.columFormat = columFormat;
 	}
+	
+	@Column(name = "COLUM_BLOCK")
+	public String getColumBlock() {
+		return this.columBlock;
+	}
 
+	public void setColumBlock(String columBlock) {
+		this.columBlock = columBlock;
+	}
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fileColum")
 	public Set<LoadRawData> getLoadRawDatas() {
 		return this.loadRawDatas;
@@ -163,7 +173,7 @@ public class FileColum implements VersionableAdapter {
 		this.loadRawDatas = loadRawDatas;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fileColum")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "fileColum")
 	public Set<FileColumList> getFileColumLists() {
 		return this.fileColumLists;
 	}

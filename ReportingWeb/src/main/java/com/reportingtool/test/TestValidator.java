@@ -5,20 +5,11 @@ import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 
-import com.reportingtool.creation.GeneratorXML;
-import com.reportingtool.normalizer.Format;
-import com.reportingtool.normalizer.Translate;
-import com.reportingtool.validator.RawData;
-import com.reportingtool.validator.Status;
-import com.reportingtool.validator.Syntactic;
-import com.entities.dao.loader.FileColumListDAO;
-import com.entities.dao.loader.LoadFileDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
-import com.entities.entity.loader.LoadFile;
-import com.entities.entity.loader.LoadRaw;
-import com.entities.entity.loader.LoadRawData;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
+import com.reportingtool.creation.GeneratorXML;
+import com.reportingtool.validator.Syntactic;
 
 public class TestValidator {
 
@@ -62,6 +53,7 @@ public class TestValidator {
 //					reportExecutionDAO.findByExample(reportExecutionExample));
 //			ReportExecution reportExecution = reportExecutions.get(0);
 //
+//			
 //			RawData rawData = new RawData(applicationContext);
 //			rawData.FileRawToData(loadFile, reportExecution);
 //

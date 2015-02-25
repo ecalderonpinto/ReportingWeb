@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -39,7 +40,7 @@ public class LoadRaw implements VersionableAdapter {
 	private LoadFile loadFile;
 	private BigDecimal loadLineNumber;
 	private String loadLineType;
-	private Blob loadRawBlob;
+	private byte[] loadRawBlob;
 	private String loadError;
 	private Set<LoadRawData> loadRawDatas = new HashSet(0);
 
@@ -59,7 +60,7 @@ public class LoadRaw implements VersionableAdapter {
 	}
 	
 	public LoadRaw(LoadFile loadFile,
-			BigDecimal loadLineNumber, String loadLineType, Blob loadRawBlob,
+			BigDecimal loadLineNumber, String loadLineType, byte[] loadRawBlob,
 			String loadError, Set<LoadRawData> loadRawDatas, VersionAuditor versionAuditor) {
 		this.loadFile = loadFile;
 		this.loadLineNumber = loadLineNumber;
@@ -110,12 +111,13 @@ public class LoadRaw implements VersionableAdapter {
 		this.loadLineType = loadLineType;
 	}
 
-	@Column(name = "LOAD_RAW_BLOB")
-	public Blob getLoadRawBlob() {
+	@Lob
+	@Column(name = "LOAD_RAW_BLOB", length=100000)
+	public byte[] getLoadRawBlob() {
 		return this.loadRawBlob;
 	}
 
-	public void setLoadRawBlob(Blob loadRawBlob) {
+	public void setLoadRawBlob(byte[] loadRawBlob) {
 		this.loadRawBlob = loadRawBlob;
 	}
 

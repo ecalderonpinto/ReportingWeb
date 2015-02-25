@@ -100,16 +100,19 @@ public class FileLoader {
 			LoadRaw loadRaw = new LoadRaw(loadFile, new BigDecimal(i), null,
 					null, null, new HashSet<LoadRawData>(), new VersionAuditor(
 							"admin"));
-			loadRaw.setLoadRawBlob(new SerialBlob(record.getBytes()));
+			
+			loadRaw.setLoadRawBlob(record.getBytes());
 
 			// Split line;
-			String[] columns = record.split(fileConfig.getFileSeparator());
+			String separator = fileConfig.getFileSeparator();
+			String[] columns = record.split(separator, -1);
 
 			// Create LoadRawDatas Objects;
 			for (FileColum fileColum : fileConfig.getFileColums()) {
 				LoadRawData loadRawData = new LoadRawData(fileColum, loadRaw,
 						columns[fileColum.getColumNumber().intValue()],
 						fileColum.getColumType(), new VersionAuditor("admin"));
+				loadRawData.setLoadRawDataBlock(fileColum.getColumBlock());
 				loadRaw.getLoadRawDatas().add(loadRawData);
 			}
 

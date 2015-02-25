@@ -34,6 +34,7 @@ public class LoadRawData implements VersionableAdapter {
 	private FileColum fileColum;
 	private LoadRaw loadRaw;
 	private String loadRawDataText;
+	private String loadRawDataBlock;
 	private String loadRawDataType;
 
 	@Embedded
@@ -113,6 +114,15 @@ public class LoadRawData implements VersionableAdapter {
 
 	public void setLoadRawDataType(String loadRawDataType) {
 		this.loadRawDataType = loadRawDataType;
+	}
+	
+	@Column(name = "LOAD_RAW_DATA_BLOCK", nullable = false, length = 40)
+	public String getLoadRawDataBlock() {
+		return this.loadRawDataBlock;
+	}
+
+	public void setLoadRawDataBlock(String loadRawDataBlock) {
+		this.loadRawDataBlock = loadRawDataBlock;
 	}
 
 	public int getVersion() {

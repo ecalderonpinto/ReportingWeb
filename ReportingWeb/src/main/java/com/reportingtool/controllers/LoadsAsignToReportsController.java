@@ -56,7 +56,7 @@ public class LoadsAsignToReportsController {
 
 		ReportAssignLoadsForm reportAssign = new ReportAssignLoadsForm();
 		reportAssign.setReportExecution(reportExecution);
-		
+
 		model.addAttribute("reportassign", reportAssign);
 
 		return "loadsassigntoreport";
@@ -68,24 +68,31 @@ public class LoadsAsignToReportsController {
 			BindingResult result, Model model, SessionStatus status,
 			HttpSession session) {
 
-		LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext.getBean("loadFileDAO");
-		
-		for(String loadFile : reportAssign.getSelectLoads()){
+		LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
+				.getBean("loadFileDAO");
+		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
+				.getBean("reportExecutionDAO");
+
+		ReportExecution reportExe = (ReportExecution) reportExecutionDAO
+				.findByExample(reportAssign.getReportExecution()).get(0);
+		reportAssign.setReportExecution(reportExe);
+
+		for (String loadFile : reportAssign.getSelectLoads()) {
 			LoadFile lF = new LoadFile();
 			lF.setId(Long.parseLong(loadFile));
-			lF = (LoadFile)loadFileDAO.findByExample(lF);
+			lF = (LoadFile) loadFileDAO.findByExample(lF).get(0);
 			reportAssign.getReportExecution().getLoadFiles().add(lF);
 		}
-		
-		//Raw to Data
+
+		// Raw to Data
 		RawData rawData = new RawData(applicationContext);
 		rawData.fileRawToData(reportAssign.getReportExecution());
-		
-		//Syntactic analysis
+
+		// Syntactic analysis
 		Syntactic syntactic = new Syntactic(applicationContext);
 
-		List<ReportData> reportDatas = new ArrayList<ReportData>(
-			reportAssign.getReportExecution().getReportDatas());
+		List<ReportData> reportDatas = new ArrayList<ReportData>(reportAssign
+				.getReportExecution().getReportDatas());
 
 		System.out.println("DEBUG_" + "TestValidator: starting for list: "
 				+ reportDatas);
@@ -97,7 +104,7 @@ public class LoadsAsignToReportsController {
 			syntactic.validRegex(reportData);
 		}
 
-		return "loadsassigntoreport";
+		return "datamanager";
 	}
 
 	@ModelAttribute("selectLoads")

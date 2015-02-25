@@ -27,11 +27,8 @@ public class RawData {
 
 		for (LoadFile loadFile : reportExecution.getLoadFiles()) {
 
-			List<LoadRaw> loadRaws = new ArrayList<LoadRaw>(
-					loadFile.getLoadRaws());
-
 			List<LoadRawData> loadRawDatas = new ArrayList<LoadRawData>();
-			for (LoadRaw loadRaw : loadRaws) {
+			for (LoadRaw loadRaw : loadFile.getLoadRaws()) {
 				loadRawDatas.addAll(loadRaw.getLoadRawDatas());
 			}
 
@@ -49,28 +46,33 @@ public class RawData {
 	public void rawToData(LoadRawData loadRawData,
 			ReportExecution reportExecution) {
 
-		// create new reportData with war data
-		ReportData reportData = new ReportData();
-
-		// text
-		reportData.setReportDataText(loadRawData.getLoadRawDataText());
-
-		// field
 		FileColum fileColum = loadRawData.getFileColum();
 		ReportField reportField = fileColum.getReportField();
-		reportData.setReportField(reportField);
 
-		// report
-		reportData.setReportExecution(reportExecution);
+		if (reportField != null) {
+			// create new reportData with raw data
+			ReportData reportData = new ReportData();
 
-		// user
-		reportData.setAuditor(new VersionAuditor("admin"));
+			// text
+			reportData.setReportDataText(loadRawData.getLoadRawDataText());
+			
+			//block
+			reportData.setReportDataBlock(loadRawData.getLoadRawDataBlock());
 
-		// save new reportData
-		ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
-				.getBean("reportDataDAO");
+			// field
+			reportData.setReportField(reportField);
 
-		reportDataDAO.create(reportData);
+			// report
+			reportData.setReportExecution(reportExecution);
 
+			// user
+			reportData.setAuditor(new VersionAuditor("admin"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+
+			reportDataDAO.create(reportData);
+		}
 	}
 }

@@ -310,7 +310,7 @@ public class ReportExecution implements VersionableAdapter {
 		this.reportErrors = reportErrors;
 	}
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name = "T_FILE_ASSIG_EXECUTION", joinColumns = { @JoinColumn(name = "REPORT_EXECUTION_ID", referencedColumnName = "REPORT_EXECUTION_ID") }, inverseJoinColumns = { @JoinColumn(name = "LOAD_FILE_ID", referencedColumnName = "LOAD_FILE_ID") })
 	public Set<LoadFile> getLoadFiles() {
 		return loadFiles;
