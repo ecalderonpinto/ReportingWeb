@@ -38,6 +38,7 @@ public class TestController {
 		// installLoader.installTest(applicationContext);
 		installLoader.deleteEntities(applicationContext);
 		installLoader.installEntitiesFull(applicationContext);
+		installLoader.installAIF(applicationContext);
 
 		System.out.println("Installed");
 		return "install";
