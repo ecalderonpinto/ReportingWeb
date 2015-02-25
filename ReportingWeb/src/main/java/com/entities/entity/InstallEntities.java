@@ -717,7 +717,6 @@ public class InstallEntities {
 					"1.1.18.1", "05", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField68);
-
 			ReportField reportFieldx27 = new ReportField(reportCatalog,
 					reportFieldx26, "X", "AIIInstrumentIdentification",
 					new BigInteger("0"), null, "", null, null, "1.1.18.1",
@@ -761,7 +760,6 @@ public class InstallEntities {
 					"AIIInstrumentIdentification", "DECIMAL", "1.1.18.1", "05",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField74);
-
 			ReportField reportField75 = new ReportField(reportCatalog,
 					reportFieldx26, "A", "PositionType", new BigInteger("75"),
 					".{1}", "", "MainInstrumentTraded", "PositionTypeType",
@@ -781,129 +779,525 @@ public class InstallEntities {
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField77);
 
-			// ReportField reportField90 = new ReportField(reportCatalog, "N",
-			// "AfricaNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
-			// "NAVGeographicalFocus", "DECIMAL", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField91 = new ReportField(reportCatalog, "N",
-			// "AsiaPacificNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?",
-			// "", "NAVGeographicalFocus", "DECIMAL", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField92 = new ReportField(reportCatalog, "N",
-			// "EuropeNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
-			// "NAVGeographicalFocus", "DECIMAL", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField93 = new ReportField(reportCatalog, "N",
-			// "EEANAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
-			// "NAVGeographicalFocus", "DECIMAL", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField94 = new ReportField(reportCatalog, "N",
-			// "MiddleEastNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?",
-			// "", "NAVGeographicalFocus", "DECIMAL", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField95 = new ReportField(reportCatalog, "N",
-			// "NorthAmericaNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?",
-			// "", "NAVGeographicalFocus", "DECIMAL", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField96 = new ReportField(reportCatalog, "N",
-			// "SouthAmericaNAVRate", "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?",
-			// "", "NAVGeographicalFocus", "DECIMAL", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField97 = new ReportField(reportCatalog, "N",
-			// "SupraNationalNAVRate",
-			// "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
-			// "NAVGeographicalFocus", "DECIMAL", versionField, null,
-			// null, null, versionAdmin);
-			//
-			// ReportField reportField98 = new ReportField(reportCatalog, "N",
-			// "AfricaAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
-			// "AUMGeographicalFocus", "PERCENT", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField99 = new ReportField(reportCatalog, "N",
-			// "AsiaPacificAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
-			// "AUMGeographicalFocus", "PERCENT", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField100 = new ReportField(reportCatalog, "N",
-			// "EuropeAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
-			// "AUMGeographicalFocus", "PERCENT", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField101 = new ReportField(reportCatalog, "N",
-			// "EEAAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
-			// "AUMGeographicalFocus", "PERCENT", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField102 = new ReportField(reportCatalog, "N",
-			// "MiddleEastAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
-			// "AUMGeographicalFocus", "PERCENT", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField103 = new ReportField(reportCatalog, "N",
-			// "NorthAmericaAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
-			// "AUMGeographicalFocus", "PERCENT", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField104 = new ReportField(reportCatalog, "N",
-			// "SouthAmericaAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
-			// "AUMGeographicalFocus", "PERCENT", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField105 = new ReportField(reportCatalog, "N",
-			// "SupraNationalAUMRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
-			// "AUMGeographicalFocus", "PERCENT", versionField, null,
-			// null, null, versionAdmin);
-			//
-			// ReportField reportField106 = new ReportField(reportCatalog, "N",
-			// "Ranking", "[0-9]{1,2}", "", "PrincipalExposure",
-			// "RANKING10", versionField, null, null, null, versionAdmin);
-			// ReportField reportField107 = new ReportField(reportCatalog, "A",
-			// "AssetMacroType", ".{3}", "", "PrincipalExposure",
-			// "ASSET_TYPE", versionField, null, null, null, versionAdmin);
-			// ReportField reportField108 = new ReportField(reportCatalog, "Z",
-			// "SubAssetType", ".{12}", "", "PrincipalExposure",
-			// "SUB_ASSET", versionField, null, null, null, versionAdmin);
-			// ReportField reportField109 = new ReportField(reportCatalog, "A",
-			// "PositionType", ".{1}", "", "PrincipalExposure",
-			// "POS_TYPE", versionField, null, null, null, versionAdmin);
-			// ReportField reportField110 = new ReportField(reportCatalog, "N",
-			// "AggregatedValueAmount", "[0-9]{1,15}?", "",
-			// "PrincipalExposure", "NUMBER", versionField, null, null,
-			// null, versionAdmin);
-			// ReportField reportField111 = new ReportField(reportCatalog, "N",
-			// "AggregatedValueRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
-			// "PrincipalExposure", "PERCENT", versionField, null, null,
-			// null, versionAdmin);
-			// ReportField reportField112 = new ReportField(reportCatalog, "Z",
-			// "EntityName", ".{300}", "", "CounterpartyIdentification",
-			// "NAME", versionField, null, null, null, versionAdmin);
-			// ReportField reportField113 = new ReportField(reportCatalog, "A",
-			// "EntityIdentificationLEI", ".{20}", "",
-			// "CounterpartyIdentification", "LEI", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField114 = new ReportField(reportCatalog, "A",
-			// "EntityIdentificationBIC", ".{11}", "",
-			// "CounterpartyIdentification", "BIC", versionField, null,
-			// null, null, versionAdmin);
-			//
-			// ReportField reportField115 = new ReportField(reportCatalog, "N",
-			// "Ranking", "[0-9]{1,2}", "", "PortfolioConcentration",
-			// "RANKING5", versionField, null, null, null, versionAdmin);
-			// ReportField reportField116 = new ReportField(reportCatalog, "A",
-			// "AssetType", ".{3}", "", "PortfolioConcentration",
-			// "ASSET_TYPE", versionField, null, null, null, versionAdmin);
-			// ReportField reportField117 = new ReportField(reportCatalog, "A",
-			// "PositionType", ".{1}", "", "PortfolioConcentration",
-			// "POS_TYPE", versionField, null, null, null, versionAdmin);
-			// ReportField reportField118 = new ReportField(reportCatalog, "A",
-			// "MarketCodeType", ".{4}", "", "MarketIdentification",
-			// "MARKET", versionField, null, null, null, versionAdmin);
-			// ReportField reportField119 = new ReportField(reportCatalog, "A",
-			// "MarketCode", ".{4}", "", "MarketIdentification", "MIC",
-			// versionField, null, null, null, versionAdmin);
-			// ReportField reportField120 = new ReportField(reportCatalog, "N",
-			// "AggregatedValueAmount", "[0-9]{0,15}?", "",
-			// "PortfolioConcentration", "NUMBER", versionField, null,
-			// null, null, versionAdmin);
-			// ReportField reportField121 = new ReportField(reportCatalog, "N",
-			// "AggregatedValueRate", "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
-			// "PortfolioConcentration", "PERCENT", versionField, null,
-			// null, null, versionAdmin);
+			ReportField reportFieldx28 = new ReportField(reportCatalog,
+					reportFieldx6, "X", "NAVGeographicalFocus", new BigInteger(
+							"0"), null, "", null, null, "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx28);
+			ReportField reportField78 = new ReportField(reportCatalog,
+					reportFieldx28, "N", "AfricaNAVRate", new BigInteger("78"),
+					"[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+					"NAVGeographicalFocus", "DECIMAL", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField78);
+			ReportField reportField79 = new ReportField(reportCatalog,
+					reportFieldx28, "N", "AsiaPacificNAVRate", new BigInteger(
+							"79"), "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+					"NAVGeographicalFocus", "DECIMAL", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField79);
+			ReportField reportField80 = new ReportField(reportCatalog,
+					reportFieldx28, "N", "EuropeNAVRate", new BigInteger("80"),
+					"[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+					"NAVGeographicalFocus", "DECIMAL", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField80);
+			ReportField reportField81 = new ReportField(reportCatalog,
+					reportFieldx28, "N", "EEANAVRate", new BigInteger("81"),
+					"[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+					"NAVGeographicalFocus", "DECIMAL", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField81);
+			ReportField reportField82 = new ReportField(reportCatalog,
+					reportFieldx28, "N", "MiddleEastNAVRate", new BigInteger(
+							"82"), "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+					"NAVGeographicalFocus", "DECIMAL", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField82);
+			ReportField reportField83 = new ReportField(reportCatalog,
+					reportFieldx28, "N", "NorthAmericaNAVRate", new BigInteger(
+							"83"), "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+					"NAVGeographicalFocus", "DECIMAL", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField83);
+			ReportField reportField84 = new ReportField(reportCatalog,
+					reportFieldx28, "N", "SouthAmericaNAVRate", new BigInteger(
+							"85"), "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+					"NAVGeographicalFocus", "DECIMAL", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField84);
+			ReportField reportField85 = new ReportField(reportCatalog,
+					reportFieldx28, "N", "SupraNationalNAVRate",
+					new BigInteger("85"), "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?",
+					"", "NAVGeographicalFocus", "DECIMAL", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField85);
 
+			ReportField reportFieldx29 = new ReportField(reportCatalog,
+					reportFieldx6, "X", "AUMGeographicalFocus", new BigInteger(
+							"0"), null, "", null, null, "1.1.18.1", "01",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx29);
+			ReportField reportField86 = new ReportField(reportCatalog,
+					reportFieldx29, "N", "AfricaAUMRate", new BigInteger("86"),
+					"[0-9]{1,3}(\\.[0-9]{1,2})?", "", "AUMGeographicalFocus",
+					"PERCENT", "1.1.18.1", "01", versionField, null, null,
+					null, versionAdmin);
+			reportFieldDAO.create(reportField86);
+			ReportField reportField87 = new ReportField(reportCatalog,
+					reportFieldx29, "N", "AsiaPacificAUMRate", new BigInteger(
+							"87"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+					"AUMGeographicalFocus", "PERCENT", "1.1.18.1", "01",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField87);
+			ReportField reportField88 = new ReportField(reportCatalog,
+					reportFieldx29, "N", "EuropeAUMRate", new BigInteger("88"),
+					"[0-9]{1,3}(\\.[0-9]{1,2})?", "", "AUMGeographicalFocus",
+					"PERCENT", "1.1.18.1", "01", versionField, null, null,
+					null, versionAdmin);
+			reportFieldDAO.create(reportField88);
+			ReportField reportField89 = new ReportField(reportCatalog,
+					reportFieldx29, "N", "EEAAUMRate", new BigInteger("89"),
+					"[0-9]{1,3}(\\.[0-9]{1,2})?", "", "AUMGeographicalFocus",
+					"PERCENT", "1.1.18.1", "01", versionField, null, null,
+					null, versionAdmin);
+			reportFieldDAO.create(reportField89);
+			ReportField reportField90 = new ReportField(reportCatalog,
+					reportFieldx29, "N", "MiddleEastAUMRate", new BigInteger(
+							"90"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+					"AUMGeographicalFocus", "PERCENT", "1.1.18.1", "01",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField90);
+			ReportField reportField91 = new ReportField(reportCatalog,
+					reportFieldx29, "N", "NorthAmericaAUMRate", new BigInteger(
+							"91"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+					"AUMGeographicalFocus", "PERCENT", "1.1.18.1", "01",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField91);
+			ReportField reportField92 = new ReportField(reportCatalog,
+					reportFieldx29, "N", "SouthAmericaAUMRate", new BigInteger(
+							"92"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+					"AUMGeographicalFocus", "PERCENT", "1.1.18.1", "01",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField92);
+			ReportField reportField93 = new ReportField(reportCatalog,
+					reportFieldx29, "N", "SupraNationalAUMRate",
+					new BigInteger("93"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+					"AUMGeographicalFocus", "PERCENT", "1.1.18.1", "01",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField93);
+
+			ReportField reportFieldx30 = new ReportField(reportCatalog,
+					reportFieldx6, "X", "PrincipalExposures", new BigInteger(
+							"0"), null, "", null, null, "1.1.18.1", "01",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx30);
+			ReportField reportFieldx31 = new ReportField(reportCatalog,
+					reportFieldx30, "X", "PrincipalExposure", new BigInteger(
+							"0"), null, "", null, null, "1.1.18.1", "010",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx31);
+			ReportField reportField94 = new ReportField(reportCatalog,
+					reportFieldx31, "N", "Ranking", new BigInteger("94"),
+					"[0-9]{1,2}", "", "PrincipalExposure", "TenRankingType",
+					"1.1.18.1", "010", versionField, null, null, null,
+					versionAdmin);
+			reportFieldDAO.create(reportField94);
+			ReportField reportField95 = new ReportField(reportCatalog,
+					reportFieldx31, "A", "AssetMacroType",
+					new BigInteger("95"), ".{3}", "", "PrincipalExposure",
+					"AssetMacroTypeType", "1.1.18.1", "010", versionField,
+					null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField95);
+			ReportField reportField96 = new ReportField(reportCatalog,
+					reportFieldx31, "Z", "SubAssetType", new BigInteger("96"),
+					".{12}", "", "PrincipalExposure", "SubAssetTypeType",
+					"1.1.18.1", "010", versionField, null, null, null,
+					versionAdmin);
+			reportFieldDAO.create(reportField96);
+			ReportField reportField97 = new ReportField(reportCatalog,
+					reportFieldx31, "A", "PositionType", new BigInteger("97"),
+					".{1}", "", "PrincipalExposure", "PositionTypeType",
+					"1.1.18.1", "010", versionField, null, null, null,
+					versionAdmin);
+			reportFieldDAO.create(reportField97);
+			ReportField reportField98 = new ReportField(reportCatalog,
+					reportFieldx31, "N", "AggregatedValueAmount",
+					new BigInteger("98"), "[0-9]{1,15}?", "",
+					"PrincipalExposure", "NUMBER", "1.1.18.1", "010",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField98);
+			ReportField reportField99 = new ReportField(reportCatalog,
+					reportFieldx31, "N", "AggregatedValueRate", new BigInteger(
+							"99"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+					"PrincipalExposure", "PERCENT", "1.1.18.1", "010",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField99);
+			ReportField reportField100 = new ReportField(reportCatalog,
+					reportFieldx31, "Z", "EntityName", new BigInteger("100"),
+					".{300}", "", "CounterpartyIdentification", "NAME",
+					"1.1.18.1", "01", versionField, null, null, null,
+					versionAdmin);
+			reportFieldDAO.create(reportField100);
+			ReportField reportField101 = new ReportField(reportCatalog,
+					reportFieldx31, "A", "EntityIdentificationLEI",
+					new BigInteger("101"), ".{20}", "",
+					"CounterpartyIdentification", "LEICodeType", "1.1.18.1",
+					"010", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField101);
+			ReportField reportField102 = new ReportField(reportCatalog,
+					reportFieldx31, "A", "EntityIdentificationBIC",
+					new BigInteger("102"), ".{11}", "",
+					"CounterpartyIdentification", "BICCodeType", "1.1.18.1",
+					"010", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField102);
+
+			ReportField reportFieldx32 = new ReportField(reportCatalog,
+					reportFieldx6, "X", "MostImportantConcentration",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"11", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx32);
+			ReportField reportFieldx33 = new ReportField(reportCatalog,
+					reportFieldx32, "X", "PortfolioConcentrations",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"11", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx33);
+			ReportField reportFieldx34 = new ReportField(reportCatalog,
+					reportFieldx33, "X", "PortfolioConcentration",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"55", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx34);
+			ReportField reportField103 = new ReportField(reportCatalog,
+					reportFieldx34, "N", "Ranking", new BigInteger("103"),
+					"[0-9]{1,2}", "", "PortfolioConcentration",
+					"FiveRankingType", "1.1.18.1", "55", versionField, null,
+					null, null, versionAdmin);
+			reportFieldDAO.create(reportField103);
+			ReportField reportField104 = new ReportField(reportCatalog,
+					reportFieldx34, "A", "AssetType", new BigInteger("104"),
+					".{3}", "", "PortfolioConcentration", "AssetTypeType",
+					"1.1.18.1", "55", versionField, null, null, null,
+					versionAdmin);
+			reportFieldDAO.create(reportField104);
+			ReportField reportField105 = new ReportField(reportCatalog,
+					reportFieldx34, "A", "PositionType", new BigInteger("105"),
+					".{1}", "", "PortfolioConcentration", "PositionTypeType",
+					"1.1.18.1", "05", versionField, null, null, null,
+					versionAdmin);
+			reportFieldDAO.create(reportField105);
+			ReportField reportFieldx35 = new ReportField(reportCatalog,
+					reportFieldx34, "X", "MarketIdentification",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"55", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx34);
+			ReportField reportField106 = new ReportField(reportCatalog,
+					reportFieldx35, "A", "MarketCodeType",
+					new BigInteger("106"), ".{4}", "", "MarketIdentification",
+					"MarketCodeTypeWithoutNOTType", "1.1.18.1", "05",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField106);
+			ReportField reportField107 = new ReportField(reportCatalog,
+					reportFieldx35, "A", "MarketCode", new BigInteger("107"),
+					".{4}", "", "MarketIdentification", "MICCodeType",
+					"1.1.18.1", "05", versionField, null, null, null,
+					versionAdmin);
+			reportFieldDAO.create(reportField107);
+			ReportField reportField108 = new ReportField(reportCatalog,
+					reportFieldx34, "N", "AggregatedValueAmount",
+					new BigInteger("108"), "[0-9]{0,15}?", "",
+					"PortfolioConcentration", "NUMBER", "1.1.18.1", "05",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField108);
+			ReportField reportField109 = new ReportField(reportCatalog,
+					reportFieldx34, "N", "AggregatedValueRate", new BigInteger(
+							"109"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+					"PortfolioConcentration", "PERCENT", "1.1.18.1", "05",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField109);
+			ReportField reportFieldx36 = new ReportField(reportCatalog,
+					reportFieldx35, "X", "CounterpartyIdentification",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"05", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx36);
+			ReportField reportField110 = new ReportField(reportCatalog,
+					reportFieldx36, "Z", "EntityName", new BigInteger("110"),
+					".{0,300}", "", "General Info", "NAME", "1.1.18.1", "05",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField110);
+			ReportField reportField111 = new ReportField(reportCatalog,
+					reportFieldx36, "A", "EntityIdentificationLEI",
+					new BigInteger("111"), ".{20}", "", "General Info",
+					"LEICodeType", "1.1.18.1", "05", versionField, null, null,
+					null, versionAdmin);
+			reportFieldDAO.create(reportField111);
+			ReportField reportField112 = new ReportField(reportCatalog,
+					reportFieldx36, "A", "EntityIdentificationBIC",
+					new BigInteger("112"), ".{11}", "", "General Info",
+					"BICCodeType", "1.1.18.1", "05", versionField, null, null,
+					null, versionAdmin);
+			reportFieldDAO.create(reportField112);
+
+			ReportField reportField113 = new ReportField(reportCatalog,
+					reportFieldx32, "A", "TypicalPositionSize", new BigInteger(
+							"113"), ".{4}", "", "MainInstrumentTraded",
+					"TypicalPositionSizeType", "1.1.18.1", "01", versionField,
+					null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField113);
+
+			ReportField reportFieldx37 = new ReportField(reportCatalog,
+					reportFieldx32, "X", "AIFPrincipalMarkets", new BigInteger(
+							"0"), null, "", null, null, "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx37);
+			ReportField reportFieldx38 = new ReportField(reportCatalog,
+					reportFieldx37, "X", "AIFPrincipalMarket", new BigInteger(
+							"0"), null, "", null, null, "1.1.18.1", "33",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx38);
+			ReportField reportField114 = new ReportField(reportCatalog,
+					reportFieldx38, "N", "Ranking", new BigInteger("114"),
+					"[0-9]{1,2}", "", "PortfolioConcentration",
+					"ThreeRankingType", "1.1.18.1", "33", versionField, null,
+					null, null, versionAdmin);
+			reportFieldDAO.create(reportField114);
+			ReportField reportFieldx39 = new ReportField(reportCatalog,
+					reportFieldx38, "X", "MarketIdentification",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"33", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx39);
+			ReportField reportField115 = new ReportField(reportCatalog,
+					reportFieldx39, "A", "MarketCodeType",
+					new BigInteger("115"), ".{4}", "", "MarketIdentification",
+					"MarketCodeTypeWithoutNOTType", "1.1.18.1", "33",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField115);
+			ReportField reportField116 = new ReportField(reportCatalog,
+					reportFieldx39, "A", "MarketCode", new BigInteger("116"),
+					".{4}", "", "MarketIdentification", "MICCodeType",
+					"1.1.18.1", "03", versionField, null, null, null,
+					versionAdmin);
+			reportFieldDAO.create(reportField116);
+			ReportField reportField117 = new ReportField(reportCatalog,
+					reportFieldx38, "N", "AggregatedValueAmount",
+					new BigInteger("29"), "[0-9]{0,15}?", "",
+					"Principal Markets", "NUMBER", "1.1.18.2.1.3", "03",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField117);
+
+			ReportField reportFieldx40 = new ReportField(reportCatalog,
+					reportFieldx32, "X", "InvestorConcentration",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"11", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx40);
+			ReportField reportField118 = new ReportField(reportCatalog,
+					reportFieldx40, "N", "MainBeneficialOwnersRate",
+					new BigInteger("118"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+					"PrincipalExposure", "PERCENT", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField118);
+			ReportField reportField119 = new ReportField(reportCatalog,
+					reportFieldx40, "N",
+					"ProfessionalInvestorConcentrationRate", new BigInteger(
+							"119"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+					"PrincipalExposure", "PERCENT", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField119);
+			ReportField reportField120 = new ReportField(reportCatalog,
+					reportFieldx40, "N", "RetailInvestorConcentrationRate",
+					new BigInteger("120"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+					"PrincipalExposure", "PERCENT", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField120);
+
+			ReportField reportFieldx41 = new ReportField(reportCatalog,
+					reportFieldx5, "X", "AIFIndividualInfo",
+					new BigInteger("0"), null, "", null, null, "1.1.18", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx41);
+			
+			ReportField reportFieldx42 = new ReportField(reportCatalog,
+					reportFieldx41, "X", "IndividualExposure",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"01", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx42);
+			ReportField reportFieldx43 = new ReportField(reportCatalog,
+					reportFieldx42, "X", "AssetTypeExposures",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"01", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx43);
+			ReportField reportFieldx44 = new ReportField(reportCatalog,
+					reportFieldx43, "X", "AssetTypeExposure",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"1n", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx44);
+			ReportField reportField121 = new ReportField(reportCatalog,
+					reportFieldx44, "A", "SubAssetType", new BigInteger("121"),
+					".{1,12}", "", "Principal Instruments", "SubAssetTypeType",
+					"1.1.18.3.1.2", "1n", versionField, null, null, null,
+					versionAdmin);
+			reportFieldDAO.create(reportField121);
+			ReportField reportField122 = new ReportField(reportCatalog,
+					reportFieldx44, "N", "GrossValue",
+					new BigInteger("122"), "[0-9]{0,15}?", "",
+					"Principal Markets", "NUMBER", "1.1.18.2.1.3", "0n",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField122);
+			ReportField reportField123 = new ReportField(reportCatalog,
+					reportFieldx44, "N", "LongValue",
+					new BigInteger("123"), "[0-9]{0,15}?", "",
+					"Principal Markets", "NUMBER", "1.1.18.2.1.3", "0n",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField123);
+			ReportField reportField124 = new ReportField(reportCatalog,
+					reportFieldx44, "N", "ShortValue",
+					new BigInteger("124"), "[0-9]{0,15}?", "",
+					"Principal Markets", "NUMBER", "1.1.18.2.1.3", "0n",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField124);
+			
+			ReportField reportFieldx45 = new ReportField(reportCatalog,
+					reportFieldx42, "X", "AssetTypeTurnovers",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"01", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx45);
+			ReportField reportFieldx46 = new ReportField(reportCatalog,
+					reportFieldx45, "X", "AssetTypeTurnover",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"1n", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx44);
+			ReportField reportField125 = new ReportField(reportCatalog,
+					reportFieldx46, "A", "TurnoverSubAssetType", new BigInteger("125"),
+					".{1,12}", "", "Principal Instruments", "TurnoverSubAssetTypeType",
+					"1.1.18.3.1.2", "1n", versionField, null, null, null,
+					versionAdmin);
+			reportFieldDAO.create(reportField125);
+			ReportField reportField126 = new ReportField(reportCatalog,
+					reportFieldx46, "N", "MarketValue",
+					new BigInteger("125"), "[0-9]{0,15}?", "",
+					"Principal Markets", "NUMBER", "1.1.18.2.1.3", "0n",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField126);
+			ReportField reportField127 = new ReportField(reportCatalog,
+					reportFieldx46, "N", "NotionalValue",
+					new BigInteger("127"), "[0-9]{0,15}?", "",
+					"Principal Markets", "NUMBER", "1.1.18.2.1.3", "0n",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField127);
+			
+			ReportField reportFieldx47 = new ReportField(reportCatalog,
+					reportFieldx42, "X", "CurrencyExposures",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"01", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx47);
+			ReportField reportFieldx48 = new ReportField(reportCatalog,
+					reportFieldx47, "X", "CurrencyExposure",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"0n", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx48);
+			ReportField reportField128 = new ReportField(reportCatalog,
+					reportFieldx48, "A", "ExposureCurrency", new BigInteger("128"),
+					".{3}", "", null, "CurrencyCodeType", "1.1.18.6.1", "0n",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField128);
+			ReportField reportField129 = new ReportField(reportCatalog,
+					reportFieldx48, "N", "LongPositionValue",
+					new BigInteger("129"), "[0-9]{0,15}?", "",
+					"Principal Markets", "NUMBER", "1.1.18.2.1.3", "0n",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField127);
+			ReportField reportField130 = new ReportField(reportCatalog,
+					reportFieldx48, "N", "ShortPositionValue",
+					new BigInteger("130"), "[0-9]{0,15}?", "",
+					"Principal Markets", "NUMBER", "1.1.18.2.1.3", "0n",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField127);
+
+			ReportField reportFieldx49 = new ReportField(reportCatalog,
+					reportFieldx42, "X", "CompaniesDominantInfluence",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"01", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx49);
+			ReportField reportFieldx50 = new ReportField(reportCatalog,
+					reportFieldx49, "X", "CompanyDominantInfluence",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"0n", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx50);
+			ReportField reportFieldx51 = new ReportField(reportCatalog,
+					reportFieldx50, "X", "CompanyIdentification",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"0n", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx51);
+			ReportField reportField131 = new ReportField(reportCatalog,
+					reportFieldx51, "Z", "EntityName", new BigInteger("131"),
+					".{0,300}", "", "General Info", "NAME", "1.1.18.1", "0n",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField131);
+			ReportField reportField132 = new ReportField(reportCatalog,
+					reportFieldx51, "A", "EntityIdentificationLEI",
+					new BigInteger("132"), ".{20}", "", "General Info",
+					"LEICodeType", "1.1.18.1", "0n", versionField, null, null,
+					null, versionAdmin);
+			reportFieldDAO.create(reportField132);
+			ReportField reportField133 = new ReportField(reportCatalog,
+					reportFieldx51, "A", "EntityIdentificationBIC",
+					new BigInteger("133"), ".{11}", "", "General Info",
+					"BICCodeType", "1.1.18.1", "0n", versionField, null, null,
+					null, versionAdmin);
+			reportFieldDAO.create(reportField133);
+			ReportField reportField134 = new ReportField(reportCatalog,
+					reportFieldx50, "Z", "TransactionType", new BigInteger("131"),
+					".{4}", "", "General Info", "TransactionTypeType", "1.1.18.1", "0n",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField134);
+			ReportField reportField135 = new ReportField(reportCatalog,
+					reportFieldx50, "Z", "OtherTransactionTypeDescription", new BigInteger("131"),
+					".{0,300}", "", "General Info", "NAME", "1.1.18.1", "0n",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField135);
+			ReportField reportField136 = new ReportField(reportCatalog,
+					reportFieldx50, "N", "VotingRightsRate",
+					new BigInteger("120"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+					"PrincipalExposure", "PERCENT", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField136);
+
+			ReportField reportFieldx52 = new ReportField(reportCatalog,
+					reportFieldx41, "X", "RiskProfile",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"01", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx52);
+			ReportField reportFieldx53 = new ReportField(reportCatalog,
+					reportFieldx52, "X", "MarketRiskProfile",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"01", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx53);
+			ReportField reportField137 = new ReportField(reportCatalog,
+					reportFieldx53, "A", "AnnualInvestmentReturnRate",
+					new BigInteger("137"), "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?",
+					"", "HedgeFundStrategy", "DECIMAL", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField137);
+			ReportField reportFieldx54 = new ReportField(reportCatalog,
+					reportFieldx53, "X", "MarketRiskMeasures",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"1n", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx54);
+			ReportField reportFieldx55 = new ReportField(reportCatalog,
+					reportFieldx54, "X", "MarketRiskMeasure",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"1n", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx55);
+			
+			ReportField reportFieldx56 = new ReportField(reportCatalog,
+					reportFieldx55, "X", "BucketRiskMeasureValues",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"1n", versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx56);
+			
+			
+			
+			
+			
 			// DAO
 
 			CompanyDAO companyDAO = (CompanyDAO) applicationContext
@@ -1305,7 +1699,7 @@ public class InstallEntities {
 			this.installFileList(applicationContext);
 
 			FileConfig fileConfig = new FileConfig(department, "AIFMD",
-					"AIFMD2014", "|", "SIMPLE", "*", null, null, null,
+					"AIFMD2014", ";", "SIMPLE", "*", null, null, null,
 					versionAdmin);
 
 			FileColum fileColum0 = new FileColum(null, fileConfig, "type",
@@ -1823,88 +2217,89 @@ public class InstallEntities {
 			fileColumDAO.create(fileColum60);
 			fileColumDAO.create(fileColum61);
 
-//			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
-//					.getBean("reportDataDAO");
-//			reportDataDAO.create(reportData1);
-//			reportDataDAO.create(reportData2);
-//			reportDataDAO.create(reportData3);
-//			reportDataDAO.create(reportData4);
-//			reportDataDAO.create(reportData5);
-//			reportDataDAO.create(reportData6);
-//			reportDataDAO.create(reportData7);
-//			reportDataDAO.create(reportData8);
-//			reportDataDAO.create(reportData9);
-//			reportDataDAO.create(reportData10);
-//			reportDataDAO.create(reportData11);
-//			reportDataDAO.create(reportData12);
-//			reportDataDAO.create(reportData13);
-//			reportDataDAO.create(reportData14);
-//			reportDataDAO.create(reportData15);
-//			reportDataDAO.create(reportData16);
-//			reportDataDAO.create(reportData17);
-//			reportDataDAO.create(reportData18);
-//			reportDataDAO.create(reportData19);
-//			reportDataDAO.create(reportData20);
-//			reportDataDAO.create(reportData21);
-//			reportDataDAO.create(reportData22);
-//			reportDataDAO.create(reportData23);
-//			reportDataDAO.create(reportData24);
-//			reportDataDAO.create(reportData25);
-//			reportDataDAO.create(reportData26);
-//			reportDataDAO.create(reportData27);
-//			reportDataDAO.create(reportData28);
-//			reportDataDAO.create(reportData29);
-//			reportDataDAO.create(reportData30);
-//			reportDataDAO.create(reportData31);
-//			reportDataDAO.create(reportData32);
-//			reportDataDAO.create(reportData33);
-//			reportDataDAO.create(reportData34);
-//			reportDataDAO.create(reportData35);
-//			reportDataDAO.create(reportData36);
-//			reportDataDAO.create(reportData37);
-//			reportDataDAO.create(reportData38);
-//			reportDataDAO.create(reportData39);
-//			reportDataDAO.create(reportData40);
-//			reportDataDAO.create(reportData41);
-//			reportDataDAO.create(reportData42);
-//			reportDataDAO.create(reportData43);
-//			reportDataDAO.create(reportData44);
-//			reportDataDAO.create(reportData45);
-//			reportDataDAO.create(reportData46);
+			// ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+			// .getBean("reportDataDAO");
+			// reportDataDAO.create(reportData1);
+			// reportDataDAO.create(reportData2);
+			// reportDataDAO.create(reportData3);
+			// reportDataDAO.create(reportData4);
+			// reportDataDAO.create(reportData5);
+			// reportDataDAO.create(reportData6);
+			// reportDataDAO.create(reportData7);
+			// reportDataDAO.create(reportData8);
+			// reportDataDAO.create(reportData9);
+			// reportDataDAO.create(reportData10);
+			// reportDataDAO.create(reportData11);
+			// reportDataDAO.create(reportData12);
+			// reportDataDAO.create(reportData13);
+			// reportDataDAO.create(reportData14);
+			// reportDataDAO.create(reportData15);
+			// reportDataDAO.create(reportData16);
+			// reportDataDAO.create(reportData17);
+			// reportDataDAO.create(reportData18);
+			// reportDataDAO.create(reportData19);
+			// reportDataDAO.create(reportData20);
+			// reportDataDAO.create(reportData21);
+			// reportDataDAO.create(reportData22);
+			// reportDataDAO.create(reportData23);
+			// reportDataDAO.create(reportData24);
+			// reportDataDAO.create(reportData25);
+			// reportDataDAO.create(reportData26);
+			// reportDataDAO.create(reportData27);
+			// reportDataDAO.create(reportData28);
+			// reportDataDAO.create(reportData29);
+			// reportDataDAO.create(reportData30);
+			// reportDataDAO.create(reportData31);
+			// reportDataDAO.create(reportData32);
+			// reportDataDAO.create(reportData33);
+			// reportDataDAO.create(reportData34);
+			// reportDataDAO.create(reportData35);
+			// reportDataDAO.create(reportData36);
+			// reportDataDAO.create(reportData37);
+			// reportDataDAO.create(reportData38);
+			// reportDataDAO.create(reportData39);
+			// reportDataDAO.create(reportData40);
+			// reportDataDAO.create(reportData41);
+			// reportDataDAO.create(reportData42);
+			// reportDataDAO.create(reportData43);
+			// reportDataDAO.create(reportData44);
+			// reportDataDAO.create(reportData45);
+			// reportDataDAO.create(reportData46);
 
-//			LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
-//					.getBean("loadFileDAO");
-//			loadFileDAO.create(loadFile);
-//
-//			LoadRawDAO loadRawDAO = (LoadRawDAO) applicationContext
-//					.getBean("loadRawDAO");
-//			loadRawDAO.create(loadRaw);
-//
-//			LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext
-//					.getBean("loadRawDataDAO");
-//			loadRawDataDAO.create(loadRawData1);
-//			loadRawDataDAO.create(loadRawData2);
-//			loadRawDataDAO.create(loadRawData3);
-//			loadRawDataDAO.create(loadRawData4);
-//			loadRawDataDAO.create(loadRawData5);
-//			loadRawDataDAO.create(loadRawData6);
-//			loadRawDataDAO.create(loadRawData7);
-//			loadRawDataDAO.create(loadRawData8);
-//			loadRawDataDAO.create(loadRawData9);
-//			loadRawDataDAO.create(loadRawData10);
-//			loadRawDataDAO.create(loadRawData11);
-//			loadRawDataDAO.create(loadRawData12);
-//			loadRawDataDAO.create(loadRawData13);
-//			loadRawDataDAO.create(loadRawData14);
-//			loadRawDataDAO.create(loadRawData15);
-//			loadRawDataDAO.create(loadRawData16);
-//			loadRawDataDAO.create(loadRawData17);
-//			loadRawDataDAO.create(loadRawData18);
-//			loadRawDataDAO.create(loadRawData19);
-//			loadRawDataDAO.create(loadRawData20);
-//			loadRawDataDAO.create(loadRawData21);
-//			loadRawDataDAO.create(loadRawData22);
-//			loadRawDataDAO.create(loadRawData23);
+			// LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
+			// .getBean("loadFileDAO");
+			// loadFileDAO.create(loadFile);
+			//
+			// LoadRawDAO loadRawDAO = (LoadRawDAO) applicationContext
+			// .getBean("loadRawDAO");
+			// loadRawDAO.create(loadRaw);
+			//
+			// LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO)
+			// applicationContext
+			// .getBean("loadRawDataDAO");
+			// loadRawDataDAO.create(loadRawData1);
+			// loadRawDataDAO.create(loadRawData2);
+			// loadRawDataDAO.create(loadRawData3);
+			// loadRawDataDAO.create(loadRawData4);
+			// loadRawDataDAO.create(loadRawData5);
+			// loadRawDataDAO.create(loadRawData6);
+			// loadRawDataDAO.create(loadRawData7);
+			// loadRawDataDAO.create(loadRawData8);
+			// loadRawDataDAO.create(loadRawData9);
+			// loadRawDataDAO.create(loadRawData10);
+			// loadRawDataDAO.create(loadRawData11);
+			// loadRawDataDAO.create(loadRawData12);
+			// loadRawDataDAO.create(loadRawData13);
+			// loadRawDataDAO.create(loadRawData14);
+			// loadRawDataDAO.create(loadRawData15);
+			// loadRawDataDAO.create(loadRawData16);
+			// loadRawDataDAO.create(loadRawData17);
+			// loadRawDataDAO.create(loadRawData18);
+			// loadRawDataDAO.create(loadRawData19);
+			// loadRawDataDAO.create(loadRawData20);
+			// loadRawDataDAO.create(loadRawData21);
+			// loadRawDataDAO.create(loadRawData22);
+			// loadRawDataDAO.create(loadRawData23);
 
 			ErrorDAO errorDAO = (ErrorDAO) applicationContext
 					.getBean("errorDAO");
