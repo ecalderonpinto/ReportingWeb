@@ -1,5 +1,6 @@
 package com.reportingtool.creation;
 
+import java.io.StringWriter;
 import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -51,7 +52,7 @@ public class GeneratorXML {
 		this.applicationContext = applicationContext;
 	}
 
-	public void generateXML(ReportExecution reportExecution) {
+	public String generateXML(ReportExecution reportExecution) {
 		ReportCatalog reportCatalog = reportExecution.getReportCatalog();
 
 		System.out.println("DEBUG_" + "GeneratorXML: starting XML with report "
@@ -63,23 +64,26 @@ public class GeneratorXML {
 		if (reportCatalog.getReportLevel().contains("FUND")) {
 
 			// generate AIF report
-			generateXMLAIF(reportExecution);
+			return generateXMLAIF(reportExecution);
 
 		}
 
 		if (reportCatalog.getReportLevel().contains("COMPANY")) {
 
 			// generate AIFMD report
-			generateXMLAIFMD(reportExecution);
+			return generateXMLAIFMD(reportExecution);
 
 		}
+		
+		return null;
 	}
 
-	public void generateXMLAIF(ReportExecution reportExecution) {
+	public String generateXMLAIF(ReportExecution reportExecution) {
 
+		return null;
 	}
 
-	public void generateXMLAIFMD(ReportExecution reportExecution) {
+	public String generateXMLAIFMD(ReportExecution reportExecution) {
 
 		System.out.println("DEBUG_" + "GeneratorXML: starting XML generation ");
 
@@ -567,6 +571,10 @@ public class GeneratorXML {
 			Marshaller marshaller = context.createMarshaller();
 			marshaller.setProperty("jaxb.formatted.output", Boolean.TRUE);
 			marshaller.marshal(jaxbElement, System.out);
+			StringWriter st = new StringWriter();
+			marshaller.marshal(jaxbElement, st);
+			
+			return st.toString();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -574,6 +582,8 @@ public class GeneratorXML {
 					"CREATION", reportExecution, "FAIL",
 					"Fail when parsing XML");
 		}
+		
+		return null;
 
 	}
 	// public void generateXMLAIFM_OLD(ReportExecution reportExecution) {

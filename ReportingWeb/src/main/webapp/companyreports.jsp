@@ -94,10 +94,13 @@
 								<td>${report.reportStatus}</td>
 								<td>
 								<a href="<c:url value="report.do?id=${report.id}" />">
-										<span class="label label-important">With Errors</span>
+										<span class="label label-important">Detail</span>
 								</a>
 								<a href="<c:url value="loadsAssignToReport.do?id=${report.id}" />">
 										<span class="label label-warning">Loads Asig</span>
+								</a>
+								<a href="<c:url value="viewXML.do?id=${report.id}" />">
+										<span class="label label-success">view XML</span>
 								</a>
 								</td>
 							</tr>
