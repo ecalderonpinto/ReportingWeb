@@ -92,9 +92,14 @@
 								<td>${report.reportCatalog.reportCatalogName}</td>
 								<td>${report.reportPeriodType}</td>
 								<td>${report.reportStatus}</td>
-								<td><a href="<c:url value="report.do?id=${report.id}" />">
+								<td>
+								<a href="<c:url value="report.do?id=${report.id}" />">
 										<span class="label label-important">With Errors</span>
-								</a></td>
+								</a>
+								<a href="<c:url value="loadsAssignToReport.do?id=${report.id}" />">
+										<span class="label label-warning">Loads Asig</span>
+								</a>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.reportingtool.ReportData;
+import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportExecution;
 
 @Controller
@@ -40,8 +41,9 @@ public class ReportController {
 		ReportExecution reportExecution = reportExecutionDAO.findByExample(
 				example).get(0);
 		
-		if(reportExecution.getReportErrors().size() > 0)
+		if(reportExecution.getReportErrors().size() > 0){
 			System.out.println("Tiene errores...");
+		}
 		
 		List<String> sections = getSections(reportExecution);
 
@@ -56,8 +58,11 @@ public class ReportController {
 		List<String> result = new ArrayList<String>();
 
 		for (ReportData reportData : reportExe.getReportDatas()) {
-			if(reportData.getReportDataErrors().size() > 0)
+			if(reportData.getReportDataErrors().size() > 0){
 				System.out.println("Data tiene errores...");
+				for(ReportDataError error : reportData.getReportDataErrors())
+					System.out.println("Error: " + error.getReportDataErrorText());
+			}
 			if (reportData.getReportField().getReportFieldSection() != null
 					&& !result.contains(reportData.getReportField()
 							.getReportFieldSection()))

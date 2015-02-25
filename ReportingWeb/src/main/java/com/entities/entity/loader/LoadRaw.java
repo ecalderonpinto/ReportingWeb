@@ -22,6 +22,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -126,6 +129,7 @@ public class LoadRaw implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loadRaw")
+	@Cascade({CascadeType.SAVE_UPDATE})
 	public Set<LoadRawData> getLoadRawDatas() {
 		return this.loadRawDatas;
 	}

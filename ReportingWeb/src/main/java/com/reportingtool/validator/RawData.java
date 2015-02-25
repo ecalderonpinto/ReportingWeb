@@ -16,35 +16,38 @@ import com.entities.entity.reportingtool.ReportField;
 import com.entities.utilities.hibernate.VersionAuditor;
 
 public class RawData {
-	
+
 	private ApplicationContext applicationContext;
-	
-	public RawData (ApplicationContext applicationContext) {
+
+	public RawData(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}
 
-	public void FileRawToData(LoadFile loadFile, ReportExecution reportExecution) {
+	public void fileRawToData(ReportExecution reportExecution) {
 
-		// from a file, we move raw to data
-		
-		List<LoadRaw> loadRaws = new ArrayList<LoadRaw>(loadFile.getLoadRaws());
-		
-		List<LoadRawData> loadRawDatas = new ArrayList<LoadRawData>();
-		for (LoadRaw loadRaw : loadRaws) {
-			loadRawDatas.addAll(loadRaw.getLoadRawDatas());
-		}
+		for (LoadFile loadFile : reportExecution.getLoadFiles()) {
 
-		// por cada raw genero un objeto data
-		for (LoadRawData loadRawData : loadRawDatas) {
-			System.out.println("DEBUG_" + "RawData "
-					+ loadRawData.getLoadRawDataType() + " "
-					+ loadRawData.getLoadRawDataText());
-			this.RawToData(loadRawData, reportExecution);
+			List<LoadRaw> loadRaws = new ArrayList<LoadRaw>(
+					loadFile.getLoadRaws());
+
+			List<LoadRawData> loadRawDatas = new ArrayList<LoadRawData>();
+			for (LoadRaw loadRaw : loadRaws) {
+				loadRawDatas.addAll(loadRaw.getLoadRawDatas());
+			}
+
+			// por cada raw genero un objeto data
+			for (LoadRawData loadRawData : loadRawDatas) {
+				System.out.println("DEBUG_" + "RawData "
+						+ loadRawData.getLoadRawDataType() + " "
+						+ loadRawData.getLoadRawDataText());
+				this.rawToData(loadRawData, reportExecution);
+			}
 		}
 
 	}
 
-	public void RawToData(LoadRawData loadRawData, ReportExecution reportExecution) {
+	public void rawToData(LoadRawData loadRawData,
+			ReportExecution reportExecution) {
 
 		// create new reportData with war data
 		ReportData reportData = new ReportData();
@@ -56,13 +59,12 @@ public class RawData {
 		FileColum fileColum = loadRawData.getFileColum();
 		ReportField reportField = fileColum.getReportField();
 		reportData.setReportField(reportField);
-		
+
 		// report
 		reportData.setReportExecution(reportExecution);
-		
+
 		// user
 		reportData.setAuditor(new VersionAuditor("admin"));
-		
 
 		// save new reportData
 		ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext

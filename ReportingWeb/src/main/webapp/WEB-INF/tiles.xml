@@ -41,6 +41,12 @@
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 	
+	<definition name="loadsassigntoreport" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Loads Assign" />
+		<put-attribute name="mainContent" value="/loadsassign.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
 	<definition name="report" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - Report" />
 		<put-attribute name="mainContent" value="/report.jsp" />

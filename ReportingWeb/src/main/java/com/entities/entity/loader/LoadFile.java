@@ -24,6 +24,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.entities.entity.reportingtool.Department;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.utilities.hibernate.VersionAuditor;
@@ -135,6 +138,7 @@ public class LoadFile implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loadFile")
+	@Cascade({ CascadeType.SAVE_UPDATE })
 	public Set<LoadRaw> getLoadRaws() {
 		return this.loadRaws;
 	}

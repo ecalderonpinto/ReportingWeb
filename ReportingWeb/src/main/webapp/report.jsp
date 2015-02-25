@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- start: Breadcrumb -->
 <ul class="breadcrumb">
@@ -41,19 +42,45 @@
 							items="${report.reportDatas}">
 							<c:if
 								test="${reportData.reportField.reportFieldSection == section}">
-								<!-- CancelledAIFMNationalCode -->
-								<div class="control-group">
-									<label class="control-label" for="disabledInput"> ${reportData.reportField.reportFieldNum}.
-										${reportData.reportField.reportFieldName } </label>
-									<div class="controls">
-										<input class="input-xlarge disabled" id="disabledInput"
-											type="text" placeholder="Disabled input here…" disabled=""
-											value="${reportData.reportDataText}"> <i class="halflings-icon tag"
-											onmouseover="javascript:this.style.cursor='pointer'"
-											title="Notes"></i>
-									</div>
-								</div>
-								<!-- /CancelledAIFMNationalCode -->
+								<c:choose>
+									<c:when test="${fn:length(reportData.reportDataErrors) gt 0}">
+										<!-- Field with Error -->
+										<div class="control-group error">
+											<label class="control-label" for="inputError">
+												${reportData.reportField.reportFieldNum}.
+												${reportData.reportField.reportFieldName } </label>
+											<div class="controls">
+												<input type="text" id="inputError" disabled=""
+													value="${reportData.reportDataText}"> <span
+													class="help-inline"> <i
+													class="halflings-icon pencil"></i>
+													<c:forEach var="reportError" varStatus="status"
+													items="${reportData.reportDataErrors}" >
+														${reportError.reportDataErrorText}
+													</c:forEach>
+												</span>
+											</div>
+										</div>
+										<!-- /Field with Error -->
+									</c:when>
+									<c:otherwise>
+										<!-- Normal Field -->
+										<div class="control-group">
+											<label class="control-label" for="disabledInput">
+												${reportData.reportField.reportFieldNum}.
+												${reportData.reportField.reportFieldName } </label>
+											<div class="controls">
+												<input class="input-xlarge disabled" id="disabledInput"
+													type="text" placeholder="" disabled=""
+													value="${reportData.reportDataText}"> <i
+													class="halflings-icon tag"
+													onmouseover="javascript:this.style.cursor='pointer'"
+													title="Notes"></i>
+											</div>
+										</div>
+										<!-- /Normal Field -->
+									</c:otherwise>
+								</c:choose>
 							</c:if>
 						</c:forEach>
 					</fieldset>
