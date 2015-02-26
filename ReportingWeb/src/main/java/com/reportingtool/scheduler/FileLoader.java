@@ -1,18 +1,17 @@
 package com.reportingtool.scheduler;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
-import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
-
-import org.springframework.context.ApplicationContext;
 
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileConfig;
@@ -22,7 +21,6 @@ import com.entities.entity.loader.LoadRaw;
 import com.entities.entity.loader.LoadRawData;
 import com.entities.entity.usermanager.User;
 import com.entities.utilities.hibernate.VersionAuditor;
-import com.reportingtool.utilities.ReportingErrorManager;
 
 /**
  * 
@@ -34,22 +32,30 @@ import com.reportingtool.utilities.ReportingErrorManager;
 public class FileLoader {
 
 	public FileConfig fileConfig;
-	public File file;
+	public InputStream file;
+	public String fileName;
 	public User loadUser;
 
 	public FileLoader() {
 	}
 
-	public FileLoader(FileConfig fileConfig, File file) {
+	public FileLoader(FileConfig fileConfig, File file) throws FileNotFoundException {
+		this.file = new FileInputStream(file);
+		this.fileConfig = fileConfig;
+		this.fileName = file.getName();
+	}
+
+	public FileLoader(FileConfig fileConfig, String path) throws FileNotFoundException {
+		this.setInputFile(path);
+		this.fileConfig = fileConfig;
+	}
+
+	public FileLoader(FileConfig fileConfig, InputStream file, String fileName) throws FileNotFoundException {
+		this.fileConfig = fileConfig;
 		this.file = file;
-		this.fileConfig = fileConfig;
+		this.fileName = fileName;
 	}
-
-	public FileLoader(FileConfig fileConfig, String inputFile) {
-		this.setInputFile(inputFile);
-		this.fileConfig = fileConfig;
-	}
-
+	
 	public FileConfig getFileConfig() {
 		return this.fileConfig;
 	}
@@ -58,19 +64,18 @@ public class FileLoader {
 		this.fileConfig = fileConfig;
 	}
 
-	public File getInputFile() {
+	public InputStream getInputFile() {
 		return file;
 	}
 
-	public void setInputFile(File inputFile) {
+	public void setInputFile(FileInputStream inputFile) {
 		this.file = inputFile;
 	}
 
-	public void setInputFile(String inputFile) {
-		this.file = new File(inputFile);
-		if (!this.file.exists()) {
-			throw new RuntimeException("The input file doesn't exist...");
-		}
+	public void setInputFile(String inputFile) throws FileNotFoundException {
+		File file = new File(inputFile);
+		this.file = new FileInputStream(file);
+		this.fileName = file.getName();
 	}
 
 	public User getLoadUser() {
@@ -86,7 +91,7 @@ public class FileLoader {
 
 		// Create LoadFile Object;
 		LoadFile loadFile = new LoadFile(this.fileConfig.getDepartment(),
-				this.fileConfig, new Date(), this.file.getName(),
+				this.fileConfig, new Date(), this.fileName,
 				new HashSet<LoadError>(), new HashSet<LoadRaw>(),
 				new VersionAuditor("admin"));
 

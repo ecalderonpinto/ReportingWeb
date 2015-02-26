@@ -1,6 +1,5 @@
 package com.reportingtool.controllers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,10 +49,8 @@ public class LoadsAsignToReportsController {
 
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
-		ReportExecution reportExecution = new ReportExecution();
-		reportExecution.setId(Long.valueOf(id).longValue());
-		reportExecution = (ReportExecution) reportExecutionDAO.findByExample(
-				reportExecution).get(0);
+		ReportExecution reportExecution = reportExecutionDAO
+				.findById(Long.parseLong(id));
 
 		ReportAssignLoadsForm reportAssign = new ReportAssignLoadsForm();
 		reportAssign.setReportExecution(reportExecution);
@@ -79,22 +76,21 @@ public class LoadsAsignToReportsController {
 		reportAssign.setReportExecution(reportExe);
 
 		for (String loadFile : reportAssign.getSelectLoads()) {
-			LoadFile lF = new LoadFile();
-			lF.setId(Long.parseLong(loadFile));
-			lF = (LoadFile) loadFileDAO.findByExample(lF).get(0);
+			LoadFile lF = loadFileDAO.findById(Long.parseLong(loadFile));
 			reportAssign.getReportExecution().getLoadFiles().add(lF);
 		}
 
 		// Raw to Data
 		RawData rawData = new RawData(applicationContext);
 		rawData.fileRawToData(reportAssign.getReportExecution());
-		
+
 		// Syntactic analysis
 		Syntactic syntactic = new Syntactic(applicationContext);
 
 		System.out.println("DEBUG_" + "TestValidator: starting for list: "
 				+ reportAssign.getReportExecution().getReportDatas());
-		Set<ReportData> reportDatas = reportAssign.getReportExecution().getReportDatas();
+		Set<ReportData> reportDatas = reportAssign.getReportExecution()
+				.getReportDatas();
 		for (ReportData reportData : reportDatas) {
 			System.out.println("DEBUG_" + "TestValidator: "
 					+ reportData.getReportDataDate() + " "

@@ -30,9 +30,7 @@ public class FundReportsController {
 		
 		System.out.println("CompanyDetail Controller - Fundid=" + id);
 		FundDAO fundDao = (FundDAO)applicationContext.getBean("fundDAO");
-		Fund fund = new Fund();
-		fund.setId(Long.valueOf(id).longValue());
-		fund = (Fund) fundDao.findByExample(fund).get(0);
+		Fund fund = fundDao.findById(Long.parseLong(id));
 		
 		model.addAttribute("fund", fund);
 		

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +25,16 @@ public class LoaderUtilities {
 	}
 
 	public static List<String> loadFileInList(File input)
-			throws FileNotFoundException, IOException {
-
-		List<String> result = new ArrayList<String>();
+			throws IOException {
 
 		FileInputStream fstream = new FileInputStream(input);
+		return loadFileInList(fstream);
+	}
+	
+	public static List<String> loadFileInList(InputStream fstream) throws IOException {
+		
+		List<String> result = new ArrayList<String>();
+		
 		DataInputStream in = new DataInputStream(fstream);
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
 		String strLine;

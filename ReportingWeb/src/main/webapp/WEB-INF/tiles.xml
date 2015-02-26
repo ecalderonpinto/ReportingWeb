@@ -53,6 +53,12 @@
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 	
+	<definition name="loads" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Loads" />
+		<put-attribute name="mainContent" value="/loads.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
 	<definition name="report" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - Report" />
 		<put-attribute name="mainContent" value="/report.jsp" />

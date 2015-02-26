@@ -116,7 +116,7 @@
 						<li>
 							<a class="dropmenu" href="#"><i class="icon-inbox"></i><span class="hidden-tablet"> Load</span></a>
 							<ul>
-								<li><a class="submenu" href="Loads"><i class="icon-file-alt"></i><span class="hidden-tablet"> Loads</span></a></li>
+								<li><a class="submenu" href="loads.do"><i class="icon-file-alt"></i><span class="hidden-tablet"> Loads</span></a></li>
 								<li><a class="submenu" href="LoadsExceptions"><i class="icon-warning-sign"></i><span class="hidden-tablet"> Exceptions</span></a></li>
 							</ul>	
 						</li>

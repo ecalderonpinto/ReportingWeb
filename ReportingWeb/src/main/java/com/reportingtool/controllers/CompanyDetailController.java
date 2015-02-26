@@ -30,9 +30,7 @@ public class CompanyDetailController {
 		
 		System.out.println("CompanyDetail Controller - id=" + id);
 		CompanyDAO companyDao = (CompanyDAO)applicationContext.getBean("companyDAO");
-		Company company = new Company();
-		company.setId(Long.valueOf(id).longValue());
-		company = (Company) companyDao.findByExample(company).get(0);
+		Company company = companyDao.findById(Long.parseLong(id));
 		
 		model.addAttribute("company", company);
 		

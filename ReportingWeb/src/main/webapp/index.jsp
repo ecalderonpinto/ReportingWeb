@@ -4,7 +4,7 @@
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Reporting System by Lynx Iberica</title>
+	<title>Reporting System</title>
 	<!-- end: Meta -->
 	
 	<!-- start: CSS -->
@@ -67,7 +67,8 @@
 							<label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label>
 							-->
 							<div class="button-login">	
-								<button type="submit" class="btn btn-primary">Login</button>
+								<!--<button type="submit" class="btn btn-primary">Login</button>-->
+								<a class="btn btn-primary" href="<c:url value="index.do" />">Login</a>
 							</div>
 							<div class="clearfix"></div>
 						</fieldset>
