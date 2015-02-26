@@ -48,6 +48,11 @@ public abstract class AbstractDAO<T> {
 	// public T find(Object id) {
 	// return getHibernateTemplate().find(entityClass, id);
 	// }
+	
+	@Transactional
+	public T findById(long id) {
+  		return (T) getHibernateTemplate().load(entityClass, id);
+  	}
 
 	@Transactional
 	public List<T> findByExample(T entity) {
