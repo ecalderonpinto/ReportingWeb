@@ -1,6 +1,7 @@
 package com.reportingtool.creation;
 
 import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,20 +25,32 @@ import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.utilities.XMLGregorianCalendarConverter;
 import com.reportingtool.xml.AIFMReportingInfo;
+import com.reportingtool.xml.AIFReportingInfo;
 import com.reportingtool.xml.CancelledRecordFlagType;
+import com.reportingtool.xml.ComplexAIFCompleteDescriptionType;
+import com.reportingtool.xml.ComplexAIFIndividualInfoType;
+import com.reportingtool.xml.ComplexAIFLeverageInfoType;
 import com.reportingtool.xml.ComplexAIFMCompleteDescriptionType;
 import com.reportingtool.xml.ComplexAIFMIdentifierType;
+import com.reportingtool.xml.ComplexAIFMNationalIdentifierType;
 import com.reportingtool.xml.ComplexAIFMPrincipalInstrumentsType;
 import com.reportingtool.xml.ComplexAIFMPrincipalMarketsType;
 import com.reportingtool.xml.ComplexAIFMRecordInfoType;
+import com.reportingtool.xml.ComplexAIFPrincipalInfoType;
+import com.reportingtool.xml.ComplexAIFRecordInfoType;
+import com.reportingtool.xml.ComplexAssumptionType;
 import com.reportingtool.xml.ComplexAssumptionsType;
 import com.reportingtool.xml.ComplexBaseCurrencyDescriptionType;
 import com.reportingtool.xml.ComplexCancellationAIFMRecordInfoType;
+import com.reportingtool.xml.ComplexCancellationAIFRecordInfoType;
 import com.reportingtool.xml.ComplexFivePrincipalMarketType;
+import com.reportingtool.xml.ComplexIndividualExposureType;
 import com.reportingtool.xml.ComplexMarketIdentificationWithNOTType;
 import com.reportingtool.xml.ComplexPrincipalInstrumentType;
+import com.reportingtool.xml.FXEURReferenceRateTypeType;
 import com.reportingtool.xml.FilingTypeType;
 import com.reportingtool.xml.MarketCodeTypeWithNOTType;
+import com.reportingtool.xml.ObjectFactoryAIF;
 import com.reportingtool.xml.ObjectFactoryAIFM;
 import com.reportingtool.xml.ReportingObligationChangeFrequencyCodeType;
 import com.reportingtool.xml.ReportingObligationChangeQuarterType;
@@ -47,6 +60,10 @@ import com.reportingtool.xml.SubAssetTypeType;
 public class GeneratorXML {
 
 	private ApplicationContext applicationContext;
+
+	public static final String stringDateFormat = "yyyy-MM-dd";
+	public static final String stringYearFormat = "yyyy";
+	public static final String stringDateTimeFormat = "yyyy-MM-dd hh:mm:ss";
 
 	public GeneratorXML(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
@@ -74,11 +91,476 @@ public class GeneratorXML {
 			return generateXMLAIFMD(reportExecution);
 
 		}
-		
+
 		return null;
 	}
 
 	public String generateXMLAIF(ReportExecution reportExecution) {
+
+		System.out.println("DEBUG_" + "GeneratorXML: starting XML generation ");
+
+		// all dataFields
+		List<ReportData> reportDatas = new ArrayList<ReportData>(
+				reportExecution.getReportDatas());
+
+		// show all reportData to make sure the content
+		Map<String, String> reportMap = new HashMap<String, String>();
+		for (ReportData reportData : reportDatas) {
+			// this hashmap contain the content and <name> of every field
+			reportMap.put(reportData.getReportField().getReportFieldName(),
+					reportData.getReportDataText());
+		}
+		System.out.println(reportMap.toString());
+
+		// ///////////////////////////////////////////////////////////
+		// ONLY STATUS = PENDING WILL CREATE XML REPORTS
+		// if (aifmdReportResult.getAifmdReportResultStat().equals("PENDING")) {
+		// }
+
+		try {
+			DateFormat formatDate = new SimpleDateFormat(stringDateFormat);
+			DateFormat formatYear = new SimpleDateFormat(stringYearFormat);
+			DateFormat formatDateTime = new SimpleDateFormat(
+					stringDateTimeFormat);
+
+			// ObjectFactory to make every class to AIFM report
+			ObjectFactoryAIF objectFactoryAIF = new ObjectFactoryAIF();
+
+			AIFReportingInfo aifReportingInfo = objectFactoryAIF
+					.createAIFReportingInfo();
+
+			ComplexCancellationAIFRecordInfoType complexCancellationAIFRecordInfoType = objectFactoryAIF
+					.createComplexCancellationAIFRecordInfoType();
+
+			ComplexAIFRecordInfoType complexAIFRecordInfoType = objectFactoryAIF
+					.createComplexAIFRecordInfoType();
+
+			ComplexAIFCompleteDescriptionType complexAIFCompleteDescriptionType = objectFactoryAIF
+					.createComplexAIFCompleteDescriptionType();
+
+			ComplexAIFIndividualInfoType complexAIFIndividualInfoType = objectFactoryAIF
+					.createComplexAIFIndividualInfoType();
+			ComplexAIFLeverageInfoType complexAIFLeverageInfoType = objectFactoryAIF
+					.createComplexAIFLeverageInfoType();
+			ComplexAIFPrincipalInfoType complexAIFPrincipalInfoType = objectFactoryAIF
+					.createComplexAIFPrincipalInfoType();
+
+			ComplexAssumptionsType complexAssumptionsType = objectFactoryAIF
+					.createComplexAssumptionsType();
+			
+			ComplexIndividualExposureType complexIndividualExposureType = objectFactoryAIF
+					.createComplexIndividualExposureType();
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFCompleteDescription>
+
+			
+			// <IndividualExposureType>
+//			complexIndividualExposureType
+//					.setAssetTypeExposures(complexAssetTypeExposuresType);
+//			complexIndividualExposureType
+//					.setAssetTypeTurnovers(complexAssetTypeTurnoversType);
+//			complexIndividualExposureType
+//					.setCompaniesDominantInfluence(complexCompaniesDominantInfluenceType);
+//			complexIndividualExposureType
+//					.setCurrencyExposures(complexCurrencyExposuresType);
+//
+//			
+//			complexAIFIndividualInfoType
+//					.setIndividualExposure(complexIndividualExposureType);
+//			complexAIFIndividualInfoType.setRiskProfile(complexRiskProfileType);
+//			complexAIFIndividualInfoType.setStressTests(complexStressTestsType);
+//
+//			complexAIFLeverageInfoType
+//					.setAIFLeverageArticle242(complexAIFLeverageArticle242Type);
+//			complexAIFLeverageInfoType
+//					.setAIFLeverageArticle244(complexAIFLeverageArticle244Type);
+//
+//			complexAIFPrincipalInfoType
+//					.setAIFDescription(complexAIFDEscriptionType);
+//			complexAIFPrincipalInfoType
+//					.setAIFIdentification(complexAIFIdentifierType);
+//			complexAIFPrincipalInfoType
+//					.setAUMGeographicalFocus(complexAUMGeographicalFocusType);
+//			complexAIFPrincipalInfoType
+//					.setMainInstrumentsTraded(complexMainInstrumentsTradedType);
+//			complexAIFPrincipalInfoType
+//					.setMostImportantConcentration(complexMostImportantConcentrationType);
+//			complexAIFPrincipalInfoType
+//					.setNAVGeographicalFocus(complexNAVGeographicalFocusType);
+//			complexAIFPrincipalInfoType
+//					.setPrincipalExposures(complexPrincipalExposuresType);
+//			complexAIFPrincipalInfoType.setShareClassFlag(true);
+//			complexAIFPrincipalInfoType
+//					.setShareClassIdentification(complexShareClassIdentificationType);
+
+			complexAIFCompleteDescriptionType
+					.setAIFIndividualInfo(complexAIFIndividualInfoType);
+			complexAIFCompleteDescriptionType
+					.setAIFLeverageInfo(complexAIFLeverageInfoType);
+			complexAIFCompleteDescriptionType
+					.setAIFPrincipalInfo(complexAIFPrincipalInfoType);
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFRecordInfo>
+
+			complexAIFRecordInfoType
+					.setAIFCompleteDescription(complexAIFCompleteDescriptionType);
+
+			// <AIFContentType>
+			String aifContentType = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFContentType"))
+					aifContentType = reportData.getReportDataText();
+			}
+			complexAIFRecordInfoType.setAIFContentType(aifContentType);
+
+			// <AIFDomicile>
+			String aifDomicile = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFDomicile"))
+					aifDomicile = reportData.getReportDataText();
+			}
+			complexAIFRecordInfoType.setAIFDomicile(aifDomicile);
+
+			// <AIFEEAFlag>
+			String aifEEAFlag = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFEEAFlag"))
+					aifEEAFlag = reportData.getReportDataText();
+			}
+			complexAIFRecordInfoType.setAIFEEAFlag(Boolean
+					.parseBoolean(aifEEAFlag));
+
+			// <AIFMNationalCode>
+			String aifmNationalCode = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMNationalCode")
+						&& reportData.getReportField().getReportFieldParent()
+								.getReportFieldName().equals("AIFRecordInfo"))
+					aifmNationalCode = reportData.getReportDataText();
+			}
+			complexAIFRecordInfoType.setAIFMNationalCode(aifmNationalCode);
+
+			// <AIFName>
+			String aifName = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFName")
+						&& reportData.getReportField().getReportFieldParent()
+								.getReportFieldName().equals("AIFRecordInfo"))
+					aifName = reportData.getReportDataText();
+			}
+			complexAIFRecordInfoType.setAIFName(aifName);
+
+			// <AIFNationalCode>
+			String aifNationalCode = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFNationalCode")
+						&& reportData.getReportField().getReportFieldParent()
+								.getReportFieldName().equals("AIFRecordInfo"))
+					aifNationalCode = reportData.getReportDataText();
+			}
+			complexAIFRecordInfoType.setAIFNationalCode(aifNationalCode);
+
+			// <AIFNoReportingFlag>
+			String aifNoReportingFlag = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFNoReportingFlag"))
+					aifNoReportingFlag = reportData.getReportDataText();
+			}
+			complexAIFRecordInfoType.setAIFNoReportingFlag(Boolean
+					.parseBoolean(aifNoReportingFlag));
+
+			// <AIFReportingCode>
+			BigInteger iafReportingCode = new BigInteger("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFReportingCode"))
+					iafReportingCode = new BigInteger(
+							reportData.getReportDataText());
+			}
+			complexAIFRecordInfoType.setAIFReportingCode(iafReportingCode);
+
+			// <AIFReportingObligationChangeContentsCode>
+			BigInteger aifReportingObligationChangeContentsCode = new BigInteger(
+					"0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFReportingObligationChangeQuarter"))
+					aifReportingObligationChangeContentsCode = new BigInteger(
+							reportData.getReportDataText());
+			}
+			complexAIFRecordInfoType
+					.setAIFReportingObligationChangeContentsCode(aifReportingObligationChangeContentsCode);
+
+			// <AIFMReportingObligationChangeQuarter>
+			String reportingObligationChangeQuarter = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFReportingObligationChangeQuarter"))
+					reportingObligationChangeQuarter = reportData
+							.getReportDataText();
+			}
+			ReportingObligationChangeQuarterType reportingObligationChangeQuarterType = ReportingObligationChangeQuarterType
+					.fromValue(reportingObligationChangeQuarter);
+			complexAIFRecordInfoType
+					.setAIFReportingObligationChangeQuarter(reportingObligationChangeQuarterType);
+
+			// <AIFReportingObligationChangeFrequencyCode>
+			String reportingObligationChangeFrequency = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFReportingObligationChangeFrequencyCode"))
+					reportingObligationChangeFrequency = reportData
+							.getReportDataText();
+			}
+			ReportingObligationChangeFrequencyCodeType reportingObligationChangeFrequencyCodeType = ReportingObligationChangeFrequencyCodeType
+					.fromValue(reportingObligationChangeFrequency);
+			complexAIFRecordInfoType
+					.setAIFReportingObligationChangeFrequencyCode(reportingObligationChangeFrequencyCodeType);
+
+			// <Assumptions>
+			List<ComplexAssumptionType> complexAssumptionTypeList = new ArrayList<ComplexAssumptionType>(
+					complexAssumptionsType.getAssumption());
+			int assumptionCount = 0;
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AssumptionDescription"))
+					assumptionCount++;
+			}
+			for (int i = 1; i < assumptionCount + 1; i++) {
+				// <Assumption>
+				for (ReportData reportData : reportDatas) {
+					// <QuestionNumber>
+					BigInteger questionNumber = new BigInteger("0");
+					if (reportData.getReportField().getReportFieldName()
+							.equals("QuestionNumber")
+							&& Integer
+									.parseInt(reportData.getReportDataBlock()) == i) {
+						questionNumber = new BigInteger(
+								reportData.getReportDataText());
+					}
+					// <AssumptionDescription>
+					String assumptionDescription = "";
+					if (reportData.getReportField().getReportFieldName()
+							.equals("AssumptionDescription")
+							&& Integer
+									.parseInt(reportData.getReportDataBlock()) == i) {
+						questionNumber = new BigInteger(
+								reportData.getReportDataText());
+					}
+					ComplexAssumptionType complexAssumptionType = objectFactoryAIF
+							.createComplexAssumptionType();
+					complexAssumptionType
+							.setAssumptionDescription(assumptionDescription);
+					complexAssumptionType.setQuestionNumber(questionNumber);
+					complexAssumptionTypeList.add(complexAssumptionType);
+				}
+			}
+			complexAIFRecordInfoType.setAssumptions(complexAssumptionsType);
+
+			// <FilingType>
+			String filingType = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("FilingType"))
+					filingType = reportData.getReportDataText();
+			}
+			FilingTypeType filingTypeType = FilingTypeType.valueOf(filingType);
+			complexAIFRecordInfoType.setFilingType(filingTypeType);
+
+			// <InceptionDate>
+			String inceptionDateString = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("InceptionDate"))
+					inceptionDateString = reportData.getReportDataText();
+			}
+			Date inceptionDate = formatYear.parse(inceptionDateString);
+			XMLGregorianCalendar inceptionDateXML = XMLGregorianCalendarConverter
+					.asXMLGregorianCalendarDate(inceptionDate);
+			complexAIFRecordInfoType.setInceptionDate(inceptionDateXML);
+
+			// <LastReportingFlag>
+			String lastReportingFlag = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("LastReportingFlag"))
+					lastReportingFlag = reportData.getReportDataText();
+			}
+			complexAIFRecordInfoType.setLastReportingFlag(Boolean
+					.parseBoolean(lastReportingFlag));
+
+			// <ReportingPeriodEndDate>
+			String reportingPeriodEndDateString = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("ReportingPeriodEndDate"))
+					reportingPeriodEndDateString = reportData
+							.getReportDataText();
+			}
+			Date reportingPeriodEndDate = formatYear
+					.parse(reportingPeriodEndDateString);
+			XMLGregorianCalendar reportingPeriodEndDateXML = XMLGregorianCalendarConverter
+					.asXMLGregorianCalendarDate(reportingPeriodEndDate);
+			complexAIFRecordInfoType
+					.setReportingPeriodEndDate(reportingPeriodEndDateXML);
+
+			// <ReportingPeriodStartDate>
+			String reportingPeriodStartDateString = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("ReportingPeriodStartDate"))
+					reportingPeriodStartDateString = reportData
+							.getReportDataText();
+			}
+			Date reportingPeriodStartDate = formatYear
+					.parse(reportingPeriodStartDateString);
+			XMLGregorianCalendar reportingPeriodStartDateXML = XMLGregorianCalendarConverter
+					.asXMLGregorianCalendarDate(reportingPeriodStartDate);
+			complexAIFRecordInfoType
+					.setReportingPeriodStartDate(reportingPeriodStartDateXML);
+
+			// <ReportingPeriodType>
+			String reportingPeriodType = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("ReportingPeriodType"))
+					reportingPeriodType = reportData.getReportDataText();
+			}
+			ReportingPeriodTypeType reportingPeriodTypeType = ReportingPeriodTypeType
+					.fromValue(reportingPeriodType);
+			complexAIFRecordInfoType
+					.setReportingPeriodType(reportingPeriodTypeType);
+
+			// <ReportingPeriodYear>
+			String reportingPeriodYearString = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("ReportingPeriodYear"))
+					reportingPeriodYearString = reportData.getReportDataText();
+			}
+			Date reportingPeriodYear = formatYear
+					.parse(reportingPeriodYearString);
+			XMLGregorianCalendar reportingPeriodYearXML = XMLGregorianCalendarConverter
+					.asXMLGregorianCalendarDate(reportingPeriodYear);
+			complexAIFRecordInfoType
+					.setReportingPeriodYear(reportingPeriodYearXML);
+
+			// /////////////////////////////////////////////////////////////////
+			// <CancellationAIFMRecordInfo>
+
+			// <CancelledAIFMNationalCode>
+			String cancelledAIFMNationalCode = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("CancelledAIFMNationalCode"))
+					cancelledAIFMNationalCode = reportData.getReportDataText();
+			}
+			complexCancellationAIFRecordInfoType
+					.setCancelledAIFMNationalCode(cancelledAIFMNationalCode);
+
+			// <CancelledAIFNationalCode>
+			String cancelledAIFNationalCode = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("CancelledAIFNationalCode"))
+					cancelledAIFNationalCode = reportData.getReportDataText();
+			}
+			complexCancellationAIFRecordInfoType
+					.setCancelledAIFNationalCode(cancelledAIFNationalCode);
+
+			// <CancelledRecordFlag>
+			String cancelledRecordFlag = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("CancelledRecordFlag"))
+					cancelledRecordFlag = reportData.getReportDataText();
+			}
+			CancelledRecordFlagType cancelledRecordFlagXML = CancelledRecordFlagType
+					.fromValue(cancelledRecordFlag);
+			complexCancellationAIFRecordInfoType
+					.setCancelledRecordFlag(cancelledRecordFlagXML);
+
+			// <CancelledReportingPeriodYear>
+			String cancelledReportingPeriodYearString = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("CancelledReportingPeriodYear"))
+					cancelledReportingPeriodYearString = reportData
+							.getReportDataText();
+			}
+			Date cancelledReportingPeriodYear = formatYear
+					.parse(cancelledReportingPeriodYearString);
+			XMLGregorianCalendar cancelledReportingPeriodYearXML = XMLGregorianCalendarConverter
+					.asXMLGregorianCalendarDate(cancelledReportingPeriodYear);
+			complexCancellationAIFRecordInfoType
+					.setCancelledReportingPeriodYear(cancelledReportingPeriodYearXML);
+
+			// <CancelledReportingPeriodType>
+			String cancelledReportingPeriodType = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("CancelledReportingPeriodType"))
+					cancelledReportingPeriodType = reportData
+							.getReportDataText();
+			}
+			ReportingPeriodTypeType cancelledReportingPeriodTypeType = ReportingPeriodTypeType
+					.fromValue(cancelledReportingPeriodType);
+			complexCancellationAIFRecordInfoType
+					.setCancelledReportingPeriodType(cancelledReportingPeriodTypeType);
+
+			// create list of root elements: AIFMRecordInfo and
+			// CancellationAIFMRecordInfo
+			List<Object> listAIFRepoting = aifReportingInfo
+					.getCancellationAIFRecordInfoOrAIFRecordInfo();
+			listAIFRepoting.add(complexAIFRecordInfoType);
+			listAIFRepoting.add(complexCancellationAIFRecordInfoType);
+
+			// GENERATING XML WITH JAXB
+
+			// http://www.tutorialspoint.com/java/xml/javax_xml_bind_jaxbelement.htm
+
+			// create JAXBElement of type AIFMReportingInfo
+			JAXBElement<AIFReportingInfo> jaxbElement = new JAXBElement(
+					new QName(AIFReportingInfo.class.getSimpleName()),
+					AIFReportingInfo.class, aifReportingInfo);
+
+			// create JAXBContext which will be used to update writer
+			JAXBContext context = JAXBContext
+					.newInstance(AIFMReportingInfo.class);
+
+			// Create a String writer object which will be
+			// used to write jaxbElment XML to string
+			// StringWriter writer = new StringWriter();
+			// marshall or convert jaxbElement
+			// context.createMarshaller().marshal(jaxbElement, writer);
+			// print XML string
+			// System.out.println(writer.toString());
+
+			// http://blog.sanaulla.info/2010/08/29/using-jaxb-to-generate-xml-from-the-java-xsd/
+			// print nice in XML
+			Marshaller marshaller = context.createMarshaller();
+			marshaller.setProperty("jaxb.formatted.output", Boolean.TRUE);
+			marshaller.marshal(jaxbElement, System.out);
+			StringWriter st = new StringWriter();
+			marshaller.marshal(jaxbElement, st);
+
+			return st.toString();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			ReportingErrorManager.createReportError(applicationContext,
+					"CREATION", reportExecution, "FAIL",
+					"Fail when parsing XML");
+		}
 
 		return null;
 	}
@@ -107,11 +589,12 @@ public class GeneratorXML {
 
 		try {
 
-			DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
-			DateFormat formatYear = new SimpleDateFormat("yyyy");
+			DateFormat formatDate = new SimpleDateFormat(stringDateFormat);
+			DateFormat formatYear = new SimpleDateFormat(stringYearFormat);
 			DateFormat formatDateTime = new SimpleDateFormat(
-					"yyyy-MM-dd hh:mm:ss");
+					stringDateTimeFormat);
 
+			// ObjectFactory to make every class to AIFM report
 			ObjectFactoryAIFM objectFactoryAIFM = new ObjectFactoryAIFM();
 
 			AIFMReportingInfo aifmReportingInfo = objectFactoryAIFM
@@ -122,78 +605,31 @@ public class GeneratorXML {
 
 			ComplexAIFMRecordInfoType complexAIFMRecordInfoType = objectFactoryAIFM
 					.createComplexAIFMRecordInfoType();
+
 			ComplexAIFMCompleteDescriptionType complexAIFMCompleteDescriptionType = objectFactoryAIFM
 					.createComplexAIFMCompleteDescriptionType();
 
 			ComplexBaseCurrencyDescriptionType complexBaseCurrencyDescriptionType = objectFactoryAIFM
 					.createComplexBaseCurrencyDescriptionType();
+
 			ComplexAIFMIdentifierType complexAIFMIdentifierType = objectFactoryAIFM
 					.createComplexAIFMIdentifierType();
+
+			ComplexAIFMNationalIdentifierType complexAIFMNationalIdentifierType = objectFactoryAIFM
+					.createComplexAIFMNationalIdentifierType();
+
 			ComplexAIFMPrincipalInstrumentsType complexAIFMPrincipalInstrumentsType = objectFactoryAIFM
 					.createComplexAIFMPrincipalInstrumentsType();
+
 			ComplexAIFMPrincipalMarketsType complexAIFMPrincipalMarketsType = objectFactoryAIFM
 					.createComplexAIFMPrincipalMarketsType();
 
 			ComplexAssumptionsType complexAssumptionsType = objectFactoryAIFM
 					.createComplexAssumptionsType();
 
-			BigInteger AUMAmountInEuro = new BigInteger("0");
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("AUMAmountInEuro"))
-					AUMAmountInEuro = new BigInteger(
-							reportData.getReportDataText());
-			}
-
-			BigInteger AUMAmountInBaseCurrency = new BigInteger("0");
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("AUMAmountInBaseCurrency"))
-					AUMAmountInBaseCurrency = new BigInteger(
-							reportData.getReportDataText());
-			}
-
-			complexBaseCurrencyDescriptionType
-					.setAUMAmountInBaseCurrency(AUMAmountInBaseCurrency);
-
-			BigInteger aifmReportingCode = new BigInteger("0");
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("AIFMReportingCode"))
-					aifmReportingCode = new BigInteger(
-							reportData.getReportDataText());
-			}
-
-			BigInteger aifmReportingObligationChangeContentsCode = new BigInteger(
-					"0");
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("AIFMReportingObligationChangeContentsCode"))
-					aifmReportingObligationChangeContentsCode = new BigInteger(
-							reportData.getReportDataText());
-			}
-
-			String reportingObligationChangeQuarter = "";
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("AIFMReportingObligationChangeQuarter"))
-					reportingObligationChangeQuarter = reportData
-							.getReportDataText();
-			}
-			ReportingObligationChangeQuarterType reportingObligationChangeQuarterType = ReportingObligationChangeQuarterType
-					.fromValue(reportingObligationChangeQuarter);
-
-			String reportingObligationChangeFrequency = "";
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("AIFMReportingObligationChangeFrequencyCode"))
-					reportingObligationChangeFrequency = reportData
-							.getReportDataText();
-			}
-			ReportingObligationChangeFrequencyCodeType reportingObligationChangeFrequencyCode = ReportingObligationChangeFrequencyCodeType
-					.fromValue(reportingObligationChangeFrequency);
-
+			// /////////////////////////////////////////////////////////////////
 			// <AIFMPrincipalMarkets>
+
 			List<ComplexFivePrincipalMarketType> complexFivePrincipalMarketTypeList = complexAIFMPrincipalMarketsType
 					.getAIFMFivePrincipalMarket();
 
@@ -205,6 +641,8 @@ public class GeneratorXML {
 			Boolean rankingFlag = false;
 			for (int i = 1; i < 6; i++) {
 				for (ReportData reportData : reportDatas) {
+
+					// <AIFMPrincipalMarket><Ranking>
 					if (reportData.getReportField().getReportFieldName()
 							.equals("Ranking")
 							&& reportData.getReportField()
@@ -217,6 +655,7 @@ public class GeneratorXML {
 						rankingFlag = true;
 					}
 
+					// <AIFMPrincipalMarket><AggregatedValueAmount>
 					if (reportData.getReportField().getReportFieldName()
 							.equals("AggregatedValueAmount")
 							&& reportData.getReportField()
@@ -228,12 +667,14 @@ public class GeneratorXML {
 						aggregatedValueAmount = new BigInteger(
 								reportData.getReportDataText());
 
+					// <AIFMPrincipalMarket><MarketCodeType>
 					if (reportData.getReportField().getReportFieldName()
 							.equals("MarketCodeType")
 							&& Integer
 									.parseInt(reportData.getReportDataBlock()) == i)
 						marketCodeType = reportData.getReportDataText();
 
+					// <AIFMPrincipalMarket><MarketCode>
 					if (reportData.getReportField().getReportFieldName()
 							.equals("MarketCode")
 							&& Integer
@@ -266,9 +707,9 @@ public class GeneratorXML {
 
 			}
 
+			// /////////////////////////////////////////////////////////////////
 			// <AIFMPrincipalInstruments>
 
-			// complexAIFMPrincipalInstrumentsType
 			List<ComplexPrincipalInstrumentType> complexPrincipalInstrumentTypeList = complexAIFMPrincipalInstrumentsType
 					.getAIFMPrincipalInstrument();
 
@@ -278,6 +719,8 @@ public class GeneratorXML {
 			Boolean rankingInstrumentFlag = false;
 			for (int i = 1; i < 6; i++) {
 				for (ReportData reportData : reportDatas) {
+
+					// <AIFMPrincipalInstrument><Ranking>
 					if (reportData.getReportField().getReportFieldName()
 							.equals("Ranking")
 							&& reportData.getReportField()
@@ -291,6 +734,7 @@ public class GeneratorXML {
 						rankingInstrumentFlag = true;
 					}
 
+					// <AIFMPrincipalInstrument><AggregatedValueAmount>
 					if (reportData.getReportField().getReportFieldName()
 							.equals("AggregatedValueAmount")
 							&& reportData.getReportField()
@@ -302,6 +746,7 @@ public class GeneratorXML {
 						aggregatedValueAmountInstrument = new BigInteger(
 								reportData.getReportDataText());
 
+					// <AIFMPrincipalInstrument><SubAssetType>
 					if (reportData.getReportField().getReportFieldName()
 							.equals("SubAssetType")
 							&& Integer
@@ -333,7 +778,118 @@ public class GeneratorXML {
 
 			}
 
+			// /////////////////////////////////////////////////////////////////
 			// <AIFMCompleteDescription>
+
+			// <AUMAmountInBaseCurrency>
+			BigInteger AUMAmountInBaseCurrency = new BigInteger("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AUMAmountInBaseCurrency"))
+					AUMAmountInBaseCurrency = new BigInteger(
+							reportData.getReportDataText());
+			}
+			complexBaseCurrencyDescriptionType
+					.setAUMAmountInBaseCurrency(AUMAmountInBaseCurrency);
+
+			// <BaseCurrency>
+			String baseCurrency = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("BaseCurrency"))
+					baseCurrency = reportData.getReportDataText();
+			}
+			complexBaseCurrencyDescriptionType.setBaseCurrency(baseCurrency);
+
+			// <FXEUROtherReferenceRateDescription>
+			String fxEUROtherReferenceRateDescription = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("FXEUROtherReferenceRateDescription"))
+					fxEUROtherReferenceRateDescription = reportData
+							.getReportDataText();
+			}
+			complexBaseCurrencyDescriptionType
+					.setFXEUROtherReferenceRateDescription(fxEUROtherReferenceRateDescription);
+
+			// <FXEURRate>
+			BigDecimal fxEURRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("FXEURRate"))
+					fxEURRate = new BigDecimal(reportData.getReportDataText());
+			}
+			complexBaseCurrencyDescriptionType.setFXEURRate(fxEURRate);
+
+			// <FXEURReferenceRateType>
+			String fxEURReferenceRateType = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("FXEURReferenceRateType"))
+					fxEUROtherReferenceRateDescription = reportData
+							.getReportDataText();
+			}
+			FXEURReferenceRateTypeType fxEURReferenceRateTypeType = FXEURReferenceRateTypeType
+					.fromValue(fxEURReferenceRateType);
+			complexBaseCurrencyDescriptionType
+					.setFXEURReferenceRateType(fxEURReferenceRateTypeType);
+
+			// <OLD_AIFMNationalCode>
+			String oldAIFMNationalCode = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMNationalCode")
+						&& reportData.getReportField().getReportFieldParent()
+								.getReportFieldName().equals("AIFMIdentifier"))
+					oldAIFMNationalCode = reportData.getReportDataText();
+			}
+			complexAIFMNationalIdentifierType
+					.setAIFMNationalCode(oldAIFMNationalCode);
+
+			// <OLD_ReportingMemberState>
+			String oldReportingMemberState = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("ReportingMemberState")
+						&& reportData.getReportField().getReportFieldParent()
+								.getReportFieldName().equals("AIFMIdentifier"))
+					oldReportingMemberState = reportData.getReportDataText();
+			}
+			complexAIFMNationalIdentifierType
+					.setReportingMemberState(oldReportingMemberState);
+
+			// <AIFMIdentifierBIC>
+			String aifmIdentifierBIC = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMIdentifierBIC"))
+					aifmIdentifierBIC = reportData.getReportDataText();
+			}
+			complexAIFMIdentifierType.setAIFMIdentifierBIC(aifmIdentifierBIC);
+
+			// <AIFMIdentifierLEI>
+			String aifmIdentifierLEI = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMIdentifierLEI"))
+					aifmIdentifierLEI = reportData.getReportDataText();
+			}
+			complexAIFMIdentifierType.setAIFMIdentifierLEI(aifmIdentifierLEI);
+
+			// <AUMAmountInEuro>
+			BigInteger AUMAmountInEuro = new BigInteger("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AUMAmountInEuro"))
+					AUMAmountInEuro = new BigInteger(
+							reportData.getReportDataText());
+			}
+			complexAIFMCompleteDescriptionType
+					.setAUMAmountInEuro(AUMAmountInEuro);
+
+			complexAIFMIdentifierType
+					.setOldAIFMIdentifierNCA(complexAIFMNationalIdentifierType);
+
 			complexAIFMCompleteDescriptionType
 					.setAIFMIdentifier(complexAIFMIdentifierType);
 			complexAIFMCompleteDescriptionType
@@ -342,9 +898,170 @@ public class GeneratorXML {
 					.setAIFMPrincipalInstruments(complexAIFMPrincipalInstrumentsType);
 			complexAIFMCompleteDescriptionType
 					.setAIFMPrincipalMarkets(complexAIFMPrincipalMarketsType);
-			complexAIFMCompleteDescriptionType
-					.setAUMAmountInEuro(AUMAmountInEuro);
 
+			// /////////////////////////////////////////////////////////////////
+			// <AIFMRecordInfo>
+
+			complexAIFMRecordInfoType
+					.setAIFMCompleteDescription(complexAIFMCompleteDescriptionType);
+
+			// <AIFMContentType>
+			String aifmContentType = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMContentType"))
+					aifmContentType = reportData.getReportDataText();
+			}
+			complexAIFMRecordInfoType.setAIFMContentType(aifmContentType);
+
+			// <AIFMEEAFlag>
+			String aifmEEAFlag = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMEEAFlag"))
+					aifmEEAFlag = reportData.getReportDataText();
+			}
+			complexAIFMRecordInfoType.setAIFMEEAFlag(Boolean
+					.parseBoolean(aifmEEAFlag));
+
+			// <AIFMJurisdiction>
+			String aifmJurisdiction = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMJurisdiction"))
+					aifmJurisdiction = reportData.getReportDataText();
+			}
+			complexAIFMRecordInfoType.setAIFMJurisdiction(aifmJurisdiction);
+
+			// <AIFMName>
+			String aifmName = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMName"))
+					aifmName = reportData.getReportDataText();
+			}
+			complexAIFMRecordInfoType.setAIFMName(aifmName);
+
+			// <AIFMNationalCode>
+			String aifmNationalCode = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMNationalCode")
+						&& reportData.getReportField().getReportFieldParent()
+								.getReportFieldName().equals("AIFMRecordInfo"))
+					aifmNationalCode = reportData.getReportDataText();
+			}
+			complexAIFMRecordInfoType.setAIFMNationalCode(aifmNationalCode);
+
+			// <AIFMNoReportingFlag>
+			String aifmNoReportingFlag = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMNoReportingFlag"))
+					aifmNoReportingFlag = reportData.getReportDataText();
+			}
+			complexAIFMRecordInfoType.setAIFMNoReportingFlag(Boolean
+					.parseBoolean(aifmNoReportingFlag));
+
+			// <LastReportingFlag>
+			String lastReportingFlag = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("LastReportingFlag"))
+					lastReportingFlag = reportData.getReportDataText();
+			}
+			complexAIFMRecordInfoType.setLastReportingFlag(Boolean
+					.parseBoolean(lastReportingFlag));
+
+			// <AIFMReportingCode>
+			BigInteger aifmReportingCode = new BigInteger("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMReportingCode"))
+					aifmReportingCode = new BigInteger(
+							reportData.getReportDataText());
+			}
+			complexAIFMRecordInfoType.setAIFMReportingCode(aifmReportingCode);
+
+			// <AIFMReportingObligationChangeContentsCode>
+			BigInteger aifmReportingObligationChangeContentsCode = new BigInteger(
+					"0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMReportingObligationChangeContentsCode"))
+					aifmReportingObligationChangeContentsCode = new BigInteger(
+							reportData.getReportDataText());
+			}
+			complexAIFMRecordInfoType
+					.setAIFMReportingObligationChangeContentsCode(aifmReportingObligationChangeContentsCode);
+
+			// <AIFMReportingObligationChangeQuarter>
+			String reportingObligationChangeQuarter = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMReportingObligationChangeQuarter"))
+					reportingObligationChangeQuarter = reportData
+							.getReportDataText();
+			}
+			ReportingObligationChangeQuarterType reportingObligationChangeQuarterType = ReportingObligationChangeQuarterType
+					.fromValue(reportingObligationChangeQuarter);
+			complexAIFMRecordInfoType
+					.setAIFMReportingObligationChangeQuarter(reportingObligationChangeQuarterType);
+
+			// <AIFMReportingObligationChangeFrequencyCode>
+			String reportingObligationChangeFrequency = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMReportingObligationChangeFrequencyCode"))
+					reportingObligationChangeFrequency = reportData
+							.getReportDataText();
+			}
+			ReportingObligationChangeFrequencyCodeType reportingObligationChangeFrequencyCode = ReportingObligationChangeFrequencyCodeType
+					.fromValue(reportingObligationChangeFrequency);
+			complexAIFMRecordInfoType
+					.setAIFMReportingObligationChangeFrequencyCode(reportingObligationChangeFrequencyCode);
+
+			// <Assumptions>
+			List<ComplexAssumptionType> complexAssumptionTypeList = new ArrayList<ComplexAssumptionType>(
+					complexAssumptionsType.getAssumption());
+			int assumptionCount = 0;
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AssumptionDescription"))
+					assumptionCount++;
+			}
+			for (int i = 1; i < assumptionCount + 1; i++) {
+				// <Assumption>
+				for (ReportData reportData : reportDatas) {
+					// <QuestionNumber>
+					BigInteger questionNumber = new BigInteger("0");
+					if (reportData.getReportField().getReportFieldName()
+							.equals("QuestionNumber")
+							&& Integer
+									.parseInt(reportData.getReportDataBlock()) == i) {
+						questionNumber = new BigInteger(
+								reportData.getReportDataText());
+					}
+					// <AssumptionDescription>
+					String assumptionDescription = "";
+					if (reportData.getReportField().getReportFieldName()
+							.equals("AssumptionDescription")
+							&& Integer
+									.parseInt(reportData.getReportDataBlock()) == i) {
+						questionNumber = new BigInteger(
+								reportData.getReportDataText());
+					}
+					ComplexAssumptionType complexAssumptionType = objectFactoryAIFM
+							.createComplexAssumptionType();
+					complexAssumptionType
+							.setAssumptionDescription(assumptionDescription);
+					complexAssumptionType.setQuestionNumber(questionNumber);
+					complexAssumptionTypeList.add(complexAssumptionType);
+				}
+			}
+			complexAIFMRecordInfoType.setAssumptions(complexAssumptionsType);
+
+			// <FilingType>
 			String filingType = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -352,7 +1069,9 @@ public class GeneratorXML {
 					filingType = reportData.getReportDataText();
 			}
 			FilingTypeType filingTypeType = FilingTypeType.valueOf(filingType);
+			complexAIFMRecordInfoType.setFilingType(filingTypeType);
 
+			// <ReportingPeriodEndDate>
 			String reportingPerdiodEndDateString = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -362,10 +1081,12 @@ public class GeneratorXML {
 			}
 			Date reportingPerdiodEndDate = formatDate
 					.parse(reportingPerdiodEndDateString);
-
 			XMLGregorianCalendar reportingPerdiodEndDateXML = XMLGregorianCalendarConverter
 					.asXMLGregorianCalendarDate(reportingPerdiodEndDate);
+			complexAIFMRecordInfoType
+					.setReportingPeriodEndDate(reportingPerdiodEndDateXML);
 
+			// <ReportingPeriodStartDate>
 			String reportingPeriodStartDateString = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -375,22 +1096,12 @@ public class GeneratorXML {
 			}
 			Date reportingPeriodStartDate = formatDate
 					.parse(reportingPeriodStartDateString);
-
 			XMLGregorianCalendar reportingPeriodStartDateXML = XMLGregorianCalendarConverter
 					.asXMLGregorianCalendarDate(reportingPeriodStartDate);
+			complexAIFMRecordInfoType
+					.setReportingPeriodStartDate(reportingPeriodStartDateXML);
 
-			String reportingPeriodYearString = "";
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("ReportingPeriodYear"))
-					reportingPeriodYearString = reportData.getReportDataText();
-			}
-			Date reportingPeriodYear = formatYear
-					.parse(reportingPeriodYearString);
-
-			XMLGregorianCalendar reportingPeriodYearXML = XMLGregorianCalendarConverter
-					.asXMLGregorianCalendarDate(reportingPeriodYear);
-
+			// <ReportingPeriodType>
 			String reportingPeriodType = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -399,66 +1110,27 @@ public class GeneratorXML {
 			}
 			ReportingPeriodTypeType reportingPeriodTypeType = ReportingPeriodTypeType
 					.fromValue(reportingPeriodType);
-
-			// <AIFMRecordInfo>
-			complexAIFMRecordInfoType
-					.setAIFMCompleteDescription(complexAIFMCompleteDescriptionType);
-
-			String aifmContentType = "";
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("AIFMContentType"))
-					aifmContentType = reportData.getReportDataText();
-			}
-			complexAIFMRecordInfoType.setAIFMContentType(aifmContentType);
-
-			complexAIFMRecordInfoType.setAIFMEEAFlag(false);
-
-			String aifmJurisdiction = "";
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("AIFMJurisdiction"))
-					aifmJurisdiction = reportData.getReportDataText();
-			}
-			complexAIFMRecordInfoType.setAIFMJurisdiction(aifmJurisdiction);
-
-			String aifmName = "";
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("AIFMName"))
-					aifmName = reportData.getReportDataText();
-			}
-			complexAIFMRecordInfoType.setAIFMName(aifmName);
-
-			String aifmNationalCode = "";
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("AIFMNationalCode"))
-					aifmNationalCode = reportData.getReportDataText();
-			}
-			complexAIFMRecordInfoType.setAIFMNationalCode(aifmNationalCode);
-
-			complexAIFMRecordInfoType.setAIFMNoReportingFlag(false);
-			complexAIFMRecordInfoType.setAIFMReportingCode(aifmReportingCode);
-			complexAIFMRecordInfoType
-					.setAIFMReportingObligationChangeContentsCode(aifmReportingObligationChangeContentsCode);
-			complexAIFMRecordInfoType
-					.setAIFMReportingObligationChangeQuarter(reportingObligationChangeQuarterType);
-			complexAIFMRecordInfoType
-					.setAIFMReportingObligationChangeFrequencyCode(reportingObligationChangeFrequencyCode);
-			complexAIFMRecordInfoType.setAssumptions(complexAssumptionsType);
-			complexAIFMRecordInfoType.setFilingType(filingTypeType);
-			complexAIFMRecordInfoType.setLastReportingFlag(false);
-			complexAIFMRecordInfoType
-					.setReportingPeriodEndDate(reportingPerdiodEndDateXML);
-			complexAIFMRecordInfoType
-					.setReportingPeriodStartDate(reportingPeriodStartDateXML);
 			complexAIFMRecordInfoType
 					.setReportingPeriodType(reportingPeriodTypeType);
+
+			// <ReportingPeriodYear>
+			String reportingPeriodYearString = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("ReportingPeriodYear"))
+					reportingPeriodYearString = reportData.getReportDataText();
+			}
+			Date reportingPeriodYear = formatYear
+					.parse(reportingPeriodYearString);
+			XMLGregorianCalendar reportingPeriodYearXML = XMLGregorianCalendarConverter
+					.asXMLGregorianCalendarDate(reportingPeriodYear);
 			complexAIFMRecordInfoType
 					.setReportingPeriodYear(reportingPeriodYearXML);
 
-			// <AifmReportingInfo> values
+			// /////////////////////////////////////////////////////////////////
+			// <AifmReportingInfo>
+
+			// <CreationDateAndTime>
 			String creationDateAndTimeString = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -467,21 +1139,23 @@ public class GeneratorXML {
 			}
 			Date creationDateAndTime = formatDateTime
 					.parse(creationDateAndTimeString);
-
 			XMLGregorianCalendar creationDateAndTimeXML = XMLGregorianCalendarConverter
 					.asXMLGregorianCalendarDateTime(creationDateAndTime);
 			aifmReportingInfo.setCreationDateAndTime(creationDateAndTimeXML);
 
+			// <ReportingMemberState>
 			String reportingMemberState = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
 						.equals("ReportingMemberState")
 						&& reportData.getReportField().getReportFieldParent()
-								.getReportFieldName().equals("AIFMReportingInfo"))
+								.getReportFieldName()
+								.equals("AIFMReportingInfo"))
 					reportingMemberState = reportData.getReportDataText();
 			}
 			aifmReportingInfo.setReportingMemberState(reportingMemberState);
-			
+
+			// <Version>
 			String version = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -490,20 +1164,32 @@ public class GeneratorXML {
 			}
 			aifmReportingInfo.setVersion(version);
 
+			// /////////////////////////////////////////////////////////////////
 			// <CancellationAIFMRecordInfo>
-			String cancelledReportingPerioYearString = "";
+
+			// <CancelledAIFMNationalCode>
+			String cancelledAIFMNationalCode = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
-						.equals("CancelledReportingPeriodYear"))
-					cancelledReportingPerioYearString = reportData
-							.getReportDataText();
+						.equals("CancelledAIFMNationalCode"))
+					cancelledAIFMNationalCode = reportData.getReportDataText();
 			}
-			Date cancelledReportingPerioYear = formatYear
-					.parse(cancelledReportingPerioYearString);
+			complexCancellationAIFMRecordInfoType
+					.setCancelledAIFMNationalCode(cancelledAIFMNationalCode);
 
-			XMLGregorianCalendar cancelledReportingPerioYearXML = XMLGregorianCalendarConverter
-					.asXMLGregorianCalendarDate(cancelledReportingPerioYear);
+			// <CancelledRecordFlag>
+			String cancelledRecordFlag = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("CancelledRecordFlag"))
+					cancelledRecordFlag = reportData.getReportDataText();
+			}
+			CancelledRecordFlagType cancelledRecordFlagXML = CancelledRecordFlagType
+					.fromValue(cancelledRecordFlag);
+			complexCancellationAIFMRecordInfoType
+					.setCancelledRecordFlag(cancelledRecordFlagXML);
 
+			// <CancelledReportingPeriodType>
 			String cancelledReportingPeriodType = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -513,33 +1199,27 @@ public class GeneratorXML {
 			}
 			ReportingPeriodTypeType cancelledReportingPeriodTypeType = ReportingPeriodTypeType
 					.fromValue(cancelledReportingPeriodType);
-
-			String cancelledRecordFlag = "";
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("CancelledRecordFlag"))
-					cancelledRecordFlag = reportData.getReportDataText();
-			}
-			CancelledRecordFlagType cancelledRecordFlagXML = CancelledRecordFlagType
-					.fromValue(cancelledRecordFlag);
-
-			String cancelledAIFMNationalCode = "";
-			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals("CancelledAIFMNationalCode"))
-					cancelledAIFMNationalCode = reportData.getReportDataText();
-			}
-			complexCancellationAIFMRecordInfoType
-					.setCancelledAIFMNationalCode(cancelledAIFMNationalCode);
-			complexCancellationAIFMRecordInfoType
-					.setCancelledRecordFlag(cancelledRecordFlagXML);
 			complexCancellationAIFMRecordInfoType
 					.setCancelledReportingPeriodType(cancelledReportingPeriodTypeType);
-			complexCancellationAIFMRecordInfoType
-					.setCancelledReportingPeriodYear(cancelledReportingPerioYearXML);
 
-			// create list of root elements: AIFMRecordInfo and
-			// CancellationAIFMRecordInfo
+			// <CancelledReportingPeriodYear>
+			String cancelledReportingPeriodYearString = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("CancelledReportingPeriodYear"))
+					cancelledReportingPeriodYearString = reportData
+							.getReportDataText();
+			}
+			Date cancelledReportingPeriodYear = formatYear
+					.parse(cancelledReportingPeriodYearString);
+			XMLGregorianCalendar cancelledReportingPeriodYearXML = XMLGregorianCalendarConverter
+					.asXMLGregorianCalendarDate(cancelledReportingPeriodYear);
+			complexCancellationAIFMRecordInfoType
+					.setCancelledReportingPeriodYear(cancelledReportingPeriodYearXML);
+
+			// /////////////////////////////////////////////////////////////////
+			// create list of root elements:
+			// AIFMRecordInfo and CancellationAIFMRecordInfo
 			List<Object> listAIFMRepoting = aifmReportingInfo
 					.getCancellationAIFMRecordInfoOrAIFMRecordInfo();
 			listAIFMRepoting.add(complexAIFMRecordInfoType);
@@ -573,7 +1253,7 @@ public class GeneratorXML {
 			marshaller.marshal(jaxbElement, System.out);
 			StringWriter st = new StringWriter();
 			marshaller.marshal(jaxbElement, st);
-			
+
 			return st.toString();
 
 		} catch (Exception e) {
@@ -582,7 +1262,7 @@ public class GeneratorXML {
 					"CREATION", reportExecution, "FAIL",
 					"Fail when parsing XML");
 		}
-		
+
 		return null;
 
 	}

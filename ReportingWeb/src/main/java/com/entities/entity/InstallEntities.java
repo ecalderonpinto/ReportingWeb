@@ -2558,6 +2558,43 @@ public class InstallEntities {
 					null, versionAdmin);
 			reportFieldDAO.create(reportField301);
 			
+			
+			ReportField reportFieldx105 = new ReportField(reportCatalog,
+					reportFieldx1, "X", "CancellationAIFRecordInfo",
+					new BigInteger("0"), null, "", null, null, "1.2", "01",
+					versionField, null, null, null, versionAdmin);
+			reportFieldDAO.create(reportFieldx105);
+			ReportField reportField303 = new ReportField(reportCatalog,
+					reportFieldx105, "Z", "CancelledAIFNationalCode",
+					new BigInteger("303"), ".{0,30}", "", "Cancellation Info",
+					"AIFNationalCodeType", "1.2.1", "01", versionField, null,
+					null, null, versionAdmin);
+			reportFieldDAO.create(reportField303);
+			ReportField reportField304 = new ReportField(reportCatalog,
+					reportFieldx105, "Z", "CancelledAIFMNationalCode",
+					new BigInteger("303"), ".{0,30}", "", "Cancellation Info",
+					"AIFMNationalCodeType", "1.2.1", "01", versionField, null,
+					null, null, versionAdmin);
+			reportFieldDAO.create(reportField304);
+			ReportField reportField305 = new ReportField(reportCatalog,
+					reportFieldx105, "A", "CancelledReportingPeriodType",
+					new BigInteger("40"), ".{2}", "", "Cancellation Info",
+					"ReportingPeriodTypeType", "1.2.2", "01", versionField,
+					null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField305);
+			ReportField reportField306 = new ReportField(reportCatalog,
+					reportFieldx105, "D", "CancelledReportingPeriodYear",
+					new BigInteger("41"), "[0-9]{4}?", "", "Cancellation Info",
+					"YEAR", "1.2.3", "01", versionField, null, null, null,
+					versionAdmin);
+			reportFieldDAO.create(reportField306);
+			ReportField reportField307 = new ReportField(reportCatalog,
+					reportFieldx105, "A", "CancelledRecordFlag", new BigInteger(
+							"42"), ".{1}", "", "Cancellation Info",
+					"CancelledRecordFlagType", "1.2.4", "01", versionField,
+					null, null, null, versionAdmin);
+			reportFieldDAO.create(reportField307);
+			
 
 			// /////////////////////////////////////////////////////////////////
 			// DAO
