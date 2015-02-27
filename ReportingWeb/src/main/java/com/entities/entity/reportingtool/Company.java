@@ -173,4 +173,16 @@ public class Company implements VersionableAdapter {
 	public void setAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
 	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof Company) {
+			return ((Company) object).companyName.equals(this.companyName)
+					&& ((Company) object).companyCode.equals(this.companyCode)
+					&& ((Company) object).companyCountry
+							.equals(this.companyCountry);
+
+		}
+		return false;
+	}
 }

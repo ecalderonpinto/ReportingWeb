@@ -85,7 +85,7 @@ public class Fund implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "COMPANY_ID", nullable = false, foreignKey=@ForeignKey(name="T_FUND_FK_COMPANY"))
+	@JoinColumn(name = "COMPANY_ID", nullable = false, foreignKey = @ForeignKey(name = "T_FUND_FK_COMPANY"))
 	public Company getCompany() {
 		return this.company;
 	}
@@ -178,4 +178,15 @@ public class Fund implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof Fund) {
+			return ((Fund) object).fundName.equals(this.fundName)
+					&& ((Fund) object).fundCode.equals(this.fundCode)
+					&& ((Fund) object).fundIsin.equals(this.fundIsin)
+					&& ((Fund) object).company.equals(this.company);
+
+		}
+		return false;
+	}
 }

@@ -2,6 +2,7 @@ package com.entities.entity.loader;
 
 // Generated 11-feb-2015 16:49:54 by Hibernate Tools 4.0.0
 
+import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportField;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
@@ -91,7 +92,7 @@ public class FileColum implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_FIELD_ID", foreignKey=@ForeignKey(name="T_FILE_COLUM_FK_REPORT_FIELD"))
+	@JoinColumn(name = "REPORT_FIELD_ID", foreignKey = @ForeignKey(name = "T_FILE_COLUM_FK_REPORT_FIELD"))
 	public ReportField getReportField() {
 		return this.reportField;
 	}
@@ -101,7 +102,7 @@ public class FileColum implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FILE_CONFIG_ID", nullable = false, foreignKey=@ForeignKey(name="T_FILE_COLUM_FK_FILE_CONFIG"))
+	@JoinColumn(name = "FILE_CONFIG_ID", nullable = false, foreignKey = @ForeignKey(name = "T_FILE_COLUM_FK_FILE_CONFIG"))
 	public FileConfig getFileConfig() {
 		return this.fileConfig;
 	}
@@ -154,8 +155,8 @@ public class FileColum implements VersionableAdapter {
 	public void setColumFormat(String columFormat) {
 		this.columFormat = columFormat;
 	}
-	
-	@Column(name = "COLUM_BLOCK", nullable=true)
+
+	@Column(name = "COLUM_BLOCK", nullable = true)
 	public String getColumBlock() {
 		return this.columBlock;
 	}
@@ -163,7 +164,7 @@ public class FileColum implements VersionableAdapter {
 	public void setColumBlock(String columBlock) {
 		this.columBlock = columBlock;
 	}
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fileColum")
 	public Set<LoadRawData> getLoadRawDatas() {
 		return this.loadRawDatas;
@@ -203,4 +204,17 @@ public class FileColum implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof FileColum) {
+			return ((FileColum) object).columName.equals(this.columName)
+					&& ((FileColum) object).fileConfig.equals(this.fileConfig)
+					&& ((FileColum) object).columType.equals(this.columType)
+					&& ((FileColum) object).columBlock.equals(this.columBlock)
+					&& ((FileColum) object).columNumber
+							.equals(this.columNumber);
+
+		}
+		return false;
+	}
 }

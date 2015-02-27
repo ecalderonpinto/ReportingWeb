@@ -149,7 +149,7 @@ public class ReportData implements VersionableAdapter {
 		this.reportDataText = reportDataText;
 	}
 
-	@Column(name = "REPORT_DATA_BLOCK", nullable=true, length = 10)
+	@Column(name = "REPORT_DATA_BLOCK", nullable = true, length = 10)
 	public String getReportDataBlock() {
 		return this.reportDataBlock;
 	}
@@ -195,6 +195,26 @@ public class ReportData implements VersionableAdapter {
 
 	public void setAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof ReportData) {
+			return ((ReportData) object).reportExecution
+					.equals(this.reportExecution)
+					&& ((ReportData) object).reportField
+							.equals(this.reportField)
+					&& ((ReportData) object).reportDataText
+							.equals(this.reportDataText)
+					&& ((ReportData) object).reportDataBlock
+							.equals(this.reportDataBlock)
+					&& ((ReportData) object).reportDataDate
+							.equals(this.reportDataDate)
+					&& ((ReportData) object).reportDataNumber
+							.equals(this.reportDataNumber);
+
+		}
+		return false;
 	}
 
 }

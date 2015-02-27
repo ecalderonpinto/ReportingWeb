@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -79,7 +80,7 @@ public class LoadRawData implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FILE_COLUM_ID", nullable = false, foreignKey=@ForeignKey(name="T_LOAD_RAW_DATA_FK_FILE_COL"))
+	@JoinColumn(name = "FILE_COLUM_ID", nullable = false, foreignKey = @ForeignKey(name = "T_LOAD_RAW_DATA_FK_FILE_COL"))
 	public FileColum getFileColum() {
 		return this.fileColum;
 	}
@@ -89,7 +90,7 @@ public class LoadRawData implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "LOAD_RAW_ID", nullable = false, foreignKey=@ForeignKey(name="T_LOAD_RAW_DATA_FK_LOAD_RAW"))
+	@JoinColumn(name = "LOAD_RAW_ID", nullable = false, foreignKey = @ForeignKey(name = "T_LOAD_RAW_DATA_FK_LOAD_RAW"))
 	public LoadRaw getLoadRaw() {
 		return this.loadRaw;
 	}
@@ -115,7 +116,7 @@ public class LoadRawData implements VersionableAdapter {
 	public void setLoadRawDataType(String loadRawDataType) {
 		this.loadRawDataType = loadRawDataType;
 	}
-	
+
 	@Column(name = "LOAD_RAW_DATA_BLOCK", nullable = true, length = 40)
 	public String getLoadRawDataBlock() {
 		return this.loadRawDataBlock;
@@ -144,5 +145,21 @@ public class LoadRawData implements VersionableAdapter {
 
 	public void setAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof LoadRawData) {
+			return ((LoadRawData) object).fileColum.equals(this.fileColum)
+					&& ((LoadRawData) object).loadRawDataType
+							.equals(this.loadRawDataType)
+					&& ((LoadRawData) object).loadRawDataText
+							.equals(this.loadRawDataText)
+					&& ((LoadRawData) object).loadRawDataBlock
+							.equals(this.loadRawDataBlock)
+					&& ((LoadRawData) object).loadRaw.equals(this.loadRaw);
+
+		}
+		return false;
 	}
 }

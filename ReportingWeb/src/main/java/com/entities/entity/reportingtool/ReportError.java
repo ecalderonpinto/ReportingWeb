@@ -75,7 +75,7 @@ public class ReportError implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ERROR_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_ERROR_FK_ERROR"))
+	@JoinColumn(name = "ERROR_ID", nullable = false, foreignKey = @ForeignKey(name = "T_REPORT_ERROR_FK_ERROR"))
 	public Error getError() {
 		return this.error;
 	}
@@ -85,7 +85,7 @@ public class ReportError implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_EXECUTION_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_ERROR_FK_REPORT"))
+	@JoinColumn(name = "REPORT_EXECUTION_ID", nullable = false, foreignKey = @ForeignKey(name = "T_REPORT_ERROR_FK_REPORT"))
 	public ReportExecution getReportExecution() {
 		return this.reportExecution;
 	}
@@ -133,4 +133,18 @@ public class ReportError implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof ReportError) {
+			return ((ReportError) object).error.equals(this.error)
+					&& ((ReportError) object).reportErrorText
+							.equals(this.reportErrorText)
+					&& ((ReportError) object).reportErrorType
+							.equals(this.reportErrorType)
+					&& ((ReportError) object).reportExecution
+							.equals(this.reportExecution);
+
+		}
+		return false;
+	}
 }

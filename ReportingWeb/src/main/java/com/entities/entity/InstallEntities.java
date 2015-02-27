@@ -65,11 +65,10 @@ public class InstallEntities {
 			Department department = new Department(company,
 					"Values department", "VALUE", "", "Spain", null, null,
 					null, new VersionAuditor("admin"));
-			Fund fund = new Fund(company, "Bankia fund", "ES000002", "FUND2",
+			Fund fund1 = new Fund(company, "Bankia fund2", "ES000002", "FUND2",
 					"", null, null, null, versionAdmin);
-			FundGroup fundGroup = new FundGroup(fund, department,
+			FundGroup fundGroup = new FundGroup(fund1, department,
 					"VALUE FUNDS", "", versionAdmin);
-
 			ReportCatalog reportCatalog = new ReportCatalog(versionField,
 					"FUND", "AIF 2014", "", null, null, null, versionAdmin);
 
@@ -80,15 +79,15 @@ public class InstallEntities {
 			Date date2 = format.parse(str2);
 
 			ReportExecution reportExecution = new ReportExecution(
-					reportCatalog, company, fund, "Q2", "2014", date2, date1,
-					"CREATION", null, null, null, null, null, null, null, null,
-					null, null, null, null, versionAdmin);
+					reportCatalog, company, fund1, "Prueba AIF fund1 2014", "",
+					"Q2", "2014", date2, date1, "CREATION", null, null, null,
+					null, null, null, null, null, null, null, null, null,
+					versionAdmin);
 
 			ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
 					.getBean("reportCatalogDAO");
 			reportCatalogDAO.create(reportCatalog);
-			
-			
+
 			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
 					.getBean("reportFieldDAO");
 
@@ -904,8 +903,8 @@ public class InstallEntities {
 			ReportField reportField95 = new ReportField(reportCatalog,
 					reportFieldx31, "A", "AssetMacroType",
 					new BigInteger("95"), ".{3}", "", "General Info",
-					"AssetMacroTypeType", "1.1.18.1", "00", versionField,
-					null, null, null, versionAdmin);
+					"AssetMacroTypeType", "1.1.18.1", "00", versionField, null,
+					null, null, versionAdmin);
 			reportFieldDAO.create(reportField95);
 			ReportField reportField96 = new ReportField(reportCatalog,
 					reportFieldx31, "Z", "SubAssetType", new BigInteger("96"),
@@ -921,8 +920,8 @@ public class InstallEntities {
 			ReportField reportField98 = new ReportField(reportCatalog,
 					reportFieldx31, "N", "AggregatedValueAmount",
 					new BigInteger("98"), "[0-9]{1,15}?", "", "General Info",
-					"NUMBER", "1.1.18.1", "00", versionField, null, null,
-					null, versionAdmin);
+					"NUMBER", "1.1.18.1", "00", versionField, null, null, null,
+					versionAdmin);
 			reportFieldDAO.create(reportField98);
 			ReportField reportField99 = new ReportField(reportCatalog,
 					reportFieldx31, "N", "AggregatedValueRate", new BigInteger(
@@ -1651,51 +1650,51 @@ public class InstallEntities {
 			ReportField reportField178 = new ReportField(reportCatalog,
 					reportFieldx76, "N", "PortfolioLiquidityInDays0to1Rate",
 					new BigInteger("178"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField178);
 			ReportField reportField179 = new ReportField(reportCatalog,
 					reportFieldx76, "N", "PortfolioLiquidityInDays2to7Rate",
 					new BigInteger("179"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField179);
 			ReportField reportField180 = new ReportField(reportCatalog,
 					reportFieldx76, "N", "PortfolioLiquidityInDays8to30Rate",
 					new BigInteger("180"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField180);
 			ReportField reportField181 = new ReportField(reportCatalog,
 					reportFieldx76, "N", "PortfolioLiquidityInDays31to90Rate",
 					new BigInteger("181"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField181);
 			ReportField reportField182 = new ReportField(reportCatalog,
 					reportFieldx76, "N", "PortfolioLiquidityInDays91to180Rate",
 					new BigInteger("182"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField182);
 			ReportField reportField183 = new ReportField(reportCatalog,
 					reportFieldx76, "N",
 					"PortfolioLiquidityInDays181to365Rate", new BigInteger(
-							"183"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "", "General Info",
-					"DECIMAL", "1.1.18.6.3", "01", versionField, null, null,
-					null, versionAdmin);
+							"183"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField183);
 			ReportField reportField184 = new ReportField(reportCatalog,
 					reportFieldx76, "N", "PortfolioLiquidityInDays365MoreRate",
 					new BigInteger("184"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField184);
 			ReportField reportField185 = new ReportField(reportCatalog,
 					reportFieldx76, "N", "UnencumberedCash", new BigInteger(
-							"185"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "", "General Info",
-					"DECIMAL", "1.1.18.6.3", "01", versionField, null, null,
-					null, versionAdmin);
+							"185"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField185);
 
 			ReportField reportFieldx77 = new ReportField(reportCatalog,
@@ -1706,44 +1705,44 @@ public class InstallEntities {
 			ReportField reportField186 = new ReportField(reportCatalog,
 					reportFieldx77, "N", "InvestorLiquidityInDays0to1Rate",
 					new BigInteger("186"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField186);
 			ReportField reportField187 = new ReportField(reportCatalog,
 					reportFieldx77, "N", "InvestorLiquidityInDays2to7Rate",
 					new BigInteger("187"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField187);
 			ReportField reportField188 = new ReportField(reportCatalog,
 					reportFieldx77, "N", "InvestorLiquidityInDays8to30Rate",
 					new BigInteger("188"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField188);
 			ReportField reportField189 = new ReportField(reportCatalog,
 					reportFieldx77, "N", "InvestorLiquidityInDays31to90Rate",
 					new BigInteger("189"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField189);
 			ReportField reportField190 = new ReportField(reportCatalog,
 					reportFieldx77, "N", "InvestorLiquidityInDays91to180Rate",
 					new BigInteger("190"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField190);
 			ReportField reportField191 = new ReportField(reportCatalog,
 					reportFieldx77, "N", "InvestorLiquidityInDays181to365Rate",
 					new BigInteger("191"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField191);
 			ReportField reportField192 = new ReportField(reportCatalog,
 					reportFieldx77, "N", "InvestorLiquidityInDays365MoreRate",
 					new BigInteger("192"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField192);
 
 			ReportField reportFieldx78 = new ReportField(reportCatalog,
@@ -1904,44 +1903,44 @@ public class InstallEntities {
 			ReportField reportField211 = new ReportField(reportCatalog,
 					reportFieldx85, "N", "TotalFinancingInDays0to1Rate",
 					new BigInteger("211"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField211);
 			ReportField reportField212 = new ReportField(reportCatalog,
 					reportFieldx85, "N", "TotalFinancingInDays2to7Rate",
 					new BigInteger("212"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField212);
 			ReportField reportField213 = new ReportField(reportCatalog,
 					reportFieldx85, "N", "TotalFinancingInDays8to30Rate",
 					new BigInteger("213"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField213);
 			ReportField reportField214 = new ReportField(reportCatalog,
 					reportFieldx85, "N", "TotalFinancingInDays31to90Rate",
 					new BigInteger("214"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField214);
 			ReportField reportField215 = new ReportField(reportCatalog,
 					reportFieldx85, "N", "TotalFinancingInDays91to180Rate",
 					new BigInteger("215"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField215);
 			ReportField reportField216 = new ReportField(reportCatalog,
 					reportFieldx85, "N", "TotalFinancingInDays181to365Rate",
 					new BigInteger("216"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField216);
 			ReportField reportField217 = new ReportField(reportCatalog,
 					reportFieldx85, "N", "TotalFinancingInDays365MoreRate",
 					new BigInteger("217"), "[0-9]{1,15}(\\.[0-9]{1,4})?", "",
-					"General Info", "DECIMAL", "1.1.18.6.3", "01", versionField, null,
-					null, null, versionAdmin);
+					"General Info", "DECIMAL", "1.1.18.6.3", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField217);
 
 			ReportField reportFieldx86 = new ReportField(reportCatalog,
@@ -2201,8 +2200,8 @@ public class InstallEntities {
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx91);
 			ReportField reportField255 = new ReportField(reportCatalog,
-					reportFieldx91, "N", "QuantityJanuary",
-					new BigInteger("255"), "[0-9]{0,15}?", "", "General Info",
+					reportFieldx91, "N", "QuantityJanuary", new BigInteger(
+							"255"), "[0-9]{0,15}?", "", "General Info",
 					"NUMBER", "1.1.18.2.1.3", "0n", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField255);
@@ -2279,8 +2278,8 @@ public class InstallEntities {
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx92);
 			ReportField reportField267 = new ReportField(reportCatalog,
-					reportFieldx92, "N", "QuantityJanuary",
-					new BigInteger("267"), "[0-9]{0,15}?", "", "General Info",
+					reportFieldx92, "N", "QuantityJanuary", new BigInteger(
+							"267"), "[0-9]{0,15}?", "", "General Info",
 					"NUMBER", "1.1.18.2.1.3", "01", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField267);
@@ -2350,7 +2349,7 @@ public class InstallEntities {
 					"NUMBER", "1.1.18.2.1.3", "01", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField278);
-			
+
 			ReportField reportFieldx93 = new ReportField(reportCatalog,
 					reportFieldx41, "X", "StressTests", new BigInteger("0"),
 					null, "", null, null, "1.1.18.1", "11", versionField, null,
@@ -2359,110 +2358,115 @@ public class InstallEntities {
 			ReportField reportField279 = new ReportField(reportCatalog,
 					reportFieldx93, "Z", "StressTestsResultArticle15",
 					new BigInteger("279"), ".{0,32000}", "", "General Info",
-					"StressTestsResultType", "1.1.14", "11", versionField, null,
-					null, null, versionAdmin);
+					"StressTestsResultType", "1.1.14", "11", versionField,
+					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField279);
 			ReportField reportField280 = new ReportField(reportCatalog,
 					reportFieldx93, "Z", "StressTestsResultArticle16",
 					new BigInteger("280"), ".{0,32000}", "", "General Info",
-					"StressTestsResultType", "1.1.14", "11", versionField, null,
-					null, null, versionAdmin);
+					"StressTestsResultType", "1.1.14", "11", versionField,
+					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField280);
-			
-			///////////////////////////////////////
+
+			// /////////////////////////////////////
 			ReportField reportFieldx94 = new ReportField(reportCatalog,
 					reportFieldx5, "X", "AIFLeverageInfo", new BigInteger("0"),
 					null, "", null, null, "1.1.18.1", "11", versionField, null,
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx94);
-			
+
 			ReportField reportFieldx95 = new ReportField(reportCatalog,
-					reportFieldx94, "X", "AIFLeverageArticle24-2", new BigInteger("0"),
-					null, "", null, null, "1.1.18.1", "11", versionField, null,
-					null, null, versionAdmin);
+					reportFieldx94, "X", "AIFLeverageArticle24-2",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx95);
 			ReportField reportField281 = new ReportField(reportCatalog,
-					reportFieldx95, "B", "AllCounterpartyCollateralRehypothecationFlag",
+					reportFieldx95, "B",
+					"AllCounterpartyCollateralRehypothecationFlag",
 					new BigInteger("281"), "true|false", "", "General Info",
 					"BOOLEAN", "1.1.10", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField281);
 			ReportField reportField282 = new ReportField(reportCatalog,
-					reportFieldx95, "N", "AllCounterpartyCollateralRehypothecatedRate", new BigInteger(
-							"282"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
+					reportFieldx95, "N",
+					"AllCounterpartyCollateralRehypothecatedRate",
+					new BigInteger("282"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
 					"General Info", "PERCENT", "1.1.18.1", "01", versionField,
 					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField282);
-			
+
 			ReportField reportFieldx96 = new ReportField(reportCatalog,
-					reportFieldx95, "X", "SecuritiesCashBorrowing", new BigInteger("0"),
-					null, "", null, null, "1.1.18.1", "11", versionField, null,
-					null, null, versionAdmin);
+					reportFieldx95, "X", "SecuritiesCashBorrowing",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx96);
 			ReportField reportField283 = new ReportField(reportCatalog,
-					reportFieldx96, "N", "UnsecuredBorrowingAmount", new BigInteger(
-							"283"), "[0-9]{0,15}?", "", "General Info",
+					reportFieldx96, "N", "UnsecuredBorrowingAmount",
+					new BigInteger("283"), "[0-9]{0,15}?", "", "General Info",
 					"NUMBER", "1.1.18.2.1.3", "01", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField283);
 			ReportField reportField284 = new ReportField(reportCatalog,
-					reportFieldx96, "N", "SecuredBorrowingPrimeBrokerageAmount", new BigInteger(
+					reportFieldx96, "N",
+					"SecuredBorrowingPrimeBrokerageAmount", new BigInteger(
 							"284"), "[0-9]{0,15}?", "", "General Info",
 					"NUMBER", "1.1.18.2.1.3", "01", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField284);
 			ReportField reportField285 = new ReportField(reportCatalog,
-					reportFieldx96, "N", "SecuredBorrowingReverseRepoAmount", new BigInteger(
-							"285"), "[0-9]{0,15}?", "", "General Info",
+					reportFieldx96, "N", "SecuredBorrowingReverseRepoAmount",
+					new BigInteger("285"), "[0-9]{0,15}?", "", "General Info",
 					"NUMBER", "1.1.18.2.1.3", "01", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField285);
 			ReportField reportField286 = new ReportField(reportCatalog,
-					reportFieldx96, "N", "SecuredBorrowingOtherAmount", new BigInteger(
-							"286"), "[0-9]{0,15}?", "", "General Info",
+					reportFieldx96, "N", "SecuredBorrowingOtherAmount",
+					new BigInteger("286"), "[0-9]{0,15}?", "", "General Info",
 					"NUMBER", "1.1.18.2.1.3", "01", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField286);
-			
+
 			ReportField reportFieldx97 = new ReportField(reportCatalog,
-					reportFieldx95, "X", "FinancialInstrumentBorrowing", new BigInteger("0"),
-					null, "", null, null, "1.1.18.1", "11", versionField, null,
-					null, null, versionAdmin);
+					reportFieldx95, "X", "FinancialInstrumentBorrowing",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx97);
 			ReportField reportField287 = new ReportField(reportCatalog,
-					reportFieldx97, "N", "ExchangedTradedDerivativesExposureValue", new BigInteger(
+					reportFieldx97, "N",
+					"ExchangedTradedDerivativesExposureValue", new BigInteger(
 							"287"), "[0-9]{0,15}?", "", "General Info",
 					"NUMBER", "1.1.18.2.1.3", "01", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField287);
 			ReportField reportField288 = new ReportField(reportCatalog,
-					reportFieldx97, "N", "OTCDerivativesAmount", new BigInteger(
-							"288"), "[0-9]{0,15}?", "", "General Info",
+					reportFieldx97, "N", "OTCDerivativesAmount",
+					new BigInteger("288"), "[0-9]{0,15}?", "", "General Info",
 					"NUMBER", "1.1.18.2.1.3", "01", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField288);
-			
+
 			ReportField reportField289 = new ReportField(reportCatalog,
-					reportFieldx95, "N", "ShortPositionBorrowedSecuritiesValue", new BigInteger(
+					reportFieldx95, "N",
+					"ShortPositionBorrowedSecuritiesValue", new BigInteger(
 							"289"), "[0-9]{0,15}?", "", "General Info",
 					"NUMBER", "1.1.18.2.1.3", "01", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField289);
-			
+
 			ReportField reportFieldx98 = new ReportField(reportCatalog,
-					reportFieldx95, "X", "ControlledStructures", new BigInteger("0"),
-					null, "", null, null, "1.1.18.1", "11", versionField, null,
-					null, null, versionAdmin);
+					reportFieldx95, "X", "ControlledStructures",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx98);
 			ReportField reportFieldx99 = new ReportField(reportCatalog,
-					reportFieldx98, "X", "ControlledStructure", new BigInteger("0"),
-					null, "", null, null, "1.1.18.1", "11", versionField, null,
-					null, null, versionAdmin);
+					reportFieldx98, "X", "ControlledStructure", new BigInteger(
+							"0"), null, "", null, null, "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx99);
 			ReportField reportFieldx100 = new ReportField(reportCatalog,
-					reportFieldx99, "X", "ControlledStructureIdentification", new BigInteger("0"),
-					null, "", null, null, "1.1.18.1", "11", versionField, null,
-					null, null, versionAdmin);
+					reportFieldx99, "X", "ControlledStructureIdentification",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx100);
 			ReportField reportField290 = new ReportField(reportCatalog,
 					reportFieldx100, "Z", "EntityName", new BigInteger("290"),
@@ -2482,39 +2486,39 @@ public class InstallEntities {
 					null, versionAdmin);
 			reportFieldDAO.create(reportField292);
 			ReportField reportField293 = new ReportField(reportCatalog,
-					reportFieldx99, "N", "ControlledStructureExposureValue", new BigInteger(
-							"293"), "[0-9]{0,15}?", "", "General Info",
+					reportFieldx99, "N", "ControlledStructureExposureValue",
+					new BigInteger("293"), "[0-9]{0,15}?", "", "General Info",
 					"NUMBER", "1.1.18.2.1.3", "0n", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField293);
-			
+
 			ReportField reportFieldx101 = new ReportField(reportCatalog,
 					reportFieldx95, "X", "LeverageAIF", new BigInteger("0"),
 					null, "", null, null, "1.1.18.1", "11", versionField, null,
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx101);
 			ReportField reportField294 = new ReportField(reportCatalog,
-					reportFieldx101, "N", "GrossMethodRate", new BigInteger("294"),
-					"[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "General Info",
-					"DECIMAL", "1.1.18.1", "11", versionField, null, null,
-					null, versionAdmin);
+					reportFieldx101, "N", "GrossMethodRate", new BigInteger(
+							"294"), "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "",
+					"General Info", "DECIMAL", "1.1.18.1", "11", versionField,
+					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField294);
 			ReportField reportField295 = new ReportField(reportCatalog,
-					reportFieldx101, "N", "CommitmentMethodRate", new BigInteger("295"),
-					"[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?", "", "General Info",
-					"DECIMAL", "1.1.18.1", "11", versionField, null, null,
-					null, versionAdmin);
+					reportFieldx101, "N", "CommitmentMethodRate",
+					new BigInteger("295"), "[+|-]?[0-9]{1,15}(\\.[0-9]{1,2})?",
+					"", "General Info", "DECIMAL", "1.1.18.1", "11",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField295);
-			
+
 			ReportField reportFieldx102 = new ReportField(reportCatalog,
-					reportFieldx94, "X", "AIFLeverageArticle24-4", new BigInteger("0"),
-					null, "", null, null, "1.1.18.1", "11", versionField, null,
-					null, null, versionAdmin);
+					reportFieldx94, "X", "AIFLeverageArticle24-4",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx102);
 			ReportField reportFieldx103 = new ReportField(reportCatalog,
-					reportFieldx102, "X", "BorrowingSource", new BigInteger("0"),
-					null, "", null, null, "1.1.18.1", "11", versionField, null,
-					null, null, versionAdmin);
+					reportFieldx102, "X", "BorrowingSource",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx103);
 			ReportField reportField296 = new ReportField(reportCatalog,
 					reportFieldx103, "N", "Ranking", new BigInteger("296"),
@@ -2528,11 +2532,11 @@ public class InstallEntities {
 					"BOOLEAN", "1.1.10", "55", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField297);
-			
+
 			ReportField reportFieldx104 = new ReportField(reportCatalog,
-					reportFieldx103, "X", "SourceIdentification", new BigInteger("0"),
-					null, "", null, null, "1.1.18.1", "11", versionField, null,
-					null, null, versionAdmin);
+					reportFieldx103, "X", "SourceIdentification",
+					new BigInteger("0"), null, "", null, null, "1.1.18.1",
+					"11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx104);
 			ReportField reportField298 = new ReportField(reportCatalog,
 					reportFieldx104, "Z", "EntityName", new BigInteger("298"),
@@ -2557,8 +2561,7 @@ public class InstallEntities {
 					"NUMBER", "1.1.18.2.1.3", "05", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField301);
-			
-			
+
 			ReportField reportFieldx105 = new ReportField(reportCatalog,
 					reportFieldx1, "X", "CancellationAIFRecordInfo",
 					new BigInteger("0"), null, "", null, null, "1.2", "01",
@@ -2589,12 +2592,11 @@ public class InstallEntities {
 					versionAdmin);
 			reportFieldDAO.create(reportField306);
 			ReportField reportField307 = new ReportField(reportCatalog,
-					reportFieldx105, "A", "CancelledRecordFlag", new BigInteger(
-							"42"), ".{1}", "", "Cancellation Info",
+					reportFieldx105, "A", "CancelledRecordFlag",
+					new BigInteger("42"), ".{1}", "", "Cancellation Info",
 					"CancelledRecordFlagType", "1.2.4", "01", versionField,
 					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField307);
-			
 
 			// /////////////////////////////////////////////////////////////////
 			// DAO
@@ -2608,7 +2610,7 @@ public class InstallEntities {
 			departmentDAO.create(department);
 
 			FundDAO fundDAO = (FundDAO) applicationContext.getBean("fundDAO");
-			fundDAO.create(fund);
+			fundDAO.create(fund1);
 
 			FundGroupDAO fundGroupDAO = (FundGroupDAO) applicationContext
 					.getBean("fundGroupDAO");
@@ -2651,9 +2653,10 @@ public class InstallEntities {
 			Date date2 = format.parse(str2);
 
 			ReportExecution reportExecution = new ReportExecution(
-					reportCatalog, company, null, "Q1", "2014", date2, date1,
-					"CREATION", null, null, null, null, null, null, null, null,
-					null, null, null, null, versionAdmin);
+					reportCatalog, company, null, "Prueba Q1 2014", "", "Q1",
+					"2014", date2, date1, "CREATION", null, null, null, null,
+					null, null, null, null, null, null, null, null,
+					versionAdmin);
 
 			// report Fields de AIFM
 
@@ -3547,54 +3550,54 @@ public class InstallEntities {
 			fileColumDAO.create(fileColum60);
 			fileColumDAO.create(fileColum61);
 
-			 ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
-			 .getBean("reportDataDAO");
-			 reportDataDAO.create(reportData1);
-			 reportDataDAO.create(reportData2);
-			 reportDataDAO.create(reportData3);
-			 reportDataDAO.create(reportData4);
-			 reportDataDAO.create(reportData5);
-			 reportDataDAO.create(reportData6);
-			 reportDataDAO.create(reportData7);
-			 reportDataDAO.create(reportData8);
-			 reportDataDAO.create(reportData9);
-			 reportDataDAO.create(reportData10);
-			 reportDataDAO.create(reportData11);
-			 reportDataDAO.create(reportData12);
-			 reportDataDAO.create(reportData13);
-			 reportDataDAO.create(reportData14);
-			 reportDataDAO.create(reportData15);
-			 reportDataDAO.create(reportData16);
-			 reportDataDAO.create(reportData17);
-			 reportDataDAO.create(reportData18);
-			 reportDataDAO.create(reportData19);
-			 reportDataDAO.create(reportData20);
-			 reportDataDAO.create(reportData21);
-			 reportDataDAO.create(reportData22);
-			 reportDataDAO.create(reportData23);
-			 reportDataDAO.create(reportData24);
-			 reportDataDAO.create(reportData25);
-			 reportDataDAO.create(reportData26);
-			 reportDataDAO.create(reportData27);
-			 reportDataDAO.create(reportData28);
-			 reportDataDAO.create(reportData29);
-			 reportDataDAO.create(reportData30);
-			 reportDataDAO.create(reportData31);
-			 reportDataDAO.create(reportData32);
-			 reportDataDAO.create(reportData33);
-			 reportDataDAO.create(reportData34);
-			 reportDataDAO.create(reportData35);
-			 reportDataDAO.create(reportData36);
-			 reportDataDAO.create(reportData37);
-			 reportDataDAO.create(reportData38);
-			 reportDataDAO.create(reportData39);
-			 reportDataDAO.create(reportData40);
-			 reportDataDAO.create(reportData41);
-			 reportDataDAO.create(reportData42);
-			 reportDataDAO.create(reportData43);
-			 reportDataDAO.create(reportData44);
-			 reportDataDAO.create(reportData45);
-			 reportDataDAO.create(reportData46);
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData1);
+			reportDataDAO.create(reportData2);
+			reportDataDAO.create(reportData3);
+			reportDataDAO.create(reportData4);
+			reportDataDAO.create(reportData5);
+			reportDataDAO.create(reportData6);
+			reportDataDAO.create(reportData7);
+			reportDataDAO.create(reportData8);
+			reportDataDAO.create(reportData9);
+			reportDataDAO.create(reportData10);
+			reportDataDAO.create(reportData11);
+			reportDataDAO.create(reportData12);
+			reportDataDAO.create(reportData13);
+			reportDataDAO.create(reportData14);
+			reportDataDAO.create(reportData15);
+			reportDataDAO.create(reportData16);
+			reportDataDAO.create(reportData17);
+			reportDataDAO.create(reportData18);
+			reportDataDAO.create(reportData19);
+			reportDataDAO.create(reportData20);
+			reportDataDAO.create(reportData21);
+			reportDataDAO.create(reportData22);
+			reportDataDAO.create(reportData23);
+			reportDataDAO.create(reportData24);
+			reportDataDAO.create(reportData25);
+			reportDataDAO.create(reportData26);
+			reportDataDAO.create(reportData27);
+			reportDataDAO.create(reportData28);
+			reportDataDAO.create(reportData29);
+			reportDataDAO.create(reportData30);
+			reportDataDAO.create(reportData31);
+			reportDataDAO.create(reportData32);
+			reportDataDAO.create(reportData33);
+			reportDataDAO.create(reportData34);
+			reportDataDAO.create(reportData35);
+			reportDataDAO.create(reportData36);
+			reportDataDAO.create(reportData37);
+			reportDataDAO.create(reportData38);
+			reportDataDAO.create(reportData39);
+			reportDataDAO.create(reportData40);
+			reportDataDAO.create(reportData41);
+			reportDataDAO.create(reportData42);
+			reportDataDAO.create(reportData43);
+			reportDataDAO.create(reportData44);
+			reportDataDAO.create(reportData45);
+			reportDataDAO.create(reportData46);
 
 			// LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
 			// .getBean("loadFileDAO");

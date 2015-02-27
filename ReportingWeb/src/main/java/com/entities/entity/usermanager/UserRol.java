@@ -18,6 +18,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -141,4 +142,11 @@ public class UserRol implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof UserRol) {
+			return ((UserRol) object).rolName.equals(this.rolName);
+		}
+		return false;
+	}
 }

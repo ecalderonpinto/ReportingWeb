@@ -60,8 +60,8 @@ public class ReportField implements VersionableAdapter {
 	}
 
 	public ReportField(long reportFieldId, ReportCatalog reportCatalog,
-			String reportFieldType, String reportFieldName, BigInteger reportFieldNum,
-			VersionAuditor versionAuditor) {
+			String reportFieldType, String reportFieldName,
+			BigInteger reportFieldNum, VersionAuditor versionAuditor) {
 		this.id = reportFieldId;
 		this.reportCatalog = reportCatalog;
 		this.reportFieldType = reportFieldType;
@@ -267,4 +267,23 @@ public class ReportField implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof ReportField) {
+			return ((ReportField) object).reportCatalog
+					.equals(this.reportCatalog)
+					&& ((ReportField) object).reportFieldName
+							.equals(this.reportFieldName)
+					&& ((ReportField) object).reportFieldNum
+							.equals(this.reportFieldNum)
+					&& ((ReportField) object).reportFieldType
+							.equals(this.reportFieldType)
+					&& ((ReportField) object).reportFieldSection
+							.equals(this.reportFieldSection)
+					&& ((ReportField) object).reportFieldParent
+							.equals(this.reportFieldParent);
+
+		}
+		return false;
+	}
 }

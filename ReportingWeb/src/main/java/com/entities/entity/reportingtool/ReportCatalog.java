@@ -144,7 +144,7 @@ public class ReportCatalog implements VersionableAdapter {
 	public void setReportExecutions(Set<ReportExecution> reportExecutions) {
 		this.reportExecutions = reportExecutions;
 	}
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportCatalog")
 	public Set<ReportSemantic> getReportSemantics() {
 		return this.reportSemantics;
@@ -173,5 +173,19 @@ public class ReportCatalog implements VersionableAdapter {
 
 	public void setAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof ReportCatalog) {
+			return ((ReportCatalog) object).reportCatalogName
+					.equals(this.reportCatalogName)
+					&& ((ReportCatalog) object).reportLevel
+							.equals(this.reportLevel)
+					&& ((ReportCatalog) object).reportVersion
+							.equals(this.reportVersion);
+
+		}
+		return false;
 	}
 }

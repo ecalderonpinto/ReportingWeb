@@ -26,6 +26,7 @@ import javax.persistence.Version;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -47,21 +48,22 @@ public class LoadRaw implements VersionableAdapter {
 	@Embedded
 	private VersionAuditor versionAuditor;
 	@Version
-	@Column(name="VERSION", nullable=false)
+	@Column(name = "VERSION", nullable = false)
 	int version;
-	
+
 	public LoadRaw() {
 	}
 
-	public LoadRaw(long loadRawId, LoadFile loadFile, VersionAuditor versionAuditor) {
+	public LoadRaw(long loadRawId, LoadFile loadFile,
+			VersionAuditor versionAuditor) {
 		this.id = loadRawId;
 		this.loadFile = loadFile;
 		this.versionAuditor = versionAuditor;
 	}
-	
-	public LoadRaw(LoadFile loadFile,
-			BigDecimal loadLineNumber, String loadLineType, byte[] loadRawBlob,
-			String loadError, Set<LoadRawData> loadRawDatas, VersionAuditor versionAuditor) {
+
+	public LoadRaw(LoadFile loadFile, BigDecimal loadLineNumber,
+			String loadLineType, byte[] loadRawBlob, String loadError,
+			Set<LoadRawData> loadRawDatas, VersionAuditor versionAuditor) {
 		this.loadFile = loadFile;
 		this.loadLineNumber = loadLineNumber;
 		this.loadLineType = loadLineType;
@@ -72,8 +74,8 @@ public class LoadRaw implements VersionableAdapter {
 	}
 
 	@Id
-	@SequenceGenerator(name="GEN_LOAD_RAW", sequenceName="SEQ_LOAD_RAW", initialValue=1, allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="GEN_LOAD_RAW")
+	@SequenceGenerator(name = "GEN_LOAD_RAW", sequenceName = "SEQ_LOAD_RAW", initialValue = 1, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_LOAD_RAW")
 	@Column(name = "LOAD_RAW_ID", unique = true, nullable = false, length = 10)
 	public long getId() {
 		return this.id;
@@ -84,7 +86,7 @@ public class LoadRaw implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "LOAD_FILE_ID", nullable = false, foreignKey=@ForeignKey(name="T_LOAD_RAW_FK_LOAD_FILE"))
+	@JoinColumn(name = "LOAD_FILE_ID", nullable = false, foreignKey = @ForeignKey(name = "T_LOAD_RAW_FK_LOAD_FILE"))
 	public LoadFile getLoadFile() {
 		return this.loadFile;
 	}
@@ -112,7 +114,7 @@ public class LoadRaw implements VersionableAdapter {
 	}
 
 	@Lob
-	@Column(name = "LOAD_RAW_BLOB", length=100000)
+	@Column(name = "LOAD_RAW_BLOB", length = 100000)
 	public byte[] getLoadRawBlob() {
 		return this.loadRawBlob;
 	}
@@ -131,7 +133,7 @@ public class LoadRaw implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loadRaw")
-	@Cascade({CascadeType.SAVE_UPDATE})
+	@Cascade({ CascadeType.SAVE_UPDATE })
 	public Set<LoadRawData> getLoadRawDatas() {
 		return this.loadRawDatas;
 	}
@@ -139,25 +141,39 @@ public class LoadRaw implements VersionableAdapter {
 	public void setLoadRawDatas(Set<LoadRawData> loadRawDatas) {
 		this.loadRawDatas = loadRawDatas;
 	}
-	
-	
+
 	public int getVersion() {
 		return version;
 	}
+
 	public void setVersion(int version) {
 		this.version = version;
 	}
-	
+
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}
-	
+
 	public VersionAuditor getAuditor() {
 		return versionAuditor;
 	}
 
 	public void setAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof LoadRaw) {
+			return ((LoadRaw) object).loadFile.equals(this.loadFile)
+					&& ((LoadRaw) object).loadLineNumber
+							.equals(this.loadLineNumber)
+					&& ((LoadRaw) object).loadLineType
+							.equals(this.loadLineType)
+					&& ((LoadRaw) object).loadRawBlob.equals(this.loadRawBlob);
+
+		}
+		return false;
 	}
 }

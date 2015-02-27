@@ -71,7 +71,7 @@ public class FileColumList implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FILE_COLUM_ID", nullable = false, foreignKey=@ForeignKey(name="T_FILE_COLUM_LIST_FK_FILE_COL"))
+	@JoinColumn(name = "FILE_COLUM_ID", nullable = false, foreignKey = @ForeignKey(name = "T_FILE_COLUM_LIST_FK_FILE_COL"))
 	public FileColum getFileColum() {
 		return this.fileColum;
 	}
@@ -128,4 +128,18 @@ public class FileColumList implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof FileColumList) {
+			return ((FileColumList) object).fileColum.equals(this.fileColum)
+					&& ((FileColumList) object).fileColumListDest
+							.equals(this.fileColumListDest)
+					&& ((FileColumList) object).fileColumListOrig
+							.equals(this.fileColumListOrig)
+					&& ((FileColumList) object).fileColumListType
+							.equals(this.fileColumListType);
+
+		}
+		return false;
+	}
 }

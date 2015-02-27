@@ -114,4 +114,15 @@ public class ReportFieldList implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof ReportFieldList) {
+			return ((ReportFieldList) object).reportFieldListType
+					.equals(this.reportFieldListType)
+					&& ((ReportFieldList) object).reportFieldListValue
+							.equals(this.reportFieldListValue);
+
+		}
+		return false;
+	}
 }

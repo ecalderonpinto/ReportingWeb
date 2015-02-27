@@ -74,7 +74,7 @@ public class ReportCustom implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_CATALOG_ID", foreignKey=@ForeignKey(name="T_REPORT_CUST_FK_CATALOG"))
+	@JoinColumn(name = "REPORT_CATALOG_ID", foreignKey = @ForeignKey(name = "T_REPORT_CUST_FK_CATALOG"))
 	public ReportCatalog getReportCatalog() {
 		return this.reportCatalog;
 	}
@@ -84,7 +84,7 @@ public class ReportCustom implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "COMPANY_ID", nullable = false, foreignKey=@ForeignKey(name="T_REPORT_CUST_FK_COMPANY"))
+	@JoinColumn(name = "COMPANY_ID", nullable = false, foreignKey = @ForeignKey(name = "T_REPORT_CUST_FK_COMPANY"))
 	public Company getCompany() {
 		return this.company;
 	}
@@ -94,7 +94,7 @@ public class ReportCustom implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "REPORT_FIELD_ID", foreignKey=@ForeignKey(name="T_REPORT_CUST_FK_FIELD"))
+	@JoinColumn(name = "REPORT_FIELD_ID", foreignKey = @ForeignKey(name = "T_REPORT_CUST_FK_FIELD"))
 	public ReportField getReportField() {
 		return this.reportField;
 	}
@@ -140,5 +140,19 @@ public class ReportCustom implements VersionableAdapter {
 
 	public void setAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof ReportCustom) {
+			return ((ReportCustom) object).reportCatalog
+					.equals(this.reportCatalog)
+					&& ((ReportCustom) object).reportCustomName
+							.equals(this.reportCustomName)
+					&& ((ReportCustom) object).reportField
+							.equals(this.reportField);
+
+		}
+		return false;
 	}
 }

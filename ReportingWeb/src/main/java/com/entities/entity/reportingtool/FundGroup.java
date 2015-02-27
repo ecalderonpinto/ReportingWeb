@@ -71,7 +71,7 @@ public class FundGroup implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FUND_ID", nullable = false, foreignKey=@ForeignKey(name="T_FUND_GROUP_FK_FUND"))
+	@JoinColumn(name = "FUND_ID", nullable = false, foreignKey = @ForeignKey(name = "T_FUND_GROUP_FK_FUND"))
 	public Fund getFund() {
 		return this.fund;
 	}
@@ -81,7 +81,7 @@ public class FundGroup implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "DEPARTMENT_ID", nullable = false, foreignKey=@ForeignKey(name="T_FUND_GROUP_FK_DEPT"))
+	@JoinColumn(name = "DEPARTMENT_ID", nullable = false, foreignKey = @ForeignKey(name = "T_FUND_GROUP_FK_DEPT"))
 	public Department getDepartment() {
 		return this.department;
 	}
@@ -127,6 +127,18 @@ public class FundGroup implements VersionableAdapter {
 
 	public void setAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof FundGroup) {
+			return ((FundGroup) object).department.equals(this.department)
+					&& ((FundGroup) object).fund.equals(this.fund)
+					&& ((FundGroup) object).fundGroupCode
+							.equals(this.fundGroupCode);
+
+		}
+		return false;
 	}
 
 }

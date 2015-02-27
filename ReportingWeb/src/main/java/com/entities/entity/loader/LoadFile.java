@@ -28,6 +28,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import com.entities.entity.reportingtool.Department;
+import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
@@ -175,5 +176,19 @@ public class LoadFile implements VersionableAdapter {
 
 	public void setAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
+	}
+	
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof LoadFile) {
+			return ((LoadFile) object).department
+					.equals(this.department)
+					&& ((LoadFile) object).fileConfig
+							.equals(this.fileConfig)
+					&& ((LoadFile) object).loadFileName
+							.equals(this.loadFileName);
+
+		}
+		return false;
 	}
 }

@@ -124,4 +124,15 @@ public class ReportSemantic implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof ReportSemantic) {
+			return ((ReportSemantic) object).reportCatalog
+					.equals(this.reportCatalog)
+					&& ((ReportSemantic) object).reportingSemanticRule
+							.equals(this.reportingSemanticRule);
+
+		}
+		return false;
+	}
 }

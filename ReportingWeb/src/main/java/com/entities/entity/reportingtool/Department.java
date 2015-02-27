@@ -88,7 +88,7 @@ public class Department implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "COMPANY_ID", nullable = false, foreignKey=@ForeignKey(name="T_DEPARTMENT_FK_COMPANY"))
+	@JoinColumn(name = "COMPANY_ID", nullable = false, foreignKey = @ForeignKey(name = "T_DEPARTMENT_FK_COMPANY"))
 	public Company getCompany() {
 		return this.company;
 	}
@@ -179,5 +179,20 @@ public class Department implements VersionableAdapter {
 
 	public void setAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof Department) {
+			return ((Department) object).departmentName
+					.equals(this.departmentName)
+					&& ((Department) object).departmentCode
+							.equals(this.departmentCode)
+					&& ((Department) object).departmentCountry
+							.equals(this.departmentCountry)
+					&& ((Department) object).company.equals(this.company);
+
+		}
+		return false;
 	}
 }

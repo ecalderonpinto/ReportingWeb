@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 import com.entities.entity.loader.LoadError;
+import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportError;
 import com.entities.utilities.hibernate.VersionAuditor;
@@ -188,4 +189,14 @@ public class Error implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof Error) {
+			return ((Error) object).errorType.equals(this.errorType)
+					&& ((Error) object).errorName.equals(this.errorName)
+					&& ((Error) object).errorLevel.equals(this.errorLevel);
+
+		}
+		return false;
+	}
 }

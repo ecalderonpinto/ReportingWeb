@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 import com.entities.entity.reportingtool.Department;
+import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -88,7 +89,7 @@ public class FileConfig implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "DEPARTMENT_ID", foreignKey=@ForeignKey(name="T_FILE_CONFIG_FK_DPTO"))
+	@JoinColumn(name = "DEPARTMENT_ID", foreignKey = @ForeignKey(name = "T_FILE_CONFIG_FK_DPTO"))
 	public Department getDepartment() {
 		return this.department;
 	}
@@ -190,4 +191,15 @@ public class FileConfig implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof FileConfig) {
+			return ((FileConfig) object).department.equals(this.department)
+					&& ((FileConfig) object).fileConfigName
+							.equals(this.fileConfigName)
+					&& ((FileConfig) object).fileType.equals(this.fileType);
+
+		}
+		return false;
+	}
 }

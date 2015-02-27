@@ -40,6 +40,8 @@ public class ReportExecution implements VersionableAdapter {
 	private ReportCatalog reportCatalog;
 	private Company company;
 	private Fund fund;
+	private String reportExecutionName;
+	private String reportExecutionDesc;
 	private String reportPeriodType;
 	private String reportPeriodYear;
 	private Date reportDueDate;
@@ -80,7 +82,8 @@ public class ReportExecution implements VersionableAdapter {
 	}
 
 	public ReportExecution(ReportCatalog reportCatalog, Company company,
-			Fund fund, String reportPeriodType, String reportPeriodYear,
+			Fund fund, String reportExecutionName, String reportExecutionDesc,
+			String reportPeriodType, String reportPeriodYear,
 			Date reportDueDate, Date reportStartDate, String reportStatus,
 			String signedUserFlag, Date signedUserDate, String signedUserId,
 			String signedSuperFlag, Date signedSuperDate, String signedSuperId,
@@ -90,6 +93,8 @@ public class ReportExecution implements VersionableAdapter {
 		this.reportCatalog = reportCatalog;
 		this.company = company;
 		this.fund = fund;
+		this.reportExecutionName = reportExecutionName;
+		this.reportExecutionDesc = reportExecutionDesc;
 		this.reportPeriodType = reportPeriodType;
 		this.reportPeriodYear = reportPeriodYear;
 		this.reportDueDate = reportDueDate;
@@ -150,6 +155,24 @@ public class ReportExecution implements VersionableAdapter {
 
 	public void setFund(Fund fund) {
 		this.fund = fund;
+	}
+
+	@Column(name = "REPORT_EXECUTION_NAME", nullable = false, length = 100)
+	public String getReportExecutionName() {
+		return this.reportExecutionName;
+	}
+
+	public void setReportExecutionName(String reportExecutionName) {
+		this.reportExecutionName = reportExecutionName;
+	}
+
+	@Column(name = "REPORT_EXECUTION_DESC")
+	public String getReportExecutionDesc() {
+		return this.reportExecutionDesc;
+	}
+
+	public void setReportExecutionDesc(String reportExecutionDesc) {
+		this.reportExecutionDesc = reportExecutionDesc;
 	}
 
 	@Column(name = "REPORT_PERIOD_TYPE", nullable = false, length = 10)
@@ -310,7 +333,7 @@ public class ReportExecution implements VersionableAdapter {
 		this.reportErrors = reportErrors;
 	}
 
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "T_FILE_ASSIG_EXECUTION", joinColumns = { @JoinColumn(name = "REPORT_EXECUTION_ID", referencedColumnName = "REPORT_EXECUTION_ID") }, inverseJoinColumns = { @JoinColumn(name = "LOAD_FILE_ID", referencedColumnName = "LOAD_FILE_ID") })
 	public Set<LoadFile> getLoadFiles() {
 		return loadFiles;
@@ -339,6 +362,24 @@ public class ReportExecution implements VersionableAdapter {
 
 	public void setAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof ReportExecution) {
+			return ((ReportExecution) object).company.equals(this.company)
+					&& ((ReportExecution) object).fund.equals(this.fund)
+					&& ((ReportExecution) object).reportCatalog
+							.equals(this.reportCatalog)
+					&& ((ReportExecution) object).reportExecutionName
+							.equals(this.reportExecutionName)
+					&& ((ReportExecution) object).reportPeriodType
+							.equals(this.reportPeriodType)
+					&& ((ReportExecution) object).reportPeriodYear
+							.equals(this.reportPeriodYear);
+
+		}
+		return false;
 	}
 
 }

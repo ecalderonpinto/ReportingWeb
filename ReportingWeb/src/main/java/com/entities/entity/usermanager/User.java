@@ -20,6 +20,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -78,7 +79,7 @@ public class User implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ROL_ID", nullable = false, foreignKey=@ForeignKey(name="T_USER_FK_ROL_ID"))
+	@JoinColumn(name = "ROL_ID", nullable = false, foreignKey = @ForeignKey(name = "T_USER_FK_ROL_ID"))
 	public UserRol getUserRol() {
 		return this.userRol;
 	}
@@ -143,6 +144,14 @@ public class User implements VersionableAdapter {
 
 	public void setAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof User) {
+			return ((User) object).userName.equals(this.userName);
+		}
+		return false;
 	}
 
 }

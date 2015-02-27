@@ -76,7 +76,7 @@ public class UserRolPermission implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ROL_ID", nullable = false, foreignKey=@ForeignKey(name="T_USER_ROL_PERM_FK_ROL_ID"))
+	@JoinColumn(name = "ROL_ID", nullable = false, foreignKey = @ForeignKey(name = "T_USER_ROL_PERM_FK_ROL_ID"))
 	public UserRol getUserRol() {
 		return this.userRol;
 	}
@@ -133,4 +133,12 @@ public class UserRolPermission implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof UserRolPermission) {
+			return ((UserRolPermission) object).rolPermissionName
+					.equals(this.rolPermissionName);
+		}
+		return false;
+	}
 }

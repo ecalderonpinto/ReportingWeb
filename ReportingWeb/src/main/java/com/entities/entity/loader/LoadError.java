@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 import com.entities.entity.common.Error;
+import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -77,7 +78,7 @@ public class LoadError implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ERROR_ID", nullable = false, foreignKey=@ForeignKey(name="T_LOAD_ERROR_FK_ERROR"))
+	@JoinColumn(name = "ERROR_ID", nullable = false, foreignKey = @ForeignKey(name = "T_LOAD_ERROR_FK_ERROR"))
 	public Error getError() {
 		return this.error;
 	}
@@ -87,7 +88,7 @@ public class LoadError implements VersionableAdapter {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "LOAD_FILE_ID", nullable = false, foreignKey=@ForeignKey(name="T_LOAD_ERROR_FK_FILE"))
+	@JoinColumn(name = "LOAD_FILE_ID", nullable = false, foreignKey = @ForeignKey(name = "T_LOAD_ERROR_FK_FILE"))
 	public LoadFile getLoadFile() {
 		return this.loadFile;
 	}
@@ -135,4 +136,17 @@ public class LoadError implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof LoadError) {
+			return ((LoadError) object).error.equals(this.error)
+					&& ((LoadError) object).loadErrorText
+							.equals(this.loadErrorText)
+					&& ((LoadError) object).loadErrorType
+							.equals(this.loadErrorType)
+					&& ((LoadError) object).loadFile.equals(this.loadFile);
+
+		}
+		return false;
+	}
 }

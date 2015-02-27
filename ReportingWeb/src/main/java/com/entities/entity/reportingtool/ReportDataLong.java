@@ -29,7 +29,7 @@ import com.entities.utilities.hibernate.VersionableAdapter;
 public class ReportDataLong implements VersionableAdapter {
 
 	private long id;
-	private Blob reportDataBlob;
+	private byte[] reportDataBlob;
 	private Set<ReportData> reportDatas = new HashSet(0);
 
 	@Embedded
@@ -41,14 +41,14 @@ public class ReportDataLong implements VersionableAdapter {
 	public ReportDataLong() {
 	}
 
-	public ReportDataLong(long reportDataLongId, Blob reportDataBlob,
+	public ReportDataLong(long reportDataLongId, byte[] reportDataBlob,
 			VersionAuditor versionAuditor) {
 		this.id = reportDataLongId;
 		this.reportDataBlob = reportDataBlob;
 		this.versionAuditor = versionAuditor;
 	}
 
-	public ReportDataLong(Blob reportDataBlob, Set<ReportData> reportDatas,
+	public ReportDataLong(byte[] reportDataBlob, Set<ReportData> reportDatas,
 			VersionAuditor versionAuditor) {
 		this.reportDataBlob = reportDataBlob;
 		this.reportDatas = reportDatas;
@@ -68,11 +68,11 @@ public class ReportDataLong implements VersionableAdapter {
 	}
 
 	@Column(name = "REPORT_DATA_BLOB", nullable = false)
-	public Blob getReportDataBlob() {
+	public byte[] getReportDataBlob() {
 		return this.reportDataBlob;
 	}
 
-	public void setReportDataBlob(Blob reportDataBlob) {
+	public void setReportDataBlob(byte[] reportDataBlob) {
 		this.reportDataBlob = reportDataBlob;
 	}
 
@@ -106,4 +106,15 @@ public class ReportDataLong implements VersionableAdapter {
 		this.versionAuditor = _auditor;
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof ReportDataLong) {
+			return ((ReportDataLong) object).reportDataBlob
+					.equals(this.reportDataBlob)
+					&& ((ReportDataLong) object).reportDatas
+							.equals(this.reportDatas);
+
+		}
+		return false;
+	}
 }
