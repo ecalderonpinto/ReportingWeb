@@ -28,7 +28,11 @@ import com.reportingtool.xml.AIFMReportingInfo;
 import com.reportingtool.xml.AIFReportingInfo;
 import com.reportingtool.xml.CancelledRecordFlagType;
 import com.reportingtool.xml.ComplexAIFCompleteDescriptionType;
+import com.reportingtool.xml.ComplexAIFDescriptionType;
+import com.reportingtool.xml.ComplexAIFIdentifierType;
 import com.reportingtool.xml.ComplexAIFIndividualInfoType;
+import com.reportingtool.xml.ComplexAIFLeverageArticle242Type;
+import com.reportingtool.xml.ComplexAIFLeverageArticle244Type;
 import com.reportingtool.xml.ComplexAIFLeverageInfoType;
 import com.reportingtool.xml.ComplexAIFMCompleteDescriptionType;
 import com.reportingtool.xml.ComplexAIFMIdentifierType;
@@ -37,7 +41,9 @@ import com.reportingtool.xml.ComplexAIFMPrincipalInstrumentsType;
 import com.reportingtool.xml.ComplexAIFMPrincipalMarketsType;
 import com.reportingtool.xml.ComplexAIFMRecordInfoType;
 import com.reportingtool.xml.ComplexAIFPrincipalInfoType;
+import com.reportingtool.xml.ComplexAIFPrincipalMarketsType;
 import com.reportingtool.xml.ComplexAIFRecordInfoType;
+import com.reportingtool.xml.ComplexAUMGeographicalFocusType;
 import com.reportingtool.xml.ComplexAssumptionType;
 import com.reportingtool.xml.ComplexAssumptionsType;
 import com.reportingtool.xml.ComplexBaseCurrencyDescriptionType;
@@ -45,8 +51,18 @@ import com.reportingtool.xml.ComplexCancellationAIFMRecordInfoType;
 import com.reportingtool.xml.ComplexCancellationAIFRecordInfoType;
 import com.reportingtool.xml.ComplexFivePrincipalMarketType;
 import com.reportingtool.xml.ComplexIndividualExposureType;
+import com.reportingtool.xml.ComplexInvestorConcentrationType;
+import com.reportingtool.xml.ComplexMainInstrumentTradedType;
+import com.reportingtool.xml.ComplexMainInstrumentsTradedType;
 import com.reportingtool.xml.ComplexMarketIdentificationWithNOTType;
+import com.reportingtool.xml.ComplexMostImportantConcentrationType;
+import com.reportingtool.xml.ComplexNAVGeographicalFocusType;
+import com.reportingtool.xml.ComplexPortfolioConcentrationsType;
+import com.reportingtool.xml.ComplexPrincipalExposuresType;
 import com.reportingtool.xml.ComplexPrincipalInstrumentType;
+import com.reportingtool.xml.ComplexRiskProfileType;
+import com.reportingtool.xml.ComplexShareClassIdentificationType;
+import com.reportingtool.xml.ComplexStressTestsType;
 import com.reportingtool.xml.FXEURReferenceRateTypeType;
 import com.reportingtool.xml.FilingTypeType;
 import com.reportingtool.xml.MarketCodeTypeWithNOTType;
@@ -56,6 +72,7 @@ import com.reportingtool.xml.ReportingObligationChangeFrequencyCodeType;
 import com.reportingtool.xml.ReportingObligationChangeQuarterType;
 import com.reportingtool.xml.ReportingPeriodTypeType;
 import com.reportingtool.xml.SubAssetTypeType;
+import com.reportingtool.xml.TypicalPositionSizeType;
 
 public class GeneratorXML {
 
@@ -147,52 +164,414 @@ public class GeneratorXML {
 
 			ComplexAssumptionsType complexAssumptionsType = objectFactoryAIF
 					.createComplexAssumptionsType();
-			
+
 			ComplexIndividualExposureType complexIndividualExposureType = objectFactoryAIF
 					.createComplexIndividualExposureType();
 
-			// /////////////////////////////////////////////////////////////////
-			// <AIFCompleteDescription>
+			ComplexRiskProfileType complexRiskProfileType = objectFactoryAIF
+					.createComplexRiskProfileType();
 
+			ComplexStressTestsType complexStressTestsType = objectFactoryAIF
+					.createComplexStressTestsType();
+
+			ComplexAIFLeverageArticle242Type complexAIFLeverageArticle242Type = objectFactoryAIF
+					.createComplexAIFLeverageArticle242Type();
+
+			ComplexAIFLeverageArticle244Type complexAIFLeverageArticle244Type = objectFactoryAIF
+					.createComplexAIFLeverageArticle244Type();
+
+			ComplexAIFDescriptionType complexAIFDescriptionType = objectFactoryAIF
+					.createComplexAIFDescriptionType();
+
+			ComplexAIFIdentifierType complexAIFIdentifierType = objectFactoryAIF
+					.createComplexAIFIdentifierType();
+
+			ComplexAUMGeographicalFocusType complexAUMGeographicalFocusType = objectFactoryAIF
+					.createComplexAUMGeographicalFocusType();
+
+			ComplexMainInstrumentsTradedType complexMainInstrumentsTradedType = objectFactoryAIF
+					.createComplexMainInstrumentsTradedType();
+
+			ComplexMostImportantConcentrationType complexMostImportantConcentrationType = objectFactoryAIF
+					.createComplexMostImportantConcentrationType();
+
+			ComplexNAVGeographicalFocusType complexNAVGeographicalFocusType = objectFactoryAIF
+					.createComplexNAVGeographicalFocusType();
+
+			ComplexPrincipalExposuresType complexPrincipalExposuresType = objectFactoryAIF
+					.createComplexPrincipalExposuresType();
+
+			ComplexShareClassIdentificationType complexShareClassIdentificationType = objectFactoryAIF
+					.createComplexShareClassIdentificationType();
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFPrincipalInfo><IndividualExposure>
+
+			complexIndividualExposureType
+					.setAssetTypeExposures(complexAssetTypeExposuresType);
+			complexIndividualExposureType
+					.setAssetTypeTurnovers(complexAssetTypeTurnoversType);
+			complexIndividualExposureType
+					.setCompaniesDominantInfluence(complexCompaniesDominantInfluenceType);
+			complexIndividualExposureType
+					.setCurrencyExposures(complexCurrencyExposuresType);
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFPrincipalInfo><RiskProfile>
 			
-			// <IndividualExposureType>
-//			complexIndividualExposureType
-//					.setAssetTypeExposures(complexAssetTypeExposuresType);
-//			complexIndividualExposureType
-//					.setAssetTypeTurnovers(complexAssetTypeTurnoversType);
-//			complexIndividualExposureType
-//					.setCompaniesDominantInfluence(complexCompaniesDominantInfluenceType);
-//			complexIndividualExposureType
-//					.setCurrencyExposures(complexCurrencyExposuresType);
-//
-//			
-//			complexAIFIndividualInfoType
-//					.setIndividualExposure(complexIndividualExposureType);
-//			complexAIFIndividualInfoType.setRiskProfile(complexRiskProfileType);
-//			complexAIFIndividualInfoType.setStressTests(complexStressTestsType);
-//
-//			complexAIFLeverageInfoType
-//					.setAIFLeverageArticle242(complexAIFLeverageArticle242Type);
-//			complexAIFLeverageInfoType
-//					.setAIFLeverageArticle244(complexAIFLeverageArticle244Type);
-//
-//			complexAIFPrincipalInfoType
-//					.setAIFDescription(complexAIFDEscriptionType);
-//			complexAIFPrincipalInfoType
-//					.setAIFIdentification(complexAIFIdentifierType);
-//			complexAIFPrincipalInfoType
-//					.setAUMGeographicalFocus(complexAUMGeographicalFocusType);
-//			complexAIFPrincipalInfoType
-//					.setMainInstrumentsTraded(complexMainInstrumentsTradedType);
-//			complexAIFPrincipalInfoType
-//					.setMostImportantConcentration(complexMostImportantConcentrationType);
-//			complexAIFPrincipalInfoType
-//					.setNAVGeographicalFocus(complexNAVGeographicalFocusType);
-//			complexAIFPrincipalInfoType
-//					.setPrincipalExposures(complexPrincipalExposuresType);
-//			complexAIFPrincipalInfoType.setShareClassFlag(true);
-//			complexAIFPrincipalInfoType
-//					.setShareClassIdentification(complexShareClassIdentificationType);
+			complexRiskProfileType
+					.setCounterpartyRiskProfile(complexCounterpartyRiskProfileType);
+			complexRiskProfileType
+					.setLiquidityRiskProfile(complexLiquidityRiskProfileType);
+			complexRiskProfileType
+					.setMarketRiskProfile(complexMarketRiskProfileType);
+			complexRiskProfileType
+					.setOperationalRisk(complexOperationalRiskType);
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFPrincipalInfo><StressTests>
+			complexStressTestsType.setStressTestsResultArticle15("");
+			complexStressTestsType.setStressTestsResultArticle16("");
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFLeverageInfo><AIFLeverageArticle24-2>
+			complexAIFLeverageArticle242Type
+					.setAllCounterpartyCollateralRehypothecatedRate(new BigDecimal(
+							"0"));
+			complexAIFLeverageArticle242Type
+					.setAllCounterpartyCollateralRehypothecationFlag(true);
+			complexAIFLeverageArticle242Type
+					.setControlledStructures(complexControlledStructuresType);
+			complexAIFLeverageArticle242Type
+					.setFinancialInstrumentBorrowing(complexFinancialInstrumentBorrowingType);
+			complexAIFLeverageArticle242Type
+					.setLeverageAIF(complexLeverateAIFType);
+			complexAIFLeverageArticle242Type
+					.setSecuritiesCashBorrowing(complexSecuritiesCashBorrowingType);
+			complexAIFLeverageArticle242Type
+					.setShortPositionBorrowedSecuritiesValue(new BigDecimal("0"));
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFLeverageInfo><AIFLeverageArticle24-4>
+			complexAIFLeverageArticle244Type.getBorrowingSource();
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFPrincipalInfo><AIFDescription>
+			complexAIFDescriptionType
+					.setAIFBaseCurrencyDescription(complexBaseCurrencyDescriptionType);
+			complexAIFDescriptionType
+					.setAIFMasterFeederStatus(aifMasterFeederStatusType);
+			complexAIFDescriptionType.setAIFNetAssetValue(0);
+			complexAIFDescriptionType.setFirstFundingSourceCountry("");
+			complexAIFDescriptionType
+					.setFundOfFundsInvestmentStrategies(complexFundOfFundsInvestmentStrategiesType);
+			complexAIFDescriptionType
+					.setHedgeFundInvestmentStrategies(complexHedgeFundInvestmentStrategiesType);
+			complexAIFDescriptionType.setHFTBuySellMarketValue(new BigDecimal(
+					"0"));
+			complexAIFDescriptionType.setHFTTransactionNumber(new BigDecimal(
+					"0"));
+			complexAIFDescriptionType
+					.setMasterAIFsIdentification(complexMasterAIFsIdentificationType);
+			complexAIFDescriptionType
+					.setOtherFundInvestmentStrategies(complexOtherFundInvestmentStrategiesType);
+			complexAIFDescriptionType.setPredominantAIFType(aifTypeType);
+			complexAIFDescriptionType.setPrimeBrokers(complexPrimeBrokersType);
+			complexAIFDescriptionType
+					.setPrivateEquityFundInvestmentStrategies(complexPrivateEquityFundInvestmentStrategiesType);
+			complexAIFDescriptionType
+					.setRealEstateFundInvestmentStrategies(complexRealEstateFundInvestmentStrategiesType);
+			complexAIFDescriptionType.setSecondFundingSourceCountry("");
+			complexAIFDescriptionType.setThirdFundingSourceCountry("");
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFPrincipalInfo><AIFIdentifier>
+			complexAIFIdentifierType.setAIFIdentifierCUSIP("");
+			complexAIFIdentifierType.setAIFIdentifierECB("");
+			complexAIFIdentifierType.setAIFIdentifierISIN("");
+			complexAIFIdentifierType.setAIFIdentifierLEI("");
+			complexAIFIdentifierType.setAIFIdentifierRIC("");
+			complexAIFIdentifierType.setAIFIdentifierSEDOL("");
+			complexAIFIdentifierType.setAIFIdentifierTicker("");
+			complexAIFIdentifierType
+					.setOldAIFIdentifierNCA(complexAIFNationalIdentifierType);
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFPrincipalInfo><AUMGeographicalFocus>
+
+			// <AUMGeographicalFocus><AfricaAUMRate>
+			BigDecimal africaAUMRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AfricaAUMRate"))
+					africaAUMRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexAUMGeographicalFocusType.setAfricaAUMRate(africaAUMRate);
+
+			// <AUMGeographicalFocus><AsiaPacificAUMRate>
+			BigDecimal asiaPacificAUMRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AsiaPacificAUMRate"))
+					asiaPacificAUMRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexAUMGeographicalFocusType
+					.setAsiaPacificAUMRate(asiaPacificAUMRate);
+
+			// <AUMGeographicalFocus><EEAAUMRate>
+			BigDecimal eEAAUMRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("EEAAUMRate"))
+					eEAAUMRate = new BigDecimal(reportData.getReportDataText());
+			}
+			complexAUMGeographicalFocusType.setEEAAUMRate(eEAAUMRate);
+
+			// <AUMGeographicalFocus><EuropeAUMRate>
+			BigDecimal europeAUMRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("EuropeAUMRate"))
+					europeAUMRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexAUMGeographicalFocusType.setEuropeAUMRate(europeAUMRate);
+
+			// <AUMGeographicalFocus><MiddleEastAUMRate>
+			BigDecimal middleEastAUMRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("MiddleEastAUMRate"))
+					middleEastAUMRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexAUMGeographicalFocusType
+					.setMiddleEastAUMRate(middleEastAUMRate);
+
+			// <AUMGeographicalFocus><NorthAmericaAUMRate>
+			BigDecimal northAmericaAUMRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("NorthAmericaAUMRate"))
+					northAmericaAUMRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexAUMGeographicalFocusType
+					.setNorthAmericaAUMRate(northAmericaAUMRate);
+
+			// <AUMGeographicalFocus><SouthAmericaAUMRate>
+			BigDecimal southAmericaAUMRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("SouthAmericaAUMRate"))
+					southAmericaAUMRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexAUMGeographicalFocusType
+					.setSouthAmericaAUMRate(southAmericaAUMRate);
+
+			// <AUMGeographicalFocus><SupraNationalAUMRate>
+			BigDecimal supraNationalAUMRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("SupraNationalAUMRate"))
+					supraNationalAUMRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexAUMGeographicalFocusType
+					.setSupraNationalAUMRate(supraNationalAUMRate);
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFPrincipalInfo><MainInstrumentsTraded>
+			List<ComplexMainInstrumentTradedType> complexMainInstrumentTradedTypeList = complexMainInstrumentsTradedType
+					.getMainInstrumentTraded();
+
+			// falta rellenarlos
+			
+			// /////////////////////////////////////////////////////////////////
+			// <AIFPrincipalInfo><MostImportantConcentration>
+
+			ComplexAIFPrincipalMarketsType complexAIFPrincipalMarketsType = objectFactoryAIF
+					.createComplexAIFPrincipalMarketsType();
+
+			ComplexInvestorConcentrationType complexInvestorConcentrationType = objectFactoryAIF
+					.createComplexInvestorConcentrationType();
+
+			ComplexPortfolioConcentrationsType complexPortfolioConcentrationsType = objectFactoryAIF
+					.createComplexPortfolioConcentrationsType();
+			
+			// falta rellenarlos
+
+			complexMostImportantConcentrationType
+					.setAIFPrincipalMarkets(complexAIFPrincipalMarketsType);
+			complexMostImportantConcentrationType
+					.setInvestorConcentration(complexInvestorConcentrationType);
+			complexMostImportantConcentrationType
+					.setPortfolioConcentrations(complexPortfolioConcentrationsType);
+
+			// <MostImportantConcentration><TypicalPositionSize>
+			String typicalPositionSizeTypeString = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("ReportingPeriodType"))
+					typicalPositionSizeTypeString = reportData
+							.getReportDataText();
+			}
+			TypicalPositionSizeType typicalPositionSizeType = TypicalPositionSizeType
+					.fromValue(typicalPositionSizeTypeString);
+			complexMostImportantConcentrationType
+					.setTypicalPositionSize(typicalPositionSizeType);
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFPrincipalInfo><NAVGeographicalFocus>
+
+			// <NAVGeographicalFocus><AfricaNAVRate>
+			BigDecimal africaNAVRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AfricaNAVRate"))
+					africaNAVRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexNAVGeographicalFocusType.setAfricaNAVRate(africaNAVRate);
+
+			// <NAVGeographicalFocus><AsiaPacificNAVRate>
+			BigDecimal asiaPacificNAVRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AsiaPacificNAVRate"))
+					asiaPacificNAVRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexNAVGeographicalFocusType
+					.setAsiaPacificNAVRate(asiaPacificNAVRate);
+
+			// <NAVGeographicalFocus><EEANAVRate>
+			BigDecimal eEANAVRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("EEANAVRate"))
+					eEANAVRate = new BigDecimal(reportData.getReportDataText());
+			}
+			complexNAVGeographicalFocusType.setEEANAVRate(eEANAVRate);
+
+			// <NAVGeographicalFocus><EuropeNAVRate>
+			BigDecimal europeNAVRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("EuropeNAVRate"))
+					europeNAVRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexNAVGeographicalFocusType.setEuropeNAVRate(europeNAVRate);
+
+			// <NAVGeographicalFocus><MiddleEastNAVRate>
+			BigDecimal middleEastNAVRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("MiddleEastNAVRate"))
+					middleEastNAVRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexNAVGeographicalFocusType
+					.setMiddleEastNAVRate(middleEastNAVRate);
+
+			// <NAVGeographicalFocus><NorthAmericaNAVRate>
+			BigDecimal northAmericaNAVRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("NorthAmericaNAVRate"))
+					northAmericaNAVRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexNAVGeographicalFocusType
+					.setNorthAmericaNAVRate(northAmericaNAVRate);
+
+			// <NAVGeographicalFocus><SouthAmericaNAVRate>
+			BigDecimal southAmericaNAVRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("SouthAmericaNAVRate"))
+					southAmericaNAVRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexNAVGeographicalFocusType
+					.setSouthAmericaNAVRate(southAmericaNAVRate);
+
+			// <NAVGeographicalFocus><SupraNationalNAVRate>
+			BigDecimal supraNationalNAVRate = new BigDecimal("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("SupraNationalNAVRate"))
+					supraNationalNAVRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
+			complexNAVGeographicalFocusType
+					.setSupraNationalNAVRate(supraNationalNAVRate);
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFPrincipalInfo><PrincipalExposures>
+			complexPrincipalExposuresType.getPrincipalExposure();
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFPrincipalInfo><ShareClassIdentification>
+			complexShareClassIdentificationType.getShareClassIdentifier();
+
+			// /////////////////////////////////////////////////////////////////
+			// MAIN PART
+			// /////////////////////////////////////////////////////////////////
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFCompleteDescription><AIFPrincipalInfo>
+
+			complexAIFIndividualInfoType
+					.setIndividualExposure(complexIndividualExposureType);
+			complexAIFIndividualInfoType.setRiskProfile(complexRiskProfileType);
+			complexAIFIndividualInfoType.setStressTests(complexStressTestsType);
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFCompleteDescription><AIFLeverageInfo>
+
+			complexAIFLeverageInfoType
+					.setAIFLeverageArticle242(complexAIFLeverageArticle242Type);
+			complexAIFLeverageInfoType
+					.setAIFLeverageArticle244(complexAIFLeverageArticle244Type);
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFCompleteDescription><AIFPrincipalInfo>
+
+			complexAIFPrincipalInfoType
+					.setAIFDescription(complexAIFDescriptionType);
+			complexAIFPrincipalInfoType
+					.setAIFIdentification(complexAIFIdentifierType);
+			complexAIFPrincipalInfoType
+					.setAUMGeographicalFocus(complexAUMGeographicalFocusType);
+			complexAIFPrincipalInfoType
+					.setMainInstrumentsTraded(complexMainInstrumentsTradedType);
+			complexAIFPrincipalInfoType
+					.setMostImportantConcentration(complexMostImportantConcentrationType);
+			complexAIFPrincipalInfoType
+					.setNAVGeographicalFocus(complexNAVGeographicalFocusType);
+			complexAIFPrincipalInfoType
+					.setPrincipalExposures(complexPrincipalExposuresType);
+
+			// <AIFPrincipalInfo><ShareClassFlag>
+			String shareClassFlag = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("ShareClassFlag"))
+					shareClassFlag = reportData.getReportDataText();
+			}
+			complexAIFPrincipalInfoType.setShareClassFlag(Boolean
+					.parseBoolean(shareClassFlag));
+
+			complexAIFPrincipalInfoType
+					.setShareClassIdentification(complexShareClassIdentificationType);
+
+			// /////////////////////////////////////////////////////////////////
+			// <AIFRecordInfo><AIFCompleteDescription>
 
 			complexAIFCompleteDescriptionType
 					.setAIFIndividualInfo(complexAIFIndividualInfoType);
@@ -207,7 +586,7 @@ public class GeneratorXML {
 			complexAIFRecordInfoType
 					.setAIFCompleteDescription(complexAIFCompleteDescriptionType);
 
-			// <AIFContentType>
+			// <AIFRecordInfo><AIFContentType>
 			String aifContentType = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -216,7 +595,7 @@ public class GeneratorXML {
 			}
 			complexAIFRecordInfoType.setAIFContentType(aifContentType);
 
-			// <AIFDomicile>
+			// <AIFRecordInfo><AIFDomicile>
 			String aifDomicile = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -225,7 +604,7 @@ public class GeneratorXML {
 			}
 			complexAIFRecordInfoType.setAIFDomicile(aifDomicile);
 
-			// <AIFEEAFlag>
+			// <AIFRecordInfo><AIFEEAFlag>
 			String aifEEAFlag = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -235,7 +614,7 @@ public class GeneratorXML {
 			complexAIFRecordInfoType.setAIFEEAFlag(Boolean
 					.parseBoolean(aifEEAFlag));
 
-			// <AIFMNationalCode>
+			// <AIFRecordInfo><AIFMNationalCode>
 			String aifmNationalCode = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -246,7 +625,7 @@ public class GeneratorXML {
 			}
 			complexAIFRecordInfoType.setAIFMNationalCode(aifmNationalCode);
 
-			// <AIFName>
+			// <AIFRecordInfo><AIFName>
 			String aifName = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -257,7 +636,7 @@ public class GeneratorXML {
 			}
 			complexAIFRecordInfoType.setAIFName(aifName);
 
-			// <AIFNationalCode>
+			// <AIFRecordInfo><AIFNationalCode>
 			String aifNationalCode = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -268,7 +647,7 @@ public class GeneratorXML {
 			}
 			complexAIFRecordInfoType.setAIFNationalCode(aifNationalCode);
 
-			// <AIFNoReportingFlag>
+			// <AIFRecordInfo><AIFNoReportingFlag>
 			String aifNoReportingFlag = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -278,7 +657,7 @@ public class GeneratorXML {
 			complexAIFRecordInfoType.setAIFNoReportingFlag(Boolean
 					.parseBoolean(aifNoReportingFlag));
 
-			// <AIFReportingCode>
+			// <AIFRecordInfo><AIFReportingCode>
 			BigInteger iafReportingCode = new BigInteger("0");
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -288,7 +667,7 @@ public class GeneratorXML {
 			}
 			complexAIFRecordInfoType.setAIFReportingCode(iafReportingCode);
 
-			// <AIFReportingObligationChangeContentsCode>
+			// <AIFRecordInfo><AIFReportingObligationChangeContentsCode>
 			BigInteger aifReportingObligationChangeContentsCode = new BigInteger(
 					"0");
 			for (ReportData reportData : reportDatas) {
@@ -300,7 +679,7 @@ public class GeneratorXML {
 			complexAIFRecordInfoType
 					.setAIFReportingObligationChangeContentsCode(aifReportingObligationChangeContentsCode);
 
-			// <AIFMReportingObligationChangeQuarter>
+			// <AIFRecordInfo><AIFMReportingObligationChangeQuarter>
 			String reportingObligationChangeQuarter = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -313,7 +692,7 @@ public class GeneratorXML {
 			complexAIFRecordInfoType
 					.setAIFReportingObligationChangeQuarter(reportingObligationChangeQuarterType);
 
-			// <AIFReportingObligationChangeFrequencyCode>
+			// <AIFRecordInfo><AIFReportingObligationChangeFrequencyCode>
 			String reportingObligationChangeFrequency = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -326,7 +705,7 @@ public class GeneratorXML {
 			complexAIFRecordInfoType
 					.setAIFReportingObligationChangeFrequencyCode(reportingObligationChangeFrequencyCodeType);
 
-			// <Assumptions>
+			// <AIFRecordInfo><Assumptions>
 			List<ComplexAssumptionType> complexAssumptionTypeList = new ArrayList<ComplexAssumptionType>(
 					complexAssumptionsType.getAssumption());
 			int assumptionCount = 0;
@@ -366,7 +745,7 @@ public class GeneratorXML {
 			}
 			complexAIFRecordInfoType.setAssumptions(complexAssumptionsType);
 
-			// <FilingType>
+			// <AIFRecordInfo><FilingType>
 			String filingType = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -376,7 +755,7 @@ public class GeneratorXML {
 			FilingTypeType filingTypeType = FilingTypeType.valueOf(filingType);
 			complexAIFRecordInfoType.setFilingType(filingTypeType);
 
-			// <InceptionDate>
+			// <AIFRecordInfo><InceptionDate>
 			String inceptionDateString = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -388,7 +767,7 @@ public class GeneratorXML {
 					.asXMLGregorianCalendarDate(inceptionDate);
 			complexAIFRecordInfoType.setInceptionDate(inceptionDateXML);
 
-			// <LastReportingFlag>
+			// <AIFRecordInfo><LastReportingFlag>
 			String lastReportingFlag = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -398,7 +777,7 @@ public class GeneratorXML {
 			complexAIFRecordInfoType.setLastReportingFlag(Boolean
 					.parseBoolean(lastReportingFlag));
 
-			// <ReportingPeriodEndDate>
+			// <AIFRecordInfo><ReportingPeriodEndDate>
 			String reportingPeriodEndDateString = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -413,7 +792,7 @@ public class GeneratorXML {
 			complexAIFRecordInfoType
 					.setReportingPeriodEndDate(reportingPeriodEndDateXML);
 
-			// <ReportingPeriodStartDate>
+			// <AIFRecordInfo><ReportingPeriodStartDate>
 			String reportingPeriodStartDateString = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -428,7 +807,7 @@ public class GeneratorXML {
 			complexAIFRecordInfoType
 					.setReportingPeriodStartDate(reportingPeriodStartDateXML);
 
-			// <ReportingPeriodType>
+			// <AIFRecordInfo><ReportingPeriodType>
 			String reportingPeriodType = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
@@ -440,7 +819,7 @@ public class GeneratorXML {
 			complexAIFRecordInfoType
 					.setReportingPeriodType(reportingPeriodTypeType);
 
-			// <ReportingPeriodYear>
+			// <AIFRecordInfo><ReportingPeriodYear>
 			String reportingPeriodYearString = "";
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
