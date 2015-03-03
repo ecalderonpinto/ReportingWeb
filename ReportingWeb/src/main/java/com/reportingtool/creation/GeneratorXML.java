@@ -1,5 +1,6 @@
 package com.reportingtool.creation;
 
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -16,12 +17,15 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Marshaller;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
 
 import org.springframework.context.ApplicationContext;
 
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
+import com.entities.entity.reportingtool.ReportField;
 import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.utilities.XMLGregorianCalendarConverter;
 import com.reportingtool.xml.AIFMReportingInfo;
@@ -207,26 +211,26 @@ public class GeneratorXML {
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><IndividualExposure>
 
-			complexIndividualExposureType
-					.setAssetTypeExposures(complexAssetTypeExposuresType);
-			complexIndividualExposureType
-					.setAssetTypeTurnovers(complexAssetTypeTurnoversType);
-			complexIndividualExposureType
-					.setCompaniesDominantInfluence(complexCompaniesDominantInfluenceType);
-			complexIndividualExposureType
-					.setCurrencyExposures(complexCurrencyExposuresType);
+			// complexIndividualExposureType
+			// .setAssetTypeExposures(complexAssetTypeExposuresType);
+			// complexIndividualExposureType
+			// .setAssetTypeTurnovers(complexAssetTypeTurnoversType);
+			// complexIndividualExposureType
+			// .setCompaniesDominantInfluence(complexCompaniesDominantInfluenceType);
+			// complexIndividualExposureType
+			// .setCurrencyExposures(complexCurrencyExposuresType);
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><RiskProfile>
-			
-			complexRiskProfileType
-					.setCounterpartyRiskProfile(complexCounterpartyRiskProfileType);
-			complexRiskProfileType
-					.setLiquidityRiskProfile(complexLiquidityRiskProfileType);
-			complexRiskProfileType
-					.setMarketRiskProfile(complexMarketRiskProfileType);
-			complexRiskProfileType
-					.setOperationalRisk(complexOperationalRiskType);
+
+			// complexRiskProfileType
+			// .setCounterpartyRiskProfile(complexCounterpartyRiskProfileType);
+			// complexRiskProfileType
+			// .setLiquidityRiskProfile(complexLiquidityRiskProfileType);
+			// complexRiskProfileType
+			// .setMarketRiskProfile(complexMarketRiskProfileType);
+			// complexRiskProfileType
+			// .setOperationalRisk(complexOperationalRiskType);
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><StressTests>
@@ -240,16 +244,16 @@ public class GeneratorXML {
 							"0"));
 			complexAIFLeverageArticle242Type
 					.setAllCounterpartyCollateralRehypothecationFlag(true);
-			complexAIFLeverageArticle242Type
-					.setControlledStructures(complexControlledStructuresType);
-			complexAIFLeverageArticle242Type
-					.setFinancialInstrumentBorrowing(complexFinancialInstrumentBorrowingType);
-			complexAIFLeverageArticle242Type
-					.setLeverageAIF(complexLeverateAIFType);
-			complexAIFLeverageArticle242Type
-					.setSecuritiesCashBorrowing(complexSecuritiesCashBorrowingType);
-			complexAIFLeverageArticle242Type
-					.setShortPositionBorrowedSecuritiesValue(new BigDecimal("0"));
+			// complexAIFLeverageArticle242Type
+			// .setControlledStructures(complexControlledStructuresType);
+			// complexAIFLeverageArticle242Type
+			// .setFinancialInstrumentBorrowing(complexFinancialInstrumentBorrowingType);
+			// complexAIFLeverageArticle242Type
+			// .setLeverageAIF(complexLeverateAIFType);
+			// complexAIFLeverageArticle242Type
+			// .setSecuritiesCashBorrowing(complexSecuritiesCashBorrowingType);
+			// complexAIFLeverageArticle242Type
+			// .setShortPositionBorrowedSecuritiesValue(new BigDecimal("0"));
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFLeverageInfo><AIFLeverageArticle24-4>
@@ -257,30 +261,32 @@ public class GeneratorXML {
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><AIFDescription>
-			complexAIFDescriptionType
-					.setAIFBaseCurrencyDescription(complexBaseCurrencyDescriptionType);
-			complexAIFDescriptionType
-					.setAIFMasterFeederStatus(aifMasterFeederStatusType);
-			complexAIFDescriptionType.setAIFNetAssetValue(0);
-			complexAIFDescriptionType.setFirstFundingSourceCountry("");
-			complexAIFDescriptionType
-					.setFundOfFundsInvestmentStrategies(complexFundOfFundsInvestmentStrategiesType);
-			complexAIFDescriptionType
-					.setHedgeFundInvestmentStrategies(complexHedgeFundInvestmentStrategiesType);
-			complexAIFDescriptionType.setHFTBuySellMarketValue(new BigDecimal(
-					"0"));
-			complexAIFDescriptionType.setHFTTransactionNumber(new BigDecimal(
-					"0"));
-			complexAIFDescriptionType
-					.setMasterAIFsIdentification(complexMasterAIFsIdentificationType);
-			complexAIFDescriptionType
-					.setOtherFundInvestmentStrategies(complexOtherFundInvestmentStrategiesType);
-			complexAIFDescriptionType.setPredominantAIFType(aifTypeType);
-			complexAIFDescriptionType.setPrimeBrokers(complexPrimeBrokersType);
-			complexAIFDescriptionType
-					.setPrivateEquityFundInvestmentStrategies(complexPrivateEquityFundInvestmentStrategiesType);
-			complexAIFDescriptionType
-					.setRealEstateFundInvestmentStrategies(complexRealEstateFundInvestmentStrategiesType);
+
+			// complexAIFDescriptionType
+			// .setAIFBaseCurrencyDescription(complexBaseCurrencyDescriptionType);
+			// complexAIFDescriptionType
+			// .setAIFMasterFeederStatus(aifMasterFeederStatusType);
+			// complexAIFDescriptionType.setAIFNetAssetValue(0);
+			// complexAIFDescriptionType.setFirstFundingSourceCountry("");
+			// complexAIFDescriptionType
+			// .setFundOfFundsInvestmentStrategies(complexFundOfFundsInvestmentStrategiesType);
+			// complexAIFDescriptionType
+			// .setHedgeFundInvestmentStrategies(complexHedgeFundInvestmentStrategiesType);
+			// complexAIFDescriptionType.setHFTBuySellMarketValue(new
+			// BigDecimal(
+			// "0"));
+			// complexAIFDescriptionType.setHFTTransactionNumber(new BigDecimal(
+			// "0"));
+			// complexAIFDescriptionType
+			// .setMasterAIFsIdentification(complexMasterAIFsIdentificationType);
+			// complexAIFDescriptionType
+			// .setOtherFundInvestmentStrategies(complexOtherFundInvestmentStrategiesType);
+			// complexAIFDescriptionType.setPredominantAIFType(aifTypeType);
+			// complexAIFDescriptionType.setPrimeBrokers(complexPrimeBrokersType);
+			// complexAIFDescriptionType
+			// .setPrivateEquityFundInvestmentStrategies(complexPrivateEquityFundInvestmentStrategiesType);
+			// complexAIFDescriptionType
+			// .setRealEstateFundInvestmentStrategies(complexRealEstateFundInvestmentStrategiesType);
 			complexAIFDescriptionType.setSecondFundingSourceCountry("");
 			complexAIFDescriptionType.setThirdFundingSourceCountry("");
 
@@ -293,8 +299,8 @@ public class GeneratorXML {
 			complexAIFIdentifierType.setAIFIdentifierRIC("");
 			complexAIFIdentifierType.setAIFIdentifierSEDOL("");
 			complexAIFIdentifierType.setAIFIdentifierTicker("");
-			complexAIFIdentifierType
-					.setOldAIFIdentifierNCA(complexAIFNationalIdentifierType);
+			// complexAIFIdentifierType
+			// .setOldAIFIdentifierNCA(complexAIFNationalIdentifierType);
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><AUMGeographicalFocus>
@@ -389,7 +395,7 @@ public class GeneratorXML {
 					.getMainInstrumentTraded();
 
 			// falta rellenarlos
-			
+
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><MostImportantConcentration>
 
@@ -401,7 +407,7 @@ public class GeneratorXML {
 
 			ComplexPortfolioConcentrationsType complexPortfolioConcentrationsType = objectFactoryAIF
 					.createComplexPortfolioConcentrationsType();
-			
+
 			// falta rellenarlos
 
 			complexMostImportantConcentrationType
@@ -706,19 +712,21 @@ public class GeneratorXML {
 					.setAIFReportingObligationChangeFrequencyCode(reportingObligationChangeFrequencyCodeType);
 
 			// <AIFRecordInfo><Assumptions>
-			List<ComplexAssumptionType> complexAssumptionTypeList = new ArrayList<ComplexAssumptionType>(
-					complexAssumptionsType.getAssumption());
+			List<ComplexAssumptionType> complexAssumptionTypeList = complexAssumptionsType
+					.getAssumption();
 			int assumptionCount = 0;
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
 						.equals("AssumptionDescription"))
 					assumptionCount++;
 			}
+			System.out.println("assumptionCount " + assumptionCount);
 			for (int i = 1; i < assumptionCount + 1; i++) {
+				BigInteger questionNumber = new BigInteger("0");
+				String assumptionDescription = "";
 				// <Assumption>
 				for (ReportData reportData : reportDatas) {
 					// <QuestionNumber>
-					BigInteger questionNumber = new BigInteger("0");
 					if (reportData.getReportField().getReportFieldName()
 							.equals("QuestionNumber")
 							&& Integer
@@ -727,21 +735,22 @@ public class GeneratorXML {
 								reportData.getReportDataText());
 					}
 					// <AssumptionDescription>
-					String assumptionDescription = "";
 					if (reportData.getReportField().getReportFieldName()
 							.equals("AssumptionDescription")
 							&& Integer
 									.parseInt(reportData.getReportDataBlock()) == i) {
-						questionNumber = new BigInteger(
-								reportData.getReportDataText());
+						assumptionDescription = reportData.getReportDataText();
 					}
-					ComplexAssumptionType complexAssumptionType = objectFactoryAIF
-							.createComplexAssumptionType();
-					complexAssumptionType
-							.setAssumptionDescription(assumptionDescription);
-					complexAssumptionType.setQuestionNumber(questionNumber);
-					complexAssumptionTypeList.add(complexAssumptionType);
+
 				}
+				ComplexAssumptionType complexAssumptionType = objectFactoryAIF
+						.createComplexAssumptionType();
+				complexAssumptionType
+						.setAssumptionDescription(assumptionDescription);
+				complexAssumptionType.setQuestionNumber(questionNumber);
+				complexAssumptionTypeList.add(complexAssumptionType);
+				System.out.println("assumption i " + i + " " + questionNumber
+						+ " " + assumptionDescription);
 			}
 			complexAIFRecordInfoType.setAssumptions(complexAssumptionsType);
 
@@ -960,6 +969,16 @@ public class GeneratorXML {
 					reportData.getReportDataText());
 		}
 		System.out.println(reportMap.toString());
+
+		for (ReportField reportField : reportExecution.getReportCatalog()
+				.getReportFields()) {
+			System.out.println("A field: " + reportField.getReportFieldNum());
+		}
+		// SortReportField.sortReportExecution(reportExecution);
+		// for(ReportField reportField :
+		// reportExecution.getReportCatalog().getReportFields()) {
+		// System.out.println("B field: " +reportField.getReportFieldNum());
+		// }
 
 		// ///////////////////////////////////////////////////////////
 		// ONLY STATUS = PENDING WILL CREATE XML REPORTS
@@ -1205,8 +1224,7 @@ public class GeneratorXML {
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
 						.equals("FXEURReferenceRateType"))
-					fxEUROtherReferenceRateDescription = reportData
-							.getReportDataText();
+					fxEURReferenceRateType = reportData.getReportDataText();
 			}
 			FXEURReferenceRateTypeType fxEURReferenceRateTypeType = FXEURReferenceRateTypeType
 					.fromValue(fxEURReferenceRateType);
@@ -1401,19 +1419,21 @@ public class GeneratorXML {
 					.setAIFMReportingObligationChangeFrequencyCode(reportingObligationChangeFrequencyCode);
 
 			// <Assumptions>
-			List<ComplexAssumptionType> complexAssumptionTypeList = new ArrayList<ComplexAssumptionType>(
-					complexAssumptionsType.getAssumption());
+			List<ComplexAssumptionType> complexAssumptionTypeList = complexAssumptionsType
+					.getAssumption();
 			int assumptionCount = 0;
 			for (ReportData reportData : reportDatas) {
 				if (reportData.getReportField().getReportFieldName()
 						.equals("AssumptionDescription"))
 					assumptionCount++;
 			}
+			System.out.println("assumptionCount " + assumptionCount);
 			for (int i = 1; i < assumptionCount + 1; i++) {
+				BigInteger questionNumber = new BigInteger("0");
+				String assumptionDescription = "";
 				// <Assumption>
 				for (ReportData reportData : reportDatas) {
 					// <QuestionNumber>
-					BigInteger questionNumber = new BigInteger("0");
 					if (reportData.getReportField().getReportFieldName()
 							.equals("QuestionNumber")
 							&& Integer
@@ -1422,21 +1442,22 @@ public class GeneratorXML {
 								reportData.getReportDataText());
 					}
 					// <AssumptionDescription>
-					String assumptionDescription = "";
 					if (reportData.getReportField().getReportFieldName()
 							.equals("AssumptionDescription")
 							&& Integer
 									.parseInt(reportData.getReportDataBlock()) == i) {
-						questionNumber = new BigInteger(
-								reportData.getReportDataText());
+						assumptionDescription = reportData.getReportDataText();
 					}
-					ComplexAssumptionType complexAssumptionType = objectFactoryAIFM
-							.createComplexAssumptionType();
-					complexAssumptionType
-							.setAssumptionDescription(assumptionDescription);
-					complexAssumptionType.setQuestionNumber(questionNumber);
-					complexAssumptionTypeList.add(complexAssumptionType);
+
 				}
+				ComplexAssumptionType complexAssumptionType = objectFactoryAIFM
+						.createComplexAssumptionType();
+				complexAssumptionType
+						.setAssumptionDescription(assumptionDescription);
+				complexAssumptionType.setQuestionNumber(questionNumber);
+				complexAssumptionTypeList.add(complexAssumptionType);
+				System.out.println("assumption i " + i + " " + questionNumber
+						+ " " + assumptionDescription);
 			}
 			complexAIFMRecordInfoType.setAssumptions(complexAssumptionsType);
 
@@ -1630,10 +1651,25 @@ public class GeneratorXML {
 			Marshaller marshaller = context.createMarshaller();
 			marshaller.setProperty("jaxb.formatted.output", Boolean.TRUE);
 			marshaller.marshal(jaxbElement, System.out);
+			
 			StringWriter st = new StringWriter();
 			marshaller.marshal(jaxbElement, st);
 
+			//return st.toString().replace("    ","<pre>\t</pre>").replace("\n", "<br>");
 			return st.toString();
+			
+//			// need a styler.xsl to transform XML to HTML
+//			StringReader reader = new StringReader(st.toString());
+//			StringWriter writer = new StringWriter();
+//		    TransformerFactory tFactory = TransformerFactory.newInstance();
+//		    Transformer transformer = tFactory.newTransformer(
+//		            new javax.xml.transform.stream.StreamSource("styler.xsl"));
+//		    transformer.transform(
+//		            new javax.xml.transform.stream.StreamSource(reader), 
+//		            new javax.xml.transform.stream.StreamResult(writer));
+//		    String result = writer.toString();
+//			return result;
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1645,6 +1681,7 @@ public class GeneratorXML {
 		return null;
 
 	}
+
 	// public void generateXMLAIFM_OLD(ReportExecution reportExecution) {
 	//
 	// System.out.println("DEBUG_" + "GeneratorXML: starting XML generation ");

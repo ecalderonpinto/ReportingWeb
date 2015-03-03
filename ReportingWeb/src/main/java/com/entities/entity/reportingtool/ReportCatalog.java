@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -128,6 +129,7 @@ public class ReportCatalog implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportCatalog")
+	@OrderBy("reportFieldNum ASC")
 	public Set<ReportField> getReportFields() {
 		return this.reportFields;
 	}
