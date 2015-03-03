@@ -132,10 +132,10 @@ public class FundGroup implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof FundGroup) {
-			return ((FundGroup) object).department.equals(this.department)
-					&& ((FundGroup) object).fund.equals(this.fund)
-					&& ((FundGroup) object).fundGroupCode
-							.equals(this.fundGroupCode);
+			return ((FundGroup) object).getDepartment().equals(this.department)
+					&& ((FundGroup) object).getFund().equals(this.fund)
+					&& ((FundGroup) object).getFundGroupCode().equals(
+							this.fundGroupCode);
 
 		}
 		return false;

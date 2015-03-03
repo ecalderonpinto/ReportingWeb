@@ -184,13 +184,13 @@ public class Department implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof Department) {
-			return ((Department) object).departmentName
-					.equals(this.departmentName)
-					&& ((Department) object).departmentCode
-							.equals(this.departmentCode)
-					&& ((Department) object).departmentCountry
-							.equals(this.departmentCountry)
-					&& ((Department) object).company.equals(this.company);
+			return ((Department) object).getDepartmentName().equals(
+					this.departmentName)
+					&& ((Department) object).getDepartmentCode().equals(
+							this.departmentCode)
+					&& ((Department) object).getDepartmentCountry().equals(
+							this.departmentCountry)
+					&& ((Department) object).getCompany().equals(this.company);
 
 		}
 		return false;

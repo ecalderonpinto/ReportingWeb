@@ -145,12 +145,12 @@ public class ReportCustom implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof ReportCustom) {
-			return ((ReportCustom) object).reportCatalog
-					.equals(this.reportCatalog)
-					&& ((ReportCustom) object).reportCustomName
-							.equals(this.reportCustomName)
-					&& ((ReportCustom) object).reportField
-							.equals(this.reportField);
+			return ((ReportCustom) object).getReportCatalog().equals(
+					this.reportCatalog)
+					&& ((ReportCustom) object).getReportCustomName().equals(
+							this.reportCustomName)
+					&& ((ReportCustom) object).getReportField().equals(
+							this.reportField);
 
 		}
 		return false;

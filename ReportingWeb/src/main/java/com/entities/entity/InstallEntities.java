@@ -3312,7 +3312,7 @@ public class InstallEntities {
 					reportExecution, null, null, "XXX", "1", null, null,
 					versionAdmin);
 			ReportData reportData28 = new ReportData(null, reportField28,
-					reportExecution, null, null, "", "1", null, null,
+					reportExecution, null, null, "EU", "1", null, null,
 					versionAdmin);
 			ReportData reportData29 = new ReportData(null, reportField29,
 					reportExecution, null, null, "452000000", "1", null, null,

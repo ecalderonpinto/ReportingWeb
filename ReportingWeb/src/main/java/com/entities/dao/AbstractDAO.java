@@ -6,11 +6,11 @@
 package com.entities.dao;
 
 import java.util.List;
+import java.util.Map;
 
-import javax.swing.text.html.parser.Entity;
-
+import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,13 +23,14 @@ public abstract class AbstractDAO<T> {
 
 	protected abstract HibernateTemplate getHibernateTemplate();
 
+	protected DetachedCriteria createDetachedCriteria() {
+		return DetachedCriteria.forClass(entityClass);
+	}
+
 	@Transactional
 	public void create(T entity) {
 		System.out.println("Creating: " + entity.toString());
-
 		getHibernateTemplate().save(entity);
-		// getHibernateTemplate().flush();
-		System.out.println("Created");
 	}
 
 	@Transactional
@@ -40,47 +41,84 @@ public abstract class AbstractDAO<T> {
 	@Transactional
 	public void delete(T entity) {
 		getHibernateTemplate().delete(getHibernateTemplate().merge(entity));
-		
-		//getHibernateTemplate().flush();
-		System.out.println("Deleted");
+		System.out.println("Deleted " + entity.toString());
 	}
 
 	// public T find(Object id) {
 	// return getHibernateTemplate().find(entityClass, id);
 	// }
-	
+
 	@Transactional
 	public T findById(long id) {
-  		return (T) getHibernateTemplate().load(entityClass, id);
-  	}
+		return (T) getHibernateTemplate().load(entityClass, id);
+	}
 
 	@Transactional
 	public List<T> findByExample(T entity) {
 		return (List<T>) getHibernateTemplate().findByExample(entity);
 	}
 
-//	@Transactional
-//	public List<T> findAll() {
-//		return (List<T>) getHibernateTemplate().findByCriteria(
-//				DetachedCriteria.forClass(entityClass).add(
-//						Example.create(entityClass)));
-//	}
-	
+	@Transactional
+	public List<T> findByExample(T entity, int firstResult, int maxResults) {
+		List<T> resultList = getHibernateTemplate().findByExample(entity,
+				firstResult, maxResults);
+		return resultList;
+	}
+
+	@Transactional
+	// ("reportFieldName", "AIFName")
+	public List<T> findAllByProperty(String propertyName, Object value) {
+		DetachedCriteria criteria = createDetachedCriteria();
+		criteria.add(Restrictions.eq(propertyName, value));
+		return (List<T>) getHibernateTemplate().findByCriteria(criteria);
+	}
+
+	@Transactional
+	public List<T> findAllByProperty(List<Map> list) throws Exception {
+
+		DetachedCriteria criteria = createDetachedCriteria();
+		for (int i = 0; i < list.size(); i++) {
+
+			Map<String, Object> map = (Map<String, Object>) list.get(i);
+			String propertyName = (String) map.get("propertyName");
+			Object value = map.get("value");
+
+			// logger.debug("propertyName "+ propertyName + "value "+ value
+			// +" count "+list.size());
+			System.out.println("propertyName " + propertyName + "value "
+					+ value + " count " + list.size());
+
+			criteria.add(Restrictions.eq(propertyName, value));
+
+		}
+		return (List<T>) getHibernateTemplate().findByCriteria(criteria);
+	}
+
+	@Transactional
+	public List<T> findByQuery(final String queryString) {
+		return (List<T>) getHibernateTemplate().find(queryString);
+	}
+
+	// @Transactional
+	// public List<T> findAll() {
+	// return (List<T>) getHibernateTemplate().findByCriteria(
+	// DetachedCriteria.forClass(entityClass).add(
+	// Example.create(entityClass)));
+	// }
+
 	@Transactional
 	public List<T> findAll() {
 		return (List<T>) getHibernateTemplate().findByCriteria(
 				DetachedCriteria.forClass(entityClass));
 	}
 
-	
 	@Transactional
 	public void deleteAll() {
 		List<T> entities = findAll();
-		for(T entity : entities) {
+		for (T entity : entities) {
 			delete(entity);
 		}
 	}
-	
 
 	// public List<T> findRange(int[] range) {
 	// javax.persistence.criteria.CriteriaQuery cq =

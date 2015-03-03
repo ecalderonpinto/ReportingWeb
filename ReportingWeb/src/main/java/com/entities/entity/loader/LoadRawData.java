@@ -150,14 +150,14 @@ public class LoadRawData implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof LoadRawData) {
-			return ((LoadRawData) object).fileColum.equals(this.fileColum)
-					&& ((LoadRawData) object).loadRawDataType
-							.equals(this.loadRawDataType)
-					&& ((LoadRawData) object).loadRawDataText
-							.equals(this.loadRawDataText)
-					&& ((LoadRawData) object).loadRawDataBlock
-							.equals(this.loadRawDataBlock)
-					&& ((LoadRawData) object).loadRaw.equals(this.loadRaw);
+			return ((LoadRawData) object).getFileColum().equals(this.fileColum)
+					&& ((LoadRawData) object).getLoadRawDataType().equals(
+							this.loadRawDataType)
+					&& ((LoadRawData) object).getLoadRawDataText().equals(
+							this.loadRawDataText)
+					&& ((LoadRawData) object).getLoadRawDataBlock().equals(
+							this.loadRawDataBlock)
+					&& ((LoadRawData) object).getLoadRaw().equals(this.loadRaw);
 
 		}
 		return false;

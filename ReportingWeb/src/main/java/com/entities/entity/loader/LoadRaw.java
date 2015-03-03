@@ -166,12 +166,13 @@ public class LoadRaw implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof LoadRaw) {
-			return ((LoadRaw) object).loadFile.equals(this.loadFile)
-					&& ((LoadRaw) object).loadLineNumber
-							.equals(this.loadLineNumber)
-					&& ((LoadRaw) object).loadLineType
-							.equals(this.loadLineType)
-					&& ((LoadRaw) object).loadRawBlob.equals(this.loadRawBlob);
+			return ((LoadRaw) object).getLoadFile().equals(this.loadFile)
+					&& ((LoadRaw) object).getLoadLineNumber().equals(
+							this.loadLineNumber)
+					&& ((LoadRaw) object).getLoadLineType().equals(
+							this.loadLineType)
+					&& ((LoadRaw) object).getLoadRawBlob().equals(
+							this.loadRawBlob);
 
 		}
 		return false;

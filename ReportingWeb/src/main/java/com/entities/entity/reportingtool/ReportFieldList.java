@@ -117,9 +117,9 @@ public class ReportFieldList implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof ReportFieldList) {
-			return ((ReportFieldList) object).reportFieldListType
-					.equals(this.reportFieldListType)
-					&& ((ReportFieldList) object).reportFieldListValue
+			return ((ReportFieldList) object).getReportFieldListType().equals(
+					this.reportFieldListType)
+					&& ((ReportFieldList) object).getReportFieldListValue()
 							.equals(this.reportFieldListValue);
 
 		}

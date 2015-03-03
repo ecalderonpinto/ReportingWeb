@@ -181,10 +181,10 @@ public class Fund implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof Fund) {
-			return ((Fund) object).fundName.equals(this.fundName)
-					&& ((Fund) object).fundCode.equals(this.fundCode)
-					&& ((Fund) object).fundIsin.equals(this.fundIsin)
-					&& ((Fund) object).company.equals(this.company);
+			return ((Fund) object).getFundName().equals(this.fundName)
+					&& ((Fund) object).getFundCode().equals(this.fundCode)
+					&& ((Fund) object).getFundIsin().equals(this.fundIsin)
+					&& ((Fund) object).getCompany().equals(this.company);
 
 		}
 		return false;

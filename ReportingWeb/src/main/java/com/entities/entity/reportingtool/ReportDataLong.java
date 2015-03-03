@@ -109,10 +109,10 @@ public class ReportDataLong implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof ReportDataLong) {
-			return ((ReportDataLong) object).reportDataBlob
-					.equals(this.reportDataBlob)
-					&& ((ReportDataLong) object).reportDatas
-							.equals(this.reportDatas);
+			return ((ReportDataLong) object).getReportDataBlob().equals(
+					this.reportDataBlob)
+					&& ((ReportDataLong) object).getReportDatas().equals(
+							this.reportDatas);
 
 		}
 		return false;

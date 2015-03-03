@@ -207,12 +207,15 @@ public class FileColum implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof FileColum) {
-			return ((FileColum) object).columName.equals(this.columName)
-					&& ((FileColum) object).fileConfig.equals(this.fileConfig)
-					&& ((FileColum) object).columType.equals(this.columType)
-					&& ((FileColum) object).columBlock.equals(this.columBlock)
-					&& ((FileColum) object).columNumber
-							.equals(this.columNumber);
+			return ((FileColum) object).getColumName().equals(this.columName)
+					&& ((FileColum) object).getFileConfig().equals(
+							this.fileConfig)
+					&& ((FileColum) object).getColumType().equals(
+							this.columType)
+					&& ((FileColum) object).getColumBlock().equals(
+							this.columBlock)
+					&& ((FileColum) object).getColumNumber().equals(
+							this.columNumber);
 
 		}
 		return false;

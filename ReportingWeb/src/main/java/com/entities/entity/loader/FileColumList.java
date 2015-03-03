@@ -131,13 +131,14 @@ public class FileColumList implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof FileColumList) {
-			return ((FileColumList) object).fileColum.equals(this.fileColum)
-					&& ((FileColumList) object).fileColumListDest
-							.equals(this.fileColumListDest)
-					&& ((FileColumList) object).fileColumListOrig
-							.equals(this.fileColumListOrig)
-					&& ((FileColumList) object).fileColumListType
-							.equals(this.fileColumListType);
+			return ((FileColumList) object).getFileColum().equals(
+					this.fileColum)
+					&& ((FileColumList) object).getFileColumListDest().equals(
+							this.fileColumListDest)
+					&& ((FileColumList) object).getFileColumListOrig().equals(
+							this.fileColumListOrig)
+					&& ((FileColumList) object).getFileColumListType().equals(
+							this.fileColumListType);
 
 		}
 		return false;

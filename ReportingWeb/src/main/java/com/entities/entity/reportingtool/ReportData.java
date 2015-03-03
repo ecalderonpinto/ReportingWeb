@@ -140,7 +140,7 @@ public class ReportData implements VersionableAdapter {
 		this.reportDataNumber = reportDataNumber;
 	}
 
-	@Column(name = "REPORT_DATA_TEXT", length = 400)
+	@Column(name = "REPORT_DATA_TEXT",  nullable = false, length = 400)
 	public String getReportDataText() {
 		return this.reportDataText;
 	}
@@ -200,19 +200,32 @@ public class ReportData implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof ReportData) {
-			return ((ReportData) object).reportExecution
-					.equals(this.reportExecution)
-					&& ((ReportData) object).reportField
-							.equals(this.reportField)
-					&& ((ReportData) object).reportDataText
-							.equals(this.reportDataText)
-					&& ((ReportData) object).reportDataBlock
-							.equals(this.reportDataBlock)
-					&& ((ReportData) object).reportDataDate
-							.equals(this.reportDataDate)
-					&& ((ReportData) object).reportDataNumber
-							.equals(this.reportDataNumber);
+			boolean ret = ((ReportData) object).getReportExecution().equals(
+					this.reportExecution)
+					&& ((ReportData) object).getReportField().equals(
+							this.reportField)
+					&& ((ReportData) object).getReportDataText().equals(
+							this.reportDataText);
 
+			if (((ReportData) object).getReportDataBlock() == null
+					&& this.reportDataBlock == null) {
+				// return ret;
+			} else {
+				if (((ReportData) object).getReportDataBlock() == null
+						&& this.reportDataBlock != null) {
+					ret = false;
+				} else {
+					if (((ReportData) object).getReportDataBlock() != null
+							&& this.reportDataBlock == null) {
+						ret = false;
+					} else {
+						ret = ret
+								&& ((ReportData) object).getReportDataBlock()
+										.equals(this.reportDataBlock);
+					}
+				}
+			}
+			return ret;
 		}
 		return false;
 	}

@@ -180,12 +180,12 @@ public class ReportCatalog implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof ReportCatalog) {
-			return ((ReportCatalog) object).reportCatalogName
-					.equals(this.reportCatalogName)
-					&& ((ReportCatalog) object).reportLevel
-							.equals(this.reportLevel)
-					&& ((ReportCatalog) object).reportVersion
-							.equals(this.reportVersion);
+			return ((ReportCatalog) object).getReportCatalogName().equals(
+					this.reportCatalogName)
+					&& ((ReportCatalog) object).getReportLevel().equals(
+							this.reportLevel)
+					&& ((ReportCatalog) object).getReportVersion().equals(
+							this.reportVersion);
 
 		}
 		return false;

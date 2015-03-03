@@ -177,10 +177,11 @@ public class Company implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof Company) {
-			return ((Company) object).companyName.equals(this.companyName)
-					&& ((Company) object).companyCode.equals(this.companyCode)
-					&& ((Company) object).companyCountry
-							.equals(this.companyCountry);
+			return ((Company) object).getCompanyName().equals(this.companyName)
+					&& ((Company) object).getCompanyCode().equals(
+							this.companyCode)
+					&& ((Company) object).getCompanyCountry().equals(
+							this.companyCountry);
 
 		}
 		return false;

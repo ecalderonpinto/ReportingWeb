@@ -136,13 +136,13 @@ public class ReportDataError implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof ReportDataError) {
-			return ((ReportDataError) object).reportData
-					.equals(this.reportData)
-					&& ((ReportDataError) object).reportDataErrorText
+			return ((ReportDataError) object).getReportData().equals(
+					this.reportData)
+					&& ((ReportDataError) object).getReportDataErrorText()
 							.equals(this.reportDataErrorText)
-					&& ((ReportDataError) object).reportDataErrorType
+					&& ((ReportDataError) object).getReportDataErrorType()
 							.equals(this.reportDataErrorType)
-					&& ((ReportDataError) object).error.equals(this.error);
+					&& ((ReportDataError) object).getError().equals(this.error);
 
 		}
 		return false;

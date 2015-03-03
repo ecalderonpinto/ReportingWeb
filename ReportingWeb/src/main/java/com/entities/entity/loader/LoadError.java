@@ -139,12 +139,12 @@ public class LoadError implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof LoadError) {
-			return ((LoadError) object).error.equals(this.error)
-					&& ((LoadError) object).loadErrorText
-							.equals(this.loadErrorText)
-					&& ((LoadError) object).loadErrorType
-							.equals(this.loadErrorType)
-					&& ((LoadError) object).loadFile.equals(this.loadFile);
+			return ((LoadError) object).getError().equals(this.error)
+					&& ((LoadError) object).getLoadErrorText().equals(
+							this.loadErrorText)
+					&& ((LoadError) object).getLoadErrorType().equals(
+							this.loadErrorType)
+					&& ((LoadError) object).getLoadFile().equals(this.loadFile);
 
 		}
 		return false;

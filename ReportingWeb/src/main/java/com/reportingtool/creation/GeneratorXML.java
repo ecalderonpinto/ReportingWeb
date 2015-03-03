@@ -970,10 +970,10 @@ public class GeneratorXML {
 		}
 		System.out.println(reportMap.toString());
 
-		for (ReportField reportField : reportExecution.getReportCatalog()
-				.getReportFields()) {
-			System.out.println("A field: " + reportField.getReportFieldNum());
-		}
+		// for (ReportField reportField : reportExecution.getReportCatalog()
+		// .getReportFields()) {
+		// System.out.println("A field: " + reportField.getReportFieldNum());
+		// }
 		// SortReportField.sortReportExecution(reportExecution);
 		// for(ReportField reportField :
 		// reportExecution.getReportCatalog().getReportFields()) {
@@ -1651,25 +1651,26 @@ public class GeneratorXML {
 			Marshaller marshaller = context.createMarshaller();
 			marshaller.setProperty("jaxb.formatted.output", Boolean.TRUE);
 			marshaller.marshal(jaxbElement, System.out);
-			
+
 			StringWriter st = new StringWriter();
 			marshaller.marshal(jaxbElement, st);
 
-			//return st.toString().replace("    ","<pre>\t</pre>").replace("\n", "<br>");
+			// return
+			// st.toString().replace("    ","<pre>\t</pre>").replace("\n",
+			// "<br>");
 			return st.toString();
-			
-//			// need a styler.xsl to transform XML to HTML
-//			StringReader reader = new StringReader(st.toString());
-//			StringWriter writer = new StringWriter();
-//		    TransformerFactory tFactory = TransformerFactory.newInstance();
-//		    Transformer transformer = tFactory.newTransformer(
-//		            new javax.xml.transform.stream.StreamSource("styler.xsl"));
-//		    transformer.transform(
-//		            new javax.xml.transform.stream.StreamSource(reader), 
-//		            new javax.xml.transform.stream.StreamResult(writer));
-//		    String result = writer.toString();
-//			return result;
 
+			// // need a styler.xsl to transform XML to HTML
+			// StringReader reader = new StringReader(st.toString());
+			// StringWriter writer = new StringWriter();
+			// TransformerFactory tFactory = TransformerFactory.newInstance();
+			// Transformer transformer = tFactory.newTransformer(
+			// new javax.xml.transform.stream.StreamSource("styler.xsl"));
+			// transformer.transform(
+			// new javax.xml.transform.stream.StreamSource(reader),
+			// new javax.xml.transform.stream.StreamResult(writer));
+			// String result = writer.toString();
+			// return result;
 
 		} catch (Exception e) {
 			e.printStackTrace();

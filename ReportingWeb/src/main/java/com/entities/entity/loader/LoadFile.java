@@ -177,16 +177,15 @@ public class LoadFile implements VersionableAdapter {
 	public void setAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
 	}
-	
+
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof LoadFile) {
-			return ((LoadFile) object).department
-					.equals(this.department)
-					&& ((LoadFile) object).fileConfig
-							.equals(this.fileConfig)
-					&& ((LoadFile) object).loadFileName
-							.equals(this.loadFileName);
+			return ((LoadFile) object).getDepartment().equals(this.department)
+					&& ((LoadFile) object).getFileConfig().equals(
+							this.fileConfig)
+					&& ((LoadFile) object).getLoadFileName().equals(
+							this.loadFileName);
 
 		}
 		return false;

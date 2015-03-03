@@ -147,7 +147,7 @@ public class ReportField implements VersionableAdapter {
 		this.reportFieldName = reportFieldName;
 	}
 
-	@Column(name = "REPORT_FIELD_NUM", nullable = true)
+	@Column(name = "REPORT_FIELD_NUM", nullable = false)
 	public BigInteger getReportFieldNum() {
 		return this.reportFieldNum;
 	}
@@ -270,19 +270,34 @@ public class ReportField implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof ReportField) {
-			return ((ReportField) object).reportCatalog
-					.equals(this.reportCatalog)
-					&& ((ReportField) object).reportFieldName
-							.equals(this.reportFieldName)
-					&& ((ReportField) object).reportFieldNum
-							.equals(this.reportFieldNum)
-					&& ((ReportField) object).reportFieldType
-							.equals(this.reportFieldType)
-					&& ((ReportField) object).reportFieldSection
-							.equals(this.reportFieldSection)
-					&& ((ReportField) object).reportFieldParent
-							.equals(this.reportFieldParent);
-
+			boolean ret = ((ReportField) object).getReportCatalog().equals(
+					this.reportCatalog)
+					&& ((ReportField) object).getReportFieldName().equals(
+							this.reportFieldName)
+					&& ((ReportField) object).getReportFieldNum().equals(
+							this.reportFieldNum)
+					&& ((ReportField) object).getReportFieldType().equals(
+							this.reportFieldType);
+			if (((ReportField) object).getReportFieldParent() == null
+					&& this.reportFieldParent == null) {
+				// return ret;
+			} else {
+				if (((ReportField) object).getReportFieldParent() == null
+						&& this.reportFieldParent != null) {
+					ret = false;
+				} else {
+					if (((ReportField) object).getReportFieldParent() != null
+							&& this.reportFieldParent == null) {
+						ret = false;
+					} else {
+						ret = ret
+								&& ((ReportField) object)
+										.getReportFieldParent().equals(
+												this.reportFieldParent);
+					}
+				}
+			}
+			return ret;
 		}
 		return false;
 	}

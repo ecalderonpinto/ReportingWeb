@@ -192,9 +192,9 @@ public class Error implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof Error) {
-			return ((Error) object).errorType.equals(this.errorType)
-					&& ((Error) object).errorName.equals(this.errorName)
-					&& ((Error) object).errorLevel.equals(this.errorLevel);
+			return ((Error) object).getErrorType().equals(this.errorType)
+					&& ((Error) object).getErrorName().equals(this.errorName)
+					&& ((Error) object).getErrorLevel().equals(this.errorLevel);
 
 		}
 		return false;

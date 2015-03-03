@@ -60,17 +60,27 @@ public class RawData {
 			reportData.setReportField(reportField);
 
 			boolean exist = false;
-			for (ReportData aux : reportExecution.getReportDatas()) {
+			for (ReportData reportDataAux : reportExecution.getReportDatas()) {
 
-				if (aux.getReportField().getId() == reportData.getReportField()
-						.getId()
-						&& ((aux.getReportDataBlock() == null && reportData
-								.getReportDataBlock() == null) || (aux
-								.getReportDataBlock() != null
-								&& reportData.getReportDataBlock() != null && aux
-								.getReportDataBlock().equals(
-										reportData.getReportDataBlock())))) {
-					System.out.println("Filtra Duplicado");
+				// if (aux.getReportField().getId() ==
+				// reportData.getReportField()
+				// .getId()
+				// && ((aux.getReportDataBlock() == null && reportData
+				// .getReportDataBlock() == null) || (aux
+				// .getReportDataBlock() != null
+				// && reportData.getReportDataBlock() != null && aux
+				// .getReportDataBlock().equals(
+				// reportData.getReportDataBlock())))) {
+				// System.out.println("Filtra Duplicado");
+				// exist = true;
+				// break;
+				// }
+
+				if (reportData.equals(reportDataAux)) {
+					System.out.println("DEBUG_" + "RawData "
+							+ reportData.getReportDataText()
+							+ reportData.getReportField().getReportFieldName()
+							+ " repetido.");
 					exist = true;
 					break;
 				}
@@ -86,8 +96,8 @@ public class RawData {
 						.getBean("reportDataDAO");
 
 				reportDataDAO.create(reportData);
-				
-				//add reportData in reportExecution object
+
+				// add reportData in reportExecution object
 				reportExecution.getReportDatas().add(reportData);
 			}
 		}

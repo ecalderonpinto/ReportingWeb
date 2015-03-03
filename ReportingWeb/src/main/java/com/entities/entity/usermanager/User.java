@@ -149,7 +149,7 @@ public class User implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof User) {
-			return ((User) object).userName.equals(this.userName);
+			return ((User) object).getUserName().equals(this.userName);
 		}
 		return false;
 	}

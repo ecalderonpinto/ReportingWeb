@@ -367,17 +367,35 @@ public class ReportExecution implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof ReportExecution) {
-			return ((ReportExecution) object).company.equals(this.company)
-					&& ((ReportExecution) object).fund.equals(this.fund)
-					&& ((ReportExecution) object).reportCatalog
-							.equals(this.reportCatalog)
-					&& ((ReportExecution) object).reportExecutionName
+			boolean ret = ((ReportExecution) object).getCompany().equals(
+					this.company)
+					&& ((ReportExecution) object).getReportCatalog().equals(
+							this.reportCatalog)
+					&& ((ReportExecution) object).getReportExecutionName()
 							.equals(this.reportExecutionName)
-					&& ((ReportExecution) object).reportPeriodType
-							.equals(this.reportPeriodType)
-					&& ((ReportExecution) object).reportPeriodYear
-							.equals(this.reportPeriodYear);
-
+					&& ((ReportExecution) object).getReportPeriodType().equals(
+							this.reportPeriodType)
+					&& ((ReportExecution) object).getReportPeriodYear().equals(
+							this.reportPeriodYear);
+			if (((ReportExecution) object).getFund() == null
+					&& this.fund == null) {
+				// return ret;
+			} else {
+				// one or two reportExecution can be null
+				if (this.fund == null
+						&& ((ReportExecution) object).getFund() != null) {
+					ret = false;
+					if (this.fund != null
+							&& ((ReportExecution) object).getFund() == null) {
+						ret = false;
+					} else {
+						ret = ret
+								&& ((ReportExecution) object).getFund().equals(
+										this.fund);
+					}
+				}
+			}
+			return ret;
 		}
 		return false;
 	}

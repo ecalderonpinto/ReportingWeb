@@ -127,9 +127,9 @@ public class ReportSemantic implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof ReportSemantic) {
-			return ((ReportSemantic) object).reportCatalog
-					.equals(this.reportCatalog)
-					&& ((ReportSemantic) object).reportingSemanticRule
+			return ((ReportSemantic) object).getReportCatalog().equals(
+					this.reportCatalog)
+					&& ((ReportSemantic) object).getReportingSemanticRule()
 							.equals(this.reportingSemanticRule);
 
 		}

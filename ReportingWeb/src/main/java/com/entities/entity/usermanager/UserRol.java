@@ -145,7 +145,7 @@ public class UserRol implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof UserRol) {
-			return ((UserRol) object).rolName.equals(this.rolName);
+			return ((UserRol) object).getRolName().equals(this.rolName);
 		}
 		return false;
 	}

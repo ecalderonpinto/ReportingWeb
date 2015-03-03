@@ -194,10 +194,12 @@ public class FileConfig implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof FileConfig) {
-			return ((FileConfig) object).department.equals(this.department)
-					&& ((FileConfig) object).fileConfigName
-							.equals(this.fileConfigName)
-					&& ((FileConfig) object).fileType.equals(this.fileType);
+			return ((FileConfig) object).getDepartment()
+					.equals(this.department)
+					&& ((FileConfig) object).getFileConfigName().equals(
+							this.fileConfigName)
+					&& ((FileConfig) object).getFileType()
+							.equals(this.fileType);
 
 		}
 		return false;

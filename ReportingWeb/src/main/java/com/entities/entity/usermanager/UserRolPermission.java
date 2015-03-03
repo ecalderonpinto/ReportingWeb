@@ -136,8 +136,8 @@ public class UserRolPermission implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof UserRolPermission) {
-			return ((UserRolPermission) object).rolPermissionName
-					.equals(this.rolPermissionName);
+			return ((UserRolPermission) object).getRolPermissionName().equals(
+					this.rolPermissionName);
 		}
 		return false;
 	}
