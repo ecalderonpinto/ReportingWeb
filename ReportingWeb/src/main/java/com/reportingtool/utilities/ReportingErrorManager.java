@@ -64,6 +64,7 @@ public class ReportingErrorManager {
 		if (!iguales) {
 			reportDataError.setAuditor(new VersionAuditor("error"));
 			reportDataErrorDAO.create(reportDataError);
+			reportData.getReportDataErrors().add(reportDataError);
 		}
 	}
 
@@ -108,6 +109,7 @@ public class ReportingErrorManager {
 		if (!iguales) {
 			reportError.setAuditor(new VersionAuditor("error"));
 			reportErrorDAO.create(reportError);
+			reportExecution.getReportErrors().add(reportError);
 		}
 	}
 
@@ -150,6 +152,7 @@ public class ReportingErrorManager {
 		if (!iguales) {
 			loadError.setAuditor(new VersionAuditor("error"));
 			loadErrorDAO.create(loadError);
+			loadFile.getLoadErrors().add(loadError);
 		}
 	}
 }
