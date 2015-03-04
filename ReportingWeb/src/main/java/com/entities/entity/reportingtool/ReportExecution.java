@@ -19,6 +19,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -316,6 +317,7 @@ public class ReportExecution implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportExecution")
+	@OrderBy("reportField ASC")
 	public Set<ReportData> getReportDatas() {
 		return this.reportDatas;
 	}

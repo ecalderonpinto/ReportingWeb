@@ -15,7 +15,7 @@
 			<div class="box-header">
 				<h2>
 					<i class="halflings-icon align-justify"></i><span class="break"></span>
-					blabla - Reports
+					${reportassign.reportExecution.company.companyName} - Reports
 				</h2>
 				<div class="box-icon">
 					<a href="#" class="btn-minimize"><i

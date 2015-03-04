@@ -90,6 +90,7 @@
 						<th>Name</th>
 						<th>Config</th>
 						<th>Date</th>
+						<th>Registers</th>
 						<th>Status</th>
 					</tr>
 				</thead>
@@ -97,13 +98,14 @@
 					<c:forEach var="load" items="${loads}">
 						<tr>
 							<td>
-							<a href="viewLoad.do?${load.id}">
+							<a href="loadDetail.do?id=${load.id}">
 							<i class="icon-eye-open"></i>
 							</a>
 							</td>
 							<td>${load.loadFileName}</td>
 							<td>${load.fileConfig.fileConfigName}</td>
 							<td>${load.loadFileDate}</td>
+							<td>${fn:length(load.loadRaws)}</td>
 							<td>
 							<c:choose>
 							<c:when test="${fn:length(load.loadErrors) gt 0}">

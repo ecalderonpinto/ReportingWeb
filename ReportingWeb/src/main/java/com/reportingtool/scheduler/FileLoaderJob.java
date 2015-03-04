@@ -33,7 +33,7 @@ public class FileLoaderJob {
 
 	public void run() {
 
-		LoadFile loadFile = null;
+		LoadFile loadFile = new LoadFile();
 
 		try {
 			File input = new File(inputDirectory);
@@ -48,7 +48,7 @@ public class FileLoaderJob {
 			for (File f : files) {
 				// For each file create a LoadFile running a FileLoader;
 				FileLoader fl = new FileLoader(fileConfigs.get(0), f);
-				loadFile = fl.run();
+				loadFile = fl.run(applicationContext);
 				if (loadFile != null) {
 					System.out.println(f.getName() + " is goint to be loader");
 				} else {

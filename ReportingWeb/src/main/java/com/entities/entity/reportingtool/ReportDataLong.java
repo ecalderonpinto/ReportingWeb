@@ -3,6 +3,7 @@ package com.entities.entity.reportingtool;
 // Generated 11-feb-2015 17:15:14 by Hibernate Tools 4.0.0
 
 import java.sql.Blob;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -109,7 +110,7 @@ public class ReportDataLong implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof ReportDataLong) {
-			return ((ReportDataLong) object).getReportDataBlob().equals(
+			return Arrays.equals(((ReportDataLong) object).getReportDataBlob(),
 					this.reportDataBlob)
 					&& ((ReportDataLong) object).getReportDatas().equals(
 							this.reportDatas);

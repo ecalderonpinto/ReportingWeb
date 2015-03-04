@@ -68,67 +68,59 @@ public class LoadsController {
 
 		AlertToView alert = new AlertToView(false, "All were success");
 
-		if (!loadFileForm.getInputFile().isEmpty()) {
+		try {
+			FileConfigDAO fileConfigDAO = (FileConfigDAO) applicationContext
+					.getBean("fileConfigDAO");
+			FileConfig fileConfig = fileConfigDAO.findById(Long
+					.parseLong(loadFileForm.getSelectFileConfigs()));
 
-			try {
-				FileConfigDAO fileConfigDAO = (FileConfigDAO) applicationContext
-						.getBean("fileConfigDAO");
-				FileConfig fileConfig = fileConfigDAO.findById(Long
-						.parseLong(loadFileForm.getSelectFileConfigs()));
+			InputStream st = loadFileForm.getInputFile().getInputStream();
+			FileLoader fileLoader = new FileLoader(fileConfig, loadFileForm
+					.getInputFile().getInputStream(), loadFileForm
+					.getInputFile().getOriginalFilename());
 
-				InputStream st = loadFileForm.getInputFile().getInputStream();
-				FileLoader fileLoader = new FileLoader(fileConfig, loadFileForm
-						.getInputFile().getInputStream(), loadFileForm
-						.getInputFile().getOriginalFilename());
-
-				LoadFile loadFile = fileLoader.run();
-				if (loadFile != null) {
-					System.out.println(loadFile.getLoadFileName()
-							+ " is goint to be loader");
-				} else {
-					alert.setError(true);
-					alert.setMessage("Error loading file");
-					ReportingErrorManager.createLoadError(applicationContext,
-							"LOADER", loadFile, "PARSING", "Error parsing "
-									+ loadFile.getLoadFileName() + " file");
-				}
-
-				// Save LoadFile in DataBase;
-				LoadFileDAO loadFileDAO = (LoadFileDAO) this.applicationContext
-						.getBean("loadFileDAO");
-				loadFileDAO.create(loadFile);
-
-				// Validate Proccess;
-				for (LoadRaw loadRaw : loadFile.getLoadRaws()) {
-					for (LoadRawData loadRawData : loadRaw.getLoadRawDatas()) {
-						Translate translate = new Translate(applicationContext);
-						translate.translateRaw(loadRawData);
-
-						Format format = new Format(applicationContext);
-						format.formatRaw(loadRawData);
-					}
-				}
-			} catch (IOException e) {
+			LoadFile loadFile = fileLoader.run(applicationContext);
+			if (loadFile != null) {
+				System.out.println(loadFile.getLoadFileName()
+						+ " is goint to be loader");
+			} else {
 				alert.setError(true);
-				alert.setMessage("IO Problem");
-				System.out.println("IO Problem");
-				e.printStackTrace();
-			} catch (SerialException e) {
-				alert.setError(true);
-				alert.setMessage("Error parsing the file");
-				System.out.println("Error parsing the file");
-				e.printStackTrace();
-			} catch (SQLException e) {
-				alert.setError(true);
-				alert.setMessage("Error inserting in database");
-				System.out.println("Error inserting in database");
-				e.printStackTrace();
+				alert.setMessage("Error loading file");
+				ReportingErrorManager.createLoadError(applicationContext,
+						"LOADER", loadFile, "PARSING", "Error parsing "
+								+ loadFile.getLoadFileName() + " file");
 			}
-		} else {
+
+			// Save LoadFile in DataBase;
+			LoadFileDAO loadFileDAO = (LoadFileDAO) this.applicationContext
+					.getBean("loadFileDAO");
+			loadFileDAO.create(loadFile);
+
+			// Validate Proccess;
+			for (LoadRaw loadRaw : loadFile.getLoadRaws()) {
+				for (LoadRawData loadRawData : loadRaw.getLoadRawDatas()) {
+					Translate translate = new Translate(applicationContext);
+					translate.translateRaw(loadRawData);
+
+					Format format = new Format(applicationContext);
+					format.formatRaw(loadRawData);
+				}
+			}
+		} catch (IOException e) {
 			alert.setError(true);
-			alert.setMessage("Failed to upload because the file was empty");
-			System.out
-					.println("Failed to upload because the file was empty.");
+			alert.setMessage("IO Problem");
+			System.out.println("IO Problem");
+			e.printStackTrace();
+		} catch (SerialException e) {
+			alert.setError(true);
+			alert.setMessage("Error parsing the file");
+			System.out.println("Error parsing the file");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			alert.setError(true);
+			alert.setMessage("Error inserting in database");
+			System.out.println("Error inserting in database");
+			e.printStackTrace();
 		}
 
 		model.addAttribute("alerts", true);

@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- start: Breadcrumb -->
 <ul class="breadcrumb">
@@ -14,9 +14,8 @@
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
-				<i class="halflings-icon align-justify"></i>
-				<span class="break"></span>
-				${loadFile.loadFileName}
+				<i class="halflings-icon align-justify"></i> <span class="break"></span>
+				${loadRaw.loadFile.loadFileName} - Line ${loadRaw.loadLineNumber}
 			</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
@@ -27,27 +26,24 @@
 		</div>
 		<div class="box-content">
 			<!-- table table-bordered table-striped table-condensed table table-striped table-bordered bootstrap-datatable datatable-->
-			<form name="repform" action="Report">
-				<table
-					class="table table-striped table-bordered table-condensed">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Status</th>
-							<th>Company</th>
-							<th>Department</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>${loadFile.loadFileName}</td>
-							<td></td>
-							<td>${loadFile.department.company.companyName}</td>
-							<td>${loadFile.department.departmentName}</td>
-						</tr>
-					</tbody>
-				</table>
-			</form>
+			<table class="table table-striped table-bordered table-condensed">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Status</th>
+						<th>Company</th>
+						<th>Department</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>${loadRaw.id}</td>
+						<td></td>
+						<td>${loadRaw.id}</td>
+						<td>${loadRaw.id}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 	<!--/span-->
@@ -58,9 +54,8 @@
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
-				<i class="halflings-icon align-justify"></i>
-				<span class="break"></span>
-				Registers
+				<i class="halflings-icon align-justify"></i> <span class="break"></span>
+				Columns - Datas
 			</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
@@ -71,30 +66,24 @@
 		</div>
 		<div class="box-content">
 			<!-- table table-bordered table-striped table-condensed table table-striped table-bordered bootstrap-datatable datatable-->
-			<form name="repform" action="Report">
-				<table
-					class="table table-striped table-bordered table-condensed">
-					<thead>
+			<table class="table table-striped table-bordered table-condensed bootstrap-datatable datable">
+				<thead>
+					<tr>
+						<th>File Column</th>
+						<th>Column Num</th>
+						<th>Data</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="rawData" items="${loadRaw.loadRawDatas}">
 						<tr>
-							<th></th>
-							<th>Line Nº</th>
-							<th>Type</th>
-							<th>Status</th>
-						</tr>
-					</thead>
-					<tbody>
-					<c:forEach var="raw" items="${loadFile.loadRaws}">
-						<tr>
-							<td><a href="rawDetail.do?id=${raw.id}">
-							<i class="icon-eye-open"></i></td>
-							<td>${raw.loadLineNumber}</td>
-							<td>${raw.loadLineType}</td>
-							<td>${raw.loadError}</td>
+							<td>${rawData.fileColum.columName}</td>
+							<td>${rawData.fileColum.columNumber}</td>
+							<td>${rawData.loadRawDataText}</td>
 						</tr>
 					</c:forEach>
-					</tbody>
-				</table>
-			</form>
+				</tbody>
+			</table>
 		</div>
 	</div>
 	<!--/span-->

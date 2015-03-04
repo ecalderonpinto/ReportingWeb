@@ -29,6 +29,24 @@
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 	
+	<definition name="loaddetail" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - DM - Load Detail" />
+		<put-attribute name="mainContent" value="/loaddetail.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="rawdetail" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - DM - Load - Raw Detail" />
+		<put-attribute name="mainContent" value="/rawdetail.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="admin" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Admin" />
+		<put-attribute name="mainContent" value="/admin.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
 	<definition name="fundreports" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - DM - Fund Reports" />
 		<put-attribute name="mainContent" value="/fundreports.jsp" />

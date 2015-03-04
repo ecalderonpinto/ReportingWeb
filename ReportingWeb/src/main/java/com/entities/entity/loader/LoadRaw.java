@@ -4,6 +4,7 @@ package com.entities.entity.loader;
 
 import java.math.BigDecimal;
 import java.sql.Blob;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -71,6 +73,17 @@ public class LoadRaw implements VersionableAdapter {
 		this.loadError = loadError;
 		this.loadRawDatas = loadRawDatas;
 		this.versionAuditor = versionAuditor;
+	}
+
+	public LoadRaw(LoadFile loadFile, BigDecimal loadLineNumber,
+			String loadLineType, byte[] loadRawBlob, String loadError,
+			Set<LoadRawData> loadRawDatas) {
+		this.loadFile = loadFile;
+		this.loadLineNumber = loadLineNumber;
+		this.loadLineType = loadLineType;
+		this.loadRawBlob = loadRawBlob;
+		this.loadError = loadError;
+		this.loadRawDatas = loadRawDatas;
 	}
 
 	@Id
@@ -134,6 +147,7 @@ public class LoadRaw implements VersionableAdapter {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loadRaw")
 	@Cascade({ CascadeType.SAVE_UPDATE })
+	@OrderBy("fileColum ASC")
 	public Set<LoadRawData> getLoadRawDatas() {
 		return this.loadRawDatas;
 	}
@@ -166,14 +180,24 @@ public class LoadRaw implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof LoadRaw) {
-			return ((LoadRaw) object).getLoadFile().equals(this.loadFile)
+			boolean ret = ((LoadRaw) object).getLoadFile()
+					.equals(this.loadFile)
 					&& ((LoadRaw) object).getLoadLineNumber().equals(
 							this.loadLineNumber)
-					&& ((LoadRaw) object).getLoadLineType().equals(
-							this.loadLineType)
-					&& ((LoadRaw) object).getLoadRawBlob().equals(
+					&& Arrays.equals(((LoadRaw) object).getLoadRawBlob(),
 							this.loadRawBlob);
 
+			if (((LoadRaw) object).getLoadLineType() == null
+					&& this.loadLineType == null) {
+				// return ret;
+			} else {
+				// one or two reportExecution can be null
+				if (this.loadLineType == null
+						&& ((LoadRaw) object).getLoadLineType() != null) {
+					ret = false;
+				}
+			}
+			return ret;
 		}
 		return false;
 	}
