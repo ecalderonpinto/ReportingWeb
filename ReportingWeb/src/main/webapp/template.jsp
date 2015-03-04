@@ -50,6 +50,13 @@
 	<script src="js/counter.js"></script>
 	<script src="js/retina.js"></script>
 	<script src="js/custom.js"></script>
+	
+	<script type="text/javascript">
+		function loading(){
+			$('#loading').show();
+			
+		}
+	</script>
 	<!-- end: JavaScript -->
 
 	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -111,15 +118,10 @@
 					<ul class="nav nav-tabs nav-stacked main-menu">
 						<li><a href="Login"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
 						<li><a href="dataManager.do"><i class="icon-envelope"></i><span class="hidden-tablet"> Data Manager</span></a></li>
+						<li><a href="admin.do"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Admin</span></a></li>
 						<li><a href="ReportsList?r=aifm"><i class="icon-list-alt"></i><span class="hidden-tablet"> AIFM Reports</span></a></li>
 						<li><a href="ReportsList?r=aif"><i class="icon-list-alt"></i><span class="hidden-tablet"> AIF Reports</span></a></li>
-						<li>
-							<a class="dropmenu" href="#"><i class="icon-inbox"></i><span class="hidden-tablet"> Load</span></a>
-							<ul>
-								<li><a class="submenu" href="loads.do"><i class="icon-file-alt"></i><span class="hidden-tablet"> Loads</span></a></li>
-								<li><a class="submenu" href="LoadsExceptions"><i class="icon-warning-sign"></i><span class="hidden-tablet"> Exceptions</span></a></li>
-							</ul>	
-						</li>
+						<li><a href="loads.do"><i class="icon-file-alt"></i><span class="hidden-tablet"> Loads</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -144,6 +146,10 @@
 	<!--end: Main Container -->
 		
 	<tiles:insertAttribute name="modalWindow" />
+	
+	<div id="loading" style="position: fixed;top: 50%;right: 50%;left: 50%;width: auto;margin: 0;">
+		<img alt="blabla" src="img/progress.gif" ></img>
+	</div>
 	
 	<div class="clearfix"></div>
 	
