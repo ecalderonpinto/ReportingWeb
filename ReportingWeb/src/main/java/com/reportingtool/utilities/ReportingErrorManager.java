@@ -39,11 +39,8 @@ public class ReportingErrorManager {
 		// ReportDataError reportDataError = new ReportDataError(reportData,
 		// error, type, text, new VersionAuditor("error"));
 
-		ReportDataError reportDataError = new ReportDataError();
-		reportDataError.setError(error);
-		reportDataError.setReportData(reportData);
-		reportDataError.setReportDataErrorText(reportDataErrorText);
-		reportDataError.setReportDataErrorType(reportDataErrorType);
+		ReportDataError reportDataError = new ReportDataError(error,
+				reportData, reportDataErrorType, reportDataErrorText);
 
 		System.out.println("DEBUG_" + typeError + " : error final: "
 				+ reportDataError.getReportDataErrorText()
@@ -85,11 +82,8 @@ public class ReportingErrorManager {
 		Error error = new Error();
 		error = errors.get(0);
 
-		ReportError reportError = new ReportError();
-		reportError.setError(error);
-		reportError.setReportExecution(reportExecution);
-		reportError.setReportErrorText(reportErrorText);
-		reportError.setReportErrorType(reportErrorType);
+		ReportError reportError = new ReportError(error, reportExecution,
+				reportErrorType, reportErrorText);
 
 		System.out.println("DEBUG_" + typeError + " : error final: "
 				+ reportError.getReportErrorText()
@@ -132,11 +126,8 @@ public class ReportingErrorManager {
 		Error error = new Error();
 		error = errors.get(0);
 
-		LoadError loadError = new LoadError();
-		loadError.setError(error);
-		loadError.setLoadFile(loadFile);
-		loadError.setLoadErrorText(loadErrorText);
-		loadError.setLoadErrorType(loadErrorType);
+		LoadError loadError = new LoadError(error, loadFile, loadErrorType,
+				loadErrorText);
 
 		System.out.println("DEBUG_" + typeError + " : error final: "
 				+ loadError.getLoadErrorText() + loadError.getLoadErrorType()

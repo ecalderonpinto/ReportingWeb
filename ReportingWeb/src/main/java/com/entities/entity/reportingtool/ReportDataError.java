@@ -52,7 +52,7 @@ public class ReportDataError implements VersionableAdapter {
 		this.versionAuditor = versionAuditor;
 	}
 
-	public ReportDataError(ReportData reportData, Error error,
+	public ReportDataError(Error error, ReportData reportData,
 			String reportDataErrorType, String reportDataErrorText,
 			VersionAuditor versionAuditor) {
 		this.reportData = reportData;
@@ -60,6 +60,14 @@ public class ReportDataError implements VersionableAdapter {
 		this.reportDataErrorType = reportDataErrorType;
 		this.reportDataErrorText = reportDataErrorText;
 		this.versionAuditor = versionAuditor;
+	}
+
+	public ReportDataError(Error error, ReportData reportData,
+			String reportDataErrorType, String reportDataErrorText) {
+		this.reportData = reportData;
+		this.error = error;
+		this.reportDataErrorType = reportDataErrorType;
+		this.reportDataErrorText = reportDataErrorText;
 	}
 
 	@Id

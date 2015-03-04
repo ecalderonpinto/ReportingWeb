@@ -10,6 +10,7 @@ import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
+import com.reportingtool.utilities.ReportingErrorManager;
 
 
 
@@ -65,8 +66,8 @@ public class Status {
 		// for each field, semantic has to be checked (mandatory)
 		for (ReportField reportField : reportFields) {
 
-			String oblg = fieldMandatory(reportField, reportExecution);
-			if (oblg.contains("M")) {
+			boolean oblg = fieldMandatory(reportField, reportExecution);
+			if (oblg) {
 				// fieldValid says field is mandatory, it has to appear in
 				// dataFields
 				boolean hasData = false;
@@ -84,6 +85,12 @@ public class Status {
 					// not ok
 					System.out.println("DEBUG_" + "Status not ok"
 							+ reportField.getReportFieldName());
+					
+					// create a message of error
+					ReportingErrorManager.createReportError(applicationContext,
+							"STATUS", reportExecution, "MANDATORY", "VALUE MANDATORY NOT PRESENT "
+									+ reportField.getReportFieldName());
+					
 					finalStatus = false;
 					// set status to in creation, it has al least one field
 				}
@@ -103,9 +110,12 @@ public class Status {
 		return reportExecution;
 	}
 	
-	// examine full report and return if this filed has to be Mandatory Opcional or Forbbiden (M/C/F)
-	public static String fieldMandatory(ReportField reportField, ReportExecution reportExecution) {
-		
-		return "M";
+	// examine full report and return if this filed has to be Mandatory Optional or Forbidden (M/C/F)
+	public static boolean fieldMandatory(ReportField reportField, ReportExecution reportExecution) {
+		boolean result = false;
+		if (reportField.getReportFieldRepe().startsWith("1")) {
+			result = true;
+		}
+		return result;
 	}
 }

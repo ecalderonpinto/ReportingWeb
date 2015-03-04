@@ -62,6 +62,14 @@ public class ReportError implements VersionableAdapter {
 		this.versionAuditor = versionAuditor;
 	}
 
+	public ReportError(Error error, ReportExecution reportExecution,
+			String reportErrorType, String reportErrorText) {
+		this.error = error;
+		this.reportExecution = reportExecution;
+		this.reportErrorType = reportErrorType;
+		this.reportErrorText = reportErrorText;
+	}
+
 	@Id
 	@SequenceGenerator(name = "GEN_REPORT_ERROR", sequenceName = "SEQ_REPORT_ERROR", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_REPORT_ERROR")

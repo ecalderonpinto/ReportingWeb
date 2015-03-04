@@ -65,6 +65,14 @@ public class LoadError implements VersionableAdapter {
 		this.versionAuditor = versionAuditor;
 	}
 
+	public LoadError(Error error, LoadFile loadFile, String loadErrorType,
+			String loadErrorText) {
+		this.error = error;
+		this.loadFile = loadFile;
+		this.loadErrorType = loadErrorType;
+		this.loadErrorText = loadErrorText;
+	}
+
 	@Id
 	@SequenceGenerator(name = "GEN_LOAD_ERROR", sequenceName = "SEQ_LOAD_ERROR", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_LOAD_ERROR")
