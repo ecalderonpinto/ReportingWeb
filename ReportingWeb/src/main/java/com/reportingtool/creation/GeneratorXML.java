@@ -1,10 +1,12 @@
 package com.reportingtool.creation;
 
+import java.io.File;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,20 +14,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 
 import org.springframework.context.ApplicationContext;
+import org.xml.sax.SAXException;
 
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
-import com.entities.entity.reportingtool.ReportField;
 import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.utilities.XMLGregorianCalendarConverter;
 import com.reportingtool.xml.AIFMReportingInfo;
@@ -85,6 +92,9 @@ public class GeneratorXML {
 	public static final String stringDateFormat = "yyyy-MM-dd";
 	public static final String stringYearFormat = "yyyy";
 	public static final String stringDateTimeFormat = "yyyy-MM-dd hh:mm:ss";
+
+	public static final String aifmXSDResource = "xml/AIFMD_DATMAN_V1.2.xsd";
+	public static final String aifXSDResource = "xml/AIFMD_DATAIF_V1.2.xsd";
 
 	public GeneratorXML(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
@@ -1655,6 +1665,8 @@ public class GeneratorXML {
 			StringWriter st = new StringWriter();
 			marshaller.marshal(jaxbElement, st);
 
+			validateSchemaXSD(st.toString(), reportExecution, aifmXSDResource);
+
 			// return
 			// st.toString().replace("    ","<pre>\t</pre>").replace("\n",
 			// "<br>");
@@ -1672,14 +1684,62 @@ public class GeneratorXML {
 			// String result = writer.toString();
 			// return result;
 
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			ReportingErrorManager.createReportError(applicationContext,
+					"CREATION", reportExecution, "FAIL", "Error in JAXB XML"
+							+ e.getMessage());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			ReportingErrorManager.createReportError(applicationContext,
+					"CREATION", reportExecution, "FAIL",
+					"Error when parsing XML: " + e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
 					"CREATION", reportExecution, "FAIL",
-					"Fail when parsing XML");
+					"General error in XML process: " + e.getMessage());
 		}
 
 		return null;
+
+	}
+
+	public void validateSchemaXSD(String aifmdXML,
+			ReportExecution reportExecution, String xsdResource) {
+
+		// http://stackoverflow.com/questions/15732/whats-the-best-way-to-validate-an-xml-file-against-an-xsd-file
+
+		Source xmlFile = new StreamSource(new StringReader(aifmdXML));
+
+		try {
+			ClassLoader classLoader = getClass().getClassLoader();
+			File schemaFile = new File(classLoader.getResource(xsdResource)
+					.getFile());
+
+			SchemaFactory schemaFactory = SchemaFactory
+					.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+			Schema schema = schemaFactory.newSchema(schemaFile);
+			Validator validator = schema.newValidator();
+
+			validator.validate(xmlFile);
+			System.out.println("DEBUG_" + "CREATION - XML is valid.");
+		} catch (SAXException e) {
+			System.out.println("DEBUG_" + "CREATION - XML NOT is valid: "
+					+ e.getLocalizedMessage());
+			ReportingErrorManager.createReportError(
+					applicationContext,
+					"CREATION",
+					reportExecution,
+					"XML Incomplete",
+					"Validating process detect some issues: "
+							+ e.getLocalizedMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			ReportingErrorManager.createReportError(applicationContext,
+					"CREATION", reportExecution, "FAIL",
+					"Error validating XML " + e.getLocalizedMessage());
+		}
 
 	}
 
