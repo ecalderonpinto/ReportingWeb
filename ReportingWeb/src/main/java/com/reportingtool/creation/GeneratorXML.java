@@ -36,7 +36,9 @@ import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.utilities.XMLGregorianCalendarConverter;
 import com.reportingtool.xml.AIFMReportingInfo;
+import com.reportingtool.xml.AIFMasterFeederStatusType;
 import com.reportingtool.xml.AIFReportingInfo;
+import com.reportingtool.xml.AIFTypeType;
 import com.reportingtool.xml.CancelledRecordFlagType;
 import com.reportingtool.xml.ComplexAIFCompleteDescriptionType;
 import com.reportingtool.xml.ComplexAIFDescriptionType;
@@ -51,28 +53,51 @@ import com.reportingtool.xml.ComplexAIFMNationalIdentifierType;
 import com.reportingtool.xml.ComplexAIFMPrincipalInstrumentsType;
 import com.reportingtool.xml.ComplexAIFMPrincipalMarketsType;
 import com.reportingtool.xml.ComplexAIFMRecordInfoType;
+import com.reportingtool.xml.ComplexAIFNationalIdentifierType;
 import com.reportingtool.xml.ComplexAIFPrincipalInfoType;
 import com.reportingtool.xml.ComplexAIFPrincipalMarketsType;
 import com.reportingtool.xml.ComplexAIFRecordInfoType;
 import com.reportingtool.xml.ComplexAUMGeographicalFocusType;
+import com.reportingtool.xml.ComplexAssetTypeExposuresType;
+import com.reportingtool.xml.ComplexAssetTypeTurnoversType;
 import com.reportingtool.xml.ComplexAssumptionType;
 import com.reportingtool.xml.ComplexAssumptionsType;
 import com.reportingtool.xml.ComplexBaseCurrencyDescriptionType;
+import com.reportingtool.xml.ComplexBorrowingSourceType;
 import com.reportingtool.xml.ComplexCancellationAIFMRecordInfoType;
 import com.reportingtool.xml.ComplexCancellationAIFRecordInfoType;
+import com.reportingtool.xml.ComplexCompaniesDominantInfluenceType;
+import com.reportingtool.xml.ComplexControlledStructuresType;
+import com.reportingtool.xml.ComplexCounterpartyRiskProfileType;
+import com.reportingtool.xml.ComplexCurrencyExposuresType;
+import com.reportingtool.xml.ComplexFinancialInstrumentBorrowingType;
 import com.reportingtool.xml.ComplexFivePrincipalMarketType;
+import com.reportingtool.xml.ComplexFundOfFundsInvestmentStrategiesType;
+import com.reportingtool.xml.ComplexHedgeFundInvestmentStrategiesType;
 import com.reportingtool.xml.ComplexIndividualExposureType;
 import com.reportingtool.xml.ComplexInvestorConcentrationType;
+import com.reportingtool.xml.ComplexLeverageAIFType;
+import com.reportingtool.xml.ComplexLiquidityRiskProfileType;
 import com.reportingtool.xml.ComplexMainInstrumentTradedType;
 import com.reportingtool.xml.ComplexMainInstrumentsTradedType;
 import com.reportingtool.xml.ComplexMarketIdentificationWithNOTType;
+import com.reportingtool.xml.ComplexMarketRiskProfileType;
+import com.reportingtool.xml.ComplexMasterAIFsIdentificationType;
 import com.reportingtool.xml.ComplexMostImportantConcentrationType;
 import com.reportingtool.xml.ComplexNAVGeographicalFocusType;
+import com.reportingtool.xml.ComplexOperationalRiskType;
+import com.reportingtool.xml.ComplexOtherFundInvestmentStrategiesType;
 import com.reportingtool.xml.ComplexPortfolioConcentrationsType;
+import com.reportingtool.xml.ComplexPrimeBrokersType;
+import com.reportingtool.xml.ComplexPrincipalExposureType;
 import com.reportingtool.xml.ComplexPrincipalExposuresType;
 import com.reportingtool.xml.ComplexPrincipalInstrumentType;
+import com.reportingtool.xml.ComplexPrivateEquityFundInvestmentStrategiesType;
+import com.reportingtool.xml.ComplexRealEstateFundInvestmentStrategiesType;
 import com.reportingtool.xml.ComplexRiskProfileType;
+import com.reportingtool.xml.ComplexSecuritiesCashBorrowingType;
 import com.reportingtool.xml.ComplexShareClassIdentificationType;
+import com.reportingtool.xml.ComplexShareClassIdentifierType;
 import com.reportingtool.xml.ComplexStressTestsType;
 import com.reportingtool.xml.FXEURReferenceRateTypeType;
 import com.reportingtool.xml.FilingTypeType;
@@ -182,8 +207,32 @@ public class GeneratorXML {
 			ComplexIndividualExposureType complexIndividualExposureType = objectFactoryAIF
 					.createComplexIndividualExposureType();
 
+			ComplexAssetTypeExposuresType complexAssetTypeExposuresType = objectFactoryAIF
+					.createComplexAssetTypeExposuresType();
+
+			ComplexAssetTypeTurnoversType complexAssetTypeTurnoversType = objectFactoryAIF
+					.createComplexAssetTypeTurnoversType();
+
+			ComplexCompaniesDominantInfluenceType complexCompaniesDominantInfluenceType = objectFactoryAIF
+					.createComplexCompaniesDominantInfluenceType();
+
+			ComplexCurrencyExposuresType complexCurrencyExposuresType = objectFactoryAIF
+					.createComplexCurrencyExposuresType();
+
 			ComplexRiskProfileType complexRiskProfileType = objectFactoryAIF
 					.createComplexRiskProfileType();
+
+			ComplexCounterpartyRiskProfileType complexCounterpartyRiskProfileType = objectFactoryAIF
+					.createComplexCounterpartyRiskProfileType();
+
+			ComplexLiquidityRiskProfileType complexLiquidityRiskProfileType = objectFactoryAIF
+					.createComplexLiquidityRiskProfileType();
+
+			ComplexMarketRiskProfileType complexMarketRiskProfileType = objectFactoryAIF
+					.createComplexMarketRiskProfileType();
+
+			ComplexOperationalRiskType complexOperationalRiskType = objectFactoryAIF
+					.createComplexOperationalRiskType();
 
 			ComplexStressTestsType complexStressTestsType = objectFactoryAIF
 					.createComplexStressTestsType();
@@ -191,14 +240,53 @@ public class GeneratorXML {
 			ComplexAIFLeverageArticle242Type complexAIFLeverageArticle242Type = objectFactoryAIF
 					.createComplexAIFLeverageArticle242Type();
 
+			ComplexControlledStructuresType complexControlledStructuresType = objectFactoryAIF
+					.createComplexControlledStructuresType();
+
+			ComplexFinancialInstrumentBorrowingType complexFinancialInstrumentBorrowingType = objectFactoryAIF
+					.createComplexFinancialInstrumentBorrowingType();
+
+			ComplexLeverageAIFType complexLeverageAIFType = objectFactoryAIF
+					.createComplexLeverageAIFType();
+
+			ComplexSecuritiesCashBorrowingType complexSecuritiesCashBorrowingType = objectFactoryAIF
+					.createComplexSecuritiesCashBorrowingType();
+
 			ComplexAIFLeverageArticle244Type complexAIFLeverageArticle244Type = objectFactoryAIF
 					.createComplexAIFLeverageArticle244Type();
 
 			ComplexAIFDescriptionType complexAIFDescriptionType = objectFactoryAIF
 					.createComplexAIFDescriptionType();
 
+			ComplexBaseCurrencyDescriptionType complexBaseCurrencyDescriptionType = objectFactoryAIF
+					.createComplexBaseCurrencyDescriptionType();
+
+			ComplexFundOfFundsInvestmentStrategiesType complexFundOfFundsInvestmentStrategiesType = objectFactoryAIF
+					.createComplexFundOfFundsInvestmentStrategiesType();
+
+			ComplexHedgeFundInvestmentStrategiesType complexHedgeFundInvestmentStrategiesType = objectFactoryAIF
+					.createComplexHedgeFundInvestmentStrategiesType();
+
+			ComplexMasterAIFsIdentificationType complexMasterAIFsIdentificationType = objectFactoryAIF
+					.createComplexMasterAIFsIdentificationType();
+
+			ComplexOtherFundInvestmentStrategiesType complexOtherFundInvestmentStrategiesType = objectFactoryAIF
+					.createComplexOtherFundInvestmentStrategiesType();
+
+			ComplexPrimeBrokersType complexPrimeBrokersType = objectFactoryAIF
+					.createComplexPrimeBrokersType();
+
+			ComplexPrivateEquityFundInvestmentStrategiesType complexPrivateEquityFundInvestmentStrategiesType = objectFactoryAIF
+					.createComplexPrivateEquityFundInvestmentStrategiesType();
+
+			ComplexRealEstateFundInvestmentStrategiesType complexRealEstateFundInvestmentStrategiesType = objectFactoryAIF
+					.createComplexRealEstateFundInvestmentStrategiesType();
+
 			ComplexAIFIdentifierType complexAIFIdentifierType = objectFactoryAIF
 					.createComplexAIFIdentifierType();
+
+			ComplexAIFNationalIdentifierType complexAIFNationalIdentifierType = objectFactoryAIF
+					.createComplexAIFNationalIdentifierType();
 
 			ComplexAUMGeographicalFocusType complexAUMGeographicalFocusType = objectFactoryAIF
 					.createComplexAUMGeographicalFocusType();
@@ -208,6 +296,15 @@ public class GeneratorXML {
 
 			ComplexMostImportantConcentrationType complexMostImportantConcentrationType = objectFactoryAIF
 					.createComplexMostImportantConcentrationType();
+			
+			ComplexAIFPrincipalMarketsType complexAIFPrincipalMarketsType = objectFactoryAIF
+					.createComplexAIFPrincipalMarketsType();
+
+			ComplexInvestorConcentrationType complexInvestorConcentrationType = objectFactoryAIF
+					.createComplexInvestorConcentrationType();
+
+			ComplexPortfolioConcentrationsType complexPortfolioConcentrationsType = objectFactoryAIF
+					.createComplexPortfolioConcentrationsType();
 
 			ComplexNAVGeographicalFocusType complexNAVGeographicalFocusType = objectFactoryAIF
 					.createComplexNAVGeographicalFocusType();
@@ -221,96 +318,287 @@ public class GeneratorXML {
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><IndividualExposure>
 
-			// complexIndividualExposureType
-			// .setAssetTypeExposures(complexAssetTypeExposuresType);
-			// complexIndividualExposureType
-			// .setAssetTypeTurnovers(complexAssetTypeTurnoversType);
-			// complexIndividualExposureType
-			// .setCompaniesDominantInfluence(complexCompaniesDominantInfluenceType);
-			// complexIndividualExposureType
-			// .setCurrencyExposures(complexCurrencyExposuresType);
+			complexIndividualExposureType
+					.setAssetTypeExposures(complexAssetTypeExposuresType);
+			complexIndividualExposureType
+					.setAssetTypeTurnovers(complexAssetTypeTurnoversType);
+			complexIndividualExposureType
+					.setCompaniesDominantInfluence(complexCompaniesDominantInfluenceType);
+			complexIndividualExposureType
+					.setCurrencyExposures(complexCurrencyExposuresType);
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><RiskProfile>
 
-			// complexRiskProfileType
-			// .setCounterpartyRiskProfile(complexCounterpartyRiskProfileType);
-			// complexRiskProfileType
-			// .setLiquidityRiskProfile(complexLiquidityRiskProfileType);
-			// complexRiskProfileType
-			// .setMarketRiskProfile(complexMarketRiskProfileType);
-			// complexRiskProfileType
-			// .setOperationalRisk(complexOperationalRiskType);
+			complexRiskProfileType
+					.setCounterpartyRiskProfile(complexCounterpartyRiskProfileType);
+			complexRiskProfileType
+					.setLiquidityRiskProfile(complexLiquidityRiskProfileType);
+			complexRiskProfileType
+					.setMarketRiskProfile(complexMarketRiskProfileType);
+			complexRiskProfileType
+					.setOperationalRisk(complexOperationalRiskType);
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><StressTests>
-			complexStressTestsType.setStressTestsResultArticle15("");
-			complexStressTestsType.setStressTestsResultArticle16("");
+
+			// <StressTests><StressTestsResultArticle15>
+			String stressTestsResultArticle15 = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("StressTestsResultArticle15"))
+					stressTestsResultArticle15 = reportData.getReportDataText();
+			}
+			complexStressTestsType
+					.setStressTestsResultArticle15(stressTestsResultArticle15);
+
+			// <StressTests><StressTestsResultArticle16>
+			String stressTestsResultArticle16 = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("StressTestsResultArticle16"))
+					stressTestsResultArticle16 = reportData.getReportDataText();
+			}
+			complexStressTestsType
+					.setStressTestsResultArticle16(stressTestsResultArticle16);
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFLeverageInfo><AIFLeverageArticle24-2>
+
+			// <AIFLeverageArticle24-2><AllCounterpartyCollateralRehypothecatedRate>
+			BigDecimal allCounterpartyCollateralRehypothecatedRate = new BigDecimal(
+					"0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AllCounterpartyCollateralRehypothecatedRate"))
+					allCounterpartyCollateralRehypothecatedRate = new BigDecimal(
+							reportData.getReportDataText());
+			}
 			complexAIFLeverageArticle242Type
-					.setAllCounterpartyCollateralRehypothecatedRate(new BigDecimal(
-							"0"));
+					.setAllCounterpartyCollateralRehypothecatedRate(allCounterpartyCollateralRehypothecatedRate);
+
+			// <AIFLeverageArticle24-2><AllCounterpartyCollateralRehypothecationFlag>
+			String allCounterpartyCollateralRehypothecationFlag = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AllCounterpartyCollateralRehypothecationFlag"))
+					allCounterpartyCollateralRehypothecationFlag = reportData
+							.getReportDataText();
+			}
 			complexAIFLeverageArticle242Type
-					.setAllCounterpartyCollateralRehypothecationFlag(true);
-			// complexAIFLeverageArticle242Type
-			// .setControlledStructures(complexControlledStructuresType);
-			// complexAIFLeverageArticle242Type
-			// .setFinancialInstrumentBorrowing(complexFinancialInstrumentBorrowingType);
-			// complexAIFLeverageArticle242Type
-			// .setLeverageAIF(complexLeverateAIFType);
-			// complexAIFLeverageArticle242Type
-			// .setSecuritiesCashBorrowing(complexSecuritiesCashBorrowingType);
-			// complexAIFLeverageArticle242Type
-			// .setShortPositionBorrowedSecuritiesValue(new BigDecimal("0"));
+					.setAllCounterpartyCollateralRehypothecationFlag(Boolean
+							.parseBoolean(allCounterpartyCollateralRehypothecationFlag));
+
+			complexAIFLeverageArticle242Type
+					.setControlledStructures(complexControlledStructuresType);
+
+			complexAIFLeverageArticle242Type
+					.setFinancialInstrumentBorrowing(complexFinancialInstrumentBorrowingType);
+
+			complexAIFLeverageArticle242Type
+					.setLeverageAIF(complexLeverageAIFType);
+
+			complexAIFLeverageArticle242Type
+					.setSecuritiesCashBorrowing(complexSecuritiesCashBorrowingType);
+
+			// <AIFLeverageArticle24-2><ShortPositionBorrowedSecuritiesValue>
+			BigInteger shortPositionBorrowedSecuritiesValue = new BigInteger(
+					"0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("ShortPositionBorrowedSecuritiesValue"))
+					shortPositionBorrowedSecuritiesValue = new BigInteger(
+							reportData.getReportDataText());
+			}
+			complexAIFLeverageArticle242Type
+					.setShortPositionBorrowedSecuritiesValue(shortPositionBorrowedSecuritiesValue);
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFLeverageInfo><AIFLeverageArticle24-4>
-			complexAIFLeverageArticle244Type.getBorrowingSource();
+			List<ComplexBorrowingSourceType> complexBorrowingSourceTypeList = complexAIFLeverageArticle244Type
+					.getBorrowingSource();
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><AIFDescription>
 
-			// complexAIFDescriptionType
-			// .setAIFBaseCurrencyDescription(complexBaseCurrencyDescriptionType);
-			// complexAIFDescriptionType
-			// .setAIFMasterFeederStatus(aifMasterFeederStatusType);
-			// complexAIFDescriptionType.setAIFNetAssetValue(0);
-			// complexAIFDescriptionType.setFirstFundingSourceCountry("");
-			// complexAIFDescriptionType
-			// .setFundOfFundsInvestmentStrategies(complexFundOfFundsInvestmentStrategiesType);
-			// complexAIFDescriptionType
-			// .setHedgeFundInvestmentStrategies(complexHedgeFundInvestmentStrategiesType);
-			// complexAIFDescriptionType.setHFTBuySellMarketValue(new
-			// BigDecimal(
-			// "0"));
-			// complexAIFDescriptionType.setHFTTransactionNumber(new BigDecimal(
-			// "0"));
-			// complexAIFDescriptionType
-			// .setMasterAIFsIdentification(complexMasterAIFsIdentificationType);
-			// complexAIFDescriptionType
-			// .setOtherFundInvestmentStrategies(complexOtherFundInvestmentStrategiesType);
-			// complexAIFDescriptionType.setPredominantAIFType(aifTypeType);
-			// complexAIFDescriptionType.setPrimeBrokers(complexPrimeBrokersType);
-			// complexAIFDescriptionType
-			// .setPrivateEquityFundInvestmentStrategies(complexPrivateEquityFundInvestmentStrategiesType);
-			// complexAIFDescriptionType
-			// .setRealEstateFundInvestmentStrategies(complexRealEstateFundInvestmentStrategiesType);
-			complexAIFDescriptionType.setSecondFundingSourceCountry("");
-			complexAIFDescriptionType.setThirdFundingSourceCountry("");
+			complexAIFDescriptionType
+					.setAIFBaseCurrencyDescription(complexBaseCurrencyDescriptionType);
+
+			// <AIFDescription><AIFMasterFeederStatus>
+			String aifMasterFeederStatusTypeString = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFMasterFeederStatus"))
+					aifMasterFeederStatusTypeString = reportData
+							.getReportDataText();
+			}
+			AIFMasterFeederStatusType aifMasterFeederStatusType = AIFMasterFeederStatusType
+					.fromValue(aifMasterFeederStatusTypeString);
+			complexAIFDescriptionType
+					.setAIFMasterFeederStatus(aifMasterFeederStatusType);
+
+			// <AIFDescription><AIFNetAssetValue>
+			String aifNetAssetValue = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFNetAssetValue"))
+					aifNetAssetValue = reportData.getReportDataText();
+			}
+			complexAIFDescriptionType.setAIFNetAssetValue(Long
+					.parseLong(aifNetAssetValue));
+
+			// <AIFDescription><FirstFundingSourceCountry>
+			String firstFundingSourceCountry = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("FirstFundingSourceCountry"))
+					firstFundingSourceCountry = reportData.getReportDataText();
+			}
+			complexAIFDescriptionType
+					.setFirstFundingSourceCountry(firstFundingSourceCountry);
+
+			complexAIFDescriptionType
+					.setFundOfFundsInvestmentStrategies(complexFundOfFundsInvestmentStrategiesType);
+
+			complexAIFDescriptionType
+					.setHedgeFundInvestmentStrategies(complexHedgeFundInvestmentStrategiesType);
+
+			// <AIFDescription><HFTBuySellMarketValue>
+			BigInteger hftBuySellMarketValue = new BigInteger("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("HFTBuySellMarketValue"))
+					hftBuySellMarketValue = new BigInteger(
+							reportData.getReportDataText());
+			}
+			complexAIFDescriptionType
+					.setHFTBuySellMarketValue(hftBuySellMarketValue);
+
+			// <AIFDescription><HFTTransactionNumber>
+			BigInteger hftTransactionNumber = new BigInteger("0");
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("HFTTransactionNumber"))
+					hftTransactionNumber = new BigInteger(
+							reportData.getReportDataText());
+			}
+			complexAIFDescriptionType
+					.setHFTTransactionNumber(hftTransactionNumber);
+
+			complexAIFDescriptionType
+					.setMasterAIFsIdentification(complexMasterAIFsIdentificationType);
+
+			complexAIFDescriptionType
+					.setOtherFundInvestmentStrategies(complexOtherFundInvestmentStrategiesType);
+
+			// <AIFDescription><PredominantAIFType>
+			String predominantAIFTypeString = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("PredominantAIFType"))
+					predominantAIFTypeString = reportData.getReportDataText();
+			}
+			AIFTypeType predominantAIFType = AIFTypeType
+					.fromValue(predominantAIFTypeString);
+			complexAIFDescriptionType.setPredominantAIFType(predominantAIFType);
+
+			complexAIFDescriptionType.setPrimeBrokers(complexPrimeBrokersType);
+
+			complexAIFDescriptionType
+					.setPrivateEquityFundInvestmentStrategies(complexPrivateEquityFundInvestmentStrategiesType);
+
+			complexAIFDescriptionType
+					.setRealEstateFundInvestmentStrategies(complexRealEstateFundInvestmentStrategiesType);
+
+			// <AIFDescription><SecondFundingSourceCountry>
+			String secondFundingSourceCountry = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("SecondFundingSourceCountry"))
+					secondFundingSourceCountry = reportData.getReportDataText();
+			}
+			complexAIFDescriptionType
+					.setSecondFundingSourceCountry(secondFundingSourceCountry);
+
+			// <AIFDescription><ThirdFundingSourceCountry>
+			String thirdFundingSourceCountry = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("ThirdFundingSourceCountry"))
+					thirdFundingSourceCountry = reportData.getReportDataText();
+			}
+			complexAIFDescriptionType
+					.setThirdFundingSourceCountry(thirdFundingSourceCountry);
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><AIFIdentifier>
-			complexAIFIdentifierType.setAIFIdentifierCUSIP("");
-			complexAIFIdentifierType.setAIFIdentifierECB("");
-			complexAIFIdentifierType.setAIFIdentifierISIN("");
-			complexAIFIdentifierType.setAIFIdentifierLEI("");
-			complexAIFIdentifierType.setAIFIdentifierRIC("");
-			complexAIFIdentifierType.setAIFIdentifierSEDOL("");
-			complexAIFIdentifierType.setAIFIdentifierTicker("");
-			// complexAIFIdentifierType
-			// .setOldAIFIdentifierNCA(complexAIFNationalIdentifierType);
+
+			// <AIFIdentifier><AIFIdentifierCUSIP>
+			String aifIdentifierCUSIP = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFIdentifierCUSIP"))
+					aifIdentifierCUSIP = reportData.getReportDataText();
+			}
+			complexAIFIdentifierType.setAIFIdentifierCUSIP(aifIdentifierCUSIP);
+
+			// <AIFIdentifier><AIFIdentifierECB>
+			String aifIdentifierECB = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFIdentifierECB"))
+					aifIdentifierECB = reportData.getReportDataText();
+			}
+			complexAIFIdentifierType.setAIFIdentifierECB(aifIdentifierECB);
+
+			// <AIFIdentifier><AIFIdentifierISIN>
+			String aifIdentifierISIN = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFIdentifierISIN"))
+					aifIdentifierISIN = reportData.getReportDataText();
+			}
+			complexAIFIdentifierType.setAIFIdentifierISIN(aifIdentifierISIN);
+
+			// <AIFIdentifier><AIFIdentifierLEI>
+			String aifIdentifierLEI = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFIdentifierLEI"))
+					aifIdentifierLEI = reportData.getReportDataText();
+			}
+			complexAIFIdentifierType.setAIFIdentifierLEI(aifIdentifierLEI);
+
+			// <AIFIdentifier><AIFIdentifierRIC>
+			String aifIdentifierRIC = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFIdentifierRIC"))
+					aifIdentifierRIC = reportData.getReportDataText();
+			}
+			complexAIFIdentifierType.setAIFIdentifierRIC(aifIdentifierRIC);
+
+			// <AIFIdentifier><AIFIdentifierSEDOL>
+			String aifIdentifierSEDOL = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFIdentifierSEDOL"))
+					aifIdentifierSEDOL = reportData.getReportDataText();
+			}
+			complexAIFIdentifierType.setAIFIdentifierSEDOL(aifIdentifierSEDOL);
+
+			// <AIFIdentifier><AIFIdentifierTicker>
+			String aifIdentifierTicker = "";
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals("AIFIdentifierTicker"))
+					aifIdentifierTicker = reportData.getReportDataText();
+			}
+			complexAIFIdentifierType
+					.setAIFIdentifierTicker(aifIdentifierTicker);
+
+			complexAIFIdentifierType
+					.setOldAIFIdentifierNCA(complexAIFNationalIdentifierType);
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><AUMGeographicalFocus>
@@ -408,15 +696,6 @@ public class GeneratorXML {
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><MostImportantConcentration>
-
-			ComplexAIFPrincipalMarketsType complexAIFPrincipalMarketsType = objectFactoryAIF
-					.createComplexAIFPrincipalMarketsType();
-
-			ComplexInvestorConcentrationType complexInvestorConcentrationType = objectFactoryAIF
-					.createComplexInvestorConcentrationType();
-
-			ComplexPortfolioConcentrationsType complexPortfolioConcentrationsType = objectFactoryAIF
-					.createComplexPortfolioConcentrationsType();
 
 			// falta rellenarlos
 
@@ -529,11 +808,74 @@ public class GeneratorXML {
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><PrincipalExposures>
-			complexPrincipalExposuresType.getPrincipalExposure();
+			List<ComplexPrincipalExposureType> complexPrincipalExposureTypeList = complexPrincipalExposuresType
+					.getPrincipalExposure();
+
+			// falta rellenarlos
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><ShareClassIdentification>
-			complexShareClassIdentificationType.getShareClassIdentifier();
+			List<ComplexShareClassIdentifierType> complexShareClassIdentifierTypeList = complexShareClassIdentificationType
+					.getShareClassIdentifier();
+//			int complexShareClassIdentifierTypeCount = 0;
+//			for (ReportData reportData : reportDatas) {
+//				if (reportData.getReportField().getReportFieldName()
+//						.equals("ShareClassNationalCode"))
+//					complexShareClassIdentifierTypeCount++;
+//				if (reportData.getReportField().getReportFieldName()
+//						.equals("ShareClassIdentifierISIN"))
+//					complexShareClassIdentifierTypeCount++;
+//				if (reportData.getReportField().getReportFieldName()
+//						.equals("ShareClassIdentifierCUSIP"))
+//					complexShareClassIdentifierTypeCount++;
+//				if (reportData.getReportField().getReportFieldName()
+//						.equals("ShareClassIdentifierSEDOL"))
+//					complexShareClassIdentifierTypeCount++;
+//				if (reportData.getReportField().getReportFieldName()
+//						.equals("ShareClassIdentifierTicker"))
+//					complexShareClassIdentifierTypeCount++;
+//				if (reportData.getReportField().getReportFieldName()
+//						.equals("ShareClassIdentifierRIC"))
+//					complexShareClassIdentifierTypeCount++;
+//				if (reportData.getReportField().getReportFieldName()
+//						.equals("ShareClassName"))
+//					complexShareClassIdentifierTypeCount++;
+//			}
+//			System.out.println("complexShareClassIdentifierTypeCount " + complexShareClassIdentifierTypeCount);
+//			for (int i = 1; i < complexShareClassIdentifierTypeCount + 1; i++) {
+//				String shareClassIdentifier = "";
+//				// <Assumption>
+//				for (ReportData reportData : reportDatas) {
+//					// <QuestionNumber>
+//					if (reportData.getReportField().getReportFieldName()
+//							.equals("QuestionNumber")
+//							&& Integer
+//									.parseInt(reportData.getReportDataBlock()) == i) {
+//						questionNumber = new BigInteger(
+//								reportData.getReportDataText());
+//					}
+//					// <AssumptionDescription>
+//					if (reportData.getReportField().getReportFieldName()
+//							.equals("AssumptionDescription")
+//							&& Integer
+//									.parseInt(reportData.getReportDataBlock()) == i) {
+//						assumptionDescription = reportData.getReportDataText();
+//					}
+//
+//				}
+//				ComplexShareClassIdentifierType complexShareClassIdentifierType = objectFactoryAIF
+//						.createComplexShareClassIdentifierType();
+//				
+//				//complexShareClassIdentifierType
+//				
+//				complexShareClassIdentifierType.setShareClassIdentifierTicker(value);
+//				
+//				complexShareClassIdentifierTypeList.add(complexShareClassIdentifierType);
+//				System.out.println("assumption i " + i + " " + questionNumber
+//						+ " " + assumptionDescription);
+//			}
+
+			// falta rellenarlos
 
 			// /////////////////////////////////////////////////////////////////
 			// MAIN PART
@@ -951,13 +1293,25 @@ public class GeneratorXML {
 			StringWriter st = new StringWriter();
 			marshaller.marshal(jaxbElement, st);
 
+			validateSchemaXSD(st.toString(), reportExecution, aifXSDResource);
+
 			return st.toString();
 
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			ReportingErrorManager.createReportError(applicationContext,
+					"CREATION", reportExecution, "FAIL", "Error in JAXB XML"
+							+ e.getMessage());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			ReportingErrorManager.createReportError(applicationContext,
+					"CREATION", reportExecution, "FAIL",
+					"Error when parsing XML: " + e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
 					"CREATION", reportExecution, "FAIL",
-					"Fail when parsing XML");
+					"General error in XML process: " + e.getMessage());
 		}
 
 		return null;
@@ -979,16 +1333,6 @@ public class GeneratorXML {
 					reportData.getReportDataText());
 		}
 		System.out.println(reportMap.toString());
-
-		// for (ReportField reportField : reportExecution.getReportCatalog()
-		// .getReportFields()) {
-		// System.out.println("A field: " + reportField.getReportFieldNum());
-		// }
-		// SortReportField.sortReportExecution(reportExecution);
-		// for(ReportField reportField :
-		// reportExecution.getReportCatalog().getReportFields()) {
-		// System.out.println("B field: " +reportField.getReportFieldNum());
-		// }
 
 		// ///////////////////////////////////////////////////////////
 		// ONLY STATUS = PENDING WILL CREATE XML REPORTS
