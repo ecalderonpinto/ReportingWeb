@@ -94,7 +94,7 @@ public class Syntactic {
 				ReportingErrorManager.createReportDataError(applicationContext,
 						"SYNTAXIS", reportData, "REGEX", "BAD REGEX FOUND: "
 								+ reportData.getReportDataText() + " <> "
-								+ reportData.getReportDataText());
+								+ reportData.getReportField().getReportFieldFormat());
 			}
 		} else {
 			// not valid, is empty

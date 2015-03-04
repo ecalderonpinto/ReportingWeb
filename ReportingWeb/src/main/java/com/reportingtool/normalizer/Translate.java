@@ -10,6 +10,7 @@ import com.entities.dao.loader.LoadRawDataDAO;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileColumList;
 import com.entities.entity.loader.LoadRawData;
+import com.reportingtool.utilities.ReportingErrorManager;
 
 public class Translate {
 
@@ -38,22 +39,37 @@ public class Translate {
 			String valueOrig = loadRawData.getLoadRawDataText();
 			String valueDest = "";
 
+			boolean hasValue = false;
 			// find in list the value to translate
 			for (FileColumList fileColumList : fileColumLists) {
 				System.out.println("DEBUG_" + "Translate:  Dest "
 						+ fileColumList.getFileColumListDest());
-				if (fileColumList.getFileColumListOrig().equals(valueOrig))
+				if (fileColumList.getFileColumListOrig().equals(valueOrig)) {
 					valueDest = fileColumList.getFileColumListDest();
+					hasValue = true;
+					break;
+				}
 			}
 			System.out.println("DEBUG_" + "Translate: Orig " + valueOrig
 					+ " Dest " + valueDest);
 
-			// save new value
-			loadRawData.setLoadRawDataText(valueDest);
+			if (!hasValue) {
+				// create a message of error
+				ReportingErrorManager.createLoadError(
+						applicationContext,
+						"TRANSLATE",
+						loadRawData.getLoadRaw().getLoadFile(),
+						"VALUE",
+						"NOT IN TRANSLATE LIST: "
+								+ loadRawData.getLoadRawDataText());
+			} else {
+				// save new value
+				loadRawData.setLoadRawDataText(valueDest);
 
-			LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext
-					.getBean("loadRawDataDAO");
-			loadRawDataDAO.edit(loadRawData);
+				LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext
+						.getBean("loadRawDataDAO");
+				loadRawDataDAO.edit(loadRawData);
+			}
 		}
 
 		return loadRawData;
