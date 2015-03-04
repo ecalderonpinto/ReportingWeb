@@ -120,7 +120,8 @@ public class FileLoader {
 				// Split line;
 				String separator = fileConfig.getFileSeparator();
 				String[] columns = record.split(separator, -1);
-
+				
+				if(columns.length == fileConfig.getFileColums().size()){
 				// Create LoadRawDatas Objects;
 				for (FileColum fileColum : fileConfig.getFileColums()) {
 					LoadRawData loadRawData = new LoadRawData(fileColum,
@@ -132,9 +133,17 @@ public class FileLoader {
 				}
 
 				// Set LoadRaw in LoadFile
+				loadRaw.setAuditor(new VersionAuditor("admin"));
 				loadFile.getLoadRaws().add(loadRaw);
+				} else {
+					ReportingErrorManager.createLoadError(applicationContext, "LOADER",
+							loadFile, "INVALID ROW",
+							"Row with different columns or separator [row " + i + "]");
+				}
 			} else {
-				System.out.println("DEBUG: repetido - no se añade");
+				ReportingErrorManager.createLoadError(applicationContext, "LOADER",
+						loadFile, "DUPLICATE ROW",
+						"Duplicate row found [row " + i + "]");
 			}
 		}
 
