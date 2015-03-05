@@ -29,6 +29,42 @@
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 	
+	<definition name="fileconfig" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Config" />
+		<put-attribute name="mainContent" value="/fileconfig.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="reportcatalogdetail" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - DM - Report Catalog Detail" />
+		<put-attribute name="mainContent" value="/reportcatalogdetail.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="reportfielddetail" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - DM - Report Field Detail" />
+		<put-attribute name="mainContent" value="/reportfielddetail.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="filecolum" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - DM - File Colum" />
+		<put-attribute name="mainContent" value="/filecolum.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="filecolumdetail" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - DM - File Colum Detail" />
+		<put-attribute name="mainContent" value="/filecolumdetail.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="fileconfigdetail" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - DM - File Config Detail" />
+		<put-attribute name="mainContent" value="/fileconfigdetail.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
 	<definition name="companydetail" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - DM - Company Detail" />
 		<put-attribute name="mainContent" value="/companydetail.jsp" />
@@ -83,9 +119,9 @@
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 	
-	<definition name="report" extends="base.template">
+	<definition name="reportexecution" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - Report" />
-		<put-attribute name="mainContent" value="/report.jsp" />
+		<put-attribute name="mainContent" value="/reportexecution.jsp" />
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 

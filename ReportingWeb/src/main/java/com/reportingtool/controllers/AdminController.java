@@ -1,5 +1,8 @@
 package com.reportingtool.controllers;
 
+import java.util.List;
+import java.util.Locale;
+
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.entities.dao.reportingtool.ReportCatalogDAO;
+import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.entity.InstallEntities;
+import com.entities.entity.reportingtool.ReportCatalog;
+import com.entities.entity.reportingtool.ReportField;
 
 @Controller
 public class AdminController {
@@ -21,13 +29,52 @@ public class AdminController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(AdminController.class);
-
+	
 	@RequestMapping(value = "/admin.do", method = RequestMethod.GET)
-	public String dataManagerControllerPre(Model model) {
+	public String reportCatalogController(Locale locale, Model model) {
 
-		System.out.println("AdminController");
+		ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
+				.getBean("reportCatalogDAO");
+		List<ReportCatalog> reportCatalogs = reportCatalogDAO.findAll();
 
+		System.out.println(reportCatalogs.size() + " reportCatalogs");
+		model.addAttribute("reportcatalogs", reportCatalogs);
+
+		System.out.println("Report Catalog Controller - preForm");
+		
 		return "admin";
+	}
+	
+	@RequestMapping(value="/reportCatalogDetail.do", method=RequestMethod.GET)
+	public String reportCatalogDetailController(@RequestParam("id") String id, Model model){
+		
+		System.out.println("Report Catalog Detail Controller - id=" + id);
+		
+		ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
+				.getBean("reportCatalogDAO");
+		ReportCatalog reportCatalog = reportCatalogDAO.findById(Long.parseLong(id));
+		
+		model.addAttribute("reportcatalog", reportCatalog);
+		
+		model.addAttribute("reportfields",  reportCatalog.getReportFields());
+		
+		return "reportcatalogdetail";
+	}
+	
+	@RequestMapping(value="/reportFieldDetail.do", method=RequestMethod.GET)
+	public String reportFieldDetailController(@RequestParam("id") String id, Model model){
+		
+		System.out.println("Report Field Detail Controller - id=" + id);
+		
+		ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
+				.getBean("reportFieldDAO");
+		ReportField reportField = reportFieldDAO.findById(Long.parseLong(id));
+		
+		model.addAttribute("reportfield", reportField);
+		
+		model.addAttribute("reportcatalog", reportField.getReportCatalog());
+		
+		return "reportfielddetail";
 	}
 
 	@RequestMapping(value="/generateDB.do")
@@ -65,4 +112,5 @@ public class AdminController {
 		
 		return "admin";
 	}
+
 }

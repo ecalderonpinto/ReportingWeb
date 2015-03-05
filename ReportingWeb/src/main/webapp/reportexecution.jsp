@@ -11,7 +11,7 @@
 </ul>
 <!-- end: Breadcrumb -->
 
-<form:form method="POST" commandName="report">
+<form:form method="POST" commandName="reportexecution">
 
 	<c:forEach var="section" varStatus="status" items="${sections}">
 
@@ -39,7 +39,7 @@
 				<div class="box-content">
 					<fieldset>
 						<c:forEach var="reportData" varStatus="status"
-							items="${report.reportDatas}">
+							items="${reportexecution.reportDatas}">
 							<c:if
 								test="${reportData.reportField.reportFieldSection == section}">
 								<c:choose>

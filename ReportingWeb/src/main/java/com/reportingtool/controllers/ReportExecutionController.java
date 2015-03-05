@@ -20,15 +20,15 @@ import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportExecution;
 
 @Controller
-@RequestMapping(value = "/report.do")
-@SessionAttributes("report")
-public class ReportController {
+@RequestMapping(value = "/reportExecution.do")
+@SessionAttributes("reportexecution")
+public class ReportExecutionController {
 
 	@Autowired
 	ApplicationContext applicationContext;
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(ReportController.class);
+			.getLogger(ReportExecutionController.class);
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String ReportControllerPre(@RequestParam("id") String id, Model model) {
@@ -36,10 +36,12 @@ public class ReportController {
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
 
-		ReportExecution example = new ReportExecution();
-		example.setId(Long.valueOf(id).longValue());
-		ReportExecution reportExecution = reportExecutionDAO.findByExample(
-				example).get(0);
+//		ReportExecution example = new ReportExecution();
+//		example.setId(Long.valueOf(id).longValue());
+//		ReportExecution reportExecution = reportExecutionDAO.findByExample(
+//				example).get(0);
+		
+		ReportExecution reportExecution = reportExecutionDAO.findById(Long.parseLong(id));
 		
 		if(reportExecution.getReportErrors().size() > 0){
 			System.out.println("Tiene errores...");
@@ -47,7 +49,7 @@ public class ReportController {
 		
 		List<String> sections = getSections(reportExecution);
 
-		model.addAttribute("report", reportExecution);
+		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
 
 		return "report";

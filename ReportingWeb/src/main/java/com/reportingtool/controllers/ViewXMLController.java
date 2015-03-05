@@ -35,10 +35,13 @@ public class ViewXMLController {
 
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
-		ReportExecution reportExecution = new ReportExecution();
-		reportExecution.setId(Long.valueOf(id).longValue());
-		reportExecution = (ReportExecution) reportExecutionDAO.findByExample(
-				reportExecution).get(0);
+		
+//		ReportExecution reportExecution = new ReportExecution();
+//		reportExecution.setId(Long.valueOf(id).longValue());
+//		reportExecution = (ReportExecution) reportExecutionDAO.findByExample(
+//				reportExecution).get(0);
+		
+		ReportExecution reportExecution = reportExecutionDAO.findById(Long.parseLong(id));
 
 		GeneratorXML generatorXML = new GeneratorXML(applicationContext);
 		String outputXML = generatorXML.generateXML(reportExecution);

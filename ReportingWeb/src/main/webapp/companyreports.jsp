@@ -85,21 +85,21 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="report" varStatus="status"
+						<c:forEach var="reportexecution" varStatus="status"
 							items="${company.reportExecutions}">
 							<tr>
 								<td><input type="checkbox" id="export1" value="export1"></td>
-								<td>${report.reportCatalog.reportCatalogName}</td>
-								<td>${report.reportPeriodType}</td>
-								<td>${report.reportStatus}</td>
+								<td>${reportexecution.reportCatalog.reportCatalogName}</td>
+								<td>${reportexecution.reportPeriodType}</td>
+								<td>${reportexecution.reportStatus}</td>
 								<td>
-								<a href="<c:url value="report.do?id=${report.id}" />">
+								<a href="<c:url value="reportExecution.do?id=${reportexecution.id}" />">
 										<span class="label label-important">Detail</span>
 								</a>
-								<a href="<c:url value="loadsAssignToReport.do?id=${report.id}" />">
+								<a href="<c:url value="loadsAssignToReport.do?id=${reportexecution.id}" />">
 										<span class="label label-warning">Loads Asig</span>
 								</a>
-								<a href="<c:url value="viewXML.do?id=${report.id}" />">
+								<a href="<c:url value="viewXML.do?id=${reportexecution.id}" />">
 										<span class="label label-success">view XML</span>
 								</a>
 								</td>

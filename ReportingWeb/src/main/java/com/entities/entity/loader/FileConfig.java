@@ -162,7 +162,9 @@ public class FileConfig implements VersionableAdapter {
 		this.loadFiles = loadFiles;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "fileConfig")
+	// scheduler necesita EAGER porque está fuera del conexto web, para el futuro
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "fileConfig")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fileConfig")
 	@OrderBy("columNumber ASC")
 	public Set<FileColum> getFileColums() {
 		return this.fileColums;

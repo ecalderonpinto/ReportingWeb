@@ -35,42 +35,46 @@
 </div>
 <!--/row-->
 
-<!--
 <div class="row-fluid sortable">
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
-				<i class="halflings-icon align-justify"></i> <span class="break"></span>
-				Installations
+				<i class="halflings-icon align-justify"></i> <span class="break">Report Catalog</span>
 			</h2>
 			<div class="box-icon">
-				<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 				<a href="#" class="btn-minimize"><i
-					class="halflings-icon chevron-up"></i></a> <a href="#"
-					class="btn-close"><i class="halflings-icon remove"></i></a>
+					class="halflings-icon chevron-up"></i></a>
 			</div>
 		</div>
 		<div class="box-content">
 			<table class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Status</th>
-						<th>Company</th>
-						<th>Department</th>
+						<th>Report Name</th>
+						<th>Level</th>
+						<th>Version</th>
+						<th>Description</th>
+						<th>Details</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>${loadRaw.id}</td>
-						<td></td>
-						<td>${loadRaw.id}</td>
-						<td>${loadRaw.id}</td>
-					</tr>
+					<c:forEach var="reportcatalog" items="${reportcatalogs}">
+						<tr>
+							<td>${reportcatalog.reportCatalogName}</td>
+							<td>${reportcatalog.reportLevel}</td>
+							<td>${reportcatalog.reportVersion}</td>
+							<td>${reportcatalog.reportCatalogDesc}</td>
+							<td>
+								<a class="btn btn-small" href="<c:url value="reportCatalogDetail.do?id=${reportcatalog.id}" />" >
+									detail
+								</a>
+							</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<!--/span -->
+	<!--/span-->
 </div>
 <!--/row-->
