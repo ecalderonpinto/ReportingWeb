@@ -109,7 +109,10 @@
 							<td>
 							<c:choose>
 							<c:when test="${fn:length(load.loadErrors) gt 0}">
-							With Errors
+							With Errors 
+							<a href="<c:url value="viewErrors.do?id=${load.id}" />">
+								<span class="label label-important">view</span>
+							</a>
 							</c:when>
 							<c:otherwise>
 							Loaded

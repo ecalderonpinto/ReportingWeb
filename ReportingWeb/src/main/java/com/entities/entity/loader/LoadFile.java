@@ -131,6 +131,7 @@ public class LoadFile implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loadFile")
+	@Cascade({ CascadeType.SAVE_UPDATE })
 	public Set<LoadError> getLoadErrors() {
 		return this.loadErrors;
 	}

@@ -151,7 +151,7 @@ public class ReportingErrorManager {
 		}
 		if (!iguales) {
 			loadError.setAuditor(new VersionAuditor("error"));
-			loadErrorDAO.create(loadError);
+			//loadErrorDAO.create(loadError);
 			loadFile.getLoadErrors().add(loadError);
 		}
 	}

@@ -17,6 +17,12 @@
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 	
+	<definition name="viewerrors" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Load Errors" />
+		<put-attribute name="mainContent" value="/viewerrors.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
 	<definition name="datamanager" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - Data Manager" />
 		<put-attribute name="mainContent" value="/datamanager.jsp" />
