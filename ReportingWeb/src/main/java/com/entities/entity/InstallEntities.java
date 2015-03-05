@@ -3372,6 +3372,13 @@ public class InstallEntities {
 			ReportData reportData46 = new ReportData(null, reportField42,
 					reportExecution, null, null, "C", "2", null, null,
 					versionAdmin);
+			
+			ReportData reportData47 = new ReportData(null, reportField14,
+					reportExecution, null, null, "21", "2", null, null,
+					versionAdmin);
+			ReportData reportData48 = new ReportData(null, reportField15,
+					reportExecution, null, null, "Descripcion pregunta 2", "2",
+					null, null, versionAdmin);
 
 			LoadFile loadFile = new LoadFile(department, fileConfig, date1,
 					"Fichero1.txt", null, null, versionAdmin);
@@ -3598,6 +3605,8 @@ public class InstallEntities {
 			reportDataDAO.create(reportData44);
 			reportDataDAO.create(reportData45);
 			reportDataDAO.create(reportData46);
+			reportDataDAO.create(reportData47);
+			reportDataDAO.create(reportData48);
 
 			// LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
 			// .getBean("loadFileDAO");

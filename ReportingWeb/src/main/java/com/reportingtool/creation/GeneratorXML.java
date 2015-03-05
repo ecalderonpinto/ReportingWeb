@@ -296,7 +296,7 @@ public class GeneratorXML {
 
 			ComplexMostImportantConcentrationType complexMostImportantConcentrationType = objectFactoryAIF
 					.createComplexMostImportantConcentrationType();
-			
+
 			ComplexAIFPrincipalMarketsType complexAIFPrincipalMarketsType = objectFactoryAIF
 					.createComplexAIFPrincipalMarketsType();
 
@@ -817,63 +817,66 @@ public class GeneratorXML {
 			// <AIFPrincipalInfo><ShareClassIdentification>
 			List<ComplexShareClassIdentifierType> complexShareClassIdentifierTypeList = complexShareClassIdentificationType
 					.getShareClassIdentifier();
-//			int complexShareClassIdentifierTypeCount = 0;
-//			for (ReportData reportData : reportDatas) {
-//				if (reportData.getReportField().getReportFieldName()
-//						.equals("ShareClassNationalCode"))
-//					complexShareClassIdentifierTypeCount++;
-//				if (reportData.getReportField().getReportFieldName()
-//						.equals("ShareClassIdentifierISIN"))
-//					complexShareClassIdentifierTypeCount++;
-//				if (reportData.getReportField().getReportFieldName()
-//						.equals("ShareClassIdentifierCUSIP"))
-//					complexShareClassIdentifierTypeCount++;
-//				if (reportData.getReportField().getReportFieldName()
-//						.equals("ShareClassIdentifierSEDOL"))
-//					complexShareClassIdentifierTypeCount++;
-//				if (reportData.getReportField().getReportFieldName()
-//						.equals("ShareClassIdentifierTicker"))
-//					complexShareClassIdentifierTypeCount++;
-//				if (reportData.getReportField().getReportFieldName()
-//						.equals("ShareClassIdentifierRIC"))
-//					complexShareClassIdentifierTypeCount++;
-//				if (reportData.getReportField().getReportFieldName()
-//						.equals("ShareClassName"))
-//					complexShareClassIdentifierTypeCount++;
-//			}
-//			System.out.println("complexShareClassIdentifierTypeCount " + complexShareClassIdentifierTypeCount);
-//			for (int i = 1; i < complexShareClassIdentifierTypeCount + 1; i++) {
-//				String shareClassIdentifier = "";
-//				// <Assumption>
-//				for (ReportData reportData : reportDatas) {
-//					// <QuestionNumber>
-//					if (reportData.getReportField().getReportFieldName()
-//							.equals("QuestionNumber")
-//							&& Integer
-//									.parseInt(reportData.getReportDataBlock()) == i) {
-//						questionNumber = new BigInteger(
-//								reportData.getReportDataText());
-//					}
-//					// <AssumptionDescription>
-//					if (reportData.getReportField().getReportFieldName()
-//							.equals("AssumptionDescription")
-//							&& Integer
-//									.parseInt(reportData.getReportDataBlock()) == i) {
-//						assumptionDescription = reportData.getReportDataText();
-//					}
-//
-//				}
-//				ComplexShareClassIdentifierType complexShareClassIdentifierType = objectFactoryAIF
-//						.createComplexShareClassIdentifierType();
-//				
-//				//complexShareClassIdentifierType
-//				
-//				complexShareClassIdentifierType.setShareClassIdentifierTicker(value);
-//				
-//				complexShareClassIdentifierTypeList.add(complexShareClassIdentifierType);
-//				System.out.println("assumption i " + i + " " + questionNumber
-//						+ " " + assumptionDescription);
-//			}
+			// int complexShareClassIdentifierTypeCount = 0;
+			// for (ReportData reportData : reportDatas) {
+			// if (reportData.getReportField().getReportFieldName()
+			// .equals("ShareClassNationalCode"))
+			// complexShareClassIdentifierTypeCount++;
+			// if (reportData.getReportField().getReportFieldName()
+			// .equals("ShareClassIdentifierISIN"))
+			// complexShareClassIdentifierTypeCount++;
+			// if (reportData.getReportField().getReportFieldName()
+			// .equals("ShareClassIdentifierCUSIP"))
+			// complexShareClassIdentifierTypeCount++;
+			// if (reportData.getReportField().getReportFieldName()
+			// .equals("ShareClassIdentifierSEDOL"))
+			// complexShareClassIdentifierTypeCount++;
+			// if (reportData.getReportField().getReportFieldName()
+			// .equals("ShareClassIdentifierTicker"))
+			// complexShareClassIdentifierTypeCount++;
+			// if (reportData.getReportField().getReportFieldName()
+			// .equals("ShareClassIdentifierRIC"))
+			// complexShareClassIdentifierTypeCount++;
+			// if (reportData.getReportField().getReportFieldName()
+			// .equals("ShareClassName"))
+			// complexShareClassIdentifierTypeCount++;
+			// }
+			// System.out.println("complexShareClassIdentifierTypeCount " +
+			// complexShareClassIdentifierTypeCount);
+			// for (int i = 1; i < complexShareClassIdentifierTypeCount + 1;
+			// i++) {
+			// String shareClassIdentifier = "";
+			// // <Assumption>
+			// for (ReportData reportData : reportDatas) {
+			// // <QuestionNumber>
+			// if (reportData.getReportField().getReportFieldName()
+			// .equals("QuestionNumber")
+			// && Integer
+			// .parseInt(reportData.getReportDataBlock()) == i) {
+			// questionNumber = new BigInteger(
+			// reportData.getReportDataText());
+			// }
+			// // <AssumptionDescription>
+			// if (reportData.getReportField().getReportFieldName()
+			// .equals("AssumptionDescription")
+			// && Integer
+			// .parseInt(reportData.getReportDataBlock()) == i) {
+			// assumptionDescription = reportData.getReportDataText();
+			// }
+			//
+			// }
+			// ComplexShareClassIdentifierType complexShareClassIdentifierType =
+			// objectFactoryAIF
+			// .createComplexShareClassIdentifierType();
+			//
+			// //complexShareClassIdentifierType
+			//
+			// complexShareClassIdentifierType.setShareClassIdentifierTicker(value);
+			//
+			// complexShareClassIdentifierTypeList.add(complexShareClassIdentifierType);
+			// System.out.println("assumption i " + i + " " + questionNumber
+			// + " " + assumptionDescription);
+			// }
 
 			// falta rellenarlos
 
@@ -1786,24 +1789,27 @@ public class GeneratorXML {
 				BigInteger questionNumber = new BigInteger("0");
 				String assumptionDescription = "";
 				// <Assumption>
-				for (ReportData reportData : reportDatas) {
-					// <QuestionNumber>
-					if (reportData.getReportField().getReportFieldName()
-							.equals("QuestionNumber")
-							&& Integer
-									.parseInt(reportData.getReportDataBlock()) == i) {
-						questionNumber = new BigInteger(
-								reportData.getReportDataText());
-					}
-					// <AssumptionDescription>
-					if (reportData.getReportField().getReportFieldName()
-							.equals("AssumptionDescription")
-							&& Integer
-									.parseInt(reportData.getReportDataBlock()) == i) {
-						assumptionDescription = reportData.getReportDataText();
-					}
-
-				}
+//				for (ReportData reportData : reportDatas) {
+//					// <QuestionNumber>
+//					if (reportData.getReportField().getReportFieldName()
+//							.equals("QuestionNumber")
+//							&& Integer
+//									.parseInt(reportData.getReportDataBlock()) == i) {
+//						questionNumber = new BigInteger(
+//								reportData.getReportDataText());
+//					}
+//					// <AssumptionDescription>
+//					if (reportData.getReportField().getReportFieldName()
+//							.equals("AssumptionDescription")
+//							&& Integer
+//									.parseInt(reportData.getReportDataBlock()) == i) {
+//						assumptionDescription = reportData.getReportDataText();
+//					}
+//
+//				}
+				questionNumber = new BigInteger(searchData(reportDatas, "QuestionNumber", "14", Integer.toString(i)));
+				assumptionDescription = searchData(reportDatas, "AssumptionDescription", "15", Integer.toString(i));
+				
 				ComplexAssumptionType complexAssumptionType = objectFactoryAIFM
 						.createComplexAssumptionType();
 				complexAssumptionType
@@ -1907,6 +1913,11 @@ public class GeneratorXML {
 								.equals("AIFMReportingInfo"))
 					reportingMemberState = reportData.getReportDataText();
 			}
+			System.out.println("TEST SEARCH DATA: "
+					+ reportingMemberState
+					+ " = "
+					+ searchData(reportDatas, "ReportingMemberState",
+							"1", null));
 			aifmReportingInfo.setReportingMemberState(reportingMemberState);
 
 			// <Version>
@@ -2087,6 +2098,37 @@ public class GeneratorXML {
 
 	}
 
+	public String searchData(List<ReportData> reportDatas,
+			String reportFieldName, String reportFieldNum,
+			String reportDataBlock) {
+		String result = null;
+
+		if (reportDataBlock != null) {
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals(reportFieldName)
+						&& reportData.getReportField().getReportFieldNum()
+								.equals(new BigInteger(reportFieldNum))
+						&& reportData.getReportDataBlock().equals(
+								reportDataBlock)) {
+					result = reportData.getReportDataText();
+					break;
+				}
+			}
+		} else {
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals(reportFieldName)
+						&& reportData.getReportField().getReportFieldNum()
+								.equals(reportFieldNum)) {
+					result = reportData.getReportDataText();
+					break;
+				}
+			}
+		}
+
+		return result;
+	}
 	// public void generateXMLAIFM_OLD(ReportExecution reportExecution) {
 	//
 	// System.out.println("DEBUG_" + "GeneratorXML: starting XML generation ");
