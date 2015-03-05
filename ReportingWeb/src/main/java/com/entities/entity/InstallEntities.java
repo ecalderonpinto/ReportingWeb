@@ -3015,218 +3015,227 @@ public class InstallEntities {
 			FileColum fileColum4 = new FileColum(reportField4, fileConfig,
 					"type", new BigDecimal(4), "FilingType", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum5 = new FileColum(reportField6, fileConfig,
-					"type", new BigDecimal(5), "ReportingPeriodStartDate", "",
+			FileColum fileColum5 = new FileColum(reportField5, fileConfig,
+					"type", new BigDecimal(5), "AIFMContentType", "", "format",
+					null, null, versionAdmin);
+			FileColum fileColum6 = new FileColum(reportField6, fileConfig,
+					"type", new BigDecimal(6), "ReportingPeriodStartDate", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum6 = new FileColum(reportField7, fileConfig,
-					"type", new BigDecimal(6), "ReportingPeriodEndDate", "",
+			FileColum fileColum7 = new FileColum(reportField7, fileConfig,
+					"type", new BigDecimal(7), "ReportingPeriodEndDate", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum7 = new FileColum(reportField8, fileConfig,
-					"type", new BigDecimal(7), "ReportingPeriodType", "",
+			FileColum fileColum8 = new FileColum(reportField8, fileConfig,
+					"type", new BigDecimal(8), "ReportingPeriodType", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum8 = new FileColum(reportField9, fileConfig,
-					"type", new BigDecimal(8), "ReportingPeriodYear", "",
+			FileColum fileColum9 = new FileColum(reportField9, fileConfig,
+					"type", new BigDecimal(9), "ReportingPeriodYear", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum9 = new FileColum(reportField10, fileConfig,
-					"type", new BigDecimal(9),
+			FileColum fileColum10 = new FileColum(reportField10, fileConfig,
+					"type", new BigDecimal(10),
 					"AIFMReportingObligationChangeFrequencyCode", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum10 = new FileColum(reportField12, fileConfig,
-					"type", new BigDecimal(10),
+			FileColum fileColum11 = new FileColum(reportField12, fileConfig,
+					"type", new BigDecimal(11),
 					"AIFMReportingObligationChangeQuarter", "", "format", null,
 					null, versionAdmin);
-			FileColum fileColum11 = new FileColum(reportField13, fileConfig,
-					"type", new BigDecimal(11), "LastReportingFlag", "",
+			FileColum fileColum12 = new FileColum(reportField13, fileConfig,
+					"type", new BigDecimal(12), "LastReportingFlag", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum12 = new FileColum(reportField16, fileConfig,
-					"type", new BigDecimal(12), "AIFMReportingCode", "",
+			FileColum fileColum13 = new FileColum(reportField16, fileConfig,
+					"type", new BigDecimal(13), "AIFMReportingCode", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum13 = new FileColum(reportField17, fileConfig,
-					"type", new BigDecimal(13), "AIFMJurisdiction", "",
+			FileColum fileColum14 = new FileColum(reportField17, fileConfig,
+					"type", new BigDecimal(14), "AIFMJurisdiction", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum14 = new FileColum(reportField18, fileConfig,
-					"type", new BigDecimal(14), "AIFMNationalCode", "",
+			FileColum fileColum15 = new FileColum(reportField18, fileConfig,
+					"type", new BigDecimal(15), "AIFMNationalCode", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum15 = new FileColum(reportField19, fileConfig,
-					"type", new BigDecimal(15), "AIFMName", "", "format", null,
+			FileColum fileColum16 = new FileColum(reportField19, fileConfig,
+					"type", new BigDecimal(16), "AIFMName", "", "format", null,
 					null, versionAdmin);
-			FileColum fileColum16 = new FileColum(reportField20, fileConfig,
-					"type", new BigDecimal(16), "AIFMEEAFlag", "", "format",
+			FileColum fileColum17 = new FileColum(reportField20, fileConfig,
+					"type", new BigDecimal(17), "AIFMEEAFlag", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum17 = new FileColum(reportField21, fileConfig,
-					"type", new BigDecimal(17), "AIFMNoReportingFlag", "",
+			FileColum fileColum18 = new FileColum(reportField21, fileConfig,
+					"type", new BigDecimal(18), "AIFMNoReportingFlag", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum18 = new FileColum(reportField26, fileConfig,
-					"type", new BigDecimal(18), "AIFMFivePrincipalMarket1", "",
+			FileColum fileColum19 = new FileColum(reportField22, fileConfig,
+					"type", new BigDecimal(19), "AIFMIdentifierLEI", "",
+					"format", null, null, versionAdmin);
+			FileColum fileColum20 = new FileColum(reportField23, fileConfig,
+					"type", new BigDecimal(20), "AIFMIdentifierBIC", "",
+					"format", null, null, versionAdmin);
+			FileColum fileColum21 = new FileColum(reportField26, fileConfig,
+					"type", new BigDecimal(21), "AIFMFivePrincipalMarket1", "",
 					"format", null, null, versionAdmin);
 			fileColum18.setColumBlock("1");
-			FileColum fileColum19 = new FileColum(reportField27, fileConfig,
-					"type", new BigDecimal(19), "MarketCodeType1", "",
+			FileColum fileColum22 = new FileColum(reportField27, fileConfig,
+					"type", new BigDecimal(22), "MarketCodeType1", "",
 					"format", null, null, versionAdmin);
 			fileColum19.setColumBlock("1");
-			FileColum fileColum20 = new FileColum(reportField28, fileConfig,
-					"type", new BigDecimal(20), "MarketCode1", "", "format",
+			FileColum fileColum23 = new FileColum(reportField28, fileConfig,
+					"type", new BigDecimal(23), "MarketCode1", "", "format",
 					null, null, versionAdmin);
 			fileColum20.setColumBlock("1");
-			FileColum fileColum21 = new FileColum(reportField29, fileConfig,
-					"type", new BigDecimal(21), "MarketAggregatedValueAmount1",
+			FileColum fileColum24 = new FileColum(reportField29, fileConfig,
+					"type", new BigDecimal(24), "MarketAggregatedValueAmount1",
 					"", "format", null, null, versionAdmin);
 			fileColum21.setColumBlock("1");
-			FileColum fileColum22 = new FileColum(reportField26, fileConfig,
-					"type", new BigDecimal(22), "AIFMFivePrincipalMarket2", "",
+			FileColum fileColum25 = new FileColum(reportField26, fileConfig,
+					"type", new BigDecimal(25), "AIFMFivePrincipalMarket2", "",
 					"format", null, null, versionAdmin);
 			fileColum22.setColumBlock("2");
-			FileColum fileColum23 = new FileColum(reportField27, fileConfig,
-					"type", new BigDecimal(23), "MarketCodeType2", "",
+			FileColum fileColum26 = new FileColum(reportField27, fileConfig,
+					"type", new BigDecimal(26), "MarketCodeType2", "",
 					"format", null, null, versionAdmin);
 			fileColum23.setColumBlock("2");
-			FileColum fileColum24 = new FileColum(reportField28, fileConfig,
-					"type", new BigDecimal(24), "MarketCode2", "", "format",
+			FileColum fileColum27 = new FileColum(reportField28, fileConfig,
+					"type", new BigDecimal(27), "MarketCode2", "", "format",
 					null, null, versionAdmin);
 			fileColum24.setColumBlock("2");
-			FileColum fileColum25 = new FileColum(reportField29, fileConfig,
-					"type", new BigDecimal(25), "MarketAggregatedValueAmount2",
+			FileColum fileColum28 = new FileColum(reportField29, fileConfig,
+					"type", new BigDecimal(28), "MarketAggregatedValueAmount2",
 					"", "format", null, null, versionAdmin);
 			fileColum25.setColumBlock("2");
-			FileColum fileColum26 = new FileColum(reportField26, fileConfig,
-					"type", new BigDecimal(26), "AIFMFivePrincipalMarket3", "",
+			FileColum fileColum29 = new FileColum(reportField26, fileConfig,
+					"type", new BigDecimal(29), "AIFMFivePrincipalMarket3", "",
 					"format", null, null, versionAdmin);
 			fileColum26.setColumBlock("3");
-			FileColum fileColum27 = new FileColum(reportField27, fileConfig,
-					"type", new BigDecimal(27), "MarketCodeType3", "",
+			FileColum fileColum30 = new FileColum(reportField27, fileConfig,
+					"type", new BigDecimal(30), "MarketCodeType3", "",
 					"format", null, null, versionAdmin);
 			fileColum27.setColumBlock("3");
-			FileColum fileColum28 = new FileColum(reportField28, fileConfig,
-					"type", new BigDecimal(28), "MarketCode3", "", "format",
+			FileColum fileColum31 = new FileColum(reportField28, fileConfig,
+					"type", new BigDecimal(31), "MarketCode3", "", "format",
 					null, null, versionAdmin);
 			fileColum28.setColumBlock("3");
-			FileColum fileColum29 = new FileColum(reportField29, fileConfig,
-					"type", new BigDecimal(29), "MarketAggregatedValueAmount3",
+			FileColum fileColum32 = new FileColum(reportField29, fileConfig,
+					"type", new BigDecimal(32), "MarketAggregatedValueAmount3",
 					"", "format", null, null, versionAdmin);
 			fileColum29.setColumBlock("3");
-			FileColum fileColum30 = new FileColum(reportField26, fileConfig,
-					"type", new BigDecimal(30), "AIFMFivePrincipalMarket4", "",
+			FileColum fileColum33 = new FileColum(reportField26, fileConfig,
+					"type", new BigDecimal(33), "AIFMFivePrincipalMarket4", "",
 					"format", null, null, versionAdmin);
 			fileColum30.setColumBlock("4");
-			FileColum fileColum31 = new FileColum(reportField27, fileConfig,
-					"type", new BigDecimal(31), "MarketCodeType4", "",
+			FileColum fileColum34 = new FileColum(reportField27, fileConfig,
+					"type", new BigDecimal(34), "MarketCodeType4", "",
 					"format", null, null, versionAdmin);
 			fileColum31.setColumBlock("4");
-			FileColum fileColum32 = new FileColum(reportField28, fileConfig,
-					"type", new BigDecimal(32), "MarketCode4", "", "format",
+			FileColum fileColum35 = new FileColum(reportField28, fileConfig,
+					"type", new BigDecimal(35), "MarketCode4", "", "format",
 					null, null, versionAdmin);
 			fileColum32.setColumBlock("4");
-			FileColum fileColum33 = new FileColum(reportField29, fileConfig,
-					"type", new BigDecimal(33), "MarketAggregatedValueAmount4",
+			FileColum fileColum36 = new FileColum(reportField29, fileConfig,
+					"type", new BigDecimal(36), "MarketAggregatedValueAmount4",
 					"", "format", null, null, versionAdmin);
 			fileColum33.setColumBlock("4");
-			FileColum fileColum34 = new FileColum(reportField26, fileConfig,
-					"type", new BigDecimal(34), "AIFMFivePrincipalMarket5", "",
+			FileColum fileColum37 = new FileColum(reportField26, fileConfig,
+					"type", new BigDecimal(37), "AIFMFivePrincipalMarket5", "",
 					"format", null, null, versionAdmin);
 			fileColum34.setColumBlock("5");
-			FileColum fileColum35 = new FileColum(reportField27, fileConfig,
-					"type", new BigDecimal(35), "MarketCodeType5", "",
+			FileColum fileColum38 = new FileColum(reportField27, fileConfig,
+					"type", new BigDecimal(38), "MarketCodeType5", "",
 					"format", null, null, versionAdmin);
 			fileColum35.setColumBlock("5");
-			FileColum fileColum36 = new FileColum(reportField28, fileConfig,
-					"type", new BigDecimal(36), "MarketCode5", "", "format",
+			FileColum fileColum39 = new FileColum(reportField28, fileConfig,
+					"type", new BigDecimal(39), "MarketCode5", "", "format",
 					null, null, versionAdmin);
 			fileColum36.setColumBlock("5");
-			FileColum fileColum37 = new FileColum(reportField29, fileConfig,
-					"type", new BigDecimal(37), "MarketAggregatedValueAmount5",
+			FileColum fileColum40 = new FileColum(reportField29, fileConfig,
+					"type", new BigDecimal(40), "MarketAggregatedValueAmount5",
 					"", "format", null, null, versionAdmin);
 			fileColum37.setColumBlock("5");
-			FileColum fileColum38 = new FileColum(reportField30, fileConfig,
-					"type", new BigDecimal(38), "AIFMPrincipalInstrument1", "",
+			FileColum fileColum41 = new FileColum(reportField30, fileConfig,
+					"type", new BigDecimal(41), "AIFMPrincipalInstrument1", "",
 					"format", null, null, versionAdmin);
 			fileColum38.setColumBlock("1");
-			FileColum fileColum39 = new FileColum(reportField31, fileConfig,
-					"type", new BigDecimal(39), "SubAssetType1", "", "format",
+			FileColum fileColum42 = new FileColum(reportField31, fileConfig,
+					"type", new BigDecimal(42), "SubAssetType1", "", "format",
 					null, null, versionAdmin);
 			fileColum39.setColumBlock("1");
-			FileColum fileColum40 = new FileColum(reportField32, fileConfig,
-					"type", new BigDecimal(40),
+			FileColum fileColum43 = new FileColum(reportField32, fileConfig,
+					"type", new BigDecimal(43),
 					"InstrumentAggregatedValueAmount1", "", "format", null,
 					null, versionAdmin);
 			fileColum40.setColumBlock("1");
-			FileColum fileColum41 = new FileColum(reportField30, fileConfig,
-					"type", new BigDecimal(41), "AIFMPrincipalInstrument2", "",
+			FileColum fileColum44 = new FileColum(reportField30, fileConfig,
+					"type", new BigDecimal(44), "AIFMPrincipalInstrument2", "",
 					"format", null, null, versionAdmin);
 			fileColum41.setColumBlock("2");
-			FileColum fileColum42 = new FileColum(reportField31, fileConfig,
-					"type", new BigDecimal(42), "SubAssetType2", "", "format",
+			FileColum fileColum45 = new FileColum(reportField31, fileConfig,
+					"type", new BigDecimal(45), "SubAssetType2", "", "format",
 					null, null, versionAdmin);
 			fileColum42.setColumBlock("2");
-			FileColum fileColum43 = new FileColum(reportField32, fileConfig,
-					"type", new BigDecimal(43),
+			FileColum fileColum46 = new FileColum(reportField32, fileConfig,
+					"type", new BigDecimal(46),
 					"InstrumentAggregatedValueAmount2", "", "format", null,
 					null, versionAdmin);
 			fileColum43.setColumBlock("2");
-			FileColum fileColum44 = new FileColum(reportField30, fileConfig,
-					"type", new BigDecimal(44), "AIFMPrincipalInstrument3", "",
+			FileColum fileColum47 = new FileColum(reportField30, fileConfig,
+					"type", new BigDecimal(47), "AIFMPrincipalInstrument3", "",
 					"format", null, null, versionAdmin);
 			fileColum44.setColumBlock("3");
-			FileColum fileColum45 = new FileColum(reportField31, fileConfig,
-					"type", new BigDecimal(45), "SubAssetType3", "", "format",
+			FileColum fileColum48 = new FileColum(reportField31, fileConfig,
+					"type", new BigDecimal(48), "SubAssetType3", "", "format",
 					null, null, versionAdmin);
 			fileColum45.setColumBlock("3");
-			FileColum fileColum46 = new FileColum(reportField32, fileConfig,
-					"type", new BigDecimal(46),
+			FileColum fileColum49 = new FileColum(reportField32, fileConfig,
+					"type", new BigDecimal(49),
 					"InstrumentAggregatedValueAmount3", "", "format", null,
 					null, versionAdmin);
 			fileColum46.setColumBlock("3");
-			FileColum fileColum47 = new FileColum(reportField30, fileConfig,
-					"type", new BigDecimal(47), "AIFMPrincipalInstrument4", "",
+			FileColum fileColum50 = new FileColum(reportField30, fileConfig,
+					"type", new BigDecimal(50), "AIFMPrincipalInstrument4", "",
 					"format", null, null, versionAdmin);
 			fileColum47.setColumBlock("4");
-			FileColum fileColum48 = new FileColum(reportField31, fileConfig,
-					"type", new BigDecimal(48), "SubAssetType4", "", "format",
+			FileColum fileColum51 = new FileColum(reportField31, fileConfig,
+					"type", new BigDecimal(51), "SubAssetType4", "", "format",
 					null, null, versionAdmin);
 			fileColum48.setColumBlock("4");
-			FileColum fileColum49 = new FileColum(reportField32, fileConfig,
-					"type", new BigDecimal(49),
+			FileColum fileColum52 = new FileColum(reportField32, fileConfig,
+					"type", new BigDecimal(52),
 					"InstrumentAggregatedValueAmount4", "", "format", null,
 					null, versionAdmin);
 			fileColum49.setColumBlock("4");
-			FileColum fileColum50 = new FileColum(reportField30, fileConfig,
-					"type", new BigDecimal(50), "AIFMPrincipalInstrument5", "",
+			FileColum fileColum53 = new FileColum(reportField30, fileConfig,
+					"type", new BigDecimal(53), "AIFMPrincipalInstrument5", "",
 					"format", null, null, versionAdmin);
 			fileColum50.setColumBlock("5");
-			FileColum fileColum51 = new FileColum(reportField31, fileConfig,
-					"type", new BigDecimal(51), "SubAssetType5", "", "format",
+			FileColum fileColum54 = new FileColum(reportField31, fileConfig,
+					"type", new BigDecimal(54), "SubAssetType5", "", "format",
 					null, null, versionAdmin);
 			fileColum51.setColumBlock("5");
-			FileColum fileColum52 = new FileColum(reportField32, fileConfig,
-					"type", new BigDecimal(52),
+			FileColum fileColum55 = new FileColum(reportField32, fileConfig,
+					"type", new BigDecimal(55),
 					"InstrumentAggregatedValueAmount5", "", "format", null,
 					null, versionAdmin);
 			fileColum52.setColumBlock("5");
-			FileColum fileColum53 = new FileColum(reportField33, fileConfig,
-					"type", new BigDecimal(53), "AUMAmountInEuro", "",
+			FileColum fileColum56 = new FileColum(reportField33, fileConfig,
+					"type", new BigDecimal(56), "AUMAmountInEuro", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum54 = new FileColum(reportField35, fileConfig,
-					"type", new BigDecimal(54), "BaseCurrency", "", "format",
+			FileColum fileColum57 = new FileColum(reportField35, fileConfig,
+					"type", new BigDecimal(57), "BaseCurrency", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum55 = new FileColum(reportField36, fileConfig,
-					"type", new BigDecimal(55), "AUMAmountInBaseCurrency", "",
+			FileColum fileColum58 = new FileColum(reportField36, fileConfig,
+					"type", new BigDecimal(58), "AUMAmountInBaseCurrency", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum56 = new FileColum(reportField37, fileConfig,
-					"type", new BigDecimal(56), "FXEURReferenceRateType", "",
+			FileColum fileColum59 = new FileColum(reportField37, fileConfig,
+					"type", new BigDecimal(59), "FXEURReferenceRateType", "",
 					"format", null, null, versionAdmin);
-			FileColum fileColum57 = new FileColum(reportField38, fileConfig,
-					"type", new BigDecimal(57), "FXEURRate", "", "format",
+			FileColum fileColum60 = new FileColum(reportField38, fileConfig,
+					"type", new BigDecimal(60), "FXEURRate", "", "format",
 					null, null, versionAdmin);
-			FileColum fileColum58 = new FileColum(reportField39, fileConfig,
-					"type", new BigDecimal(58), "CancelledAIFMNationalCode",
+			FileColum fileColum61 = new FileColum(reportField39, fileConfig,
+					"type", new BigDecimal(61), "CancelledAIFMNationalCode",
 					"", "format", null, null, versionAdmin);
-			FileColum fileColum59 = new FileColum(reportField40, fileConfig,
-					"type", new BigDecimal(59), "CancelledReportingPeriodType",
+			FileColum fileColum62 = new FileColum(reportField40, fileConfig,
+					"type", new BigDecimal(62), "CancelledReportingPeriodType",
 					"", "format", null, null, versionAdmin);
-			FileColum fileColum60 = new FileColum(reportField41, fileConfig,
-					"type", new BigDecimal(60), "CancelledReportingPeriodYear",
+			FileColum fileColum63 = new FileColum(reportField41, fileConfig,
+					"type", new BigDecimal(63), "CancelledReportingPeriodYear",
 					"", "format", null, null, versionAdmin);
-			FileColum fileColum61 = new FileColum(reportField42, fileConfig,
-					"type", new BigDecimal(61), "CancelledRecordFlag", "",
+			FileColum fileColum64 = new FileColum(reportField42, fileConfig,
+					"type", new BigDecimal(64), "CancelledRecordFlag", "",
 					"format", null, null, versionAdmin);
 
 			ReportData reportData1 = new ReportData(null, reportField1,
@@ -3556,6 +3565,9 @@ public class InstallEntities {
 			fileColumDAO.create(fileColum59);
 			fileColumDAO.create(fileColum60);
 			fileColumDAO.create(fileColum61);
+			fileColumDAO.create(fileColum62);
+			fileColumDAO.create(fileColum63);
+			fileColumDAO.create(fileColum64);
 
 			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 					.getBean("reportDataDAO");
