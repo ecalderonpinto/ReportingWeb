@@ -1,5 +1,8 @@
 package com.reportingtool.controllers;
 
+import java.util.List;
+import java.util.Locale;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,16 +12,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.entities.dao.loader.LoadErrorDAO;
 import com.entities.dao.loader.LoadFileDAO;
-import com.entities.dao.reportingtool.CompanyDAO;
+import com.entities.dao.reportingtool.ReportDataErrorDAO;
+import com.entities.dao.reportingtool.ReportErrorDAO;
+import com.entities.entity.loader.LoadError;
 import com.entities.entity.loader.LoadFile;
-import com.entities.entity.reportingtool.Company;
+import com.entities.entity.reportingtool.ReportDataError;
+import com.entities.entity.reportingtool.ReportError;
 
 
 @Controller
-@RequestMapping(value="/viewErrors.do")
 public class ViewErrorsController {
 
 	@Autowired
@@ -26,8 +31,8 @@ public class ViewErrorsController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ViewErrorsController.class);
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public String DataManagerControllerPre(@RequestParam("id") String id, Model model){
+	@RequestMapping(value="/viewErrors.do", method=RequestMethod.GET)
+	public String loadErrorDetailController(@RequestParam("id") String id, Model model){
 		
 		System.out.println("ViewErrors Controller - LoadId=" + id);
 		LoadFileDAO loadFileDAO = (LoadFileDAO)applicationContext.getBean("loadFileDAO");
@@ -37,4 +42,51 @@ public class ViewErrorsController {
 		
 		return "viewerrors";
 	}
+	
+	@RequestMapping(value = "/loadError.do", method = RequestMethod.GET)
+	public String loadErrorController(Locale locale, Model model) {
+
+		LoadErrorDAO loadErrorDAO = (LoadErrorDAO) applicationContext
+				.getBean("loadErrorDAO");
+		List<LoadError> loadErrors = loadErrorDAO.findAll();
+
+		System.out.println(loadErrors.size() + " loadErrors");
+		model.addAttribute("loaderrors", loadErrors);
+
+		System.out.println("Load Error Controller - preForm");
+		
+		return "loaderror";
+	}
+	
+	@RequestMapping(value = "/reportError.do", method = RequestMethod.GET)
+	public String reportErrorController(Locale locale, Model model) {
+
+		ReportErrorDAO reportErrorDAO = (ReportErrorDAO) applicationContext
+				.getBean("reportErrorDAO");
+		List<ReportError> reportErrors = reportErrorDAO.findAll();
+
+		System.out.println(reportErrors.size() + " reportErrors");
+		model.addAttribute("reporterrors", reportErrors);
+
+		System.out.println("Report Error Controller - preForm");
+		
+		return "reporterror";
+	}
+	
+	@RequestMapping(value = "/reportDataError.do", method = RequestMethod.GET)
+	public String reportdataErrorController(Locale locale, Model model) {
+
+		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) applicationContext
+				.getBean("reportDataErrorDAO");
+		List<ReportDataError> reportDataErrors = reportDataErrorDAO.findAll();
+
+		System.out.println(reportDataErrors.size() + " reportDataErrors");
+		model.addAttribute("reportdataerrors", reportDataErrors);
+
+		System.out.println("Report Data Error Controller - preForm");
+		
+		return "reportdataerror";
+	}
+	
+	
 }

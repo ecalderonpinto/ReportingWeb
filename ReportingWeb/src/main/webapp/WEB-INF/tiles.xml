@@ -83,6 +83,24 @@
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 	
+	<definition name="loaderror" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Load Error" />
+		<put-attribute name="mainContent" value="/loaderror.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="reporterror" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Report Error" />
+		<put-attribute name="mainContent" value="/reporterror.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="reportdataerror" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Report Data Error" />
+		<put-attribute name="mainContent" value="/reportdataerror.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
 	<definition name="fundreports" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - DM - Fund Reports" />
 		<put-attribute name="mainContent" value="/fundreports.jsp" />
@@ -114,7 +132,7 @@
 	</definition>
 	
 	<definition name="reportexecution" extends="base.template">
-		<put-attribute name="headerTitle" value="RT - Report" />
+		<put-attribute name="headerTitle" value="RT - Report Execution" />
 		<put-attribute name="mainContent" value="/reportexecution.jsp" />
 		<put-attribute name="modalWindow" value="" />
 	</definition>
