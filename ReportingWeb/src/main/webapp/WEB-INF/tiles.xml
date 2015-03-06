@@ -101,6 +101,18 @@
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 	
+	<definition name="reportfieldlist" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Report Field List" />
+		<put-attribute name="mainContent" value="/reportfieldlist.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="filecolumlist" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - File Colum List" />
+		<put-attribute name="mainContent" value="/filecolumlist.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
 	<definition name="fundreports" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - DM - Fund Reports" />
 		<put-attribute name="mainContent" value="/fundreports.jsp" />

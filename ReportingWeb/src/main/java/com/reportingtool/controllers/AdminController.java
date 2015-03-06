@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.entities.dao.reportingtool.ReportCatalogDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
+import com.entities.dao.reportingtool.ReportFieldListDAO;
 import com.entities.entity.InstallEntities;
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportField;
+import com.entities.entity.reportingtool.ReportFieldList;
 
 @Controller
 public class AdminController {
@@ -89,6 +91,21 @@ public class AdminController {
 		System.out.println("Controller admin/generateDB");
 		
 		return "admin";
+	}
+	
+	@RequestMapping(value = "/reportFieldList.do", method = RequestMethod.GET)
+	public String reportFieldListController(Locale locale, Model model) {
+
+		ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) applicationContext
+				.getBean("reportFieldListDAO");
+		List<ReportFieldList> reportFieldList = reportFieldListDAO.findAll();
+
+		System.out.println(reportFieldList.size() + " reportFieldList");
+		model.addAttribute("reportfieldlist", reportFieldList);
+
+		System.out.println("Report Field List Controller - preForm");
+		
+		return "reportfieldlist";
 	}
 	
 	@RequestMapping(value="/installTestData.do")

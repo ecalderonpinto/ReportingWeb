@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.entities.dao.loader.FileColumDAO;
+import com.entities.dao.loader.FileColumListDAO;
 import com.entities.dao.loader.FileConfigDAO;
 import com.entities.entity.loader.FileColum;
+import com.entities.entity.loader.FileColumList;
 import com.entities.entity.loader.FileConfig;
 
 @Controller
@@ -73,4 +75,18 @@ public class FileConfigController {
 		return "filecolumdetail";
 	}
 	
+	@RequestMapping(value = "/fileColumList.do", method = RequestMethod.GET)
+	public String fileColumListController(Locale locale, Model model) {
+
+		FileColumListDAO fileColumListDAO = (FileColumListDAO) applicationContext
+				.getBean("fileColumListDAO");
+		List<FileColumList> fileColumList = fileColumListDAO.findAll();
+
+		System.out.println(fileColumList.size() + " fileColumList");
+		model.addAttribute("filecolumlist", fileColumList);
+
+		System.out.println("File Colum List Controller - preForm");
+		
+		return "filecolumlist";
+	}
 }
