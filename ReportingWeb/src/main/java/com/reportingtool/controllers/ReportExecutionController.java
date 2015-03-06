@@ -24,6 +24,8 @@ import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.controllers.forms.ReportAssignLoadsForm;
+import com.reportingtool.validator.Semantic;
+import com.reportingtool.validator.Syntactic;
 
 @Controller
 @RequestMapping(value = "/reportExecution.do")
@@ -72,8 +74,13 @@ public class ReportExecutionController {
 
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
-		reportExecution.setReportExecutionName("prueba1");
 		reportExecutionDAO.edit(reportExecution);
+		
+		Syntactic syntactic = new Syntactic(applicationContext);
+		Semantic semantic = new Semantic(applicationContext);
+		
+		syntactic.validReportExecution(reportExecution);
+		semantic.checkSemantic(reportExecution);
 
 		List<String> sections = getSections(reportExecution);
 

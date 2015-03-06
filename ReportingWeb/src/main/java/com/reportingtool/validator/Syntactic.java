@@ -21,7 +21,7 @@ public class Syntactic {
 		this.applicationContext = applicationContext;
 	}
 
-	public void validInValueList(ReportData reportData) {
+	private void validInValueList(ReportData reportData) {
 		// Check if exists in value list
 
 		ReportField reportField = reportData.getReportField();
@@ -63,7 +63,7 @@ public class Syntactic {
 		}
 	}
 
-	public void validRegex(ReportData reportData) {
+	private void validRegex(ReportData reportData) {
 
 		ReportField reportField = reportData.getReportField();
 
@@ -105,6 +105,10 @@ public class Syntactic {
 	}
 
 	public void validReportExecution(ReportExecution reportExecution) {
-		// validation of full report
+		
+		for(ReportData reportData : reportExecution.getReportDatas()){
+			this.validInValueList(reportData);
+			this.validRegex(reportData);
+		}
 	}
 }

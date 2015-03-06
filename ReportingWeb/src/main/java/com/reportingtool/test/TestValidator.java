@@ -82,18 +82,7 @@ public class TestValidator {
 
 			Syntactic syntactic = new Syntactic(applicationContext);
 
-			List<ReportData> reportDatas = new ArrayList<ReportData>(
-					reportExecution.getReportDatas());
-
-			System.out.println("DEBUG_" + "TestValidator: starting for list: "
-					+ reportDatas);
-			for (ReportData reportData : reportDatas) {
-				System.out.println("DEBUG_" + "TestValidator: "
-						+ reportData.getReportDataDate() + " "
-						+ reportData.getReportDataText());
-				syntactic.validInValueList(reportData);
-				syntactic.validRegex(reportData);
-			}
+			syntactic.validReportExecution(reportExecution);
 //
 //			System.out
 //					.println("DEBUG_" + "TestValidator checking AIFMD Status");

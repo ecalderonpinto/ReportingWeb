@@ -93,15 +93,7 @@ public class LoadsAsignToReportsController {
 
 		System.out.println("DEBUG_" + "TestValidator: starting for list: "
 				+ reportAssign.getReportExecution().getReportDatas());
-		Set<ReportData> reportDatas = reportAssign.getReportExecution()
-				.getReportDatas();
-		for (ReportData reportData : reportDatas) {
-			System.out.println("DEBUG_" + "TestValidator: "
-					+ reportData.getReportDataDate() + " "
-					+ reportData.getReportDataText());
-			syntactic.validInValueList(reportData);
-			syntactic.validRegex(reportData);
-		}
+		syntactic.validReportExecution(reportAssign.getReportExecution());
 
 		model.addAttribute("reportassign", reportAssign);
 		
