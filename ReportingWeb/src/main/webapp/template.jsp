@@ -122,9 +122,12 @@
 							<a class="dropmenu" href="#"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Admin</span></a>
 							<ul>
 								<li><a class="submenu" href="admin.do"><i class="icon-file-alt"></i><span class="hidden-tablet"> General Admin</span></a></li>
-								<li><a class="submenu" href="submenu.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Errors</span></a></li>
-								<li><a class="submenu" href="submenu2.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> File Configs</span></a></li>
-								<li><a class="submenu" href="submenu3.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Report Field List</span></a></li>
+								<li><a class="submenu" href="fileConfig.do"><i class="icon-file-alt"></i><span class="hidden-tablet"> File Configs</span></a></li>
+								<li><a class="submenu" href="fileColumList.do"><i class="icon-file-alt"></i><span class="hidden-tablet"> File Colum List</span></a></li>
+								<li><a class="submenu" href="reportFieldList.do"><i class="icon-file-alt"></i><span class="hidden-tablet"> Report Field List</span></a></li>
+								<li><a class="submenu" href="loadError.do"><i class="icon-file-alt"></i><span class="hidden-tablet"> Load Errors</span></a></li>
+								<li><a class="submenu" href="reportError.do"><i class="icon-file-alt"></i><span class="hidden-tablet"> Report Errors</span></a></li>
+								<li><a class="submenu" href="reportDataError.do"><i class="icon-file-alt"></i><span class="hidden-tablet"> Report Data Errors</span></a></li>
 							</ul>	
 						</li>
 						<li><a href="ReportsList?r=aifm"><i class="icon-list-alt"></i><span class="hidden-tablet"> AIFM Reports</span></a></li>

@@ -5,9 +5,11 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="#">File Config</a> <i class="icon-angle-right"></i>
+	<li><a href="fileConfig.do">File Config</a> <i class="icon-angle-right"></i>
 	</li>
-	<li><a href="#">File Colum detail</a></li>
+	<li><a href="<c:url value="fileConfigDetail.do?id=${fileconfig.id}" />">File Config Detail</a> <i class="icon-angle-right"></i>
+	</li>
+	<li><a href="#">File Colum Detail</a></li>
 </ul>
 <!-- end: Breadcrumb -->
 
@@ -71,7 +73,6 @@
 				<table class="table table-striped table-bordered table-condensed">
 					<thead>
 						<tr>
-						<!-- 	<th>File Config</th> -->
 							<th>Name</th>
 							<th>Type</th>
 							<th>Format</th>
@@ -84,7 +85,6 @@
 					</thead>
 					<tbody>
 						<tr>
-						<%-- 	<td>${filecolum.fileConfig.fileConfigName}</td> --%>
 							<td>${filecolum.columName}</td>
 							<td>${filecolum.columType}</td>
 							<td>${filecolum.columFormat}</td>

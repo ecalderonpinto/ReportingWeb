@@ -5,9 +5,9 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="#">File Config</a> <i class="icon-angle-right"></i>
+	<li><a href="fileConfig.do">File Config</a> <i class="icon-angle-right"></i>
 	</li>
-	<li><a href="#">File Config detail</a></li>
+	<li><a href="#">File Config Detail</a></li>
 </ul>
 <!-- end: Breadcrumb -->
 
@@ -34,7 +34,6 @@
 							<th>Format line</th>
 							<th>Cron</th>
 							<th>Path</th>
-						<!-- 	<th>Colums</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -46,9 +45,6 @@
 							<td>${fileconfig.fileFormatLine}</td>
 							<td>${fileconfig.fileCron}</td>
 							<td>${fileconfig.filePath}</td>
-							<%-- <td><a class="btn btn-small"
-								href="<c:url value="fileColums.do?id=${fileConfig.id}" />">
-									colums </a></td> --%>
 						</tr>
 					</tbody>
 				</table>
@@ -63,7 +59,7 @@
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
-				<i class="halflings-icon align-justify"></i> <span class="break">File Config</span>
+				<i class="halflings-icon align-justify"></i> <span class="break">File Colums</span>
 			</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-minimize"><i
@@ -74,7 +70,6 @@
 			<table class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
-						<!-- <th>File Config</th> -->
 						<th>Name</th>
 						<th>Type</th>
 						<th>Format</th>
@@ -88,7 +83,6 @@
 				<tbody>
 					<c:forEach var="filecolum" items="${filecolums}">
 						<tr>
-							<%-- <td>${filecolum.fileConfig.fileConfigName}</td> --%>
 							<td>${filecolum.columName}</td>
 							<td>${filecolum.columType}</td>
 							<td>${filecolum.columFormat}</td>

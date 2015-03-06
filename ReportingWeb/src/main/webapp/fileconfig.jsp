@@ -13,7 +13,7 @@
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
-				<i class="halflings-icon align-justify"></i> <span class="break">File Config</span>
+				<i class="halflings-icon align-justify"></i> <span class="break">File Configs</span>
 			</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-minimize"><i

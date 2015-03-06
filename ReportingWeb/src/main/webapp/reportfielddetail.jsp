@@ -5,9 +5,11 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="#">Report Catalogr</a> <i class="icon-angle-right"></i>
+	<li><a href="admin.do">Admin</a> <i class="icon-angle-right"></i>
 	</li>
-	<li><a href="#">Report Field detail</a></li>
+	<li><a href="<c:url value="reportCatalogDetail.do?id=${reportcatalog.id}" />">Report Catalog Detail</a> <i class="icon-angle-right"></i>
+	</li>
+	<li><a href="#">Report Field Detail</a></li>
 </ul>
 <!-- end: Breadcrumb -->
 
@@ -54,7 +56,7 @@
 		<div class="box span12">
 			<div class="box-header">
 				<h2>
-					<i class="halflings-icon align-justify"></i> <span class="break">Report Field detail</span>
+					<i class="halflings-icon align-justify"></i> <span class="break">Report Field Detail</span>
 				</h2>
 				<div class="box-icon">
 					<a href="#" class="btn-minimize"><i

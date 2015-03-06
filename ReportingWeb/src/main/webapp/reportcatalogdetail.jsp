@@ -5,9 +5,9 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="#">Report Catalogr</a> <i class="icon-angle-right"></i>
+	<li><a href="admin.do">Admin</a> <i class="icon-angle-right"></i>
 	</li>
-	<li><a href="#">Report Catalog detail</a></li>
+	<li><a href="#">Report Catalog Detail</a></li>
 </ul>
 <!-- end: Breadcrumb -->
 
@@ -54,7 +54,7 @@
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
-				<i class="halflings-icon align-justify"></i> <span class="break">Report Field</span>
+				<i class="halflings-icon align-justify"></i> <span class="break">Report Fields</span>
 			</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-minimize"><i
