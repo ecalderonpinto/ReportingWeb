@@ -99,7 +99,7 @@ public class LoadRawData implements VersionableAdapter {
 		this.loadRaw = loadRaw;
 	}
 
-	@Column(name = "LOAD_RAW_DATA_TEXT", length = 400)
+	@Column(name = "LOAD_RAW_DATA_TEXT", length = 400, nullable=false)
 	public String getLoadRawDataText() {
 		return this.loadRawDataText;
 	}

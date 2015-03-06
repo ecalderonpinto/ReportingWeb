@@ -52,7 +52,7 @@ public class ReportExecutionController {
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
 
-		return "report";
+		return "reportexecution";
 	}
 
 	private List<String> getSections(ReportExecution reportExe) {

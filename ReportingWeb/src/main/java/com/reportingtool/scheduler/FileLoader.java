@@ -120,29 +120,35 @@ public class FileLoader {
 				// Split line;
 				String separator = fileConfig.getFileSeparator();
 				String[] columns = record.split(separator, -1);
-				
-				if(columns.length == fileConfig.getFileColums().size()){
-				// Create LoadRawDatas Objects;
-				for (FileColum fileColum : fileConfig.getFileColums()) {
-					LoadRawData loadRawData = new LoadRawData(fileColum,
-							loadRaw, columns[fileColum.getColumNumber()
-									.intValue()], fileColum.getColumType(),
-							new VersionAuditor("admin"));
-					loadRawData.setLoadRawDataBlock(fileColum.getColumBlock());
-					loadRaw.getLoadRawDatas().add(loadRawData);
-				}
 
-				// Set LoadRaw in LoadFile
-				loadRaw.setAuditor(new VersionAuditor("admin"));
-				loadFile.getLoadRaws().add(loadRaw);
+				if (columns.length - 1 == fileConfig.getFileColums().size()) {
+					// Create LoadRawDatas Objects;
+					for (FileColum fileColum : fileConfig.getFileColums()) {
+						String columText = columns[fileColum.getColumNumber()
+								.intValue()];
+						if (columText != null && !columText.isEmpty()) {
+							LoadRawData loadRawData = new LoadRawData(
+									fileColum, loadRaw, columText,
+									fileColum.getColumType(),
+									new VersionAuditor("admin"));
+							loadRawData.setLoadRawDataBlock(fileColum
+									.getColumBlock());
+							loadRaw.getLoadRawDatas().add(loadRawData);
+						}
+					}
+
+					// Set LoadRaw in LoadFile
+					loadRaw.setAuditor(new VersionAuditor("admin"));
+					loadFile.getLoadRaws().add(loadRaw);
 				} else {
-					ReportingErrorManager.createLoadError(applicationContext, "LOADER",
-							loadFile, "INVALID ROW",
-							"Row with different columns or separator [row " + i + "]");
+					ReportingErrorManager.createLoadError(applicationContext,
+							"LOADER", loadFile, "INVALID ROW",
+							"Row with different columns or separator [row " + i
+									+ "]");
 				}
 			} else {
-				ReportingErrorManager.createLoadError(applicationContext, "LOADER",
-						loadFile, "DUPLICATE ROW",
+				ReportingErrorManager.createLoadError(applicationContext,
+						"LOADER", loadFile, "DUPLICATE ROW",
 						"Duplicate row found [row " + i + "]");
 			}
 		}

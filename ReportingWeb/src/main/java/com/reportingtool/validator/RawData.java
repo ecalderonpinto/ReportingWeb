@@ -24,9 +24,9 @@ public class RawData {
 	}
 
 	public void fileRawToData(ReportExecution reportExecution) {
-
+		
 		for (LoadFile loadFile : reportExecution.getLoadFiles()) {
-
+			
 			List<LoadRawData> loadRawDatas = new ArrayList<LoadRawData>();
 			for (LoadRaw loadRaw : loadFile.getLoadRaws()) {
 				loadRawDatas.addAll(loadRaw.getLoadRawDatas());
@@ -58,6 +58,8 @@ public class RawData {
 			reportData.setReportDataBlock(loadRawData.getLoadRawDataBlock());
 			// field
 			reportData.setReportField(reportField);
+			// report (necesario para comparar)
+			reportData.setReportExecution(reportExecution);
 
 			boolean exist = false;
 			for (ReportData reportDataAux : reportExecution.getReportDatas()) {
@@ -87,8 +89,6 @@ public class RawData {
 			}
 
 			if (!exist) {
-				// report
-				reportData.setReportExecution(reportExecution);
 				// user
 				reportData.setAuditor(new VersionAuditor("admin"));
 				// save new reportData

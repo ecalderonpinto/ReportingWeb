@@ -49,9 +49,11 @@ public class LoadsAsignToReportsController {
 
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
+		long longId = Long.parseLong(id);
+		System.out.println("Buscando ReportExecution con id: " + longId);
 		ReportExecution reportExecution = reportExecutionDAO
-				.findById(Long.parseLong(id));
-
+				.findById(longId);
+		System.out.println("ReportExecution recuperado: id=" + reportExecution.getId());
 		ReportAssignLoadsForm reportAssign = new ReportAssignLoadsForm();
 		reportAssign.setReportExecution(reportExecution);
 
@@ -72,12 +74,14 @@ public class LoadsAsignToReportsController {
 				.getBean("reportExecutionDAO");
 
 		ReportExecution reportExe = (ReportExecution) reportExecutionDAO
-				.findByExample(reportAssign.getReportExecution()).get(0);
+				.findById(reportAssign.getReportExecution().getId());
+		System.out.println("ReportExecution que va a tratarse: id=" + reportExe.getId());
 		reportAssign.setReportExecution(reportExe);
 
 		for (String loadFile : reportAssign.getSelectLoads()) {
 			LoadFile lF = loadFileDAO.findById(Long.parseLong(loadFile));
-			reportAssign.getReportExecution().getLoadFiles().add(lF);
+			if(!reportAssign.getReportExecution().getLoadFiles().contains(lF))
+				reportAssign.getReportExecution().getLoadFiles().add(lF);
 		}
 
 		// Raw to Data
@@ -99,6 +103,8 @@ public class LoadsAsignToReportsController {
 			syntactic.validRegex(reportData);
 		}
 
+		model.addAttribute("reportassign", reportAssign);
+		
 		return "datamanager";
 	}
 
