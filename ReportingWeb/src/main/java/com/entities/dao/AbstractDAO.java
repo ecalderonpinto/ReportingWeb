@@ -35,7 +35,8 @@ public abstract class AbstractDAO<T> {
 
 	@Transactional
 	public void edit(T entity) {
-		getHibernateTemplate().merge(entity);
+		//getHibernateTemplate().merge(entity);
+		getHibernateTemplate().update(entity);
 	}
 
 	@Transactional

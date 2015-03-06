@@ -80,6 +80,7 @@
 							<th>Export</th>
 							<th>Name</th>
 							<th>Type</th>
+							<th>Year</th>
 							<th>Status</th>
 							<th></th>
 						</tr>
@@ -89,8 +90,9 @@
 							items="${company.reportExecutions}">
 							<tr>
 								<td><input type="checkbox" id="export1" value="export1"></td>
-								<td>${reportexecution.reportCatalog.reportCatalogName}</td>
+								<td>${reportexecution.reportExecutionName}</td>
 								<td>${reportexecution.reportPeriodType}</td>
+								<td>${reportexecution.reportPeriodYear}</td>
 								<td>${reportexecution.reportStatus}</td>
 								<td>
 								<a href="<c:url value="reportExecution.do?id=${reportexecution.id}" />">

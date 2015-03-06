@@ -26,6 +26,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.entities.entity.loader.LoadFile;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
@@ -318,6 +321,7 @@ public class ReportExecution implements VersionableAdapter {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportExecution")
 	@OrderBy("reportField ASC")
+	@Cascade({ CascadeType.SAVE_UPDATE })
 	public Set<ReportData> getReportDatas() {
 		return this.reportDatas;
 	}

@@ -61,9 +61,10 @@
 												${reportData.reportField.reportFieldNum}.
 												${reportData.reportField.reportFieldName } </label>
 											<div class="controls">
-												<input class="input-xlarge" id="enabledInput"
+												<form:input path="reportDatas[${status.index}].reportDataText" cssClass="input-xlarge"/>
+												<!--<input class="input-xlarge" id="enabledInput"
 													type="text" placeholder=""
-													value="${reportData.reportDataText}">
+													value="${reportData.reportDataText}">-->
 											</div>
 										</div>
 										<!-- /Normal Field -->
