@@ -3,21 +3,27 @@ package com.reportingtool.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportExecution;
+import com.reportingtool.controllers.forms.ReportAssignLoadsForm;
 
 @Controller
 @RequestMapping(value = "/reportExecution.do")
@@ -52,6 +58,22 @@ public class ReportExecutionController {
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
 
+		return "reportexecution";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public String processSubmit(
+			@ModelAttribute("reportexecution") ReportExecution reportExecution,
+			BindingResult result, Model model, SessionStatus status,
+			HttpSession session) {
+		
+		System.out.println("Submit - ReportExecution;");
+		System.out.println("Version: " + reportExecution.getReportDatas());
+		List<String> sections = getSections(reportExecution);
+
+		model.addAttribute("reportexecution", reportExecution);
+		model.addAttribute("sections", sections);
+		
 		return "reportexecution";
 	}
 

@@ -118,7 +118,15 @@
 					<ul class="nav nav-tabs nav-stacked main-menu">
 						<li><a href="index.do"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
 						<li><a href="dataManager.do"><i class="icon-envelope"></i><span class="hidden-tablet"> Data Manager</span></a></li>
-						<li><a href="admin.do"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Admin</span></a></li>
+						<li>
+							<a class="dropmenu" href="#"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Admin</span></a>
+							<ul>
+								<li><a class="submenu" href="admin.do"><i class="icon-file-alt"></i><span class="hidden-tablet"> General Admin</span></a></li>
+								<li><a class="submenu" href="submenu.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Errors</span></a></li>
+								<li><a class="submenu" href="submenu2.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> File Configs</span></a></li>
+								<li><a class="submenu" href="submenu3.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Report Field List</span></a></li>
+							</ul>	
+						</li>
 						<li><a href="ReportsList?r=aifm"><i class="icon-list-alt"></i><span class="hidden-tablet"> AIFM Reports</span></a></li>
 						<li><a href="ReportsList?r=aif"><i class="icon-list-alt"></i><span class="hidden-tablet"> AIF Reports</span></a></li>
 						<li><a href="loads.do"><i class="icon-file-alt"></i><span class="hidden-tablet"> Loads</span></a></li>

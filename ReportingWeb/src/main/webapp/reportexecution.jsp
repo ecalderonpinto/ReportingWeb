@@ -6,8 +6,8 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="Login">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="#">Report</a> <i class="icon-angle-right"></i></li>
-	<li><a href="#">bla bla</a></li>
+	<li><a href="#">Reports</a> <i class="icon-angle-right"></i></li>
+	<li><a href="#">${reportexecution.reportExecutionName }</a></li>
 </ul>
 <!-- end: Breadcrumb -->
 
@@ -16,7 +16,7 @@
 	<c:forEach var="section" varStatus="status" items="${sections}">
 
 		<!-- CancellationAIFMRecordInfo -->
-		<div class="row-fluid sortable">
+		<div class="row-fluid">
 			<div class="box span12">
 				<div class="box-header" data-original-title>
 					<h2>
@@ -24,19 +24,11 @@
 						${section}
 					</h2>
 					<div class="box-icon">
-						<!--
-								<a href="#" class="btn-setting"><i
-									class="halflings-icon wrench"></i></a>
-								-->
 						<a href="#" class="btn-minimize"><i
-							class="halflings-icon chevron-up"></i></a>
-						<!--
-								<a href="#" class="btn-close"><i
-									class="halflings-icon remove"></i></a>
-								-->
+							class="halflings-icon chevron-down"></i></a>
 					</div>
 				</div>
-				<div class="box-content">
+				<div class="box-content" style="display: none;">
 					<fieldset>
 						<c:forEach var="reportData" varStatus="status"
 							items="${reportexecution.reportDatas}">
@@ -50,10 +42,9 @@
 												${reportData.reportField.reportFieldNum}.
 												${reportData.reportField.reportFieldName } </label>
 											<div class="controls">
-												<input type="text" id="inputError" disabled=""
+												<input type="text" id="inputError"
 													value="${reportData.reportDataText}"> <span
-													class="help-inline"> <i
-													class="halflings-icon pencil"></i>
+													class="help-inline">
 													<c:forEach var="reportError" varStatus="status"
 													items="${reportData.reportDataErrors}" >
 														${reportError.reportDataErrorText}
@@ -70,12 +61,9 @@
 												${reportData.reportField.reportFieldNum}.
 												${reportData.reportField.reportFieldName } </label>
 											<div class="controls">
-												<input class="input-xlarge disabled" id="disabledInput"
-													type="text" placeholder="" disabled=""
-													value="${reportData.reportDataText}"> <i
-													class="halflings-icon tag"
-													onmouseover="javascript:this.style.cursor='pointer'"
-													title="Notes"></i>
+												<input class="input-xlarge" id="enabledInput"
+													type="text" placeholder=""
+													value="${reportData.reportDataText}">
 											</div>
 										</div>
 										<!-- /Normal Field -->
