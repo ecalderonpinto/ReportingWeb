@@ -47,12 +47,6 @@
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 	
-	<definition name="filecolum" extends="base.template">
-		<put-attribute name="headerTitle" value="RT - DM - File Colum" />
-		<put-attribute name="mainContent" value="/filecolum.jsp" />
-		<put-attribute name="modalWindow" value="" />
-	</definition>
-	
 	<definition name="filecolumdetail" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - DM - File Colum Detail" />
 		<put-attribute name="mainContent" value="/filecolumdetail.jsp" />

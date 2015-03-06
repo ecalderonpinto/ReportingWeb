@@ -5,7 +5,7 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="#">Data Manager</a> <i class="icon-angle-right"></i>
+	<li><a href="#">Report Catalogr</a> <i class="icon-angle-right"></i>
 	</li>
 	<li><a href="#">Report Field detail</a></li>
 </ul>
