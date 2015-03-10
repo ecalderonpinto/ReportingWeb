@@ -331,6 +331,7 @@ public class ReportExecution implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportExecution")
+	@Cascade({ CascadeType.SAVE_UPDATE })
 	public Set<ReportError> getReportErrors() {
 		return this.reportErrors;
 	}

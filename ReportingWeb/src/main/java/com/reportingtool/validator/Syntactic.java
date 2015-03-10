@@ -1,5 +1,6 @@
 package com.reportingtool.validator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.reportingtool.ReportFieldListDAO;
 import com.entities.entity.reportingtool.ReportData;
+import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
@@ -53,6 +55,11 @@ public class Syntactic {
 				+ hasFieldValue);
 		if (hasFieldValue) {
 			// ok
+
+			// find and disable if there are a REGEX error
+			ReportingErrorManager.disableReportDataError(applicationContext,
+					"SYNTAXIS", reportData, "VALUE");
+
 		} else {
 			// not valid
 
@@ -88,13 +95,20 @@ public class Syntactic {
 			boolean matchVersion = matcher.matches();
 			if (matchVersion) {
 				// ok Regex
+
+				// find and disable if there are a REGEX error
+				ReportingErrorManager.disableReportDataError(
+						applicationContext, "SYNTAXIS", reportData, "REGEX");
+
 			} else {
 				// not valid, bad Regex
 
 				ReportingErrorManager.createReportDataError(applicationContext,
 						"SYNTAXIS", reportData, "REGEX", "BAD REGEX FOUND: "
-								+ reportData.getReportDataText() + " <> "
-								+ reportData.getReportField().getReportFieldFormat());
+								+ reportData.getReportDataText()
+								+ " <> "
+								+ reportData.getReportField()
+										.getReportFieldFormat());
 			}
 		} else {
 			// not valid, is empty
@@ -105,8 +119,8 @@ public class Syntactic {
 	}
 
 	public void validReportExecution(ReportExecution reportExecution) {
-		
-		for(ReportData reportData : reportExecution.getReportDatas()){
+
+		for (ReportData reportData : reportExecution.getReportDatas()) {
 			this.validInValueList(reportData);
 			this.validRegex(reportData);
 		}

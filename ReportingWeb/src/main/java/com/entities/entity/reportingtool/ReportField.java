@@ -278,25 +278,38 @@ public class ReportField implements VersionableAdapter {
 							this.reportFieldNum)
 					&& ((ReportField) object).getReportFieldType().equals(
 							this.reportFieldType);
-			if (((ReportField) object).getReportFieldParent() == null
-					&& this.reportFieldParent == null) {
-				// return ret;
-			} else {
-				if (((ReportField) object).getReportFieldParent() == null
-						&& this.reportFieldParent != null) {
-					ret = false;
-				} else {
-					if (((ReportField) object).getReportFieldParent() != null
-							&& this.reportFieldParent == null) {
-						ret = false;
-					} else {
-						ret = ret
-								&& ((ReportField) object)
-										.getReportFieldParent().equals(
-												this.reportFieldParent);
-					}
-				}
-			}
+//			if (((ReportField) object).getReportFieldParent() == null
+//					&& this.reportFieldParent == null) {
+//				// return ret;
+//			} else {
+//				if (((ReportField) object).getReportFieldParent() == null
+//						&& this.reportFieldParent != null) {
+//					ret = false;
+//				} else {
+//					if (((ReportField) object).getReportFieldParent() != null
+//							&& this.reportFieldParent == null) {
+//						ret = false;
+//					} else {
+//						if (((ReportField) object).getReportFieldParent() != null) {
+//
+//							System.out.println("DEBUG reportfield equals "
+//									+ ((ReportField) object)
+//											.getReportFieldName()
+//									+ ((ReportField) object)
+//											.getReportFieldParent()
+//											.getReportFieldName()
+//									+ " igual a "
+//									+ this.reportFieldParent
+//											.getReportFieldName());
+//						}
+//
+//						ret = ret
+//								&& ((ReportField) object)
+//										.getReportFieldParent().equals(
+//												this.reportFieldParent);
+//					}
+//				}
+//			}
 			return ret;
 		}
 		return false;

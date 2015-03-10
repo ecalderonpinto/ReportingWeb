@@ -72,15 +72,21 @@ public class ReportExecutionController {
 
 		System.out.println("Submit - ReportExecution;");
 
+		for(ReportData reportData : reportExecution.getReportDatas()) {
+			System.out.println(reportData.getReportField().getReportFieldName() + " - "+ reportData.getReportDataText());
+		}
+		
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
-		reportExecutionDAO.edit(reportExecution);
+		
 		
 		Syntactic syntactic = new Syntactic(applicationContext);
 		Semantic semantic = new Semantic(applicationContext);
 		
 		syntactic.validReportExecution(reportExecution);
 		semantic.checkSemantic(reportExecution);
+		
+		reportExecutionDAO.edit(reportExecution);
 
 		List<String> sections = getSections(reportExecution);
 

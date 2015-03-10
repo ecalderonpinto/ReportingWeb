@@ -8,13 +8,14 @@ package com.entities.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
-public abstract class AbstractDAO<T> {
+import com.entities.utilities.hibernate.VersionableAdapter;
+
+public abstract class AbstractDAO<T extends VersionableAdapter> {
 	private Class<T> entityClass;
 
 	public AbstractDAO(Class<T> entityClass) {
@@ -119,6 +120,12 @@ public abstract class AbstractDAO<T> {
 		for (T entity : entities) {
 			delete(entity);
 		}
+	}
+	
+	@Transactional
+	public void disable(T entity) {
+		entity.getAuditor().setDeleted(true);
+		getHibernateTemplate().update(entity);
 	}
 
 	// public List<T> findRange(int[] range) {

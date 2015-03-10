@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.common.ErrorDAO;
 import com.entities.dao.loader.LoadErrorDAO;
+import com.entities.dao.reportingtool.ReportDataDAO;
 import com.entities.dao.reportingtool.ReportDataErrorDAO;
 import com.entities.dao.reportingtool.ReportErrorDAO;
 import com.entities.entity.common.Error;
@@ -65,6 +66,27 @@ public class ReportingErrorManager {
 			reportDataError.setAuditor(new VersionAuditor("error"));
 			reportDataErrorDAO.create(reportDataError);
 			reportData.getReportDataErrors().add(reportDataError);
+		}
+	}
+
+	public static void disableReportDataError(
+			ApplicationContext applicationContext, String typeError,
+			ReportData reportData, String reportErrorType) {
+
+		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) applicationContext
+				.getBean("reportDataErrorDAO");
+
+		ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+				.getBean("reportDataDAO");
+		
+		reportData = reportDataDAO.findById(reportData.getId());
+		for (ReportDataError reportDataError : reportData.getReportDataErrors()) {
+			if (reportDataError.getReportDataErrorType()
+					.equals(reportErrorType)
+					&& reportDataError.getError().getErrorType()
+							.equals(typeError)) {
+				reportDataErrorDAO.disable(reportDataError);
+			}
 		}
 	}
 
@@ -151,7 +173,7 @@ public class ReportingErrorManager {
 		}
 		if (!iguales) {
 			loadError.setAuditor(new VersionAuditor("error"));
-			//loadErrorDAO.create(loadError);
+			// loadErrorDAO.create(loadError);
 			loadFile.getLoadErrors().add(loadError);
 		}
 	}

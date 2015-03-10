@@ -41,9 +41,9 @@
 											<label class="control-label" for="inputError">
 												${reportData.reportField.reportFieldNum}.
 												${reportData.reportField.reportFieldName } </label>
-											<div class="controls">
-												<input type="text" id="inputError"
-													value="${reportData.reportDataText}"> <span
+											<div class="controls">	
+													<form:input path="reportDatas[${status.index}].reportDataText" cssClass="input-xlarge"/>
+													 <span
 													class="help-inline">
 													<c:forEach var="reportError" varStatus="status"
 													items="${reportData.reportDataErrors}" >
@@ -62,9 +62,6 @@
 												${reportData.reportField.reportFieldName } </label>
 											<div class="controls">
 												<form:input path="reportDatas[${status.index}].reportDataText" cssClass="input-xlarge"/>
-												<!--<input class="input-xlarge" id="enabledInput"
-													type="text" placeholder=""
-													value="${reportData.reportDataText}">-->
 											</div>
 										</div>
 										<!-- /Normal Field -->
