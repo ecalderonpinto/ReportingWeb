@@ -79,6 +79,8 @@ public class ReportExecutionController {
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
 		
+		reportExecutionDAO.edit(reportExecution);
+		reportExecution = reportExecutionDAO.findById(reportExecution.getId());
 		
 		Syntactic syntactic = new Syntactic(applicationContext);
 		Semantic semantic = new Semantic(applicationContext);

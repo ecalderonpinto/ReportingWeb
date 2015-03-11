@@ -10,18 +10,34 @@ import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.LoadRawData;
 import com.reportingtool.utilities.ReportingErrorManager;
 
+/**
+ * Class to format date and numbers to same patter
+ * 
+ * @author alberto.olivan
+ *
+ */
 public class Format {
+
+	private ApplicationContext applicationContext;
 
 	public static final String dateTimePattern = "yyyy-MM-ddTHH:mm:ss";
 	public static final String datePattern = "yyyy-MM-dd";
 
-	private ApplicationContext applicationContext;
-
+	/**
+	 * Constructor of Format with an applicationContext
+	 * 
+	 * @param applicationContext
+	 */
 	public Format(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}
 
-	// main function to format loadRawData
+	/**
+	 * Main function to format loadRawData, can create loadErrors
+	 * 
+	 * @param loadRawData
+	 * @return loadRawData formated
+	 */
 	public LoadRawData formatRaw(LoadRawData loadRawData) {
 
 		System.out.println("DEBUG_" + "Format: "
@@ -42,6 +58,12 @@ public class Format {
 		return loadRawData;
 	}
 
+	/**
+	 * Function to format a type Date with datePattern = "yyyy-MM-dd";
+	 * 
+	 * @param loadRawData
+	 * @return loadRawData Date formated
+	 */
 	public LoadRawData dateFormat(LoadRawData loadRawData) {
 		String dateText = loadRawData.getLoadRawDataText();
 
@@ -83,6 +105,13 @@ public class Format {
 		return loadRawData;
 	}
 
+	/**
+	 * Function to format a type DateTime with dateTimePattern =
+	 * "yyyy-MM-ddTHH:mm:ss";
+	 * 
+	 * @param loadRawData
+	 * @return loadRawData DateTime formated
+	 */
 	public LoadRawData dateTimeFormat(LoadRawData loadRawData) {
 		String dateText = loadRawData.getLoadRawDataText();
 
@@ -126,6 +155,12 @@ public class Format {
 		return loadRawData;
 	}
 
+	/**
+	 * Function to format a number with patter: #.#
+	 * 
+	 * @param loadRawData
+	 * @return loadRawData number formated
+	 */
 	public LoadRawData numberFormat(LoadRawData loadRawData) {
 		String number = loadRawData.getLoadRawDataText();
 

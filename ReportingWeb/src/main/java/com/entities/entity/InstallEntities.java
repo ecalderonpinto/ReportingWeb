@@ -47,12 +47,24 @@ import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
 import com.entities.utilities.hibernate.VersionAuditor;
 
+/**
+ * Class to install configuration in database
+ * 
+ * @author alberto.olivan
+ *
+ */
 public class InstallEntities {
 
 	public InstallEntities() {
 
 	}
 
+	/**
+	 * Process to install in database reportCatalog and reportFields from AIF
+	 * report
+	 * 
+	 * @param applicationContext
+	 */
 	public void installAIF(ApplicationContext applicationContext) {
 
 		try {
@@ -2625,6 +2637,12 @@ public class InstallEntities {
 		}
 	}
 
+	/**
+	 * Process to install in database reportCatalog and reportFields from AIFM
+	 * report, also an example of load file.
+	 * 
+	 * @param applicationContext
+	 */
 	public void installEntitiesFull(ApplicationContext applicationContext) {
 
 		try {
@@ -3381,7 +3399,7 @@ public class InstallEntities {
 			ReportData reportData46 = new ReportData(null, reportField42,
 					reportExecution, null, null, "C", "2", null, null,
 					versionAdmin);
-			
+
 			ReportData reportData47 = new ReportData(null, reportField14,
 					reportExecution, null, null, "21", "2", null, null,
 					versionAdmin);
@@ -3678,6 +3696,11 @@ public class InstallEntities {
 
 	}
 
+	/**
+	 * Process to install in database reportFieldList for all AIFMD reports
+	 * 
+	 * @param applicationContext
+	 */
 	public void installFileList(ApplicationContext applicationContext) {
 
 		List<ReportFieldList> repotFieldList = new ArrayList<ReportFieldList>();
@@ -4295,6 +4318,11 @@ public class InstallEntities {
 
 	}
 
+	/**
+	 * Process to delete all data from database
+	 * 
+	 * @param applicationContext
+	 */
 	public void deleteEntities(ApplicationContext applicationContext) {
 
 		FileColumListDAO fileColumListDAO = (FileColumListDAO) applicationContext

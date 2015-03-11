@@ -15,24 +15,40 @@ import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
 import com.entities.utilities.hibernate.VersionAuditor;
 
+/**
+ * Class to copy raw info to a reportExecution
+ * 
+ * @author alberto.olivan
+ *
+ */
 public class RawData {
 
 	private ApplicationContext applicationContext;
 
+	/**
+	 * Constructor of RawData with an applicationContext
+	 * 
+	 * @param applicationContext
+	 */
 	public RawData(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}
 
+	/**
+	 * Function to assign all loadRaws from loadFiles in a reportExecution
+	 * 
+	 * @param reportExecution
+	 */
 	public void fileRawToData(ReportExecution reportExecution) {
-		
+
 		for (LoadFile loadFile : reportExecution.getLoadFiles()) {
-			
+
 			List<LoadRawData> loadRawDatas = new ArrayList<LoadRawData>();
 			for (LoadRaw loadRaw : loadFile.getLoadRaws()) {
 				loadRawDatas.addAll(loadRaw.getLoadRawDatas());
 			}
 
-			// por cada raw genero un objeto data
+			// for each raw generate an object data
 			for (LoadRawData loadRawData : loadRawDatas) {
 				System.out.println("DEBUG_" + "RawData "
 						+ loadRawData.getLoadRawDataType() + " "
@@ -43,6 +59,13 @@ public class RawData {
 
 	}
 
+	/**
+	 * Function to create reportData and assign to reportExecution from
+	 * LoadRawData
+	 * 
+	 * @param loadRawData
+	 * @param reportExecution
+	 */
 	public void rawToData(LoadRawData loadRawData,
 			ReportExecution reportExecution) {
 

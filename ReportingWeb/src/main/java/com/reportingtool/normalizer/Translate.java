@@ -5,22 +5,37 @@ import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 
-import com.entities.dao.loader.FileColumListDAO;
 import com.entities.dao.loader.LoadRawDataDAO;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileColumList;
 import com.entities.entity.loader.LoadRawData;
 import com.reportingtool.utilities.ReportingErrorManager;
 
+/**
+ * Class to translate values of file to internal codes
+ * 
+ * @author alberto.olivan
+ *
+ */
 public class Translate {
 
 	private ApplicationContext applicationContext;
 
+	/**
+	 * Constructor of Translate with an applicationContext
+	 * 
+	 * @param applicationContext
+	 */
 	public Translate(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}
 
-	// main function to translate raw values
+	/**
+	 * Main function to translate raw values, can create loadErrors
+	 * 
+	 * @param loadRawData
+	 * @return loadRawData translated
+	 */
 	public LoadRawData translateRaw(LoadRawData loadRawData) {
 
 		// find config of column

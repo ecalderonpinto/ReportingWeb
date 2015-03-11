@@ -12,43 +12,62 @@ import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
 import com.reportingtool.utilities.ReportingErrorManager;
 
-
-
+/**
+ * Class to check reportExecution.reportStatus if is ready to be generated
+ * 
+ * @author alberto.olivan
+ *
+ */
 public class Status {
-	
+
 	private ApplicationContext applicationContext;
 
-	public Status (ApplicationContext applicationContext) {
+	/**
+	 * Constructor if Status with an applicationContext
+	 * 
+	 * @param applicationContext
+	 */
+	public Status(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}
-	
 
-	// main function to check Status of a report
+	/**
+	 * Main function to check Status of a reportExecution
+	 * 
+	 * @param reportExecution
+	 */
 	public void checkStatus(ReportExecution reportExecution) {
 
-		ReportCatalog reportCatalog = reportExecution.getReportCatalog();
-
-		if (reportCatalog.getReportLevel().equals("AIF")) {
-
+		if (reportExecution.getReportCatalog().getReportLevel()
+				.contains("FUND")) {
 			// check AIF report
 			checkAIFStatus(reportExecution);
-
 		}
 
-		if (reportCatalog.getReportLevel().equals("AIFMD")) {
-
+		if (reportExecution.getReportCatalog().getReportLevel()
+				.contains("COMPANY")) {
 			// check AIFMD report
 			checkAIFMDStatus(reportExecution);
-
 		}
-
 	}
 
+	/**
+	 * Function to check status of AIF report
+	 * 
+	 * @param reportExecution
+	 * @return
+	 */
 	public ReportExecution checkAIFStatus(ReportExecution reportExecution) {
 
 		return reportExecution;
 	}
 
+	/**
+	 * Function to check status of AIFM report
+	 * 
+	 * @param reportExecution
+	 * @return
+	 */
 	public ReportExecution checkAIFMDStatus(ReportExecution reportExecution) {
 
 		// reportCatalog
@@ -85,12 +104,16 @@ public class Status {
 					// not ok
 					System.out.println("DEBUG_" + "Status not ok"
 							+ reportField.getReportFieldName());
-					
+
 					// create a message of error
-					ReportingErrorManager.createReportError(applicationContext,
-							"STATUS", reportExecution, "MANDATORY", "VALUE MANDATORY NOT PRESENT "
+					ReportingErrorManager.createReportError(
+							applicationContext,
+							"STATUS",
+							reportExecution,
+							"MANDATORY",
+							"VALUE MANDATORY NOT PRESENT "
 									+ reportField.getReportFieldName());
-					
+
 					finalStatus = false;
 					// set status to in creation, it has al least one field
 				}
@@ -109,9 +132,17 @@ public class Status {
 
 		return reportExecution;
 	}
-	
-	// examine full report and return if this filed has to be Mandatory Optional or Forbidden (M/C/F)
-	public static boolean fieldMandatory(ReportField reportField, ReportExecution reportExecution) {
+
+	/**
+	 * Function to check if reportField is mandatory or not in this
+	 * reportExecution
+	 * 
+	 * @param reportField
+	 * @param reportExecution
+	 * @return true if reportField is mandatory in this reportExecution
+	 */
+	public static boolean fieldMandatory(ReportField reportField,
+			ReportExecution reportExecution) {
 		boolean result = false;
 		if (reportField.getReportFieldRepe().startsWith("1")) {
 			result = true;

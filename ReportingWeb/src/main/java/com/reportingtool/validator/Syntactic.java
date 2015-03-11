@@ -1,6 +1,5 @@
 package com.reportingtool.validator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,22 +8,51 @@ import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.reportingtool.ReportFieldListDAO;
 import com.entities.entity.reportingtool.ReportData;
-import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
 import com.reportingtool.utilities.ReportingErrorManager;
 
+/**
+ * Class to check syntatic rules of reportExecution
+ * 
+ * @author alberto.olivan
+ *
+ */
 public class Syntactic {
 
 	private ApplicationContext applicationContext;
 
+	/**
+	 * Constructor of Syntactic with an applicationContext
+	 * 
+	 * @param applicationContext
+	 */
 	public Syntactic(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}
 
+	/**
+	 * Main function to check syntactic rules of a reportExecution, create
+	 * reportDataError
+	 * 
+	 * @param reportExecution
+	 */
+	public void validReportExecution(ReportExecution reportExecution) {
+
+		for (ReportData reportData : reportExecution.getReportDatas()) {
+			this.validInValueList(reportData);
+			this.validRegex(reportData);
+		}
+	}
+
+	/**
+	 * Function to check if reportData.getReportDataText exists in
+	 * reportFieldList of his reportField
+	 * 
+	 * @param reportData
+	 */
 	private void validInValueList(ReportData reportData) {
-		// Check if exists in value list
 
 		ReportField reportField = reportData.getReportField();
 
@@ -56,6 +84,11 @@ public class Syntactic {
 		if (hasFieldValue) {
 			// ok
 
+			System.out.println("DEBUG_"
+					+ "Syntactic: hasFieldValue ok, check if error exists "
+					+ reportData.getReportDataText() + " -> "
+					+ reportField.getReportFieldFormat());
+			
 			// find and disable if there are a REGEX error
 			ReportingErrorManager.disableReportDataError(applicationContext,
 					"SYNTAXIS", reportData, "VALUE");
@@ -70,14 +103,15 @@ public class Syntactic {
 		}
 	}
 
+	/**
+	 * Function to check regular expression of reportField.getReportFieldFormat
+	 * is correct in reportData
+	 * 
+	 * @param reportData
+	 */
 	private void validRegex(ReportData reportData) {
 
 		ReportField reportField = reportData.getReportField();
-
-		// Check format, type, regex...
-
-		System.out.println("DEBUG_" + "Syntactic: valid reg: "
-				+ reportField.getReportFieldFormat());
 
 		if (reportData.getReportDataText() != null
 				&& !reportData.getReportDataText().isEmpty()) {
@@ -95,6 +129,11 @@ public class Syntactic {
 			boolean matchVersion = matcher.matches();
 			if (matchVersion) {
 				// ok Regex
+
+				System.out.println("DEBUG_"
+						+ "Syntactic: regex ok, check if error exists "
+						+ reportData.getReportDataText() + " -> "
+						+ reportField.getReportFieldFormat());
 
 				// find and disable if there are a REGEX error
 				ReportingErrorManager.disableReportDataError(
@@ -116,13 +155,5 @@ public class Syntactic {
 					"SYNTAXIS", reportData, "EMPTY", "EMPTY FIELD");
 		}
 
-	}
-
-	public void validReportExecution(ReportExecution reportExecution) {
-
-		for (ReportData reportData : reportExecution.getReportDatas()) {
-			this.validInValueList(reportData);
-			this.validRegex(reportData);
-		}
 	}
 }

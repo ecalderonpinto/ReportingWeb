@@ -7,9 +7,11 @@ import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.common.ErrorDAO;
 import com.entities.dao.loader.LoadErrorDAO;
+import com.entities.dao.loader.LoadFileDAO;
 import com.entities.dao.reportingtool.ReportDataDAO;
 import com.entities.dao.reportingtool.ReportDataErrorDAO;
 import com.entities.dao.reportingtool.ReportErrorDAO;
+import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.common.Error;
 import com.entities.entity.loader.LoadError;
 import com.entities.entity.loader.LoadFile;
@@ -19,8 +21,24 @@ import com.entities.entity.reportingtool.ReportError;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.utilities.hibernate.VersionAuditor;
 
+/**
+ * Class to insert/disable errors from reports and loads
+ * 
+ * @author alberto.olivan
+ *
+ */
 public class ReportingErrorManager {
 
+	/**
+	 * Function to create if not exists and reportDataError and add it to
+	 * reportData
+	 * 
+	 * @param applicationContext
+	 * @param typeError
+	 * @param reportData
+	 * @param reportDataErrorType
+	 * @param reportDataErrorText
+	 */
 	public static void createReportDataError(
 			ApplicationContext applicationContext, String typeError,
 			ReportData reportData, String reportDataErrorType,
@@ -62,6 +80,7 @@ public class ReportingErrorManager {
 				break;
 			}
 		}
+
 		if (!iguales) {
 			reportDataError.setAuditor(new VersionAuditor("error"));
 			reportDataErrorDAO.create(reportDataError);
@@ -69,6 +88,14 @@ public class ReportingErrorManager {
 		}
 	}
 
+	/**
+	 * Function to disable a reportDataError from a reportData
+	 * 
+	 * @param applicationContext
+	 * @param typeError
+	 * @param reportData
+	 * @param reportErrorType
+	 */
 	public static void disableReportDataError(
 			ApplicationContext applicationContext, String typeError,
 			ReportData reportData, String reportErrorType) {
@@ -78,7 +105,7 @@ public class ReportingErrorManager {
 
 		ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 				.getBean("reportDataDAO");
-		
+
 		reportData = reportDataDAO.findById(reportData.getId());
 		for (ReportDataError reportDataError : reportData.getReportDataErrors()) {
 			if (reportDataError.getReportDataErrorType()
@@ -86,10 +113,25 @@ public class ReportingErrorManager {
 					&& reportDataError.getError().getErrorType()
 							.equals(typeError)) {
 				reportDataErrorDAO.disable(reportDataError);
+				// reportDataErrorDAO.delete(reportDataError); -> cascade error
+				System.out.println("DEBUG_" + typeError
+						+ " disable reportDataError " + reportErrorType
+						+ " in " + reportData.getReportDataText() + " - "
+						+ reportData.getReportField().getReportFieldName());
 			}
 		}
 	}
 
+	/**
+	 * Function to create if not exists and reportError and add it to
+	 * reportExecution
+	 * 
+	 * @param applicationContext
+	 * @param typeError
+	 * @param reportExecution
+	 * @param reportErrorType
+	 * @param reportErrorText
+	 */
 	public static void createReportError(ApplicationContext applicationContext,
 			String typeError, ReportExecution reportExecution,
 			String reportErrorType, String reportErrorText) {
@@ -135,6 +177,47 @@ public class ReportingErrorManager {
 		}
 	}
 
+	/**
+	 * Function to disable a reportError from a reportExecution
+	 * 
+	 * @param applicationContext
+	 * @param typeError
+	 * @param reportExecution
+	 * @param reportErrorType
+	 */
+	public static void disableReportError(
+			ApplicationContext applicationContext, String typeError,
+			ReportExecution reportExecution, String reportErrorType) {
+
+		ReportErrorDAO reportErrorDAO = (ReportErrorDAO) applicationContext
+				.getBean("reportErrorDAO");
+
+		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
+				.getBean("reportExecutionDAO");
+
+		reportExecution = reportExecutionDAO.findById(reportExecution.getId());
+		for (ReportError reportError : reportExecution.getReportErrors()) {
+			if (reportError.getReportErrorType().equals(reportErrorType)
+					&& reportError.getError().getErrorType().equals(typeError)) {
+				reportErrorDAO.disable(reportError);
+				// reportDataErrorDAO.delete(reportDataError); -> cascade error
+				System.out.println("DEBUG_" + typeError
+						+ " disable reportDataError " + reportErrorType
+						+ " in " + reportError.getReportErrorText() + " - "
+						+ reportError.getReportErrorType());
+			}
+		}
+	}
+
+	/**
+	 * Function to create if not exists and loadError and add it to loadFile
+	 * 
+	 * @param applicationContext
+	 * @param typeError
+	 * @param loadFile
+	 * @param loadErrorType
+	 * @param loadErrorText
+	 */
 	public static void createLoadError(ApplicationContext applicationContext,
 			String typeError, LoadFile loadFile, String loadErrorType,
 			String loadErrorText) {
@@ -175,6 +258,37 @@ public class ReportingErrorManager {
 			loadError.setAuditor(new VersionAuditor("error"));
 			// loadErrorDAO.create(loadError);
 			loadFile.getLoadErrors().add(loadError);
+		}
+	}
+
+	/**
+	 * Function to disable a loadError from a loadFile
+	 * 
+	 * @param applicationContext
+	 * @param typeError
+	 * @param loadFile
+	 * @param loadErrorType
+	 */
+	public static void disableLoadError(ApplicationContext applicationContext,
+			String typeError, LoadFile loadFile, String loadErrorType) {
+
+		LoadErrorDAO loadErrorDAO = (LoadErrorDAO) applicationContext
+				.getBean("loadErrorDAO");
+
+		LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
+				.getBean("loadFileDAO");
+
+		loadFile = loadFileDAO.findById(loadFile.getId());
+		for (LoadError loadError : loadFile.getLoadErrors()) {
+			if (loadError.getLoadErrorType().equals(loadErrorType)
+					&& loadError.getError().getErrorType().equals(typeError)) {
+				loadErrorDAO.disable(loadError);
+				// reportDataErrorDAO.delete(reportDataError); -> cascade error
+				System.out.println("DEBUG_" + typeError
+						+ " disable reportDataError " + loadErrorType + " in "
+						+ loadError.getLoadErrorText() + " - "
+						+ loadError.getLoadErrorType());
+			}
 		}
 	}
 }

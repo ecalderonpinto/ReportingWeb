@@ -30,7 +30,6 @@ import javax.xml.validation.Validator;
 import org.springframework.context.ApplicationContext;
 import org.xml.sax.SAXException;
 
-import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.utilities.ReportingErrorManager;
@@ -110,6 +109,12 @@ import com.reportingtool.xml.ReportingPeriodTypeType;
 import com.reportingtool.xml.SubAssetTypeType;
 import com.reportingtool.xml.TypicalPositionSizeType;
 
+/**
+ * Class to generate in XMl string a reportExecution
+ * 
+ * @author alberto.olivan
+ *
+ */
 public class GeneratorXML {
 
 	private ApplicationContext applicationContext;
@@ -121,36 +126,55 @@ public class GeneratorXML {
 	public static final String aifmXSDResource = "xml/AIFMD_DATMAN_V1.2.xsd";
 	public static final String aifXSDResource = "xml/AIFMD_DATAIF_V1.2.xsd";
 
+	/**
+	 * Constructor of GeneratorXML with an applicationContext
+	 * 
+	 * @param applicationContext
+	 */
 	public GeneratorXML(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}
 
+	/**
+	 * Main function that generate a XML report with an reportExecution. Calls
+	 * to AIF or AIFM generator.
+	 * 
+	 * @param reportExecution
+	 * @return xml report in string
+	 */
 	public String generateXML(ReportExecution reportExecution) {
-		ReportCatalog reportCatalog = reportExecution.getReportCatalog();
+
+		String result = null;
 
 		System.out.println("DEBUG_" + "GeneratorXML: starting XML with report "
 				+ reportExecution.getReportCatalog().getReportLevel() + " "
+				+ reportExecution.getReportExecutionName() + " "
 				+ reportExecution.getReportPeriodType() + " "
 				+ reportExecution.getReportPeriodYear() + " "
 				+ reportExecution.getReportCatalog().getReportCatalogName());
 
-		if (reportCatalog.getReportLevel().contains("FUND")) {
-
+		if (reportExecution.getReportCatalog().getReportLevel()
+				.contains("FUND")) {
 			// generate AIF report
-			return generateXMLAIF(reportExecution);
-
+			result = generateXMLAIF(reportExecution);
 		}
 
-		if (reportCatalog.getReportLevel().contains("COMPANY")) {
-
+		if (reportExecution.getReportCatalog().getReportLevel()
+				.contains("COMPANY")) {
 			// generate AIFMD report
-			return generateXMLAIFMD(reportExecution);
-
+			result = generateXMLAIFMD(reportExecution);
 		}
 
-		return null;
+		return result;
 	}
 
+	/**
+	 * Function generate a aifXML from a reportExecution with XSD classes and
+	 * validate it. Create reportErrores
+	 * 
+	 * @param reportExecution
+	 * @return aifXML string
+	 */
 	public String generateXMLAIF(ReportExecution reportExecution) {
 
 		System.out.println("DEBUG_" + "GeneratorXML: starting XML generation ");
@@ -1320,6 +1344,13 @@ public class GeneratorXML {
 		return null;
 	}
 
+	/**
+	 * Function generate a aifmXML from a reportExecution with XSD classes and
+	 * validate it. Create reportErrores
+	 * 
+	 * @param reportExecution
+	 * @return aifmXML string
+	 */
 	public String generateXMLAIFMD(ReportExecution reportExecution) {
 
 		System.out.println("DEBUG_" + "GeneratorXML: starting XML generation ");
@@ -1789,27 +1820,29 @@ public class GeneratorXML {
 				BigInteger questionNumber = new BigInteger("0");
 				String assumptionDescription = "";
 				// <Assumption>
-//				for (ReportData reportData : reportDatas) {
-//					// <QuestionNumber>
-//					if (reportData.getReportField().getReportFieldName()
-//							.equals("QuestionNumber")
-//							&& Integer
-//									.parseInt(reportData.getReportDataBlock()) == i) {
-//						questionNumber = new BigInteger(
-//								reportData.getReportDataText());
-//					}
-//					// <AssumptionDescription>
-//					if (reportData.getReportField().getReportFieldName()
-//							.equals("AssumptionDescription")
-//							&& Integer
-//									.parseInt(reportData.getReportDataBlock()) == i) {
-//						assumptionDescription = reportData.getReportDataText();
-//					}
-//
-//				}
-				questionNumber = new BigInteger(searchData(reportDatas, "QuestionNumber", "14", Integer.toString(i)));
-				assumptionDescription = searchData(reportDatas, "AssumptionDescription", "15", Integer.toString(i));
-				
+				// for (ReportData reportData : reportDatas) {
+				// // <QuestionNumber>
+				// if (reportData.getReportField().getReportFieldName()
+				// .equals("QuestionNumber")
+				// && Integer
+				// .parseInt(reportData.getReportDataBlock()) == i) {
+				// questionNumber = new BigInteger(
+				// reportData.getReportDataText());
+				// }
+				// // <AssumptionDescription>
+				// if (reportData.getReportField().getReportFieldName()
+				// .equals("AssumptionDescription")
+				// && Integer
+				// .parseInt(reportData.getReportDataBlock()) == i) {
+				// assumptionDescription = reportData.getReportDataText();
+				// }
+				//
+				// }
+				questionNumber = new BigInteger(searchData(reportDatas,
+						"QuestionNumber", "14", Integer.toString(i)));
+				assumptionDescription = searchData(reportDatas,
+						"AssumptionDescription", "15", Integer.toString(i));
+
 				ComplexAssumptionType complexAssumptionType = objectFactoryAIFM
 						.createComplexAssumptionType();
 				complexAssumptionType
@@ -1913,11 +1946,12 @@ public class GeneratorXML {
 								.equals("AIFMReportingInfo"))
 					reportingMemberState = reportData.getReportDataText();
 			}
-			System.out.println("TEST SEARCH DATA: "
-					+ reportingMemberState
-					+ " = "
-					+ searchData(reportDatas, "ReportingMemberState",
-							"1", null));
+			System.out
+					.println("TEST SEARCH DATA: "
+							+ reportingMemberState
+							+ " = "
+							+ searchData(reportDatas, "ReportingMemberState",
+									"1", null));
 			aifmReportingInfo.setReportingMemberState(reportingMemberState);
 
 			// <Version>
@@ -2060,6 +2094,14 @@ public class GeneratorXML {
 
 	}
 
+	/**
+	 * Validate a aifmdXML string with his XSD schema, create reportErrors in
+	 * reportExecution
+	 * 
+	 * @param aifmdXML
+	 * @param reportExecution
+	 * @param xsdResource
+	 */
 	public void validateSchemaXSD(String aifmdXML,
 			ReportExecution reportExecution, String xsdResource) {
 
@@ -2098,6 +2140,16 @@ public class GeneratorXML {
 
 	}
 
+	/**
+	 * Function search a reporDataText from a with a reportFieldName and
+	 * reporFieldNum
+	 * 
+	 * @param reportDatas
+	 * @param reportFieldName
+	 * @param reportFieldNum
+	 * @param reportDataBlock
+	 * @return reportData.getReportDataText()
+	 */
 	public String searchData(List<ReportData> reportDatas,
 			String reportFieldName, String reportFieldNum,
 			String reportDataBlock) {
