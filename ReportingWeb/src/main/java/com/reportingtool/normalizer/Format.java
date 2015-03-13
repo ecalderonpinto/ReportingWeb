@@ -198,6 +198,8 @@ public class Format {
 		System.out.println("DEBUG_" + "FormatNumber Orig: "
 				+ loadRawData.getLoadRawDataText() + " New" + number);
 
+		// TODO:RT check if it is ok
+		
 		// set the final number
 		loadRawData.setLoadRawDataText(number);
 

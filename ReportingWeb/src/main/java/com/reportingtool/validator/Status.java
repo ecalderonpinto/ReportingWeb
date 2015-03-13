@@ -59,6 +59,8 @@ public class Status {
 	 */
 	public ReportExecution checkAIFStatus(ReportExecution reportExecution) {
 
+		// TODO:RT function
+		
 		return reportExecution;
 	}
 
@@ -81,6 +83,8 @@ public class Status {
 		List<ReportData> reportDatas = new ArrayList<ReportData>(
 				reportExecution.getReportDatas());
 
+		// TODO:RT this is not finished
+		
 		boolean finalStatus = true;
 		// for each field, semantic has to be checked (mandatory)
 		for (ReportField reportField : reportFields) {

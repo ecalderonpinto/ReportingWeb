@@ -55,6 +55,9 @@ import com.entities.utilities.hibernate.VersionAuditor;
  */
 public class InstallEntities {
 
+	/**
+	 * Default constructor of InstallEntities
+	 */
 	public InstallEntities() {
 
 	}
@@ -67,6 +70,8 @@ public class InstallEntities {
 	 */
 	public void installAIF(ApplicationContext applicationContext) {
 
+		// TODO:RT not inserting company/department by default in the future
+		
 		try {
 			VersionAuditor versionAdmin = new VersionAuditor("admin");
 

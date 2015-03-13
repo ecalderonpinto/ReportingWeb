@@ -192,8 +192,10 @@ public class GeneratorXML {
 		}
 		System.out.println(reportMap.toString());
 
+		// TODO:RT user searchData() in every field
+		
 		// ///////////////////////////////////////////////////////////
-		// ONLY STATUS = PENDING WILL CREATE XML REPORTS
+		// TODO:RT ONLY STATUS = PENDING WILL CREATE XML REPORTS
 		// if (aifmdReportResult.getAifmdReportResultStat().equals("PENDING")) {
 		// }
 
@@ -342,6 +344,8 @@ public class GeneratorXML {
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><IndividualExposure>
 
+			// TODO populate this class
+			
 			complexIndividualExposureType
 					.setAssetTypeExposures(complexAssetTypeExposuresType);
 			complexIndividualExposureType
@@ -354,6 +358,8 @@ public class GeneratorXML {
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><RiskProfile>
 
+			// TODO:RT populate this class
+			
 			complexRiskProfileType
 					.setCounterpartyRiskProfile(complexCounterpartyRiskProfileType);
 			complexRiskProfileType
@@ -413,6 +419,8 @@ public class GeneratorXML {
 					.setAllCounterpartyCollateralRehypothecationFlag(Boolean
 							.parseBoolean(allCounterpartyCollateralRehypothecationFlag));
 
+			// TODO:RT populate this class
+			
 			complexAIFLeverageArticle242Type
 					.setControlledStructures(complexControlledStructuresType);
 
@@ -439,12 +447,17 @@ public class GeneratorXML {
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFLeverageInfo><AIFLeverageArticle24-4>
+			
+			// TODO:RT populate this class
+			
 			List<ComplexBorrowingSourceType> complexBorrowingSourceTypeList = complexAIFLeverageArticle244Type
 					.getBorrowingSource();
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><AIFDescription>
 
+			// TODO:RT populate this class
+			
 			complexAIFDescriptionType
 					.setAIFBaseCurrencyDescription(complexBaseCurrencyDescriptionType);
 
@@ -481,6 +494,8 @@ public class GeneratorXML {
 			complexAIFDescriptionType
 					.setFirstFundingSourceCountry(firstFundingSourceCountry);
 
+			// TODO:RT populate this class
+			
 			complexAIFDescriptionType
 					.setFundOfFundsInvestmentStrategies(complexFundOfFundsInvestmentStrategiesType);
 
@@ -509,6 +524,8 @@ public class GeneratorXML {
 			complexAIFDescriptionType
 					.setHFTTransactionNumber(hftTransactionNumber);
 
+			// TODO:RT populate this class
+			
 			complexAIFDescriptionType
 					.setMasterAIFsIdentification(complexMasterAIFsIdentificationType);
 
@@ -526,6 +543,8 @@ public class GeneratorXML {
 					.fromValue(predominantAIFTypeString);
 			complexAIFDescriptionType.setPredominantAIFType(predominantAIFType);
 
+			// TODO:RT populate this class
+			
 			complexAIFDescriptionType.setPrimeBrokers(complexPrimeBrokersType);
 
 			complexAIFDescriptionType
@@ -713,15 +732,16 @@ public class GeneratorXML {
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><MainInstrumentsTraded>
+			
+			// TODO:RT populate this class
+			
 			List<ComplexMainInstrumentTradedType> complexMainInstrumentTradedTypeList = complexMainInstrumentsTradedType
 					.getMainInstrumentTraded();
-
-			// falta rellenarlos
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><MostImportantConcentration>
 
-			// falta rellenarlos
+			// TODO:RT populate this class
 
 			complexMostImportantConcentrationType
 					.setAIFPrincipalMarkets(complexAIFPrincipalMarketsType);
@@ -832,13 +852,17 @@ public class GeneratorXML {
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><PrincipalExposures>
+			
+			// TODO:RT populate this class
+			
 			List<ComplexPrincipalExposureType> complexPrincipalExposureTypeList = complexPrincipalExposuresType
 					.getPrincipalExposure();
 
-			// falta rellenarlos
-
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><ShareClassIdentification>
+			
+			// TODO:RT populate this class
+			
 			List<ComplexShareClassIdentifierType> complexShareClassIdentifierTypeList = complexShareClassIdentificationType
 					.getShareClassIdentifier();
 			// int complexShareClassIdentifierTypeCount = 0;
@@ -901,8 +925,6 @@ public class GeneratorXML {
 			// System.out.println("assumption i " + i + " " + questionNumber
 			// + " " + assumptionDescription);
 			// }
-
-			// falta rellenarlos
 
 			// /////////////////////////////////////////////////////////////////
 			// MAIN PART
@@ -1368,8 +1390,10 @@ public class GeneratorXML {
 		}
 		System.out.println(reportMap.toString());
 
+		// TODO:RT user searchData() in every field
+		
 		// ///////////////////////////////////////////////////////////
-		// ONLY STATUS = PENDING WILL CREATE XML REPORTS
+		// TODO:RT ONLY STATUS = PENDING WILL CREATE XML REPORTS
 		// if (aifmdReportResult.getAifmdReportResultStat().equals("PENDING")) {
 		// }
 
@@ -2354,7 +2378,7 @@ public class GeneratorXML {
 	// * <AIFMIdentifierBIC>TESTGB21XXX</AIFMIdentifierBIC>
 	// * </AIFMIdentifier> <AIFMPrincipalMarkets>
 	// * <AIFMFivePrincipalMarket> <Ranking>1</Ranking>
-	// * <MarketIdentification> <MarketCodeType>XXX</MarketCodeType>
+	// * <MarketIdentification> <MarketCodeType>XX</MarketCodeType>
 	// * </MarketIdentification>
 	// * <AggregatedValueAmount>452000000</AggregatedValueAmount>
 	// * </AIFMFivePrincipalMarket> .. </AIFMPrincipalMarkets>

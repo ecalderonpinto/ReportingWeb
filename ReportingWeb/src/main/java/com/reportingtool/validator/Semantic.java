@@ -39,7 +39,7 @@ public class Semantic {
 		for (ReportSemantic reportSemantic : reportSemantics) {
 			String rule = reportSemantic.getReportingSemanticRule();
 			
-			// process rule
+			// TODO:RT make semantic validation
 		}
 	}
 
