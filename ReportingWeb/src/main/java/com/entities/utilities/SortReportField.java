@@ -12,6 +12,8 @@ import com.entities.entity.reportingtool.ReportField;
 
 public class SortReportField {
 
+	// TODO:RT this class is not used
+	
 	public static void sortReportExecution (ReportExecution reportExecution) {
 		
 		List<ReportField>reportFields = new ArrayList<ReportField>(reportExecution.getReportCatalog().getReportFields());

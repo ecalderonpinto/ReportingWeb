@@ -9,6 +9,8 @@ import org.hibernate.SessionFactory;
 
 public class HibernateUtilities {
 	
+	// TODO:RT this class is not used
+	
 	private static final Log log = LogFactory.getLog(HibernateUtilities.class);
 
 	public static List findAll(SessionFactory sf, String className){

@@ -136,7 +136,7 @@ public class GeneratorXML {
 	}
 
 	/**
-	 * Main function that generate a XML report with an reportExecution. Calls
+	 * Main function that generate a XML report with a reportExecution. Calls
 	 * to AIF or AIFM generator.
 	 * 
 	 * @param reportExecution

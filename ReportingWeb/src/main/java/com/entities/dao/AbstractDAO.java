@@ -128,6 +128,8 @@ public abstract class AbstractDAO<T extends VersionableAdapter> {
 		getHibernateTemplate().update(entity);
 	}
 
+	// TODO:RT see if we have to add more methods
+	
 	// public List<T> findRange(int[] range) {
 	// javax.persistence.criteria.CriteriaQuery cq =
 	// getHibernateTemplate().getCriteriaBuilder().createQuery();
