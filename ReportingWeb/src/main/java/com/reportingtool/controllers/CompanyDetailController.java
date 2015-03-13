@@ -25,6 +25,10 @@ public class CompanyDetailController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CompanyDetailController.class);
 	
+	/**
+	 * TODO:RT A nivel de DATA MANAGER no se considera la edición. Faltan consideraciones
+	 * estéticas a nivel de pantalla;
+	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public String DataManagerControllerPre(@RequestParam("id") String id, Model model){
 		

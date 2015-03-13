@@ -29,6 +29,9 @@ public class FileConfigController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(AdminController.class);
 
+	/**
+	 * TODO:RT Falta implementar edición; Filtros??
+	 */
 	@RequestMapping(value = "/fileConfig.do", method = RequestMethod.GET)
 	public String fileConfigController(Locale locale, Model model) {
 
@@ -44,6 +47,9 @@ public class FileConfigController {
 		return "fileconfig";
 	}
 	
+	/**
+	 * TODO:RT Edición; Filtros??
+	 */
 	@RequestMapping(value="/fileConfigDetail.do", method=RequestMethod.GET)
 	public String fileConfigDetailController(@RequestParam("id") String id, Model model){
 		

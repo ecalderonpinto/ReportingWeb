@@ -25,6 +25,9 @@ public class CompanyReportsController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CompanyReportsController.class);
 	
+	/**
+	 * TODO:RT Falta implementar filtros;
+	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public String DataManagerControllerPre(@RequestParam("id") String id, Model model){
 		

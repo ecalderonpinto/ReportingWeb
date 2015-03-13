@@ -41,6 +41,9 @@ public class LoadsAsignToReportsController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoadsAsignToReportsController.class);
 
+	/**
+	 * TODO:RT Considerar filtrar los ficheros que ya hayan sido asignados a un reporte;
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String DataManagerControllerPre(@RequestParam("id") String id,
 			Model model) {
