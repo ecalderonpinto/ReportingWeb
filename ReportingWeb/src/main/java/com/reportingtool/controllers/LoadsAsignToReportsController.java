@@ -59,6 +59,8 @@ public class LoadsAsignToReportsController {
 
 		model.addAttribute("reportassign", reportAssign);
 
+		// TODO falta que la vista loadsassign.jsp muestre los ficheros ya asignados
+		
 		return "loadsassigntoreport";
 	}
 
@@ -97,7 +99,7 @@ public class LoadsAsignToReportsController {
 
 		model.addAttribute("reportassign", reportAssign);
 		
-		return "datamanager";
+		return "companyreports";
 	}
 
 	@ModelAttribute("selectLoads")
