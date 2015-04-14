@@ -104,7 +104,7 @@ public class FileLoader {
 				new VersionAuditor("admin"));
 
 		// Get records of the load file;
-		List<String> records = LoaderUtilities.loadFileInList(this.file);
+		List<String> records = LoaderUtilities.loadFileInList(this.file, fileConfig.isHeader());
 
 		// Process records and update LoadFile Object;
 		for (int i = 0; i < records.size(); i++) {
@@ -144,7 +144,7 @@ public class FileLoader {
 					ReportingErrorManager.createLoadError(applicationContext,
 							"LOADER", loadFile, "INVALID ROW",
 							"Row with different columns or separator [row " + i
-									+ "]");
+									+ "] -> " + (columns.length - 1) + " diferent of " + fileConfig.getFileColums().size());
 				}
 			} else {
 				ReportingErrorManager.createLoadError(applicationContext,

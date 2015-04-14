@@ -3,7 +3,6 @@ package com.entities.entity.loader;
 // Generated 11-feb-2015 16:49:54 by Hibernate Tools 4.0.0
 
 import java.math.BigDecimal;
-import java.sql.Blob;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +27,6 @@ import javax.persistence.Version;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 

@@ -1,5 +1,19 @@
 package com.reportingtool.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +27,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.reportingtool.ReportExecution;
-import com.reportingtool.controllers.forms.ReportAssignLoadsForm;
 import com.reportingtool.creation.GeneratorXML;
+import com.reportingtool.normalizer.Format;
+import com.reportingtool.utilities.ReportingErrorManager;
 
 @Controller
 @RequestMapping(value = "/viewXML.do")
@@ -35,21 +50,72 @@ public class ViewXMLController {
 
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
-		
-//		ReportExecution reportExecution = new ReportExecution();
-//		reportExecution.setId(Long.valueOf(id).longValue());
-//		reportExecution = (ReportExecution) reportExecutionDAO.findByExample(
-//				reportExecution).get(0);
-		
-		ReportExecution reportExecution = reportExecutionDAO.findById(Long.parseLong(id));
+
+		ReportExecution reportExecution = reportExecutionDAO.findById(Long
+				.parseLong(id));
 
 		GeneratorXML generatorXML = new GeneratorXML(applicationContext);
 		String outputXML = generatorXML.generateXML(reportExecution);
-		
+
 		model.addAttribute("report", reportExecution);
 		model.addAttribute("outputXML", outputXML);
 
 		return "viewxml";
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	protected void exportXML(@RequestParam("reportid") String id,
+			HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		System.out.println("donwload XML report");
+
+		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
+				.getBean("reportExecutionDAO");
+
+		ReportExecution reportExecution = reportExecutionDAO.findById(Long
+				.parseLong(id));
+
+		GeneratorXML generatorXML = new GeneratorXML(applicationContext);
+		String outputXML = generatorXML.generateXML(reportExecution);
+
+		DateFormat dateFormat = new SimpleDateFormat(Format.datePattern);
+		Date today = Calendar.getInstance().getTime();
+		String creationDate = dateFormat.format(today);
+
+		String reportName = reportExecution.getReportExecutionName() + "_"
+				+ creationDate + ".csv";
+
+		// firefox does not recognize format of file if there are spaces in the
+		// name: 'name report DATE.csv' -> is replaced 'name_report_DATE.csv'
+		reportName = reportName.replace(" ", "_");
+
+		// tell browser program going to return an application file
+		// instead of html page
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment;filename="
+				+ reportName);
+
+		try {
+
+			ServletOutputStream out = response.getOutputStream();
+			StringBuffer sb = new StringBuffer(outputXML);
+
+			InputStream in = new ByteArrayInputStream(sb.toString().getBytes(
+					"UTF-8"));
+			
+			IOUtils.copy(in, out);
+			in.close();
+			out.close();
+
+		} catch (Exception e) {
+			e.getMessage();
+			// e.printStackTrace();
+			ReportingErrorManager.createReportError(applicationContext,
+					"CREATION", reportExecution, "FAIL",
+					"Error when dowload XML " + e.getMessage());
+		}
+
 	}
 
 }

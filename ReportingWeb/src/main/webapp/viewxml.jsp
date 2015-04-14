@@ -5,8 +5,8 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="<c:url value="companyReports.do?id=${report.id}" />">Report List</a> <i
-		class="icon-angle-right"></i></li>
+	<li><a href="<c:url value="companyReports.do?id=${report.id}" />">Report
+			List</a> <i class="icon-angle-right"></i></li>
 	<li>Report in XML</li>
 </ul>
 <!-- end: Breadcrumb -->
@@ -23,9 +23,17 @@
 			</div>
 		</div>
 		<div class="box-content">
-		<c:out value="${outputXML }"></c:out>
+			<c:out value="${outputXML}"></c:out>
 		</div>
 	</div>
 	<!--/span-->
 </div>
+
+<form:form method="POST" commandName="reportXML">
+	<div class="box-content">
+		<input type="hidden" name="reportid" value="${report.id}" />
+		<input type="submit" value="Download" class="btn btn-important">
+	</div>
+</form:form>
+
 <!--/row-->

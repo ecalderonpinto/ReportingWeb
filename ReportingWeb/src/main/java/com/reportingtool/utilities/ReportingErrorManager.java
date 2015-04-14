@@ -291,4 +291,39 @@ public class ReportingErrorManager {
 			}
 		}
 	}
+
+	/**
+	 * Function to check if ReportExecution and ReportData has not deleted
+	 * ReportErrors and ReportDataErrors
+	 * 
+	 * @param reportExecution
+	 * @return reportExecution
+	 */
+	public static ReportExecution checkReportExecutionHasErrors(
+			ReportExecution reportExecution) {
+
+		boolean hasErrors = false;
+		for (ReportData reportData : reportExecution.getReportDatas()) {
+			hasErrors = false;
+			for (ReportDataError reportDataError : reportData
+					.getReportDataErrors()) {
+				if (!reportDataError.getAuditor().isDeleted()) {
+					hasErrors = true;
+					break;
+				}
+			}
+			reportData.setHasErrors(hasErrors);
+		}
+
+		hasErrors = false;
+		for (ReportError reportError : reportExecution.getReportErrors()) {
+			if (!reportError.getAuditor().isDeleted()) {
+				hasErrors = true;
+				break;
+			}
+		}
+		reportExecution.setHasErrors(hasErrors);
+
+		return reportExecution;
+	}
 }

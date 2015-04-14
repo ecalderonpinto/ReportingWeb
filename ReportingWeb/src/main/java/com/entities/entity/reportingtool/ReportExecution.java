@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -61,6 +62,7 @@ public class ReportExecution implements VersionableAdapter {
 	private Date signedSentDate;
 	private String signedSentId;
 	private String reportLocked;
+	private boolean hasErrors;
 	private Set<ReportData> reportDatas = new HashSet(0);
 	private Set<ReportError> reportErrors = new HashSet(0);
 	private Set<LoadFile> loadFiles = new HashSet(0);
@@ -341,6 +343,7 @@ public class ReportExecution implements VersionableAdapter {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
+	@Cascade({ CascadeType.ALL})
 	@JoinTable(name = "T_FILE_ASSIG_EXECUTION", joinColumns = { @JoinColumn(name = "REPORT_EXECUTION_ID", referencedColumnName = "REPORT_EXECUTION_ID") }, inverseJoinColumns = { @JoinColumn(name = "LOAD_FILE_ID", referencedColumnName = "LOAD_FILE_ID") })
 	public Set<LoadFile> getLoadFiles() {
 		return loadFiles;
@@ -350,6 +353,15 @@ public class ReportExecution implements VersionableAdapter {
 		this.loadFiles = loadFiles;
 	}
 
+	@Column(name = "HAS_ERRORS")
+	public boolean isHasErrors() {
+		return hasErrors;
+	}
+
+	public void setHasErrors(boolean hasErrors) {
+		this.hasErrors = hasErrors;
+	}
+	
 	public int getVersion() {
 		return version;
 	}
@@ -357,6 +369,7 @@ public class ReportExecution implements VersionableAdapter {
 	public void setVersion(int version) {
 		this.version = version;
 	}
+
 
 	@Override
 	public Object clone() throws CloneNotSupportedException {

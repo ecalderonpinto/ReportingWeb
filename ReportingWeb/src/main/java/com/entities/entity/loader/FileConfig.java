@@ -41,6 +41,7 @@ public class FileConfig implements VersionableAdapter {
 	private String fileFormatLine;
 	private String fileCron;
 	private String filePath;
+	private boolean header;
 	private Set<LoadFile> loadFiles = new HashSet(0);
 	private Set<FileColum> fileColums = new HashSet(0);
 
@@ -63,7 +64,7 @@ public class FileConfig implements VersionableAdapter {
 
 	public FileConfig(Department department, String fileType,
 			String fileConfigName, String fileSeparator, String fileFormatLine,
-			String fileCron, String filePath, Set<LoadFile> loadFiles,
+			String fileCron, String filePath, boolean header, Set<LoadFile> loadFiles,
 			Set<FileColum> fileColums, VersionAuditor versionAuditor) {
 		this.department = department;
 		this.fileType = fileType;
@@ -72,6 +73,7 @@ public class FileConfig implements VersionableAdapter {
 		this.fileFormatLine = fileFormatLine;
 		this.fileCron = fileCron;
 		this.filePath = filePath;
+		this.header = header;
 		this.loadFiles = loadFiles;
 		this.fileColums = fileColums;
 		this.versionAuditor = versionAuditor;
@@ -153,6 +155,15 @@ public class FileConfig implements VersionableAdapter {
 		this.filePath = filePath;
 	}
 
+	@Column(name = "HEADER")
+	public boolean isHeader() {
+		return header;
+	}
+
+	public void setHeader(boolean header) {
+		this.header = header;
+	}
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fileConfig")
 	public Set<LoadFile> getLoadFiles() {
 		return this.loadFiles;

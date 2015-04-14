@@ -1,5 +1,6 @@
 package com.reportingtool.utilities;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -7,6 +8,8 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import com.reportingtool.normalizer.Format;
 
 /**
  * Utility class for converting between XMLGregorianCalendar and java.util.Date
@@ -42,7 +45,31 @@ public class XMLGregorianCalendarConverter {
 		} else {
 			GregorianCalendar gc = new GregorianCalendar();
 			gc.setTimeInMillis(date.getTime());
-			return df.newXMLGregorianCalendar(gc);
+			
+//			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Format.dateTimePattern);
+//			String total = simpleDateFormat.format(date);
+//			
+//			SimpleDateFormat simpleDateFormatYear = new SimpleDateFormat("yyyy");
+//			String year = simpleDateFormatYear.format(date);
+//			
+//			SimpleDateFormat simpleDateFormatMonth = new SimpleDateFormat("MM");
+//			String month = simpleDateFormatMonth.format(date);
+//			
+//			SimpleDateFormat simpleDateFormatDay = new SimpleDateFormat("dd");
+//			String day = simpleDateFormatDay.format(date);
+//			
+//			gc.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+//
+//			System.out.println("DATEMMMM: "+total +" -> " + year + "-"+ month + "-" + day);
+//			
+//			return df.newXMLGregorianCalendar(gc.get(Calendar.YEAR),
+//					gc.get(Calendar.MONTH) + 1, gc.get(Calendar.DAY_OF_MONTH),
+//					gc.get(Calendar.HOUR_OF_DAY), gc.get(Calendar.MINUTE),
+//					gc.get(Calendar.SECOND), gc.get(Calendar.MILLISECOND),
+//					DatatypeConstants.FIELD_UNDEFINED);
+
+			 return df.newXMLGregorianCalendar(gc);
+
 		}
 	}
 

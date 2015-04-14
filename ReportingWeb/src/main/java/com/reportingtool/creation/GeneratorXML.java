@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -30,8 +31,13 @@ import javax.xml.validation.Validator;
 import org.springframework.context.ApplicationContext;
 import org.xml.sax.SAXException;
 
+import com.entities.dao.reportingtool.ReportDataDAO;
+import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
+import com.entities.entity.reportingtool.ReportField;
+import com.entities.utilities.hibernate.VersionAuditor;
+import com.reportingtool.normalizer.Format;
 import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.utilities.XMLGregorianCalendarConverter;
 import com.reportingtool.xml.AIFMReportingInfo;
@@ -136,8 +142,8 @@ public class GeneratorXML {
 	}
 
 	/**
-	 * Main function that generate a XML report with a reportExecution. Calls
-	 * to AIF or AIFM generator.
+	 * Main function that generate a XML report with a reportExecution. Calls to
+	 * AIF or AIFM generator.
 	 * 
 	 * @param reportExecution
 	 * @return xml report in string
@@ -152,6 +158,8 @@ public class GeneratorXML {
 				+ reportExecution.getReportPeriodType() + " "
 				+ reportExecution.getReportPeriodYear() + " "
 				+ reportExecution.getReportCatalog().getReportCatalogName());
+
+		generateDefaultReportDatas(reportExecution);
 
 		if (reportExecution.getReportCatalog().getReportLevel()
 				.contains("FUND")) {
@@ -193,7 +201,7 @@ public class GeneratorXML {
 		System.out.println(reportMap.toString());
 
 		// TODO:RT user searchData() in every field
-		
+
 		// ///////////////////////////////////////////////////////////
 		// TODO:RT ONLY STATUS = PENDING WILL CREATE XML REPORTS
 		// if (aifmdReportResult.getAifmdReportResultStat().equals("PENDING")) {
@@ -345,7 +353,7 @@ public class GeneratorXML {
 			// <AIFPrincipalInfo><IndividualExposure>
 
 			// TODO populate this class
-			
+
 			complexIndividualExposureType
 					.setAssetTypeExposures(complexAssetTypeExposuresType);
 			complexIndividualExposureType
@@ -359,7 +367,7 @@ public class GeneratorXML {
 			// <AIFPrincipalInfo><RiskProfile>
 
 			// TODO:RT populate this class
-			
+
 			complexRiskProfileType
 					.setCounterpartyRiskProfile(complexCounterpartyRiskProfileType);
 			complexRiskProfileType
@@ -420,7 +428,7 @@ public class GeneratorXML {
 							.parseBoolean(allCounterpartyCollateralRehypothecationFlag));
 
 			// TODO:RT populate this class
-			
+
 			complexAIFLeverageArticle242Type
 					.setControlledStructures(complexControlledStructuresType);
 
@@ -447,9 +455,9 @@ public class GeneratorXML {
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFLeverageInfo><AIFLeverageArticle24-4>
-			
+
 			// TODO:RT populate this class
-			
+
 			List<ComplexBorrowingSourceType> complexBorrowingSourceTypeList = complexAIFLeverageArticle244Type
 					.getBorrowingSource();
 
@@ -457,7 +465,7 @@ public class GeneratorXML {
 			// <AIFPrincipalInfo><AIFDescription>
 
 			// TODO:RT populate this class
-			
+
 			complexAIFDescriptionType
 					.setAIFBaseCurrencyDescription(complexBaseCurrencyDescriptionType);
 
@@ -495,7 +503,7 @@ public class GeneratorXML {
 					.setFirstFundingSourceCountry(firstFundingSourceCountry);
 
 			// TODO:RT populate this class
-			
+
 			complexAIFDescriptionType
 					.setFundOfFundsInvestmentStrategies(complexFundOfFundsInvestmentStrategiesType);
 
@@ -525,7 +533,7 @@ public class GeneratorXML {
 					.setHFTTransactionNumber(hftTransactionNumber);
 
 			// TODO:RT populate this class
-			
+
 			complexAIFDescriptionType
 					.setMasterAIFsIdentification(complexMasterAIFsIdentificationType);
 
@@ -544,7 +552,7 @@ public class GeneratorXML {
 			complexAIFDescriptionType.setPredominantAIFType(predominantAIFType);
 
 			// TODO:RT populate this class
-			
+
 			complexAIFDescriptionType.setPrimeBrokers(complexPrimeBrokersType);
 
 			complexAIFDescriptionType
@@ -732,9 +740,9 @@ public class GeneratorXML {
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><MainInstrumentsTraded>
-			
+
 			// TODO:RT populate this class
-			
+
 			List<ComplexMainInstrumentTradedType> complexMainInstrumentTradedTypeList = complexMainInstrumentsTradedType
 					.getMainInstrumentTraded();
 
@@ -852,17 +860,17 @@ public class GeneratorXML {
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><PrincipalExposures>
-			
+
 			// TODO:RT populate this class
-			
+
 			List<ComplexPrincipalExposureType> complexPrincipalExposureTypeList = complexPrincipalExposuresType
 					.getPrincipalExposure();
 
 			// /////////////////////////////////////////////////////////////////
 			// <AIFPrincipalInfo><ShareClassIdentification>
-			
+
 			// TODO:RT populate this class
-			
+
 			List<ComplexShareClassIdentifierType> complexShareClassIdentifierTypeList = complexShareClassIdentificationType
 					.getShareClassIdentifier();
 			// int complexShareClassIdentifierTypeCount = 0;
@@ -1391,7 +1399,7 @@ public class GeneratorXML {
 		System.out.println(reportMap.toString());
 
 		// TODO:RT user searchData() in every field
-		
+
 		// ///////////////////////////////////////////////////////////
 		// TODO:RT ONLY STATUS = PENDING WILL CREATE XML REPORTS
 		// if (aifmdReportResult.getAifmdReportResultStat().equals("PENDING")) {
@@ -2205,6 +2213,72 @@ public class GeneratorXML {
 
 		return result;
 	}
+
+	/**
+	 * Generate CreationDateAndTime and Version reportData if does not exists
+	 * 
+	 * @param reportExecution
+	 */
+	public void generateDefaultReportDatas(ReportExecution reportExecution) {
+
+		// all dataFields
+		List<ReportData> reportDatas = new ArrayList<ReportData>(
+				reportExecution.getReportDatas());
+
+		if (searchData(reportDatas, "CreationDateAndTime", "3", null) == null) {
+
+			ReportField reportField = new ReportField();
+			reportField.setReportCatalog(reportExecution.getReportCatalog());
+			reportField.setReportFieldName("CreationDateAndTime");
+			reportField.setReportFieldNum(new BigInteger("3"));
+			
+			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
+					.getBean("reportFieldDAO");
+			reportField = reportFieldDAO.findByExample(reportField).get(0);
+
+			
+			DateFormat dateFormat = new SimpleDateFormat(Format.dateTimePattern);
+			// Get the date today using Calendar object.
+			Date today = Calendar.getInstance().getTime(); 
+			// Using DateFormat format method we can create a string 
+			String creationDateTime = dateFormat.format(today);
+			System.out.println("DEBUG_" + "GeneratorXML: new creationDateTime " + creationDateTime);
+			
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, creationDateTime, null,
+					null, null, new VersionAuditor("generator_xml"));
+			reportExecution.getReportDatas().add(reportData);
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+		}
+
+		if (searchData(reportDatas, "Version", "2", null) == null) {
+
+			ReportField reportField = new ReportField();
+			reportField.setReportCatalog(reportExecution.getReportCatalog());
+			reportField.setReportFieldName("Version");
+			reportField.setReportFieldNum(new BigInteger("2"));
+			
+			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
+					.getBean("reportFieldDAO");
+			reportField = reportFieldDAO.findByExample(reportField).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, "1.2", null, null, null,
+					new VersionAuditor("generator_xml"));
+			reportExecution.getReportDatas().add(reportData);
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+		}
+
+	}
+
 	// public void generateXMLAIFM_OLD(ReportExecution reportExecution) {
 	//
 	// System.out.println("DEBUG_" + "GeneratorXML: starting XML generation ");

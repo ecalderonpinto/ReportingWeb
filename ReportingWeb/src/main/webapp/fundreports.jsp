@@ -5,6 +5,10 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="Login">Home</a> <i
 		class="icon-angle-right"></i></li>
+	<li><a href="dataManager.do">Data Manager</a><i
+		class="icon-angle-right"></i>
+	<li><a href="companyDetail.do?id=${company.id}">Company detail</a>
+		<i class="icon-angle-right"></i></li>
 	<li><a href="#">Reports (${fund.fundName})</a></li>
 </ul>
 <!-- end: Breadcrumb -->

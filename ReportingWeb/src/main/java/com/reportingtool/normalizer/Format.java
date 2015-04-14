@@ -20,7 +20,7 @@ public class Format {
 
 	private ApplicationContext applicationContext;
 
-	public static final String dateTimePattern = "yyyy-MM-ddTHH:mm:ss";
+	public static final String dateTimePattern = "yyyy-MM-dd HH:mm:ss";
 	public static final String datePattern = "yyyy-MM-dd";
 
 	/**
@@ -101,6 +101,10 @@ public class Format {
 
 		// set final date
 		loadRawData.setLoadRawDataText(newstring);
+		
+		LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext
+				.getBean("loadRawDataDAO");
+		loadRawDataDAO.edit(loadRawData);
 
 		return loadRawData;
 	}

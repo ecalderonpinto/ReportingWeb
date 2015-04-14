@@ -5,6 +5,10 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="Login">Home</a> <i
 		class="icon-angle-right"></i></li>
+	<li><a href="dataManager.do">Data Manager</a><i
+		class="icon-angle-right"></i>
+	<li><a href="companyDetail.do?id=${company.id}">Company detail</a>
+		<i class="icon-angle-right"></i></li>
 	<li><a href="#">Reports (${company.companyName})</a></li>
 </ul>
 <!-- end: Breadcrumb -->
@@ -94,17 +98,15 @@
 								<td>${reportexecution.reportPeriodType}</td>
 								<td>${reportexecution.reportPeriodYear}</td>
 								<td>${reportexecution.reportStatus}</td>
-								<td>
-								<a href="<c:url value="reportExecution.do?id=${reportexecution.id}" />">
+								<td><a
+									href="<c:url value="reportExecution.do?id=${reportexecution.id}" />">
 										<span class="label label-important">Detail</span>
-								</a>
-								<a href="<c:url value="loadsAssignToReport.do?id=${reportexecution.id}" />">
+								</a> <a
+									href="<c:url value="loadsAssignToReport.do?id=${reportexecution.id}" />">
 										<span class="label label-warning">Loads Asig</span>
-								</a>
-								<a href="<c:url value="viewXML.do?id=${reportexecution.id}" />">
+								</a> <a href="<c:url value="viewXML.do?id=${reportexecution.id}" />">
 										<span class="label label-success">view XML</span>
-								</a>
-								</td>
+								</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -1,13 +1,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- start: Breadcrumb -->
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="Login">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="#">Reports</a> <i class="icon-angle-right"></i></li>
+	<li><a href="dataManager.do">Data Manager</a><i
+		class="icon-angle-right"></i>
+	<li><a href="companyDetail.do?id=${company.id}">Company detail</a>
+		<i class="icon-angle-right"></i></li>
+	<li><a href="companyReports.do?id=${company.id}">Reports
+			(${company.companyName})</a><i class="icon-angle-right"></i></li>
 	<li><a href="#">${reportexecution.reportExecutionName }</a></li>
+
 </ul>
 <!-- end: Breadcrumb -->
 
@@ -35,18 +41,20 @@
 							<c:if
 								test="${reportData.reportField.reportFieldSection == section}">
 								<c:choose>
-									<c:when test="${fn:length(reportData.reportDataErrors) gt 0}">
+									<%-- <c:when test="${fn:length(reportData.reportDataErrors) gt 0}"> --%>
+									<c:when test="${reportData.hasErrors == true}">
 										<!-- Field with Error -->
 										<div class="control-group error">
 											<label class="control-label" for="inputError">
 												${reportData.reportField.reportFieldNum}.
 												${reportData.reportField.reportFieldName } </label>
-											<div class="controls">	
-													<form:input path="reportDatas[${status.index}].reportDataText" cssClass="input-xlarge"/>
-													 <span
-													class="help-inline">
-													<c:forEach var="reportError" varStatus="status"
-													items="${reportData.reportDataErrors}" >
+											<div class="controls">
+												<form:input
+													path="reportDatas[${status.index}].reportDataText"
+													cssClass="input-xlarge" />
+												<span class="help-inline"> <c:forEach
+														var="reportError" varStatus="status"
+														items="${reportData.reportDataErrors}">
 														${reportError.reportDataErrorText}
 													</c:forEach>
 												</span>
@@ -61,7 +69,9 @@
 												${reportData.reportField.reportFieldNum}.
 												${reportData.reportField.reportFieldName } </label>
 											<div class="controls">
-												<form:input path="reportDatas[${status.index}].reportDataText" cssClass="input-xlarge"/>
+												<form:input
+													path="reportDatas[${status.index}].reportDataText"
+													cssClass="input-xlarge" />
 											</div>
 										</div>
 										<!-- /Normal Field -->

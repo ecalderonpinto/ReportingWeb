@@ -22,8 +22,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportDataError;
+import com.entities.entity.reportingtool.ReportError;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.controllers.forms.ReportAssignLoadsForm;
+import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.validator.Semantic;
 import com.reportingtool.validator.Syntactic;
 
@@ -44,11 +46,6 @@ public class ReportExecutionController {
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
 
-		// ReportExecution example = new ReportExecution();
-		// example.setId(Long.valueOf(id).longValue());
-		// ReportExecution reportExecution = reportExecutionDAO.findByExample(
-		// example).get(0);
-
 		ReportExecution reportExecution = reportExecutionDAO.findById(Long
 				.parseLong(id));
 
@@ -57,7 +54,11 @@ public class ReportExecutionController {
 		}
 
 		List<String> sections = getSections(reportExecution);
-
+		
+		
+		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
+		
+		
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
 
@@ -92,6 +93,8 @@ public class ReportExecutionController {
 
 		List<String> sections = getSections(reportExecution);
 
+		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
+		
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
 

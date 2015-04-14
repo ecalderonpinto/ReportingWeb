@@ -100,7 +100,7 @@ public class LoadsAsignToReportsController {
 
 		model.addAttribute("reportassign", reportAssign);
 		
-		return "datamanager";
+		return "companyreports";
 	}
 
 	@ModelAttribute("selectLoads")

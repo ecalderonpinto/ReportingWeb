@@ -47,6 +47,7 @@ public class ReportData implements VersionableAdapter {
 	private String reportDataBlock;
 	private String reportDataLock;
 	private Set<ReportDataError> reportDataErrors = new HashSet(0);
+	private boolean hasErrors = false;
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -178,6 +179,15 @@ public class ReportData implements VersionableAdapter {
 
 	public void setReportDataErrors(Set<ReportDataError> reportDataErrors) {
 		this.reportDataErrors = reportDataErrors;
+	}
+	
+	@Column(name = "HAS_ERRORS")
+	public boolean isHasErrors() {
+		return hasErrors;
+	}
+
+	public void setHasErrors(boolean hasErrors) {
+		this.hasErrors = hasErrors;
 	}
 
 	public int getVersion() {
