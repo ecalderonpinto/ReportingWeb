@@ -2,12 +2,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!-- start: Breadcrumb -->
-<ul class="breadcrumb">
-	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
+<ul class="breadcrumb">	
+		<li><i class="icon-home"></i> <a href="Login">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="<c:url value="companyReports.do?id=${report.id}" />">Report
-			List</a> <i class="icon-angle-right"></i></li>
-	<li>Report in XML</li>
+	<li><a href="dataManager.do">Data Manager</a><i
+		class="icon-angle-right"></i>
+	<li><a href="companyDetail.do?id=${company.id}">Company detail</a>
+		<i class="icon-angle-right"></i></li>
+	<li><a href="companyReports.do?id=${company.id}">Reports
+			(${company.companyName})</a><i class="icon-angle-right"></i></li>
+	<li><a href="#">Report in XML</a></li>
 </ul>
 <!-- end: Breadcrumb -->
 
