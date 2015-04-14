@@ -25,6 +25,9 @@ public class FundReportsController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(FundReportsController.class);
 	
+	/**
+	 * TODO:RT falta implementar los filtros y acciones de la botonera ACTIONS
+	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public String DataManagerControllerPre(@RequestParam("id") String id, Model model){
 		

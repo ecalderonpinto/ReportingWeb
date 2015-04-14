@@ -25,6 +25,9 @@ public class DataManagerController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(DataManagerController.class);
 	
+	/**
+	 * TODO:RT Considerar incorporar más info a esta pantalla;
+	 */
 	@RequestMapping(value="/dataManager.do", method=RequestMethod.GET)
 	public String DataManagerControllerPre(Locale locale, Model model){
 		

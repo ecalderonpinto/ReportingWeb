@@ -25,13 +25,16 @@ import com.entities.entity.reportingtool.ReportFieldList;
 
 @Controller
 public class AdminController {
-
+	
 	@Autowired
 	ApplicationContext applicationContext;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(AdminController.class);
 	
+	/**
+	 * TODO:RT Considerar UI y ver necesidad de incorporar más funcionalidad.
+	 */
 	@RequestMapping(value = "/admin.do", method = RequestMethod.GET)
 	public String reportCatalogController(Locale locale, Model model) {
 
@@ -63,6 +66,9 @@ public class AdminController {
 		return "reportcatalogdetail";
 	}
 	
+	/**
+	 * TODO:RT Falta editar/guardar información;
+	 */
 	@RequestMapping(value="/reportFieldDetail.do", method=RequestMethod.GET)
 	public String reportFieldDetailController(@RequestParam("id") String id, Model model){
 		
