@@ -41,6 +41,9 @@ public class LoadsAsignToReportsController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoadsAsignToReportsController.class);
 
+	/**
+	 * TODO:RT Considerar filtrar los ficheros que ya hayan sido asignados a un reporte;
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String DataManagerControllerPre(@RequestParam("id") String id,
 			Model model) {
@@ -59,8 +62,6 @@ public class LoadsAsignToReportsController {
 
 		model.addAttribute("reportassign", reportAssign);
 
-		// TODO falta que la vista loadsassign.jsp muestre los ficheros ya asignados
-		
 		return "loadsassigntoreport";
 	}
 
@@ -99,7 +100,7 @@ public class LoadsAsignToReportsController {
 
 		model.addAttribute("reportassign", reportAssign);
 		
-		return "companyreports";
+		return "datamanager";
 	}
 
 	@ModelAttribute("selectLoads")
