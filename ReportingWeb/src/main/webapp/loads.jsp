@@ -4,10 +4,9 @@
 
 <!-- start: Breadcrumb -->
 <ul class="breadcrumb">
-	<li><i class="icon-home"></i> <a href="Login">Home</a> <i
+	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="#">Loads</a> <i class="icon-angle-right"></i></li>
-	<li><a href="#">Dashboard</a></li>
+	<li><a href="#">Loads</a></li>
 </ul>
 <!-- end: Breadcrumb -->
 <div class="row-fluid sortable">

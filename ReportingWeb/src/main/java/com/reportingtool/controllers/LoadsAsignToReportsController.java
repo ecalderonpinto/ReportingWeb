@@ -1,5 +1,6 @@
 package com.reportingtool.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +61,9 @@ public class LoadsAsignToReportsController {
 		ReportAssignLoadsForm reportAssign = new ReportAssignLoadsForm();
 		reportAssign.setReportExecution(reportExecution);
 
+		
 		model.addAttribute("reportassign", reportAssign);
+		model.addAttribute("loadfiles", reportExecution.getLoadFiles());
 
 		return "loadsassigntoreport";
 	}
@@ -100,7 +103,7 @@ public class LoadsAsignToReportsController {
 
 		model.addAttribute("reportassign", reportAssign);
 		
-		return "companyreports";
+		return "loadsassigntoreport";
 	}
 
 	@ModelAttribute("selectLoads")

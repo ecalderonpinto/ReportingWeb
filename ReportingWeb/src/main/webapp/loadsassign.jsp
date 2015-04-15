@@ -3,8 +3,10 @@
 
 <!-- start: Breadcrumb -->
 <ul class="breadcrumb">
-	<li><i class="icon-home"></i> <a href="Login">Home</a> <i
-		class="icon-angle-right"></i></li>
+	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i class="icon-angle-right"></i></li>
+	<li><a href="dataManager.do">Data Manager</a><i class="icon-angle-right"></i></li>
+	<li><a href="companyDetail.do?id=${company.id}">Company detail</a><i class="icon-angle-right"></i></li>
+	<li><a href="companyReports.do?id=${company.id}">Reports (${company.companyName})</a> <i class="icon-angle-right"></i></li>
 	<li><a href="#">Loads Assignations</a></li>
 </ul>
 <!-- end: Breadcrumb -->
@@ -49,7 +51,7 @@
 						</tr>
 					</tbody>
 				</table>
-				
+
 				<input type="submit" value="Save" class="btn btn-important">
 			</div>
 		</div>
@@ -57,3 +59,39 @@
 	</div>
 	<!--/row-->
 </form:form>
+
+<div class="row-fluid sortable">
+	<div class="box span12">
+		<div class="box-header">
+			<h2>
+				<i class="halflings-icon align-justify"></i> <span class="break">Load Assign files to Report</span>
+			</h2>
+			<div class="box-icon">
+				<a href="#" class="btn-minimize"><i
+					class="halflings-icon chevron-up"></i></a>
+			</div>
+		</div>
+		<div class="box-content">
+			<table class="table table-striped table-bordered table-condensed">
+				<thead>
+					<tr>
+						<th>Report Catalog</th>
+						<th>Report Name</th>
+						<th>File name</th>
+					</tr>
+				</thead>
+				<tbody>
+					 <c:forEach var="loadfiles" items="${loadfiles}">
+						<tr>
+							<td>${report.reportCatalog.reportCatalogName}</td>
+							<td>${report.reportExecutionName}</td>
+							<td>${loadfiles.loadFileName}</td>
+						</tr>
+					</c:forEach> 
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!--/span-->
+</div>
+<!--/row-->
