@@ -46,6 +46,7 @@ import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
 import com.entities.utilities.hibernate.VersionAuditor;
+import com.reportingtool.utilities.ReportUtilities;
 
 /**
  * Class to install configuration in database
@@ -2667,7 +2668,7 @@ public class InstallEntities {
 					"", versionAdmin);
 
 			ReportCatalog reportCatalog = new ReportCatalog(versionField,
-					"COMPANY", "AIFMD 2014", "", null, null, null, versionAdmin);
+					"COMPANY", "AIFM 2014", "", null, null, null, versionAdmin);
 
 			String str1 = "2014-01-01";
 			String str2 = "2014-12-31";
@@ -3019,24 +3020,26 @@ public class InstallEntities {
 			// report Field List
 			this.installFileList(applicationContext);
 
-			FileConfig fileConfig0 = new FileConfig(department, "AIFMD",
-					"AIFMD2014_QUESTIONS", ";", "SIMPLE", "*", null, true, null, null,
+			FileConfig fileConfig0 = new FileConfig(department, "AIFM",
+					"AIFM2014_QUESTIONS", ";", "SIMPLE", "*", null, true, null, null,
 					versionAdmin);
 			
 			FileColum fileColum01 = new FileColum(reportField14, fileConfig0,
 					"type", new BigDecimal(0), "QuestionNumber", "",
 					"format", null, null, versionAdmin);
+			fileColum01.setColumBlock(ReportUtilities.fileColumBlockRepeatable);
 			FileColum fileColum02 = new FileColum(reportField15, fileConfig0,
 					"type", new BigDecimal(1), "AssumptionDescription", "",
 					"format", null, null, versionAdmin);
+			fileColum02.setColumBlock(ReportUtilities.fileColumBlockRepeatable);
 			
 			
-			FileConfig fileConfig = new FileConfig(department, "AIFMD",
-					"AIFMD2014_GENERAL", ";", "SIMPLE", "*", null, true, null, null,
+			FileConfig fileConfig = new FileConfig(department, "AIFM",
+					"AIFM2014_GENERAL", ";", "SIMPLE", "*", null, true, null, null,
 					versionAdmin);
 			
-//			FileConfig fileConfig = new FileConfig(department, "AIFMD",
-//					"AIFMD2014", ";", "SIMPLE", "*", null, false, null, null,
+//			FileConfig fileConfig = new FileConfig(department, "AIFM",
+//					"AIFM2014", ";", "SIMPLE", "*", null, false, null, null,
 //					versionAdmin);
 //			FileColum fileColum0 = new FileColum(null, fileConfig, "type",
 //					new BigDecimal(0), "type", "", "format", null, null,

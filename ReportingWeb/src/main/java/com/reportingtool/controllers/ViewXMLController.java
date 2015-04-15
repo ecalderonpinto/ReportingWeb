@@ -29,6 +29,7 @@ import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.creation.GeneratorXML;
 import com.reportingtool.normalizer.Format;
+import com.reportingtool.utilities.ReportUtilities;
 import com.reportingtool.utilities.ReportingErrorManager;
 
 @Controller
@@ -79,15 +80,15 @@ public class ViewXMLController {
 		GeneratorXML generatorXML = new GeneratorXML(applicationContext);
 		String outputXML = generatorXML.generateXML(reportExecution);
 
-		DateFormat dateFormat = new SimpleDateFormat(Format.datePattern);
+		DateFormat dateFormat = new SimpleDateFormat(ReportUtilities.datePattern);
 		Date today = Calendar.getInstance().getTime();
 		String creationDate = dateFormat.format(today);
 
 		String reportName = reportExecution.getReportExecutionName() + "_"
-				+ creationDate + ".csv";
+				+ creationDate + ".xml";
 
 		// firefox does not recognize format of file if there are spaces in the
-		// name: 'name report DATE.csv' -> is replaced 'name_report_DATE.csv'
+		// name: 'name report DATE.xml' -> is replaced 'name_report_DATE.xml'
 		reportName = reportName.replace(" ", "_");
 
 		// tell browser program going to return an application file

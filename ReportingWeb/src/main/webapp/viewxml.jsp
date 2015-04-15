@@ -15,6 +15,13 @@
 </ul>
 <!-- end: Breadcrumb -->
 
+<form:form method="POST" commandName="reportXML">
+	<div class="box-content">
+		<input type="hidden" name="reportid" value="${report.id}" />
+		<input type="submit" value="Download" class="btn btn-important">
+	</div>
+</form:form>
+
 <div class="row-fluid sortable">
 	<div class="box span12">
 		<div class="box-header">
@@ -33,11 +40,6 @@
 	<!--/span-->
 </div>
 
-<form:form method="POST" commandName="reportXML">
-	<div class="box-content">
-		<input type="hidden" name="reportid" value="${report.id}" />
-		<input type="submit" value="Download" class="btn btn-important">
-	</div>
-</form:form>
+
 
 <!--/row-->

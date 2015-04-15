@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import com.entities.dao.loader.LoadRawDataDAO;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.LoadRawData;
+import com.reportingtool.utilities.ReportUtilities;
 import com.reportingtool.utilities.ReportingErrorManager;
 
 /**
@@ -20,8 +21,6 @@ public class Format {
 
 	private ApplicationContext applicationContext;
 
-	public static final String dateTimePattern = "yyyy-MM-dd HH:mm:ss";
-	public static final String datePattern = "yyyy-MM-dd";
 
 	/**
 	 * Constructor of Format with an applicationContext
@@ -84,7 +83,7 @@ public class Format {
 			Date date = new SimpleDateFormat(dateFormat).parse(dateText);
 			// SimpleDateFormat#format() to format a Date into a String in a
 			// certain pattern
-			newstring = new SimpleDateFormat(datePattern).format(date);
+			newstring = new SimpleDateFormat(ReportUtilities.datePattern).format(date);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,7 +131,7 @@ public class Format {
 			Date date = new SimpleDateFormat(dateFormat).parse(dateText);
 			// SimpleDateFormat#format() to format a Date into a String in a
 			// certain pattern
-			newstring = new SimpleDateFormat(dateTimePattern).format(date);
+			newstring = new SimpleDateFormat(ReportUtilities.dateTimePattern).format(date);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// create loadError

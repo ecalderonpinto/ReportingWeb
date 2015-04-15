@@ -87,7 +87,7 @@
 						<tr>
 							<td><a href="rawDetail.do?id=${raw.id}">
 							<i class="icon-eye-open"></i></td>
-							<td>${raw.loadLineNumber}</td>
+							<td>${raw.loadLineNumber + 1}</td>
 							<td>${raw.loadLineType}</td>
 							<td>${raw.loadError}</td>
 						</tr>

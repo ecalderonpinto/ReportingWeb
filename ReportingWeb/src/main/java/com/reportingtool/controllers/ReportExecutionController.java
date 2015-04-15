@@ -22,9 +22,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportDataError;
-import com.entities.entity.reportingtool.ReportError;
 import com.entities.entity.reportingtool.ReportExecution;
-import com.reportingtool.controllers.forms.ReportAssignLoadsForm;
+import com.reportingtool.controllers.forms.ReportSectionForm;
 import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.validator.Semantic;
 import com.reportingtool.validator.Syntactic;
@@ -61,6 +60,13 @@ public class ReportExecutionController {
 		
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
+		
+		// new 
+		List<ReportSectionForm> reportSectionForms = getReportSections(reportExecution);
+		for(ReportSectionForm reportSectionForm : reportSectionForms) {
+			System.out.println("section : " + reportSectionForm.getSectionName() + " - " + reportSectionForm.isHasBlock());
+		}
+		model.addAttribute("reportsections", reportSectionForms);
 
 		return "reportexecution";
 	}
@@ -100,12 +106,42 @@ public class ReportExecutionController {
 
 		return "reportexecution";
 	}
+	
+	private List<ReportSectionForm> getReportSections(ReportExecution reportExecution) {
 
-	private List<String> getSections(ReportExecution reportExe) {
+		List<ReportSectionForm> result = new ArrayList<ReportSectionForm>();
+
+		String section = "";
+		boolean hasBlock = false;
+		
+		for (ReportData reportData : reportExecution.getReportDatas()) {
+			if (reportData.getReportDataErrors().size() > 0) {
+				System.out.println("Data tiene errores...");
+				for (ReportDataError error : reportData.getReportDataErrors())
+					System.out.println("Error: "
+							+ error.getReportDataErrorText());
+			}
+			if (reportData.getReportField().getReportFieldSection() != null) {
+				section = reportData.getReportField().getReportFieldSection();
+				if (reportData.getReportDataBlock() != null) {
+					hasBlock = true;
+				} else {
+					hasBlock = false;
+				}
+				ReportSectionForm reportSectionForm = new ReportSectionForm(section, hasBlock);
+				if (!result.contains(reportSectionForm))
+					result.add(reportSectionForm);
+			}
+		}
+
+		return result;
+	}
+
+	private List<String> getSections(ReportExecution reportExecution) {
 
 		List<String> result = new ArrayList<String>();
 
-		for (ReportData reportData : reportExe.getReportDatas()) {
+		for (ReportData reportData : reportExecution.getReportDatas()) {
 			if (reportData.getReportDataErrors().size() > 0) {
 				System.out.println("Data tiene errores...");
 				for (ReportDataError error : reportData.getReportDataErrors())

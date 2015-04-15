@@ -24,6 +24,7 @@ import com.entities.entity.loader.LoadRaw;
 import com.entities.entity.loader.LoadRawData;
 import com.entities.entity.usermanager.User;
 import com.entities.utilities.hibernate.VersionAuditor;
+import com.reportingtool.utilities.ReportUtilities;
 import com.reportingtool.utilities.ReportingErrorManager;
 
 /**
@@ -131,8 +132,22 @@ public class FileLoader {
 									fileColum, loadRaw, columText,
 									fileColum.getColumType(),
 									new VersionAuditor("admin"));
-							loadRawData.setLoadRawDataBlock(fileColum
-									.getColumBlock());
+							
+							// columBlock can be a number(1,2,3...), null or 'n', this means it is necessary to process
+							if (fileColum.getColumBlock() != null) {
+								if (ReportUtilities.isInteger(fileColum.getColumBlock()) ) {
+									loadRawData.setLoadRawDataBlock(fileColum
+											.getColumBlock());
+								} else {
+									if (fileColum.getColumBlock().equals(ReportUtilities.fileColumBlockRepeatable)) {
+										loadRawData.setLoadRawDataBlock(Integer.toString(i));
+									}
+								}
+							} else {
+								loadRawData.setLoadRawDataBlock(null);
+							}
+							
+							
 							loadRaw.getLoadRawDatas().add(loadRawData);
 						}
 					}
