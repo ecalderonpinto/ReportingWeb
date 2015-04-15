@@ -2,6 +2,8 @@ package com.reportingtool.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpSession;
 
@@ -53,20 +55,22 @@ public class ReportExecutionController {
 		}
 
 		List<String> sections = getSections(reportExecution);
-		
-		
+
 		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
-		
-		
+
+		//reportExecutionOrder(reportExecution);
+
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
-		
-		// new 
-		List<ReportSectionForm> reportSectionForms = getReportSections(reportExecution);
-		for(ReportSectionForm reportSectionForm : reportSectionForms) {
-			System.out.println("section : " + reportSectionForm.getSectionName() + " - " + reportSectionForm.isHasBlock());
-		}
-		model.addAttribute("reportsections", reportSectionForms);
+
+		// // new
+		// List<ReportSectionForm> reportSectionForms =
+		// getReportSections(reportExecution);
+		// for(ReportSectionForm reportSectionForm : reportSectionForms) {
+		// System.out.println("section : " + reportSectionForm.getSectionName()
+		// + " - " + reportSectionForm.isHasBlock());
+		// }
+		// model.addAttribute("reportsections", reportSectionForms);
 
 		return "reportexecution";
 	}
@@ -79,41 +83,43 @@ public class ReportExecutionController {
 
 		System.out.println("Submit - ReportExecution;");
 
-		for(ReportData reportData : reportExecution.getReportDatas()) {
-			System.out.println(reportData.getReportField().getReportFieldName() + " - "+ reportData.getReportDataText());
+		for (ReportData reportData : reportExecution.getReportDatas()) {
+			System.out.println(reportData.getReportField().getReportFieldName()
+					+ " - " + reportData.getReportDataText());
 		}
-		
+
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
-		
+
 		reportExecutionDAO.edit(reportExecution);
 		reportExecution = reportExecutionDAO.findById(reportExecution.getId());
-		
+
 		Syntactic syntactic = new Syntactic(applicationContext);
 		Semantic semantic = new Semantic(applicationContext);
-		
+
 		syntactic.validReportExecution(reportExecution);
 		semantic.checkSemantic(reportExecution);
-		
+
 		reportExecutionDAO.edit(reportExecution);
 
 		List<String> sections = getSections(reportExecution);
 
 		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
-		
+
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
 
 		return "reportexecution";
 	}
-	
-	private List<ReportSectionForm> getReportSections(ReportExecution reportExecution) {
+
+	private List<ReportSectionForm> getReportSections(
+			ReportExecution reportExecution) {
 
 		List<ReportSectionForm> result = new ArrayList<ReportSectionForm>();
 
 		String section = "";
 		boolean hasBlock = false;
-		
+
 		for (ReportData reportData : reportExecution.getReportDatas()) {
 			if (reportData.getReportDataErrors().size() > 0) {
 				System.out.println("Data tiene errores...");
@@ -128,7 +134,8 @@ public class ReportExecutionController {
 				} else {
 					hasBlock = false;
 				}
-				ReportSectionForm reportSectionForm = new ReportSectionForm(section, hasBlock);
+				ReportSectionForm reportSectionForm = new ReportSectionForm(
+						section, hasBlock);
 				if (!result.contains(reportSectionForm))
 					result.add(reportSectionForm);
 			}
@@ -155,5 +162,20 @@ public class ReportExecutionController {
 		}
 
 		return result;
+	}
+
+	public ReportExecution reportExecutionOrder(ReportExecution reportExecution) {
+		
+		SortedSet<ReportData> reportDatas =  new TreeSet<ReportData>();
+		
+		for (ReportData reportData : reportExecution.getReportDatas()) {
+			if (reportData.getReportDataBlock() != null) {
+				
+			}
+		}
+		
+		reportExecution.setReportDatas(reportDatas);
+		
+		return reportExecution;
 	}
 }

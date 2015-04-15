@@ -35,7 +35,7 @@ import com.entities.utilities.hibernate.VersionableAdapter;
  */
 @Entity
 @Table(name = "T_REPORT_DATA")
-public class ReportData implements VersionableAdapter {
+public class ReportData implements VersionableAdapter, Comparable {
 
 	private long id;
 	private ReportDataLong reportDataLong;
@@ -144,7 +144,7 @@ public class ReportData implements VersionableAdapter {
 		this.reportDataNumber = reportDataNumber;
 	}
 
-	@Column(name = "REPORT_DATA_TEXT",  nullable = false, length = 400)
+	@Column(name = "REPORT_DATA_TEXT", nullable = false, length = 400)
 	public String getReportDataText() {
 		return this.reportDataText;
 	}
@@ -180,7 +180,7 @@ public class ReportData implements VersionableAdapter {
 	public void setReportDataErrors(Set<ReportDataError> reportDataErrors) {
 		this.reportDataErrors = reportDataErrors;
 	}
-	
+
 	@Column(name = "HAS_ERRORS")
 	public boolean isHasErrors() {
 		return hasErrors;
@@ -242,6 +242,17 @@ public class ReportData implements VersionableAdapter {
 			return ret;
 		}
 		return false;
+	}
+
+	public int compareTo(Object object) {
+		int result = 0;
+		if (object instanceof ReportData) {
+
+			result = ((ReportData) object).getReportField().getReportFieldNum()
+					.compareTo(this.getReportField().getReportFieldNum());
+
+		}
+		return result;
 	}
 
 }
