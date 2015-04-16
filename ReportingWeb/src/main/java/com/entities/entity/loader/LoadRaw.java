@@ -3,9 +3,9 @@ package com.entities.entity.loader;
 // Generated 11-feb-2015 16:49:54 by Hibernate Tools 4.0.0
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -43,7 +43,7 @@ public class LoadRaw implements VersionableAdapter {
 	private String loadLineType;
 	private byte[] loadRawBlob;
 	private String loadError;
-	private Set<LoadRawData> loadRawDatas = new HashSet(0);
+	private List<LoadRawData> loadRawDatas = new ArrayList<LoadRawData>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -63,7 +63,7 @@ public class LoadRaw implements VersionableAdapter {
 
 	public LoadRaw(LoadFile loadFile, BigDecimal loadLineNumber,
 			String loadLineType, byte[] loadRawBlob, String loadError,
-			Set<LoadRawData> loadRawDatas, VersionAuditor versionAuditor) {
+			List<LoadRawData> loadRawDatas, VersionAuditor versionAuditor) {
 		this.loadFile = loadFile;
 		this.loadLineNumber = loadLineNumber;
 		this.loadLineType = loadLineType;
@@ -75,7 +75,7 @@ public class LoadRaw implements VersionableAdapter {
 
 	public LoadRaw(LoadFile loadFile, BigDecimal loadLineNumber,
 			String loadLineType, byte[] loadRawBlob, String loadError,
-			Set<LoadRawData> loadRawDatas) {
+			List<LoadRawData> loadRawDatas) {
 		this.loadFile = loadFile;
 		this.loadLineNumber = loadLineNumber;
 		this.loadLineType = loadLineType;
@@ -146,11 +146,11 @@ public class LoadRaw implements VersionableAdapter {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loadRaw")
 	@Cascade({ CascadeType.SAVE_UPDATE })
 	@OrderBy("fileColum ASC")
-	public Set<LoadRawData> getLoadRawDatas() {
+	public List<LoadRawData> getLoadRawDatas() {
 		return this.loadRawDatas;
 	}
 
-	public void setLoadRawDatas(Set<LoadRawData> loadRawDatas) {
+	public void setLoadRawDatas(List<LoadRawData> loadRawDatas) {
 		this.loadRawDatas = loadRawDatas;
 	}
 

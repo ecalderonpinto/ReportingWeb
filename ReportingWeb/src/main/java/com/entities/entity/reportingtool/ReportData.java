@@ -3,9 +3,9 @@ package com.entities.entity.reportingtool;
 // Generated 11-feb-2015 17:15:14 by Hibernate Tools 4.0.0
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -35,7 +35,8 @@ import com.entities.utilities.hibernate.VersionableAdapter;
  */
 @Entity
 @Table(name = "T_REPORT_DATA")
-public class ReportData implements VersionableAdapter, Comparable {
+// public class ReportData implements VersionableAdapter, Comparable {
+public class ReportData implements VersionableAdapter {
 
 	private long id;
 	private ReportDataLong reportDataLong;
@@ -46,7 +47,8 @@ public class ReportData implements VersionableAdapter, Comparable {
 	private String reportDataText;
 	private String reportDataBlock;
 	private String reportDataLock;
-	private Set<ReportDataError> reportDataErrors = new HashSet(0);
+	private String reportDataOrder;
+	private List<ReportDataError> reportDataErrors = new ArrayList<ReportDataError>();
 	private boolean hasErrors = false;
 
 	@Embedded
@@ -70,7 +72,7 @@ public class ReportData implements VersionableAdapter, Comparable {
 			ReportExecution reportExecution, Date reportDataDate,
 			BigDecimal reportDataNumber, String reportDataText,
 			String reportDataBlock, String reportDataLock,
-			Set<ReportDataError> reportDataErrors, VersionAuditor versionAuditor) {
+			List<ReportDataError> reportDataErrors, VersionAuditor versionAuditor) {
 		this.reportDataLong = reportDataLong;
 		this.reportField = reportField;
 		this.reportExecution = reportExecution;
@@ -170,14 +172,23 @@ public class ReportData implements VersionableAdapter, Comparable {
 	public void setReportDataLock(String reportDataLock) {
 		this.reportDataLock = reportDataLock;
 	}
+	
+	@Column(name = "REPORT_DATA_ORDER", length = 20)
+	public String getReportDataOrder() {
+		return this.reportDataOrder;
+	}
+
+	public void setReportDataOrder(String reportDataOrder) {
+		this.reportDataOrder = reportDataOrder;
+	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportData")
 	@Cascade({ CascadeType.SAVE_UPDATE })
-	public Set<ReportDataError> getReportDataErrors() {
+	public List<ReportDataError> getReportDataErrors() {
 		return this.reportDataErrors;
 	}
 
-	public void setReportDataErrors(Set<ReportDataError> reportDataErrors) {
+	public void setReportDataErrors(List<ReportDataError> reportDataErrors) {
 		this.reportDataErrors = reportDataErrors;
 	}
 
@@ -244,15 +255,15 @@ public class ReportData implements VersionableAdapter, Comparable {
 		return false;
 	}
 
-	public int compareTo(Object object) {
-		int result = 0;
-		if (object instanceof ReportData) {
-
-			result = ((ReportData) object).getReportField().getReportFieldNum()
-					.compareTo(this.getReportField().getReportFieldNum());
-
-		}
-		return result;
-	}
+	// public int compareTo(Object object) {
+	// int result = 0;
+	// if (object instanceof ReportData) {
+	//
+	// result = ((ReportData) object).getReportField().getReportFieldNum()
+	// .compareTo(this.getReportField().getReportFieldNum());
+	//
+	// }
+	// return result;
+	// }
 
 }

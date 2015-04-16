@@ -2,8 +2,8 @@ package com.entities.entity.reportingtool;
 
 // Generated 11-feb-2015 16:49:54 by Hibernate Tools 4.0.0
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -32,10 +32,10 @@ public class Company implements VersionableAdapter {
 	private String companyCountry;
 	private String companyCode;
 	private String companyDesc;
-	private Set<ReportExecution> reportExecutions = new HashSet(0);
-	private Set<Fund> funds = new HashSet(0);
-	private Set<Department> departments = new HashSet(0);
-	private Set<ReportCustom> reportCustoms = new HashSet(0);
+	private List<ReportExecution> reportExecutions = new ArrayList<ReportExecution>();
+	private List<Fund> funds = new ArrayList<Fund>();
+	private List<Department> departments = new ArrayList<Department>();
+	private List<ReportCustom> reportCustoms = new ArrayList<ReportCustom>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -55,8 +55,8 @@ public class Company implements VersionableAdapter {
 
 	public Company(String companyName, String companyCountry,
 			String companyCode, String companyDesc,
-			Set<ReportExecution> reportExecutions, Set<Fund> funds,
-			Set<Department> departments, Set<ReportCustom> reportCustoms,
+			List<ReportExecution> reportExecutions, List<Fund> funds,
+			List<Department> departments, List<ReportCustom> reportCustoms,
 			VersionAuditor versionAuditor) {
 		this.companyName = companyName;
 		this.companyCountry = companyCountry;
@@ -118,38 +118,38 @@ public class Company implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
-	public Set<ReportExecution> getReportExecutions() {
+	public List<ReportExecution> getReportExecutions() {
 		return this.reportExecutions;
 	}
 
-	public void setReportExecutions(Set<ReportExecution> reportExecutions) {
+	public void setReportExecutions(List<ReportExecution> reportExecutions) {
 		this.reportExecutions = reportExecutions;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
-	public Set<Fund> getFunds() {
+	public List<Fund> getFunds() {
 		return this.funds;
 	}
 
-	public void setFunds(Set<Fund> funds) {
+	public void setFunds(List<Fund> funds) {
 		this.funds = funds;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
-	public Set<Department> getDepartments() {
+	public List<Department> getDepartments() {
 		return this.departments;
 	}
 
-	public void setDepartments(Set<Department> departments) {
+	public void setDepartments(List<Department> departments) {
 		this.departments = departments;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
-	public Set<ReportCustom> getReportCustoms() {
+	public List<ReportCustom> getReportCustoms() {
 		return this.reportCustoms;
 	}
 
-	public void setReportCustoms(Set<ReportCustom> reportCustoms) {
+	public void setReportCustoms(List<ReportCustom> reportCustoms) {
 		this.reportCustoms = reportCustoms;
 	}
 

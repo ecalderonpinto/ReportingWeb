@@ -2,8 +2,8 @@ package com.entities.entity.reportingtool;
 
 // Generated 11-feb-2015 16:49:54 by Hibernate Tools 4.0.0
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -37,8 +37,8 @@ public class Fund implements VersionableAdapter {
 	private String fundCode;
 	private String fundDesc;
 	private String fundClass;
-	private Set<FundGroup> fundGroups = new HashSet(0);
-	private Set<ReportExecution> reportExecutions = new HashSet(0);
+	private List<FundGroup> fundGroups = new ArrayList<FundGroup>();
+	private List<ReportExecution> reportExecutions = new ArrayList<ReportExecution>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -59,7 +59,7 @@ public class Fund implements VersionableAdapter {
 
 	public Fund(Company company, String fundName, String fundIsin,
 			String fundCode, String fundDesc, String fundClass,
-			Set<FundGroup> fundGroups, Set<ReportExecution> reportExecutions,
+			List<FundGroup> fundGroups, List<ReportExecution> reportExecutions,
 			VersionAuditor versionAuditor) {
 		this.company = company;
 		this.fundName = fundName;
@@ -140,20 +140,20 @@ public class Fund implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fund")
-	public Set<FundGroup> getFundGroups() {
+	public List<FundGroup> getFundGroups() {
 		return this.fundGroups;
 	}
 
-	public void setFundGroups(Set<FundGroup> fundGroups) {
+	public void setFundGroups(List<FundGroup> fundGroups) {
 		this.fundGroups = fundGroups;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fund")
-	public Set<ReportExecution> getReportExecutions() {
+	public List<ReportExecution> getReportExecutions() {
 		return this.reportExecutions;
 	}
 
-	public void setReportExecutions(Set<ReportExecution> reportExecutions) {
+	public void setReportExecutions(List<ReportExecution> reportExecutions) {
 		this.reportExecutions = reportExecutions;
 	}
 

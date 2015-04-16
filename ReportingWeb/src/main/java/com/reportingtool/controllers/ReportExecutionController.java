@@ -1,9 +1,10 @@
 package com.reportingtool.controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -50,15 +51,15 @@ public class ReportExecutionController {
 		ReportExecution reportExecution = reportExecutionDAO.findById(Long
 				.parseLong(id));
 
-		if (reportExecution.getReportErrors().size() > 0) {
-			System.out.println("Tiene errores...");
-		}
+		// if (reportExecution.getReportErrors().size() > 0) {
+		// System.out.println("Tiene errores...");
+		// }
 
 		List<String> sections = getSections(reportExecution);
 
 		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
 
-		//reportExecutionOrder(reportExecution);
+		reportExecution = reportExecutionOrder(reportExecution);
 
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
@@ -83,10 +84,10 @@ public class ReportExecutionController {
 
 		System.out.println("Submit - ReportExecution;");
 
-		for (ReportData reportData : reportExecution.getReportDatas()) {
-			System.out.println(reportData.getReportField().getReportFieldName()
-					+ " - " + reportData.getReportDataText());
-		}
+		// for (ReportData reportData : reportExecution.getReportDatas()) {
+		// System.out.println(reportData.getReportField().getReportFieldName()
+		// + " - " + reportData.getReportDataText());
+		// }
 
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
@@ -105,6 +106,8 @@ public class ReportExecutionController {
 		List<String> sections = getSections(reportExecution);
 
 		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
+
+		reportExecution = reportExecutionOrder(reportExecution);
 
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
@@ -144,6 +147,12 @@ public class ReportExecutionController {
 		return result;
 	}
 
+	/**
+	 * Function that build a List<String> with sectios to display
+	 * 
+	 * @param reportExecution
+	 * @return List<String> of sections to display
+	 */
 	private List<String> getSections(ReportExecution reportExecution) {
 
 		List<String> result = new ArrayList<String>();
@@ -164,18 +173,62 @@ public class ReportExecutionController {
 		return result;
 	}
 
-	public ReportExecution reportExecutionOrder(ReportExecution reportExecution) {
-		
-		SortedSet<ReportData> reportDatas =  new TreeSet<ReportData>();
-		
-		for (ReportData reportData : reportExecution.getReportDatas()) {
-			if (reportData.getReportDataBlock() != null) {
-				
+	/**
+	 * Function to sort a reportExecution.reportDatas in order to display
+	 * 
+	 * @param reportExecution
+	 * @return reportExecution sorted
+	 */
+	private ReportExecution reportExecutionOrder(ReportExecution reportExecution) {
+
+		List<ReportData> reportDatas = new ArrayList<ReportData>(
+				reportExecution.getReportDatas());
+
+		List<ReportData> reportDataResult = new ArrayList<ReportData>();
+
+		// temp List with reportDataOrder
+		List<String> orderList = new ArrayList<String>();
+
+		String reportDataOrder = "";
+
+		// first for to create reportDataOrder
+		for (ReportData reportData : reportDatas) {
+			if (reportData.getReportField().getReportFieldSection() != null) {
+				if (reportData.getReportDataBlock() != null) {
+					String[] order = reportData.getReportField()
+							.getReportFieldOrder().split("\\.");
+					// System.out.println("spli: " + Arrays.toString(order));
+
+					// reportDataOrder is section.block.fieldNumber
+					reportDataOrder = order[0] + "."
+							+ reportData.getReportDataBlock()
+							+ reportData.getReportField().getReportFieldNum();
+					reportData.setReportDataOrder(reportDataOrder);
+				} else {
+					// reportDataOrder is section.fieldNumber
+					reportData.setReportDataOrder(reportData.getReportField()
+							.getReportFieldOrder());
+				}
+				orderList.add(reportData.getReportDataOrder());
+			}
+			// System.out.println("reportData1 " +
+			// reportData.getReportDataOrder() + " " +
+			// reportData.getReportField().getReportFieldName());
+		}
+
+		Collections.sort(orderList);
+
+		// second for to create reportDataResult with orderList
+		for (String order : orderList) {
+			// System.out.println("order: " +order);
+			for (ReportData reportData : reportDatas) {
+				if (reportData.getReportDataOrder().equals(order))
+					reportDataResult.add(reportData);
 			}
 		}
-		
-		reportExecution.setReportDatas(reportDatas);
-		
+
+		reportExecution.setReportDatas(reportDataResult);
+
 		return reportExecution;
 	}
 }

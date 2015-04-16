@@ -3,8 +3,8 @@ package com.entities.entity.reportingtool;
 // Generated 11-feb-2015 17:15:14 by Hibernate Tools 4.0.0
 
 import java.math.BigInteger;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -46,9 +46,9 @@ public class ReportField implements VersionableAdapter {
 	private String reportFieldOrder;
 	private String reportFieldRepe;
 	private String reportFieldVersion;
-	private Set<FileColum> fileColums = new HashSet(0);
-	private Set<ReportData> reportDatas = new HashSet(0);
-	private Set<ReportCustom> reportCustoms = new HashSet(0);
+	private List<FileColum> fileColums = new ArrayList<FileColum>();
+	private List<ReportData> reportDatas = new ArrayList<ReportData>();
+	private List<ReportCustom> reportCustoms = new ArrayList<ReportCustom>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -76,8 +76,8 @@ public class ReportField implements VersionableAdapter {
 			String reportFieldFormat, String reportFieldDesc,
 			String reportFieldSection, String reportFieldMask,
 			String reportFieldOrder, String reportFieldRepe,
-			String reportFieldVersion, Set<FileColum> fileColums,
-			Set<ReportData> reportDatas, Set<ReportCustom> reportCustoms,
+			String reportFieldVersion, List<FileColum> fileColums,
+			List<ReportData> reportDatas, List<ReportCustom> reportCustoms,
 			VersionAuditor versionAuditor) {
 		this.reportCatalog = reportCatalog;
 		this.reportFieldParent = reportFieldParent;
@@ -220,29 +220,29 @@ public class ReportField implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportField")
-	public Set<FileColum> getFileColums() {
+	public List<FileColum> getFileColums() {
 		return this.fileColums;
 	}
 
-	public void setFileColums(Set<FileColum> fileColums) {
+	public void setFileColums(List<FileColum> fileColums) {
 		this.fileColums = fileColums;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportField")
-	public Set<ReportData> getReportDatas() {
+	public List<ReportData> getReportDatas() {
 		return this.reportDatas;
 	}
 
-	public void setReportDatas(Set<ReportData> reportDatas) {
+	public void setReportDatas(List<ReportData> reportDatas) {
 		this.reportDatas = reportDatas;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportField")
-	public Set<ReportCustom> getReportCustoms() {
+	public List<ReportCustom> getReportCustoms() {
 		return this.reportCustoms;
 	}
 
-	public void setReportCustoms(Set<ReportCustom> reportCustoms) {
+	public void setReportCustoms(List<ReportCustom> reportCustoms) {
 		this.reportCustoms = reportCustoms;
 	}
 

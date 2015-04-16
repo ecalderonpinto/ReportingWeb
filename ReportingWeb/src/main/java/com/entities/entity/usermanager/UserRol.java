@@ -3,8 +3,8 @@ package com.entities.entity.usermanager;
 // Generated 11-feb-2015 16:49:54 by Hibernate Tools 4.0.0
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -18,7 +18,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -33,8 +32,8 @@ public class UserRol implements VersionableAdapter {
 	private String rolName;
 	private String rolDesc;
 	private BigDecimal rolWeight;
-	private Set<UserRolPermission> userRolPermissions = new HashSet(0);
-	private Set<User> users = new HashSet(0);
+	private List<UserRolPermission> userRolPermissions = new ArrayList<UserRolPermission>();
+	private List<User> users = new ArrayList<User>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -54,7 +53,7 @@ public class UserRol implements VersionableAdapter {
 	}
 
 	public UserRol(String rolName, String rolDesc, BigDecimal rolWeight,
-			Set<UserRolPermission> userRolPermissions, Set<User> users,
+			List<UserRolPermission> userRolPermissions, List<User> users,
 			VersionAuditor versionAuditor) {
 		this.rolName = rolName;
 		this.rolDesc = rolDesc;
@@ -104,20 +103,20 @@ public class UserRol implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userRol")
-	public Set<UserRolPermission> getUserRolPermissions() {
+	public List<UserRolPermission> getUserRolPermissions() {
 		return this.userRolPermissions;
 	}
 
-	public void setUserRolPermissions(Set<UserRolPermission> userRolPermissions) {
+	public void setUserRolPermissions(List<UserRolPermission> userRolPermissions) {
 		this.userRolPermissions = userRolPermissions;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userRol")
-	public Set<User> getUsers() {
+	public List<User> getUsers() {
 		return this.users;
 	}
 
-	public void setUsers(Set<User> users) {
+	public void setUsers(List<User> users) {
 		this.users = users;
 	}
 

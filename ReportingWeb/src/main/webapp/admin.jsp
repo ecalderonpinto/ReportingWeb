@@ -6,7 +6,7 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="#">Admin</a></li>
+	<li><a href="admin.do">General Admin</a></li>
 </ul>
 <!-- end: Breadcrumb -->
 

@@ -2,10 +2,9 @@ package com.entities.entity.reportingtool;
 
 // Generated 11-feb-2015 17:15:14 by Hibernate Tools 4.0.0
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -63,9 +62,9 @@ public class ReportExecution implements VersionableAdapter {
 	private String signedSentId;
 	private String reportLocked;
 	private boolean hasErrors;
-	private Set<ReportData> reportDatas = new HashSet(0);
-	private Set<ReportError> reportErrors = new HashSet(0);
-	private Set<LoadFile> loadFiles = new HashSet(0);
+	private List<ReportData> reportDatas = new ArrayList<ReportData>();
+	private List<ReportError> reportErrors = new ArrayList<ReportError>();
+	private List<LoadFile> loadFiles = new ArrayList<LoadFile>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -94,8 +93,8 @@ public class ReportExecution implements VersionableAdapter {
 			String signedUserFlag, Date signedUserDate, String signedUserId,
 			String signedSuperFlag, Date signedSuperDate, String signedSuperId,
 			String signedSentFlag, Date signedSentDate, String signedSentId,
-			String reportLocked, Set<ReportData> reportDatas,
-			Set<ReportError> reportErrors, VersionAuditor versionAuditor) {
+			String reportLocked, List<ReportData> reportDatas,
+			List<ReportError> reportErrors, VersionAuditor versionAuditor) {
 		this.reportCatalog = reportCatalog;
 		this.company = company;
 		this.fund = fund;
@@ -324,32 +323,32 @@ public class ReportExecution implements VersionableAdapter {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportExecution")
 	@OrderBy("reportField ASC")
 	@Cascade({ CascadeType.SAVE_UPDATE })
-	public Set<ReportData> getReportDatas() {
+	public List<ReportData> getReportDatas() {
 		return this.reportDatas;
 	}
 
-	public void setReportDatas(Set<ReportData> reportDatas) {
+	public void setReportDatas(List<ReportData> reportDatas) {
 		this.reportDatas = reportDatas;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportExecution")
 	@Cascade({ CascadeType.SAVE_UPDATE })
-	public Set<ReportError> getReportErrors() {
+	public List<ReportError> getReportErrors() {
 		return this.reportErrors;
 	}
 
-	public void setReportErrors(Set<ReportError> reportErrors) {
+	public void setReportErrors(List<ReportError> reportErrors) {
 		this.reportErrors = reportErrors;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@Cascade({ CascadeType.ALL})
 	@JoinTable(name = "T_FILE_ASSIG_EXECUTION", joinColumns = { @JoinColumn(name = "REPORT_EXECUTION_ID", referencedColumnName = "REPORT_EXECUTION_ID") }, inverseJoinColumns = { @JoinColumn(name = "LOAD_FILE_ID", referencedColumnName = "LOAD_FILE_ID") })
-	public Set<LoadFile> getLoadFiles() {
+	public List<LoadFile> getLoadFiles() {
 		return loadFiles;
 	}
 
-	public void setLoadFiles(Set<LoadFile> loadFiles) {
+	public void setLoadFiles(List<LoadFile> loadFiles) {
 		this.loadFiles = loadFiles;
 	}
 

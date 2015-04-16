@@ -3,8 +3,8 @@ package com.entities.entity.loader;
 // Generated 11-feb-2015 16:49:54 by Hibernate Tools 4.0.0
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -41,8 +41,8 @@ public class FileColum implements VersionableAdapter {
 	private String columDesc;
 	private String columFormat;
 	private String columBlock;
-	private Set<LoadRawData> loadRawDatas = new HashSet(0);
-	private Set<FileColumList> fileColumLists = new HashSet(0);
+	private List<LoadRawData> loadRawDatas = new ArrayList<LoadRawData>();
+	private List<FileColumList> fileColumLists = new ArrayList<FileColumList>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -64,7 +64,7 @@ public class FileColum implements VersionableAdapter {
 	public FileColum(ReportField reportField, FileConfig fileConfig,
 			String columType, BigDecimal columNumber, String columName,
 			String columDesc, String columFormat,
-			Set<LoadRawData> loadRawDatas, Set<FileColumList> fileColumLists,
+			List<LoadRawData> loadRawDatas, List<FileColumList> fileColumLists,
 			VersionAuditor versionAuditor) {
 		this.reportField = reportField;
 		this.fileConfig = fileConfig;
@@ -165,20 +165,20 @@ public class FileColum implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fileColum")
-	public Set<LoadRawData> getLoadRawDatas() {
+	public List<LoadRawData> getLoadRawDatas() {
 		return this.loadRawDatas;
 	}
 
-	public void setLoadRawDatas(Set<LoadRawData> loadRawDatas) {
+	public void setLoadRawDatas(List<LoadRawData> loadRawDatas) {
 		this.loadRawDatas = loadRawDatas;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "fileColum")
-	public Set<FileColumList> getFileColumLists() {
+	public List<FileColumList> getFileColumLists() {
 		return this.fileColumLists;
 	}
 
-	public void setFileColumLists(Set<FileColumList> fileColumLists) {
+	public void setFileColumLists(List<FileColumList> fileColumLists) {
 		this.fileColumLists = fileColumLists;
 	}
 

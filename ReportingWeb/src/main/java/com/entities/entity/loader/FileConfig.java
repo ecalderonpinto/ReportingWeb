@@ -2,8 +2,8 @@ package com.entities.entity.loader;
 
 // Generated 11-feb-2015 16:49:54 by Hibernate Tools 4.0.0
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -22,7 +22,6 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 import com.entities.entity.reportingtool.Department;
-import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -42,8 +41,8 @@ public class FileConfig implements VersionableAdapter {
 	private String fileCron;
 	private String filePath;
 	private boolean header;
-	private Set<LoadFile> loadFiles = new HashSet(0);
-	private Set<FileColum> fileColums = new HashSet(0);
+	private List<LoadFile> loadFiles = new ArrayList<LoadFile>();
+	private List<FileColum> fileColums = new ArrayList<FileColum>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -64,8 +63,8 @@ public class FileConfig implements VersionableAdapter {
 
 	public FileConfig(Department department, String fileType,
 			String fileConfigName, String fileSeparator, String fileFormatLine,
-			String fileCron, String filePath, boolean header, Set<LoadFile> loadFiles,
-			Set<FileColum> fileColums, VersionAuditor versionAuditor) {
+			String fileCron, String filePath, boolean header, List<LoadFile> loadFiles,
+			List<FileColum> fileColums, VersionAuditor versionAuditor) {
 		this.department = department;
 		this.fileType = fileType;
 		this.fileConfigName = fileConfigName;
@@ -165,11 +164,11 @@ public class FileConfig implements VersionableAdapter {
 	}
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fileConfig")
-	public Set<LoadFile> getLoadFiles() {
+	public List<LoadFile> getLoadFiles() {
 		return this.loadFiles;
 	}
 
-	public void setLoadFiles(Set<LoadFile> loadFiles) {
+	public void setLoadFiles(List<LoadFile> loadFiles) {
 		this.loadFiles = loadFiles;
 	}
 
@@ -177,11 +176,11 @@ public class FileConfig implements VersionableAdapter {
 //	@OneToMany(fetch = FetchType.EAGER, mappedBy = "fileConfig")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fileConfig")
 	@OrderBy("columNumber ASC")
-	public Set<FileColum> getFileColums() {
+	public List<FileColum> getFileColums() {
 		return this.fileColums;
 	}
 
-	public void setFileColums(Set<FileColum> fileColums) {
+	public void setFileColums(List<FileColum> fileColums) {
 		this.fileColums = fileColums;
 	}
 

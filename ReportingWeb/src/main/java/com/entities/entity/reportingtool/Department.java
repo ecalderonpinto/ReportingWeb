@@ -2,8 +2,8 @@ package com.entities.entity.reportingtool;
 
 // Generated 11-feb-2015 16:49:54 by Hibernate Tools 4.0.0
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -38,9 +38,9 @@ public class Department implements VersionableAdapter {
 	private String departmentCode;
 	private String departmentDesc;
 	private String departmentCountry;
-	private Set<LoadFile> loadFiles = new HashSet(0);
-	private Set<FundGroup> fundGroups = new HashSet(0);
-	private Set<FileConfig> fileConfigs = new HashSet(0);
+	private List<LoadFile> loadFiles = new ArrayList<LoadFile>();
+	private List<FundGroup> fundGroups = new ArrayList<FundGroup>();
+	private List<FileConfig> fileConfigs = new ArrayList<FileConfig>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -61,8 +61,8 @@ public class Department implements VersionableAdapter {
 
 	public Department(Company company, String departmentName,
 			String departmentCode, String departmentDesc,
-			String departmentCountry, Set<LoadFile> loadFiles,
-			Set<FundGroup> fundGroups, Set<FileConfig> fileConfigs,
+			String departmentCountry, List<LoadFile> loadFiles,
+			List<FundGroup> fundGroups, List<FileConfig> fileConfigs,
 			VersionAuditor versionAuditor) {
 		this.company = company;
 		this.departmentName = departmentName;
@@ -134,29 +134,29 @@ public class Department implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
-	public Set<LoadFile> getLoadFiles() {
+	public List<LoadFile> getLoadFiles() {
 		return this.loadFiles;
 	}
 
-	public void setLoadFiles(Set<LoadFile> loadFiles) {
+	public void setLoadFiles(List<LoadFile> loadFiles) {
 		this.loadFiles = loadFiles;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
-	public Set<FundGroup> getFundGroups() {
+	public List<FundGroup> getFundGroups() {
 		return this.fundGroups;
 	}
 
-	public void setFundGroups(Set<FundGroup> fundGroups) {
+	public void setFundGroups(List<FundGroup> fundGroups) {
 		this.fundGroups = fundGroups;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
-	public Set<FileConfig> getFileConfigs() {
+	public List<FileConfig> getFileConfigs() {
 		return this.fileConfigs;
 	}
 
-	public void setFileConfigs(Set<FileConfig> fileConfigs) {
+	public void setFileConfigs(List<FileConfig> fileConfigs) {
 		this.fileConfigs = fileConfigs;
 	}
 

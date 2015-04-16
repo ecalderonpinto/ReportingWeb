@@ -2,10 +2,9 @@ package com.entities.entity.reportingtool;
 
 // Generated 11-feb-2015 17:15:14 by Hibernate Tools 4.0.0
 
-import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -31,7 +30,7 @@ public class ReportDataLong implements VersionableAdapter {
 
 	private long id;
 	private byte[] reportDataBlob;
-	private Set<ReportData> reportDatas = new HashSet(0);
+	private List<ReportData> reportDatas = new ArrayList<ReportData>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -49,7 +48,7 @@ public class ReportDataLong implements VersionableAdapter {
 		this.versionAuditor = versionAuditor;
 	}
 
-	public ReportDataLong(byte[] reportDataBlob, Set<ReportData> reportDatas,
+	public ReportDataLong(byte[] reportDataBlob, List<ReportData> reportDatas,
 			VersionAuditor versionAuditor) {
 		this.reportDataBlob = reportDataBlob;
 		this.reportDatas = reportDatas;
@@ -78,11 +77,11 @@ public class ReportDataLong implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportDataLong")
-	public Set<ReportData> getReportDatas() {
+	public List<ReportData> getReportDatas() {
 		return this.reportDatas;
 	}
 
-	public void setReportDatas(Set<ReportData> reportDatas) {
+	public void setReportDatas(List<ReportData> reportDatas) {
 		this.reportDatas = reportDatas;
 	}
 

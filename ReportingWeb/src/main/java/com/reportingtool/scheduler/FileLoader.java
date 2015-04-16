@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 import javax.sql.rowset.serial.SerialException;
@@ -101,7 +101,7 @@ public class FileLoader {
 		// Create LoadFile Object;
 		LoadFile loadFile = new LoadFile(this.fileConfig.getDepartment(),
 				this.fileConfig, new Date(), this.fileName,
-				new HashSet<LoadError>(), new HashSet<LoadRaw>(),
+				new ArrayList<LoadError>(), new ArrayList<LoadRaw>(),
 				new VersionAuditor("admin"));
 
 		// Get records of the load file;
@@ -112,7 +112,7 @@ public class FileLoader {
 			String record = records.get(i);
 			// Create LoadRaw Object;
 			LoadRaw loadRaw = new LoadRaw(loadFile, new BigDecimal(i), null,
-					null, null, new HashSet<LoadRawData>());
+					null, null, new ArrayList<LoadRawData>());
 
 			loadRaw.setLoadRawBlob(record.getBytes());
 

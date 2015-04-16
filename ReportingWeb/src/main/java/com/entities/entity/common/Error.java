@@ -2,25 +2,22 @@ package com.entities.entity.common;
 
 // Generated 11-feb-2015 17:15:14 by Hibernate Tools 4.0.0
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
 import com.entities.entity.loader.LoadError;
-import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportError;
 import com.entities.utilities.hibernate.VersionAuditor;
@@ -46,10 +43,9 @@ public class Error implements VersionableAdapter {
 	private String errorLevel;
 	private String errorText;
 	private String errorAction;
-	private Set<ReportDataError> reportDataErrors = new HashSet<ReportDataError>(
-			0);
-	private Set<LoadError> loadErrors = new HashSet<LoadError>(0);
-	private Set<ReportError> reportErrors = new HashSet<ReportError>(0);
+	private List<ReportDataError> reportDataErrors = new ArrayList<ReportDataError>();
+	private List<LoadError> loadErrors = new ArrayList<LoadError>();
+	private List<ReportError> reportErrors = new ArrayList<ReportError>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -71,8 +67,8 @@ public class Error implements VersionableAdapter {
 
 	public Error(String errorType, String errorName, String errorLevel,
 			String errorText, String errorAction,
-			Set<ReportDataError> reportDataErrors, Set<LoadError> loadErrors,
-			Set<ReportError> reportErrors, VersionAuditor versionAuditor) {
+			List<ReportDataError> reportDataErrors, List<LoadError> loadErrors,
+			List<ReportError> reportErrors, VersionAuditor versionAuditor) {
 		this.errorType = errorType;
 		this.errorName = errorName;
 		this.errorLevel = errorLevel;
@@ -142,29 +138,29 @@ public class Error implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "error")
-	public Set<ReportDataError> getReportDataErrors() {
+	public List<ReportDataError> getReportDataErrors() {
 		return this.reportDataErrors;
 	}
 
-	public void setReportDataErrors(Set<ReportDataError> reportDataErrors) {
+	public void setReportDataErrors(List<ReportDataError> reportDataErrors) {
 		this.reportDataErrors = reportDataErrors;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "error")
-	public Set<LoadError> getLoadErrors() {
+	public List<LoadError> getLoadErrors() {
 		return this.loadErrors;
 	}
 
-	public void setLoadErrors(Set<LoadError> loadErrors) {
+	public void setLoadErrors(List<LoadError> loadErrors) {
 		this.loadErrors = loadErrors;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "error")
-	public Set<ReportError> getReportErrors() {
+	public List<ReportError> getReportErrors() {
 		return this.reportErrors;
 	}
 
-	public void setReportErrors(Set<ReportError> reportErrors) {
+	public void setReportErrors(List<ReportError> reportErrors) {
 		this.reportErrors = reportErrors;
 	}
 

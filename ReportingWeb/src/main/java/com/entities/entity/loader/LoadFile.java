@@ -2,9 +2,9 @@ package com.entities.entity.loader;
 
 // Generated 11-feb-2015 16:49:54 by Hibernate Tools 4.0.0
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -29,7 +29,6 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import com.entities.entity.reportingtool.Department;
-import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
@@ -46,9 +45,9 @@ public class LoadFile implements VersionableAdapter {
 	private FileConfig fileConfig;
 	private Date loadFileDate;
 	private String loadFileName;
-	private Set<LoadError> loadErrors = new HashSet(0);
-	private Set<LoadRaw> loadRaws = new HashSet(0);
-	private Set<ReportExecution> reportExecutions;
+	private List<LoadError> loadErrors = new ArrayList<LoadError>();
+	private List<LoadRaw> loadRaws = new ArrayList<LoadRaw>();
+	private List<ReportExecution> reportExecutions;
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -68,8 +67,8 @@ public class LoadFile implements VersionableAdapter {
 	}
 
 	public LoadFile(Department department, FileConfig fileConfig,
-			Date loadFileDate, String loadFileName, Set<LoadError> loadErrors,
-			Set<LoadRaw> loadRaws, VersionAuditor versionAuditor) {
+			Date loadFileDate, String loadFileName, List<LoadError> loadErrors,
+			List<LoadRaw> loadRaws, VersionAuditor versionAuditor) {
 		this.department = department;
 		this.fileConfig = fileConfig;
 		this.loadFileDate = loadFileDate;
@@ -132,31 +131,31 @@ public class LoadFile implements VersionableAdapter {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loadFile")
 	@Cascade({ CascadeType.SAVE_UPDATE })
-	public Set<LoadError> getLoadErrors() {
+	public List<LoadError> getLoadErrors() {
 		return this.loadErrors;
 	}
 
-	public void setLoadErrors(Set<LoadError> loadErrors) {
+	public void setLoadErrors(List<LoadError> loadErrors) {
 		this.loadErrors = loadErrors;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loadFile")
 	@Cascade({ CascadeType.SAVE_UPDATE })
 	@OrderBy("loadLineNumber ASC")
-	public Set<LoadRaw> getLoadRaws() {
+	public List<LoadRaw> getLoadRaws() {
 		return this.loadRaws;
 	}
 
-	public void setLoadRaws(Set<LoadRaw> loadRaws) {
+	public void setLoadRaws(List<LoadRaw> loadRaws) {
 		this.loadRaws = loadRaws;
 	}
 
 	@ManyToMany(mappedBy = "loadFiles")
-	public Set<ReportExecution> getReportExecutions() {
+	public List<ReportExecution> getReportExecutions() {
 		return this.reportExecutions;
 	}
 
-	public void setReportExecutions(Set<ReportExecution> reportExecutions) {
+	public void setReportExecutions(List<ReportExecution> reportExecutions) {
 		this.reportExecutions = reportExecutions;
 	}
 

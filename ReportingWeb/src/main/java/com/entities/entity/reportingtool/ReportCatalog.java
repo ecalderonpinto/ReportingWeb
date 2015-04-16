@@ -2,8 +2,8 @@ package com.entities.entity.reportingtool;
 
 // Generated 11-feb-2015 17:15:14 by Hibernate Tools 4.0.0
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -36,10 +36,10 @@ public class ReportCatalog implements VersionableAdapter {
 	private String reportLevel;
 	private String reportCatalogName;
 	private String reportCatalogDesc;
-	private Set<ReportCustom> reportCustoms = new HashSet(0);
-	private Set<ReportField> reportFields = new HashSet(0);
-	private Set<ReportExecution> reportExecutions = new HashSet(0);
-	private Set<ReportSemantic> reportSemantics = new HashSet(0);
+	private List<ReportCustom> reportCustoms = new ArrayList<ReportCustom>();
+	private List<ReportField> reportFields = new ArrayList<ReportField>();
+	private List<ReportExecution> reportExecutions = new ArrayList<ReportExecution>();
+	private List<ReportSemantic> reportSemantics = new ArrayList<ReportSemantic>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -62,8 +62,8 @@ public class ReportCatalog implements VersionableAdapter {
 
 	public ReportCatalog(String reportVersion, String reportLevel,
 			String reportCatalogName, String reportCatalogDesc,
-			Set<ReportCustom> reportCustoms, Set<ReportField> reportFields,
-			Set<ReportExecution> reportExecutions, VersionAuditor versionAuditor) {
+			List<ReportCustom> reportCustoms, List<ReportField> reportFields,
+			List<ReportExecution> reportExecutions, VersionAuditor versionAuditor) {
 		this.reportVersion = reportVersion;
 		this.reportLevel = reportLevel;
 		this.reportCatalogName = reportCatalogName;
@@ -123,40 +123,40 @@ public class ReportCatalog implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportCatalog")
-	public Set<ReportCustom> getReportCustoms() {
+	public List<ReportCustom> getReportCustoms() {
 		return this.reportCustoms;
 	}
 
-	public void setReportCustoms(Set<ReportCustom> reportCustoms) {
+	public void setReportCustoms(List<ReportCustom> reportCustoms) {
 		this.reportCustoms = reportCustoms;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportCatalog")
 	@OrderBy("reportFieldNum ASC")
 	@Cascade({ CascadeType.SAVE_UPDATE })
-	public Set<ReportField> getReportFields() {
+	public List<ReportField> getReportFields() {
 		return this.reportFields;
 	}
 
-	public void setReportFields(Set<ReportField> reportFields) {
+	public void setReportFields(List<ReportField> reportFields) {
 		this.reportFields = reportFields;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportCatalog")
-	public Set<ReportExecution> getReportExecutions() {
+	public List<ReportExecution> getReportExecutions() {
 		return this.reportExecutions;
 	}
 
-	public void setReportExecutions(Set<ReportExecution> reportExecutions) {
+	public void setReportExecutions(List<ReportExecution> reportExecutions) {
 		this.reportExecutions = reportExecutions;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportCatalog")
-	public Set<ReportSemantic> getReportSemantics() {
+	public List<ReportSemantic> getReportSemantics() {
 		return this.reportSemantics;
 	}
 
-	public void setReportSemantics(Set<ReportSemantic> reportSemantics) {
+	public void setReportSemantics(List<ReportSemantic> reportSemantics) {
 		this.reportSemantics = reportSemantics;
 	}
 
