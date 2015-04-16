@@ -57,10 +57,19 @@
 		$('#loading').show();
 
 	}
-	 $(document).ready(function() {
-	    $( ".datepicker" ).datepicker();
-		$( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-		$( ".datepicker" ).datepicker( "option", "firstDay", 1 );
+	/* TODO con esto formatea las fechas bien pero no las recoge y da fallos ...*/
+	$(document).ready(function() {
+	     $( '.datepicker' ).datepicker();
+		$( '.datepicker' ).datepicker( 'option', 'dateFormat', 'yy-mm-dd' );
+		$( '.datepicker' ).datepicker( 'option', 'firstDay', 1 );
+		 
+		$('.datepicker').each(function(i){
+			/* alert($('.datepicker')[i].value); */
+			/* alert($('.datepicker')[i].datepicker() ); */
+			/* $( '.datepicker' )[i].datepicker( 'setDate', $('.datepicker')[i].value ); */
+			/* $( $('.datepicker')[i].id ).datepicker( 'setDate', $('.datepicker')[i].value ); */		
+			/* document.getElementById($('.datepicker')[i].id).datepicker( 'setDate', document.getElementById($('.datepicker')[i].value )); */
+		});
 	});
 </script>
 <!-- end: JavaScript -->

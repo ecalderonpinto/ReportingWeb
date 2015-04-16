@@ -54,10 +54,6 @@ public class ReportExecutionController {
 		ReportExecution reportExecution = reportExecutionDAO.findById(Long
 				.parseLong(id));
 
-		// if (reportExecution.getReportErrors().size() > 0) {
-		// System.out.println("Tiene errores...");
-		// }
-
 		List<String> sections = getSections(reportExecution);
 
 		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);

@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- start: Breadcrumb -->
 <ul class="breadcrumb">
@@ -171,10 +171,21 @@
 															items="${fn:split(fieldlistmap[dropdownfinal],',' ) }" />
 													</c:when>
 													<c:otherwise>
-														<!-- Text -->
-														<form:input
-															path="reportDatas[${status.index}].reportDataText"
-															cssClass="input-xlarge" />
+														<c:choose>
+															<c:when
+																test="${reportData.reportField.reportFieldMask == 'DATE'}">
+																<!-- Date -->
+																<form:input
+																	path="reportDatas[${status.index}].reportDataText"
+																	cssClass="input-xlarge datepicker" />
+															</c:when>
+															<c:otherwise>
+																<!-- Text -->
+																<form:input
+																	path="reportDatas[${status.index}].reportDataText"
+																	cssClass="input-xlarge" />
+															</c:otherwise>
+														</c:choose>
 													</c:otherwise>
 												</c:choose>
 												<span class="help-inline"> <c:forEach
