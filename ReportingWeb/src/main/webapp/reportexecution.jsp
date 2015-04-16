@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- start: Breadcrumb -->
 <ul class="breadcrumb">
@@ -124,14 +125,14 @@
 
 	<!-- Old part -->
 
-	 <c:forEach var="section" varStatus="status" items="${sections}">
+	<c:forEach var="section" varStatus="status" items="${sections}">
 
 		<div class="row-fluid">
 			<div class="box span12">
 				<div class="box-header" data-original-title>
 					<h2>
-						<i class="halflings-icon edit"></i> <span class="break"></span>
-						${section}
+						<i class="halflings-icon edit"></i> <span class="break"></span> <a
+							href="#" class="btn-minimize">${section}</a>
 					</h2>
 					<div class="box-icon">
 						<a href="#" class="btn-minimize"><i
@@ -145,7 +146,6 @@
 							<c:if
 								test="${reportData.reportField.reportFieldSection == section}">
 								<c:choose>
-									
 									<c:when test="${reportData.hasErrors == true}">
 										<!-- Field with Error -->
 										<div class="control-group error">
@@ -153,9 +153,30 @@
 												${reportData.reportField.reportFieldNum}.
 												${reportData.reportField.reportFieldName } </label>
 											<div class="controls">
-												<form:input
-													path="reportDatas[${status.index}].reportDataText"
-													cssClass="input-xlarge" />
+												<!-- Search if is dropdown and set it -->
+												<c:set var="contains" value="false" />
+												<c:set var="dropdown" value="" />
+												<c:forEach var="item" items="${fieldlist}">
+													<c:if
+														test="${item eq reportData.reportField.reportFieldMask}">
+														<c:set var="contains" value="true" />
+														<c:set var="dropdown" value="${item}" />
+													</c:if>
+												</c:forEach>
+												<c:choose>
+													<c:when test="${contains}">
+														<!-- Dropdown -->
+														<form:select
+															path="reportDatas[${status.index}].reportDataText"
+															items="${fn:split(fieldlistmap[dropdownfinal],',' ) }" />
+													</c:when>
+													<c:otherwise>
+														<!-- Text -->
+														<form:input
+															path="reportDatas[${status.index}].reportDataText"
+															cssClass="input-xlarge" />
+													</c:otherwise>
+												</c:choose>
 												<span class="help-inline"> <c:forEach
 														var="reportError" varStatus="status"
 														items="${reportData.reportDataErrors}">
@@ -173,9 +194,41 @@
 												${reportData.reportField.reportFieldNum}.
 												${reportData.reportField.reportFieldName } </label>
 											<div class="controls">
-												<form:input
-													path="reportDatas[${status.index}].reportDataText"
-													cssClass="input-xlarge" />
+												<!-- Search if is dropdown and set it -->
+												<c:set var="contains" value="false" />
+												<c:set var="dropdown" value="" />
+												<c:forEach var="item" items="${fieldlist}">
+													<c:if
+														test="${item eq reportData.reportField.reportFieldMask}">
+														<c:set var="contains" value="true" />
+														<c:set var="dropdown" value="${item}" />
+													</c:if>
+												</c:forEach>
+												<c:choose>
+													<c:when test="${contains}">
+														<!-- Dropdown -->
+														<form:select
+															path="reportDatas[${status.index}].reportDataText"
+															items="${fn:split(fieldlistmap[dropdown],',' ) }" />
+													</c:when>
+													<c:otherwise>
+														<c:choose>
+															<c:when
+																test="${reportData.reportField.reportFieldMask == 'DATE'}">
+																<!-- Date -->
+																<form:input
+																	path="reportDatas[${status.index}].reportDataText"
+																	cssClass="input-xlarge datepicker" />
+															</c:when>
+															<c:otherwise>
+																<!-- Text -->
+																<form:input
+																	path="reportDatas[${status.index}].reportDataText"
+																	cssClass="input-xlarge" />
+															</c:otherwise>
+														</c:choose>
+													</c:otherwise>
+												</c:choose>
 											</div>
 										</div>
 										<!-- /Normal Field -->
@@ -189,7 +242,7 @@
 			<!--/span-->
 		</div>
 	</c:forEach>
- 
+
 	<!-- FormActions -->
 	<div class="row-fluid sortable">
 		<div class="box span12">

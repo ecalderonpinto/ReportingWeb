@@ -1,10 +1,11 @@
 package com.reportingtool.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,9 +24,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.entities.dao.reportingtool.ReportExecutionDAO;
+import com.entities.dao.reportingtool.ReportFieldListDAO;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportExecution;
+import com.entities.entity.reportingtool.ReportFieldList;
 import com.reportingtool.controllers.forms.ReportSectionForm;
 import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.validator.Semantic;
@@ -63,8 +66,14 @@ public class ReportExecutionController {
 
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
+		
+		Map<String, String> fieldListMap = getReportFieldListDropdown();
+		model.addAttribute("fieldlistmap", fieldListMap);
 
-		// // new
+		List<String> fieldList = getReportFieldListTypeString();
+		model.addAttribute("fieldlist", fieldList);
+
+		// // new about sections
 		// List<ReportSectionForm> reportSectionForms =
 		// getReportSections(reportExecution);
 		// for(ReportSectionForm reportSectionForm : reportSectionForms) {
@@ -111,6 +120,12 @@ public class ReportExecutionController {
 
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
+		
+		Map<String, String> fieldListMap = getReportFieldListDropdown();
+		model.addAttribute("fieldlistmap", fieldListMap);
+
+		List<String> fieldList = getReportFieldListTypeString();
+		model.addAttribute("fieldlist", fieldList);
 
 		return "reportexecution";
 	}
@@ -148,7 +163,7 @@ public class ReportExecutionController {
 	}
 
 	/**
-	 * Function that build a List<String> with sectios to display
+	 * Function that build a List<String> with sections to display
 	 * 
 	 * @param reportExecution
 	 * @return List<String> of sections to display
@@ -230,5 +245,66 @@ public class ReportExecutionController {
 		reportExecution.setReportDatas(reportDataResult);
 
 		return reportExecution;
+	}
+
+	/**
+	 * Function create Map<reportFieldType, reportFieldValues> to make dropdown
+	 * @return Map<String, String> of dropdown content
+	 */
+	private Map<String, String> getReportFieldListDropdown() {
+
+		Map<String, String> result = new HashMap<String, String>();
+
+		ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) applicationContext
+				.getBean("reportFieldListDAO");
+
+		List<ReportFieldList> reportFieldLists = reportFieldListDAO.findAll();
+
+		// list of all fieldType, the relation between
+		// reportField.reportFieldMask and reportFieldList
+		List<String> filedTypeList = getReportFieldListTypeString();
+
+		// populate result with dropdowns and their values
+		for (String fieldType : filedTypeList) {
+			String fieldListValues = "";
+			for (ReportFieldList reportFieldList : reportFieldLists) {
+				if (reportFieldList.getReportFieldListType().equals(fieldType))
+					fieldListValues = fieldListValues + ","	+ reportFieldList.getReportFieldListValue();
+			}
+			//System.out.println("dropdown: " + fieldType + "- "+ fieldListValues);
+			
+			result.put(fieldType, fieldListValues);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Function load list of reportFieldListTypes 
+	 * @return List<String> of dropdown types
+	 */
+	private List<String> getReportFieldListTypeString() {
+
+		ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) applicationContext
+				.getBean("reportFieldListDAO");
+
+		List<ReportFieldList> reportFieldLists = reportFieldListDAO.findAll();
+
+		// list of all fieldType, the relation between
+		// reportField.reportFieldMask and reportFieldList
+		List<String> filedTypeList = new ArrayList<String>();
+
+		// create List of all dropdowns
+		for (ReportFieldList reportFieldList : reportFieldLists) {
+			if (!filedTypeList.contains(reportFieldList
+					.getReportFieldListType())) {
+				filedTypeList.add(reportFieldList.getReportFieldListType());
+//				System.out.println("list: "
+//						+ reportFieldList.getReportFieldListType());
+			}
+
+		}
+
+		return filedTypeList;
 	}
 }
