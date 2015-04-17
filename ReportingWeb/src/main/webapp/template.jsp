@@ -55,21 +55,17 @@
 <script type="text/javascript">
 	function loading() {
 		$('#loading').show();
-
 	}
-	/* TODO con esto formatea las fechas bien pero no las recoge y da fallos ...*/
 	$(document).ready(function() {
-	     $( '.datepicker' ).datepicker();
-		$( '.datepicker' ).datepicker( 'option', 'dateFormat', 'yy-mm-dd' );
-		$( '.datepicker' ).datepicker( 'option', 'firstDay', 1 );
-		 
-		$('.datepicker').each(function(i){
-			/* alert($('.datepicker')[i].value); */
-			/* alert($('.datepicker')[i].datepicker() ); */
-			/*  $( '.datepicker' )[i].datepicker( 'setDate', $('.datepicker')[i].value ); */
-			/* $( $('.datepicker')[i].id ).datepicker( 'setDate', $('.datepicker')[i].value ); */		
-			/* document.getElementById($('.datepicker')[i].id).datepicker( 'setDate', document.getElementById($('.datepicker')[i].value )); */
-		});
+		 $('.datepicker').each(function(i){ 
+			var temp = $('.datepicker')[i].value;
+			$( this ).datepicker( 'option', 'dateFormat', 'yy-mm-dd' );
+			$( this ).datepicker( 'option', 'firstDay', 1 );
+			$( this ).datepicker( 'setDate', new Date(temp) );
+			$( this ).datepicker( 'option', 'showOn', 'both' );
+			$( this ).datepicker( 'option', 'buttonImageOnly', true );
+			$( this ).datepicker( 'option', 'buttonImage', 'img/calendar.png' );
+		 }); 
 	});
 </script>
 <!-- end: JavaScript -->
