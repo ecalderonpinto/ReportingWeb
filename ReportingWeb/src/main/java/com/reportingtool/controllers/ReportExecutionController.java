@@ -73,8 +73,9 @@ public class ReportExecutionController {
 		List<String> fieldList = getReportFieldListTypeString();
 		model.addAttribute("fieldlist", fieldList);
 
-		 ReportUtilities.generateDefaultReportDatas(applicationContext, reportExecution, "1.2");
-		
+		ReportUtilities.generateDefaultReportDatas(applicationContext,
+				reportExecution, "1.2");
+
 		reportExecution = addReportDatas(reportExecution);
 
 		reportExecution = reportExecutionOrder(reportExecution);

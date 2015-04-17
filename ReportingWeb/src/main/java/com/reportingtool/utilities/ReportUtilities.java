@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.reportingtool.ReportDataDAO;
+import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
@@ -54,7 +55,8 @@ public class ReportUtilities {
 	}
 
 	/**
-	 * Generate CreationDateAndTime and Version reportData if does not exists
+	 * Generate default reportData of this reportFields: CreationDateAndTime,
+	 * Version and FillingType if does not exists
 	 * 
 	 * @param applicationContext
 	 * @param reportExecution
@@ -68,6 +70,7 @@ public class ReportUtilities {
 		List<ReportData> reportDatas = new ArrayList<ReportData>(
 				reportExecution.getReportDatas());
 
+		// <CreationDateAndTime>
 		if (searchData(reportDatas, "CreationDateAndTime", "3", null) == null) {
 
 			ReportField reportField = new ReportField();
@@ -90,7 +93,7 @@ public class ReportUtilities {
 
 			ReportData reportData = new ReportData(null, reportField,
 					reportExecution, null, null, creationDateTime, null, null,
-					null, new VersionAuditor("generator_xml"));
+					null, new VersionAuditor("utilities"));
 			reportExecution.getReportDatas().add(reportData);
 
 			// save new reportData
@@ -99,6 +102,7 @@ public class ReportUtilities {
 			reportDataDAO.create(reportData);
 		}
 
+		// <Version>
 		if (searchData(reportDatas, "Version", "2", null) == null) {
 
 			ReportField reportField = new ReportField();
@@ -112,7 +116,56 @@ public class ReportUtilities {
 
 			ReportData reportData = new ReportData(null, reportField,
 					reportExecution, null, null, versionNum, null, null, null,
-					new VersionAuditor("generator_xml"));
+					new VersionAuditor("utilities"));
+			reportExecution.getReportDatas().add(reportData);
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+		}
+
+		// <FillingType>
+		if (searchData(reportDatas, "FilingType", "4", null) == null) {
+
+			ReportField reportField = new ReportField();
+			reportField.setReportCatalog(reportExecution.getReportCatalog());
+			reportField.setReportFieldName("FilingType");
+			reportField.setReportFieldNum(new BigInteger("4"));
+
+			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
+					.getBean("reportFieldDAO");
+			reportField = reportFieldDAO.findByExample(reportField).get(0);
+
+			String fillingType = "INIT";
+			// if the reportExecution is new in this year/period -> INIT
+			// if already exists other reportExecution -> AMND
+
+			String year = reportExecution.getReportPeriodYear();
+			String period = reportExecution.getReportPeriodType();
+
+			ReportExecution reportExecutionExample = new ReportExecution();
+			reportExecutionExample.setReportPeriodType(period);
+			reportExecutionExample.setReportPeriodYear(year);
+			reportExecutionExample.setReportCatalog(reportExecution
+					.getReportCatalog());
+			reportExecutionExample.setCompany(reportExecution.getCompany());
+
+			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
+					.getBean("reportExecutionDAO");
+
+			List<ReportExecution> reportExecutionList = reportExecutionDAO
+					.findByExample(reportExecutionExample);
+			
+			if (reportExecutionList.size() > 1) {
+				fillingType = "AMND";
+			}
+
+			System.out.println("creating fillingType " + fillingType);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, fillingType, null, null, null,
+					new VersionAuditor("utilities"));
 			reportExecution.getReportDatas().add(reportData);
 
 			// save new reportData
