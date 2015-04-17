@@ -66,7 +66,7 @@
 		$('.datepicker').each(function(i){
 			/* alert($('.datepicker')[i].value); */
 			/* alert($('.datepicker')[i].datepicker() ); */
-			/* $( '.datepicker' )[i].datepicker( 'setDate', $('.datepicker')[i].value ); */
+			/*  $( '.datepicker' )[i].datepicker( 'setDate', $('.datepicker')[i].value ); */
 			/* $( $('.datepicker')[i].id ).datepicker( 'setDate', $('.datepicker')[i].value ); */		
 			/* document.getElementById($('.datepicker')[i].id).datepicker( 'setDate', document.getElementById($('.datepicker')[i].value )); */
 		});

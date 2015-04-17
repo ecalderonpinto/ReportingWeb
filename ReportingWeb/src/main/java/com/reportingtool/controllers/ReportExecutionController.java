@@ -1,7 +1,6 @@
 package com.reportingtool.controllers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +27,9 @@ import com.entities.dao.reportingtool.ReportFieldListDAO;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportExecution;
+import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
+import com.entities.utilities.hibernate.VersionAuditor;
 import com.reportingtool.controllers.forms.ReportSectionForm;
 import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.validator.Semantic;
@@ -58,16 +59,18 @@ public class ReportExecutionController {
 
 		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
 
-		reportExecution = reportExecutionOrder(reportExecution);
-
-		model.addAttribute("reportexecution", reportExecution);
-		model.addAttribute("sections", sections);
-		
 		Map<String, String> fieldListMap = getReportFieldListDropdown();
 		model.addAttribute("fieldlistmap", fieldListMap);
 
 		List<String> fieldList = getReportFieldListTypeString();
 		model.addAttribute("fieldlist", fieldList);
+
+		reportExecution = addReportDatas(reportExecution);
+
+		reportExecution = reportExecutionOrder(reportExecution);
+
+		model.addAttribute("reportexecution", reportExecution);
+		model.addAttribute("sections", sections);
 
 		// // new about sections
 		// List<ReportSectionForm> reportSectionForms =
@@ -94,9 +97,13 @@ public class ReportExecutionController {
 		// + " - " + reportData.getReportDataText());
 		// }
 
+		System.out.println("cleaning reportDatas");
+		reportExecution = cleanReportDatas(reportExecution);
+
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
 
+		System.out.println("save reportExecution");
 		reportExecutionDAO.edit(reportExecution);
 		reportExecution = reportExecutionDAO.findById(reportExecution.getId());
 
@@ -116,7 +123,7 @@ public class ReportExecutionController {
 
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
-		
+
 		Map<String, String> fieldListMap = getReportFieldListDropdown();
 		model.addAttribute("fieldlistmap", fieldListMap);
 
@@ -233,6 +240,8 @@ public class ReportExecutionController {
 		for (String order : orderList) {
 			// System.out.println("order: " +order);
 			for (ReportData reportData : reportDatas) {
+				// System.out.println("order: " + order + " -> " +
+				// reportData.getReportDataOrder());
 				if (reportData.getReportDataOrder().equals(order))
 					reportDataResult.add(reportData);
 			}
@@ -244,7 +253,86 @@ public class ReportExecutionController {
 	}
 
 	/**
+	 * Function that add all reportData possible, UI can populate them
+	 * 
+	 * @param reportExecution
+	 * @return reportExecution with all reportDatas to fill
+	 */
+	private ReportExecution addReportDatas(ReportExecution reportExecution) {
+
+		List<ReportData> reportDatas = new ArrayList<ReportData>();
+		List<ReportField> reportFields = new ArrayList<ReportField>(
+				reportExecution.getReportCatalog().getReportFields());
+
+		boolean flagField = false;
+		for (ReportField reportField : reportFields) {
+			if (reportField.getReportFieldSection() == null) {
+				continue;
+			}
+			// System.out.println("reportField -> "
+			// + reportField.getReportFieldName());
+			for (ReportData reportData : reportExecution.getReportDatas()) {
+				// System.out.println("reportData "
+				// + reportData.getReportDataText());
+				if (reportData.getReportField().equals(reportField)) {
+					// reportData already exists
+					reportDatas.add(reportData);
+					flagField = true;
+					// System.out.println("reportData added");
+				}
+			}
+			if (flagField == false) {
+				// add reportData
+				System.out.println("no reportField, adding reportData of "
+						+ reportField.getReportFieldName() + "-"
+						+ reportField.getReportFieldNum().toString());
+				ReportData reportDataTemp = new ReportData(null, reportField,
+						reportExecution, null, null, "", null, null, null,
+						new VersionAuditor("generated"));
+				reportDatas.add(reportDataTemp);
+			}
+			flagField = false;
+		}
+
+		reportExecution.setReportDatas(reportDatas);
+
+		return reportExecution;
+	}
+
+	/**
+	 * Function to clean all empty reportDatas which are not populated by UI
+	 * 
+	 * @param reportExecution
+	 * @return reportExecution cleaned of empty reportDatas
+	 */
+	private ReportExecution cleanReportDatas(ReportExecution reportExecution) {
+
+		List<ReportData> reportDatas = new ArrayList<ReportData>();
+
+		System.out.println("clean data, size entering: "
+				+ reportExecution.getReportDatas().size());
+
+		for (ReportData reportData : reportExecution.getReportDatas()) {
+
+			if (reportData.getReportDataText() != null
+					&& !reportData.getReportDataText().isEmpty()) {
+				reportDatas.add(reportData);
+//				System.out.println("adding reportData "
+//						+ reportData.getReportDataText() + " from "
+//						+ reportData.getReportField().getReportFieldName());
+			}
+		}
+
+		System.out.println("clean data, size ending: " + reportDatas.size());
+
+		reportExecution.setReportDatas(reportDatas);
+
+		return reportExecution;
+	}
+
+	/**
 	 * Function create Map<reportFieldType, reportFieldValues> to make dropdown
+	 * 
 	 * @return Map<String, String> of dropdown content
 	 */
 	private Map<String, String> getReportFieldListDropdown() {
@@ -265,10 +353,12 @@ public class ReportExecutionController {
 			String fieldListValues = "";
 			for (ReportFieldList reportFieldList : reportFieldLists) {
 				if (reportFieldList.getReportFieldListType().equals(fieldType))
-					fieldListValues = fieldListValues + ","	+ reportFieldList.getReportFieldListValue();
+					fieldListValues = fieldListValues + ","
+							+ reportFieldList.getReportFieldListValue();
 			}
-			//System.out.println("dropdown: " + fieldType + "- "+ fieldListValues);
-			
+			// System.out.println("dropdown: " + fieldType + "- "+
+			// fieldListValues);
+
 			result.put(fieldType, fieldListValues);
 		}
 
@@ -276,7 +366,8 @@ public class ReportExecutionController {
 	}
 
 	/**
-	 * Function load list of reportFieldListTypes 
+	 * Function load list of reportFieldListTypes
+	 * 
 	 * @return List<String> of dropdown types
 	 */
 	private List<String> getReportFieldListTypeString() {
@@ -295,8 +386,8 @@ public class ReportExecutionController {
 			if (!filedTypeList.contains(reportFieldList
 					.getReportFieldListType())) {
 				filedTypeList.add(reportFieldList.getReportFieldListType());
-//				System.out.println("list: "
-//						+ reportFieldList.getReportFieldListType());
+				// System.out.println("list: "
+				// + reportFieldList.getReportFieldListType());
 			}
 
 		}

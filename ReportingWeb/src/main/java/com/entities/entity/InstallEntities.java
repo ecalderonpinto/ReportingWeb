@@ -2916,13 +2916,13 @@ public class InstallEntities {
 
 			ReportField reportFieldx10 = new ReportField(reportCatalog,
 					reportFieldx5, "X", "AIFMPrincipalInstruments",
-					new BigInteger("0"), null, "", "AIFMCompleteDescription",
+					new BigInteger("0"), null, "", null,
 					null, "5.", "11", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportFieldx10);
 			ReportField reportFieldx11 = new ReportField(reportCatalog,
 					reportFieldx10, "X", "AIFMPrincipalInstrument",
-					new BigInteger("0"), null, "", "AIFMPrincipalInstruments",
+					new BigInteger("0"), null, "", null,
 					null, "5.", "15", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportFieldx11);
