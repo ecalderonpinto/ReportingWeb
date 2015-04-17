@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.creation.GeneratorXML;
-import com.reportingtool.normalizer.Format;
 import com.reportingtool.utilities.ReportUtilities;
 import com.reportingtool.utilities.ReportingErrorManager;
 

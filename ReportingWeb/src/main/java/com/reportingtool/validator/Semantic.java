@@ -33,14 +33,14 @@ public class Semantic {
 	 * @param reportExecution
 	 */
 	public void checkSemantic(ReportExecution reportExecution) {
-		List<ReportSemantic> reportSemantics = new ArrayList<ReportSemantic>(
-				reportExecution.getReportCatalog().getReportSemantics());
-
-		for (ReportSemantic reportSemantic : reportSemantics) {
-			String rule = reportSemantic.getReportingSemanticRule();
-			
-			// TODO:RT make semantic validation
-		}
+//		List<ReportSemantic> reportSemantics = new ArrayList<ReportSemantic>(
+//				reportExecution.getReportCatalog().getReportSemantics());
+//
+//		for (ReportSemantic reportSemantic : reportSemantics) {
+//			String rule = reportSemantic.getReportingSemanticRule();
+//			
+//			// TODO:RT make semantic validation
+//		}
 	}
 
 }

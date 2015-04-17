@@ -31,6 +31,7 @@ import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.reportingtool.controllers.forms.ReportSectionForm;
+import com.reportingtool.utilities.ReportUtilities;
 import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.validator.Semantic;
 import com.reportingtool.validator.Syntactic;
@@ -46,6 +47,13 @@ public class ReportExecutionController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(ReportExecutionController.class);
 
+	/**
+	 * Controller to show reportExecution
+	 * 
+	 * @param id
+	 * @param model
+	 * @return reportexecution -> tiles.xml
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String ReportControllerPre(@RequestParam("id") String id, Model model) {
 
@@ -65,6 +73,8 @@ public class ReportExecutionController {
 		List<String> fieldList = getReportFieldListTypeString();
 		model.addAttribute("fieldlist", fieldList);
 
+		 ReportUtilities.generateDefaultReportDatas(applicationContext, reportExecution, "1.2");
+		
 		reportExecution = addReportDatas(reportExecution);
 
 		reportExecution = reportExecutionOrder(reportExecution);
@@ -84,6 +94,16 @@ public class ReportExecutionController {
 		return "reportexecution";
 	}
 
+	/**
+	 * Controller to save reportDatas from reportExecution UI
+	 * 
+	 * @param reportExecution
+	 * @param result
+	 * @param model
+	 * @param status
+	 * @param session
+	 * @return reportexecution -> tiles.xml
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public String processSubmit(
 			@ModelAttribute("reportexecution") ReportExecution reportExecution,
@@ -133,6 +153,13 @@ public class ReportExecutionController {
 		return "reportexecution";
 	}
 
+	/**
+	 * Function generate a List of ReportSectionForm which can be used to make
+	 * sections in UI
+	 * 
+	 * @param reportExecution
+	 * @return List<ReportSectionForm>
+	 */
 	private List<ReportSectionForm> getReportSections(
 			ReportExecution reportExecution) {
 
@@ -317,9 +344,9 @@ public class ReportExecutionController {
 			if (reportData.getReportDataText() != null
 					&& !reportData.getReportDataText().isEmpty()) {
 				reportDatas.add(reportData);
-//				System.out.println("adding reportData "
-//						+ reportData.getReportDataText() + " from "
-//						+ reportData.getReportField().getReportFieldName());
+				// System.out.println("adding reportData "
+				// + reportData.getReportDataText() + " from "
+				// + reportData.getReportField().getReportFieldName());
 			}
 		}
 
@@ -331,7 +358,7 @@ public class ReportExecutionController {
 	}
 
 	/**
-	 * Function create Map<reportFieldType, reportFieldValues> to make dropdown
+	 * Function create Map<reportFieldType, reportFieldValues> to make dropdowns
 	 * 
 	 * @return Map<String, String> of dropdown content
 	 */

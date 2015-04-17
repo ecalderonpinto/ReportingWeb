@@ -1,5 +1,10 @@
 package com.reportingtool.controllers.forms;
 
+/**
+ * 
+ * @author Esteban Calderon
+ *
+ */
 public class AlertToView {
 
 	private boolean error;
