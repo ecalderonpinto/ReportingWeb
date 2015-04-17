@@ -3,10 +3,14 @@
 
 <!-- start: Breadcrumb -->
 <ul class="breadcrumb">
-	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i class="icon-angle-right"></i></li>
-	<li><a href="dataManager.do">Data Manager</a><i class="icon-angle-right"></i></li>
-	<li><a href="companyDetail.do?id=${company.id}">Company detail</a><i class="icon-angle-right"></i></li>
-	<li><a href="companyReports.do?id=${company.id}">Reports (${company.companyName})</a> <i class="icon-angle-right"></i></li>
+	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
+		class="icon-angle-right"></i></li>
+	<li><a href="dataManager.do">Data Manager</a><i
+		class="icon-angle-right"></i></li>
+	<li><a href="companyDetail.do?id=${company.id}">Company detail</a><i
+		class="icon-angle-right"></i></li>
+	<li><a href="companyReports.do?id=${company.id}">Reports
+			(${company.companyName})</a> <i class="icon-angle-right"></i></li>
 	<li><a href="#">Loads Assignations</a></li>
 </ul>
 <!-- end: Breadcrumb -->
@@ -64,7 +68,8 @@
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
-				<i class="halflings-icon align-justify"></i> <span class="break">Load Assign files to Report</span>
+				<i class="halflings-icon align-justify"></i> <span class="break">Load
+					Assign files to Report</span>
 			</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-minimize"><i
@@ -81,13 +86,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					 <c:forEach var="loadfiles" items="${loadfiles}">
+					<c:forEach var="loadfiles" items="${loadfiles}">
 						<tr>
-							<td>${report.reportCatalog.reportCatalogName}</td>
-							<td>${report.reportExecutionName}</td>
+							<td>${reportassign.reportExecution.reportCatalog.reportCatalogName}</td>
+							<td>${reportassign.reportExecution.reportExecutionName}</td>
 							<td>${loadfiles.loadFileName}</td>
 						</tr>
-					</c:forEach> 
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

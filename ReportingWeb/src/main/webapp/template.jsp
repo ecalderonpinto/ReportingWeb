@@ -138,7 +138,7 @@
 							<ul>
 								<li><a class="submenu" href="loadError.do"><i
 										class="icon-warning-sign"></i><span class="hidden-tablet">
-											Load Errors</span><span class="label-important"> 3 </span></a></li>
+											Load Errors</span> </a></li>
 								<li><a class="submenu" href="reportError.do"><i
 										class="icon-warning-sign"></i><span class="hidden-tablet">
 											Report Errors</span></a></li>
