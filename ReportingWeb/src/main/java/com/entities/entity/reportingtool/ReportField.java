@@ -45,6 +45,8 @@ public class ReportField implements VersionableAdapter {
 	private String reportFieldMask;
 	private String reportFieldOrder;
 	private String reportFieldRepe;
+	private boolean reportFieldMandatory;
+	private boolean reportFieldDisabled;
 	private String reportFieldVersion;
 	private List<FileColum> fileColums = new ArrayList<FileColum>();
 	private List<ReportData> reportDatas = new ArrayList<ReportData>();
@@ -95,6 +97,36 @@ public class ReportField implements VersionableAdapter {
 		this.reportDatas = reportDatas;
 		this.reportCustoms = reportCustoms;
 		this.versionAuditor = versionAuditor;
+	}
+
+	public ReportField(ReportCatalog reportCatalog,
+			ReportField reportFieldParent, String reportFieldType,
+			String reportFieldName, BigInteger reportFieldNum,
+			String reportFieldFormat, String reportFieldDesc,
+			String reportFieldSection, String reportFieldMask,
+			String reportFieldOrder, String reportFieldRepe,
+			String reportFieldVersion, List<FileColum> fileColums,
+			List<ReportData> reportDatas, List<ReportCustom> reportCustoms,
+			VersionAuditor versionAuditor, boolean reportFieldMandatory,
+			boolean reportFieldDisabled) {
+		this.reportCatalog = reportCatalog;
+		this.reportFieldParent = reportFieldParent;
+		this.reportFieldType = reportFieldType;
+		this.reportFieldName = reportFieldName;
+		this.reportFieldNum = reportFieldNum;
+		this.reportFieldFormat = reportFieldFormat;
+		this.reportFieldDesc = reportFieldDesc;
+		this.reportFieldSection = reportFieldSection;
+		this.reportFieldMask = reportFieldMask;
+		this.reportFieldOrder = reportFieldOrder;
+		this.reportFieldRepe = reportFieldRepe;
+		this.reportFieldVersion = reportFieldVersion;
+		this.fileColums = fileColums;
+		this.reportDatas = reportDatas;
+		this.reportCustoms = reportCustoms;
+		this.versionAuditor = versionAuditor;
+		this.reportFieldMandatory = reportFieldMandatory;
+		this.reportFieldDisabled = reportFieldDisabled;
 	}
 
 	@Id
@@ -242,6 +274,24 @@ public class ReportField implements VersionableAdapter {
 		return this.reportCustoms;
 	}
 
+	@Column(name = "REPORT_FIELD_MANDATORY")
+	public boolean isReportFieldMandatory() {
+		return reportFieldMandatory;
+	}
+
+	public void setReportFieldMandatory(boolean reportFieldMandatory) {
+		this.reportFieldMandatory = reportFieldMandatory;
+	}
+
+	@Column(name = "REPORT_FIELD_DISABLED")
+	public boolean isReportFieldDisabled() {
+		return reportFieldDisabled;
+	}
+
+	public void setReportFieldDisabled(boolean reportFieldDisabled) {
+		this.reportFieldDisabled = reportFieldDisabled;
+	}
+
 	public void setReportCustoms(List<ReportCustom> reportCustoms) {
 		this.reportCustoms = reportCustoms;
 	}
@@ -278,38 +328,38 @@ public class ReportField implements VersionableAdapter {
 							this.reportFieldNum)
 					&& ((ReportField) object).getReportFieldType().equals(
 							this.reportFieldType);
-//			if (((ReportField) object).getReportFieldParent() == null
-//					&& this.reportFieldParent == null) {
-//				// return ret;
-//			} else {
-//				if (((ReportField) object).getReportFieldParent() == null
-//						&& this.reportFieldParent != null) {
-//					ret = false;
-//				} else {
-//					if (((ReportField) object).getReportFieldParent() != null
-//							&& this.reportFieldParent == null) {
-//						ret = false;
-//					} else {
-//						if (((ReportField) object).getReportFieldParent() != null) {
-//
-//							System.out.println("DEBUG reportfield equals "
-//									+ ((ReportField) object)
-//											.getReportFieldName()
-//									+ ((ReportField) object)
-//											.getReportFieldParent()
-//											.getReportFieldName()
-//									+ " igual a "
-//									+ this.reportFieldParent
-//											.getReportFieldName());
-//						}
-//
-//						ret = ret
-//								&& ((ReportField) object)
-//										.getReportFieldParent().equals(
-//												this.reportFieldParent);
-//					}
-//				}
-//			}
+			// if (((ReportField) object).getReportFieldParent() == null
+			// && this.reportFieldParent == null) {
+			// // return ret;
+			// } else {
+			// if (((ReportField) object).getReportFieldParent() == null
+			// && this.reportFieldParent != null) {
+			// ret = false;
+			// } else {
+			// if (((ReportField) object).getReportFieldParent() != null
+			// && this.reportFieldParent == null) {
+			// ret = false;
+			// } else {
+			// if (((ReportField) object).getReportFieldParent() != null) {
+			//
+			// System.out.println("DEBUG reportfield equals "
+			// + ((ReportField) object)
+			// .getReportFieldName()
+			// + ((ReportField) object)
+			// .getReportFieldParent()
+			// .getReportFieldName()
+			// + " igual a "
+			// + this.reportFieldParent
+			// .getReportFieldName());
+			// }
+			//
+			// ret = ret
+			// && ((ReportField) object)
+			// .getReportFieldParent().equals(
+			// this.reportFieldParent);
+			// }
+			// }
+			// }
 			return ret;
 		}
 		return false;

@@ -78,6 +78,8 @@ public class ReportExecutionController {
 
 		reportExecution = addReportDatas(reportExecution);
 
+		//System.out.println("reportDatas size " + reportExecution.getReportDatas().size());
+		
 		reportExecution = reportExecutionOrder(reportExecution);
 
 		model.addAttribute("reportexecution", reportExecution);
@@ -257,11 +259,13 @@ public class ReportExecutionController {
 				}
 				orderList.add(reportData.getReportDataOrder());
 			}
-			// System.out.println("reportData1 " +
-			// reportData.getReportDataOrder() + " " +
-			// reportData.getReportField().getReportFieldName());
+//			 System.out.println("reportData1 " +
+//			 reportData.getReportDataOrder() + " " +
+//			 reportData.getReportField().getReportFieldName());
 		}
 
+		System.out.println("orderList " + orderList.toString());
+		
 		Collections.sort(orderList);
 
 		// second for to create reportDataResult with orderList
@@ -351,7 +355,7 @@ public class ReportExecutionController {
 			}
 		}
 
-		System.out.println("clean data, size ending: " + reportDatas.size());
+		//System.out.println("clean data, size ending: " + reportDatas.size());
 
 		reportExecution.setReportDatas(reportDatas);
 

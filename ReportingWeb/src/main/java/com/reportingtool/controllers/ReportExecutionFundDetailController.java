@@ -16,39 +16,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.entities.dao.reportingtool.CompanyDAO;
+import com.entities.dao.reportingtool.FundDAO;
 import com.entities.dao.reportingtool.ReportCatalogDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.reportingtool.Company;
+import com.entities.entity.reportingtool.Fund;
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.utilities.hibernate.VersionAuditor;
 
 @Controller
-@RequestMapping(value = "/reportExecutionDetail.do")
+@RequestMapping(value = "/reportExecutionFundDetail.do")
 @SessionAttributes("reportexecutiondetail")
-public class ReportExecutionDetailController {
+public class ReportExecutionFundDetailController {
 
 	@Autowired
 	ApplicationContext applicationContext;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(ReportExecutionDetailController.class);
-
+	
 	@RequestMapping(method = RequestMethod.GET)
-	public String ReportExecutionDetailControllerPre(
+	public String ReportExecutionFundDetailControllerPre(
 			@RequestParam("id") String id, Model model) {
 
-		System.out.println("ReportExecutionDetailControllerPre");
+		System.out.println("ReportExecutionFundDetailControllerPre");
 
 		try {
 
-			CompanyDAO companyDao = (CompanyDAO) applicationContext
-					.getBean("companyDAO");
-			Company company = companyDao.findById(Long.parseLong(id));
+			FundDAO fundDAO = (FundDAO) applicationContext
+					.getBean("fundDAO");
+			Fund fund = fundDAO.findById(Long.parseLong(id));
+			
+			Company company = fund.getCompany();
 
 			ReportCatalog reportCatalog = new ReportCatalog();
-			reportCatalog.setReportLevel("COMPANY");
+			reportCatalog.setReportLevel("FUND");
 			ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
 					.getBean("reportCatalogDAO");
 			reportCatalog = reportCatalogDAO.findByExample(reportCatalog)
@@ -57,12 +60,14 @@ public class ReportExecutionDetailController {
 			ReportExecution reportExecution = new ReportExecution();
 			reportExecution.setReportCatalog(reportCatalog);
 			reportExecution.setCompany(company);
+			reportExecution.setFund(fund);
 			reportExecution.setAuditor(new VersionAuditor("report"));
 
 			System.out.println("new report: " + company.getCompanyName() + " "
-					+ reportCatalog.getReportCatalogName());
+					+ reportCatalog.getReportCatalogName() + " - " + fund.getFundName());
 
 			model.addAttribute("company", company);
+			model.addAttribute("fund", fund);
 			model.addAttribute("catalog", reportCatalog);
 			model.addAttribute("reportexecutiondetail", reportExecution);
 			
@@ -97,7 +102,7 @@ public class ReportExecutionDetailController {
 					.getBean("reportExecutionDAO");
 			reportExecutionDAO.create(reportExecution);
 			
-			resultMessage = "Report Execution created";
+			resultMessage = "Report Execution Fund created";
 			
 		} else {
 			resultMessage = "Report Execution field is missing";
@@ -105,14 +110,6 @@ public class ReportExecutionDetailController {
 		
 		System.out.println("result: " + resultMessage);
 		
-		// refresh Company to display after new reportExecution
-		CompanyDAO companyDAO = (CompanyDAO) applicationContext
-				.getBean("companyDAO");
-		Company company = companyDAO.findById(reportExecution.getCompany().getId());
-		model.addAttribute("company", company);
-		
-		
 		return "companyreports";
 	}
-
 }

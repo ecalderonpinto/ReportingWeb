@@ -55,10 +55,12 @@ public class LoadsController {
 		LoadFileForm form = new LoadFileForm();
 
 		System.out.println(loads.size() + " loads");
+		
 		model.addAttribute("loads", loads);
 		model.addAttribute("loadFile", form);
 		model.addAttribute("alerts", false);
 		System.out.println("- Loads Controller -");
+		
 		return "loads";
 	}
 
@@ -125,6 +127,14 @@ public class LoadsController {
 
 		model.addAttribute("alerts", true);
 		model.addAttribute("alert", alert);
+		
+		// refresh content of loads to display
+		LoadFileDAO loadFileDao = (LoadFileDAO) applicationContext
+				.getBean("loadFileDAO");
+		List<LoadFile> loads = loadFileDao.findAll();
+		
+		model.addAttribute("loads", loads);
+		
 		return "loads";
 	}
 

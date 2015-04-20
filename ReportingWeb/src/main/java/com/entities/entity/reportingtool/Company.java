@@ -118,6 +118,8 @@ public class Company implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
+	// necesita EAGER ya que al crear un execution, devuelve company sin cargar
+	//@OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
 	public List<ReportExecution> getReportExecutions() {
 		return this.reportExecutions;
 	}

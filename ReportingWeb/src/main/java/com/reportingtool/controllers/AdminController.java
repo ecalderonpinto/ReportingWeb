@@ -123,6 +123,14 @@ public class AdminController {
 		install.installEntitiesFull(applicationContext);
 		install.installAIF(applicationContext);
 		
+		// to refresh content, load al data similar to "admin"
+		ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
+				.getBean("reportCatalogDAO");
+		List<ReportCatalog> reportCatalogs = reportCatalogDAO.findAll();
+
+		System.out.println(reportCatalogs.size() + " reportCatalogs");
+		model.addAttribute("reportcatalogs", reportCatalogs);
+		
 		return "admin";
 	}
 	
@@ -132,6 +140,14 @@ public class AdminController {
 		InstallEntities install = new InstallEntities();
 		
 		install.deleteEntities(applicationContext);
+		
+		// to refresh content, load al data similar to "admin"
+		ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
+				.getBean("reportCatalogDAO");
+		List<ReportCatalog> reportCatalogs = reportCatalogDAO.findAll();
+
+		System.out.println(reportCatalogs.size() + " reportCatalogs");
+		model.addAttribute("reportcatalogs", reportCatalogs);
 		
 		return "admin";
 	}

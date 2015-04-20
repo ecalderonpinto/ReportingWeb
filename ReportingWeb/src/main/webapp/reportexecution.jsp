@@ -19,112 +19,6 @@
 
 <form:form method="POST" commandName="reportexecution">
 
-	<!-- new part with blocks -->
-
-	<%-- <c:forEach var="reportsection" varStatus="status"
-		items="${reportsections}">
-
-		<div class="row-fluid">
-			<div class="box span12">
-				<div class="box-header" data-original-title>
-					<h2>
-						<i class="halflings-icon edit"></i> <span class="break"></span>
-						${reportsection.sectionName}
-					</h2>
-					<div class="box-icon">
-						<a href="#" class="btn-minimize"><i
-							class="halflings-icon chevron-down"></i></a>
-					</div>
-				</div>
-				<div class="box-content" style="display: none;">
-					<fieldset>
-						<c:forEach var="reportData" varStatus="status"
-							items="${reportexecution.reportDatas}">
-							<c:if
-								test="${reportData.reportField.reportFieldSection == reportsection.sectionName }">
-								<c:choose>
-									<c:when test="${reportsection.hasBlock == true}">
-										<!-- Block Section -->
-										<c:forEach var="reportDataWithBlock" varStatus="statusBlock"
-											items="${reportexecution.reportDatas}">
-
-											<c:if
-												test="${reportData.reportField.reportFieldSection == reportDataWithBlock.reportField.reportFieldSection 
-											&& reportData.reportDataBlock eq reportDataWithBlock.reportDataBlock}">
-
-
-												<div class="control-group">
-													<label class="control-label" for="disabledInput">
-														${reportDataWithBlock.reportField.reportFieldNum}.
-														${reportDataWithBlock.reportField.reportFieldName} - 
-														${reportDataWithBlock.reportDataText} </label>
-													<div class="controls">
-														<form:input
-															path="reportData[${status.index}].reportDataText"
-															cssClass="input-xlarge" /> 
-													</div>
-												</div>
-											</c:if>
-										</c:forEach>
-
-										<!-- /Block Section -->
-
-
-									</c:when>
-									<c:otherwise>
-										<!-- NO Block Section -->
-										<c:choose>
-											<c:when test="${reportData.hasErrors == true}">
-												<!-- Field with Error -->
-												<div class="control-group error">
-													<label class="control-label" for="inputError">
-														${reportData.reportField.reportFieldNum}.
-														${reportData.reportField.reportFieldName } </label>
-													<div class="controls">
-														<form:input
-															path="reportDatas[${status.index}].reportDataText"
-															cssClass="input-xlarge" />
-														<span class="help-inline"> <c:forEach
-																var="reportError" varStatus="status"
-																items="${reportData.reportDataErrors}">
-														${reportError.reportDataErrorText}
-													</c:forEach>
-														</span>
-													</div>
-												</div>
-												<!-- /Field with Error -->
-											</c:when>
-											<c:otherwise>
-												<!-- Normal Field -->
-												<div class="control-group">
-													<label class="control-label" for="disabledInput">
-														${reportData.reportField.reportFieldNum}.
-														${reportData.reportField.reportFieldName } </label>
-													<div class="controls">
-														<form:input
-															path="reportDatas[${status.index}].reportDataText"
-															cssClass="input-xlarge" />
-													</div>
-												</div>
-												<!-- /Normal Field -->
-											</c:otherwise>
-										</c:choose>
-										<!-- /NO Block Section -->
-									</c:otherwise>
-								</c:choose>
-							</c:if>
-						</c:forEach>
-					</fieldset>
-				</div>
-			</div>
-			<!--/span-->
-		</div>
-	</c:forEach>
- --%>
-
-
-	<!-- Old part -->
-
 	<c:forEach var="section" varStatus="status" items="${sections}">
 
 		<div class="row-fluid">
@@ -278,3 +172,108 @@
 	</div>
 	<!-- /FormActions -->
 </form:form>
+
+
+
+	<!-- new part with blocks -->
+
+	<%-- <c:forEach var="reportsection" varStatus="status"
+		items="${reportsections}">
+
+		<div class="row-fluid">
+			<div class="box span12">
+				<div class="box-header" data-original-title>
+					<h2>
+						<i class="halflings-icon edit"></i> <span class="break"></span>
+						${reportsection.sectionName}
+					</h2>
+					<div class="box-icon">
+						<a href="#" class="btn-minimize"><i
+							class="halflings-icon chevron-down"></i></a>
+					</div>
+				</div>
+				<div class="box-content" style="display: none;">
+					<fieldset>
+						<c:forEach var="reportData" varStatus="status"
+							items="${reportexecution.reportDatas}">
+							<c:if
+								test="${reportData.reportField.reportFieldSection == reportsection.sectionName }">
+								<c:choose>
+									<c:when test="${reportsection.hasBlock == true}">
+										<!-- Block Section -->
+										<c:forEach var="reportDataWithBlock" varStatus="statusBlock"
+											items="${reportexecution.reportDatas}">
+
+											<c:if
+												test="${reportData.reportField.reportFieldSection == reportDataWithBlock.reportField.reportFieldSection 
+											&& reportData.reportDataBlock eq reportDataWithBlock.reportDataBlock}">
+
+
+												<div class="control-group">
+													<label class="control-label" for="disabledInput">
+														${reportDataWithBlock.reportField.reportFieldNum}.
+														${reportDataWithBlock.reportField.reportFieldName} - 
+														${reportDataWithBlock.reportDataText} </label>
+													<div class="controls">
+														<form:input
+															path="reportData[${status.index}].reportDataText"
+															cssClass="input-xlarge" /> 
+													</div>
+												</div>
+											</c:if>
+										</c:forEach>
+
+										<!-- /Block Section -->
+
+
+									</c:when>
+									<c:otherwise>
+										<!-- NO Block Section -->
+										<c:choose>
+											<c:when test="${reportData.hasErrors == true}">
+												<!-- Field with Error -->
+												<div class="control-group error">
+													<label class="control-label" for="inputError">
+														${reportData.reportField.reportFieldNum}.
+														${reportData.reportField.reportFieldName } </label>
+													<div class="controls">
+														<form:input
+															path="reportDatas[${status.index}].reportDataText"
+															cssClass="input-xlarge" />
+														<span class="help-inline"> <c:forEach
+																var="reportError" varStatus="status"
+																items="${reportData.reportDataErrors}">
+														${reportError.reportDataErrorText}
+													</c:forEach>
+														</span>
+													</div>
+												</div>
+												<!-- /Field with Error -->
+											</c:when>
+											<c:otherwise>
+												<!-- Normal Field -->
+												<div class="control-group">
+													<label class="control-label" for="disabledInput">
+														${reportData.reportField.reportFieldNum}.
+														${reportData.reportField.reportFieldName } </label>
+													<div class="controls">
+														<form:input
+															path="reportDatas[${status.index}].reportDataText"
+															cssClass="input-xlarge" />
+													</div>
+												</div>
+												<!-- /Normal Field -->
+											</c:otherwise>
+										</c:choose>
+										<!-- /NO Block Section -->
+									</c:otherwise>
+								</c:choose>
+							</c:if>
+						</c:forEach>
+					</fieldset>
+				</div>
+			</div>
+			<!--/span-->
+		</div>
+	</c:forEach>
+ --%>

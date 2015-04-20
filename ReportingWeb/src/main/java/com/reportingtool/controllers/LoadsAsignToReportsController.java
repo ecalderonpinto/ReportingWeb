@@ -102,6 +102,8 @@ public class LoadsAsignToReportsController {
 		syntactic.validReportExecution(reportAssign.getReportExecution());
 
 		model.addAttribute("reportassign", reportAssign);
+		// refresh reportExecution to display after loading
+		model.addAttribute("loadfiles", reportAssign.getReportExecution().getLoadFiles());
 		
 		return "loadsassigntoreport";
 	}

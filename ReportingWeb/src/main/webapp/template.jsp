@@ -61,7 +61,11 @@
 			var temp = $('.datepicker')[i].value;
 			$( this ).datepicker( 'option', 'dateFormat', 'yy-mm-dd' );
 			$( this ).datepicker( 'option', 'firstDay', 1 );
-			$( this ).datepicker( 'setDate', new Date(temp) );
+			if (temp) {
+				$( this ).datepicker( 'setDate', new Date(temp) );
+			} else {
+				$( this ).datepicker( 'setDate', '' );
+			}
 			$( this ).datepicker( 'option', 'showOn', 'both' );
 			$( this ).datepicker( 'option', 'buttonImageOnly', true );
 			$( this ).datepicker( 'option', 'buttonImage', 'img/calendar.png' );

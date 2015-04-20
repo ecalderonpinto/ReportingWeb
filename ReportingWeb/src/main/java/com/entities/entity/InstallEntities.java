@@ -31,7 +31,6 @@ import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.dao.reportingtool.ReportFieldListDAO;
 import com.entities.entity.common.Error;
 import com.entities.entity.loader.FileColum;
-import com.entities.entity.loader.FileColumList;
 import com.entities.entity.loader.FileConfig;
 import com.entities.entity.loader.LoadFile;
 import com.entities.entity.loader.LoadRaw;
@@ -78,15 +77,19 @@ public class InstallEntities {
 
 			String versionField = "1.2";
 
-//			Company company = new Company("Bankia Valores", "Spain", "BNK", "",
+//			Company company = new Company("Santander Funds Group", "Spain", "SFG", "",
 //					null, null, null, null, versionAdmin);
+//			
 //			Department department = new Department(company,
 //					"Values department", "VALUE", "", "Spain", null, null,
 //					null, new VersionAuditor("admin"));
-//			Fund fund1 = new Fund(company, "Bankia fund2", "ES000002", "FUND2",
+//			
+//			Fund fund1 = new Fund(company, "Fund 3", "ES000002", "FUND3",
 //					"", null, null, null, versionAdmin);
+//			
 //			FundGroup fundGroup = new FundGroup(fund1, department,
 //					"VALUE FUNDS", "", versionAdmin);
+			
 			ReportCatalog reportCatalog = new ReportCatalog(versionField,
 					"FUND", "AIF 2014", "", null, null, null, versionAdmin);
 
@@ -97,7 +100,7 @@ public class InstallEntities {
 			Date date2 = format.parse(str2);
 
 //			ReportExecution reportExecution = new ReportExecution(
-//					reportCatalog, company, fund1, "Prueba AIF fund1 2014", "",
+//					reportCatalog, company, fund1, "Prueba AIF fund3 2014", "",
 //					"Q2", "2014", date2, date1, "CREATION", null, null, null,
 //					null, null, null, null, null, null, null, null, null,
 //					versionAdmin);
@@ -2659,12 +2662,18 @@ public class InstallEntities {
 
 			Company company = new Company("Santander Asset Manager", "Spain",
 					"SAM", "", null, null, null, null, versionAdmin);
+			
 			Department department = new Department(company, "Risk department",
 					"RISK", "", "Spain", null, null, null, new VersionAuditor(
 							"admin"));
-			Fund fund = new Fund(company, "SAM fund 1", "ES000001", "FUND1",
+			
+			Fund fund1 = new Fund(company, "SAM fund 1", "ES000001", "FUND1",
 					"", null, null, null, versionAdmin);
-			FundGroup fundGroup = new FundGroup(fund, department, "RISK FUNDS",
+			
+			Fund fund2 = new Fund(company, "SAM fund 2", "ES000002", "FUND2",
+					"", null, null, null, versionAdmin);
+			
+			FundGroup fundGroup = new FundGroup(fund1, department, "RISK FUNDS",
 					"", versionAdmin);
 
 			ReportCatalog reportCatalog = new ReportCatalog(versionField,
@@ -3771,7 +3780,8 @@ public class InstallEntities {
 			departmentDAO.create(department);
 
 			FundDAO fundDAO = (FundDAO) applicationContext.getBean("fundDAO");
-			fundDAO.create(fund);
+			fundDAO.create(fund1);
+			fundDAO.create(fund2);
 
 			FundGroupDAO fundGroupDAO = (FundGroupDAO) applicationContext
 					.getBean("fundGroupDAO");

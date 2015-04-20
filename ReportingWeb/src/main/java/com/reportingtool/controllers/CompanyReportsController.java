@@ -35,9 +35,9 @@ public class CompanyReportsController {
 			Model model) {
 
 		System.out.println("CompanyDetail Controller - Fundid=" + id);
-		CompanyDAO companyDao = (CompanyDAO) applicationContext
+		CompanyDAO companyDAO = (CompanyDAO) applicationContext
 				.getBean("companyDAO");
-		Company company = companyDao.findById(Long.parseLong(id));
+		Company company = companyDAO.findById(Long.parseLong(id));
 
 		model.addAttribute("company", company);
 

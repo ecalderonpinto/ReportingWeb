@@ -63,9 +63,6 @@
 <!--/row-->
 <!-- /Filter Box -->
 
-<a href="reportExecutionDetail.do?id=${company.id}"><span class="label label-info">Create</span></a> 
-			
-
 <form:form method="POST" commandName="company">
 	<div class="row-fluid sortable">
 		<div class="box span12">
@@ -78,14 +75,14 @@
 					<a href="#" class="btn-minimize"><i
 						class="halflings-icon chevron-up"></i></a>
 				</div>
-			</div>	
-			
+			</div>
+
 			<div class="box-content">
 				<table
 					class="table table-striped table-bordered table-condensed datatable">
 					<thead>
 						<tr>
-							<th>Export</th>
+							<!-- <th>Export</th> -->
 							<th>Name</th>
 							<th>Type</th>
 							<th>Year</th>
@@ -97,19 +94,19 @@
 						<c:forEach var="reportexecution" varStatus="status"
 							items="${company.reportExecutions}">
 							<tr>
-								<td><input type="checkbox" id="export1" value="export1"></td>
+								<!-- <td><input type="checkbox" id="export1" value="export1"></td> -->
 								<td>${reportexecution.reportExecutionName}</td>
 								<td>${reportexecution.reportPeriodType}</td>
 								<td>${reportexecution.reportPeriodYear}</td>
 								<td>${reportexecution.reportStatus}</td>
 								<td><a
 									href="<c:url value="reportExecution.do?id=${reportexecution.id}" />">
-										<span class="label label-important">Detail</span>
+										<span class="label label-info">Detail</span>
 								</a> <a
 									href="<c:url value="loadsAssignToReport.do?id=${reportexecution.id}" />">
-										<span class="label label-warning">Loads Asig</span>
+										<span class="label label-warning">Load Assig</span>
 								</a> <a href="<c:url value="viewXML.do?id=${reportexecution.id}" />">
-										<span class="label label-success">view XML</span>
+										<span class="label label-success">View XML</span>
 								</a></td>
 							</tr>
 						</c:forEach>
@@ -135,9 +132,11 @@
 			</div>
 			<div class="box-content">
 				<form name="repform" action="Filter">
-					<button class="btn-setting btn btn-small btn-primary">Export</button>
-					<button class="btn btn-small btn-danger">Delete</button>
+					<!-- <button class="btn-setting btn btn-small btn-primary">Export</button> -->
+					<!-- <button class="btn btn-small btn-danger">Delete</button> -->
 				</form>
+				<a href="reportExecutionDetail.do?id=${company.id}"><span
+					class="btn btn-small btn-danger">Create Report</span></a>
 			</div>
 		</div>
 		<!--/span-->
