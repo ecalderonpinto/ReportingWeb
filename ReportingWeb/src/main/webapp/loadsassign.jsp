@@ -56,7 +56,7 @@
 					</tbody>
 				</table>
 
-				<input type="submit" value="Save" class="btn btn-important">
+				<input type="submit" value="Save" class="btn btn-important btn-danger">
 			</div>
 		</div>
 		<!--/span-->
@@ -100,3 +100,6 @@
 	<!--/span-->
 </div>
 <!--/row-->
+
+<a href="companyReports.do?id=${company.id}"><span
+	class="btn btn-important">Back</span></a>

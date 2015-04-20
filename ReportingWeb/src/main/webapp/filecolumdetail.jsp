@@ -102,3 +102,6 @@
 	</div>
 	<!--/row-->
 </form:form>
+
+<a href="fileConfig.do"><span
+	class="btn btn-important">Back</span></a>

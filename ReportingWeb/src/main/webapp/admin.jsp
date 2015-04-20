@@ -78,3 +78,6 @@
 	<!--/span-->
 </div>
 <!--/row-->
+
+<a href="index.do"><span
+	class="btn btn-important">Back</span></a>

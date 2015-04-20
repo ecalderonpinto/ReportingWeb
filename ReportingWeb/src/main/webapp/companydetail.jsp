@@ -42,7 +42,7 @@
 							<td>${company.companyDesc}</td>
 							<td><a class="btn btn-small"
 								href="<c:url value="companyReports.do?id=${company.id}" />">
-									reports </a></td>
+									AIFM Reports </a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -123,7 +123,7 @@
 								<td>${fund.fundClass}</td>
 								<td><a class="btn btn-small"
 									href="<c:url value="fundReports.do?id=${fund.id}" />">
-										reports </a>
+										AIF Reports </a>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -133,3 +133,6 @@
 		<!--/span-->
 	</div>
 </form:form>
+
+<a href="dataManager.do"><span
+	class="btn btn-important">Back</span></a>

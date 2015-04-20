@@ -6,16 +6,18 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="#">Loads</a> <i class="icon-angle-right"></i></li>
-	<li><a href="#">Load Detail</a>
+	<li><a href="loads.do">Loads</a> <i class="icon-angle-right"></i></li>
+	<li><a href="loadDetail.do?id=${loadRaw.loadFile.id}">Load Detail</a> <i class="icon-angle-right"></i></li>
+	<li><a href="#">Colum Detail</a>
 </ul>
 <!-- end: Breadcrumb -->
-<div class="row-fluid sortable">
+
+<%-- <div class="row-fluid sortable">
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
 				<i class="halflings-icon align-justify"></i> <span class="break"></span>
-				${loadRaw.loadFile.loadFileName} - Line ${loadRaw.loadLineNumber}
+				${loadRaw.loadFile.loadFileName} - Line ${loadRaw.loadLineNumber +1}
 			</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
@@ -48,17 +50,16 @@
 	</div>
 	<!--/span-->
 </div>
-<!--/row-->
+<!--/row--> --%>
 
 <div class="row-fluid sortable">
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
 				<i class="halflings-icon align-justify"></i> <span class="break"></span>
-				Columns - Datas
+				File ${loadRaw.loadFile.loadFileName} - Line ${loadRaw.loadLineNumber +1}
 			</h2>
 			<div class="box-icon">
-				<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 				<a href="#" class="btn-minimize"><i
 					class="halflings-icon chevron-up"></i></a> <a href="#"
 					class="btn-close"><i class="halflings-icon remove"></i></a>
@@ -89,3 +90,6 @@
 	<!--/span-->
 </div>
 <!--/row-->
+
+<a href="loadDetail.do?id=${loadRaw.loadFile.id}"><span
+	class="btn btn-important">Back</span></a>

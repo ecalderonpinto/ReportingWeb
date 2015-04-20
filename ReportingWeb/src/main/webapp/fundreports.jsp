@@ -96,15 +96,13 @@
 								<td>${report.reportCatalog.reportCatalogName}</td>
 								<td>${report.reportPeriodType}</td>
 								<td>${report.reportStatus}</td>
-								<td><a
+								<td><a class="btn btn-small btn-primary"
 									href="<c:url value="reportExecution.do?id=${reportexecution.id}" />">
-										<span class="label label-info">Detail</span>
-								</a> <a
+										Detail </a> <a class="btn btn-small btn-warning"
 									href="<c:url value="loadsAssignToReport.do?id=${reportexecution.id}" />">
-										<span class="label label-warning">Load Assig</span>
-								</a> <a href="<c:url value="viewXML.do?id=${reportexecution.id}" />">
-										<span class="label label-success">View XML</span>
-								</a></td>
+										Load Assig</a> <a class="btn btn-small btn-success"
+									href="<c:url value="viewXML.do?id=${reportexecution.id}" />">
+										View XML </a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -133,7 +131,7 @@
 					<button class="btn btn-small btn-danger">Delete</button> -->
 				</form>
 				<a href="reportExecutionFundDetail.do?id=${fund.id}"><span
-					class="btn btn-small btn-danger">Create Report</span></a>
+					class="btn btn-important btn-danger">Create Report</span></a>
 			</div>
 		</div>
 		<!--/span-->
@@ -141,3 +139,5 @@
 	<!--/row-->
 	<!-- /Actions Box -->
 </form:form>
+
+<a href="companyDetail.do?id=${company.id}"><span class="btn btn-important">Back</span></a>

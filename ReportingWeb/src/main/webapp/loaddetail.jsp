@@ -76,20 +76,23 @@
 					class="table table-striped table-bordered table-condensed">
 					<thead>
 						<tr>
-							<th></th>
+							<!-- <th></th> -->
 							<th>Line Nº</th>
 							<th>Type</th>
 							<th>Status</th>
+							<th>Colums</th>
 						</tr>
 					</thead>
 					<tbody>
 					<c:forEach var="raw" items="${loadFile.loadRaws}">
 						<tr>
-							<td><a href="rawDetail.do?id=${raw.id}">
-							<i class="icon-eye-open"></i></td>
+							<%-- <td><a href="rawDetail.do?id=${raw.id}">
+							<i class="icon-eye-open"></i></a></td> --%>
 							<td>${raw.loadLineNumber + 1}</td>
 							<td>${raw.loadLineType}</td>
 							<td>${raw.loadError}</td>
+							<td><a class="btn btn-small" href="rawDetail.do?id=${raw.id}">Detail</a>
+							</td>
 						</tr>
 					</c:forEach>
 					</tbody>
@@ -100,3 +103,6 @@
 	<!--/span-->
 </div>
 <!--/row-->
+
+<a href="loads.do"><span
+	class="btn btn-important">Back</span></a>

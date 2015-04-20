@@ -69,7 +69,7 @@ ${resultMessage}
 			<div class="box-content">
 				<fieldset>
 					<div class="form-actions">
-						<button type="submit" class="btn btn-primary">Save
+						<button type="submit" class="btn btn-danger">Save
 							changes</button>
 						<button class="btn">Cancel</button>
 					</div>
@@ -82,3 +82,5 @@ ${resultMessage}
 	<!-- /FormActions -->
 
 </form:form>
+
+<a href="companyReports.do?id=${company.id}"><span class="btn btn-important">Back</span></a>

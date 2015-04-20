@@ -18,7 +18,7 @@
 <form:form method="POST" commandName="reportXML">
 	<div class="box-content">
 		<input type="hidden" name="reportid" value="${report.id}" />
-		<input type="submit" value="Download" class="btn btn-important">
+		<input type="submit" value="Download XML" class="btn btn-important btn-success">
 	</div>
 </form:form>
 
@@ -41,5 +41,5 @@
 </div>
 
 
-
-<!--/row-->
+<a href="companyReports.do?id=${company.id}"><span
+	class="btn btn-important">Back</span></a>

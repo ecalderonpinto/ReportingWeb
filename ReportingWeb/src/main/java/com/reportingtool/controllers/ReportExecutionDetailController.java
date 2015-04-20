@@ -23,6 +23,7 @@ import com.entities.entity.reportingtool.Company;
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.utilities.hibernate.VersionAuditor;
+import com.reportingtool.utilities.ReportUtilities;
 
 @Controller
 @RequestMapping(value = "/reportExecutionDetail.do")
@@ -57,6 +58,7 @@ public class ReportExecutionDetailController {
 			ReportExecution reportExecution = new ReportExecution();
 			reportExecution.setReportCatalog(reportCatalog);
 			reportExecution.setCompany(company);
+			reportExecution.setReportStatus("CREATION");
 			reportExecution.setAuditor(new VersionAuditor("report"));
 
 			System.out.println("new report: " + company.getCompanyName() + " "
@@ -65,8 +67,8 @@ public class ReportExecutionDetailController {
 			model.addAttribute("company", company);
 			model.addAttribute("catalog", reportCatalog);
 			model.addAttribute("reportexecutiondetail", reportExecution);
-			
-			//model.addAttribute("result", "");
+
+			// model.addAttribute("result", "");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -85,33 +87,36 @@ public class ReportExecutionDetailController {
 				+ reportExecution.getReportExecutionName());
 
 		String resultMessage;
-		
+
 		if (reportExecution.getReportExecutionName() != null
-				&& !reportExecution.getReportExecutionName().isEmpty() &&
-				reportExecution.getReportPeriodType() != null
-				&& !reportExecution.getReportPeriodType().isEmpty() &&
-				reportExecution.getReportPeriodYear() != null
-				&& !reportExecution.getReportPeriodYear().isEmpty() ) {
-			
+				&& !reportExecution.getReportExecutionName().isEmpty()
+				&& reportExecution.getReportPeriodType() != null
+				&& !reportExecution.getReportPeriodType().isEmpty()
+				&& reportExecution.getReportPeriodYear() != null
+				&& !reportExecution.getReportPeriodYear().isEmpty()) {
+
 			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) this.applicationContext
 					.getBean("reportExecutionDAO");
 			reportExecutionDAO.create(reportExecution);
-			
+
+			ReportUtilities.generateDefaultReportDatas(applicationContext,
+					reportExecution, "1.2");
+
 			resultMessage = "Report Execution created";
-			
+
 		} else {
 			resultMessage = "Report Execution field is missing";
 		}
-		
+
 		System.out.println("result: " + resultMessage);
-		
+
 		// refresh Company to display after new reportExecution
 		CompanyDAO companyDAO = (CompanyDAO) applicationContext
 				.getBean("companyDAO");
-		Company company = companyDAO.findById(reportExecution.getCompany().getId());
+		Company company = companyDAO.findById(reportExecution.getCompany()
+				.getId());
 		model.addAttribute("company", company);
-		
-		
+
 		return "companyreports";
 	}
 
