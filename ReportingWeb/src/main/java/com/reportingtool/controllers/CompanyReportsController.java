@@ -12,31 +12,36 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.entities.dao.reportingtool.CompanyDAO;
+import com.entities.dao.reportingtool.ReportCatalogDAO;
 import com.entities.entity.reportingtool.Company;
-
+import com.entities.entity.reportingtool.ReportCatalog;
 
 @Controller
-@RequestMapping(value="/companyReports.do")
+@RequestMapping(value = "/companyReports.do")
 @SessionAttributes("company")
 public class CompanyReportsController {
 
 	@Autowired
 	ApplicationContext applicationContext;
-	
-	private static final Logger logger = LoggerFactory.getLogger(CompanyReportsController.class);
-	
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(CompanyReportsController.class);
+
 	/**
 	 * TODO:RT Falta implementar filtros;
 	 */
-	@RequestMapping(method=RequestMethod.GET)
-	public String DataManagerControllerPre(@RequestParam("id") String id, Model model){
-		
+	@RequestMapping(method = RequestMethod.GET)
+	public String DataManagerControllerPre(@RequestParam("id") String id,
+			Model model) {
+
 		System.out.println("CompanyDetail Controller - Fundid=" + id);
-		CompanyDAO companyDao = (CompanyDAO)applicationContext.getBean("companyDAO");
+		CompanyDAO companyDao = (CompanyDAO) applicationContext
+				.getBean("companyDAO");
 		Company company = companyDao.findById(Long.parseLong(id));
-		
+
 		model.addAttribute("company", company);
-		
+
 		return "companyreports";
 	}
+
 }

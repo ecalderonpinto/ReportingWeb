@@ -148,6 +148,12 @@
 		<put-attribute name="mainContent" value="/reportexecution.jsp" />
 		<put-attribute name="modalWindow" value="" />
 	</definition>
+	
+	<definition name="reportexecutiondetail" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Report Execution Detail" />
+		<put-attribute name="mainContent" value="/reportexecutiondetail.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
 
 	<definition name="scheduler/dashboard" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - Scheduler Dashboard" />
@@ -186,6 +192,7 @@
 		<put-list-attribute name="resourcesJs">
 		</put-list-attribute>
 	</definition>
+	
 	<definition name="admin.normalization.load" extends="base.template">
 		<put-attribute name="body"
 			value="/WEB-INF/spring/jsp/admin/normalizationConfig.jsp" />
@@ -250,6 +257,7 @@
 		<put-list-attribute name="resourcesJs">
 		</put-list-attribute>
 	</definition>
+	
 	<definition name="admin.normalization.load" extends="base.template">
 		<put-attribute name="body"
 			value="/WEB-INF/spring/jsp/admin/normalizationConfig.jsp" />

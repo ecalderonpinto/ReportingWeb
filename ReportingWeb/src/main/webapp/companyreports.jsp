@@ -63,6 +63,9 @@
 <!--/row-->
 <!-- /Filter Box -->
 
+<a href="reportExecutionDetail.do?id=${company.id}"><span class="label label-info">Create</span></a> 
+			
+
 <form:form method="POST" commandName="company">
 	<div class="row-fluid sortable">
 		<div class="box span12">
@@ -75,7 +78,8 @@
 					<a href="#" class="btn-minimize"><i
 						class="halflings-icon chevron-up"></i></a>
 				</div>
-			</div>
+			</div>	
+			
 			<div class="box-content">
 				<table
 					class="table table-striped table-bordered table-condensed datatable">
