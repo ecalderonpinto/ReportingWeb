@@ -5,7 +5,7 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="admin.do">Admin</a> <i class="icon-angle-right"></i>
+	<li><a href="admin.do">General Admin</a> <i class="icon-angle-right"></i>
 	</li>
 	<li><a href="<c:url value="reportCatalogDetail.do?id=${reportcatalog.id}" />">Report Catalog Detail</a> <i class="icon-angle-right"></i>
 	</li>
@@ -98,3 +98,5 @@
 	</div>
 	<!--/row-->
 </form:form>
+
+<a href="reportCatalogDetail.do?id=${reportcatalog.id}""><span class="btn btn-important">Back</span></a>

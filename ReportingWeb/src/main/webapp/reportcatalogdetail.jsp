@@ -5,7 +5,7 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="admin.do">Admin</a> <i class="icon-angle-right"></i>
+	<li><a href="admin.do">General Admin</a> <i class="icon-angle-right"></i>
 	</li>
 	<li><a href="#">Report Catalog Detail</a></li>
 </ul>
@@ -99,3 +99,5 @@
 	<!--/span-->
 </div>
 <!--/row-->
+
+<a href="admin.do"><span class="btn btn-important">Back</span></a>

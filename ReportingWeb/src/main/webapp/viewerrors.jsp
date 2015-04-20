@@ -6,7 +6,7 @@
 <ul class="breadcrumb">
 	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
-	<li><a href="#">Loads</a> <i class="icon-angle-right"></i></li>
+	<li><a href="loads.do">Loads</a> <i class="icon-angle-right"></i></li>
 	<li><a href="#">Load Errors</a>
 </ul>
 <!-- end: Breadcrumb -->
