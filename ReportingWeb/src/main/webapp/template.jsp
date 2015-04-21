@@ -143,7 +143,7 @@
 								<li><a class="submenu" href="loadError.do"><i
 										class="icon-warning-sign"></i><span class="hidden-tablet">
 											Load Errors</span> </a></li>
-								<li><a class="submenu" href="reportError.do"><i
+								<li><a class="submenu" href="reportError.do?id="><i
 										class="icon-warning-sign"></i><span class="hidden-tablet">
 											Report Errors</span></a></li>
 								<li><a class="submenu" href="reportDataError.do"><i

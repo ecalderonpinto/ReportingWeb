@@ -99,4 +99,4 @@
 	<!--/row-->
 </form:form>
 
-<a href="reportCatalogDetail.do?id=${reportcatalog.id}""><span class="btn btn-important">Back</span></a>
+<a href="reportCatalogDetail.do?id=${reportcatalog.id}"><span class="btn btn-important">Back</span></a>

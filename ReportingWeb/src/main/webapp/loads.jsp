@@ -22,6 +22,7 @@
 					class="halflings-icon chevron-up"></i></a>
 			</div>
 		</div>
+		<!-- message success / fail from load file -->
 		<c:if test="${alerts}">
 			<div class="box-content alerts">
 				<c:choose>
@@ -42,6 +43,7 @@
 				</c:choose>
 			</div>
 		</c:if>
+		<!-- / message success / fail from load file -->
 		<div class="box-content">
 			<form:form enctype="multipart/form-data" method="post"
 				commandName="loadFile">

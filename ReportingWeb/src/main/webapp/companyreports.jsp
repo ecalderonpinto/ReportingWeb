@@ -98,14 +98,26 @@
 								<td>${reportexecution.reportExecutionName}</td>
 								<td>${reportexecution.reportPeriodType}</td>
 								<td>${reportexecution.reportPeriodYear}</td>
-								<td>${reportexecution.reportStatus}</td>
+								<td>${reportexecution.reportStatus}
+									<c:choose>
+										<c:when test="${reportexecution.hasErrors == true}">
+											<a class="btn btn-small btn-primary"
+												href="<c:url value="reportError.do?id=${reportexecution.id}" />">
+												Errors </a>
+										</c:when>
+										<c:otherwise>
+											<span class="label label-success">Ok</span>
+										</c:otherwise>
+									</c:choose>
+								</td>
 								<td><a class="btn btn-small btn-primary"
 									href="<c:url value="reportExecution.do?id=${reportexecution.id}" />">
 										Detail </a> <a class="btn btn-small btn-warning"
 									href="<c:url value="loadsAssignToReport.do?id=${reportexecution.id}" />">
 										Load Assig</a> <a class="btn btn-small btn-success"
 									href="<c:url value="viewXML.do?id=${reportexecution.id}" />">
-										View XML </a></td>
+										View XML </a>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -143,5 +155,4 @@
 	<!-- /Actions Box -->
 </form:form>
 
-<a href="dataManager.do"><span
-	class="btn btn-important">Back</span></a>
+<a href="dataManager.do"><span class="btn btn-important">Back</span></a>

@@ -13,6 +13,8 @@
 		<hibernate.version>4.3.6.Final</hibernate.version>
 		<mysql.version>5.1.31</mysql.version>
 		<joda-time.version>2.3</joda-time.version>
+		<jstl.version>1.2</jstl.version>
+		<jstl-standard.version>1.1.2</jstl-standard.version>
 	</properties>
 
 	<dependencies>
@@ -52,11 +54,8 @@
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
+		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>jstl</artifactId> 
+			<version>1.2</version> </dependency> -->
 
 		<dependency>
 			<groupId>org.apache.openejb</groupId>
@@ -131,13 +130,28 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
-			<version>1.1.2</version>
+			<version>${jstl.version}</version>
+			<scope>runtime</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>standard</artifactId>
-			<version>1.1.2</version>
+			<scope>runtime</scope>
+			<version>${jstl-standard.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>c</artifactId>
+			<version>${jstl-standard.version}</version>
+			<scope>runtime</scope>
+			<type>tld</type>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>fmt</artifactId>
+			<version>${jstl-standard.version}</version>
+			<scope>runtime</scope>
+			<type>tld</type>
 		</dependency>
 
 

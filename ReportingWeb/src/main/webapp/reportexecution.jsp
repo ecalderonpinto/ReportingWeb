@@ -162,7 +162,7 @@
 					<div class="form-actions">
 						<button type="submit" class="btn btn-danger">Save
 							changes</button>
-						<button class="btn">Cancel</button>
+						<!-- <button class="btn">Cancel</button> -->
 					</div>
 				</fieldset>
 

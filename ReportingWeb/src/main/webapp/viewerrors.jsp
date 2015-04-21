@@ -10,6 +10,7 @@
 	<li><a href="#">Load Errors</a>
 </ul>
 <!-- end: Breadcrumb -->
+
 <div class="row-fluid sortable">
 	<div class="box span12">
 		<div class="box-header">
@@ -19,7 +20,7 @@
 				${load.loadFileName}
 			</h2>
 			<div class="box-icon">
-				<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+				<!-- <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a> -->
 				<a href="#" class="btn-minimize"><i
 					class="halflings-icon chevron-up"></i></a> <a href="#"
 					class="btn-close"><i class="halflings-icon remove"></i></a>
@@ -95,3 +96,6 @@
 	<!--/span-->
 </div>
 <!--/row-->
+
+<a href="loads.do"><span
+	class="btn btn-important">Back</span></a>

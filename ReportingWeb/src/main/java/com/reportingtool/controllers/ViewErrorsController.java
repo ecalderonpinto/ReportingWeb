@@ -17,10 +17,12 @@ import com.entities.dao.loader.LoadErrorDAO;
 import com.entities.dao.loader.LoadFileDAO;
 import com.entities.dao.reportingtool.ReportDataErrorDAO;
 import com.entities.dao.reportingtool.ReportErrorDAO;
+import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.loader.LoadError;
 import com.entities.entity.loader.LoadFile;
 import com.entities.entity.reportingtool.ReportDataError;
 import com.entities.entity.reportingtool.ReportError;
+import com.entities.entity.reportingtool.ReportExecution;
 
 
 @Controller
@@ -59,11 +61,26 @@ public class ViewErrorsController {
 	}
 	
 	@RequestMapping(value = "/reportError.do", method = RequestMethod.GET)
-	public String reportErrorController(Locale locale, Model model) {
-
+	public String reportErrorController(@RequestParam("id") String id, Locale locale, Model model) {
+		
 		ReportErrorDAO reportErrorDAO = (ReportErrorDAO) applicationContext
 				.getBean("reportErrorDAO");
-		List<ReportError> reportErrors = reportErrorDAO.findAll();
+		
+		List<ReportError> reportErrors;
+		
+		if (id != null && !id.isEmpty()) {
+			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
+					.getBean("reportExecutionDAO");
+			ReportExecution reportExecution = reportExecutionDAO.findById(Long.parseLong(id));
+			
+			ReportError reportErrorExample = new ReportError();
+			reportErrorExample.setReportExecution(reportExecution);;
+			reportErrors = reportErrorDAO.findByExample(reportErrorExample);
+			System.out.println("reportError id:"+id);
+		} else {
+			reportErrors = reportErrorDAO.findAll();
+			System.out.println("reportError all");
+		}
 
 		System.out.println(reportErrors.size() + " reportErrors");
 		model.addAttribute("reporterrors", reportErrors);
