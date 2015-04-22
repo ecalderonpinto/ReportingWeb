@@ -77,6 +77,7 @@ public class ViewErrorsController {
 			reportErrorExample.setReportExecution(reportExecution);;
 			reportErrors = reportErrorDAO.findByExample(reportErrorExample);
 			System.out.println("reportError id:"+id);
+			
 		} else {
 			reportErrors = reportErrorDAO.findAll();
 			System.out.println("reportError all");

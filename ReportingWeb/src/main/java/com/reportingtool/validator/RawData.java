@@ -114,10 +114,10 @@ public class RawData {
 			if (!exist) {
 				// user
 				reportData.setAuditor(new VersionAuditor("admin"));
+				
 				// save new reportData
 				ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 						.getBean("reportDataDAO");
-
 				reportDataDAO.create(reportData);
 
 				// add reportData in reportExecution object

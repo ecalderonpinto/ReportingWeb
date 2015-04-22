@@ -60,26 +60,33 @@ public class ReportExecutionController {
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
 
+		// load reportExecution from id to have all this child entities
 		ReportExecution reportExecution = reportExecutionDAO.findById(Long
 				.parseLong(id));
 
-		List<String> sections = getSections(reportExecution);
-
+		// set reportExecution.hasErrors and reportData.hasErrors true/false to
+		// show only active
 		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
 
-		Map<String, String> fieldListMap = getReportFieldListDropdown();
-		model.addAttribute("fieldlistmap", fieldListMap);
-
+		// list of fields with dropdowns
 		List<String> fieldList = getReportFieldListTypeString();
 		model.addAttribute("fieldlist", fieldList);
 
+		// Map of data to populate dropdowns
+		Map<String, String> fieldListMap = getReportFieldListDropdown();
+		model.addAttribute("fieldlistmap", fieldListMap);
+
+		// add default fields if does not exists
 		ReportUtilities.generateDefaultReportDatas(applicationContext,
 				reportExecution, "1.2");
 
+		// add all reportDatas empty when are not populated yet
 		reportExecution = addReportDatas(reportExecution);
-
-		//System.out.println("reportDatas size " + reportExecution.getReportDatas().size());
 		
+		// get all visual sections of the report
+		List<String> sections = getSections(reportExecution);
+
+		// order reportDatas to display correctly
 		reportExecution = reportExecutionOrder(reportExecution);
 
 		model.addAttribute("reportexecution", reportExecution);
@@ -120,80 +127,62 @@ public class ReportExecutionController {
 		// + " - " + reportData.getReportDataText());
 		// }
 
-		System.out.println("cleaning reportDatas");
+		// clean all empty reportData to avoid been saved
 		reportExecution = cleanReportDatas(reportExecution);
 
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
 
-		System.out.println("save reportExecution");
+		// save changes of reportExecution
 		reportExecutionDAO.edit(reportExecution);
+
+		// load reportExecution from id to have all this child entities
 		reportExecution = reportExecutionDAO.findById(reportExecution.getId());
 
+		// check syntactic and semantic
 		Syntactic syntactic = new Syntactic(applicationContext);
 		Semantic semantic = new Semantic(applicationContext);
 
 		syntactic.validReportExecution(reportExecution);
 		semantic.checkSemantic(reportExecution);
 
+		// save changes
 		reportExecutionDAO.edit(reportExecution);
 
-		List<String> sections = getSections(reportExecution);
+		reportExecution = reportExecutionDAO.findById(reportExecution.getId());
 
+		// set reportExecution.hasErrors and reportData.hasErrors true/false to
+		// show only active
 		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
 
+		// list of fields with dropdowns
+		List<String> fieldList = getReportFieldListTypeString();
+		model.addAttribute("fieldlist", fieldList);
+
+		// Map of data to populate dropdowns
+		Map<String, String> fieldListMap = getReportFieldListDropdown();
+		model.addAttribute("fieldlistmap", fieldListMap);
+
+		// add default fields if does not exists
+		ReportUtilities.generateDefaultReportDatas(applicationContext,
+				reportExecution, "1.2");
+
+		// add all reportDatas empty when are not populated yet
+		reportExecution = addReportDatas(reportExecution);
+		
+		// get all visual sections of the report
+		List<String> sections = getSections(reportExecution);
+
+		// order reportDatas to display correctly
 		reportExecution = reportExecutionOrder(reportExecution);
 
 		model.addAttribute("reportexecution", reportExecution);
 		model.addAttribute("sections", sections);
 
-		Map<String, String> fieldListMap = getReportFieldListDropdown();
-		model.addAttribute("fieldlistmap", fieldListMap);
-
-		List<String> fieldList = getReportFieldListTypeString();
-		model.addAttribute("fieldlist", fieldList);
-
 		return "reportexecution";
 	}
 
-	/**
-	 * Function generate a List of ReportSectionForm which can be used to make
-	 * sections in UI
-	 * 
-	 * @param reportExecution
-	 * @return List<ReportSectionForm>
-	 */
-	private List<ReportSectionForm> getReportSections(
-			ReportExecution reportExecution) {
-
-		List<ReportSectionForm> result = new ArrayList<ReportSectionForm>();
-
-		String section = "";
-		boolean hasBlock = false;
-
-		for (ReportData reportData : reportExecution.getReportDatas()) {
-			if (reportData.getReportDataErrors().size() > 0) {
-				System.out.println("Data tiene errores...");
-				for (ReportDataError error : reportData.getReportDataErrors())
-					System.out.println("Error: "
-							+ error.getReportDataErrorText());
-			}
-			if (reportData.getReportField().getReportFieldSection() != null) {
-				section = reportData.getReportField().getReportFieldSection();
-				if (reportData.getReportDataBlock() != null) {
-					hasBlock = true;
-				} else {
-					hasBlock = false;
-				}
-				ReportSectionForm reportSectionForm = new ReportSectionForm(
-						section, hasBlock);
-				if (!result.contains(reportSectionForm))
-					result.add(reportSectionForm);
-			}
-		}
-
-		return result;
-	}
+	
 
 	/**
 	 * Function that build a List<String> with sections to display
@@ -206,12 +195,12 @@ public class ReportExecutionController {
 		List<String> result = new ArrayList<String>();
 
 		for (ReportData reportData : reportExecution.getReportDatas()) {
-			if (reportData.getReportDataErrors().size() > 0) {
-				System.out.println("Data tiene errores...");
-				for (ReportDataError error : reportData.getReportDataErrors())
-					System.out.println("Error: "
-							+ error.getReportDataErrorText());
-			}
+//			if (reportData.getReportDataErrors().size() > 0) {
+//				System.out.println("Data tiene errores...");
+//				for (ReportDataError error : reportData.getReportDataErrors())
+//					System.out.println("Error: "
+//							+ error.getReportDataErrorText());
+//			}
 			if (reportData.getReportField().getReportFieldSection() != null
 					&& !result.contains(reportData.getReportField()
 							.getReportFieldSection()))
@@ -259,13 +248,13 @@ public class ReportExecutionController {
 				}
 				orderList.add(reportData.getReportDataOrder());
 			}
-//			 System.out.println("reportData1 " +
-//			 reportData.getReportDataOrder() + " " +
-//			 reportData.getReportField().getReportFieldName());
+			// System.out.println("reportData1 " +
+			// reportData.getReportDataOrder() + " " +
+			// reportData.getReportField().getReportFieldName());
 		}
 
-		System.out.println("orderList " + orderList.toString());
-		
+		// System.out.println("orderList " + orderList.toString());
+
 		Collections.sort(orderList);
 
 		// second for to create reportDataResult with orderList
@@ -355,7 +344,7 @@ public class ReportExecutionController {
 			}
 		}
 
-		//System.out.println("clean data, size ending: " + reportDatas.size());
+		// System.out.println("clean data, size ending: " + reportDatas.size());
 
 		reportExecution.setReportDatas(reportDatas);
 
@@ -425,5 +414,44 @@ public class ReportExecutionController {
 		}
 
 		return filedTypeList;
+	}
+	
+	/**
+	 * Function generate a List of ReportSectionForm which can be used to make
+	 * sections in UI
+	 * 
+	 * @param reportExecution
+	 * @return List<ReportSectionForm>
+	 */
+	private List<ReportSectionForm> getReportSections(
+			ReportExecution reportExecution) {
+
+		List<ReportSectionForm> result = new ArrayList<ReportSectionForm>();
+
+		String section = "";
+		boolean hasBlock = false;
+
+		for (ReportData reportData : reportExecution.getReportDatas()) {
+			if (reportData.getReportDataErrors().size() > 0) {
+				System.out.println("Data tiene errores...");
+				for (ReportDataError error : reportData.getReportDataErrors())
+					System.out.println("Error: "
+							+ error.getReportDataErrorText());
+			}
+			if (reportData.getReportField().getReportFieldSection() != null) {
+				section = reportData.getReportField().getReportFieldSection();
+				if (reportData.getReportDataBlock() != null) {
+					hasBlock = true;
+				} else {
+					hasBlock = false;
+				}
+				ReportSectionForm reportSectionForm = new ReportSectionForm(
+						section, hasBlock);
+				if (!result.contains(reportSectionForm))
+					result.add(reportSectionForm);
+			}
+		}
+
+		return result;
 	}
 }

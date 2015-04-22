@@ -40,6 +40,9 @@ public class Syntactic {
 	 */
 	public void validReportExecution(ReportExecution reportExecution) {
 
+		System.out.println("DEBUG_" + "Syntactic: starting process "
+				+ reportExecution.getReportExecutionName());
+
 		for (ReportData reportData : reportExecution.getReportDatas()) {
 			this.validInValueList(reportData);
 			this.validRegex(reportData);
@@ -69,9 +72,9 @@ public class Syntactic {
 		Boolean hasFieldValue = true;
 		for (ReportFieldList reportFieldList : reportFieldLists) {
 			hasFieldValue = false;
-			System.out.println("DEBUG_" + "Syntactic: value "
-					+ reportFieldList.getReportFieldListValue() + " -> "
-					+ reportData.getReportDataText());
+			// System.out.println("DEBUG_" + "Syntactic: value "
+			// + reportFieldList.getReportFieldListValue() + " -> "
+			// + reportData.getReportDataText());
 			if (reportFieldList.getReportFieldListValue().equals(
 					reportData.getReportDataText())) {
 				hasFieldValue = true;
@@ -79,16 +82,16 @@ public class Syntactic {
 			}
 
 		}
-		System.out.println("DEBUG_" + "Syntactic: hasFieldValue "
-				+ hasFieldValue);
+		// System.out.println("DEBUG_" + "Syntactic: hasFieldValue "
+		// + hasFieldValue);
 		if (hasFieldValue) {
 			// ok
 
-			System.out.println("DEBUG_"
-					+ "Syntactic: hasFieldValue ok, check if error exists "
-					+ reportData.getReportDataText() + " -> "
-					+ reportField.getReportFieldFormat());
-			
+//			System.out.println("DEBUG_"
+//					+ "Syntactic: hasFieldValue ok, check if error exists "
+//					+ reportData.getReportDataText() + " -> "
+//					+ reportField.getReportFieldFormat());
+
 			// find and disable if there are a REGEX error
 			ReportingErrorManager.disableReportDataError(applicationContext,
 					"SYNTAXIS", reportData, "VALUE");
@@ -120,9 +123,11 @@ public class Syntactic {
 			// Check Regex patters
 			// http://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
 			// http://www.ocpsoft.org/tutorials/regular-expressions/java-visual-regex-tester/
-			System.out.println("DEBUG_" + "Syntactic regex: "
-					+ reportData.getReportDataText() + " -> "
-					+ reportField.getReportFieldFormat());
+			
+//			System.out.println("DEBUG_" + "Syntactic regex: "
+//					+ reportData.getReportDataText() + " -> "
+//					+ reportField.getReportFieldFormat());
+			
 			Pattern pattern = Pattern.compile(reportField
 					.getReportFieldFormat());
 			Matcher matcher = pattern.matcher(reportData.getReportDataText());
@@ -130,10 +135,10 @@ public class Syntactic {
 			if (matchVersion) {
 				// ok Regex
 
-				System.out.println("DEBUG_"
-						+ "Syntactic: regex ok, check if error exists "
-						+ reportData.getReportDataText() + " -> "
-						+ reportField.getReportFieldFormat());
+//				System.out.println("DEBUG_"
+//						+ "Syntactic: regex ok, check if error exists "
+//						+ reportData.getReportDataText() + " -> "
+//						+ reportField.getReportFieldFormat());
 
 				// find and disable if there are a REGEX error
 				ReportingErrorManager.disableReportDataError(

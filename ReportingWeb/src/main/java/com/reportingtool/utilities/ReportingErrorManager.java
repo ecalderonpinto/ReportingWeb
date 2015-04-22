@@ -107,7 +107,15 @@ public class ReportingErrorManager {
 				.getBean("reportDataDAO");
 
 		reportData = reportDataDAO.findById(reportData.getId());
-		for (ReportDataError reportDataError : reportData.getReportDataErrors()) {
+
+		ReportDataError reportDataErrorExample = new ReportDataError();
+		reportDataErrorExample.setReportData(reportData);
+		List<ReportDataError> reportDataErrors = reportDataErrorDAO
+				.findByExample(reportDataErrorExample);
+
+		// for (ReportDataError reportDataError :
+		// reportData.getReportDataErrors()) {
+		for (ReportDataError reportDataError : reportDataErrors) {
 			if (reportDataError.getReportDataErrorType()
 					.equals(reportErrorType)
 					&& reportDataError.getError().getErrorType()
@@ -305,8 +313,12 @@ public class ReportingErrorManager {
 		boolean hasErrors = false;
 		for (ReportData reportData : reportExecution.getReportDatas()) {
 			hasErrors = false;
-			for (ReportDataError reportDataError : reportData
-					.getReportDataErrors()) {
+			List<ReportDataError> reportDataErrors = reportData
+					.getReportDataErrors();
+			System.out.println("reportDataErrors " + reportDataErrors
+					+ " reportData " + reportData.getReportDataText() + " - "
+					+ reportData.getReportField().getReportFieldName());
+			for (ReportDataError reportDataError : reportDataErrors) {
 				if (!reportDataError.getAuditor().isDeleted()) {
 					hasErrors = true;
 					break;
@@ -316,7 +328,8 @@ public class ReportingErrorManager {
 		}
 
 		hasErrors = false;
-		for (ReportError reportError : reportExecution.getReportErrors()) {
+		List<ReportError> reportErrors = reportExecution.getReportErrors();
+		for (ReportError reportError : reportErrors) {
 			if (!reportError.getAuditor().isDeleted()) {
 				hasErrors = true;
 				break;

@@ -23,6 +23,7 @@ public class ReportSemantic implements VersionableAdapter {
 
 	private long id;
 	private ReportCatalog reportCatalog;
+	private String reportingSemanticName;
 	private String reportingSemanticRule;
 	private String reportingSemanticDesc;
 	private String reportingSemanticSugg;
@@ -37,19 +38,23 @@ public class ReportSemantic implements VersionableAdapter {
 	}
 
 	public ReportSemantic(long id, ReportCatalog reportCatalog,
-			String reportingSemanticRule, VersionAuditor versionAuditor) {
+			String reportingSemanticName, String reportingSemanticRule,
+			VersionAuditor versionAuditor) {
 		this.id = id;
 		this.reportCatalog = reportCatalog;
+		this.reportingSemanticName = reportingSemanticName;
 		this.reportingSemanticRule = reportingSemanticRule;
 		this.versionAuditor = versionAuditor;
 	}
 
 	public ReportSemantic(ReportCatalog reportCatalog,
-			String reportingSemanticRule, String reportingSemanticDesc,
-			String reportingSemanticSugg, VersionAuditor versionAuditor) {
+			String reportingSemanticName, String reportingSemanticRule,
+			String reportingSemanticDesc, String reportingSemanticSugg,
+			VersionAuditor versionAuditor) {
 		this.reportCatalog = reportCatalog;
-		this.reportingSemanticDesc = reportingSemanticDesc;
+		this.reportingSemanticName = reportingSemanticName;
 		this.reportingSemanticRule = reportingSemanticRule;
+		this.reportingSemanticDesc = reportingSemanticDesc;
 		this.reportingSemanticSugg = reportingSemanticSugg;
 		this.versionAuditor = versionAuditor;
 	}
@@ -76,7 +81,16 @@ public class ReportSemantic implements VersionableAdapter {
 		this.reportCatalog = reportCatalog;
 	}
 
-	@Column(name = "REPORT_SEMANTIC_RULE", nullable = false)
+	@Column(name = "REPORT_SEMANTIC_NAME", nullable = false)
+	public String getReportingSemanticName() {
+		return reportingSemanticName;
+	}
+
+	public void setReportingSemanticName(String reportingSemanticName) {
+		this.reportingSemanticName = reportingSemanticName;
+	}
+
+	@Column(name = "REPORT_SEMANTIC_RULE", nullable = false, length=2048)
 	public String getReportingSemanticRule() {
 		return reportingSemanticRule;
 	}

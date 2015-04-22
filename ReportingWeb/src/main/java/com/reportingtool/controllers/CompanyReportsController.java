@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.entities.dao.reportingtool.CompanyDAO;
-import com.entities.dao.reportingtool.ReportCatalogDAO;
 import com.entities.entity.reportingtool.Company;
-import com.entities.entity.reportingtool.ReportCatalog;
+import com.entities.entity.reportingtool.ReportExecution;
+import com.reportingtool.utilities.ReportingErrorManager;
 
 @Controller
 @RequestMapping(value = "/companyReports.do")
@@ -38,6 +38,12 @@ public class CompanyReportsController {
 		CompanyDAO companyDAO = (CompanyDAO) applicationContext
 				.getBean("companyDAO");
 		Company company = companyDAO.findById(Long.parseLong(id));
+		
+		for(ReportExecution reportExecution : company.getReportExecutions()) {
+			// set reportExecution.hasErrors and reportData.hasErrors true/false to
+			// show link error/view XML
+			ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
+		}
 
 		model.addAttribute("company", company);
 

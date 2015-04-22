@@ -88,18 +88,21 @@ public class ReportUtilities {
 			Date today = Calendar.getInstance().getTime();
 			// Using DateFormat format method we can create a string
 			String creationDateTime = dateFormat.format(today);
-			System.out.println("DEBUG_" + "GeneratorXML: new creationDateTime "
+			System.out.println("DEBUG_" + "ReportUtilities: new creationDateTime "
 					+ creationDateTime);
 
 			ReportData reportData = new ReportData(null, reportField,
 					reportExecution, null, null, creationDateTime, null, null,
 					null, new VersionAuditor("utilities"));
-			reportExecution.getReportDatas().add(reportData);
-
+			
 			// save new reportData
 			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 					.getBean("reportDataDAO");
 			reportDataDAO.create(reportData);
+			
+			reportExecution.getReportDatas().add(reportData);
+			
+			System.out.println("creating <CreationDateAndTime>");
 		}
 
 		// <Version>
@@ -117,12 +120,15 @@ public class ReportUtilities {
 			ReportData reportData = new ReportData(null, reportField,
 					reportExecution, null, null, versionNum, null, null, null,
 					new VersionAuditor("utilities"));
-			reportExecution.getReportDatas().add(reportData);
-
+			
 			// save new reportData
 			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 					.getBean("reportDataDAO");
 			reportDataDAO.create(reportData);
+			
+			reportExecution.getReportDatas().add(reportData);
+			
+			System.out.println("creating <Version>");
 		}
 
 		// <FillingType>
@@ -161,17 +167,18 @@ public class ReportUtilities {
 				fillingType = "AMND";
 			}
 
-			System.out.println("creating fillingType " + fillingType);
+			System.out.println("creating <FillingType> " + fillingType);
 
 			ReportData reportData = new ReportData(null, reportField,
 					reportExecution, null, null, fillingType, null, null, null,
 					new VersionAuditor("utilities"));
-			reportExecution.getReportDatas().add(reportData);
 
 			// save new reportData
 			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 					.getBean("reportDataDAO");
 			reportDataDAO.create(reportData);
+			
+			reportExecution.getReportDatas().add(reportData);
 		}
 
 	}

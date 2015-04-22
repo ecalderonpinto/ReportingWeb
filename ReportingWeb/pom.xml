@@ -154,6 +154,14 @@
 			<type>tld</type>
 		</dependency>
 
+		<!-- Bash Interpreter -->
+		<dependency>
+			<groupId>org.beanshell</groupId>
+			<artifactId>bsh</artifactId>
+			<version>2.0b5</version>
+		</dependency>
+
+
 
 	</dependencies>
 	<build>

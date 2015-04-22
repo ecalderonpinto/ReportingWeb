@@ -1,10 +1,8 @@
 package com.reportingtool.controllers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -25,10 +23,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.entities.dao.loader.LoadFileDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.loader.LoadFile;
-import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.controllers.forms.ReportAssignLoadsForm;
 import com.reportingtool.validator.RawData;
+import com.reportingtool.validator.Semantic;
 import com.reportingtool.validator.Syntactic;
 
 @Controller
@@ -100,6 +98,9 @@ public class LoadsAsignToReportsController {
 		System.out.println("DEBUG_" + "TestValidator: starting for list: "
 				+ reportAssign.getReportExecution().getReportDatas());
 		syntactic.validReportExecution(reportAssign.getReportExecution());
+		
+		Semantic semantic = new Semantic(applicationContext);
+		semantic.checkSemantic(reportAssign.getReportExecution());
 
 		model.addAttribute("reportassign", reportAssign);
 		// refresh reportExecution to display after loading

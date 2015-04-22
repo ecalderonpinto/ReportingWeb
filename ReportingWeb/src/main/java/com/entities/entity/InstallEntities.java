@@ -29,6 +29,7 @@ import com.entities.dao.reportingtool.ReportErrorDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.dao.reportingtool.ReportFieldListDAO;
+import com.entities.dao.reportingtool.ReportSemanticDAO;
 import com.entities.entity.common.Error;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileConfig;
@@ -44,6 +45,7 @@ import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
+import com.entities.entity.reportingtool.ReportSemantic;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.reportingtool.utilities.ReportUtilities;
 
@@ -71,39 +73,41 @@ public class InstallEntities {
 	public void installAIF(ApplicationContext applicationContext) {
 
 		// TODO:RT not inserting company/department by default in the future
-		
+
 		try {
 			VersionAuditor versionAdmin = new VersionAuditor("admin");
 
 			String versionField = "1.2";
 
-//			Company company = new Company("Santander Funds Group", "Spain", "SFG", "",
-//					null, null, null, null, versionAdmin);
-//			
-//			Department department = new Department(company,
-//					"Values department", "VALUE", "", "Spain", null, null,
-//					null, new VersionAuditor("admin"));
-//			
-//			Fund fund1 = new Fund(company, "Fund 3", "ES000002", "FUND3",
-//					"", null, null, null, versionAdmin);
-//			
-//			FundGroup fundGroup = new FundGroup(fund1, department,
-//					"VALUE FUNDS", "", versionAdmin);
-			
+			// Company company = new Company("Santander Funds Group", "Spain",
+			// "SFG", "",
+			// null, null, null, null, versionAdmin);
+			//
+			// Department department = new Department(company,
+			// "Values department", "VALUE", "", "Spain", null, null,
+			// null, new VersionAuditor("admin"));
+			//
+			// Fund fund1 = new Fund(company, "Fund 3", "ES000002", "FUND3",
+			// "", null, null, null, versionAdmin);
+			//
+			// FundGroup fundGroup = new FundGroup(fund1, department,
+			// "VALUE FUNDS", "", versionAdmin);
+
 			ReportCatalog reportCatalog = new ReportCatalog(versionField,
 					"FUND", "AIF 2014", "", null, null, null, versionAdmin);
 
 			String str1 = "2014-01-01";
 			String str2 = "2014-12-31";
-			DateFormat format = new SimpleDateFormat(ReportUtilities.datePattern);
+			DateFormat format = new SimpleDateFormat(
+					ReportUtilities.datePattern);
 			Date date1 = format.parse(str1);
 			Date date2 = format.parse(str2);
 
-//			ReportExecution reportExecution = new ReportExecution(
-//					reportCatalog, company, fund1, "Prueba AIF fund3 2014", "",
-//					"Q2", "2014", date2, date1, "CREATION", null, null, null,
-//					null, null, null, null, null, null, null, null, null,
-//					versionAdmin);
+			// ReportExecution reportExecution = new ReportExecution(
+			// reportCatalog, company, fund1, "Prueba AIF fund3 2014", "",
+			// "Q2", "2014", date2, date1, "CREATION", null, null, null,
+			// null, null, null, null, null, null, null, null, null,
+			// versionAdmin);
 
 			ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
 					.getBean("reportCatalogDAO");
@@ -2622,24 +2626,26 @@ public class InstallEntities {
 			// /////////////////////////////////////////////////////////////////
 			// DAO
 
-//			CompanyDAO companyDAO = (CompanyDAO) applicationContext
-//					.getBean("companyDAO");
-//			companyDAO.create(company);
-//
-//			DepartmentDAO departmentDAO = (DepartmentDAO) applicationContext
-//					.getBean("departmentDAO");
-//			departmentDAO.create(department);
-//
-//			FundDAO fundDAO = (FundDAO) applicationContext.getBean("fundDAO");
-//			fundDAO.create(fund1);
-//
-//			FundGroupDAO fundGroupDAO = (FundGroupDAO) applicationContext
-//					.getBean("fundGroupDAO");
-//			fundGroupDAO.create(fundGroup);
-//
-//			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
-//					.getBean("reportExecutionDAO");
-//			reportExecutionDAO.create(reportExecution);
+			// CompanyDAO companyDAO = (CompanyDAO) applicationContext
+			// .getBean("companyDAO");
+			// companyDAO.create(company);
+			//
+			// DepartmentDAO departmentDAO = (DepartmentDAO) applicationContext
+			// .getBean("departmentDAO");
+			// departmentDAO.create(department);
+			//
+			// FundDAO fundDAO = (FundDAO)
+			// applicationContext.getBean("fundDAO");
+			// fundDAO.create(fund1);
+			//
+			// FundGroupDAO fundGroupDAO = (FundGroupDAO) applicationContext
+			// .getBean("fundGroupDAO");
+			// fundGroupDAO.create(fundGroup);
+			//
+			// ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO)
+			// applicationContext
+			// .getBean("reportExecutionDAO");
+			// reportExecutionDAO.create(reportExecution);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2662,26 +2668,27 @@ public class InstallEntities {
 
 			Company company = new Company("Santander Asset Manager", "Spain",
 					"SAM", "", null, null, null, null, versionAdmin);
-			
+
 			Department department = new Department(company, "Risk department",
 					"RISK", "", "Spain", null, null, null, new VersionAuditor(
 							"admin"));
-			
+
 			Fund fund1 = new Fund(company, "SAM fund 1", "ES000001", "FUND1",
 					"", null, null, null, versionAdmin);
-			
+
 			Fund fund2 = new Fund(company, "SAM fund 2", "ES000002", "FUND2",
 					"", null, null, null, versionAdmin);
-			
-			FundGroup fundGroup = new FundGroup(fund1, department, "RISK FUNDS",
-					"", versionAdmin);
+
+			FundGroup fundGroup = new FundGroup(fund1, department,
+					"RISK FUNDS", "", versionAdmin);
 
 			ReportCatalog reportCatalog = new ReportCatalog(versionField,
 					"COMPANY", "AIFM 2014", "", null, null, null, versionAdmin);
 
 			String str1 = "2014-01-01";
 			String str2 = "2014-12-31";
-			DateFormat format = new SimpleDateFormat(ReportUtilities.datePattern);
+			DateFormat format = new SimpleDateFormat(
+					ReportUtilities.datePattern);
 			Date date1 = format.parse(str1);
 			Date date2 = format.parse(str2);
 
@@ -2713,8 +2720,8 @@ public class InstallEntities {
 			reportFieldDAO.create(reportField1);
 			ReportField reportField2 = new ReportField(reportCatalog,
 					reportFieldx1, "A", "Version", new BigInteger("2"),
-					"([0-9])+\\.([0-9])+", "", "General Info", "VERSION", "1.02",
-					"11", versionField, null, null, null, versionAdmin);
+					"([0-9])+\\.([0-9])+", "", "General Info", "VERSION",
+					"1.02", "11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField2);
 			ReportField reportField3 = new ReportField(reportCatalog,
 					reportFieldx1, "D", "CreationDateAndTime", new BigInteger(
@@ -2726,19 +2733,18 @@ public class InstallEntities {
 
 			ReportField reportFieldx2 = new ReportField(reportCatalog,
 					reportFieldx1, "X", "AIFMRecordInfo", new BigInteger("0"),
-					null, "", null, null, "1.", "11", versionField, null,
-					null, null, versionAdmin);
+					null, "", null, null, "1.", "11", versionField, null, null,
+					null, versionAdmin);
 			reportFieldDAO.create(reportFieldx2);
 			ReportField reportField4 = new ReportField(reportCatalog,
 					reportFieldx2, "A", "FilingType", new BigInteger("4"),
-					".{4}", "", "General Info", "FilingTypeType", "1.04",
-					"11", versionField, null, null, null, versionAdmin);
+					".{4}", "", "General Info", "FilingTypeType", "1.04", "11",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField4);
 			ReportField reportField5 = new ReportField(reportCatalog,
 					reportFieldx2, "N", "AIFMContentType", new BigInteger("5"),
 					"[0-9]{1}", "", "General Info", "AIFMContentTypeType",
-					"1.05", "11", versionField, null, null, null,
-					versionAdmin);
+					"1.05", "11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField5);
 			ReportField reportField6 = new ReportField(reportCatalog,
 					reportFieldx2, "D", "ReportingPeriodStartDate",
@@ -2761,15 +2767,14 @@ public class InstallEntities {
 			ReportField reportField9 = new ReportField(reportCatalog,
 					reportFieldx2, "N", "ReportingPeriodYear", new BigInteger(
 							"9"), "[0-9]{4}", "", "General Info", "YEAR",
-					"1.09", "11", versionField, null, null, null,
-					versionAdmin);
+					"1.09", "11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField9);
 			ReportField reportField10 = new ReportField(reportCatalog,
 					reportFieldx2, "A",
 					"AIFMReportingObligationChangeFrequencyCode",
 					new BigInteger("10"), ".{2}", "", "General Info",
-					"ReportingObligationChangeFrequencyCodeType", "1.10",
-					"01", versionField, null, null, null, versionAdmin);
+					"ReportingObligationChangeFrequencyCodeType", "1.10", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField10);
 			ReportField reportField11 = new ReportField(reportCatalog,
 					reportFieldx2, "N",
@@ -2787,43 +2792,42 @@ public class InstallEntities {
 			ReportField reportField13 = new ReportField(reportCatalog,
 					reportFieldx2, "B", "LastReportingFlag", new BigInteger(
 							"13"), "true|false", "", "General Info", "BOOLEAN",
-					"1.13", "11", versionField, null, null, null,
-					versionAdmin);
+					"1.13", "11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField13);
 
 			ReportField reportFieldx3 = new ReportField(reportCatalog,
 					reportFieldx2, "X", "Assumptions", new BigInteger("0"),
-					null, "", null, null, "2.", "01", versionField, null,
-					null, null, versionAdmin);
+					null, "", null, null, "2.", "01", versionField, null, null,
+					null, versionAdmin);
 			reportFieldDAO.create(reportFieldx3);
 			ReportField reportFieldx4 = new ReportField(reportCatalog,
 					reportFieldx3, "X", "Assumption", new BigInteger("0"),
-					null, "", null, null, "2.", "0n", versionField, null,
-					null, null, versionAdmin);
+					null, "", null, null, "2.", "0n", versionField, null, null,
+					null, versionAdmin);
 			reportFieldDAO.create(reportFieldx4);
 			ReportField reportField14 = new ReportField(reportCatalog,
 					reportFieldx4, "N", "QuestionNumber", new BigInteger("14"),
-					"[0-9]{0,3}", "", "Assumptions", "QUESTION", "2.14",
-					"0n", versionField, null, null, null, versionAdmin);
+					"[0-9]{0,3}", "", "Assumptions", "QUESTION", "2.14", "0n",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField14);
 			ReportField reportField15 = new ReportField(reportCatalog,
 					reportFieldx4, "Z", "AssumptionDescription",
 					new BigInteger("15"), ".{0,300}", "", "Assumptions",
-					"DESCRIPTION", "2.15", "0n", versionField, null,
-					null, null, versionAdmin);
+					"DESCRIPTION", "2.15", "0n", versionField, null, null,
+					null, versionAdmin);
 			reportFieldDAO.create(reportField15);
 
 			ReportField reportField16 = new ReportField(reportCatalog,
 					reportFieldx2, "A", "AIFMReportingCode", new BigInteger(
 							"16"), ".{1}", "", "General Info",
-					"AIFMReportingCodeType", "1.16", "11", versionField,
-					null, null, null, versionAdmin);
+					"AIFMReportingCodeType", "1.16", "11", versionField, null,
+					null, null, versionAdmin);
 			reportFieldDAO.create(reportField16);
 			ReportField reportField17 = new ReportField(reportCatalog,
 					reportFieldx2, "A", "AIFMJurisdiction",
 					new BigInteger("17"), ".{2}", "", "General Info",
-					"CountryCodeType", "1.17", "11", versionField, null,
-					null, null, versionAdmin);
+					"CountryCodeType", "1.17", "11", versionField, null, null,
+					null, versionAdmin);
 			reportFieldDAO.create(reportField17);
 			ReportField reportField18 = new ReportField(reportCatalog,
 					reportFieldx2, "Z", "AIFMNationalCode",
@@ -2833,19 +2837,18 @@ public class InstallEntities {
 			reportFieldDAO.create(reportField18);
 			ReportField reportField19 = new ReportField(reportCatalog,
 					reportFieldx2, "Z", "AIFMName", new BigInteger("19"),
-					".{0,300}", "", "General Info", "AIFM_NAME", "1.19",
-					"11", versionField, null, null, null, versionAdmin);
+					".{0,300}", "", "General Info", "AIFM_NAME", "1.19", "11",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField19);
 			ReportField reportField20 = new ReportField(reportCatalog,
 					reportFieldx2, "B", "AIFMEEAFlag", new BigInteger("20"),
-					"true|false", "", "General Info", "BOOLEAN", "1.20",
-					"11", versionField, null, null, null, versionAdmin);
+					"true|false", "", "General Info", "BOOLEAN", "1.20", "11",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField20);
 			ReportField reportField21 = new ReportField(reportCatalog,
 					reportFieldx2, "B", "AIFMNoReportingFlag", new BigInteger(
 							"21"), "true|false", "", "General Info", "BOOLEAN",
-					"1.21", "11", versionField, null, null, null,
-					versionAdmin);
+					"1.21", "11", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField21);
 
 			ReportField reportFieldx5 = new ReportField(reportCatalog,
@@ -2855,32 +2858,32 @@ public class InstallEntities {
 			reportFieldDAO.create(reportFieldx5);
 			ReportField reportFieldx6 = new ReportField(reportCatalog,
 					reportFieldx5, "X", "AIFMIdentifier", new BigInteger("0"),
-					null, "", null, null, "3.", "01", versionField, null,
-					null, null, versionAdmin);
+					null, "", null, null, "3.", "01", versionField, null, null,
+					null, versionAdmin);
 			reportFieldDAO.create(reportFieldx6);
 			ReportField reportField22 = new ReportField(reportCatalog,
 					reportFieldx6, "A", "AIFMIdentifierLEI", new BigInteger(
 							"22"), ".{20}", "", "Complete Description",
-					"LEICodeType", "3.22", "01", versionField, null,
-					null, null, versionAdmin);
+					"LEICodeType", "3.22", "01", versionField, null, null,
+					null, versionAdmin);
 			reportFieldDAO.create(reportField22);
 			ReportField reportField23 = new ReportField(reportCatalog,
 					reportFieldx6, "A", "AIFMIdentifierBIC", new BigInteger(
 							"23"), ".{11}", "", "Complete Description",
-					"BICCodeType", "3.23", "01", versionField, null,
-					null, null, versionAdmin);
+					"BICCodeType", "3.23", "01", versionField, null, null,
+					null, versionAdmin);
 			reportFieldDAO.create(reportField23);
 			ReportField reportField24 = new ReportField(reportCatalog,
 					reportFieldx6, "A", "ReportingMemberState", new BigInteger(
-							"24"), ".{2}", "", "General Info", "CountryCodeType",
-					"1.24", "01", versionField, null, null, null,
-					versionAdmin);
+							"24"), ".{2}", "", "General Info",
+					"CountryCodeType", "1.24", "01", versionField, null, null,
+					null, versionAdmin);
 			reportFieldDAO.create(reportField24);
 			ReportField reportField25 = new ReportField(reportCatalog,
 					reportFieldx6, "Z", "AIFMNationalCode",
 					new BigInteger("25"), ".{0,30}", "", "General Info",
-					"AIFMNationalCodeType", "1.25", "01", versionField,
-					null, null, null, versionAdmin);
+					"AIFMNationalCodeType", "1.25", "01", versionField, null,
+					null, null, versionAdmin);
 			reportFieldDAO.create(reportField25);
 
 			ReportField reportFieldx7 = new ReportField(reportCatalog,
@@ -2890,14 +2893,13 @@ public class InstallEntities {
 			reportFieldDAO.create(reportFieldx7);
 			ReportField reportFieldx8 = new ReportField(reportCatalog,
 					reportFieldx7, "X", "AIFMFivePrincipalMarket",
-					new BigInteger("0"), null, "", null, null, "4.",
-					"15", versionField, null, null, null, versionAdmin);
+					new BigInteger("0"), null, "", null, null, "4.", "15",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx8);
 			ReportField reportField26 = new ReportField(reportCatalog,
 					reportFieldx8, "N", "Ranking", new BigInteger("26"),
 					"[0-9]{1}", "", "Principal Markets", "FiveRankingType",
-					"4.26", "15", versionField, null, null, null,
-					versionAdmin);
+					"4.26", "15", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField26);
 			ReportField reportFieldx9 = new ReportField(reportCatalog,
 					reportFieldx8, "X", "MarketIdentification", new BigInteger(
@@ -2906,46 +2908,41 @@ public class InstallEntities {
 			reportFieldDAO.create(reportFieldx9);
 			ReportField reportField27 = new ReportField(reportCatalog,
 					reportFieldx9, "A", "MarketCodeType", new BigInteger("27"),
-					".{3,4}", "", "Principal Markets", "MarketCodeTypeWithNOTType",
-					"4.27", "15", versionField, null, null, null,
-					versionAdmin);
+					".{3,4}", "", "Principal Markets",
+					"MarketCodeTypeWithNOTType", "4.27", "15", versionField,
+					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField27);
 			ReportField reportField28 = new ReportField(reportCatalog,
 					reportFieldx9, "A", "MarketCode", new BigInteger("28"),
-					".{3,4}", "", "Principal Markets", "MICCodeType",
-					"4.28", "05", versionField, null, null, null,
-					versionAdmin);
+					".{3,4}", "", "Principal Markets", "MICCodeType", "4.28",
+					"05", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField28);
 			ReportField reportField29 = new ReportField(reportCatalog,
 					reportFieldx8, "N", "AggregatedValueAmount",
 					new BigInteger("29"), "[0-9]{0,15}?", "",
-					"Principal Markets", "NUMBER", "4.29", "15",
-					versionField, null, null, null, versionAdmin);
+					"Principal Markets", "NUMBER", "4.29", "15", versionField,
+					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField29);
 
 			ReportField reportFieldx10 = new ReportField(reportCatalog,
 					reportFieldx5, "X", "AIFMPrincipalInstruments",
-					new BigInteger("0"), null, "", null,
-					null, "5.", "11", versionField, null, null, null,
-					versionAdmin);
+					new BigInteger("0"), null, "", null, null, "5.", "11",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx10);
 			ReportField reportFieldx11 = new ReportField(reportCatalog,
 					reportFieldx10, "X", "AIFMPrincipalInstrument",
-					new BigInteger("0"), null, "", null,
-					null, "5.", "15", versionField, null, null, null,
-					versionAdmin);
+					new BigInteger("0"), null, "", null, null, "5.", "15",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx11);
 			ReportField reportField30 = new ReportField(reportCatalog,
 					reportFieldx11, "N", "Ranking", new BigInteger("30"),
 					"[0-9]{1}", "", "Principal Instruments", "FiveRankingType",
-					"5.30", "15", versionField, null, null, null,
-					versionAdmin);
+					"5.30", "15", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField30);
 			ReportField reportField31 = new ReportField(reportCatalog,
 					reportFieldx11, "A", "SubAssetType", new BigInteger("31"),
 					".{1,12}", "", "Principal Instruments", "SubAssetTypeType",
-					"5.31", "15", versionField, null, null, null,
-					versionAdmin);
+					"5.31", "15", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField31);
 			ReportField reportField32 = new ReportField(reportCatalog,
 					reportFieldx11, "N", "AggregatedValueAmount",
@@ -2956,44 +2953,44 @@ public class InstallEntities {
 
 			ReportField reportField33 = new ReportField(reportCatalog,
 					reportFieldx5, "N", "AUMAmountInEuro",
-					new BigInteger("33"), "[0-9]{0,15}?", "", "Complete Description", "NUMBER",
-					"3.33", "11", versionField, null, null, null,
-					versionAdmin);
+					new BigInteger("33"), "[0-9]{0,15}?", "",
+					"Complete Description", "NUMBER", "3.33", "11",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField33);
 			ReportField reportField34 = new ReportField(reportCatalog,
 					reportFieldx5, "N", "AUMAmountInBaseCurrency",
-					new BigInteger("34"), "[0-9]{0,15}?", "", "Complete Description", "NUMBER",
-					"3.34", "01", versionField, null, null, null,
-					versionAdmin);
+					new BigInteger("34"), "[0-9]{0,15}?", "",
+					"Complete Description", "NUMBER", "3.34", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField34);
 
 			ReportField reportFieldx12 = new ReportField(reportCatalog,
 					reportFieldx5, "X", "AIFMBaseCurrencyDescription",
-					new BigInteger("0"), null, "", null, null, "1.",
-					"01", versionField, null, null, null, versionAdmin);
+					new BigInteger("0"), null, "", null, null, "1.", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx12);
 			ReportField reportField35 = new ReportField(reportCatalog,
 					reportFieldx12, "A", "BaseCurrency", new BigInteger("35"),
-					".{3}", "", "Complete Description", "CurrencyCodeType", "3.35", "01",
-					versionField, null, null, null, versionAdmin);
+					".{3}", "", "Complete Description", "CurrencyCodeType",
+					"3.35", "01", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField35);
 			ReportField reportField36 = new ReportField(reportCatalog,
 					reportFieldx12, "A", "FXEURReferenceRateType",
 					new BigInteger("36"), ".{3}", "", "Complete Description",
-					"FXEURReferenceRateTypeType", "3.36", "01",
-					versionField, null, null, null, versionAdmin);
+					"FXEURReferenceRateTypeType", "3.36", "01", versionField,
+					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField36);
 			ReportField reportField37 = new ReportField(reportCatalog,
 					reportFieldx12, "N", "FXEURRate", new BigInteger("37"),
-					"[0-9]{1,15}(\\.[0-9]{1,4})?", "", "Complete Description", "DECIMAL",
-					"3.37", "01", versionField, null, null, null,
+					"[0-9]{1,15}(\\.[0-9]{1,4})?", "", "Complete Description",
+					"DECIMAL", "3.37", "01", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField37);
 			ReportField reportField38 = new ReportField(reportCatalog,
 					reportFieldx12, "Z", "FXEUROtherReferenceRateDescription",
-					new BigInteger("38"), ".{0,300}", "", "Complete Description", "DESCRIPTION",
-					"3.38", "01", versionField, null, null, null,
-					versionAdmin);
+					new BigInteger("38"), ".{0,300}", "",
+					"Complete Description", "DESCRIPTION", "3.38", "01",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField38);
 
 			ReportField reportFieldx13 = new ReportField(reportCatalog,
@@ -3030,265 +3027,263 @@ public class InstallEntities {
 			this.installFileList(applicationContext);
 
 			FileConfig fileConfig0 = new FileConfig(department, "AIFM",
-					"AIFM2014_QUESTIONS", ";", "SIMPLE", "*", null, true, null, null,
-					versionAdmin);
-			
+					"AIFM2014_QUESTIONS", ";", "SIMPLE", "*", null, true, null,
+					null, versionAdmin);
+
 			FileColum fileColum01 = new FileColum(reportField14, fileConfig0,
-					"type", new BigDecimal(0), "QuestionNumber", "",
-					"format", null, null, versionAdmin);
+					"type", new BigDecimal(0), "QuestionNumber", "", "format",
+					null, null, versionAdmin);
 			fileColum01.setColumBlock(ReportUtilities.fileColumBlockRepeatable);
 			FileColum fileColum02 = new FileColum(reportField15, fileConfig0,
 					"type", new BigDecimal(1), "AssumptionDescription", "",
 					"format", null, null, versionAdmin);
 			fileColum02.setColumBlock(ReportUtilities.fileColumBlockRepeatable);
-			
-			
+
 			FileConfig fileConfig = new FileConfig(department, "AIFM",
-					"AIFM2014_GENERAL", ";", "SIMPLE", "*", null, true, null, null,
-					versionAdmin);
-			
-//			FileConfig fileConfig = new FileConfig(department, "AIFM",
-//					"AIFM2014", ";", "SIMPLE", "*", null, false, null, null,
-//					versionAdmin);
-//			FileColum fileColum0 = new FileColum(null, fileConfig, "type",
-//					new BigDecimal(0), "type", "", "format", null, null,
-//					versionAdmin);
-//			FileColum fileColum1 = new FileColum(null, fileConfig, "type",
-//					new BigDecimal(1), "ID_GESTORA", "", "format", null, null,
-//					versionAdmin);
-//			FileColum fileColum2 = new FileColum(null, fileConfig, "type",
-//					new BigDecimal(2), "DATE_REPORT", "", "format", null, null,
-//					versionAdmin);
-//			FileColum fileColum3 = new FileColum(reportField1, fileConfig,
-//					"type", new BigDecimal(3), "ReportingMemberState", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum4 = new FileColum(reportField4, fileConfig,
-//					"type", new BigDecimal(4), "FilingType", "", "format",
-//					null, null, versionAdmin);
-//			FileColum fileColum5 = new FileColum(reportField5, fileConfig,
-//					"type", new BigDecimal(5), "AIFMContentType", "", "format",
-//					null, null, versionAdmin);
-//			FileColum fileColum6 = new FileColum(reportField6, fileConfig,
-//					"type", new BigDecimal(6), "ReportingPeriodStartDate", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum7 = new FileColum(reportField7, fileConfig,
-//					"type", new BigDecimal(7), "ReportingPeriodEndDate", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum8 = new FileColum(reportField8, fileConfig,
-//					"type", new BigDecimal(8), "ReportingPeriodType", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum9 = new FileColum(reportField9, fileConfig,
-//					"type", new BigDecimal(9), "ReportingPeriodYear", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum10 = new FileColum(reportField10, fileConfig,
-//					"type", new BigDecimal(10),
-//					"AIFMReportingObligationChangeFrequencyCode", "", "format",
-//					null, null, versionAdmin);
-//			FileColum fileColum11 = new FileColum(reportField12, fileConfig,
-//					"type", new BigDecimal(11),
-//					"AIFMReportingObligationChangeQuarter", "", "format", null,
-//					null, versionAdmin);
-//			FileColum fileColum12 = new FileColum(reportField13, fileConfig,
-//					"type", new BigDecimal(12), "LastReportingFlag", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum13 = new FileColum(reportField16, fileConfig,
-//					"type", new BigDecimal(13), "AIFMReportingCode", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum14 = new FileColum(reportField17, fileConfig,
-//					"type", new BigDecimal(14), "AIFMJurisdiction", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum15 = new FileColum(reportField18, fileConfig,
-//					"type", new BigDecimal(15), "AIFMNationalCode", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum16 = new FileColum(reportField19, fileConfig,
-//					"type", new BigDecimal(16), "AIFMName", "", "format", null,
-//					null, versionAdmin);
-//			FileColum fileColum17 = new FileColum(reportField20, fileConfig,
-//					"type", new BigDecimal(17), "AIFMEEAFlag", "", "format",
-//					null, null, versionAdmin);
-//			FileColum fileColum18 = new FileColum(reportField21, fileConfig,
-//					"type", new BigDecimal(18), "AIFMNoReportingFlag", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum19 = new FileColum(reportField22, fileConfig,
-//					"type", new BigDecimal(19), "AIFMIdentifierLEI", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum20 = new FileColum(reportField23, fileConfig,
-//					"type", new BigDecimal(20), "AIFMIdentifierBIC", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum21 = new FileColum(reportField26, fileConfig,
-//					"type", new BigDecimal(21), "AIFMFivePrincipalMarket1", "",
-//					"format", null, null, versionAdmin);
-//			fileColum18.setColumBlock("1");
-//			FileColum fileColum22 = new FileColum(reportField27, fileConfig,
-//					"type", new BigDecimal(22), "MarketCodeType1", "",
-//					"format", null, null, versionAdmin);
-//			fileColum19.setColumBlock("1");
-//			FileColum fileColum23 = new FileColum(reportField28, fileConfig,
-//					"type", new BigDecimal(23), "MarketCode1", "", "format",
-//					null, null, versionAdmin);
-//			fileColum20.setColumBlock("1");
-//			FileColum fileColum24 = new FileColum(reportField29, fileConfig,
-//					"type", new BigDecimal(24), "MarketAggregatedValueAmount1",
-//					"", "format", null, null, versionAdmin);
-//			fileColum21.setColumBlock("1");
-//			FileColum fileColum25 = new FileColum(reportField26, fileConfig,
-//					"type", new BigDecimal(25), "AIFMFivePrincipalMarket2", "",
-//					"format", null, null, versionAdmin);
-//			fileColum22.setColumBlock("2");
-//			FileColum fileColum26 = new FileColum(reportField27, fileConfig,
-//					"type", new BigDecimal(26), "MarketCodeType2", "",
-//					"format", null, null, versionAdmin);
-//			fileColum23.setColumBlock("2");
-//			FileColum fileColum27 = new FileColum(reportField28, fileConfig,
-//					"type", new BigDecimal(27), "MarketCode2", "", "format",
-//					null, null, versionAdmin);
-//			fileColum24.setColumBlock("2");
-//			FileColum fileColum28 = new FileColum(reportField29, fileConfig,
-//					"type", new BigDecimal(28), "MarketAggregatedValueAmount2",
-//					"", "format", null, null, versionAdmin);
-//			fileColum25.setColumBlock("2");
-//			FileColum fileColum29 = new FileColum(reportField26, fileConfig,
-//					"type", new BigDecimal(29), "AIFMFivePrincipalMarket3", "",
-//					"format", null, null, versionAdmin);
-//			fileColum26.setColumBlock("3");
-//			FileColum fileColum30 = new FileColum(reportField27, fileConfig,
-//					"type", new BigDecimal(30), "MarketCodeType3", "",
-//					"format", null, null, versionAdmin);
-//			fileColum27.setColumBlock("3");
-//			FileColum fileColum31 = new FileColum(reportField28, fileConfig,
-//					"type", new BigDecimal(31), "MarketCode3", "", "format",
-//					null, null, versionAdmin);
-//			fileColum28.setColumBlock("3");
-//			FileColum fileColum32 = new FileColum(reportField29, fileConfig,
-//					"type", new BigDecimal(32), "MarketAggregatedValueAmount3",
-//					"", "format", null, null, versionAdmin);
-//			fileColum29.setColumBlock("3");
-//			FileColum fileColum33 = new FileColum(reportField26, fileConfig,
-//					"type", new BigDecimal(33), "AIFMFivePrincipalMarket4", "",
-//					"format", null, null, versionAdmin);
-//			fileColum30.setColumBlock("4");
-//			FileColum fileColum34 = new FileColum(reportField27, fileConfig,
-//					"type", new BigDecimal(34), "MarketCodeType4", "",
-//					"format", null, null, versionAdmin);
-//			fileColum31.setColumBlock("4");
-//			FileColum fileColum35 = new FileColum(reportField28, fileConfig,
-//					"type", new BigDecimal(35), "MarketCode4", "", "format",
-//					null, null, versionAdmin);
-//			fileColum32.setColumBlock("4");
-//			FileColum fileColum36 = new FileColum(reportField29, fileConfig,
-//					"type", new BigDecimal(36), "MarketAggregatedValueAmount4",
-//					"", "format", null, null, versionAdmin);
-//			fileColum33.setColumBlock("4");
-//			FileColum fileColum37 = new FileColum(reportField26, fileConfig,
-//					"type", new BigDecimal(37), "AIFMFivePrincipalMarket5", "",
-//					"format", null, null, versionAdmin);
-//			fileColum34.setColumBlock("5");
-//			FileColum fileColum38 = new FileColum(reportField27, fileConfig,
-//					"type", new BigDecimal(38), "MarketCodeType5", "",
-//					"format", null, null, versionAdmin);
-//			fileColum35.setColumBlock("5");
-//			FileColum fileColum39 = new FileColum(reportField28, fileConfig,
-//					"type", new BigDecimal(39), "MarketCode5", "", "format",
-//					null, null, versionAdmin);
-//			fileColum36.setColumBlock("5");
-//			FileColum fileColum40 = new FileColum(reportField29, fileConfig,
-//					"type", new BigDecimal(40), "MarketAggregatedValueAmount5",
-//					"", "format", null, null, versionAdmin);
-//			fileColum37.setColumBlock("5");
-//			FileColum fileColum41 = new FileColum(reportField30, fileConfig,
-//					"type", new BigDecimal(41), "AIFMPrincipalInstrument1", "",
-//					"format", null, null, versionAdmin);
-//			fileColum38.setColumBlock("1");
-//			FileColum fileColum42 = new FileColum(reportField31, fileConfig,
-//					"type", new BigDecimal(42), "SubAssetType1", "", "format",
-//					null, null, versionAdmin);
-//			fileColum39.setColumBlock("1");
-//			FileColum fileColum43 = new FileColum(reportField32, fileConfig,
-//					"type", new BigDecimal(43),
-//					"InstrumentAggregatedValueAmount1", "", "format", null,
-//					null, versionAdmin);
-//			fileColum40.setColumBlock("1");
-//			FileColum fileColum44 = new FileColum(reportField30, fileConfig,
-//					"type", new BigDecimal(44), "AIFMPrincipalInstrument2", "",
-//					"format", null, null, versionAdmin);
-//			fileColum41.setColumBlock("2");
-//			FileColum fileColum45 = new FileColum(reportField31, fileConfig,
-//					"type", new BigDecimal(45), "SubAssetType2", "", "format",
-//					null, null, versionAdmin);
-//			fileColum42.setColumBlock("2");
-//			FileColum fileColum46 = new FileColum(reportField32, fileConfig,
-//					"type", new BigDecimal(46),
-//					"InstrumentAggregatedValueAmount2", "", "format", null,
-//					null, versionAdmin);
-//			fileColum43.setColumBlock("2");
-//			FileColum fileColum47 = new FileColum(reportField30, fileConfig,
-//					"type", new BigDecimal(47), "AIFMPrincipalInstrument3", "",
-//					"format", null, null, versionAdmin);
-//			fileColum44.setColumBlock("3");
-//			FileColum fileColum48 = new FileColum(reportField31, fileConfig,
-//					"type", new BigDecimal(48), "SubAssetType3", "", "format",
-//					null, null, versionAdmin);
-//			fileColum45.setColumBlock("3");
-//			FileColum fileColum49 = new FileColum(reportField32, fileConfig,
-//					"type", new BigDecimal(49),
-//					"InstrumentAggregatedValueAmount3", "", "format", null,
-//					null, versionAdmin);
-//			fileColum46.setColumBlock("3");
-//			FileColum fileColum50 = new FileColum(reportField30, fileConfig,
-//					"type", new BigDecimal(50), "AIFMPrincipalInstrument4", "",
-//					"format", null, null, versionAdmin);
-//			fileColum47.setColumBlock("4");
-//			FileColum fileColum51 = new FileColum(reportField31, fileConfig,
-//					"type", new BigDecimal(51), "SubAssetType4", "", "format",
-//					null, null, versionAdmin);
-//			fileColum48.setColumBlock("4");
-//			FileColum fileColum52 = new FileColum(reportField32, fileConfig,
-//					"type", new BigDecimal(52),
-//					"InstrumentAggregatedValueAmount4", "", "format", null,
-//					null, versionAdmin);
-//			fileColum49.setColumBlock("4");
-//			FileColum fileColum53 = new FileColum(reportField30, fileConfig,
-//					"type", new BigDecimal(53), "AIFMPrincipalInstrument5", "",
-//					"format", null, null, versionAdmin);
-//			fileColum50.setColumBlock("5");
-//			FileColum fileColum54 = new FileColum(reportField31, fileConfig,
-//					"type", new BigDecimal(54), "SubAssetType5", "", "format",
-//					null, null, versionAdmin);
-//			fileColum51.setColumBlock("5");
-//			FileColum fileColum55 = new FileColum(reportField32, fileConfig,
-//					"type", new BigDecimal(55),
-//					"InstrumentAggregatedValueAmount5", "", "format", null,
-//					null, versionAdmin);
-//			fileColum52.setColumBlock("5");
-//			FileColum fileColum56 = new FileColum(reportField33, fileConfig,
-//					"type", new BigDecimal(56), "AUMAmountInEuro", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum57 = new FileColum(reportField35, fileConfig,
-//					"type", new BigDecimal(57), "BaseCurrency", "", "format",
-//					null, null, versionAdmin);
-//			FileColum fileColum58 = new FileColum(reportField36, fileConfig,
-//					"type", new BigDecimal(58), "AUMAmountInBaseCurrency", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum59 = new FileColum(reportField37, fileConfig,
-//					"type", new BigDecimal(59), "FXEURReferenceRateType", "",
-//					"format", null, null, versionAdmin);
-//			FileColum fileColum60 = new FileColum(reportField38, fileConfig,
-//					"type", new BigDecimal(60), "FXEURRate", "", "format",
-//					null, null, versionAdmin);
-//			FileColum fileColum61 = new FileColum(reportField39, fileConfig,
-//					"type", new BigDecimal(61), "CancelledAIFMNationalCode",
-//					"", "format", null, null, versionAdmin);
-//			FileColum fileColum62 = new FileColum(reportField40, fileConfig,
-//					"type", new BigDecimal(62), "CancelledReportingPeriodType",
-//					"", "format", null, null, versionAdmin);
-//			FileColum fileColum63 = new FileColum(reportField41, fileConfig,
-//					"type", new BigDecimal(63), "CancelledReportingPeriodYear",
-//					"", "format", null, null, versionAdmin);
-//			FileColum fileColum64 = new FileColum(reportField42, fileConfig,
-//					"type", new BigDecimal(64), "CancelledRecordFlag", "",
-//					"format", null, null, versionAdmin);
-			
-			
+					"AIFM2014_GENERAL", ";", "SIMPLE", "*", null, true, null,
+					null, versionAdmin);
+
+			// FileConfig fileConfig = new FileConfig(department, "AIFM",
+			// "AIFM2014", ";", "SIMPLE", "*", null, false, null, null,
+			// versionAdmin);
+			// FileColum fileColum0 = new FileColum(null, fileConfig, "type",
+			// new BigDecimal(0), "type", "", "format", null, null,
+			// versionAdmin);
+			// FileColum fileColum1 = new FileColum(null, fileConfig, "type",
+			// new BigDecimal(1), "ID_GESTORA", "", "format", null, null,
+			// versionAdmin);
+			// FileColum fileColum2 = new FileColum(null, fileConfig, "type",
+			// new BigDecimal(2), "DATE_REPORT", "", "format", null, null,
+			// versionAdmin);
+			// FileColum fileColum3 = new FileColum(reportField1, fileConfig,
+			// "type", new BigDecimal(3), "ReportingMemberState", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum4 = new FileColum(reportField4, fileConfig,
+			// "type", new BigDecimal(4), "FilingType", "", "format",
+			// null, null, versionAdmin);
+			// FileColum fileColum5 = new FileColum(reportField5, fileConfig,
+			// "type", new BigDecimal(5), "AIFMContentType", "", "format",
+			// null, null, versionAdmin);
+			// FileColum fileColum6 = new FileColum(reportField6, fileConfig,
+			// "type", new BigDecimal(6), "ReportingPeriodStartDate", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum7 = new FileColum(reportField7, fileConfig,
+			// "type", new BigDecimal(7), "ReportingPeriodEndDate", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum8 = new FileColum(reportField8, fileConfig,
+			// "type", new BigDecimal(8), "ReportingPeriodType", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum9 = new FileColum(reportField9, fileConfig,
+			// "type", new BigDecimal(9), "ReportingPeriodYear", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum10 = new FileColum(reportField10, fileConfig,
+			// "type", new BigDecimal(10),
+			// "AIFMReportingObligationChangeFrequencyCode", "", "format",
+			// null, null, versionAdmin);
+			// FileColum fileColum11 = new FileColum(reportField12, fileConfig,
+			// "type", new BigDecimal(11),
+			// "AIFMReportingObligationChangeQuarter", "", "format", null,
+			// null, versionAdmin);
+			// FileColum fileColum12 = new FileColum(reportField13, fileConfig,
+			// "type", new BigDecimal(12), "LastReportingFlag", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum13 = new FileColum(reportField16, fileConfig,
+			// "type", new BigDecimal(13), "AIFMReportingCode", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum14 = new FileColum(reportField17, fileConfig,
+			// "type", new BigDecimal(14), "AIFMJurisdiction", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum15 = new FileColum(reportField18, fileConfig,
+			// "type", new BigDecimal(15), "AIFMNationalCode", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum16 = new FileColum(reportField19, fileConfig,
+			// "type", new BigDecimal(16), "AIFMName", "", "format", null,
+			// null, versionAdmin);
+			// FileColum fileColum17 = new FileColum(reportField20, fileConfig,
+			// "type", new BigDecimal(17), "AIFMEEAFlag", "", "format",
+			// null, null, versionAdmin);
+			// FileColum fileColum18 = new FileColum(reportField21, fileConfig,
+			// "type", new BigDecimal(18), "AIFMNoReportingFlag", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum19 = new FileColum(reportField22, fileConfig,
+			// "type", new BigDecimal(19), "AIFMIdentifierLEI", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum20 = new FileColum(reportField23, fileConfig,
+			// "type", new BigDecimal(20), "AIFMIdentifierBIC", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum21 = new FileColum(reportField26, fileConfig,
+			// "type", new BigDecimal(21), "AIFMFivePrincipalMarket1", "",
+			// "format", null, null, versionAdmin);
+			// fileColum18.setColumBlock("1");
+			// FileColum fileColum22 = new FileColum(reportField27, fileConfig,
+			// "type", new BigDecimal(22), "MarketCodeType1", "",
+			// "format", null, null, versionAdmin);
+			// fileColum19.setColumBlock("1");
+			// FileColum fileColum23 = new FileColum(reportField28, fileConfig,
+			// "type", new BigDecimal(23), "MarketCode1", "", "format",
+			// null, null, versionAdmin);
+			// fileColum20.setColumBlock("1");
+			// FileColum fileColum24 = new FileColum(reportField29, fileConfig,
+			// "type", new BigDecimal(24), "MarketAggregatedValueAmount1",
+			// "", "format", null, null, versionAdmin);
+			// fileColum21.setColumBlock("1");
+			// FileColum fileColum25 = new FileColum(reportField26, fileConfig,
+			// "type", new BigDecimal(25), "AIFMFivePrincipalMarket2", "",
+			// "format", null, null, versionAdmin);
+			// fileColum22.setColumBlock("2");
+			// FileColum fileColum26 = new FileColum(reportField27, fileConfig,
+			// "type", new BigDecimal(26), "MarketCodeType2", "",
+			// "format", null, null, versionAdmin);
+			// fileColum23.setColumBlock("2");
+			// FileColum fileColum27 = new FileColum(reportField28, fileConfig,
+			// "type", new BigDecimal(27), "MarketCode2", "", "format",
+			// null, null, versionAdmin);
+			// fileColum24.setColumBlock("2");
+			// FileColum fileColum28 = new FileColum(reportField29, fileConfig,
+			// "type", new BigDecimal(28), "MarketAggregatedValueAmount2",
+			// "", "format", null, null, versionAdmin);
+			// fileColum25.setColumBlock("2");
+			// FileColum fileColum29 = new FileColum(reportField26, fileConfig,
+			// "type", new BigDecimal(29), "AIFMFivePrincipalMarket3", "",
+			// "format", null, null, versionAdmin);
+			// fileColum26.setColumBlock("3");
+			// FileColum fileColum30 = new FileColum(reportField27, fileConfig,
+			// "type", new BigDecimal(30), "MarketCodeType3", "",
+			// "format", null, null, versionAdmin);
+			// fileColum27.setColumBlock("3");
+			// FileColum fileColum31 = new FileColum(reportField28, fileConfig,
+			// "type", new BigDecimal(31), "MarketCode3", "", "format",
+			// null, null, versionAdmin);
+			// fileColum28.setColumBlock("3");
+			// FileColum fileColum32 = new FileColum(reportField29, fileConfig,
+			// "type", new BigDecimal(32), "MarketAggregatedValueAmount3",
+			// "", "format", null, null, versionAdmin);
+			// fileColum29.setColumBlock("3");
+			// FileColum fileColum33 = new FileColum(reportField26, fileConfig,
+			// "type", new BigDecimal(33), "AIFMFivePrincipalMarket4", "",
+			// "format", null, null, versionAdmin);
+			// fileColum30.setColumBlock("4");
+			// FileColum fileColum34 = new FileColum(reportField27, fileConfig,
+			// "type", new BigDecimal(34), "MarketCodeType4", "",
+			// "format", null, null, versionAdmin);
+			// fileColum31.setColumBlock("4");
+			// FileColum fileColum35 = new FileColum(reportField28, fileConfig,
+			// "type", new BigDecimal(35), "MarketCode4", "", "format",
+			// null, null, versionAdmin);
+			// fileColum32.setColumBlock("4");
+			// FileColum fileColum36 = new FileColum(reportField29, fileConfig,
+			// "type", new BigDecimal(36), "MarketAggregatedValueAmount4",
+			// "", "format", null, null, versionAdmin);
+			// fileColum33.setColumBlock("4");
+			// FileColum fileColum37 = new FileColum(reportField26, fileConfig,
+			// "type", new BigDecimal(37), "AIFMFivePrincipalMarket5", "",
+			// "format", null, null, versionAdmin);
+			// fileColum34.setColumBlock("5");
+			// FileColum fileColum38 = new FileColum(reportField27, fileConfig,
+			// "type", new BigDecimal(38), "MarketCodeType5", "",
+			// "format", null, null, versionAdmin);
+			// fileColum35.setColumBlock("5");
+			// FileColum fileColum39 = new FileColum(reportField28, fileConfig,
+			// "type", new BigDecimal(39), "MarketCode5", "", "format",
+			// null, null, versionAdmin);
+			// fileColum36.setColumBlock("5");
+			// FileColum fileColum40 = new FileColum(reportField29, fileConfig,
+			// "type", new BigDecimal(40), "MarketAggregatedValueAmount5",
+			// "", "format", null, null, versionAdmin);
+			// fileColum37.setColumBlock("5");
+			// FileColum fileColum41 = new FileColum(reportField30, fileConfig,
+			// "type", new BigDecimal(41), "AIFMPrincipalInstrument1", "",
+			// "format", null, null, versionAdmin);
+			// fileColum38.setColumBlock("1");
+			// FileColum fileColum42 = new FileColum(reportField31, fileConfig,
+			// "type", new BigDecimal(42), "SubAssetType1", "", "format",
+			// null, null, versionAdmin);
+			// fileColum39.setColumBlock("1");
+			// FileColum fileColum43 = new FileColum(reportField32, fileConfig,
+			// "type", new BigDecimal(43),
+			// "InstrumentAggregatedValueAmount1", "", "format", null,
+			// null, versionAdmin);
+			// fileColum40.setColumBlock("1");
+			// FileColum fileColum44 = new FileColum(reportField30, fileConfig,
+			// "type", new BigDecimal(44), "AIFMPrincipalInstrument2", "",
+			// "format", null, null, versionAdmin);
+			// fileColum41.setColumBlock("2");
+			// FileColum fileColum45 = new FileColum(reportField31, fileConfig,
+			// "type", new BigDecimal(45), "SubAssetType2", "", "format",
+			// null, null, versionAdmin);
+			// fileColum42.setColumBlock("2");
+			// FileColum fileColum46 = new FileColum(reportField32, fileConfig,
+			// "type", new BigDecimal(46),
+			// "InstrumentAggregatedValueAmount2", "", "format", null,
+			// null, versionAdmin);
+			// fileColum43.setColumBlock("2");
+			// FileColum fileColum47 = new FileColum(reportField30, fileConfig,
+			// "type", new BigDecimal(47), "AIFMPrincipalInstrument3", "",
+			// "format", null, null, versionAdmin);
+			// fileColum44.setColumBlock("3");
+			// FileColum fileColum48 = new FileColum(reportField31, fileConfig,
+			// "type", new BigDecimal(48), "SubAssetType3", "", "format",
+			// null, null, versionAdmin);
+			// fileColum45.setColumBlock("3");
+			// FileColum fileColum49 = new FileColum(reportField32, fileConfig,
+			// "type", new BigDecimal(49),
+			// "InstrumentAggregatedValueAmount3", "", "format", null,
+			// null, versionAdmin);
+			// fileColum46.setColumBlock("3");
+			// FileColum fileColum50 = new FileColum(reportField30, fileConfig,
+			// "type", new BigDecimal(50), "AIFMPrincipalInstrument4", "",
+			// "format", null, null, versionAdmin);
+			// fileColum47.setColumBlock("4");
+			// FileColum fileColum51 = new FileColum(reportField31, fileConfig,
+			// "type", new BigDecimal(51), "SubAssetType4", "", "format",
+			// null, null, versionAdmin);
+			// fileColum48.setColumBlock("4");
+			// FileColum fileColum52 = new FileColum(reportField32, fileConfig,
+			// "type", new BigDecimal(52),
+			// "InstrumentAggregatedValueAmount4", "", "format", null,
+			// null, versionAdmin);
+			// fileColum49.setColumBlock("4");
+			// FileColum fileColum53 = new FileColum(reportField30, fileConfig,
+			// "type", new BigDecimal(53), "AIFMPrincipalInstrument5", "",
+			// "format", null, null, versionAdmin);
+			// fileColum50.setColumBlock("5");
+			// FileColum fileColum54 = new FileColum(reportField31, fileConfig,
+			// "type", new BigDecimal(54), "SubAssetType5", "", "format",
+			// null, null, versionAdmin);
+			// fileColum51.setColumBlock("5");
+			// FileColum fileColum55 = new FileColum(reportField32, fileConfig,
+			// "type", new BigDecimal(55),
+			// "InstrumentAggregatedValueAmount5", "", "format", null,
+			// null, versionAdmin);
+			// fileColum52.setColumBlock("5");
+			// FileColum fileColum56 = new FileColum(reportField33, fileConfig,
+			// "type", new BigDecimal(56), "AUMAmountInEuro", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum57 = new FileColum(reportField35, fileConfig,
+			// "type", new BigDecimal(57), "BaseCurrency", "", "format",
+			// null, null, versionAdmin);
+			// FileColum fileColum58 = new FileColum(reportField36, fileConfig,
+			// "type", new BigDecimal(58), "AUMAmountInBaseCurrency", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum59 = new FileColum(reportField37, fileConfig,
+			// "type", new BigDecimal(59), "FXEURReferenceRateType", "",
+			// "format", null, null, versionAdmin);
+			// FileColum fileColum60 = new FileColum(reportField38, fileConfig,
+			// "type", new BigDecimal(60), "FXEURRate", "", "format",
+			// null, null, versionAdmin);
+			// FileColum fileColum61 = new FileColum(reportField39, fileConfig,
+			// "type", new BigDecimal(61), "CancelledAIFMNationalCode",
+			// "", "format", null, null, versionAdmin);
+			// FileColum fileColum62 = new FileColum(reportField40, fileConfig,
+			// "type", new BigDecimal(62), "CancelledReportingPeriodType",
+			// "", "format", null, null, versionAdmin);
+			// FileColum fileColum63 = new FileColum(reportField41, fileConfig,
+			// "type", new BigDecimal(63), "CancelledReportingPeriodYear",
+			// "", "format", null, null, versionAdmin);
+			// FileColum fileColum64 = new FileColum(reportField42, fileConfig,
+			// "type", new BigDecimal(64), "CancelledRecordFlag", "",
+			// "format", null, null, versionAdmin);
+
 			FileColum fileColum0 = new FileColum(reportField1, fileConfig,
 					"type", new BigDecimal(0), "ReportingMemberState", "",
 					"format", null, null, versionAdmin);
@@ -3316,8 +3311,8 @@ public class InstallEntities {
 					null, null, versionAdmin);
 			FileColum fileColum8 = new FileColum(reportField11, fileConfig,
 					"type", new BigDecimal(8),
-					"AIFReportingObligationChangeContentsCode", "", "format", null,
-					null, versionAdmin);
+					"AIFReportingObligationChangeContentsCode", "", "format",
+					null, null, versionAdmin);
 			FileColum fileColum9 = new FileColum(reportField12, fileConfig,
 					"type", new BigDecimal(9),
 					"AIFMReportingObligationChangeQuarter", "", "format", null,
@@ -3516,8 +3511,9 @@ public class InstallEntities {
 					"type", new BigDecimal(60), "FXEURRate", "", "format",
 					null, null, versionAdmin);
 			FileColum fileColum61 = new FileColum(reportField38, fileConfig,
-					"type", new BigDecimal(61), "FXEUROtherReferenceRateDescription", "", "format",
-					null, null, versionAdmin);
+					"type", new BigDecimal(61),
+					"FXEUROtherReferenceRateDescription", "", "format", null,
+					null, versionAdmin);
 			FileColum fileColum62 = new FileColum(reportField39, fileConfig,
 					"type", new BigDecimal(62), "CancelledAIFMNationalCode",
 					"", "format", null, null, versionAdmin);
@@ -3742,32 +3738,38 @@ public class InstallEntities {
 					"Error in servlet", "Reload page", null, null, null,
 					versionAdmin);
 			Error error3 = new Error("VALIDATOR", "Error validator", "1",
-					"Error in validation", "Revise fields", null, null, null,
+					"Error in validation", "Check fields", null, null, null,
 					versionAdmin);
 			Error error4 = new Error("NORMALIZER", "Error normalizer", "1",
 					"Error in normalize process", "Reload file", null, null,
 					null, versionAdmin);
 			Error error5 = new Error("CREATION", "Error load", "1",
-					"Error in creation", "Revise conditions", null, null, null,
+					"Error in creation", "Check conditions", null, null, null,
 					versionAdmin);
 			Error error6 = new Error("SYNTAXIS", "Error load", "1",
-					"Error in syntaxis", "Revise format", null, null, null,
+					"Error in syntaxis", "Check format", null, null, null,
 					versionAdmin);
 			Error error7 = new Error("SEMANTIC", "Error sematinc", "1",
-					"Error in semantic", "Revise rules", null, null, null,
+					"Error in semantic", "Check rules", null, null, null,
 					versionAdmin);
 			Error error8 = new Error("TRANSLATE", "Error load", "1",
 					"Error in load file", "Reload file", null, null, null,
 					versionAdmin);
 			Error error9 = new Error("STATUS", "Error status", "1",
-					"Error in status checker", "Revise report", null, null,
+					"Error in status checker", "Check report", null, null,
 					null, versionAdmin);
 			Error error10 = new Error("REPORTING", "Error report", "1",
-					"Error in report", "Revise report", null, null, null,
+					"Error in report", "Check report", null, null, null,
 					versionAdmin);
 
-//			FileColumList fileColumList1 = new FileColumList(fileColum4,
-//					"TEXT", "FIRST", "INIT", versionAdmin);
+			// FileColumList fileColumList1 = new FileColumList(fileColum4,
+			// "TEXT", "FIRST", "INIT", versionAdmin);
+
+			ReportSemantic reportSemantic1 = new ReportSemantic(
+					reportCatalog,
+					"Field(2) is mandatory",
+					"result = ReportUtilities.searchData(reportExecution.getReportDatas(), \"Version\", \"2\", null)",
+					null, "Fill field(2)", versionAdmin);
 
 			// DAO
 
@@ -3800,7 +3802,7 @@ public class InstallEntities {
 					.getBean("fileColumDAO");
 			fileColumDAO.create(fileColum01);
 			fileColumDAO.create(fileColum02);
-			
+
 			fileColumDAO.create(fileColum0);
 			fileColumDAO.create(fileColum1);
 			fileColumDAO.create(fileColum2);
@@ -3868,56 +3870,56 @@ public class InstallEntities {
 			fileColumDAO.create(fileColum64);
 			fileColumDAO.create(fileColum65);
 
-//			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
-//					.getBean("reportDataDAO");
-//			reportDataDAO.create(reportData1);
-//			reportDataDAO.create(reportData2);
-//			reportDataDAO.create(reportData3);
-//			reportDataDAO.create(reportData4);
-//			reportDataDAO.create(reportData5);
-//			reportDataDAO.create(reportData6);
-//			reportDataDAO.create(reportData7);
-//			reportDataDAO.create(reportData8);
-//			reportDataDAO.create(reportData9);
-//			reportDataDAO.create(reportData10);
-//			reportDataDAO.create(reportData11);
-//			reportDataDAO.create(reportData12);
-//			reportDataDAO.create(reportData13);
-//			reportDataDAO.create(reportData14);
-//			reportDataDAO.create(reportData15);
-//			reportDataDAO.create(reportData16);
-//			reportDataDAO.create(reportData17);
-//			reportDataDAO.create(reportData18);
-//			reportDataDAO.create(reportData19);
-//			reportDataDAO.create(reportData20);
-//			reportDataDAO.create(reportData21);
-//			reportDataDAO.create(reportData22);
-//			reportDataDAO.create(reportData23);
-//			reportDataDAO.create(reportData24);
-//			reportDataDAO.create(reportData25);
-//			reportDataDAO.create(reportData26);
-//			reportDataDAO.create(reportData27);
-//			reportDataDAO.create(reportData28);
-//			reportDataDAO.create(reportData29);
-//			reportDataDAO.create(reportData30);
-//			reportDataDAO.create(reportData31);
-//			reportDataDAO.create(reportData32);
-//			reportDataDAO.create(reportData33);
-//			reportDataDAO.create(reportData34);
-//			reportDataDAO.create(reportData35);
-//			reportDataDAO.create(reportData36);
-//			reportDataDAO.create(reportData37);
-//			reportDataDAO.create(reportData38);
-//			reportDataDAO.create(reportData39);
-//			reportDataDAO.create(reportData40);
-//			reportDataDAO.create(reportData41);
-//			reportDataDAO.create(reportData42);
-//			reportDataDAO.create(reportData43);
-//			reportDataDAO.create(reportData44);
-//			reportDataDAO.create(reportData45);
-//			reportDataDAO.create(reportData46);
-//			reportDataDAO.create(reportData47);
-//			reportDataDAO.create(reportData48);
+			// ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+			// .getBean("reportDataDAO");
+			// reportDataDAO.create(reportData1);
+			// reportDataDAO.create(reportData2);
+			// reportDataDAO.create(reportData3);
+			// reportDataDAO.create(reportData4);
+			// reportDataDAO.create(reportData5);
+			// reportDataDAO.create(reportData6);
+			// reportDataDAO.create(reportData7);
+			// reportDataDAO.create(reportData8);
+			// reportDataDAO.create(reportData9);
+			// reportDataDAO.create(reportData10);
+			// reportDataDAO.create(reportData11);
+			// reportDataDAO.create(reportData12);
+			// reportDataDAO.create(reportData13);
+			// reportDataDAO.create(reportData14);
+			// reportDataDAO.create(reportData15);
+			// reportDataDAO.create(reportData16);
+			// reportDataDAO.create(reportData17);
+			// reportDataDAO.create(reportData18);
+			// reportDataDAO.create(reportData19);
+			// reportDataDAO.create(reportData20);
+			// reportDataDAO.create(reportData21);
+			// reportDataDAO.create(reportData22);
+			// reportDataDAO.create(reportData23);
+			// reportDataDAO.create(reportData24);
+			// reportDataDAO.create(reportData25);
+			// reportDataDAO.create(reportData26);
+			// reportDataDAO.create(reportData27);
+			// reportDataDAO.create(reportData28);
+			// reportDataDAO.create(reportData29);
+			// reportDataDAO.create(reportData30);
+			// reportDataDAO.create(reportData31);
+			// reportDataDAO.create(reportData32);
+			// reportDataDAO.create(reportData33);
+			// reportDataDAO.create(reportData34);
+			// reportDataDAO.create(reportData35);
+			// reportDataDAO.create(reportData36);
+			// reportDataDAO.create(reportData37);
+			// reportDataDAO.create(reportData38);
+			// reportDataDAO.create(reportData39);
+			// reportDataDAO.create(reportData40);
+			// reportDataDAO.create(reportData41);
+			// reportDataDAO.create(reportData42);
+			// reportDataDAO.create(reportData43);
+			// reportDataDAO.create(reportData44);
+			// reportDataDAO.create(reportData45);
+			// reportDataDAO.create(reportData46);
+			// reportDataDAO.create(reportData47);
+			// reportDataDAO.create(reportData48);
 
 			// LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
 			// .getBean("loadFileDAO");
@@ -3967,9 +3969,16 @@ public class InstallEntities {
 			errorDAO.create(error9);
 			errorDAO.create(error10);
 
-//			FileColumListDAO fileColumListDAO = (FileColumListDAO) applicationContext
-//					.getBean("fileColumListDAO");
-//			fileColumListDAO.create(fileColumList1);
+			// FileColumListDAO fileColumListDAO = (FileColumListDAO)
+			// applicationContext
+			// .getBean("fileColumListDAO");
+			// fileColumListDAO.create(fileColumList1);
+
+			ReportSemanticDAO reportSemanticDAO = (ReportSemanticDAO) applicationContext
+					.getBean("reportSemanticDAO");
+			reportSemanticDAO.create(reportSemantic1);
+			System.out.println("reportSemantic1 "
+					+ reportSemantic1.getReportingSemanticRule());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -4599,7 +4608,6 @@ public class InstallEntities {
 
 	}
 
-	
 	/**
 	 * Process to delete all data from database
 	 * 
@@ -4607,7 +4615,10 @@ public class InstallEntities {
 	 */
 	public void deleteEntities(ApplicationContext applicationContext) {
 
-		
+		ReportSemanticDAO reportSemanticDAO = (ReportSemanticDAO) applicationContext
+				.getBean("reportSemanticDAO");
+		reportSemanticDAO.deleteAll();
+
 		FileColumListDAO fileColumListDAO = (FileColumListDAO) applicationContext
 				.getBean("fileColumListDAO");
 		fileColumListDAO.deleteAll();
@@ -4654,11 +4665,11 @@ public class InstallEntities {
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
 		reportExecutionDAO.deleteAll();
-		
+
 		LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
 				.getBean("loadFileDAO");
 		loadFileDAO.deleteAll();
-		
+
 		FileConfigDAO fileConfigDAO = (FileConfigDAO) applicationContext
 				.getBean("fileConfigDAO");
 		fileConfigDAO.deleteAll();
