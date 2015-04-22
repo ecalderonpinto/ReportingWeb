@@ -24,29 +24,34 @@
 			<table class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
-						<th>Report Data</th>
-						<th>Report Field</th>
-						<th>Field Number</th>
+						<th>Report</th>
+						<th>Data</th>
+						<th>Field</th>
 						<th>Error</th>
 						<th>Type</th>
 						<th>Text</th>
-						<!-- <th>Detail</th> -->
+						<th>Status</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="reportdataerror" items="${reportdataerrors}">
 						<tr>
+							<td>${reportdataerror.reportData.reportExecution.reportExecutionName}</td>
 							<td>${reportdataerror.reportData.reportDataText}</td>
-							<td>${reportdataerror.reportData.reportField.reportFieldName}</td>
-							<td>${reportdataerror.reportData.reportField.reportFieldNum}</td>
+							<td>${reportdataerror.reportData.reportField.reportFieldName}
+								(${reportdataerror.reportData.reportField.reportFieldNum})
+							</td>
 							<td>${reportdataerror.error.errorType}</td>
 							<td>${reportdataerror.reportDataErrorType}</td>
 							<td>${reportdataerror.reportDataErrorText}</td>
-							<%-- <td>
-								<a class="btn btn-small" href="<c:url value="fileConfigDetail.do?id=${fileconfig.id}" />" >
-									detail
-								</a>
-							</td> --%>
+							<td><c:choose>
+									<c:when test="${reportdataerror.versionAuditor.deleted == true}">
+										<span class="label label-success">Solved</span>
+									</c:when>
+									<c:otherwise>
+										<span class="label label-important">Pending</span>
+									</c:otherwise>
+								</c:choose></td>
 						</tr>
 					</c:forEach>
 				</tbody>

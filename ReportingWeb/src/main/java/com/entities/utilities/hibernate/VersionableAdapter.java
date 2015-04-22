@@ -8,7 +8,7 @@ public interface VersionableAdapter extends Serializable,Cloneable{
 	public void setId(long _id);
 	public int getVersion();
 	public void setVersion(int version);
-	public VersionAuditor getAuditor();
-	public void setAuditor(VersionAuditor _auditor);
+	public VersionAuditor getVersionAuditor();
+	public void setVersionAuditor(VersionAuditor _auditor);
 	public Object clone() throws CloneNotSupportedException;
 }

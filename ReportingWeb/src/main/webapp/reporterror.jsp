@@ -13,7 +13,8 @@
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
-				<i class="halflings-icon align-justify"></i> <span class="break">Report Error</span>
+				<i class="halflings-icon align-justify"></i> <span class="break">Report
+					Error</span>
 			</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-minimize"><i
@@ -28,7 +29,7 @@
 						<th>Error</th>
 						<th>Type</th>
 						<th>Text</th>
-						<!-- <th>Detail</th> -->
+						<th>Status</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -38,11 +39,67 @@
 							<td>${reporterror.error.errorType}</td>
 							<td>${reporterror.reportErrorType}</td>
 							<td>${reporterror.reportErrorText}</td>
-							<%-- <td>
-								<a class="btn btn-small" href="<c:url value="fileConfigDetail.do?id=${fileconfig.id}" />" >
-									detail
-								</a>
-							</td> --%>
+							<td><c:choose>
+									<c:when test="${reporterror.versionAuditor.deleted == true}">
+										<span class="label label-success">Solved</span>
+									</c:when>
+									<c:otherwise>
+										<span class="label label-important">Pending</span>
+									</c:otherwise>
+								</c:choose></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!--/span-->
+</div>
+<!--/row-->
+
+<div class="row-fluid sortable">
+	<div class="box span12">
+		<div class="box-header">
+			<h2>
+				<i class="halflings-icon align-justify"></i> <span class="break">Report Data Error</span>
+			</h2>
+			<div class="box-icon">
+				<a href="#" class="btn-minimize"><i
+					class="halflings-icon chevron-up"></i></a>
+			</div>
+		</div>
+		<div class="box-content">
+			<table class="table table-striped table-bordered table-condensed">
+				<thead>
+					<tr>
+						<th>Report</th>
+						<th>Data</th>
+						<th>Field</th>
+						<th>Error</th>
+						<th>Type</th>
+						<th>Text</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="reportdataerror" items="${reportdataerrors}">
+						<tr>
+							<td>${reportdataerror.reportData.reportExecution.reportExecutionName}</td>
+							<td>${reportdataerror.reportData.reportDataText}</td>
+							<td>${reportdataerror.reportData.reportField.reportFieldName}
+								(${reportdataerror.reportData.reportField.reportFieldNum})
+							</td>
+							<td>${reportdataerror.error.errorType}</td>
+							<td>${reportdataerror.reportDataErrorType}</td>
+							<td>${reportdataerror.reportDataErrorText}</td>
+							<td><c:choose>
+									<c:when test="${reportdataerror.versionAuditor.deleted == true}">
+										<span class="label label-success">Solved</span>
+									</c:when>
+									<c:otherwise>
+										<span class="label label-important">Pending</span>
+									</c:otherwise>
+								</c:choose></td>
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -1934,6 +1934,11 @@ public class GeneratorXML {
 
 			validator.validate(xmlFile);
 			System.out.println("DEBUG_" + "CREATION - XML is valid.");
+			ReportingErrorManager.disableReportError(applicationContext,
+					"CREATION", reportExecution, "FAIL");
+			ReportingErrorManager.disableReportError(applicationContext,
+					"CREATION", reportExecution, "XML Incomplete");
+
 		} catch (SAXException e) {
 			System.out.println("DEBUG_" + "CREATION - XML NOT is valid: "
 					+ e.getLocalizedMessage());

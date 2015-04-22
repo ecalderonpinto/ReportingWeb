@@ -113,7 +113,7 @@ public class RawData {
 
 			if (!exist) {
 				// user
-				reportData.setAuditor(new VersionAuditor("admin"));
+				reportData.setVersionAuditor(new VersionAuditor("admin"));
 				
 				// save new reportData
 				ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext

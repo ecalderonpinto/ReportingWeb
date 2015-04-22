@@ -2,8 +2,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!-- start: Breadcrumb -->
-<ul class="breadcrumb">	
-		<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
+<ul class="breadcrumb">
+	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
 	<li><a href="dataManager.do">Data Manager</a><i
 		class="icon-angle-right"></i>
@@ -15,12 +15,21 @@
 </ul>
 <!-- end: Breadcrumb -->
 
+
 <form:form method="POST" commandName="reportXML">
 	<div class="box-content">
-		<input type="hidden" name="reportid" value="${report.id}" />
-		<input type="submit" value="Download XML" class="btn btn-important btn-success">
+		<input type="hidden" name="reportid" value="${report.id}" /> <input
+			type="submit" value="Download XML"
+			class="btn btn-important btn-success">
 	</div>
 </form:form>
+
+<c:if test="${report.hasErrors == true}">
+	<div class="box-content">
+		<a class="btn btn-small btn-danger"
+			href="<c:url value="reportError.do?id=${report.id}" />"> Errors </a>
+	</div>
+</c:if>
 
 <div class="row-fluid sortable">
 	<div class="box span12">

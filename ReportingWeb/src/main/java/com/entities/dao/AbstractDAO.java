@@ -124,7 +124,13 @@ public abstract class AbstractDAO<T extends VersionableAdapter> {
 	
 	@Transactional
 	public void disable(T entity) {
-		entity.getAuditor().setDeleted(true);
+		entity.getVersionAuditor().setDeleted(true);
+		getHibernateTemplate().update(entity);
+	}
+	
+	@Transactional
+	public void enable(T entity) {
+		entity.getVersionAuditor().setDeleted(false);
 		getHibernateTemplate().update(entity);
 	}
 

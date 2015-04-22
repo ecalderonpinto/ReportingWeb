@@ -153,7 +153,7 @@ public class FileLoader {
 					}
 
 					// Set LoadRaw in LoadFile
-					loadRaw.setAuditor(new VersionAuditor("admin"));
+					loadRaw.setVersionAuditor(new VersionAuditor("admin"));
 					loadFile.getLoadRaws().add(loadRaw);
 				} else {
 					ReportingErrorManager.createLoadError(applicationContext,

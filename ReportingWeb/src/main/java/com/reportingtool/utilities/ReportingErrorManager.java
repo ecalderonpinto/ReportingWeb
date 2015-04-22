@@ -44,19 +44,12 @@ public class ReportingErrorManager {
 			ReportData reportData, String reportDataErrorType,
 			String reportDataErrorText) {
 
-		System.out.println("* Creating error: " + typeError + " "
-				+ reportDataErrorType + " " + reportDataErrorText);
+		System.out.println("DEBUG_" + typeError + " Creating reportDataError ("
+				+ reportData.getReportField().getReportFieldNum() + ") "
+				+ typeError + " " + reportDataErrorType + " "
+				+ reportDataErrorText + " - " + reportData.getReportDataText());
 
-		ErrorDAO errorDAO = (ErrorDAO) applicationContext.getBean("errorDAO");
-		Error errorExample = new Error();
-		errorExample.setErrorType(typeError);
-		List<Error> errors = new ArrayList<Error>(
-				errorDAO.findByExample(errorExample));
-		Error error = new Error();
-		error = errors.get(0);
-
-		// ReportDataError reportDataError = new ReportDataError(reportData,
-		// error, type, text, new VersionAuditor("error"));
+		Error error = findError(applicationContext, typeError);
 
 		ReportDataError reportDataError = new ReportDataError(error,
 				reportData, reportDataErrorType, reportDataErrorText);
@@ -77,12 +70,21 @@ public class ReportingErrorManager {
 			if (reportDataErrorExample.equals(reportDataError)) {
 				System.out.println("DEBUG_" + typeError + " error ya existe.");
 				iguales = true;
+				System.out.println("DEBUG_" + typeError
+						+ " enable reportDataError ("
+						+ reportData.getReportField().getReportFieldNum()
+						+ ") "
+						+ reportDataErrorExample.getReportDataErrorType()
+						+ " in " + reportData.getReportDataText() + " - "
+						+ reportData.getReportField().getReportFieldName());
+				reportDataErrorDAO.enable(reportDataErrorExample);
 				break;
 			}
 		}
 
+		// create new error
 		if (!iguales) {
-			reportDataError.setAuditor(new VersionAuditor("error"));
+			reportDataError.setVersionAuditor(new VersionAuditor("error"));
 			reportDataErrorDAO.create(reportDataError);
 			reportData.getReportDataErrors().add(reportDataError);
 		}
@@ -100,32 +102,59 @@ public class ReportingErrorManager {
 			ApplicationContext applicationContext, String typeError,
 			ReportData reportData, String reportErrorType) {
 
-		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) applicationContext
+//		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) applicationContext
+//				.getBean("reportDataErrorDAO");
+//
+//		ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+//				.getBean("reportDataDAO");
+//
+//		reportData = reportDataDAO.findById(reportData.getId());
+//
+//		Error error = findError(applicationContext, typeError);
+//
+//		ReportDataError reportDataErrorExample = new ReportDataError();
+//		reportDataErrorExample.setReportData(reportData);
+//		reportDataErrorExample.setError(error);
+//		reportDataErrorExample.setReportDataErrorType(reportErrorType);
+//		
+//		System.out.println("LOL " + reportDataErrorExample.getReportData().getId()
+//				+ " " +reportDataErrorExample.getReportDataErrorType());
+//
+//		List<ReportDataError> reportDataErrors = reportDataErrorDAO
+//				.findByExample(reportDataErrorExample);
+//		
+//		System.out.println("reportDataErrors size ! " + reportDataErrors.size());
+//
+//		for (ReportDataError reportDataError : reportDataErrors) {
+//			if (reportDataErrorExample.equals(reportDataError)) {
+//				System.out.println("vaya no me lo experaba ");
+//			}
+//			reportDataErrorDAO.disable(reportDataError);
+//			// reportDataErrorDAO.delete(reportDataError); -> cascade error
+//			System.out.println("DEBUG_" + typeError
+//					+ " disable reportDataError ("
+//					+ reportData.getReportField().getReportFieldNum() + ") "
+//					+ reportErrorType + " in " + reportData.getReportDataText()
+//					+ " - " + reportData.getReportField().getReportFieldName());
+//		}
+		
+
+		ReportDataErrorDAO reportErrorDAO = (ReportDataErrorDAO) applicationContext
 				.getBean("reportDataErrorDAO");
 
 		ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 				.getBean("reportDataDAO");
 
 		reportData = reportDataDAO.findById(reportData.getId());
-
-		ReportDataError reportDataErrorExample = new ReportDataError();
-		reportDataErrorExample.setReportData(reportData);
-		List<ReportDataError> reportDataErrors = reportDataErrorDAO
-				.findByExample(reportDataErrorExample);
-
-		// for (ReportDataError reportDataError :
-		// reportData.getReportDataErrors()) {
-		for (ReportDataError reportDataError : reportDataErrors) {
-			if (reportDataError.getReportDataErrorType()
-					.equals(reportErrorType)
-					&& reportDataError.getError().getErrorType()
-							.equals(typeError)) {
-				reportDataErrorDAO.disable(reportDataError);
+		for (ReportDataError reportDataError : reportData.getReportDataErrors()) {
+			if (reportDataError.getReportDataErrorType().equals(reportErrorType)
+					&& reportDataError.getError().getErrorType().equals(typeError)) {
+				reportErrorDAO.disable(reportDataError);
 				// reportDataErrorDAO.delete(reportDataError); -> cascade error
 				System.out.println("DEBUG_" + typeError
-						+ " disable reportDataError " + reportErrorType
-						+ " in " + reportData.getReportDataText() + " - "
-						+ reportData.getReportField().getReportFieldName());
+						+ " disable reportError " + reportErrorType + " in "
+						+ reportDataError.getReportDataErrorText() + " - "
+						+ reportDataError.getReportDataErrorType());
 			}
 		}
 	}
@@ -144,25 +173,14 @@ public class ReportingErrorManager {
 			String typeError, ReportExecution reportExecution,
 			String reportErrorType, String reportErrorText) {
 
-		System.out.println("* Creating error: " + typeError + " "
-				+ reportErrorType + " " + reportErrorText);
+		System.out.println("DEBUG_" + typeError + " Creating reportError: ("
+				+ reportExecution.getReportExecutionName() + ") " + typeError
+				+ " " + reportErrorType + " " + reportErrorText);
 
-		ErrorDAO errorDAO = (ErrorDAO) applicationContext.getBean("errorDAO");
-		Error errorExample = new Error();
-		errorExample.setErrorType(typeError);
-		List<Error> errors = new ArrayList<Error>(
-				errorDAO.findByExample(errorExample));
-		Error error = new Error();
-		error = errors.get(0);
+		Error error = findError(applicationContext, typeError);
 
 		ReportError reportError = new ReportError(error, reportExecution,
 				reportErrorType, reportErrorText);
-
-		System.out.println("DEBUG_" + typeError + " : error final: "
-				+ reportError.getReportErrorText()
-				+ reportError.getReportErrorType()
-				+ reportError.getReportExecution().getReportPeriodYear()
-				+ reportError.getReportExecution().getReportPeriodType());
 
 		ReportErrorDAO reportErrorDAO = (ReportErrorDAO) applicationContext
 				.getBean("reportErrorDAO");
@@ -175,11 +193,16 @@ public class ReportingErrorManager {
 			if (reportErrorExample.equals(reportError)) {
 				System.out.println("DEBUG_" + typeError + " error ya existe.");
 				iguales = true;
+				System.out.println("DEBUG_" + typeError
+						+ " enabled reportError "
+						+ reportErrorExample.getReportErrorType() + " in "
+						+ reportExecution.getReportExecutionName());
+				reportErrorDAO.enable(reportErrorExample);
 				break;
 			}
 		}
 		if (!iguales) {
-			reportError.setAuditor(new VersionAuditor("error"));
+			reportError.setVersionAuditor(new VersionAuditor("error"));
 			reportErrorDAO.create(reportError);
 			reportExecution.getReportErrors().add(reportError);
 		}
@@ -197,6 +220,33 @@ public class ReportingErrorManager {
 			ApplicationContext applicationContext, String typeError,
 			ReportExecution reportExecution, String reportErrorType) {
 
+//		ReportErrorDAO reportErrorDAO = (ReportErrorDAO) applicationContext
+//				.getBean("reportErrorDAO");
+//
+//		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
+//				.getBean("reportExecutionDAO");
+//
+//		reportExecution = reportExecutionDAO.findById(reportExecution.getId());
+//
+//		Error error = findError(applicationContext, typeError);
+//
+//		ReportError reportErrorExample = new ReportError();
+//		reportErrorExample.setReportExecution(reportExecution);
+//		reportErrorExample.setError(error);
+//		reportErrorExample.setReportErrorType(reportErrorType);
+//
+//		List<ReportError> reportErrorExamples = reportErrorDAO
+//				.findByExample(reportErrorExample);
+//
+//		for (ReportError reportError : reportErrorExamples) {
+//			reportErrorDAO.disable(reportError);
+//			// reportDataErrorDAO.delete(reportDataError); -> cascade error
+//			System.out.println("DEBUG_" + typeError + " disable reportError "
+//					+ reportErrorType + " in "
+//					+ reportExecution.getReportExecutionName() + " - "
+//					+ reportError.getReportErrorText());
+//		}
+
 		ReportErrorDAO reportErrorDAO = (ReportErrorDAO) applicationContext
 				.getBean("reportErrorDAO");
 
@@ -210,8 +260,8 @@ public class ReportingErrorManager {
 				reportErrorDAO.disable(reportError);
 				// reportDataErrorDAO.delete(reportDataError); -> cascade error
 				System.out.println("DEBUG_" + typeError
-						+ " disable reportDataError " + reportErrorType
-						+ " in " + reportError.getReportErrorText() + " - "
+						+ " disable reportError " + reportErrorType + " in "
+						+ reportError.getReportErrorText() + " - "
 						+ reportError.getReportErrorType());
 			}
 		}
@@ -230,16 +280,10 @@ public class ReportingErrorManager {
 			String typeError, LoadFile loadFile, String loadErrorType,
 			String loadErrorText) {
 
-		System.out.println("* Creating error: " + typeError + " "
+		System.out.println("* Creating loadError: " + typeError + " "
 				+ loadErrorType + " " + loadErrorText);
 
-		ErrorDAO errorDAO = (ErrorDAO) applicationContext.getBean("errorDAO");
-		Error errorExample = new Error();
-		errorExample.setErrorType(typeError);
-		List<Error> errors = new ArrayList<Error>(
-				errorDAO.findByExample(errorExample));
-		Error error = new Error();
-		error = errors.get(0);
+		Error error = findError(applicationContext, typeError);
 
 		LoadError loadError = new LoadError(error, loadFile, loadErrorType,
 				loadErrorText);
@@ -259,11 +303,15 @@ public class ReportingErrorManager {
 			if (loadErrorExample.equals(loadError)) {
 				System.out.println("DEBUG_" + typeError + " error ya existe.");
 				iguales = true;
+				System.out.println("DEBUG_" + typeError + " enabled loadError "
+						+ loadErrorExample.getLoadErrorType() + " in "
+						+ loadFile.getLoadFileName());
+				loadErrorDAO.enable(loadErrorExample);
 				break;
 			}
 		}
 		if (!iguales) {
-			loadError.setAuditor(new VersionAuditor("error"));
+			loadError.setVersionAuditor(new VersionAuditor("error"));
 			// loadErrorDAO.create(loadError);
 			loadFile.getLoadErrors().add(loadError);
 		}
@@ -280,6 +328,32 @@ public class ReportingErrorManager {
 	public static void disableLoadError(ApplicationContext applicationContext,
 			String typeError, LoadFile loadFile, String loadErrorType) {
 
+//		LoadErrorDAO loadErrorDAO = (LoadErrorDAO) applicationContext
+//				.getBean("loadErrorDAO");
+//
+//		LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
+//				.getBean("loadFileDAO");
+//
+//		loadFile = loadFileDAO.findById(loadFile.getId());
+//
+//		Error error = findError(applicationContext, typeError);
+//
+//		LoadError loadErrorExample = new LoadError();
+//		loadErrorExample.setLoadFile(loadFile);
+//		loadErrorExample.setError(error);
+//		loadErrorExample.setLoadErrorType(loadErrorType);
+//
+//		List<LoadError> loadErrorExamples = loadErrorDAO
+//				.findByExample(loadErrorExample);
+//
+//		for (LoadError loadError : loadErrorExamples) {
+//			loadErrorDAO.disable(loadError);
+//			// reportDataErrorDAO.delete(reportDataError); -> cascade error
+//			System.out.println("DEBUG_" + typeError + " disable reportError "
+//					+ loadErrorType + " in " + loadFile.getLoadFileName()
+//					+ " - " + loadError.getLoadErrorText());
+//		}
+
 		LoadErrorDAO loadErrorDAO = (LoadErrorDAO) applicationContext
 				.getBean("loadErrorDAO");
 
@@ -292,10 +366,9 @@ public class ReportingErrorManager {
 					&& loadError.getError().getErrorType().equals(typeError)) {
 				loadErrorDAO.disable(loadError);
 				// reportDataErrorDAO.delete(reportDataError); -> cascade error
-				System.out.println("DEBUG_" + typeError
-						+ " disable reportDataError " + loadErrorType + " in "
-						+ loadError.getLoadErrorText() + " - "
-						+ loadError.getLoadErrorType());
+				System.out.println("DEBUG_" + typeError + " disable loadError "
+						+ loadErrorType + " in " + loadError.getLoadErrorText()
+						+ " - " + loadError.getLoadErrorType());
 			}
 		}
 	}
@@ -311,32 +384,60 @@ public class ReportingErrorManager {
 			ReportExecution reportExecution) {
 
 		boolean hasErrors = false;
+		boolean dataHasErrors = false;
+		
 		for (ReportData reportData : reportExecution.getReportDatas()) {
 			hasErrors = false;
 			List<ReportDataError> reportDataErrors = reportData
 					.getReportDataErrors();
-			System.out.println("reportDataErrors " + reportDataErrors
-					+ " reportData " + reportData.getReportDataText() + " - "
-					+ reportData.getReportField().getReportFieldName());
+			// System.out.println("reportDataErrors " + reportDataErrors
+			// + " reportData " + reportData.getReportDataText() + " - "
+			// + reportData.getReportField().getReportFieldName());
 			for (ReportDataError reportDataError : reportDataErrors) {
-				if (!reportDataError.getAuditor().isDeleted()) {
+				if (!reportDataError.getVersionAuditor().isDeleted()) {
 					hasErrors = true;
+					dataHasErrors = true;
 					break;
 				}
 			}
 			reportData.setHasErrors(hasErrors);
 		}
 
-		hasErrors = false;
-		List<ReportError> reportErrors = reportExecution.getReportErrors();
-		for (ReportError reportError : reportErrors) {
-			if (!reportError.getAuditor().isDeleted()) {
-				hasErrors = true;
-				break;
+		// if any reportData has error, reportExecution has it
+		if (!dataHasErrors) {
+			hasErrors = false;
+			List<ReportError> reportErrors = reportExecution.getReportErrors();
+			for (ReportError reportError : reportErrors) {
+				if (!reportError.getVersionAuditor().isDeleted()) {
+					hasErrors = true;
+					break;
+				}
 			}
+			reportExecution.setHasErrors(hasErrors);
+		} else {
+			reportExecution.setHasErrors(dataHasErrors);
 		}
-		reportExecution.setHasErrors(hasErrors);
+		
+		
 
 		return reportExecution;
+	}
+
+	private static Error findError(ApplicationContext applicationContext,
+			String typeError) {
+		Error error = new Error();
+		try {
+			ErrorDAO errorDAO = (ErrorDAO) applicationContext
+					.getBean("errorDAO");
+			error.setErrorType(typeError);
+			List<Error> errors = new ArrayList<Error>(
+					errorDAO.findByExample(error));
+
+			error = errors.get(0);
+		} catch (Exception e) {
+			System.out.println("ERROR in ReportingErrorManager, typeError "
+					+ typeError + " does not exist.");
+		}
+		return error;
 	}
 }

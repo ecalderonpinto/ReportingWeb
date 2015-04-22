@@ -61,7 +61,7 @@ public class ReportExecutionFundDetailController {
 			reportExecution.setReportCatalog(reportCatalog);
 			reportExecution.setCompany(company);
 			reportExecution.setFund(fund);
-			reportExecution.setAuditor(new VersionAuditor("report"));
+			reportExecution.setVersionAuditor(new VersionAuditor("report"));
 
 			System.out.println("new report: " + company.getCompanyName() + " "
 					+ reportCatalog.getReportCatalogName() + " - " + fund.getFundName());

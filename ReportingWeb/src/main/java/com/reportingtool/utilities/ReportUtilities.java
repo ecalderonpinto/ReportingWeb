@@ -46,7 +46,7 @@ public class ReportUtilities {
 		// reportError and reportDataError which are disabled (isDelete=1)
 
 		for (ReportData reportData : reportExecution.getReportDatas()) {
-			if (reportData.getAuditor().isDeleted()) {
+			if (reportData.getVersionAuditor().isDeleted()) {
 				// ?
 			}
 		}

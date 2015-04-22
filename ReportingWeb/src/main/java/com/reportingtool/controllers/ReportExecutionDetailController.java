@@ -59,7 +59,7 @@ public class ReportExecutionDetailController {
 			reportExecution.setReportCatalog(reportCatalog);
 			reportExecution.setCompany(company);
 			reportExecution.setReportStatus("CREATION");
-			reportExecution.setAuditor(new VersionAuditor("report"));
+			reportExecution.setVersionAuditor(new VersionAuditor("report"));
 
 			System.out.println("new report: " + company.getCompanyName() + " "
 					+ reportCatalog.getReportCatalogName());

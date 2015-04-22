@@ -106,11 +106,11 @@ public class ReportFieldList implements VersionableAdapter {
 		return super.clone();
 	}
 
-	public VersionAuditor getAuditor() {
+	public VersionAuditor getVersionAuditor() {
 		return versionAuditor;
 	}
 
-	public void setAuditor(VersionAuditor _auditor) {
+	public void setVersionAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
 	}
 

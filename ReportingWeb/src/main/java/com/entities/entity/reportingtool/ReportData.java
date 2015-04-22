@@ -209,17 +209,17 @@ public class ReportData implements VersionableAdapter {
 		this.version = version;
 	}
 
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
-	}
-
-	public VersionAuditor getAuditor() {
+	public VersionAuditor getVersionAuditor() {
 		return versionAuditor;
 	}
 
-	public void setAuditor(VersionAuditor _auditor) {
+	public void setVersionAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
+	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 
 	@Override
