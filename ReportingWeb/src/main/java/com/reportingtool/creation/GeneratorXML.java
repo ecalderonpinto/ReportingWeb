@@ -150,8 +150,8 @@ public class GeneratorXML {
 				+ reportExecution.getReportPeriodYear() + " "
 				+ reportExecution.getReportCatalog().getReportCatalogName());
 
-		ReportUtilities.generateDefaultReportDatas(applicationContext,
-				reportExecution, "1.2");
+//		ReportUtilities.generateDefaultReportDatas(applicationContext,
+//				reportExecution, "1.2");
 
 		if (reportExecution.getReportCatalog().getReportLevel()
 				.contains("FUND")) {

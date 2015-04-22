@@ -46,7 +46,7 @@ public class ReportField implements VersionableAdapter {
 	private String reportFieldOrder;
 	private String reportFieldRepe;
 	private boolean reportFieldMandatory;
-	private boolean reportFieldDisabled;
+	private boolean reportFieldEditable;
 	private String reportFieldVersion;
 	private List<FileColum> fileColums = new ArrayList<FileColum>();
 	private List<ReportData> reportDatas = new ArrayList<ReportData>();
@@ -108,7 +108,7 @@ public class ReportField implements VersionableAdapter {
 			String reportFieldVersion, List<FileColum> fileColums,
 			List<ReportData> reportDatas, List<ReportCustom> reportCustoms,
 			VersionAuditor versionAuditor, boolean reportFieldMandatory,
-			boolean reportFieldDisabled) {
+			boolean reportFieldEditable) {
 		this.reportCatalog = reportCatalog;
 		this.reportFieldParent = reportFieldParent;
 		this.reportFieldType = reportFieldType;
@@ -126,7 +126,7 @@ public class ReportField implements VersionableAdapter {
 		this.reportCustoms = reportCustoms;
 		this.versionAuditor = versionAuditor;
 		this.reportFieldMandatory = reportFieldMandatory;
-		this.reportFieldDisabled = reportFieldDisabled;
+		this.reportFieldEditable = reportFieldEditable;
 	}
 
 	@Id
@@ -283,13 +283,13 @@ public class ReportField implements VersionableAdapter {
 		this.reportFieldMandatory = reportFieldMandatory;
 	}
 
-	@Column(name = "REPORT_FIELD_DISABLED")
-	public boolean isReportFieldDisabled() {
-		return reportFieldDisabled;
+	@Column(name = "REPORT_FIELD_EDITABLE")
+	public boolean isReportFieldEditable() {
+		return reportFieldEditable;
 	}
 
-	public void setReportFieldDisabled(boolean reportFieldDisabled) {
-		this.reportFieldDisabled = reportFieldDisabled;
+	public void setReportFieldEditable(boolean reportFieldEditable) {
+		this.reportFieldEditable = reportFieldEditable;
 	}
 
 	public void setReportCustoms(List<ReportCustom> reportCustoms) {

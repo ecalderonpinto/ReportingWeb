@@ -77,8 +77,8 @@ public class ReportExecutionController {
 		model.addAttribute("fieldlistmap", fieldListMap);
 
 		// add default fields if does not exists
-		ReportUtilities.generateDefaultReportDatas(applicationContext,
-				reportExecution, "1.2");
+//		ReportUtilities.generateDefaultReportDatas(applicationContext,
+//				reportExecution, "1.2");
 
 		// add all reportDatas empty when are not populated yet
 		reportExecution = addReportDatas(reportExecution);
@@ -164,8 +164,8 @@ public class ReportExecutionController {
 		model.addAttribute("fieldlistmap", fieldListMap);
 
 		// add default fields if does not exists
-		ReportUtilities.generateDefaultReportDatas(applicationContext,
-				reportExecution, "1.2");
+//		ReportUtilities.generateDefaultReportDatas(applicationContext,
+//				reportExecution, "1.2");
 
 		// add all reportDatas empty when are not populated yet
 		reportExecution = addReportDatas(reportExecution);

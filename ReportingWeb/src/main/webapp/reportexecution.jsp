@@ -39,104 +39,121 @@
 							items="${reportexecution.reportDatas}">
 							<c:if
 								test="${reportData.reportField.reportFieldSection == section}">
+								<!-- Not editable Fields -->
 								<c:choose>
-									<c:when test="${reportData.hasErrors == true}">
-										<!-- Field with Error -->
-										<div class="control-group error">
-											<label class="control-label" for="inputError">
+									<c:when
+										test="${reportData.reportField.reportFieldEditable == true}">
+										<div class="control-group">
+											<label class="control-label">
 												${reportData.reportField.reportFieldNum}.
-												${reportData.reportField.reportFieldName } </label>
+												${reportData.reportField.reportFieldName}</label>
 											<div class="controls">
-												<!-- Search if is dropdown and set it -->
-												<c:set var="contains" value="false" />
-												<c:set var="dropdown" value="" />
-												<c:forEach var="item" items="${fieldlist}">
-													<c:if
-														test="${item eq reportData.reportField.reportFieldMask}">
-														<c:set var="contains" value="true" />
-														<c:set var="dropdown" value="${item}" />
-													</c:if>
-												</c:forEach>
-												<c:choose>
-													<c:when test="${contains}">
-														<!-- Dropdown -->
-														<form:select
-															path="reportDatas[${status.index}].reportDataText"
-															items="${fn:split(fieldlistmap[dropdownfinal],',' ) }" />
-													</c:when>
-													<c:otherwise>
-														<c:choose>
-															<c:when
-																test="${reportData.reportField.reportFieldMask == 'DATE'}">
-																<!-- Date -->
-																<form:input
-																	path="reportDatas[${status.index}].reportDataText"
-																	cssClass="input-xlarge datepicker" />
-															</c:when>
-															<c:otherwise>
-																<!-- Text -->
-																<form:input
-																	path="reportDatas[${status.index}].reportDataText"
-																	cssClass="input-xlarge" />
-															</c:otherwise>
-														</c:choose>
-													</c:otherwise>
-												</c:choose>
-												<span class="help-inline"> <c:forEach
-														var="reportError" varStatus="status"
-														items="${reportData.reportDataErrors}">
-														${reportError.reportDataErrorText}
-													</c:forEach>
-												</span>
+												<span class="input-xlarge uneditable-input">
+													${reportData.reportDataText}</span>
 											</div>
 										</div>
-										<!-- /Field with Error -->
 									</c:when>
 									<c:otherwise>
-										<!-- Normal Field -->
-										<div class="control-group">
-											<label class="control-label" for="disabledInput">
-												${reportData.reportField.reportFieldNum}.
-												${reportData.reportField.reportFieldName } </label>
-											<div class="controls">
-												<!-- Search if is dropdown and set it -->
-												<c:set var="contains" value="false" />
-												<c:set var="dropdown" value="" />
-												<c:forEach var="item" items="${fieldlist}">
-													<c:if
-														test="${item eq reportData.reportField.reportFieldMask}">
-														<c:set var="contains" value="true" />
-														<c:set var="dropdown" value="${item}" />
-													</c:if>
-												</c:forEach>
-												<c:choose>
-													<c:when test="${contains}">
-														<!-- Dropdown -->
-														<form:select
-															path="reportDatas[${status.index}].reportDataText"
-															items="${fn:split(fieldlistmap[dropdown],',' ) }" />
-													</c:when>
-													<c:otherwise>
+										<c:choose>
+											<c:when test="${reportData.hasErrors == true}">
+												<!-- Field with Error -->
+												<div class="control-group error">
+													<label class="control-label" for="inputError">
+														${reportData.reportField.reportFieldNum}.
+														${reportData.reportField.reportFieldName } </label>
+													<div class="controls">
+														<!-- Search if is dropdown and set it -->
+														<c:set var="contains" value="false" />
+														<c:set var="dropdown" value="" />
+														<c:forEach var="item" items="${fieldlist}">
+															<c:if
+																test="${item eq reportData.reportField.reportFieldMask}">
+																<c:set var="contains" value="true" />
+																<c:set var="dropdown" value="${item}" />
+															</c:if>
+														</c:forEach>
 														<c:choose>
-															<c:when
-																test="${reportData.reportField.reportFieldMask == 'DATE'}">
-																<!-- Date -->
-																<form:input
+															<c:when test="${contains}">
+																<!-- Dropdown -->
+																<form:select
 																	path="reportDatas[${status.index}].reportDataText"
-																	cssClass="input-xlarge datepicker" />
+																	items="${fn:split(fieldlistmap[dropdownfinal],',' ) }" />
 															</c:when>
 															<c:otherwise>
-																<!-- Text -->
-																<form:input
-																	path="reportDatas[${status.index}].reportDataText"
-																	cssClass="input-xlarge" />
+																<c:choose>
+																	<c:when
+																		test="${reportData.reportField.reportFieldMask == 'DATE'}">
+																		<!-- Date -->
+																		<form:input
+																			path="reportDatas[${status.index}].reportDataText"
+																			cssClass="input-xlarge datepicker" />
+																	</c:when>
+																	<c:otherwise>
+																		<!-- Text -->
+																		<form:input
+																			path="reportDatas[${status.index}].reportDataText"
+																			cssClass="input-xlarge" />
+																	</c:otherwise>
+																</c:choose>
 															</c:otherwise>
 														</c:choose>
-													</c:otherwise>
-												</c:choose>
-											</div>
-										</div>
-										<!-- /Normal Field -->
+														<span class="help-inline"> <c:forEach
+																var="reportError" varStatus="status"
+																items="${reportData.reportDataErrors}">
+														${reportError.reportDataErrorText}
+													</c:forEach>
+														</span>
+													</div>
+												</div>
+												<!-- /Field with Error -->
+											</c:when>
+											<c:otherwise>
+												<!-- Normal Field -->
+												<div class="control-group">
+													<label class="control-label" for="disabledInput">
+														${reportData.reportField.reportFieldNum}.
+														${reportData.reportField.reportFieldName} </label>
+													<div class="controls">
+														<!-- Search if is dropdown and set it -->
+														<c:set var="contains" value="false" />
+														<c:set var="dropdown" value="" />
+														<c:forEach var="item" items="${fieldlist}">
+															<c:if
+																test="${item eq reportData.reportField.reportFieldMask}">
+																<c:set var="contains" value="true" />
+																<c:set var="dropdown" value="${item}" />
+															</c:if>
+														</c:forEach>
+														<c:choose>
+															<c:when test="${contains}">
+																<!-- Dropdown -->
+																<form:select
+																	path="reportDatas[${status.index}].reportDataText"
+																	items="${fn:split(fieldlistmap[dropdown],',' ) }" />
+															</c:when>
+															<c:otherwise>
+																<c:choose>
+																	<c:when
+																		test="${reportData.reportField.reportFieldMask == 'DATE'}">
+																		<!-- Date -->
+																		<form:input
+																			path="reportDatas[${status.index}].reportDataText"
+																			cssClass="input-xlarge datepicker" />
+																	</c:when>
+																	<c:otherwise>
+																		<!-- Text -->
+																		<form:input
+																			path="reportDatas[${status.index}].reportDataText"
+																			cssClass="input-xlarge" />
+																	</c:otherwise>
+																</c:choose>
+															</c:otherwise>
+														</c:choose>
+													</div>
+												</div>
+												<!-- /Normal Field -->
+											</c:otherwise>
+										</c:choose>
 									</c:otherwise>
 								</c:choose>
 							</c:if>
@@ -160,8 +177,7 @@
 			<div class="box-content">
 				<fieldset>
 					<div class="form-actions">
-						<button type="submit" class="btn btn-danger">Save
-							changes</button>
+						<button type="submit" class="btn btn-danger">Save changes</button>
 						<!-- <button class="btn">Cancel</button> -->
 					</div>
 				</fieldset>
@@ -176,9 +192,9 @@
 <a href="companyReports.do?id=${company.id}"><span
 	class="btn btn-important">Back</span></a>
 
-	<!-- new part with blocks -->
+<!-- new part with blocks -->
 
-	<%-- <c:forEach var="reportsection" varStatus="status"
+<%-- <c:forEach var="reportsection" varStatus="status"
 		items="${reportsections}">
 
 		<div class="row-fluid">

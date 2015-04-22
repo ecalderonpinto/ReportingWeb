@@ -132,6 +132,7 @@ public class InstallEntities {
 					reportFieldx1, "A", "Version", new BigInteger("2"),
 					"([0-9])+\\.([0-9])+", "", "General Info", "VERSION", "1",
 					"11", versionField, null, null, null, versionAdmin);
+			reportField2.setReportFieldEditable(true);
 			reportFieldDAO.create(reportField2);
 			ReportField reportField3 = new ReportField(reportCatalog,
 					reportFieldx1, "D", "CreationDateAndTime", new BigInteger(
@@ -139,6 +140,7 @@ public class InstallEntities {
 					"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}",
 					"", "General Info", "DATETIME", "1", "11", versionField,
 					null, null, null, versionAdmin);
+			reportField3.setReportFieldEditable(true);
 			reportFieldDAO.create(reportField3);
 
 			ReportField reportFieldx2 = new ReportField(reportCatalog,
@@ -2722,6 +2724,7 @@ public class InstallEntities {
 					reportFieldx1, "A", "Version", new BigInteger("2"),
 					"([0-9])+\\.([0-9])+", "", "General Info", "VERSION",
 					"1.02", "11", versionField, null, null, null, versionAdmin);
+			reportField2.setReportFieldEditable(true);
 			reportFieldDAO.create(reportField2);
 			ReportField reportField3 = new ReportField(reportCatalog,
 					reportFieldx1, "D", "CreationDateAndTime", new BigInteger(
@@ -2729,6 +2732,7 @@ public class InstallEntities {
 					"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}",
 					"", "General Info", "DATETIME", "1.03", "11", versionField,
 					null, null, null, versionAdmin);
+			reportField3.setReportFieldEditable(true);
 			reportFieldDAO.create(reportField3);
 
 			ReportField reportFieldx2 = new ReportField(reportCatalog,
@@ -3527,210 +3531,6 @@ public class InstallEntities {
 					"type", new BigDecimal(65), "CancelledRecordFlag", "",
 					"format", null, null, versionAdmin);
 
-			ReportData reportData1 = new ReportData(null, reportField1,
-					reportExecution, null, null, "GB", null, null, null,
-					versionAdmin);
-			ReportData reportData2 = new ReportData(null, reportField2,
-					reportExecution, null, null, "1.2", null, null, null,
-					versionAdmin);
-			ReportData reportData3 = new ReportData(null, reportField3,
-					reportExecution, null, null, "2014-09-01 01:02:03", null,
-					null, null, versionAdmin);
-			ReportData reportData4 = new ReportData(null, reportField4,
-					reportExecution, null, null, "INIT", null, null, null,
-					versionAdmin);
-			ReportData reportData5 = new ReportData(null, reportField5,
-					reportExecution, null, null, "2", null, null, null,
-					versionAdmin);
-			ReportData reportData6 = new ReportData(null, reportField6,
-					reportExecution, null, null, "2014-09-01", null, null,
-					null, versionAdmin);
-			ReportData reportData7 = new ReportData(null, reportField7,
-					reportExecution, null, null, "2014-12-31", null, null,
-					null, versionAdmin);
-			ReportData reportData8 = new ReportData(null, reportField8,
-					reportExecution, null, null, "Q4", null, null, null,
-					versionAdmin);
-			ReportData reportData9 = new ReportData(null, reportField9,
-					reportExecution, null, null, "2014", null, null, null,
-					versionAdmin);
-			ReportData reportData10 = new ReportData(null, reportField10,
-					reportExecution, null, null, "QH", null, null, null,
-					versionAdmin);
-			ReportData reportData11 = new ReportData(null, reportField11,
-					reportExecution, null, null, "6", null, null, null,
-					versionAdmin);
-			ReportData reportData12 = new ReportData(null, reportField12,
-					reportExecution, null, null, "Q1", null, null, null,
-					versionAdmin);
-			ReportData reportData13 = new ReportData(null, reportField13,
-					reportExecution, null, null, "false", null, null, null,
-					versionAdmin);
-			ReportData reportData14 = new ReportData(null, reportField14,
-					reportExecution, null, null, "25", "1", null, null,
-					versionAdmin);
-			ReportData reportData15 = new ReportData(null, reportField15,
-					reportExecution, null, null, "Descripcion pregunta", "1",
-					null, null, versionAdmin);
-			ReportData reportData16 = new ReportData(null, reportField16,
-					reportExecution, null, null, "4", null, null, null,
-					versionAdmin);
-			ReportData reportData17 = new ReportData(null, reportField17,
-					reportExecution, null, null, "GB", null, null, null,
-					versionAdmin);
-			ReportData reportData18 = new ReportData(null, reportField18,
-					reportExecution, null, null, "474286", null, null, null,
-					versionAdmin);
-			ReportData reportData19 = new ReportData(null, reportField19,
-					reportExecution, null, null, "AIFM 1", null, null, null,
-					versionAdmin);
-			ReportData reportData20 = new ReportData(null, reportField20,
-					reportExecution, null, null, "true", null, null, null,
-					versionAdmin);
-			ReportData reportData21 = new ReportData(null, reportField21,
-					reportExecution, null, null, "false", null, null, null,
-					versionAdmin);
-			ReportData reportData22 = new ReportData(null, reportField22,
-					reportExecution, null, null, "969500AA77L4ZJXJ0T02", null,
-					null, null, versionAdmin);
-			ReportData reportData23 = new ReportData(null, reportField23,
-					reportExecution, null, null, "TESTGB21XXX", null, null,
-					null, versionAdmin);
-			ReportData reportData24 = new ReportData(null, reportField24,
-					reportExecution, null, null, "GB", null, null, null,
-					versionAdmin);
-			ReportData reportData25 = new ReportData(null, reportField25,
-					reportExecution, null, null, "UK", null, null, null,
-					versionAdmin);
-
-			ReportData reportData26 = new ReportData(null, reportField26,
-					reportExecution, null, null, "1", "1", null, null,
-					versionAdmin);
-			ReportData reportData27 = new ReportData(null, reportField27,
-					reportExecution, null, null, "XXX", "1", null, null,
-					versionAdmin);
-			ReportData reportData28 = new ReportData(null, reportField28,
-					reportExecution, null, null, "EU", "1", null, null,
-					versionAdmin);
-			ReportData reportData29 = new ReportData(null, reportField29,
-					reportExecution, null, null, "452000000", "1", null, null,
-					versionAdmin);
-
-			ReportData reportData30 = new ReportData(null, reportField26,
-					reportExecution, null, null, "2", "2", null, null,
-					versionAdmin);
-			ReportData reportData31 = new ReportData(null, reportField27,
-					reportExecution, null, null, "MIC", "2", null, null,
-					versionAdmin);
-			ReportData reportData32 = new ReportData(null, reportField28,
-					reportExecution, null, null, "XEUR", "2", null, null,
-					versionAdmin);
-			ReportData reportData33 = new ReportData(null, reportField29,
-					reportExecution, null, null, "42800000", "2", null, null,
-					versionAdmin);
-
-			ReportData reportData34 = new ReportData(null, reportField30,
-					reportExecution, null, null, "1", "2", null, null,
-					versionAdmin);
-			ReportData reportData35 = new ReportData(null, reportField31,
-					reportExecution, null, null, "DER_FID_FIXI", "2", null,
-					null, versionAdmin);
-			ReportData reportData36 = new ReportData(null, reportField32,
-					reportExecution, null, null, "10010", "2", null, null,
-					versionAdmin);
-
-			ReportData reportData37 = new ReportData(null, reportField33,
-					reportExecution, null, null, "5500000", "2", null, null,
-					versionAdmin);
-			ReportData reportData38 = new ReportData(null, reportField34,
-					reportExecution, null, null, "51000", "2", null, null,
-					versionAdmin);
-			ReportData reportData39 = new ReportData(null, reportField35,
-					reportExecution, null, null, "USD", "2", null, null,
-					versionAdmin);
-			ReportData reportData40 = new ReportData(null, reportField36,
-					reportExecution, null, null, "ECB", "2", null, null,
-					versionAdmin);
-			ReportData reportData41 = new ReportData(null, reportField37,
-					reportExecution, null, null, "123444.7535", "2", null,
-					null, versionAdmin);
-			ReportData reportData42 = new ReportData(null, reportField38,
-					reportExecution, null, null, "description", "2", null,
-					null, versionAdmin);
-
-			ReportData reportData43 = new ReportData(null, reportField39,
-					reportExecution, null, null, "Id2", "2", null, null,
-					versionAdmin);
-			ReportData reportData44 = new ReportData(null, reportField40,
-					reportExecution, null, null, "X1", "2", null, null,
-					versionAdmin);
-			ReportData reportData45 = new ReportData(null, reportField41,
-					reportExecution, null, null, "2014", "2", null, null,
-					versionAdmin);
-			ReportData reportData46 = new ReportData(null, reportField42,
-					reportExecution, null, null, "C", "2", null, null,
-					versionAdmin);
-
-			ReportData reportData47 = new ReportData(null, reportField14,
-					reportExecution, null, null, "21", "2", null, null,
-					versionAdmin);
-			ReportData reportData48 = new ReportData(null, reportField15,
-					reportExecution, null, null, "Descripcion pregunta 2", "2",
-					null, null, versionAdmin);
-
-			LoadFile loadFile = new LoadFile(department, fileConfig, date1,
-					"Fichero1.txt", null, null, versionAdmin);
-
-			LoadRaw loadRaw = new LoadRaw(loadFile, new BigDecimal(1),
-					"SIMPLE", null, null, null, versionAdmin);
-
-			LoadRawData loadRawData1 = new LoadRawData(fileColum1, loadRaw,
-					"GESTORA1", "TEXT", versionAdmin);
-			LoadRawData loadRawData2 = new LoadRawData(fileColum2, loadRaw,
-					"01-10-2014", "DATE", versionAdmin);
-			LoadRawData loadRawData3 = new LoadRawData(fileColum3, loadRaw,
-					"GB", "TEXT", versionAdmin);
-			LoadRawData loadRawData4 = new LoadRawData(fileColum4, loadRaw,
-					"FIRST", "TEXT", versionAdmin);
-			LoadRawData loadRawData5 = new LoadRawData(fileColum5, loadRaw,
-					"2", "TEXT", versionAdmin);
-			LoadRawData loadRawData6 = new LoadRawData(fileColum6, loadRaw,
-					"01-10-2014", "DATE", versionAdmin);
-			LoadRawData loadRawData7 = new LoadRawData(fileColum7, loadRaw,
-					"31-12-2014", "DATE", versionAdmin);
-			LoadRawData loadRawData8 = new LoadRawData(fileColum8, loadRaw,
-					"Q4", "TEXT", versionAdmin);
-			LoadRawData loadRawData9 = new LoadRawData(fileColum9, loadRaw,
-					"2014", "TEXT", versionAdmin);
-			LoadRawData loadRawData10 = new LoadRawData(fileColum10, loadRaw,
-					"QH", "TEXT", versionAdmin);
-			LoadRawData loadRawData11 = new LoadRawData(fileColum11, loadRaw,
-					"Q4", "TEXT", versionAdmin);
-			LoadRawData loadRawData12 = new LoadRawData(fileColum12, loadRaw,
-					"false", "TEXT", versionAdmin);
-			LoadRawData loadRawData13 = new LoadRawData(fileColum13, loadRaw,
-					"4", "TEXT", versionAdmin);
-			LoadRawData loadRawData14 = new LoadRawData(fileColum14, loadRaw,
-					"GB", "TEXT", versionAdmin);
-			LoadRawData loadRawData15 = new LoadRawData(fileColum15, loadRaw,
-					"474286", "TEXT", versionAdmin);
-			LoadRawData loadRawData16 = new LoadRawData(fileColum16, loadRaw,
-					"AIFM 1", "TEXT", versionAdmin);
-			LoadRawData loadRawData17 = new LoadRawData(fileColum17, loadRaw,
-					"true", "TEXT", versionAdmin);
-			LoadRawData loadRawData18 = new LoadRawData(fileColum18, loadRaw,
-					"false", "TEXT", versionAdmin);
-			LoadRawData loadRawData19 = new LoadRawData(fileColum19, loadRaw,
-					"969500AA77L4ZJXJ0T02", "TEXT", versionAdmin);
-			LoadRawData loadRawData20 = new LoadRawData(fileColum20, loadRaw,
-					"TESTGB21XXX", "TEXT", versionAdmin);
-			LoadRawData loadRawData21 = new LoadRawData(fileColum21, loadRaw,
-					"1", "TEXT", versionAdmin);
-			LoadRawData loadRawData22 = new LoadRawData(fileColum22, loadRaw,
-					"XXX", "TEXT", versionAdmin);
-			LoadRawData loadRawData23 = new LoadRawData(fileColum23, loadRaw,
-					"", "TEXT", versionAdmin);
-
 			Error error1 = new Error("LOADER", "Error load", "1",
 					"Error in load file", "Reload file", null, null, null,
 					versionAdmin);
@@ -3789,9 +3589,9 @@ public class InstallEntities {
 					.getBean("fundGroupDAO");
 			fundGroupDAO.create(fundGroup);
 
-			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
-					.getBean("reportExecutionDAO");
-			reportExecutionDAO.create(reportExecution);
+//			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
+//					.getBean("reportExecutionDAO");
+//			reportExecutionDAO.create(reportExecution);
 
 			FileConfigDAO fileConfigDAO = (FileConfigDAO) applicationContext
 					.getBean("fileConfigDAO");
@@ -3870,92 +3670,6 @@ public class InstallEntities {
 			fileColumDAO.create(fileColum64);
 			fileColumDAO.create(fileColum65);
 
-			// ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
-			// .getBean("reportDataDAO");
-			// reportDataDAO.create(reportData1);
-			// reportDataDAO.create(reportData2);
-			// reportDataDAO.create(reportData3);
-			// reportDataDAO.create(reportData4);
-			// reportDataDAO.create(reportData5);
-			// reportDataDAO.create(reportData6);
-			// reportDataDAO.create(reportData7);
-			// reportDataDAO.create(reportData8);
-			// reportDataDAO.create(reportData9);
-			// reportDataDAO.create(reportData10);
-			// reportDataDAO.create(reportData11);
-			// reportDataDAO.create(reportData12);
-			// reportDataDAO.create(reportData13);
-			// reportDataDAO.create(reportData14);
-			// reportDataDAO.create(reportData15);
-			// reportDataDAO.create(reportData16);
-			// reportDataDAO.create(reportData17);
-			// reportDataDAO.create(reportData18);
-			// reportDataDAO.create(reportData19);
-			// reportDataDAO.create(reportData20);
-			// reportDataDAO.create(reportData21);
-			// reportDataDAO.create(reportData22);
-			// reportDataDAO.create(reportData23);
-			// reportDataDAO.create(reportData24);
-			// reportDataDAO.create(reportData25);
-			// reportDataDAO.create(reportData26);
-			// reportDataDAO.create(reportData27);
-			// reportDataDAO.create(reportData28);
-			// reportDataDAO.create(reportData29);
-			// reportDataDAO.create(reportData30);
-			// reportDataDAO.create(reportData31);
-			// reportDataDAO.create(reportData32);
-			// reportDataDAO.create(reportData33);
-			// reportDataDAO.create(reportData34);
-			// reportDataDAO.create(reportData35);
-			// reportDataDAO.create(reportData36);
-			// reportDataDAO.create(reportData37);
-			// reportDataDAO.create(reportData38);
-			// reportDataDAO.create(reportData39);
-			// reportDataDAO.create(reportData40);
-			// reportDataDAO.create(reportData41);
-			// reportDataDAO.create(reportData42);
-			// reportDataDAO.create(reportData43);
-			// reportDataDAO.create(reportData44);
-			// reportDataDAO.create(reportData45);
-			// reportDataDAO.create(reportData46);
-			// reportDataDAO.create(reportData47);
-			// reportDataDAO.create(reportData48);
-
-			// LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
-			// .getBean("loadFileDAO");
-			// loadFileDAO.create(loadFile);
-			//
-			// LoadRawDAO loadRawDAO = (LoadRawDAO) applicationContext
-			// .getBean("loadRawDAO");
-			// loadRawDAO.create(loadRaw);
-			//
-			// LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO)
-			// applicationContext
-			// .getBean("loadRawDataDAO");
-			// loadRawDataDAO.create(loadRawData1);
-			// loadRawDataDAO.create(loadRawData2);
-			// loadRawDataDAO.create(loadRawData3);
-			// loadRawDataDAO.create(loadRawData4);
-			// loadRawDataDAO.create(loadRawData5);
-			// loadRawDataDAO.create(loadRawData6);
-			// loadRawDataDAO.create(loadRawData7);
-			// loadRawDataDAO.create(loadRawData8);
-			// loadRawDataDAO.create(loadRawData9);
-			// loadRawDataDAO.create(loadRawData10);
-			// loadRawDataDAO.create(loadRawData11);
-			// loadRawDataDAO.create(loadRawData12);
-			// loadRawDataDAO.create(loadRawData13);
-			// loadRawDataDAO.create(loadRawData14);
-			// loadRawDataDAO.create(loadRawData15);
-			// loadRawDataDAO.create(loadRawData16);
-			// loadRawDataDAO.create(loadRawData17);
-			// loadRawDataDAO.create(loadRawData18);
-			// loadRawDataDAO.create(loadRawData19);
-			// loadRawDataDAO.create(loadRawData20);
-			// loadRawDataDAO.create(loadRawData21);
-			// loadRawDataDAO.create(loadRawData22);
-			// loadRawDataDAO.create(loadRawData23);
-
 			ErrorDAO errorDAO = (ErrorDAO) applicationContext
 					.getBean("errorDAO");
 			errorDAO.create(error1);
@@ -3968,11 +3682,6 @@ public class InstallEntities {
 			errorDAO.create(error8);
 			errorDAO.create(error9);
 			errorDAO.create(error10);
-
-			// FileColumListDAO fileColumListDAO = (FileColumListDAO)
-			// applicationContext
-			// .getBean("fileColumListDAO");
-			// fileColumListDAO.create(fileColumList1);
 
 			ReportSemanticDAO reportSemanticDAO = (ReportSemanticDAO) applicationContext
 					.getBean("reportSemanticDAO");
@@ -4606,6 +4315,304 @@ public class InstallEntities {
 			reportFieldListDAO.create(reportFieldListExample);
 		}
 
+	}
+
+	public void installExampleAIFM(ApplicationContext applicationContext) {
+
+		// TODO make better example
+		
+		VersionAuditor versionAdmin = new VersionAuditor("admin");
+
+//		ReportData reportData1 = new ReportData(null, reportField1,
+//				reportExecution, null, null, "GB", null, null, null,
+//				versionAdmin);
+//		ReportData reportData2 = new ReportData(null, reportField2,
+//				reportExecution, null, null, "1.2", null, null, null,
+//				versionAdmin);
+//		ReportData reportData3 = new ReportData(null, reportField3,
+//				reportExecution, null, null, "2014-09-01 01:02:03", null, null,
+//				null, versionAdmin);
+//		ReportData reportData4 = new ReportData(null, reportField4,
+//				reportExecution, null, null, "INIT", null, null, null,
+//				versionAdmin);
+//		ReportData reportData5 = new ReportData(null, reportField5,
+//				reportExecution, null, null, "2", null, null, null,
+//				versionAdmin);
+//		ReportData reportData6 = new ReportData(null, reportField6,
+//				reportExecution, null, null, "2014-09-01", null, null, null,
+//				versionAdmin);
+//		ReportData reportData7 = new ReportData(null, reportField7,
+//				reportExecution, null, null, "2014-12-31", null, null, null,
+//				versionAdmin);
+//		ReportData reportData8 = new ReportData(null, reportField8,
+//				reportExecution, null, null, "Q4", null, null, null,
+//				versionAdmin);
+//		ReportData reportData9 = new ReportData(null, reportField9,
+//				reportExecution, null, null, "2014", null, null, null,
+//				versionAdmin);
+//		ReportData reportData10 = new ReportData(null, reportField10,
+//				reportExecution, null, null, "QH", null, null, null,
+//				versionAdmin);
+//		ReportData reportData11 = new ReportData(null, reportField11,
+//				reportExecution, null, null, "6", null, null, null,
+//				versionAdmin);
+//		ReportData reportData12 = new ReportData(null, reportField12,
+//				reportExecution, null, null, "Q1", null, null, null,
+//				versionAdmin);
+//		ReportData reportData13 = new ReportData(null, reportField13,
+//				reportExecution, null, null, "false", null, null, null,
+//				versionAdmin);
+//		ReportData reportData14 = new ReportData(null, reportField14,
+//				reportExecution, null, null, "25", "1", null, null,
+//				versionAdmin);
+//		ReportData reportData15 = new ReportData(null, reportField15,
+//				reportExecution, null, null, "Descripcion pregunta", "1", null,
+//				null, versionAdmin);
+//		ReportData reportData16 = new ReportData(null, reportField16,
+//				reportExecution, null, null, "4", null, null, null,
+//				versionAdmin);
+//		ReportData reportData17 = new ReportData(null, reportField17,
+//				reportExecution, null, null, "GB", null, null, null,
+//				versionAdmin);
+//		ReportData reportData18 = new ReportData(null, reportField18,
+//				reportExecution, null, null, "474286", null, null, null,
+//				versionAdmin);
+//		ReportData reportData19 = new ReportData(null, reportField19,
+//				reportExecution, null, null, "AIFM 1", null, null, null,
+//				versionAdmin);
+//		ReportData reportData20 = new ReportData(null, reportField20,
+//				reportExecution, null, null, "true", null, null, null,
+//				versionAdmin);
+//		ReportData reportData21 = new ReportData(null, reportField21,
+//				reportExecution, null, null, "false", null, null, null,
+//				versionAdmin);
+//		ReportData reportData22 = new ReportData(null, reportField22,
+//				reportExecution, null, null, "969500AA77L4ZJXJ0T02", null,
+//				null, null, versionAdmin);
+//		ReportData reportData23 = new ReportData(null, reportField23,
+//				reportExecution, null, null, "TESTGB21XXX", null, null, null,
+//				versionAdmin);
+//		ReportData reportData24 = new ReportData(null, reportField24,
+//				reportExecution, null, null, "GB", null, null, null,
+//				versionAdmin);
+//		ReportData reportData25 = new ReportData(null, reportField25,
+//				reportExecution, null, null, "UK", null, null, null,
+//				versionAdmin);
+//
+//		ReportData reportData26 = new ReportData(null, reportField26,
+//				reportExecution, null, null, "1", "1", null, null, versionAdmin);
+//		ReportData reportData27 = new ReportData(null, reportField27,
+//				reportExecution, null, null, "XXX", "1", null, null,
+//				versionAdmin);
+//		ReportData reportData28 = new ReportData(null, reportField28,
+//				reportExecution, null, null, "EU", "1", null, null,
+//				versionAdmin);
+//		ReportData reportData29 = new ReportData(null, reportField29,
+//				reportExecution, null, null, "452000000", "1", null, null,
+//				versionAdmin);
+//
+//		ReportData reportData30 = new ReportData(null, reportField26,
+//				reportExecution, null, null, "2", "2", null, null, versionAdmin);
+//		ReportData reportData31 = new ReportData(null, reportField27,
+//				reportExecution, null, null, "MIC", "2", null, null,
+//				versionAdmin);
+//		ReportData reportData32 = new ReportData(null, reportField28,
+//				reportExecution, null, null, "XEUR", "2", null, null,
+//				versionAdmin);
+//		ReportData reportData33 = new ReportData(null, reportField29,
+//				reportExecution, null, null, "42800000", "2", null, null,
+//				versionAdmin);
+//
+//		ReportData reportData34 = new ReportData(null, reportField30,
+//				reportExecution, null, null, "1", "2", null, null, versionAdmin);
+//		ReportData reportData35 = new ReportData(null, reportField31,
+//				reportExecution, null, null, "DER_FID_FIXI", "2", null, null,
+//				versionAdmin);
+//		ReportData reportData36 = new ReportData(null, reportField32,
+//				reportExecution, null, null, "10010", "2", null, null,
+//				versionAdmin);
+//
+//		ReportData reportData37 = new ReportData(null, reportField33,
+//				reportExecution, null, null, "5500000", "2", null, null,
+//				versionAdmin);
+//		ReportData reportData38 = new ReportData(null, reportField34,
+//				reportExecution, null, null, "51000", "2", null, null,
+//				versionAdmin);
+//		ReportData reportData39 = new ReportData(null, reportField35,
+//				reportExecution, null, null, "USD", "2", null, null,
+//				versionAdmin);
+//		ReportData reportData40 = new ReportData(null, reportField36,
+//				reportExecution, null, null, "ECB", "2", null, null,
+//				versionAdmin);
+//		ReportData reportData41 = new ReportData(null, reportField37,
+//				reportExecution, null, null, "123444.7535", "2", null, null,
+//				versionAdmin);
+//		ReportData reportData42 = new ReportData(null, reportField38,
+//				reportExecution, null, null, "description", "2", null, null,
+//				versionAdmin);
+//
+//		ReportData reportData43 = new ReportData(null, reportField39,
+//				reportExecution, null, null, "Id2", "2", null, null,
+//				versionAdmin);
+//		ReportData reportData44 = new ReportData(null, reportField40,
+//				reportExecution, null, null, "X1", "2", null, null,
+//				versionAdmin);
+//		ReportData reportData45 = new ReportData(null, reportField41,
+//				reportExecution, null, null, "2014", "2", null, null,
+//				versionAdmin);
+//		ReportData reportData46 = new ReportData(null, reportField42,
+//				reportExecution, null, null, "C", "2", null, null, versionAdmin);
+//
+//		ReportData reportData47 = new ReportData(null, reportField14,
+//				reportExecution, null, null, "21", "2", null, null,
+//				versionAdmin);
+//		ReportData reportData48 = new ReportData(null, reportField15,
+//				reportExecution, null, null, "Descripcion pregunta 2", "2",
+//				null, null, versionAdmin);
+//
+//		LoadFile loadFile = new LoadFile(department, fileConfig, date1,
+//				"Fichero1.txt", null, null, versionAdmin);
+
+//		LoadRaw loadRaw = new LoadRaw(loadFile, new BigDecimal(1), "SIMPLE",
+//				null, null, null, versionAdmin);
+//
+//		LoadRawData loadRawData1 = new LoadRawData(fileColum1, loadRaw,
+//				"GESTORA1", "TEXT", versionAdmin);
+//		LoadRawData loadRawData2 = new LoadRawData(fileColum2, loadRaw,
+//				"01-10-2014", "DATE", versionAdmin);
+//		LoadRawData loadRawData3 = new LoadRawData(fileColum3, loadRaw, "GB",
+//				"TEXT", versionAdmin);
+//		LoadRawData loadRawData4 = new LoadRawData(fileColum4, loadRaw,
+//				"FIRST", "TEXT", versionAdmin);
+//		LoadRawData loadRawData5 = new LoadRawData(fileColum5, loadRaw, "2",
+//				"TEXT", versionAdmin);
+//		LoadRawData loadRawData6 = new LoadRawData(fileColum6, loadRaw,
+//				"01-10-2014", "DATE", versionAdmin);
+//		LoadRawData loadRawData7 = new LoadRawData(fileColum7, loadRaw,
+//				"31-12-2014", "DATE", versionAdmin);
+//		LoadRawData loadRawData8 = new LoadRawData(fileColum8, loadRaw, "Q4",
+//				"TEXT", versionAdmin);
+//		LoadRawData loadRawData9 = new LoadRawData(fileColum9, loadRaw, "2014",
+//				"TEXT", versionAdmin);
+//		LoadRawData loadRawData10 = new LoadRawData(fileColum10, loadRaw, "QH",
+//				"TEXT", versionAdmin);
+//		LoadRawData loadRawData11 = new LoadRawData(fileColum11, loadRaw, "Q4",
+//				"TEXT", versionAdmin);
+//		LoadRawData loadRawData12 = new LoadRawData(fileColum12, loadRaw,
+//				"false", "TEXT", versionAdmin);
+//		LoadRawData loadRawData13 = new LoadRawData(fileColum13, loadRaw, "4",
+//				"TEXT", versionAdmin);
+//		LoadRawData loadRawData14 = new LoadRawData(fileColum14, loadRaw, "GB",
+//				"TEXT", versionAdmin);
+//		LoadRawData loadRawData15 = new LoadRawData(fileColum15, loadRaw,
+//				"474286", "TEXT", versionAdmin);
+//		LoadRawData loadRawData16 = new LoadRawData(fileColum16, loadRaw,
+//				"AIFM 1", "TEXT", versionAdmin);
+//		LoadRawData loadRawData17 = new LoadRawData(fileColum17, loadRaw,
+//				"true", "TEXT", versionAdmin);
+//		LoadRawData loadRawData18 = new LoadRawData(fileColum18, loadRaw,
+//				"false", "TEXT", versionAdmin);
+//		LoadRawData loadRawData19 = new LoadRawData(fileColum19, loadRaw,
+//				"969500AA77L4ZJXJ0T02", "TEXT", versionAdmin);
+//		LoadRawData loadRawData20 = new LoadRawData(fileColum20, loadRaw,
+//				"TESTGB21XXX", "TEXT", versionAdmin);
+//		LoadRawData loadRawData21 = new LoadRawData(fileColum21, loadRaw, "1",
+//				"TEXT", versionAdmin);
+//		LoadRawData loadRawData22 = new LoadRawData(fileColum22, loadRaw,
+//				"XXX", "TEXT", versionAdmin);
+//		LoadRawData loadRawData23 = new LoadRawData(fileColum23, loadRaw, "",
+//				"TEXT", versionAdmin);
+
+		// ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+		// .getBean("reportDataDAO");
+		// reportDataDAO.create(reportData1);
+		// reportDataDAO.create(reportData2);
+		// reportDataDAO.create(reportData3);
+		// reportDataDAO.create(reportData4);
+		// reportDataDAO.create(reportData5);
+		// reportDataDAO.create(reportData6);
+		// reportDataDAO.create(reportData7);
+		// reportDataDAO.create(reportData8);
+		// reportDataDAO.create(reportData9);
+		// reportDataDAO.create(reportData10);
+		// reportDataDAO.create(reportData11);
+		// reportDataDAO.create(reportData12);
+		// reportDataDAO.create(reportData13);
+		// reportDataDAO.create(reportData14);
+		// reportDataDAO.create(reportData15);
+		// reportDataDAO.create(reportData16);
+		// reportDataDAO.create(reportData17);
+		// reportDataDAO.create(reportData18);
+		// reportDataDAO.create(reportData19);
+		// reportDataDAO.create(reportData20);
+		// reportDataDAO.create(reportData21);
+		// reportDataDAO.create(reportData22);
+		// reportDataDAO.create(reportData23);
+		// reportDataDAO.create(reportData24);
+		// reportDataDAO.create(reportData25);
+		// reportDataDAO.create(reportData26);
+		// reportDataDAO.create(reportData27);
+		// reportDataDAO.create(reportData28);
+		// reportDataDAO.create(reportData29);
+		// reportDataDAO.create(reportData30);
+		// reportDataDAO.create(reportData31);
+		// reportDataDAO.create(reportData32);
+		// reportDataDAO.create(reportData33);
+		// reportDataDAO.create(reportData34);
+		// reportDataDAO.create(reportData35);
+		// reportDataDAO.create(reportData36);
+		// reportDataDAO.create(reportData37);
+		// reportDataDAO.create(reportData38);
+		// reportDataDAO.create(reportData39);
+		// reportDataDAO.create(reportData40);
+		// reportDataDAO.create(reportData41);
+		// reportDataDAO.create(reportData42);
+		// reportDataDAO.create(reportData43);
+		// reportDataDAO.create(reportData44);
+		// reportDataDAO.create(reportData45);
+		// reportDataDAO.create(reportData46);
+		// reportDataDAO.create(reportData47);
+		// reportDataDAO.create(reportData48);
+
+		// LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
+		// .getBean("loadFileDAO");
+		// loadFileDAO.create(loadFile);
+		//
+		// LoadRawDAO loadRawDAO = (LoadRawDAO) applicationContext
+		// .getBean("loadRawDAO");
+		// loadRawDAO.create(loadRaw);
+		//
+		// LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO)
+		// applicationContext
+		// .getBean("loadRawDataDAO");
+		// loadRawDataDAO.create(loadRawData1);
+		// loadRawDataDAO.create(loadRawData2);
+		// loadRawDataDAO.create(loadRawData3);
+		// loadRawDataDAO.create(loadRawData4);
+		// loadRawDataDAO.create(loadRawData5);
+		// loadRawDataDAO.create(loadRawData6);
+		// loadRawDataDAO.create(loadRawData7);
+		// loadRawDataDAO.create(loadRawData8);
+		// loadRawDataDAO.create(loadRawData9);
+		// loadRawDataDAO.create(loadRawData10);
+		// loadRawDataDAO.create(loadRawData11);
+		// loadRawDataDAO.create(loadRawData12);
+		// loadRawDataDAO.create(loadRawData13);
+		// loadRawDataDAO.create(loadRawData14);
+		// loadRawDataDAO.create(loadRawData15);
+		// loadRawDataDAO.create(loadRawData16);
+		// loadRawDataDAO.create(loadRawData17);
+		// loadRawDataDAO.create(loadRawData18);
+		// loadRawDataDAO.create(loadRawData19);
+		// loadRawDataDAO.create(loadRawData20);
+		// loadRawDataDAO.create(loadRawData21);
+		// loadRawDataDAO.create(loadRawData22);
+		// loadRawDataDAO.create(loadRawData23);
+
+		// FileColumListDAO fileColumListDAO = (FileColumListDAO)
+		// applicationContext
+		// .getBean("fileColumListDAO");
+		// fileColumListDAO.create(fileColumList1);
 	}
 
 	/**

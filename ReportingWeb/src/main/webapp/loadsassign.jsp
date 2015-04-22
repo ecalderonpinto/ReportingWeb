@@ -32,7 +32,8 @@
 				<table class="table table-striped table-bordered table-condensed">
 					<thead>
 						<tr>
-							<th>Name</th>
+							<th>Report Catalog</th>
+							<th>Report Name</th>
 							<th>Type</th>
 							<th>Status</th>
 							<th>Loads Files</th>
@@ -41,6 +42,7 @@
 					<tbody>
 						<tr>
 							<td>${reportassign.reportExecution.reportCatalog.reportCatalogName}</td>
+							<td>${reportassign.reportExecution.reportExecutionName}</td>
 							<td>${reportassign.reportExecution.reportPeriodType}</td>
 							<td>${reportassign.reportExecution.reportStatus}</td>
 							<td>

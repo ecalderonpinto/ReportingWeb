@@ -77,6 +77,7 @@ public class ReportUtilities {
 			reportField.setReportCatalog(reportExecution.getReportCatalog());
 			reportField.setReportFieldName("CreationDateAndTime");
 			reportField.setReportFieldNum(new BigInteger("3"));
+			reportField.setReportFieldEditable(true);
 
 			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
 					.getBean("reportFieldDAO");
@@ -112,6 +113,7 @@ public class ReportUtilities {
 			reportField.setReportCatalog(reportExecution.getReportCatalog());
 			reportField.setReportFieldName("Version");
 			reportField.setReportFieldNum(new BigInteger("2"));
+			reportField.setReportFieldEditable(true);
 
 			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
 					.getBean("reportFieldDAO");
