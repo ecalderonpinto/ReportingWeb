@@ -89,20 +89,21 @@ public class ReportUtilities {
 			Date today = Calendar.getInstance().getTime();
 			// Using DateFormat format method we can create a string
 			String creationDateTime = dateFormat.format(today);
-			System.out.println("DEBUG_" + "ReportUtilities: new creationDateTime "
+			System.out.println("DEBUG_"
+					+ "ReportUtilities: new creationDateTime "
 					+ creationDateTime);
 
 			ReportData reportData = new ReportData(null, reportField,
 					reportExecution, null, null, creationDateTime, null, null,
-					null, new VersionAuditor("utilities"));
-			
+					new VersionAuditor("utilities"));
+
 			// save new reportData
 			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 					.getBean("reportDataDAO");
 			reportDataDAO.create(reportData);
-			
+
 			reportExecution.getReportDatas().add(reportData);
-			
+
 			System.out.println("creating <CreationDateAndTime>");
 		}
 
@@ -120,16 +121,16 @@ public class ReportUtilities {
 			reportField = reportFieldDAO.findByExample(reportField).get(0);
 
 			ReportData reportData = new ReportData(null, reportField,
-					reportExecution, null, null, versionNum, null, null, null,
+					reportExecution, null, null, versionNum, null, null,
 					new VersionAuditor("utilities"));
-			
+
 			// save new reportData
 			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 					.getBean("reportDataDAO");
 			reportDataDAO.create(reportData);
-			
+
 			reportExecution.getReportDatas().add(reportData);
-			
+
 			System.out.println("creating <Version>");
 		}
 
@@ -164,7 +165,7 @@ public class ReportUtilities {
 
 			List<ReportExecution> reportExecutionList = reportExecutionDAO
 					.findByExample(reportExecutionExample);
-			
+
 			if (reportExecutionList.size() > 1) {
 				fillingType = "AMND";
 			}
@@ -172,14 +173,14 @@ public class ReportUtilities {
 			System.out.println("creating <FillingType> " + fillingType);
 
 			ReportData reportData = new ReportData(null, reportField,
-					reportExecution, null, null, fillingType, null, null, null,
+					reportExecution, null, null, fillingType, null, null,
 					new VersionAuditor("utilities"));
 
 			// save new reportData
 			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 					.getBean("reportDataDAO");
 			reportDataDAO.create(reportData);
-			
+
 			reportExecution.getReportDatas().add(reportData);
 		}
 
@@ -201,14 +202,16 @@ public class ReportUtilities {
 
 		if (reportDataBlock != null) {
 			for (ReportData reportData : reportDatas) {
-				if (reportData.getReportField().getReportFieldName()
-						.equals(reportFieldName)
-						&& reportData.getReportField().getReportFieldNum()
-								.equals(new BigInteger(reportFieldNum))
-						&& reportData.getReportDataBlock().equals(
-								reportDataBlock)) {
-					result = reportData.getReportDataText();
-					break;
+				if (reportData.getReportDataBlock() != null) {
+					if (reportData.getReportField().getReportFieldName()
+							.equals(reportFieldName)
+							&& reportData.getReportField().getReportFieldNum()
+									.equals(new BigInteger(reportFieldNum))
+							&& reportData.getReportDataBlock().equals(
+									reportDataBlock)) {
+						result = reportData.getReportDataText();
+						break;
+					}
 				}
 			}
 		} else {

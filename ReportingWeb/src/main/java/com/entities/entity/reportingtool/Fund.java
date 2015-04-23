@@ -59,7 +59,6 @@ public class Fund implements VersionableAdapter {
 
 	public Fund(Company company, String fundName, String fundIsin,
 			String fundCode, String fundDesc, String fundClass,
-			List<FundGroup> fundGroups, List<ReportExecution> reportExecutions,
 			VersionAuditor versionAuditor) {
 		this.company = company;
 		this.fundName = fundName;
@@ -67,8 +66,6 @@ public class Fund implements VersionableAdapter {
 		this.fundCode = fundCode;
 		this.fundDesc = fundDesc;
 		this.fundClass = fundClass;
-		this.fundGroups = fundGroups;
-		this.reportExecutions = reportExecutions;
 		this.versionAuditor = versionAuditor;
 	}
 

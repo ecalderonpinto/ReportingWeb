@@ -55,17 +55,11 @@ public class Company implements VersionableAdapter {
 
 	public Company(String companyName, String companyCountry,
 			String companyCode, String companyDesc,
-			List<ReportExecution> reportExecutions, List<Fund> funds,
-			List<Department> departments, List<ReportCustom> reportCustoms,
 			VersionAuditor versionAuditor) {
 		this.companyName = companyName;
 		this.companyCountry = companyCountry;
 		this.companyCode = companyCode;
 		this.companyDesc = companyDesc;
-		this.reportExecutions = reportExecutions;
-		this.funds = funds;
-		this.departments = departments;
-		this.reportCustoms = reportCustoms;
 		this.versionAuditor = versionAuditor;
 	}
 

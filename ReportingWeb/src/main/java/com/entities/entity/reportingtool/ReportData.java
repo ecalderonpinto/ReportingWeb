@@ -72,7 +72,7 @@ public class ReportData implements VersionableAdapter {
 			ReportExecution reportExecution, Date reportDataDate,
 			BigDecimal reportDataNumber, String reportDataText,
 			String reportDataBlock, String reportDataLock,
-			List<ReportDataError> reportDataErrors, VersionAuditor versionAuditor) {
+			VersionAuditor versionAuditor) {
 		this.reportDataLong = reportDataLong;
 		this.reportField = reportField;
 		this.reportExecution = reportExecution;
@@ -81,7 +81,6 @@ public class ReportData implements VersionableAdapter {
 		this.reportDataText = reportDataText;
 		this.reportDataBlock = reportDataBlock;
 		this.reportDataLock = reportDataLock;
-		this.reportDataErrors = reportDataErrors;
 		this.versionAuditor = versionAuditor;
 	}
 
@@ -172,7 +171,7 @@ public class ReportData implements VersionableAdapter {
 	public void setReportDataLock(String reportDataLock) {
 		this.reportDataLock = reportDataLock;
 	}
-	
+
 	@Column(name = "REPORT_DATA_ORDER", length = 20)
 	public String getReportDataOrder() {
 		return this.reportDataOrder;
@@ -216,7 +215,7 @@ public class ReportData implements VersionableAdapter {
 	public void setVersionAuditor(VersionAuditor _auditor) {
 		this.versionAuditor = _auditor;
 	}
-	
+
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();

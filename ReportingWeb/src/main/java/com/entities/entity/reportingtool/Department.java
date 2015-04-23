@@ -61,17 +61,12 @@ public class Department implements VersionableAdapter {
 
 	public Department(Company company, String departmentName,
 			String departmentCode, String departmentDesc,
-			String departmentCountry, List<LoadFile> loadFiles,
-			List<FundGroup> fundGroups, List<FileConfig> fileConfigs,
-			VersionAuditor versionAuditor) {
+			String departmentCountry, VersionAuditor versionAuditor) {
 		this.company = company;
 		this.departmentName = departmentName;
 		this.departmentCode = departmentCode;
 		this.departmentDesc = departmentDesc;
 		this.departmentCountry = departmentCountry;
-		this.loadFiles = loadFiles;
-		this.fundGroups = fundGroups;
-		this.fileConfigs = fileConfigs;
 		this.versionAuditor = versionAuditor;
 	}
 

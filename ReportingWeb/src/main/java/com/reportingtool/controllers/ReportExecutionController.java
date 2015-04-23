@@ -77,12 +77,12 @@ public class ReportExecutionController {
 		model.addAttribute("fieldlistmap", fieldListMap);
 
 		// add default fields if does not exists
-//		ReportUtilities.generateDefaultReportDatas(applicationContext,
-//				reportExecution, "1.2");
+		// ReportUtilities.generateDefaultReportDatas(applicationContext,
+		// reportExecution, "1.2");
 
 		// add all reportDatas empty when are not populated yet
 		reportExecution = addReportDatas(reportExecution);
-		
+
 		// get all visual sections of the report
 		List<String> sections = getSections(reportExecution);
 
@@ -164,12 +164,12 @@ public class ReportExecutionController {
 		model.addAttribute("fieldlistmap", fieldListMap);
 
 		// add default fields if does not exists
-//		ReportUtilities.generateDefaultReportDatas(applicationContext,
-//				reportExecution, "1.2");
+		// ReportUtilities.generateDefaultReportDatas(applicationContext,
+		// reportExecution, "1.2");
 
 		// add all reportDatas empty when are not populated yet
 		reportExecution = addReportDatas(reportExecution);
-		
+
 		// get all visual sections of the report
 		List<String> sections = getSections(reportExecution);
 
@@ -182,8 +182,6 @@ public class ReportExecutionController {
 		return "reportexecution";
 	}
 
-	
-
 	/**
 	 * Function that build a List<String> with sections to display
 	 * 
@@ -195,12 +193,12 @@ public class ReportExecutionController {
 		List<String> result = new ArrayList<String>();
 
 		for (ReportData reportData : reportExecution.getReportDatas()) {
-//			if (reportData.getReportDataErrors().size() > 0) {
-//				System.out.println("Data tiene errores...");
-//				for (ReportDataError error : reportData.getReportDataErrors())
-//					System.out.println("Error: "
-//							+ error.getReportDataErrorText());
-//			}
+			// if (reportData.getReportDataErrors().size() > 0) {
+			// System.out.println("Data tiene errores...");
+			// for (ReportDataError error : reportData.getReportDataErrors())
+			// System.out.println("Error: "
+			// + error.getReportDataErrorText());
+			// }
 			if (reportData.getReportField().getReportFieldSection() != null
 					&& !result.contains(reportData.getReportField()
 							.getReportFieldSection()))
@@ -308,7 +306,7 @@ public class ReportExecutionController {
 						+ reportField.getReportFieldName() + "-"
 						+ reportField.getReportFieldNum().toString());
 				ReportData reportDataTemp = new ReportData(null, reportField,
-						reportExecution, null, null, "", null, null, null,
+						reportExecution, null, null, "", null, null,
 						new VersionAuditor("generated"));
 				reportDatas.add(reportDataTemp);
 			}
@@ -415,7 +413,7 @@ public class ReportExecutionController {
 
 		return filedTypeList;
 	}
-	
+
 	/**
 	 * Function generate a List of ReportSectionForm which can be used to make
 	 * sections in UI

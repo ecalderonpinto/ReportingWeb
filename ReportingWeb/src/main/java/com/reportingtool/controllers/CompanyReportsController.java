@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.entities.dao.reportingtool.CompanyDAO;
+import com.entities.dictionary.ReportExecutionStatusEnum;
 import com.entities.entity.reportingtool.Company;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.utilities.ReportingErrorManager;
@@ -38,11 +39,24 @@ public class CompanyReportsController {
 		CompanyDAO companyDAO = (CompanyDAO) applicationContext
 				.getBean("companyDAO");
 		Company company = companyDAO.findById(Long.parseLong(id));
-		
-		for(ReportExecution reportExecution : company.getReportExecutions()) {
-			// set reportExecution.hasErrors and reportData.hasErrors true/false to
-			// show link error/view XML
-			ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
+
+		// check some issues in every reportExecution before been showed
+		for (ReportExecution reportExecution : company.getReportExecutions()) {
+			// set reportExecution.hasErrors and reportData.hasErrors true/false
+			// to show link error/view XML
+			ReportingErrorManager
+					.checkReportExecutionHasErrors(reportExecution);
+
+			// change reportExecution.reportStatus EMPTY -> CREATION
+			if (reportExecution.getReportDatas().size() > 2) {
+				if (reportExecution.getReportStatus().equals(
+						ReportExecutionStatusEnum.EMPTY
+								.getReportExecutionStatus())) {
+					reportExecution
+							.setReportStatus(ReportExecutionStatusEnum.CREATION
+									.getReportExecutionStatus());
+				}
+			}
 		}
 
 		model.addAttribute("company", company);

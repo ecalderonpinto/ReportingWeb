@@ -148,22 +148,21 @@ public class ReportingErrorManager {
 				.getBean("reportDataDAO");
 
 		reportData = reportDataDAO.findById(reportData.getId());
-		if (reportData.getReportDataErrors() != null) {
-			for (ReportDataError reportDataError : reportData
-					.getReportDataErrors()) {
-				if (reportDataError.getReportDataErrorType().equals(
-						reportErrorType)
-						&& reportDataError.getError().getErrorType()
-								.equals(typeError)) {
-					reportErrorDAO.disable(reportDataError);
-					// reportDataErrorDAO.delete(reportDataError); -> cascade
-					// error
-					System.out.println("DEBUG_" + typeError
-							+ " disable reportError " + reportErrorType
-							+ " in " + reportDataError.getReportDataErrorText()
-							+ " - " + reportDataError.getReportDataErrorType());
-				}
+
+		for (ReportDataError reportDataError : reportData.getReportDataErrors()) {
+			if (reportDataError.getReportDataErrorType()
+					.equals(reportErrorType)
+					&& reportDataError.getError().getErrorType()
+							.equals(typeError)) {
+				reportErrorDAO.disable(reportDataError);
+				// reportDataErrorDAO.delete(reportDataError); -> cascade
+				// error
+				System.out.println("DEBUG_" + typeError
+						+ " disable reportError " + reportErrorType + " in "
+						+ reportDataError.getReportDataErrorText() + " - "
+						+ reportDataError.getReportDataErrorType());
 			}
+
 		}
 	}
 

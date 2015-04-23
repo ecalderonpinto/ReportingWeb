@@ -19,6 +19,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.entities.dao.reportingtool.CompanyDAO;
 import com.entities.dao.reportingtool.ReportCatalogDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
+import com.entities.dictionary.ReportExecutionStatusEnum;
 import com.entities.entity.reportingtool.Company;
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportExecution;
@@ -58,7 +59,8 @@ public class ReportExecutionDetailController {
 			ReportExecution reportExecution = new ReportExecution();
 			reportExecution.setReportCatalog(reportCatalog);
 			reportExecution.setCompany(company);
-			reportExecution.setReportStatus("CREATION");
+			reportExecution.setReportStatus(ReportExecutionStatusEnum.EMPTY
+					.getReportExecutionStatus());
 			reportExecution.setVersionAuditor(new VersionAuditor("report"));
 
 			System.out.println("new report: " + company.getCompanyName() + " "

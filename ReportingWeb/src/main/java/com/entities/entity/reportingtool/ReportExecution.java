@@ -93,8 +93,7 @@ public class ReportExecution implements VersionableAdapter {
 			String signedUserFlag, Date signedUserDate, String signedUserId,
 			String signedSuperFlag, Date signedSuperDate, String signedSuperId,
 			String signedSentFlag, Date signedSentDate, String signedSentId,
-			String reportLocked, List<ReportData> reportDatas,
-			List<ReportError> reportErrors, VersionAuditor versionAuditor) {
+			String reportLocked, VersionAuditor versionAuditor) {
 		this.reportCatalog = reportCatalog;
 		this.company = company;
 		this.fund = fund;
@@ -115,8 +114,6 @@ public class ReportExecution implements VersionableAdapter {
 		this.signedSentDate = signedSentDate;
 		this.signedSentId = signedSentId;
 		this.reportLocked = reportLocked;
-		this.reportDatas = reportDatas;
-		this.reportErrors = reportErrors;
 		this.versionAuditor = versionAuditor;
 	}
 
@@ -342,7 +339,7 @@ public class ReportExecution implements VersionableAdapter {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@Cascade({ CascadeType.ALL})
+	@Cascade({ CascadeType.ALL })
 	@JoinTable(name = "T_FILE_ASSIG_EXECUTION", joinColumns = { @JoinColumn(name = "REPORT_EXECUTION_ID", referencedColumnName = "REPORT_EXECUTION_ID") }, inverseJoinColumns = { @JoinColumn(name = "LOAD_FILE_ID", referencedColumnName = "LOAD_FILE_ID") })
 	public List<LoadFile> getLoadFiles() {
 		return loadFiles;
@@ -360,7 +357,7 @@ public class ReportExecution implements VersionableAdapter {
 	public void setHasErrors(boolean hasErrors) {
 		this.hasErrors = hasErrors;
 	}
-	
+
 	public int getVersion() {
 		return version;
 	}
@@ -368,7 +365,6 @@ public class ReportExecution implements VersionableAdapter {
 	public void setVersion(int version) {
 		this.version = version;
 	}
-
 
 	@Override
 	public Object clone() throws CloneNotSupportedException {
