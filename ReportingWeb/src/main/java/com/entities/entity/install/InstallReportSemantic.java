@@ -24,31 +24,44 @@ public class InstallReportSemantic {
 
 		List<ReportSemantic> reportSemantics = new ArrayList<ReportSemantic>();
 
+		// (2) <Version>
 		reportSemantics
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(2) is mandatory",
 						"if ( ReportUtilities.searchData(reportDatas, \"Version\", \"2\", null) != null) "
-						+ "result = \"ok\"",
-						null, "Fill field(2)", versionAdmin));
-		
+								+ "\n result = \"ok\"", null, "Fill field(2)",
+						versionAdmin));
+
+		// (12) <AIFMReportingObligationChangeQuarter>
 		reportSemantics
-		.add(new ReportSemantic(
-				reportCatalog,
-				"Field(12) is mandatory/forbidden",
-				"if( "
-				+ "\n ( ( ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeFrequencyCode\", \"10\", null) != null "
-				+ "\n || ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeContentsCode\", \"11\", null) != null "
-				+ "\n ) && ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeQuarter\", \"12\", null) != null )"
-				+ "\n || (ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeFrequencyCode\", \"10\", null) == null "
-				+ "\n && ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeContentsCode\", \"11\", null) == null "
-				+ "\n &&  ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeQuarter\", \"12\", null) == null)"
-				+ ")"
-				+ "result = \"ok\"",
-				null, "Fill field(12) only when field(10) or field(11) have content.", versionAdmin));
-		
-		
-		
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(12) is mandatory/forbidden",
+						"if( "
+								+ "\n ( ( ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeFrequencyCode\", \"10\", null) != null "
+								+ "\n || ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeContentsCode\", \"11\", null) != null "
+								+ "\n ) && ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeQuarter\", \"12\", null) != null )"
+								+ "\n || (ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeFrequencyCode\", \"10\", null) == null "
+								+ "\n && ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeContentsCode\", \"11\", null) == null "
+								+ "\n &&  ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeQuarter\", \"12\", null) == null)"
+								+ ")" + "\n result = \"ok\"",
+						null,
+						"Fill field(12) only when field(10) or field(11) have content.",
+						versionAdmin));
+
+		// (25) <AIFMNationalCode>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(25) is mandatory",
+						"if ( "
+								+ "(ReportUtilities.searchData(reportDatas, \"ReportingMemberState\", \"24\", null) != null"
+								+ " && ReportUtilities.searchData(reportDatas, \"AIFMNationalCode\", \"25\", null) != null)"
+								+ " || ReportUtilities.searchData(reportDatas, \"ReportingMemberState\", \"24\", null) == null) "
+								+ "\n result = \"ok\"", null,
+						"Fill field(25) if field(24) has content", versionAdmin));
+
 		ReportSemanticDAO reportSemanticDAO = (ReportSemanticDAO) applicationContext
 				.getBean("reportSemanticDAO");
 
