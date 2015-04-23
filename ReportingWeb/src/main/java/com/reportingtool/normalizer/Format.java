@@ -6,6 +6,7 @@ import java.util.Date;
 import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.loader.LoadRawDataDAO;
+import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.LoadRawData;
 import com.reportingtool.utilities.ReportUtilities;
@@ -20,7 +21,6 @@ import com.reportingtool.utilities.ReportingErrorManager;
 public class Format {
 
 	private ApplicationContext applicationContext;
-
 
 	/**
 	 * Constructor of Format with an applicationContext
@@ -83,14 +83,15 @@ public class Format {
 			Date date = new SimpleDateFormat(dateFormat).parse(dateText);
 			// SimpleDateFormat#format() to format a Date into a String in a
 			// certain pattern
-			newstring = new SimpleDateFormat(ReportUtilities.datePattern).format(date);
+			newstring = new SimpleDateFormat(ReportUtilities.datePattern)
+					.format(date);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			// create loadError
 			ReportingErrorManager.createLoadError(applicationContext,
-					"NORMALIZER", loadRawData.getLoadRaw().getLoadFile(),
-					"FORMAT",
+					ErrorTypeEnum.FORMAT.getErrorType(), loadRawData
+							.getLoadRaw().getLoadFile(), "FORMAT",
 					"INVALID DATE FORMAT: " + loadRawData.getLoadRawDataText()
 							+ " " + fileColum.getColumFormat());
 		}
@@ -100,7 +101,7 @@ public class Format {
 
 		// set final date
 		loadRawData.setLoadRawDataText(newstring);
-		
+
 		LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext
 				.getBean("loadRawDataDAO");
 		loadRawDataDAO.edit(loadRawData);
@@ -131,13 +132,14 @@ public class Format {
 			Date date = new SimpleDateFormat(dateFormat).parse(dateText);
 			// SimpleDateFormat#format() to format a Date into a String in a
 			// certain pattern
-			newstring = new SimpleDateFormat(ReportUtilities.dateTimePattern).format(date);
+			newstring = new SimpleDateFormat(ReportUtilities.dateTimePattern)
+					.format(date);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// create loadError
 			ReportingErrorManager.createLoadError(
 					applicationContext,
-					"NORMALIZER",
+					ErrorTypeEnum.FORMAT.getErrorType(),
 					loadRawData.getLoadRaw().getLoadFile(),
 					"FORMAT",
 					"INVALID DATETIME FORMAT: "
@@ -182,27 +184,40 @@ public class Format {
 		// thousands
 		String numberFormat = fileColum.getColumFormat();
 
-		int dot = numberFormat.indexOf(".");
-		int comma = numberFormat.indexOf(",");
-		if (dot > comma) {
-			// dot before comma -> #.# || ###,###.## => remove ','
-			number.replace(",", "");
-		} else {
-			// dot after comma -> #,# || ###.###,## => remove '.' change ',' ->
-			// '.'
-			number.replace(".", "");
-			number.replace(",", ".");
+		try {
+			int dot = numberFormat.indexOf(".");
+			int comma = numberFormat.indexOf(",");
+			if (dot > comma) {
+				// dot before comma -> #.# || ###,###.## => remove ','
+				number.replace(",", "");
+			} else {
+				// dot after comma -> #,# || ###.###,## => remove '.' change ','
+				// ->
+				// '.'
+				number.replace(".", "");
+				number.replace(",", ".");
+			}
+
+			// clean all not digit characters except '.'
+			// http://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+			number.replaceAll("[\\D+&&[^\\.]]", "");
+
+			System.out.println("DEBUG_" + "FormatNumber Orig: "
+					+ loadRawData.getLoadRawDataText() + " New" + number);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// create loadError
+			ReportingErrorManager.createLoadError(
+					applicationContext,
+					ErrorTypeEnum.FORMAT.getErrorType(),
+					loadRawData.getLoadRaw().getLoadFile(),
+					"FORMAT",
+					"ERROR When formating number: "
+							+ loadRawData.getLoadRawDataText() + " "
+							+ fileColum.getColumFormat());
 		}
-
-		// clean all not digit characters except '.'
-		// http://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
-		number.replaceAll("[\\D+&&[^\\.]]", "");
-
-		System.out.println("DEBUG_" + "FormatNumber Orig: "
-				+ loadRawData.getLoadRawDataText() + " New" + number);
-
 		// TODO:RT check if it is ok
-		
+
 		// set the final number
 		loadRawData.setLoadRawDataText(number);
 

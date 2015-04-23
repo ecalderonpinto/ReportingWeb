@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.entities.dao.reportingtool.ReportExecutionDAO;
+import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.creation.GeneratorXML;
 import com.reportingtool.utilities.ReportUtilities;
@@ -54,6 +55,8 @@ public class ViewXMLController {
 		ReportExecution reportExecution = reportExecutionDAO.findById(Long
 				.parseLong(id));
 
+		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
+
 		GeneratorXML generatorXML = new GeneratorXML(applicationContext);
 		String outputXML = generatorXML.generateXML(reportExecution);
 
@@ -79,7 +82,8 @@ public class ViewXMLController {
 		GeneratorXML generatorXML = new GeneratorXML(applicationContext);
 		String outputXML = generatorXML.generateXML(reportExecution);
 
-		DateFormat dateFormat = new SimpleDateFormat(ReportUtilities.datePattern);
+		DateFormat dateFormat = new SimpleDateFormat(
+				ReportUtilities.datePattern);
 		Date today = Calendar.getInstance().getTime();
 		String creationDate = dateFormat.format(today);
 
@@ -103,7 +107,7 @@ public class ViewXMLController {
 
 			InputStream in = new ByteArrayInputStream(sb.toString().getBytes(
 					"UTF-8"));
-			
+
 			IOUtils.copy(in, out);
 			in.close();
 			out.close();
@@ -112,8 +116,8 @@ public class ViewXMLController {
 			e.getMessage();
 			// e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					"CREATION", reportExecution, "FAIL",
-					"Error when dowload XML " + e.getMessage());
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
+					"FAIL", "Error when dowload XML " + e.getMessage());
 		}
 
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.reportingtool.ReportExecutionDAO;
+import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
@@ -112,7 +113,7 @@ public class Status {
 					// create a message of error
 					ReportingErrorManager.createReportError(
 							applicationContext,
-							"STATUS",
+							ErrorTypeEnum.STATUS.getErrorType(),
 							reportExecution,
 							"MANDATORY",
 							"VALUE MANDATORY NOT PRESENT "

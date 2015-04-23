@@ -30,6 +30,7 @@ import javax.xml.validation.Validator;
 import org.springframework.context.ApplicationContext;
 import org.xml.sax.SAXException;
 
+import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.utilities.ReportUtilities;
@@ -1351,17 +1352,17 @@ public class GeneratorXML {
 		} catch (JAXBException e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					"CREATION", reportExecution, "FAIL", "Error in JAXB XML"
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL", "Error in JAXB XML"
 							+ e.getMessage());
 		} catch (ParseException e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					"CREATION", reportExecution, "FAIL",
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL",
 					"Error when parsing XML: " + e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					"CREATION", reportExecution, "FAIL",
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL",
 					"General error in XML process: " + e.getMessage());
 		}
 
@@ -1889,17 +1890,17 @@ public class GeneratorXML {
 		} catch (JAXBException e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					"CREATION", reportExecution, "FAIL", "Error in JAXB XML"
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL", "Error in JAXB XML"
 							+ e.getMessage());
 		} catch (ParseException e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					"CREATION", reportExecution, "FAIL",
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL",
 					"Error when parsing XML: " + e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					"CREATION", reportExecution, "FAIL",
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL",
 					"General error in XML process: " + e.getMessage());
 		}
 
@@ -1935,16 +1936,16 @@ public class GeneratorXML {
 			validator.validate(xmlFile);
 			System.out.println("DEBUG_" + "CREATION - XML is valid.");
 			ReportingErrorManager.disableReportError(applicationContext,
-					"CREATION", reportExecution, "FAIL");
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL");
 			ReportingErrorManager.disableReportError(applicationContext,
-					"CREATION", reportExecution, "XML Incomplete");
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "XML Incomplete");
 
 		} catch (SAXException e) {
 			System.out.println("DEBUG_" + "CREATION - XML NOT is valid: "
 					+ e.getLocalizedMessage());
 			ReportingErrorManager.createReportError(
 					applicationContext,
-					"CREATION",
+					ErrorTypeEnum.GENERATION.getErrorType(),
 					reportExecution,
 					"XML Incomplete",
 					"Validating process detect some issues: "
@@ -1952,7 +1953,7 @@ public class GeneratorXML {
 		} catch (Exception e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					"CREATION", reportExecution, "FAIL",
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL",
 					"Error validating XML " + e.getLocalizedMessage());
 		}
 

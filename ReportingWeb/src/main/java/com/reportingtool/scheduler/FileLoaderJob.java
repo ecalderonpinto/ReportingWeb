@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.rowset.serial.SerialException;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.entities.dao.loader.FileConfigDAO;
 import com.entities.dao.loader.LoadFileDAO;
+import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.loader.FileConfig;
 import com.entities.entity.loader.LoadFile;
 import com.entities.entity.loader.LoadRaw;
@@ -52,9 +52,11 @@ public class FileLoaderJob {
 				if (loadFile != null) {
 					System.out.println(f.getName() + " is goint to be loader");
 				} else {
-					ReportingErrorManager.createLoadError(applicationContext,
-							"LOADER", loadFile, "PARSING",
-							"Error parsing " + f.getName() + " file");
+					ReportingErrorManager
+							.createLoadError(applicationContext,
+									ErrorTypeEnum.LOADER.getErrorType(),
+									loadFile, "PARSING",
+									"Error parsing " + f.getName() + " file");
 				}
 
 				// Save LoadFile in DataBase;
@@ -66,12 +68,12 @@ public class FileLoaderJob {
 				if (!f.renameTo(new File(outputDirectory + "/" + f.getName()
 						+ ".done")))
 					ReportingErrorManager.createLoadError(applicationContext,
-							"LOADER", loadFile, "FILE MANAGE",
-							"Manage error file " + f.getName()
+							ErrorTypeEnum.LOADER.getErrorType(), loadFile,
+							"FILE MANAGE", "Manage error file " + f.getName()
 									+ ", it can not be rename to DONE status");
 				f.deleteOnExit();
-				
-				//Validate Proccess;
+
+				// Validate Proccess;
 				for (LoadRaw loadRaw : loadFile.getLoadRaws()) {
 					for (LoadRawData loadRawData : loadRaw.getLoadRawDatas()) {
 						Translate translate = new Translate(applicationContext);
@@ -84,26 +86,29 @@ public class FileLoaderJob {
 			}
 
 		} catch (SerialException e) {
-			ReportingErrorManager.createLoadError(applicationContext, "LOADER",
-					loadFile, "BLOB PROCESS", "Error processing BLOB data");
+			ReportingErrorManager.createLoadError(applicationContext,
+					ErrorTypeEnum.LOADER.getErrorType(), loadFile,
+					"BLOB PROCESS", "Error processing BLOB data");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			ReportingErrorManager.createLoadError(applicationContext, "LOADER",
-					loadFile, "SQL", e.getMessage());
+			ReportingErrorManager.createLoadError(applicationContext,
+					ErrorTypeEnum.LOADER.getErrorType(), loadFile, "SQL",
+					e.getMessage());
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			ReportingErrorManager
-					.createLoadError(applicationContext, "LOADER", loadFile,
-							"FILE", "File not found [" + e.getMessage() + "]");
+			ReportingErrorManager.createLoadError(applicationContext,
+					ErrorTypeEnum.LOADER.getErrorType(), loadFile, "FILE",
+					"File not found [" + e.getMessage() + "]");
 			e.printStackTrace();
 		} catch (IOException e) {
-			ReportingErrorManager.createLoadError(applicationContext, "LOADER",
-					loadFile, "IO Error",
+			ReportingErrorManager.createLoadError(applicationContext,
+					ErrorTypeEnum.LOADER.getErrorType(), loadFile, "IO Error",
 					"Input/Output error: " + e.getMessage());
 			e.printStackTrace();
 		} catch (Exception e) {
-			ReportingErrorManager.createLoadError(applicationContext, "LOADER",
-					loadFile, "LOAD ERROR", e.getMessage());
+			ReportingErrorManager.createLoadError(applicationContext,
+					ErrorTypeEnum.LOADER.getErrorType(), loadFile,
+					"LOAD ERROR", e.getMessage());
 			e.printStackTrace();
 		}
 	}

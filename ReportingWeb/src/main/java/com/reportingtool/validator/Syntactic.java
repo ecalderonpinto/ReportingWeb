@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.reportingtool.ReportFieldListDAO;
+import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
@@ -82,10 +83,10 @@ public class Syntactic {
 			}
 
 		}
-		
+
 		if (hasFieldValue) {
 			// ok
-			
+
 			System.out.println("DEBUG_" + "SYNTAXIS: ("
 					+ reportField.getReportFieldNum()
 					+ ") hasFieldValue ok, check if error exists "
@@ -94,14 +95,14 @@ public class Syntactic {
 
 			// find and disable if there are a REGEX error
 			ReportingErrorManager.disableReportDataError(applicationContext,
-					"SYNTAXIS", reportData, "VALUE");
+					ErrorTypeEnum.SYNTAXIS.getErrorType(), reportData, "VALUE");
 		} else {
 			// not valid
 
 			// create a message of error
 			ReportingErrorManager.createReportDataError(applicationContext,
-					"SYNTAXIS", reportData, "VALUE", "NOT IN VALUE LIST: "
-							+ reportData.getReportDataText());
+					ErrorTypeEnum.SYNTAXIS.getErrorType(), reportData, "VALUE",
+					"NOT IN VALUE LIST: " + reportData.getReportDataText());
 		}
 	}
 
@@ -135,21 +136,25 @@ public class Syntactic {
 			if (matchVersion) {
 				// ok Regex
 
-				System.out.println("DEBUG_"
-						+ "SYNTAXIS: ("
-						+ reportField.getReportFieldNum() + ") regex ok, check if error exists "
+				System.out.println("DEBUG_" + "SYNTAXIS: ("
+						+ reportField.getReportFieldNum()
+						+ ") regex ok, check if error exists "
 						+ reportData.getReportDataText() + " -> "
 						+ reportField.getReportFieldFormat() + " ");
 
 				// find and disable if there are a REGEX error
 				ReportingErrorManager.disableReportDataError(
-						applicationContext, "SYNTAXIS", reportData, "REGEX");
+						applicationContext,
+						ErrorTypeEnum.SYNTAXIS.getErrorType(), reportData,
+						"REGEX");
 
 			} else {
 				// not valid, bad Regex
 
 				ReportingErrorManager.createReportDataError(applicationContext,
-						"SYNTAXIS", reportData, "REGEX", "BAD REGEX FOUND: "
+						ErrorTypeEnum.SYNTAXIS.getErrorType(), reportData,
+						"REGEX",
+						"BAD REGEX FOUND: "
 								+ reportData.getReportDataText()
 								+ " <> "
 								+ reportData.getReportField()
@@ -158,7 +163,8 @@ public class Syntactic {
 		} else {
 			// not valid, is empty
 			ReportingErrorManager.createReportDataError(applicationContext,
-					"SYNTAXIS", reportData, "EMPTY", "EMPTY FIELD");
+					ErrorTypeEnum.SYNTAXIS.getErrorType(), reportData, "EMPTY",
+					"EMPTY FIELD");
 		}
 
 	}

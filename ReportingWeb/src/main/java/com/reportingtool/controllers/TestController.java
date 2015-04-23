@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.entities.entity.InstallEntities;
+import com.entities.entity.install.InstallManager;
 import com.reportingtool.test.TestValidator;
 
 @Controller
@@ -34,7 +34,7 @@ public class TestController {
 	public String install(Locale locale, Model model) {
 
 		// TO DO
-		InstallEntities installLoader = new InstallEntities();
+		InstallManager installLoader = new InstallManager();
 		// installLoader.installTest(applicationContext);
 		installLoader.deleteEntities(applicationContext);
 		installLoader.installEntitiesFull(applicationContext);

@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import bsh.Interpreter;
 
 import com.entities.dao.reportingtool.ReportSemanticDAO;
+import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportSemantic;
 import com.reportingtool.utilities.ReportingErrorManager;
@@ -57,7 +58,7 @@ public class Semantic {
 			System.out.println("DEBUG_" + "Semantic:" + rule);
 
 			// execute semantic rule and delete/create error
-			//executeRuleScript(reportSemantic, reportExecution);
+			// executeRuleScript(reportSemantic, reportExecution);
 		}
 	}
 
@@ -114,7 +115,7 @@ public class Semantic {
 				// error
 				ReportingErrorManager.createReportError(
 						applicationContext,
-						"SEMANTIC",
+						ErrorTypeEnum.SEMANTIC.getErrorType(),
 						reportExecution,
 						"RULE " + reportSemantic.getReportingSemanticName()
 								+ " ERROR",
@@ -125,7 +126,7 @@ public class Semantic {
 			} else {
 				// ok
 				ReportingErrorManager.disableReportError(applicationContext,
-						"SEMANTIC", reportExecution,
+						ErrorTypeEnum.SEMANTIC.getErrorType(), reportExecution,
 						"RULE " + reportSemantic.getReportingSemanticName()
 								+ " ERROR");
 			}
@@ -134,7 +135,7 @@ public class Semantic {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(
 					applicationContext,
-					"SEMANTIC",
+					ErrorTypeEnum.SEMANTIC.getErrorType(),
 					reportExecution,
 					"FATAL",
 					"Fatal error when processing "

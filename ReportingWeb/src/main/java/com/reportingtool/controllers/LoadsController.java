@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.entities.dao.loader.FileConfigDAO;
 import com.entities.dao.loader.LoadFileDAO;
+import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.loader.FileConfig;
 import com.entities.entity.loader.LoadFile;
 import com.entities.entity.loader.LoadRaw;
@@ -89,7 +90,7 @@ public class LoadsController {
 				alert.setError(true);
 				alert.setMessage("Error loading file");
 				ReportingErrorManager.createLoadError(applicationContext,
-						"LOADER", loadFile, "PARSING", "Error parsing "
+						ErrorTypeEnum.LOADER.getErrorType(), loadFile, "PARSING", "Error parsing "
 								+ loadFile.getLoadFileName() + " file");
 			}
 

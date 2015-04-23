@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.entities.dao.reportingtool.ReportCatalogDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.dao.reportingtool.ReportFieldListDAO;
-import com.entities.entity.InstallEntities;
+import com.entities.entity.install.InstallManager;
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
@@ -117,7 +117,7 @@ public class AdminController {
 	@RequestMapping(value="/installTestData.do")
 	public String installTestData(Model model){
 		
-		InstallEntities install = new InstallEntities();
+		InstallManager install = new InstallManager();
 		
 		install.deleteEntities(applicationContext);
 		install.installEntitiesFull(applicationContext);
@@ -137,7 +137,7 @@ public class AdminController {
 	@RequestMapping(value="/cleanData.do")
 	public String cleanData(Model model){
 		
-		InstallEntities install = new InstallEntities();
+		InstallManager install = new InstallManager();
 		
 		install.deleteEntities(applicationContext);
 		

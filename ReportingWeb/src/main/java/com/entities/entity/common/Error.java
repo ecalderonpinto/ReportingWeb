@@ -66,17 +66,12 @@ public class Error implements VersionableAdapter {
 	}
 
 	public Error(String errorType, String errorName, String errorLevel,
-			String errorText, String errorAction,
-			List<ReportDataError> reportDataErrors, List<LoadError> loadErrors,
-			List<ReportError> reportErrors, VersionAuditor versionAuditor) {
+			String errorText, String errorAction, VersionAuditor versionAuditor) {
 		this.errorType = errorType;
 		this.errorName = errorName;
 		this.errorLevel = errorLevel;
 		this.errorText = errorText;
 		this.errorAction = errorAction;
-		this.reportDataErrors = reportDataErrors;
-		this.loadErrors = loadErrors;
-		this.reportErrors = reportErrors;
 		this.versionAuditor = versionAuditor;
 	}
 

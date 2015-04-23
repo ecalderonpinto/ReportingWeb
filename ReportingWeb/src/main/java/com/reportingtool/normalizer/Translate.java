@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.loader.LoadRawDataDAO;
+import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileColumList;
 import com.entities.entity.loader.LoadRawData;
@@ -72,7 +73,7 @@ public class Translate {
 				// create a message of error
 				ReportingErrorManager.createLoadError(
 						applicationContext,
-						"TRANSLATE",
+						ErrorTypeEnum.TRANSLATE.getErrorType(),
 						loadRawData.getLoadRaw().getLoadFile(),
 						"VALUE",
 						"NOT IN TRANSLATE LIST: "

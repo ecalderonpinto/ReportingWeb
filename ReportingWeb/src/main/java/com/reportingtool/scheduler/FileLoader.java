@@ -16,6 +16,7 @@ import javax.sql.rowset.serial.SerialException;
 import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.loader.LoadRawDAO;
+import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileConfig;
 import com.entities.entity.loader.LoadError;
@@ -105,7 +106,8 @@ public class FileLoader {
 				new VersionAuditor("admin"));
 
 		// Get records of the load file;
-		List<String> records = LoaderUtilities.loadFileInList(this.file, fileConfig.isHeader());
+		List<String> records = LoaderUtilities.loadFileInList(this.file,
+				fileConfig.isHeader());
 
 		// Process records and update LoadFile Object;
 		for (int i = 0; i < records.size(); i++) {
@@ -132,22 +134,26 @@ public class FileLoader {
 									fileColum, loadRaw, columText,
 									fileColum.getColumType(),
 									new VersionAuditor("admin"));
-							
-							// columBlock can be a number(1,2,3...), null or 'n', this means it is necessary to process
+
+							// columBlock can be a number(1,2,3...), null or
+							// 'n', this means it is necessary to process
 							if (fileColum.getColumBlock() != null) {
-								if (ReportUtilities.isInteger(fileColum.getColumBlock()) ) {
+								if (ReportUtilities.isInteger(fileColum
+										.getColumBlock())) {
 									loadRawData.setLoadRawDataBlock(fileColum
 											.getColumBlock());
 								} else {
-									if (fileColum.getColumBlock().equals(ReportUtilities.fileColumBlockRepeatable)) {
-										loadRawData.setLoadRawDataBlock(Integer.toString(i));
+									if (fileColum
+											.getColumBlock()
+											.equals(ReportUtilities.fileColumBlockRepeatable)) {
+										loadRawData.setLoadRawDataBlock(Integer
+												.toString(i));
 									}
 								}
 							} else {
 								loadRawData.setLoadRawDataBlock(null);
 							}
-							
-							
+
 							loadRaw.getLoadRawDatas().add(loadRawData);
 						}
 					}
@@ -157,20 +163,24 @@ public class FileLoader {
 					loadFile.getLoadRaws().add(loadRaw);
 				} else {
 					ReportingErrorManager.createLoadError(applicationContext,
-							"LOADER", loadFile, "INVALID ROW",
+							ErrorTypeEnum.LOADER.getErrorType(), loadFile,
+							"INVALID ROW",
 							"Row with different columns or separator [row " + i
-									+ "] -> " + (columns.length - 1) + " diferent of " + fileConfig.getFileColums().size());
+									+ "] -> " + (columns.length - 1)
+									+ " diferent of "
+									+ fileConfig.getFileColums().size());
 				}
 			} else {
 				ReportingErrorManager.createLoadError(applicationContext,
-						"LOADER", loadFile, "DUPLICATE ROW",
-						"Duplicate row found [row " + i + "]");
+						ErrorTypeEnum.LOADER.getErrorType(), loadFile,
+						"DUPLICATE ROW", "Duplicate row found [row " + i + "]");
 			}
 		}
 
 		if (loadFile.getLoadRaws().isEmpty()) {
-			ReportingErrorManager.createLoadError(applicationContext, "LOADER",
-					loadFile, "FILE EMPTY",
+			ReportingErrorManager.createLoadError(applicationContext,
+					ErrorTypeEnum.LOADER.getErrorType(), loadFile,
+					"FILE EMPTY",
 					"No rows found in " + loadFile.getLoadFileName());
 		}
 

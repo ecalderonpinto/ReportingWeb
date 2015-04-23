@@ -24,12 +24,18 @@
 	</div>
 </form:form>
 
-<c:if test="${report.hasErrors == true}">
-	<div class="box-content">
-		<a class="btn btn-small btn-danger"
-			href="<c:url value="reportError.do?id=${report.id}" />"> Errors </a>
-	</div>
-</c:if>
+<div class="box-content">
+	<c:choose>
+		<c:when test="${report.hasErrors == true}">
+			<a class="btn btn-small btn-danger"
+				href="<c:url value="reportError.do?id=${report.id}" />"> Errors
+			</a>
+		</c:when>
+		<c:otherwise>
+			<span class="label label-success">No errors</span>
+		</c:otherwise>
+	</c:choose>
+</div>
 
 <div class="row-fluid sortable">
 	<div class="box span12">

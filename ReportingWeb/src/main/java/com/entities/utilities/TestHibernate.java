@@ -3,7 +3,7 @@ package com.entities.utilities;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.entities.entity.InstallEntities;
+import com.entities.entity.install.InstallManager;
 
 public class TestHibernate {
 
@@ -19,7 +19,7 @@ public class TestHibernate {
 					"applicationContext.xml");
 			
 			
-			InstallEntities installLoader = new InstallEntities();
+			InstallManager installLoader = new InstallManager();
 			
 			//installLoader.installTest(applicationContext);
 			

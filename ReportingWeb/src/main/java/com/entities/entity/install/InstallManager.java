@@ -1,12 +1,10 @@
-package com.entities.entity;
+package com.entities.entity.install;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 
@@ -30,8 +28,6 @@ import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.dao.reportingtool.ReportFieldListDAO;
 import com.entities.dao.reportingtool.ReportSemanticDAO;
-import com.entities.dictionary.ReportExecutionStatusEnum;
-import com.entities.entity.common.Error;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileConfig;
 import com.entities.entity.reportingtool.Company;
@@ -39,10 +35,7 @@ import com.entities.entity.reportingtool.Department;
 import com.entities.entity.reportingtool.Fund;
 import com.entities.entity.reportingtool.FundGroup;
 import com.entities.entity.reportingtool.ReportCatalog;
-import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
-import com.entities.entity.reportingtool.ReportFieldList;
-import com.entities.entity.reportingtool.ReportSemantic;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.reportingtool.utilities.ReportUtilities;
 
@@ -52,12 +45,12 @@ import com.reportingtool.utilities.ReportUtilities;
  * @author alberto.olivan
  *
  */
-public class InstallEntities {
+public class InstallManager {
 
 	/**
 	 * Default constructor of InstallEntities
 	 */
-	public InstallEntities() {
+	public InstallManager() {
 
 	}
 
@@ -2671,8 +2664,7 @@ public class InstallEntities {
 					"SAM", "", versionAdmin);
 
 			Department department = new Department(company, "Risk department",
-					"RISK", "", "Spain", new VersionAuditor(
-							"admin"));
+					"RISK", "", "Spain", new VersionAuditor("admin"));
 
 			Fund fund1 = new Fund(company, "SAM fund 1", "ES000001", "FUND1",
 					"", null, versionAdmin);
@@ -2686,19 +2678,20 @@ public class InstallEntities {
 			ReportCatalog reportCatalog = new ReportCatalog(versionField,
 					"COMPANY", "AIFM 2014", "", null, null, null, versionAdmin);
 
-			String str1 = "2014-01-01";
-			String str2 = "2014-12-31";
-			DateFormat format = new SimpleDateFormat(
-					ReportUtilities.datePattern);
-			Date date1 = format.parse(str1);
-			Date date2 = format.parse(str2);
+//			String str1 = "2014-01-01";
+//			String str2 = "2014-12-31";
+//			DateFormat format = new SimpleDateFormat(
+//					ReportUtilities.datePattern);
+			
+//			Date date1 = format.parse(str1);
+//			Date date2 = format.parse(str2);
 
-			ReportExecution reportExecution = new ReportExecution(
-					reportCatalog, company, null, "Prueba Q1 2014", "", "Q1",
-					"2014", date2, date1,
-					ReportExecutionStatusEnum.CREATION
-							.getReportExecutionStatus(), null, null, null,
-					null, null, null, null, null, null, null, versionAdmin);
+			// ReportExecution reportExecution = new ReportExecution(
+			// reportCatalog, company, null, "Prueba Q1 2014", "", "Q1",
+			// "2014", date2, date1,
+			// ReportExecutionStatusEnum.CREATION
+			// .getReportExecutionStatus(), null, null, null,
+			// null, null, null, null, null, null, null, versionAdmin);
 
 			// report Fields de AIFM
 
@@ -3028,7 +3021,9 @@ public class InstallEntities {
 			reportFieldDAO.create(reportField42);
 
 			// report Field List
-			this.installFileList(applicationContext);
+			InstallReportList installReportList = new InstallReportList(
+					applicationContext);
+			installReportList.install();
 
 			FileConfig fileConfig0 = new FileConfig(department, "AIFM",
 					"AIFM2014_QUESTIONS", ";", "SIMPLE", "*", null, true, null,
@@ -3531,45 +3526,15 @@ public class InstallEntities {
 					"type", new BigDecimal(65), "CancelledRecordFlag", "",
 					"format", null, null, versionAdmin);
 
-			Error error1 = new Error("LOADER", "Error load", "1",
-					"Error in load file", "Reload file", null, null, null,
-					versionAdmin);
-			Error error2 = new Error("CONTROLLER", "Error controller", "1",
-					"Error in servlet", "Reload page", null, null, null,
-					versionAdmin);
-			Error error3 = new Error("VALIDATOR", "Error validator", "1",
-					"Error in validation", "Check fields", null, null, null,
-					versionAdmin);
-			Error error4 = new Error("NORMALIZER", "Error normalizer", "1",
-					"Error in normalize process", "Reload file", null, null,
-					null, versionAdmin);
-			Error error5 = new Error("CREATION", "Error load", "1",
-					"Error in creation", "Check conditions", null, null, null,
-					versionAdmin);
-			Error error6 = new Error("SYNTAXIS", "Error load", "1",
-					"Error in syntaxis", "Check format", null, null, null,
-					versionAdmin);
-			Error error7 = new Error("SEMANTIC", "Error sematinc", "1",
-					"Error in semantic", "Check rules", null, null, null,
-					versionAdmin);
-			Error error8 = new Error("TRANSLATE", "Error load", "1",
-					"Error in load file", "Reload file", null, null, null,
-					versionAdmin);
-			Error error9 = new Error("STATUS", "Error status", "1",
-					"Error in status checker", "Check report", null, null,
-					null, versionAdmin);
-			Error error10 = new Error("REPORTING", "Error report", "1",
-					"Error in report", "Check report", null, null, null,
-					versionAdmin);
+			InstallError installError = new InstallError(applicationContext);
+			installError.install();
 
 			// FileColumList fileColumList1 = new FileColumList(fileColum4,
 			// "TEXT", "FIRST", "INIT", versionAdmin);
 
-			ReportSemantic reportSemantic1 = new ReportSemantic(
-					reportCatalog,
-					"Field(2) is mandatory",
-					"result = ReportUtilities.searchData(reportExecution.getReportDatas(), \"Version\", \"2\", null)",
-					null, "Fill field(2)", versionAdmin);
+			InstallReportSemantic installReportSemantic = new InstallReportSemantic(
+					applicationContext);
+			installReportSemantic.install(reportCatalog);
 
 			// DAO
 
@@ -3671,654 +3636,8 @@ public class InstallEntities {
 			fileColumDAO.create(fileColum64);
 			fileColumDAO.create(fileColum65);
 
-			ErrorDAO errorDAO = (ErrorDAO) applicationContext
-					.getBean("errorDAO");
-			errorDAO.create(error1);
-			errorDAO.create(error2);
-			errorDAO.create(error3);
-			errorDAO.create(error4);
-			errorDAO.create(error5);
-			errorDAO.create(error6);
-			errorDAO.create(error7);
-			errorDAO.create(error8);
-			errorDAO.create(error9);
-			errorDAO.create(error10);
-
-			ReportSemanticDAO reportSemanticDAO = (ReportSemanticDAO) applicationContext
-					.getBean("reportSemanticDAO");
-			reportSemanticDAO.create(reportSemantic1);
-			System.out.println("reportSemantic1 "
-					+ reportSemantic1.getReportingSemanticRule());
-
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-
-	}
-
-	/**
-	 * Process to install in database reportFieldList for all AIFMD reports
-	 * 
-	 * @param applicationContext
-	 */
-	public void installFileList(ApplicationContext applicationContext) {
-
-		List<ReportFieldList> repotFieldList = new ArrayList<ReportFieldList>();
-
-		VersionAuditor versionAdmin = new VersionAuditor("admin");
-
-		ReportFieldListDAO reportFieldListDAO = (ReportFieldListDAO) applicationContext
-				.getBean("reportFieldListDAO");
-		reportFieldListDAO.deleteAll();
-
-		repotFieldList.add(new ReportFieldList("BOOLEAN", "true", "true",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList("BOOLEAN", "false", "false",
-				versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("AIFMasterFeederStatusType",
-				"MASTER", "MASTER", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AIFMasterFeederStatusType",
-				"FEEDER", "FEEDER", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AIFMasterFeederStatusType",
-				"NONE", "NONE", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("AIFTypeType", "HFND", "HFND",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList("AIFTypeType", "PEQF", "PEQF",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList("AIFTypeType", "REST", "REST",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList("AIFTypeType", "FOFS", "FOFS",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList("AIFTypeType", "OTHR", "OTHR",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList("AIFTypeType", "NONE", "NONE",
-				versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("AIIDerivativeTypeType", "O",
-				"O", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AIIDerivativeTypeType", "F",
-				"F", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("AIIPutCallIdentifierType", "P",
-				"P", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AIIPutCallIdentifierType", "C",
-				"C", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AIIPutCallIdentifierType", "F",
-				"F", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("AlternateTextType", "NA", "NA",
-				versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("AssetMacroTypeType", "SEC",
-				"SEC", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetMacroTypeType", "DER",
-				"DER", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetMacroTypeType", "CIU",
-				"CIU", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetMacroTypeType", "PHY",
-				"PHY", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetMacroTypeType", "OTH",
-				"OTH", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetMacroTypeType", "NTA",
-				"NTA", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "SEC_CSH",
-				"SEC_CSH", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "SEC_LEQ",
-				"SEC_LEQ", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "SEC_UEQ",
-				"SEC_UEQ", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "SEC_CPN",
-				"SEC_CPN", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "SEC_CPI",
-				"SEC_CPI", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "SEC_SBD",
-				"SEC_SBD", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "SEC_MBN",
-				"SEC_MBN", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "SEC_CBN",
-				"SEC_CBN", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "SEC_CBI",
-				"SEC_CBI", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "SEC_LON",
-				"SEC_LON", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "SEC_SSP",
-				"SEC_SSP", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "DER_EQD",
-				"DER_EQD", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "DER_FID",
-				"DER_FID", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "DER_CDS",
-				"DER_CDS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "DER_FEX",
-				"DER_FEX", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "DER_IRD",
-				"DER_IRD", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "DER_CTY",
-				"DER_CTY", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "DER_OTH",
-				"DER_OTH", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "PHY_RES",
-				"PHY_RES", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "PHY_CTY",
-				"PHY_CTY", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "PHY_TIM",
-				"PHY_TIM", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "PHY_ART",
-				"PHY_ART", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "PHY_TPT",
-				"PHY_TPT", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "PHY_OTH",
-				"PHY_OTH", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "CIU_OAM",
-				"CIU_OAM", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "CIU_NAM",
-				"CIU_NAM", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "OTH_OTH",
-				"OTH_OTH", versionAdmin));
-		repotFieldList.add(new ReportFieldList("AssetTypeType", "NTA_NTA",
-				"NTA_NTA", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("CancelledRecordFlagType", "C",
-				"C", versionAdmin));
-		repotFieldList.add(new ReportFieldList("CancelledRecordFlagType", "D",
-				"D", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("FilingTypeType", "AMND",
-				"AMND", versionAdmin));
-		repotFieldList.add(new ReportFieldList("FilingTypeType", "INIT",
-				"INIT", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("FundOfFundsStrategyTypeType",
-				"FOFS_FHFS", "FOFS_FHFS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("FundOfFundsStrategyTypeType",
-				"FOFS_PRIV", "FOFS_PRIV", versionAdmin));
-		repotFieldList.add(new ReportFieldList("FundOfFundsStrategyTypeType",
-				"OTHR_FOFS", "OTHR_FOFS", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("FXEURReferenceRateTypeType",
-				"ECB", "ECB", versionAdmin));
-		repotFieldList.add(new ReportFieldList("FXEURReferenceRateTypeType",
-				"OTH", "OTH", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"NONE", "NONE", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"EQTY_LGBS", "EQTY_LGBS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"EQTY_LGST", "EQTY_LGST", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"EQTY_MTNL", "EQTY_MTNL", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"EQTY_STBS", "EQTY_STBS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"RELV_FXIA", "RELV_FXIA", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"RELV_CBAR", "RELV_CBAR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"RELV_VLAR", "RELV_VLAR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"EVDR_DSRS", "EVDR_DSRS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"EVDR_RAMA", "EVDR_RAMA", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"EVDR_EYSS", "EVDR_EYSS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"CRED_LGST", "CRED_LGST", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"CRED_ABLG", "CRED_ABLG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"MACR_MACR", "MACR_MACR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"MANF_CTAF", "MANF_CTAF", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"MANF_CTAQ", "MANF_CTAQ", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"MULT_HFND", "MULT_HFND", versionAdmin));
-		repotFieldList.add(new ReportFieldList("HedgeFundStrategyTypeType",
-				"OTHR_HFND", "OTHR_HFND", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("InstrumentCodeTypeType",
-				"ISIN", "ISIN", versionAdmin));
-		repotFieldList.add(new ReportFieldList("InstrumentCodeTypeType", "AII",
-				"AII", versionAdmin));
-		repotFieldList.add(new ReportFieldList("InstrumentCodeTypeType",
-				"NONE", "NONE", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("InvestorGroupTypeType", "NFCO",
-				"NFCO", versionAdmin));
-		repotFieldList.add(new ReportFieldList("InvestorGroupTypeType", "BANK",
-				"BANK", versionAdmin));
-		repotFieldList.add(new ReportFieldList("InvestorGroupTypeType", "INSC",
-				"INSC", versionAdmin));
-		repotFieldList.add(new ReportFieldList("InvestorGroupTypeType", "OFIN",
-				"OFIN", versionAdmin));
-		repotFieldList.add(new ReportFieldList("InvestorGroupTypeType", "PFND",
-				"PFND", versionAdmin));
-		repotFieldList.add(new ReportFieldList("InvestorGroupTypeType", "GENG",
-				"GENG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("InvestorGroupTypeType", "OCIU",
-				"OCIU", versionAdmin));
-		repotFieldList.add(new ReportFieldList("InvestorGroupTypeType", "HHLD",
-				"HHLD", versionAdmin));
-		repotFieldList.add(new ReportFieldList("InvestorGroupTypeType", "UNKN",
-				"UNKN", versionAdmin));
-		repotFieldList.add(new ReportFieldList("InvestorGroupTypeType", "NONE",
-				"NONE", versionAdmin));
-
-		repotFieldList
-				.add(new ReportFieldList("InvestorRedemptionFrequencyType",
-						"NONE", "NONE", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList(
-				"InvestorRedemptionFrequencyType", "D", "D", versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"InvestorRedemptionFrequencyType", "W", "W", versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"InvestorRedemptionFrequencyType", "F", "F", versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"InvestorRedemptionFrequencyType", "M", "M", versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"InvestorRedemptionFrequencyType", "Q", "Q", versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"InvestorRedemptionFrequencyType", "H", "H", versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"InvestorRedemptionFrequencyType", "Y", "Y", versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"InvestorRedemptionFrequencyType", "O", "O", versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"InvestorRedemptionFrequencyType", "N", "N", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("MarketCodeTypeWithNOTType",
-				"NOT", "NOT", versionAdmin));
-		repotFieldList.add(new ReportFieldList("MarketCodeTypeWithNOTType",
-				"MIC", "MIC", versionAdmin));
-		repotFieldList.add(new ReportFieldList("MarketCodeTypeWithNOTType",
-				"OTC", "OTC", versionAdmin));
-		repotFieldList.add(new ReportFieldList("MarketCodeTypeWithNOTType",
-				"XXX", "XXX", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("MarketCodeTypeWithoutNOTType",
-				"MIC", "MIC", versionAdmin));
-		repotFieldList.add(new ReportFieldList("MarketCodeTypeWithoutNOTType",
-				"OTC", "OTC", versionAdmin));
-		repotFieldList.add(new ReportFieldList("MarketCodeTypeWithoutNOTType",
-				"XXX", "XXX", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("OtherFundStrategyTypeType",
-				"OTHR_COMF", "OTHR_COMF", versionAdmin));
-		repotFieldList.add(new ReportFieldList("OtherFundStrategyTypeType",
-				"OTHR_EQYF", "OTHR_EQYF", versionAdmin));
-		repotFieldList.add(new ReportFieldList("OtherFundStrategyTypeType",
-				"OTHR_FXIF", "OTHR_FXIF", versionAdmin));
-		repotFieldList.add(new ReportFieldList("OtherFundStrategyTypeType",
-				"OTHR_INFF", "OTHR_INFF", versionAdmin));
-		repotFieldList.add(new ReportFieldList("OtherFundStrategyTypeType",
-				"OTHR_OTHF", "OTHR_OTHF", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("PositionTypeType", "L", "L",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList("PositionTypeType", "S", "S",
-				versionAdmin));
-
-		repotFieldList.add(new ReportFieldList(
-				"PrivateEquityFundStrategyTypeType", "VENT_CAPL", "VENT_CAPL",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"PrivateEquityFundStrategyTypeType", "GRTH_CAPL", "GRTH_CAPL",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"PrivateEquityFundStrategyTypeType", "MZNE_CAPL", "MZNE_CAPL",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"PrivateEquityFundStrategyTypeType", "MULT_PEQF", "MULT_PEQF",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"PrivateEquityFundStrategyTypeType", "OTHR_PEQF", "OTHR_PEQF",
-				versionAdmin));
-
-		repotFieldList.add(new ReportFieldList(
-				"RealEstateFundStrategyTypeType", "RESL_REST", "RESL_REST",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"RealEstateFundStrategyTypeType", "COML_REST", "COML_REST",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"RealEstateFundStrategyTypeType", "INDL_REST", "INDL_REST",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"RealEstateFundStrategyTypeType", "MULT_REST", "MULT_REST",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"RealEstateFundStrategyTypeType", "OTHR_REST", "OTHR_REST",
-				versionAdmin));
-
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeFrequencyCodeType", "YH", "YH",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeFrequencyCodeType", "YQ", "YQ",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeFrequencyCodeType", "HY", "HY",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeFrequencyCodeType", "HQ", "HQ",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeFrequencyCodeType", "QY", "QY",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeFrequencyCodeType", "QH", "QH",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeFrequencyCodeType", "NQ", "NQ",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeFrequencyCodeType", "NH", "NH",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeFrequencyCodeType", "NY", "NY",
-				versionAdmin));
-
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeQuarterType", "Q1", "Q1",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeQuarterType", "Q2", "Q2",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeQuarterType", "Q3", "Q3",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"ReportingObligationChangeQuarterType", "Q4", "Q4",
-				versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("ReportingPeriodTypeType", "Q1",
-				"Q1", versionAdmin));
-		repotFieldList.add(new ReportFieldList("ReportingPeriodTypeType", "Q2",
-				"Q2", versionAdmin));
-		repotFieldList.add(new ReportFieldList("ReportingPeriodTypeType", "Q3",
-				"Q3", versionAdmin));
-		repotFieldList.add(new ReportFieldList("ReportingPeriodTypeType", "Q4",
-				"Q4", versionAdmin));
-		repotFieldList.add(new ReportFieldList("ReportingPeriodTypeType", "H1",
-				"H1", versionAdmin));
-		repotFieldList.add(new ReportFieldList("ReportingPeriodTypeType", "H2",
-				"H2", versionAdmin));
-		repotFieldList.add(new ReportFieldList("ReportingPeriodTypeType", "Y1",
-				"Y1", versionAdmin));
-		repotFieldList.add(new ReportFieldList("ReportingPeriodTypeType", "X1",
-				"X1", versionAdmin));
-		repotFieldList.add(new ReportFieldList("ReportingPeriodTypeType", "X2",
-				"X2", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("RiskMeasureTypeType",
-				"NET_EQTY_DELTA", "NET_EQTY_DELTA", versionAdmin));
-		repotFieldList.add(new ReportFieldList("RiskMeasureTypeType",
-				"NET_DV01", "NET_DV01", versionAdmin));
-		repotFieldList.add(new ReportFieldList("RiskMeasureTypeType",
-				"NET_CS01", "NET_CS01", versionAdmin));
-		repotFieldList.add(new ReportFieldList("RiskMeasureTypeType", "VAR",
-				"VAR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("RiskMeasureTypeType",
-				"VEGA_EXPO", "VEGA_EXPO", versionAdmin));
-		repotFieldList.add(new ReportFieldList("RiskMeasureTypeType",
-				"NET_FX_DELTA", "NET_FX_DELTA", versionAdmin));
-		repotFieldList.add(new ReportFieldList("RiskMeasureTypeType",
-				"NET_CTY_DELTA", "NET_CTY_DELTA", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_CSH_CODP", "SEC_CSH_CODP", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_CSH_COMP", "SEC_CSH_COMP", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_CSH_OTHD", "SEC_CSH_OTHD", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_CSH_OTHC", "SEC_CSH_OTHC", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_LEQ_IFIN", "SEC_LEQ_IFIN", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_LEQ_OTHR", "SEC_LEQ_OTHR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_UEQ_UEQY", "SEC_UEQ_UEQY", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_CPN_INVG", "SEC_CPN_INVG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_CPN_NIVG", "SEC_CPN_NIVG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_CPI_INVG", "SEC_CPI_INVG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_CPI_NIVG", "SEC_CPI_NIVG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SBD_EUBY", "SEC_SBD_EUBY", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SBD_EUBM", "SEC_SBD_EUBM", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SBD_NOGY", "SEC_SBD_NOGY", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SBD_NOGM", "SEC_SBD_NOGM", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SBD_EUGY", "SEC_SBD_EUGY", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SBD_EUGM", "SEC_SBD_EUGM", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_MBN_MNPL", "SEC_MBN_MNPL", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_CBN_INVG", "SEC_CBN_INVG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_CBN_NIVG", "SEC_CBN_NIVG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_CBI_INVG", "SEC_CBI_INVG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_CBI_NIVG", "SEC_CBI_NIVG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_LON_LEVL", "SEC_LON_LEVL", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_LON_OTHL", "SEC_LON_OTHL", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SSP_SABS", "SEC_SSP_SABS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SSP_RMBS", "SEC_SSP_RMBS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SSP_CMBS", "SEC_SSP_CMBS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SSP_AMBS", "SEC_SSP_AMBS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SSP_ABCP", "SEC_SSP_ABCP", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SSP_CDOC", "SEC_SSP_CDOC", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SSP_STRC", "SEC_SSP_STRC", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SSP_SETP", "SEC_SSP_SETP", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"SEC_SSP_OTHS", "SEC_SSP_OTHS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_EQD_FINI", "DER_EQD_FINI", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_EQD_OTHD", "DER_EQD_OTHD", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_FID_FIXI", "DER_FID_FIXI", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CDS_SNFI", "DER_CDS_SNFI", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CDS_SNSO", "DER_CDS_SNSO", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CDS_SNOT", "DER_CDS_SNOT", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CDS_INDX", "DER_CDS_INDX", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CDS_EXOT", "DER_CDS_EXOT", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CDS_OTHR", "DER_CDS_OTHR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_FEX_INVT", "DER_FEX_INVT", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_FEX_HEDG", "DER_FEX_HEDG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_IRD_INTR", "DER_IRD_INTR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CTY_ECOL", "DER_CTY_ECOL", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CTY_ENNG", "DER_CTY_ENNG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CTY_ENPW", "DER_CTY_ENPW", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CTY_ENOT", "DER_CTY_ENOT", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CTY_PMGD", "DER_CTY_PMGD", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CTY_PMOT", "DER_CTY_PMOT", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CTY_OTIM", "DER_CTY_OTIM", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CTY_OTLS", "DER_CTY_OTLS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CTY_OTAP", "DER_CTY_OTAP", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_CTY_OTHR", "DER_CTY_OTHR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"DER_OTH_OTHR", "DER_OTH_OTHR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"PHY_RES_RESL", "PHY_RES_RESL", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"PHY_RES_COML", "PHY_RES_COML", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"PHY_RES_OTHR", "PHY_RES_OTHR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"PHY_CTY_PCTY", "PHY_CTY_PCTY", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"PHY_TIM_PTIM", "PHY_TIM_PTIM", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"PHY_ART_PART", "PHY_ART_PART", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"PHY_TPT_PTPT", "PHY_TPT_PTPT", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"PHY_OTH_OTHR", "PHY_OTH_OTHR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"CIU_OAM_MMFC", "CIU_OAM_MMFC", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"CIU_OAM_AETF", "CIU_OAM_AETF", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"CIU_OAM_OTHR", "CIU_OAM_OTHR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"CIU_NAM_MMFC", "CIU_NAM_MMFC", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"CIU_NAM_AETF", "CIU_NAM_AETF", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"CIU_NAM_OTHR", "CIU_NAM_OTHR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"OTH_OTH_OTHR", "OTH_OTH_OTHR", versionAdmin));
-		repotFieldList.add(new ReportFieldList("SubAssetTypeType",
-				"NTA_NTA_NOTA", "NTA_NTA_NOTA", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("TransactionTypeType", "ACAP",
-				"ACAP", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TransactionTypeType", "BOUT",
-				"BOUT", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TransactionTypeType", "CONS",
-				"CONS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TransactionTypeType", "CDIV",
-				"CDIV", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TransactionTypeType", "ESOP",
-				"ESOP", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TransactionTypeType", "GCAP",
-				"GCAP", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TransactionTypeType", "RCAP",
-				"RCAP", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TransactionTypeType", "SLIQ",
-				"SLIQ", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TransactionTypeType", "TURN",
-				"TURN", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TransactionTypeType", "OTHR",
-				"OTHR", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"SEC_CSH_CSH", "SEC_CSH_CSH", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"SEC_LEQ_LEQ", "SEC_LEQ_LEQ", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"SEC_UEQ_UEQ", "SEC_UEQ_UEQ", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"SEC_CPN_IVG", "SEC_CPN_IVG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"SEC_CPN_NIG", "SEC_CPN_NIG", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"SEC_CPI_CPI", "SEC_CPI_CPI", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"SEC_SBD_EUB", "SEC_SBD_EUB", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"SEC_SBD_NEU", "SEC_SBD_NEU", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"SEC_MUN_MUN", "SEC_MUN_MUN", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"SEC_CBD_CBD", "SEC_CBD_CBD", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"SEC_LON_LON", "SEC_LON_LON", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"SEC_SSP_SSP", "SEC_SSP_SSP", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"DER_EQD_EQD", "DER_EQD_EQD", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"DER_FID_FID", "DER_FID_FID", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"DER_CDS_CDS", "DER_CDS_CDS", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"DER_FEX_INV", "DER_FEX_INV", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"DER_FEX_HED", "DER_FEX_HED", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"DER_IRD_IRD", "DER_IRD_IRD", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"DER_CTY_CTY", "DER_CTY_CTY", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"DER_OTH_OTH", "DER_OTH_OTH", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"PHY_RES_RES", "PHY_RES_RES", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"PHY_CTY_CTY", "PHY_CTY_CTY", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"PHY_TIM_TIM", "PHY_TIM_TIM", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"PHY_ART_ART", "PHY_ART_ART", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"PHY_TPT_TPT", "PHY_TPT_TPT", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"PHY_OTH_OTH", "PHY_OTH_OTH", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"CIU_CIU_CIU", "CIU_CIU_CIU", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TurnoverSubAssetTypeType",
-				"OTH_OTH_OTH", "OTH_OTH_OTH", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList("TypicalPositionSizeType",
-				"V_SMALL", "V_SMALL", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TypicalPositionSizeType",
-				"SMALL", "SMALL", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TypicalPositionSizeType",
-				"LOW_MID_MKT", "LOW_MID_MKT", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TypicalPositionSizeType",
-				"UP_MID_MKT", "UP_MID_MKT", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TypicalPositionSizeType",
-				"L_CAP", "L_CAP", versionAdmin));
-		repotFieldList.add(new ReportFieldList("TypicalPositionSizeType",
-				"M_CAP", "M_CAP", versionAdmin));
-
-		repotFieldList.add(new ReportFieldList(
-				"VARCalculationMethodCodeTypeType", "HISTO", "HISTO",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"VARCalculationMethodCodeTypeType", "CARLO", "CARLO",
-				versionAdmin));
-		repotFieldList.add(new ReportFieldList(
-				"VARCalculationMethodCodeTypeType", "PARAM", "PARAM",
-				versionAdmin));
-
-		for (ReportFieldList reportFieldListExample : repotFieldList) {
-			reportFieldListDAO.create(reportFieldListExample);
 		}
 
 	}
@@ -4327,7 +3646,7 @@ public class InstallEntities {
 
 		// TODO make better example
 
-		VersionAuditor versionAdmin = new VersionAuditor("admin");
+		// VersionAuditor versionAdmin = new VersionAuditor("admin");
 
 		// ReportData reportData1 = new ReportData(null, reportField1,
 		// reportExecution, null, null, "GB", null, null, null,
