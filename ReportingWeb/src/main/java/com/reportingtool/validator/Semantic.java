@@ -12,6 +12,7 @@ import com.entities.dao.reportingtool.ReportSemanticDAO;
 import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportSemantic;
+import com.reportingtool.utilities.ReportUtilities;
 import com.reportingtool.utilities.ReportingErrorManager;
 
 /**
@@ -53,12 +54,8 @@ public class Semantic {
 				.findByExample(reportSemanticExample);
 
 		for (ReportSemantic reportSemantic : reportSemantics) {
-			String rule = reportSemantic.getReportingSemanticRule();
-
-			System.out.println("DEBUG_" + "Semantic:" + rule);
-
 			// execute semantic rule and delete/create error
-			// executeRuleScript(reportSemantic, reportExecution);
+			executeRuleScript(reportSemantic, reportExecution);
 		}
 	}
 
@@ -103,9 +100,11 @@ public class Semantic {
 			beanshellContext = new Interpreter(null, stream, stream, false);
 
 			System.out.println("DEBUG_" + "Semantic: "
-					+ initialScript.toString());
+					+ reportSemantic.getReportingSemanticRule());
 
 			beanshellContext.set("reportExecution", reportExecution);
+			beanshellContext.set("reportDatas",
+					reportExecution.getReportDatas());
 			beanshellContext.set("result", result);
 
 			beanshellContext.eval(initialScript.toString());
@@ -113,6 +112,9 @@ public class Semantic {
 
 			if (result == null) {
 				// error
+				System.out.println("DEBUG_" + "Semantic: ERROR ->"
+						+ reportSemantic.getReportingSemanticName());
+
 				ReportingErrorManager.createReportError(
 						applicationContext,
 						ErrorTypeEnum.SEMANTIC.getErrorType(),
@@ -125,6 +127,9 @@ public class Semantic {
 								+ reportSemantic.getReportingSemanticSugg());
 			} else {
 				// ok
+				System.out.println("DEBUG_" + "Semantic: Ok, result " + result
+						+ " ->" + reportSemantic.getReportingSemanticName());
+
 				ReportingErrorManager.disableReportError(applicationContext,
 						ErrorTypeEnum.SEMANTIC.getErrorType(), reportExecution,
 						"RULE " + reportSemantic.getReportingSemanticName()

@@ -17,6 +17,20 @@
 </ul>
 <!-- end: Breadcrumb -->
 
+<!-- errors link -->
+<div class="box-content">
+	<c:choose>
+		<c:when test="${reportexecution.hasErrors == true}">
+			<a class="btn btn-small btn-danger"
+				href="<c:url value="reportError.do?id=${reportexecution.id}" />"> Errors
+			</a>
+		</c:when>
+		<c:otherwise>
+			<span class="label label-success">No errors</span>
+		</c:otherwise>
+	</c:choose>
+</div>
+
 <form:form method="POST" commandName="reportexecution">
 
 	<c:forEach var="section" varStatus="status" items="${sections}">
@@ -75,9 +89,18 @@
 														<c:choose>
 															<c:when test="${contains}">
 																<!-- Dropdown -->
-																<form:select
+																<%-- <form:select
 																	path="reportDatas[${status.index}].reportDataText"
-																	items="${fn:split(fieldlistmap[dropdownfinal],',' ) }" />
+																	items="${fn:split(fieldlistmap[dropdownfinal],',' ) }" /> --%>
+																<form:select
+																	path="reportDatas[${status.index}].reportDataText">
+																	<form:option value="--SELECT--">--SELECT--</form:option>
+																	<c:forEach
+																		items="${fn:split(fieldlistmap[dropdown],',' ) }"
+																		var="value">
+																		<form:option value="${value}"></form:option>
+																	</c:forEach>
+																</form:select>
 															</c:when>
 															<c:otherwise>
 																<c:choose>
@@ -127,14 +150,18 @@
 														<c:choose>
 															<c:when test="${contains}">
 																<!-- Dropdown -->
-																<form:select
+																<%-- <form:select
 																	path="reportDatas[${status.index}].reportDataText"
-																	items="${fn:split(fieldlistmap[dropdown],',' ) }" />
-															<%-- 	<form:select path="reportDatas[${status.index}].reportDataText">
-																	<form:option value="NONE"> --SELECT--</form:option>
-																	<form:options items="${fn:split(fieldlistmap[dropdown],',' ) }">
-																	</form:options>
-																</form:select> --%>
+																	items="${fn:split(fieldlistmap[dropdown],',' ) }"/> --%>
+																<form:select
+																	path="reportDatas[${status.index}].reportDataText">
+																	<form:option value="--SELECT--">--SELECT--</form:option>
+																	<c:forEach
+																		items="${fn:split(fieldlistmap[dropdown],',' ) }"
+																		var="value">
+																		<form:option value="${value}"></form:option>
+																	</c:forEach>
+																</form:select>
 															</c:when>
 															<c:otherwise>
 																<c:choose>

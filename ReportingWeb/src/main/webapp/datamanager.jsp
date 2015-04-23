@@ -38,11 +38,9 @@
 							<td>${company.companyCountry}</td>
 							<td>${company.companyCode}</td>
 							<td>${company.companyDesc}</td>
-							<td>
-								<a class="btn btn-small" href="<c:url value="companyDetail.do?id=${company.id}" />" >
-									detail
-								</a>
-							</td>
+							<td><a class="btn btn-small btn-primary"
+								href="<c:url value="companyDetail.do?id=${company.id}" />">
+									detail </a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -53,5 +51,4 @@
 </div>
 <!--/row-->
 
-<a href="index.do"><span
-	class="btn btn-important">Back</span></a>
+<a href="index.do"><span class="btn btn-important">Back</span></a>

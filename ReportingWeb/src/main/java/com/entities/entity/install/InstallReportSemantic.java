@@ -28,9 +28,25 @@ public class InstallReportSemantic {
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(2) is mandatory",
-						"result = ReportUtilities.searchData(reportExecution.getReportDatas(), \"Version\", \"2\", null)",
+						"if ( ReportUtilities.searchData(reportDatas, \"Version\", \"2\", null) != null) "
+						+ "result = \"ok\"",
 						null, "Fill field(2)", versionAdmin));
-
+		
+		reportSemantics
+		.add(new ReportSemantic(
+				reportCatalog,
+				"Field(12) is mandatory/forbidden",
+				"if( "
+				+ "\n ( ( ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeFrequencyCode\", \"10\", null) != null "
+				+ "\n || ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeContentsCode\", \"11\", null) != null "
+				+ "\n ) && ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeQuarter\", \"12\", null) != null )"
+				+ "\n || (ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeFrequencyCode\", \"10\", null) == null "
+				+ "\n && ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeContentsCode\", \"11\", null) == null "
+				+ "\n &&  ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeQuarter\", \"12\", null) == null)"
+				+ ")"
+				+ "result = \"ok\"",
+				null, "Fill field(12) only when field(10) or field(11) have content.", versionAdmin));
+		
 		
 		
 		ReportSemanticDAO reportSemanticDAO = (ReportSemanticDAO) applicationContext

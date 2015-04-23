@@ -332,9 +332,9 @@ public class ReportExecutionController {
 				+ reportExecution.getReportDatas().size());
 
 		for (ReportData reportData : reportExecution.getReportDatas()) {
-
 			if (reportData.getReportDataText() != null
-					&& !reportData.getReportDataText().isEmpty()) {
+					&& !reportData.getReportDataText().isEmpty()
+					&& !reportData.getReportDataText().equals("--SELECT--")) {
 				reportDatas.add(reportData);
 				// System.out.println("adding reportData "
 				// + reportData.getReportDataText() + " from "
@@ -375,12 +375,15 @@ public class ReportExecutionController {
 					fieldListValues = fieldListValues + ","
 							+ reportFieldList.getReportFieldListValue();
 			}
-			// System.out.println("dropdown: " + fieldType + "- "+
+			// this value represent no populate dropdown, it is necessary to
+			// clean before save
+			// fieldListValues = fieldListValues + ",<empty>";
+			// System.out.println("dropdown: " + fieldType + "-> "+
 			// fieldListValues);
 
 			result.put(fieldType, fieldListValues);
 		}
-		
+
 		// TODO dropdown of country code are unsorted
 
 		return result;

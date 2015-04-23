@@ -40,7 +40,7 @@
 							<td>${company.companyCountry}</td>
 							<td>${company.companyCode}</td>
 							<td>${company.companyDesc}</td>
-							<td><a class="btn btn-small"
+							<td><a class="btn btn-small btn-primary"
 								href="<c:url value="companyReports.do?id=${company.id}" />">
 									AIFM Reports </a></td>
 						</tr>
@@ -121,7 +121,7 @@
 								<td>${fund.fundCode}</td>
 								<td>${fund.fundDesc}</td>
 								<td>${fund.fundClass}</td>
-								<td><a class="btn btn-small"
+								<td><a class="btn btn-small btn-primary"
 									href="<c:url value="fundReports.do?id=${fund.id}" />">
 										AIF Reports </a>
 							</tr>

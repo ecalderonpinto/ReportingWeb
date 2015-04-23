@@ -15,7 +15,7 @@
 </ul>
 <!-- end: Breadcrumb -->
 
-
+<!-- Download button -->
 <form:form method="POST" commandName="reportXML">
 	<div class="box-content">
 		<input type="hidden" name="reportid" value="${report.id}" /> <input
@@ -24,6 +24,7 @@
 	</div>
 </form:form>
 
+<!-- errors link -->
 <div class="box-content">
 	<c:choose>
 		<c:when test="${report.hasErrors == true}">
@@ -37,6 +38,7 @@
 	</c:choose>
 </div>
 
+<!-- XML output -->
 <div class="row-fluid sortable">
 	<div class="box span12">
 		<div class="box-header">
