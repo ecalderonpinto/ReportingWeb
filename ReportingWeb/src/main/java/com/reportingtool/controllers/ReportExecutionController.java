@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,7 +32,6 @@ import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.reportingtool.controllers.forms.ReportSectionForm;
-import com.reportingtool.utilities.ReportUtilities;
 import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.validator.Semantic;
 import com.reportingtool.validator.Syntactic;
@@ -380,6 +380,8 @@ public class ReportExecutionController {
 
 			result.put(fieldType, fieldListValues);
 		}
+		
+		// TODO dropdown of country code are unsorted
 
 		return result;
 	}

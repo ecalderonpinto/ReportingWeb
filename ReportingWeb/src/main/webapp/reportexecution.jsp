@@ -130,6 +130,11 @@
 																<form:select
 																	path="reportDatas[${status.index}].reportDataText"
 																	items="${fn:split(fieldlistmap[dropdown],',' ) }" />
+															<%-- 	<form:select path="reportDatas[${status.index}].reportDataText">
+																	<form:option value="NONE"> --SELECT--</form:option>
+																	<form:options items="${fn:split(fieldlistmap[dropdown],',' ) }">
+																	</form:options>
+																</form:select> --%>
 															</c:when>
 															<c:otherwise>
 																<c:choose>
