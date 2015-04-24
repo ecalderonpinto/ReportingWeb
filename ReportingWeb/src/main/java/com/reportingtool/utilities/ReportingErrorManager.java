@@ -44,6 +44,13 @@ public class ReportingErrorManager {
 			ReportData reportData, String reportDataErrorType,
 			String reportDataErrorText) {
 
+		if (reportDataErrorText.length() > 512) {
+			System.out.println("DEBUG_" + typeError
+					+ " WARNING - message too long for database (512): "
+					+ reportDataErrorText);
+			reportDataErrorText = reportDataErrorText.substring(0, 512);
+		}
+
 		System.out.println("DEBUG_" + typeError + " Creating reportDataError ("
 				+ reportData.getReportField().getReportFieldNum() + ") "
 				+ typeError + " " + reportDataErrorType + " "
@@ -180,6 +187,13 @@ public class ReportingErrorManager {
 			String typeError, ReportExecution reportExecution,
 			String reportErrorType, String reportErrorText) {
 
+		if (reportErrorText.length() > 512) {
+			System.out.println("DEBUG_" + typeError
+					+ " WARNING - message too long for database (512): "
+					+ reportErrorText);
+			reportErrorText = reportErrorText.substring(0, 512);
+		}
+		
 		System.out.println("DEBUG_" + typeError + " Creating reportError: ("
 				+ reportExecution.getReportExecutionName() + ") " + typeError
 				+ " " + reportErrorType + " " + reportErrorText);
@@ -289,6 +303,13 @@ public class ReportingErrorManager {
 			String typeError, LoadFile loadFile, String loadErrorType,
 			String loadErrorText) {
 
+		if (loadErrorText.length() > 512) {
+			System.out.println("DEBUG_" + typeError
+					+ " WARNING - message too long for database (512): "
+					+ loadErrorText);
+			loadErrorText = loadErrorText.substring(0, 512);
+		}
+		
 		System.out.println("* Creating loadError: " + typeError + " "
 				+ loadErrorType + " " + loadErrorText);
 

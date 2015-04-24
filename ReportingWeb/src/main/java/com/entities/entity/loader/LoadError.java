@@ -114,7 +114,7 @@ public class LoadError implements VersionableAdapter {
 		this.loadErrorType = loadErrorType;
 	}
 
-	@Column(name = "LOAD_ERROR_TEXT")
+	@Column(name = "LOAD_ERROR_TEXT", length = 512)
 	public String getLoadErrorText() {
 		return this.loadErrorText;
 	}

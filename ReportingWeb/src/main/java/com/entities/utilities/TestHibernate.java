@@ -19,13 +19,13 @@ public class TestHibernate {
 					"applicationContext.xml");
 			
 			
-			InstallManager installLoader = new InstallManager();
-			
-			//installLoader.installTest(applicationContext);
-			
-			installLoader.deleteEntities(applicationContext);
-			
-			installLoader.installEntitiesFull(applicationContext);
+//			InstallManager installLoader = new InstallManager();
+//			
+//			//installLoader.installTest(applicationContext);
+//			
+//			installLoader.deleteEntities(applicationContext);
+//			
+//			installLoader.installEntitiesFull(applicationContext);
 			
 			
 			

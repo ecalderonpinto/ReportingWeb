@@ -18,7 +18,7 @@ public class InstallReportSemantic {
 		this.applicationContext = applicationContext;
 	}
 
-	public void install(ReportCatalog reportCatalog) {
+	public void installAIFM(ReportCatalog reportCatalog) {
 
 		VersionAuditor versionAdmin = new VersionAuditor("admin");
 
@@ -28,7 +28,7 @@ public class InstallReportSemantic {
 		reportSemantics
 				.add(new ReportSemantic(
 						reportCatalog,
-						"Field(2) is mandatory",
+						"Field(2) mandatory",
 						"if ( ReportUtilities.searchData(reportDatas, \"Version\", \"2\", null) != null) "
 								+ "\n result = \"ok\"", null, "Fill field(2)",
 						versionAdmin));
@@ -37,7 +37,7 @@ public class InstallReportSemantic {
 		reportSemantics
 				.add(new ReportSemantic(
 						reportCatalog,
-						"Field(12) is mandatory/forbidden",
+						"Field(12) mandatory/forbidden",
 						"if( "
 								+ "\n ( ( ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeFrequencyCode\", \"10\", null) != null "
 								+ "\n || ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeContentsCode\", \"11\", null) != null "

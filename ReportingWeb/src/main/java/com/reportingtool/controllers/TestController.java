@@ -33,12 +33,12 @@ public class TestController {
 	@RequestMapping(value = "install.do", method = RequestMethod.GET)
 	public String install(Locale locale, Model model) {
 
-		// TO DO
-		InstallManager installLoader = new InstallManager();
-		// installLoader.installTest(applicationContext);
-		installLoader.deleteEntities(applicationContext);
-		installLoader.installEntitiesFull(applicationContext);
-		installLoader.installAIF(applicationContext);
+//		// TO DO
+//		InstallManager installLoader = new InstallManager();
+//		// installLoader.installTest(applicationContext);
+//		installLoader.deleteEntities(applicationContext);
+//		installLoader.installEntitiesFull(applicationContext);
+//		installLoader.installAIF(applicationContext);
 
 		System.out.println("Installed");
 		return "install";

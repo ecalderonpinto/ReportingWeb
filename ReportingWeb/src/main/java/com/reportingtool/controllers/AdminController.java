@@ -117,11 +117,10 @@ public class AdminController {
 	@RequestMapping(value="/installTestData.do")
 	public String installTestData(Model model){
 		
-		InstallManager install = new InstallManager();
+		InstallManager installManager = new InstallManager(applicationContext);
 		
-		install.deleteEntities(applicationContext);
-		install.installEntitiesFull(applicationContext);
-		install.installAIF(applicationContext);
+		installManager.deleteAll();
+		installManager.installAll();
 		
 		// to refresh content, load al data similar to "admin"
 		ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
@@ -137,9 +136,9 @@ public class AdminController {
 	@RequestMapping(value="/cleanData.do")
 	public String cleanData(Model model){
 		
-		InstallManager install = new InstallManager();
+		InstallManager installManager = new InstallManager(applicationContext);
 		
-		install.deleteEntities(applicationContext);
+		installManager.deleteAll();
 		
 		// to refresh content, load al data similar to "admin"
 		ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext

@@ -81,7 +81,7 @@ public class ReportSemantic implements VersionableAdapter {
 		this.reportCatalog = reportCatalog;
 	}
 
-	@Column(name = "REPORT_SEMANTIC_NAME", nullable = false)
+	@Column(name = "REPORT_SEMANTIC_NAME", nullable = false, length=40)
 	public String getReportingSemanticName() {
 		return reportingSemanticName;
 	}
@@ -99,7 +99,7 @@ public class ReportSemantic implements VersionableAdapter {
 		this.reportingSemanticRule = reportingSemanticRule;
 	}
 
-	@Column(name = "REPORT_SEMANTIC_DESC")
+	@Column(name = "REPORT_SEMANTIC_DESC", length=256)
 	public String getReportingSemanticDesc() {
 		return reportingSemanticDesc;
 	}
@@ -108,7 +108,7 @@ public class ReportSemantic implements VersionableAdapter {
 		this.reportingSemanticDesc = reportingSemanticDesc;
 	}
 
-	@Column(name = "REPORT_SEMANTIC_SUGG")
+	@Column(name = "REPORT_SEMANTIC_SUGG", length=256)
 	public String getReportingSemanticSugg() {
 		return reportingSemanticSugg;
 	}

@@ -119,8 +119,7 @@ public class Semantic {
 						applicationContext,
 						ErrorTypeEnum.SEMANTIC.getErrorType(),
 						reportExecution,
-						"RULE " + reportSemantic.getReportingSemanticName()
-								+ " ERROR",
+						reportSemantic.getReportingSemanticName(),
 						"Semantic Rule "
 								+ reportSemantic.getReportingSemanticName()
 								+ " unfulfilled. Suggestion: "
@@ -132,8 +131,7 @@ public class Semantic {
 
 				ReportingErrorManager.disableReportError(applicationContext,
 						ErrorTypeEnum.SEMANTIC.getErrorType(), reportExecution,
-						"RULE " + reportSemantic.getReportingSemanticName()
-								+ " ERROR");
+						reportSemantic.getReportingSemanticName());
 			}
 
 		} catch (Exception e) {
