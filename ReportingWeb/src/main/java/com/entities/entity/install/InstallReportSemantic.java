@@ -24,6 +24,15 @@ public class InstallReportSemantic {
 
 		List<ReportSemantic> reportSemantics = new ArrayList<ReportSemantic>();
 
+		// (1) <ReportingMemberState>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(1) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"ReportingMemberState\", \"1\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(1)",
+						versionAdmin));
+
 		// (2) <Version>
 		reportSemantics
 				.add(new ReportSemantic(
@@ -31,6 +40,68 @@ public class InstallReportSemantic {
 						"Field(2) mandatory",
 						"if ( ReportUtilities.searchData(reportDatas, \"Version\", \"2\", null) != null) "
 								+ "\n result = \"ok\"", null, "Fill field(2)",
+						versionAdmin));
+
+		// (3) <CreationDateAndTime>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(3) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"CreationDateAndTime\", \"3\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(3)",
+						versionAdmin));
+
+		// (4) <FilingType>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(4) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(4)",
+						versionAdmin));
+
+		// (5) <AIFMContentType>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(5) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"AIFMContentType\", \"5\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(5)",
+						versionAdmin));
+
+		// (6) <ReportingPeriodStartDate>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(6) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"ReportingPeriodStartDate\", \"6\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(6)",
+						versionAdmin));
+		// (7) <ReportingPeriodEndDate>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(7) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"ReportingPeriodEndDate\", \"7\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(7)",
+						versionAdmin));
+
+		// (8) <ReportingPeriodType>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(8) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"ReportingPeriodType\", \"8\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(8)",
+						versionAdmin));
+
+		// (9) <ReportingPeriodYear>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(9) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"ReportingPeriodYear\", \"9\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(9)",
 						versionAdmin));
 
 		// (12) <AIFMReportingObligationChangeQuarter>
@@ -50,6 +121,71 @@ public class InstallReportSemantic {
 						"Fill field(12) only when field(10) or field(11) have content.",
 						versionAdmin));
 
+		// (13) <LastReportingFlag>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(13) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"LastReportingFlag\", \"13\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(13)",
+						versionAdmin));
+
+		// TODO field (14) and (15) have dependences between but with blocks !
+
+		// (16) <AIFMReportingCode>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(16) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"AIFMReportingCode\", \"16\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(16)",
+						versionAdmin));
+
+		// (17) <AIFMJurisdiction>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(17) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"AIFMJurisdiction\", \"17\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(17)",
+						versionAdmin));
+
+		// (18) <AIFMNationalCode>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(18) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"AIFMNationalCode\", \"18\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(18)",
+						versionAdmin));
+
+		// (19) <AIFMName>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(19) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"AIFMName\", \"19\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(19)",
+						versionAdmin));
+
+		// (20) <AIFMEEAFlag>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(20) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"AIFMEEAFlag\", \"20\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(20)",
+						versionAdmin));
+
+		// (21) <AIFMNoReportingFlag>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(21) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"AIFMNoReportingFlag\", \"21\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(21)",
+						versionAdmin));
+
 		// (25) <AIFMNationalCode>
 		reportSemantics
 				.add(new ReportSemantic(
@@ -61,6 +197,92 @@ public class InstallReportSemantic {
 								+ " || ReportUtilities.searchData(reportDatas, \"ReportingMemberState\", \"24\", null) == null) "
 								+ "\n result = \"ok\"", null,
 						"Fill field(25) if field(24) has content", versionAdmin));
+
+		// TODO need sections MIC RANKING 26,27,28,29 linked with block
+
+		// TODO need sections Instrument RANKING fields 30,31,32 linked with
+		// block
+
+		// (33) <AUMAmountInEuro>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(33) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"AUMAmountInEuro\", \"33\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(33)",
+						versionAdmin));
+
+		// (34) <AUMAmountInBaseCurrency>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(34) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"AUMAmountInBaseCurrency\", \"34\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(34)",
+						versionAdmin));
+
+		// (35) <BaseCurrency>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(35) mandatory",
+						"if ( ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null) != null) "
+								+ "\n result = \"ok\"", null, "Fill field(35)",
+						versionAdmin));
+
+		// (36) <FXEURReferenceRateType>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(36) mandatory",
+						"if (ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null) == null) {"
+								+ "  result = \"ok\"; "
+								+ "} else {"
+								+ " if (ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null).equals(\"EUR\")"
+								+ " &&  ReportUtilities.searchData(reportDatas, \"FXEURReferenceRateType\", \"36\", null) == null) {"
+								+ " result = \"ok\"; "
+								+ " } else {"
+								+ "  if (!ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null).equals(\"EUR\")"
+								+ " && ReportUtilities.searchData(reportDatas, \"FXEURReferenceRateType\", \"36\", null) != null)"
+								+ " result = \"ok\"; " + " }" + "}", null,
+						"Fill field(36) only when field(35) not EUR",
+						versionAdmin));
+
+		// (37) <FXEURRate>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(37) mandatory",
+						"if (ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null) == null) {"
+								+ "  result = \"ok\"; "
+								+ "} else {"
+								+ " if (ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null).equals(\"EUR\")"
+								+ " &&  ReportUtilities.searchData(reportDatas, \"FXEURRate\", \"37\", null) == null) {"
+								+ " result = \"ok\"; "
+								+ " } else {"
+								+ "  if (!ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null).equals(\"EUR\")"
+								+ " && ReportUtilities.searchData(reportDatas, \"FXEURRate\", \"37\", null) != null)"
+								+ " result = \"ok\"; " + " }" + "}", null,
+						"Fill field(37) only when field(35) not EUR",
+						versionAdmin));
+
+		// (38) <FXEUROtherReferenceRateDescription>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(38) mandatory",
+						"if (ReportUtilities.searchData(reportDatas, \"FXEURReferenceRateType\", \"36\", null) == null) {"
+								+ "  result = \"ok\"; "
+								+ "} else {"
+								+ " if (ReportUtilities.searchData(reportDatas, \"FXEURReferenceRateType\", \"36\", null).equals(\"OTH\")"
+								+ " &&  ReportUtilities.searchData(reportDatas, \"FXEUROtherReferenceRateDescription\", \"38\", null) != null) {"
+								+ " result = \"ok\"; "
+								+ " } else {"
+								+ "  if (!ReportUtilities.searchData(reportDatas, \"FXEURReferenceRateType\", \"36\", null).equals(\"OTH\")"
+								+ " && ReportUtilities.searchData(reportDatas, \"FXEUROtherReferenceRateDescription\", \"38\", null) == null)"
+								+ " result = \"ok\"; " + " }" + "}", null,
+						"Fill field(38) only when field(36) is OTH",
+						versionAdmin));
 
 		ReportSemanticDAO reportSemanticDAO = (ReportSemanticDAO) applicationContext
 				.getBean("reportSemanticDAO");
