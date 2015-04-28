@@ -1,12 +1,10 @@
 package com.reportingtool.test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.reportingtool.ReportExecutionDAO;
-import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.creation.GeneratorXML;
 import com.reportingtool.validator.Syntactic;

@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 
-import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
 

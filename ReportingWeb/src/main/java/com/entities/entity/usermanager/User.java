@@ -20,7 +20,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 

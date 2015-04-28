@@ -1,6 +1,5 @@
 package com.reportingtool.utilities;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -8,8 +7,6 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
-
-import com.reportingtool.normalizer.Format;
 
 /**
  * Utility class for converting between XMLGregorianCalendar and java.util.Date

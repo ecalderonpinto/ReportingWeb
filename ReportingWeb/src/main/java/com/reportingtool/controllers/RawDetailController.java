@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.entities.dao.loader.LoadFileDAO;
 import com.entities.dao.loader.LoadRawDAO;
-import com.entities.entity.loader.LoadFile;
 import com.entities.entity.loader.LoadRaw;
 
 

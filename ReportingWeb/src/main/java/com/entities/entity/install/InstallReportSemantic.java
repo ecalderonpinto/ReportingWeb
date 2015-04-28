@@ -131,7 +131,25 @@ public class InstallReportSemantic {
 								+ "\n result = \"ok\"", null, "Fill field(13)",
 						versionAdmin));
 
-		// TODO field (14) and (15) have dependences between but with blocks !
+		// (14) <QuestionNumber>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(14) is mandatory",
+						"if (ReportUtilities.dependencyRepeData(reportDatas, \"QuestionNumber\", \"14\", \"AssumptionDescription\", \"15\")) "
+								+ "\n result = \"ok\"", null,
+						"Fill field(14) is mandatory when field(15) has content.",
+						versionAdmin));
+
+		// (15) <AssumptionDescription>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(15) is mandatory",
+						"if (ReportUtilities.dependencyRepeData(reportDatas, \"AssumptionDescription\", \"15\", \"QuestionNumber\", \"14\")) "
+								+ "\n result = \"ok\"", null,
+						"Fill field(15) is mandatory when field(14) has content.",
+						versionAdmin));
 
 		// (16) <AIFMReportingCode>
 		reportSemantics

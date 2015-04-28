@@ -20,12 +20,12 @@
 		</div>
 		<div class="box-content">
 			<a class="quick-button span2" onclick="loading();" href="generateDB.do"> <i class="icon-cogs"></i>
-				<p>Generate Schema</p>
+				<br>Generate Schema
 			</a> <a class="quick-button span2" href="installTestData.do"> <i class="icon-cogs"></i>
-				<p>Install Data</p>
+				<br>Install Data
 			</a>
 			<a class="quick-button span2" href="cleanData.do"> <i class="icon-cogs"></i>
-				<p>Clean Datas</p>
+				<br>Clean Datas
 			</a>
 			<div class="clearfix"></div>
 		</div>

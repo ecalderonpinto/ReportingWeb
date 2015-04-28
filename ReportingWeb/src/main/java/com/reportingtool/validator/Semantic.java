@@ -12,7 +12,6 @@ import com.entities.dao.reportingtool.ReportSemanticDAO;
 import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportSemantic;
-import com.reportingtool.utilities.ReportUtilities;
 import com.reportingtool.utilities.ReportingErrorManager;
 
 /**
