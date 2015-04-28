@@ -79,14 +79,13 @@ public class ViewErrorsController {
 		List<ReportDataError> reportDataErrors;
 
 		if (id != null && !id.isEmpty()) {
+			
 			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 					.getBean("reportExecutionDAO");
 			ReportExecution reportExecution = reportExecutionDAO.findById(Long
 					.parseLong(id));
-
-			ReportError reportErrorExample = new ReportError();
-			reportErrorExample.setReportExecution(reportExecution);
-			reportErrors = reportErrorDAO.findByExample(reportErrorExample);
+			reportErrors = reportExecution.getReportErrors();
+			
 			System.out.println("reportError id:" + id);
 
 			reportDataErrors = new ArrayList<ReportDataError>();
