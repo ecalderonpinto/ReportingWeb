@@ -233,7 +233,7 @@ public class ReportField implements VersionableAdapter {
 		this.reportFieldOrder = reportFieldOrder;
 	}
 
-	@Column(name = "REPORT_FIELD_REPE", length = 2)
+	@Column(name = "REPORT_FIELD_REPE", length = 5)
 	public String getReportFieldRepe() {
 		return this.reportFieldRepe;
 	}

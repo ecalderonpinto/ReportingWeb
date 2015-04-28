@@ -233,6 +233,147 @@ public class ReportUtilities {
 	}
 
 	/**
+	 * Function return make a List<String> of reportData.reportDataBlock from
+	 * field and number (similar searchData).
+	 * 
+	 * @param reportDatas
+	 * @param reportFieldName
+	 * @param reportFieldNum
+	 * @return List<String> of reportData.Block from field
+	 */
+	public static List<String> searchBlockList(List<ReportData> reportDatas,
+			String reportFieldName, String reportFieldNum) {
+		List<String> result = new ArrayList<String>();
+
+		for (ReportData reportData : reportDatas) {
+			if (reportData.getReportDataBlock() != null) {
+				if (reportData.getReportField().getReportFieldName()
+						.equals(reportFieldName)
+						&& reportData.getReportField().getReportFieldNum()
+								.equals(new BigInteger(reportFieldNum))) {
+					if (!result.contains(reportData.getReportDataBlock()))
+						result.add(reportData.getReportDataBlock());
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Function receive List<String> from searchBlockList() and return max
+	 * number of reportData.Block
+	 * 
+	 * @param blockList
+	 * @return
+	 */
+	public static String maxBlockFromList(List<String> blockList) {
+
+		String maxBlock = "1";
+
+		//System.out.println(blockList.toString());
+
+		for (String block : blockList) {
+//			System.out.println("compare block - maxBlock " + block + " - "
+//					+ maxBlock);
+			if (block.compareTo(maxBlock) > 0) {
+				int temp = Integer.parseInt(block);
+				temp++;
+				maxBlock = Integer.toString(temp);
+//				System.out.println(" temp " + temp + " block" + block
+//						+ " maxBlock " + maxBlock);
+			}
+		}
+
+		//System.out.println("maxBlock final " + maxBlock);
+		return maxBlock;
+	}
+
+	/**
+	 * Function return true if reportFieldRepe[0] = 1
+	 * 
+	 * @param reportField
+	 * @return boolean
+	 */
+	public static boolean reportFieldIsMandatory(ReportField reportField) {
+		boolean result = false;
+
+		try {
+			String[] parts = reportField.getReportFieldRepe().split(",");
+			String part0 = parts[0]; // 0 Optional, 1 Mandatory
+			String part1 = parts[1]; // number of repetitions 1,5,10,n...
+
+			if (part0.equals("1"))
+				result = true;
+
+		} catch (Exception e) {
+			System.out.println("ERROR reportField.isMandatory() : "
+					+ e.getMessage());
+			// e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	/**
+	 * Function return true if reportFieldRepe[1] is > than 1 or n
+	 * 
+	 * @param reportField
+	 * @return boolean
+	 */
+	public static boolean reportFieldIsRepe(ReportField reportField) {
+		boolean result = false;
+
+		try {
+			String[] parts = reportField.getReportFieldRepe().split(",");
+			String part0 = parts[0]; // 0 Optional, 1 Mandatory
+			String part1 = parts[1]; // number of repetitions 1,5,10,n...
+
+			if (part1.equals("n")) {
+				result = true;
+			} else {
+				if (Integer.parseInt(part1) > 1)
+					result = true;
+			}
+
+		} catch (Exception e) {
+			System.out
+					.println("ERROR reportField.isRepe() : " + e.getMessage());
+			// e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	/**
+	 * Function reportFieldRepe[1] convert to int : 1,5,10,n->99
+	 * 
+	 * @param reportField
+	 * @return boolean
+	 */
+	public static int reportFieldNumberRepe(ReportField reportField) {
+		int result = 1;
+
+		try {
+			String[] parts = reportField.getReportFieldRepe().split(",");
+			String part0 = parts[0]; // 0 Optional, 1 Mandatory
+			String part1 = parts[1]; // number of repetitions 1,5,10,n...
+
+			if (part1.equals("n"))
+				result = 99;
+			else
+				result = Integer.parseInt(part1);
+
+		} catch (Exception e) {
+			System.out.println("ERROR reportField.numberRepe() : "
+					+ e.getMessage());
+			// e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	/**
 	 * Return true if String is a number, false otherwise
 	 * 
 	 * @param string

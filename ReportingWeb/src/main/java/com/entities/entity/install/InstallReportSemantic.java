@@ -77,6 +77,7 @@ public class InstallReportSemantic {
 						"if ( ReportUtilities.searchData(reportDatas, \"ReportingPeriodStartDate\", \"6\", null) != null) "
 								+ "\n result = \"ok\"", null, "Fill field(6)",
 						versionAdmin));
+		
 		// (7) <ReportingPeriodEndDate>
 		reportSemantics
 				.add(new ReportSemantic(

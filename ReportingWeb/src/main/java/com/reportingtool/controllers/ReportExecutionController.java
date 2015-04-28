@@ -32,6 +32,7 @@ import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.reportingtool.controllers.forms.ReportSectionForm;
+import com.reportingtool.utilities.ReportUtilities;
 import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.validator.Semantic;
 import com.reportingtool.validator.Syntactic;
@@ -285,6 +286,7 @@ public class ReportExecutionController {
 
 		boolean flagField = false;
 		for (ReportField reportField : reportFields) {
+			// is field without content
 			if (reportField.getReportFieldSection() == null) {
 				continue;
 			}
@@ -295,6 +297,9 @@ public class ReportExecutionController {
 				// + reportData.getReportDataText());
 				if (reportData.getReportField().equals(reportField)) {
 					// reportData already exists
+					System.out.println("yes reportField, adding reportData of "
+							+ reportField.getReportFieldName() + "-"
+							+ reportField.getReportFieldNum().toString() + " content: " + reportData.getReportDataText());
 					reportDatas.add(reportData);
 					flagField = true;
 					// System.out.println("reportData added");
@@ -302,13 +307,65 @@ public class ReportExecutionController {
 			}
 			if (flagField == false) {
 				// add reportData
-				System.out.println("no reportField, adding reportData of "
-						+ reportField.getReportFieldName() + "-"
-						+ reportField.getReportFieldNum().toString());
+
 				ReportData reportDataTemp = new ReportData(null, reportField,
 						reportExecution, null, null, "", null, null,
 						new VersionAuditor("generated"));
+
+				// if is a field repeated and doesn't exist, we set block = "1"
+				if (ReportUtilities.reportFieldIsRepe(reportField)) {
+					reportDataTemp.setReportDataBlock("1");
+				}
+
+				System.out.println("no reportField, adding reportData of "
+						+ reportField.getReportFieldName() + "-"
+						+ reportField.getReportFieldNum().toString());
 				reportDatas.add(reportDataTemp);
+
+			} else {
+				// if is a field repeated and exists, we find last number block
+				// we add next number block until is full (5,10) or one more (n)
+				if (ReportUtilities.reportFieldIsRepe(reportField)) {
+					int count = ReportUtilities
+							.reportFieldNumberRepe(reportField);
+
+					// System.out.println("exists field and is repeated "
+					// + reportField.getReportFieldName() + " "
+					// + reportField.getReportFieldRepe());
+					
+					String maxBlock = ReportUtilities
+							.maxBlockFromList(ReportUtilities
+									.searchBlockList(reportExecution
+											.getReportDatas(), reportField
+											.getReportFieldName(),
+											reportField.getReportFieldNum()
+													.toString()));
+					
+					int maxBlockInt = Integer.parseInt(maxBlock); 
+					maxBlockInt++;
+					for (int i = maxBlockInt; i <= count; i++) {
+
+						ReportData reportDataTemp = new ReportData(null,
+								reportField, reportExecution, null, null, "",
+								null, null, new VersionAuditor("generated"));
+
+						maxBlock = Integer.toString(i);
+						reportDataTemp.setReportDataBlock(maxBlock);
+
+						System.out
+								.println("yes reportField and repeated, adding reportData of "
+										+ reportField.getReportFieldName()
+										+ "-"
+										+ reportField.getReportFieldNum()
+												.toString()
+										+ " with Block "
+										+ maxBlock);
+						reportDatas.add(reportDataTemp);
+						if (count == 99) {
+							break;
+						}
+					}
+				}
 			}
 			flagField = false;
 		}
