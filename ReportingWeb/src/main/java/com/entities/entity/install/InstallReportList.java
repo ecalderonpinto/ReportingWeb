@@ -36,6 +36,17 @@ public class InstallReportList {
 				versionAdmin));
 		reportFieldList.add(new ReportFieldList("BOOLEAN", "false", "false",
 				versionAdmin));
+		
+		reportFieldList.add(new ReportFieldList("FiveRankingType",
+				"1", "1", versionAdmin));
+		reportFieldList.add(new ReportFieldList("FiveRankingType",
+				"2", "2", versionAdmin));
+		reportFieldList.add(new ReportFieldList("FiveRankingType",
+				"3", "3", versionAdmin));
+		reportFieldList.add(new ReportFieldList("FiveRankingType",
+				"4", "4", versionAdmin));
+		reportFieldList.add(new ReportFieldList("FiveRankingType",
+				"5", "5", versionAdmin));
 
 		reportFieldList.add(new ReportFieldList("AIFMasterFeederStatusType",
 				"MASTER", "MASTER", versionAdmin));

@@ -128,6 +128,8 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
 				<!-- <prop key="hibernate.show_sql">true</prop> -->
 				<prop key="hibernate.show_sql">false</prop>
+				<!-- to avoid boot warning of oracle driver -->
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
 			</props>
 		</property>
 	</bean>

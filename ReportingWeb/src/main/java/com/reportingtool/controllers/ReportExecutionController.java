@@ -1,11 +1,11 @@
 package com.reportingtool.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -77,10 +77,6 @@ public class ReportExecutionController {
 		Map<String, String> fieldListMap = getReportFieldListDropdown();
 		model.addAttribute("fieldlistmap", fieldListMap);
 
-		// add default fields if does not exists
-		// ReportUtilities.generateDefaultReportDatas(applicationContext,
-		// reportExecution, "1.2");
-
 		// add all reportDatas empty when are not populated yet
 		reportExecution = addReportDatas(reportExecution);
 
@@ -123,11 +119,6 @@ public class ReportExecutionController {
 
 		System.out.println("Submit - ReportExecution;");
 
-		// for (ReportData reportData : reportExecution.getReportDatas()) {
-		// System.out.println(reportData.getReportField().getReportFieldName()
-		// + " - " + reportData.getReportDataText());
-		// }
-
 		// clean all empty reportData to avoid been saved
 		reportExecution = cleanReportDatas(reportExecution);
 
@@ -163,10 +154,6 @@ public class ReportExecutionController {
 		// Map of data to populate dropdowns
 		Map<String, String> fieldListMap = getReportFieldListDropdown();
 		model.addAttribute("fieldlistmap", fieldListMap);
-
-		// add default fields if does not exists
-		// ReportUtilities.generateDefaultReportDatas(applicationContext,
-		// reportExecution, "1.2");
 
 		// add all reportDatas empty when are not populated yet
 		reportExecution = addReportDatas(reportExecution);
@@ -233,7 +220,7 @@ public class ReportExecutionController {
 				if (reportData.getReportDataBlock() != null) {
 					String[] order = reportData.getReportField()
 							.getReportFieldOrder().split("\\.");
-					// System.out.println("spli: " + Arrays.toString(order));
+					// System.out.println("split: " + Arrays.toString(order));
 
 					// reportDataOrder is section.block.fieldNumber
 					reportDataOrder = order[0] + "."
@@ -299,7 +286,8 @@ public class ReportExecutionController {
 					// reportData already exists
 					System.out.println("yes reportField, adding reportData of "
 							+ reportField.getReportFieldName() + "-"
-							+ reportField.getReportFieldNum().toString() + " content: " + reportData.getReportDataText());
+							+ reportField.getReportFieldNum().toString()
+							+ " content: " + reportData.getReportDataText());
 					reportDatas.add(reportData);
 					flagField = true;
 					// System.out.println("reportData added");
@@ -322,51 +310,49 @@ public class ReportExecutionController {
 						+ reportField.getReportFieldNum().toString());
 				reportDatas.add(reportDataTemp);
 
-			} else {
-				// if is a field repeated and exists, we find last number block
-				// we add next number block until is full (5,10) or one more (n)
-				if (ReportUtilities.reportFieldIsRepe(reportField)) {
-					int count = ReportUtilities
-							.reportFieldNumberRepe(reportField);
+			}
 
-					// System.out.println("exists field and is repeated "
-					// + reportField.getReportFieldName() + " "
-					// + reportField.getReportFieldRepe());
-					
-					String maxBlock = ReportUtilities
-							.maxBlockFromList(ReportUtilities
-									.searchBlockList(reportExecution
-											.getReportDatas(), reportField
-											.getReportFieldName(),
-											reportField.getReportFieldNum()
-													.toString()));
-					
-					int maxBlockInt = Integer.parseInt(maxBlock); 
-					maxBlockInt++;
-					for (int i = maxBlockInt; i <= count; i++) {
+			// if is a field repeated and exists, we find last number block
+			// we add next number block until is full (5,10) or one more (n)
+			if (ReportUtilities.reportFieldIsRepe(reportField)) {
+				int count = ReportUtilities.reportFieldNumberRepe(reportField);
 
-						ReportData reportDataTemp = new ReportData(null,
-								reportField, reportExecution, null, null, "",
-								null, null, new VersionAuditor("generated"));
+				System.out.println("exists field and is repeated "
+						+ reportField.getReportFieldName() + " "
+						+ reportField.getReportFieldRepe());
 
-						maxBlock = Integer.toString(i);
-						reportDataTemp.setReportDataBlock(maxBlock);
+				String maxBlock = ReportUtilities
+						.maxBlockFromList(ReportUtilities.searchBlockList(
+								reportExecution.getReportDatas(), reportField
+										.getReportFieldName(), reportField
+										.getReportFieldNum().toString()));
 
-						System.out
-								.println("yes reportField and repeated, adding reportData of "
-										+ reportField.getReportFieldName()
-										+ "-"
-										+ reportField.getReportFieldNum()
-												.toString()
-										+ " with Block "
-										+ maxBlock);
-						reportDatas.add(reportDataTemp);
-						if (count == 99) {
-							break;
-						}
+				int maxBlockInt = Integer.parseInt(maxBlock);
+				maxBlockInt++;
+				for (int i = maxBlockInt; i <= count; i++) {
+
+					ReportData reportDataTemp = new ReportData(null,
+							reportField, reportExecution, null, null, "", null,
+							null, new VersionAuditor("generated"));
+
+					maxBlock = Integer.toString(i);
+					reportDataTemp.setReportDataBlock(maxBlock);
+
+					System.out
+							.println("yes reportField and repeated, adding reportData of "
+									+ reportField.getReportFieldName()
+									+ "-"
+									+ reportField.getReportFieldNum()
+											.toString()
+									+ " with Block "
+									+ maxBlock);
+					reportDatas.add(reportDataTemp);
+					if (count == 99) {
+						break;
 					}
 				}
 			}
+
 			flagField = false;
 		}
 

@@ -151,8 +151,8 @@ public class GeneratorXML {
 				+ reportExecution.getReportPeriodYear() + " "
 				+ reportExecution.getReportCatalog().getReportCatalogName());
 
-//		ReportUtilities.generateDefaultReportDatas(applicationContext,
-//				reportExecution, "1.2");
+		// ReportUtilities.generateDefaultReportDatas(applicationContext,
+		// reportExecution, "1.2");
 
 		if (reportExecution.getReportCatalog().getReportLevel()
 				.contains("FUND")) {
@@ -1352,18 +1352,18 @@ public class GeneratorXML {
 		} catch (JAXBException e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL", "Error in JAXB XML"
-							+ e.getMessage());
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
+					"FAIL", "Error in JAXB XML" + e.getMessage());
 		} catch (ParseException e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL",
-					"Error when parsing XML: " + e.getMessage());
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
+					"FAIL", "Error when parsing XML: " + e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL",
-					"General error in XML process: " + e.getMessage());
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
+					"FAIL", "General error in XML process: " + e.getMessage());
 		}
 
 		return null;
@@ -1384,14 +1384,20 @@ public class GeneratorXML {
 		List<ReportData> reportDatas = new ArrayList<ReportData>(
 				reportExecution.getReportDatas());
 
-		// show all reportData to make sure the content
-		Map<String, String> reportMap = new HashMap<String, String>();
+		// // show all reportData to make sure the content
+		// Map<String, String> reportMap = new HashMap<String, String>();
+		// for (ReportData reportData : reportDatas) {
+		// // this hashmap contain the content and <name> of every field
+		// reportMap.put(reportData.getReportField().getReportFieldName(),
+		// reportData.getReportDataText());
+		// }
+		// System.out.println(reportMap.toString());
+
 		for (ReportData reportData : reportDatas) {
-			// this hashmap contain the content and <name> of every field
-			reportMap.put(reportData.getReportField().getReportFieldName(),
-					reportData.getReportDataText());
+			System.out.println(reportData.getReportField().getReportFieldName()
+					+ "(" + reportData.getReportField().getReportFieldNum()
+					+ " )" + reportData.getReportDataText());
 		}
-		System.out.println(reportMap.toString());
 
 		// ///////////////////////////////////////////////////////////
 		// TODO:RT ONLY STATUS = PENDING WILL CREATE XML REPORTS
@@ -1890,18 +1896,18 @@ public class GeneratorXML {
 		} catch (JAXBException e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL", "Error in JAXB XML"
-							+ e.getMessage());
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
+					"FAIL", "Error in JAXB XML" + e.getMessage());
 		} catch (ParseException e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL",
-					"Error when parsing XML: " + e.getMessage());
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
+					"FAIL", "Error when parsing XML: " + e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL",
-					"General error in XML process: " + e.getMessage());
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
+					"FAIL", "General error in XML process: " + e.getMessage());
 		}
 
 		return null;
@@ -1936,25 +1942,24 @@ public class GeneratorXML {
 			validator.validate(xmlFile);
 			System.out.println("DEBUG_" + "CREATION - XML is valid.");
 			ReportingErrorManager.disableReportError(applicationContext,
-					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL");
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
+					"FAIL");
 			ReportingErrorManager.disableReportError(applicationContext,
-					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "XML Incomplete");
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
+					"XML Incomplete");
 
 		} catch (SAXException e) {
 			System.out.println("DEBUG_" + "CREATION - XML NOT is valid: "
 					+ e.getLocalizedMessage());
-			ReportingErrorManager.createReportError(
-					applicationContext,
-					ErrorTypeEnum.GENERATION.getErrorType(),
-					reportExecution,
-					"XML Incomplete",
-					"Validating process detect some issues: "
+			ReportingErrorManager.createReportError(applicationContext,
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
+					"XML Incomplete", "Validating process detect some issues: "
 							+ e.getLocalizedMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution, "FAIL",
-					"Error validating XML " + e.getLocalizedMessage());
+					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
+					"FAIL", "Error validating XML " + e.getLocalizedMessage());
 		}
 
 	}

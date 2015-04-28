@@ -77,7 +77,7 @@ public class InstallReportSemantic {
 						"if ( ReportUtilities.searchData(reportDatas, \"ReportingPeriodStartDate\", \"6\", null) != null) "
 								+ "\n result = \"ok\"", null, "Fill field(6)",
 						versionAdmin));
-		
+
 		// (7) <ReportingPeriodEndDate>
 		reportSemantics
 				.add(new ReportSemantic(
@@ -199,10 +199,73 @@ public class InstallReportSemantic {
 								+ "\n result = \"ok\"", null,
 						"Fill field(25) if field(24) has content", versionAdmin));
 
-		// TODO need sections MIC RANKING 26,27,28,29 linked with block
+		// (26) <Ranking>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(26) is mandatory",
+						"if (ReportUtilities.searchBlockList(reportDatas, \"Ranking\", \"26\").size() == 5) "
+								+ "\n result = \"ok\"", null,
+						"Fill field(26) has 5 occurences.", versionAdmin));
 
-		// TODO need sections Instrument RANKING fields 30,31,32 linked with
-		// block
+		// (27) <MarketCodeType>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(27) is mandatory",
+						"if (ReportUtilities.searchBlockList(reportDatas, \"MarketCodeType\", \"27\").size() == 5) "
+								+ "\n result = \"ok\"", null,
+						"Fill field(27) has 5 occurences.", versionAdmin));
+
+		// (28) <MarketCode>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(28) is mandatory",
+						"if (ReportUtilities.dependencyRepeDataExist(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\")) "
+								+ "\n result = \"ok\"", null,
+						"Fill field(28) is mandatory when field(27) = MIC.",
+						versionAdmin));
+
+		// (29) <AggregatedValueAmount>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(29) is mandatory",
+						"if (ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\")) "
+								+ "\n result = \"ok\"",
+						null,
+						"Fill field(29) is mandatory when field(27) different NOT.",
+						versionAdmin));
+
+		// (30) <Ranking>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(30) is mandatory",
+						"if (ReportUtilities.searchBlockList(reportDatas, \"Ranking\", \"30\").size() == 5) "
+								+ "\n result = \"ok\"", null,
+						"Fill field(30) has 5 occurences.", versionAdmin));
+
+		// (31) <SubAssetType>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(26) is mandatory",
+						"if (ReportUtilities.searchBlockList(reportDatas, \"SubAssetType\", \"31\").size() == 5) "
+								+ "\n result = \"ok\"", null,
+						"Fill field(31) has 5 occurences.", versionAdmin));
+
+		// (32) <AggregatedValueAmount>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(32) is mandatory",
+						"if (ReportUtilities.dependencyRepeDataExist(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\")) "
+								+ "\n result = \"ok\"",
+						null,
+						"Fill field(32) is mandatory when field(31) = NTA_NTA_NOTA.",
+						versionAdmin));
 
 		// (33) <AUMAmountInEuro>
 		reportSemantics
