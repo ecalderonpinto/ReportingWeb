@@ -269,7 +269,7 @@ public class InstallReportSemantic {
 		reportSemantics
 				.add(new ReportSemantic(
 						reportCatalog,
-						"Field(26) is mandatory",
+						"Field(31) is mandatory",
 						"if (ReportUtilities.searchBlockList(reportDatas, \"SubAssetType\", \"31\").size() == 5) "
 								+ "\n result = \"ok\"", null,
 						"Fill field(31) has 5 occurences.", versionAdmin));

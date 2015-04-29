@@ -320,34 +320,44 @@ public class ReportExecutionController {
 						+ reportField.getReportFieldName() + " "
 						+ reportField.getReportFieldRepe());
 
-				String maxBlock = ReportUtilities
-						.maxBlockFromList(ReportUtilities.searchBlockList(
-								reportExecution.getReportDatas(), reportField
-										.getReportFieldName(), reportField
-										.getReportFieldNum().toString()));
+				List<String> blockList = ReportUtilities.searchBlockList(
+						reportExecution.getReportDatas(), reportField
+								.getReportFieldName(), reportField
+								.getReportFieldNum().toString());
 
-				int maxBlockInt = Integer.parseInt(maxBlock);
-				maxBlockInt++;
-				for (int i = maxBlockInt; i <= count; i++) {
+				// String maxBlock = ReportUtilities
+				// .maxBlockFromList(ReportUtilities.searchBlockList(
+				// reportExecution.getReportDatas(), reportField
+				// .getReportFieldName(), reportField
+				// .getReportFieldNum().toString()));
 
-					ReportData reportDataTemp = new ReportData(null,
-							reportField, reportExecution, null, null, "", null,
-							null, new VersionAuditor("generated"));
+				String block = "1";
 
-					maxBlock = Integer.toString(i);
-					reportDataTemp.setReportDataBlock(maxBlock);
+				for (int i = 1; i <= count; i++) {
+					block = Integer.toString(i);
+					// if this field + block doesn't exist, we add it
+					if (ReportUtilities.searchData(reportDatas,
+							reportField.getReportFieldName(),
+							reportField.getReportFieldNum().toString(), block) == null) {
 
-					System.out
-							.println("yes reportField and repeated, adding reportData of "
-									+ reportField.getReportFieldName()
-									+ "-"
-									+ reportField.getReportFieldNum()
-											.toString()
-									+ " with Block "
-									+ maxBlock);
-					reportDatas.add(reportDataTemp);
-					if (count == 99) {
-						break;
+						ReportData reportDataTemp = new ReportData(null,
+								reportField, reportExecution, null, null, "",
+								null, null, new VersionAuditor("generated"));
+
+						reportDataTemp.setReportDataBlock(block);
+
+						System.out
+								.println("yes reportField and repeated, adding reportData of "
+										+ reportField.getReportFieldName()
+										+ "-"
+										+ reportField.getReportFieldNum()
+												.toString()
+										+ " with Block "
+										+ block);
+						reportDatas.add(reportDataTemp);
+						if (count == 99) {
+							break;
+						}
 					}
 				}
 			}

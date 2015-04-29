@@ -74,7 +74,10 @@
 												<div class="control-group error">
 													<label class="control-label" for="inputError">
 														${reportData.reportField.reportFieldNum}.
-														${reportData.reportField.reportFieldName } </label>
+														${reportData.reportField.reportFieldName} 
+														<c:if test="${reportData.reportDataBlock != null}"> 
+														- [${reportData.reportDataBlock}] </c:if>
+													</label>
 													<div class="controls">
 														<!-- Search if is dropdown and set it -->
 														<c:set var="contains" value="false" />
@@ -134,8 +137,11 @@
 												<!-- Normal Field -->
 												<div class="control-group">
 													<label class="control-label" for="disabledInput">
-														${reportData.reportField.reportFieldNum}.
-														${reportData.reportField.reportFieldName} </label>
+														<span title="${reportData.reportField.reportFieldName}">${reportData.reportField.reportFieldNum}.
+														${reportData.reportField.reportFieldName}</span>
+														<c:if test="${reportData.reportDataBlock != null}"> 
+														- [${reportData.reportDataBlock}] </c:if>
+													</label>
 													<div class="controls">
 														<!-- Search if is dropdown and set it -->
 														<c:set var="contains" value="false" />

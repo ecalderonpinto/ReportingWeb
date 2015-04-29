@@ -44,7 +44,7 @@ public class InstallAIFM {
 
 			VersionAuditor versionAdmin = new VersionAuditor("admin");
 
-			String versionField = "1.2";
+			String versionField = ReportUtilities.reportVersion;
 
 			Company company = new Company("Santander Asset Manager", "Spain",
 					"SAM", "", versionAdmin);
@@ -302,17 +302,17 @@ public class InstallAIFM {
 					null, versionAdmin);
 			reportFieldDAO.create(reportField23);
 
-			// (24) <ReportingMemberState>
+			// (24) <Old_ReportingMemberState>
 			ReportField reportField24 = new ReportField(reportCatalog,
-					reportFieldx6, "A", "ReportingMemberState", new BigInteger(
+					reportFieldx6, "A", "Old_ReportingMemberState", new BigInteger(
 							"24"), ".{2}", "", "General Info",
 					"CountryCodeType", "1.24", "0,1", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField24);
 
-			// (25) <AIFMNationalCode>
+			// (25) <Old_AIFMNationalCode>
 			ReportField reportField25 = new ReportField(reportCatalog,
-					reportFieldx6, "Z", "AIFMNationalCode",
+					reportFieldx6, "Z", "Old_AIFMNationalCode",
 					new BigInteger("25"), ".{0,30}", "", "General Info",
 					"AIFMNationalCodeType", "1.25", "0,1", versionField, null,
 					null, null, versionAdmin);

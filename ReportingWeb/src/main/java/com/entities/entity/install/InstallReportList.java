@@ -32,6 +32,9 @@ public class InstallReportList {
 				.getBean("reportFieldListDAO");
 		reportFieldListDAO.deleteAll();
 
+		reportFieldList.add(new ReportFieldList("VERSION", "1.2", "1.2",
+				versionAdmin));
+		
 		reportFieldList.add(new ReportFieldList("BOOLEAN", "true", "true",
 				versionAdmin));
 		reportFieldList.add(new ReportFieldList("BOOLEAN", "false", "false",

@@ -44,7 +44,9 @@
 										<span class="label label-success">Solved</span>
 									</c:when>
 									<c:otherwise>
-										<span class="label label-important">Pending</span>
+										<a class="btn btn-small btn-danger"
+											href="<c:url value="reportExecution.do?id=${reporterror.reportExecution.id}" />">
+											Pending </a>
 									</c:otherwise>
 								</c:choose></td>
 						</tr>
@@ -61,7 +63,8 @@
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
-				<i class="halflings-icon align-justify"></i> <span class="break">Report Data Error</span>
+				<i class="halflings-icon align-justify"></i> <span class="break">Report
+					Data Error</span>
 			</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-minimize"><i
@@ -87,17 +90,19 @@
 							<td>${reportdataerror.reportData.reportExecution.reportExecutionName}</td>
 							<td>${reportdataerror.reportData.reportDataText}</td>
 							<td>${reportdataerror.reportData.reportField.reportFieldName}
-								(${reportdataerror.reportData.reportField.reportFieldNum})
-							</td>
+								(${reportdataerror.reportData.reportField.reportFieldNum})</td>
 							<td>${reportdataerror.error.errorType}</td>
 							<td>${reportdataerror.reportDataErrorType}</td>
 							<td>${reportdataerror.reportDataErrorText}</td>
 							<td><c:choose>
-									<c:when test="${reportdataerror.versionAuditor.deleted == true}">
+									<c:when
+										test="${reportdataerror.versionAuditor.deleted == true}">
 										<span class="label label-success">Solved</span>
 									</c:when>
 									<c:otherwise>
-										<span class="label label-important">Pending</span>
+										<a class="btn btn-small btn-danger"
+											href="<c:url value="reportExecution.do?id=${reportdataerror.reportData.reportExecution.id}" />">
+											Pending </a>
 									</c:otherwise>
 								</c:choose></td>
 						</tr>

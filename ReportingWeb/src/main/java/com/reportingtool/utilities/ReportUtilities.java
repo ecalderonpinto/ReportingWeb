@@ -32,6 +32,8 @@ public class ReportUtilities {
 	public static final String dateTimePattern = "yyyy-MM-dd HH:mm:ss";
 	public static final String datePattern = "yyyy-MM-dd";
 	public static final String yearPattern = "yyyy";
+	
+	public static final String reportVersion = "1.2";
 
 	/**
 	 * Function to clean objects from reportExecution which are disabled
@@ -64,7 +66,8 @@ public class ReportUtilities {
 	 */
 	public static void generateDefaultReportDatas(
 			ApplicationContext applicationContext,
-			ReportExecution reportExecution, String versionNum) {
+			ReportExecution reportExecution, String versionNum,
+			String reportingPeriodYear) {
 
 		// all dataFields
 		List<ReportData> reportDatas = new ArrayList<ReportData>(
@@ -184,6 +187,32 @@ public class ReportUtilities {
 			reportExecution.getReportDatas().add(reportData);
 		}
 
+		// <ReportingPeriodYear>
+		if (searchData(reportDatas, "ReportingPeriodYear", "9", null) == null) {
+
+			ReportField reportField = new ReportField();
+			reportField.setReportCatalog(reportExecution.getReportCatalog());
+			reportField.setReportFieldName("ReportingPeriodYear");
+			reportField.setReportFieldNum(new BigInteger("9"));
+
+			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
+					.getBean("reportFieldDAO");
+			reportField = reportFieldDAO.findByExample(reportField).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, reportingPeriodYear, null, null,
+					new VersionAuditor("utilities"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+
+			reportExecution.getReportDatas().add(reportData);
+
+			System.out.println("creating <Version>");
+		}
+
 	}
 
 	/**
@@ -262,8 +291,8 @@ public class ReportUtilities {
 
 	/**
 	 * Function receive two repeatable fields and check comparing blocks, check
-	 * if in second has content, the first exists in all cases. See
-	 * semantic rules of AIFM field(14).
+	 * if in second has content, the first exists in all cases. See semantic
+	 * rules of AIFM field(14).
 	 * 
 	 * @param reportDatas
 	 * @param reportFieldName1

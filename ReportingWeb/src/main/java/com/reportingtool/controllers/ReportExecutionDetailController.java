@@ -102,7 +102,8 @@ public class ReportExecutionDetailController {
 			reportExecutionDAO.create(reportExecution);
 
 			ReportUtilities.generateDefaultReportDatas(applicationContext,
-					reportExecution, "1.2");
+					reportExecution, ReportUtilities.reportVersion,
+					reportExecution.getReportPeriodYear());
 
 			resultMessage = "Report Execution created";
 
