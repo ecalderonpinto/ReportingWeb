@@ -25,6 +25,7 @@ import com.entities.dao.loader.FileConfigDAO;
 import com.entities.dao.loader.LoadFileDAO;
 import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.loader.FileConfig;
+import com.entities.entity.loader.LoadError;
 import com.entities.entity.loader.LoadFile;
 import com.entities.entity.loader.LoadRaw;
 import com.entities.entity.loader.LoadRawData;
@@ -109,6 +110,18 @@ public class LoadsController {
 					format.formatRaw(loadRawData);
 				}
 			}
+			
+			// search for errors and add to alert message
+			List<LoadError> loadErrorList = loadFile.getLoadErrors();
+			if (loadErrorList.size() > 0 ) {
+				alert.setError(true);
+				String temp = "";
+				for (LoadError loadError : loadErrorList) {
+					temp = temp.concat(" " + loadError.getLoadErrorText());
+				}
+				alert.setMessage("Error: " + temp);
+			}
+			
 		} catch (IOException e) {
 			alert.setError(true);
 			alert.setMessage("IO Problem");

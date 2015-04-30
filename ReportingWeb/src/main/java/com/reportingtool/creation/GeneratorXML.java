@@ -121,8 +121,8 @@ public class GeneratorXML {
 
 	private ApplicationContext applicationContext;
 
-	public static final String aifmXSDResource = "xml/AIFMD_DATMAN_V1.2.xsd";
-	public static final String aifXSDResource = "xml/AIFMD_DATAIF_V1.2.xsd";
+	public final String aifmXSDResource = "xml/AIFMD_DATMAN_V1.2.xsd";
+	public final String aifXSDResource = "xml/AIFMD_DATAIF_V1.2.xsd";
 
 	/**
 	 * Constructor of GeneratorXML with an applicationContext
@@ -1342,7 +1342,7 @@ public class GeneratorXML {
 			StringWriter st = new StringWriter();
 			marshaller.marshal(jaxbElement, st);
 
-			validateSchemaXSD(st.toString(), reportExecution, aifXSDResource);
+			//validateSchemaXSD(st.toString(), reportExecution, aifXSDResource);
 
 			return st.toString();
 
@@ -1895,8 +1895,6 @@ public class GeneratorXML {
 			StringWriter st = new StringWriter();
 			marshaller.marshal(jaxbElement, st);
 
-			validateSchemaXSD(st.toString(), reportExecution, aifmXSDResource);
-
 			// return
 			// st.toString().replace("    ","<pre>\t</pre>").replace("\n",
 			// "<br>");
@@ -2406,8 +2404,12 @@ public class GeneratorXML {
 										"FXEUROtherReferenceRateDescription",
 										"38", null));
 
-			complexAIFMIdentifierType
-					.setOldAIFMIdentifierNCA(complexAIFMNationalIdentifierType);
+			if (ReportUtilities.searchData(reportDatas,
+					"Old_ReportingMemberState", "24", null) != null
+					&& ReportUtilities.searchData(reportDatas,
+							"Old_AIFMNationalCode", "25", null) != null)
+				complexAIFMIdentifierType
+						.setOldAIFMIdentifierNCA(complexAIFMNationalIdentifierType);
 
 			complexAIFMCompleteDescriptionType
 					.setAIFMIdentifier(complexAIFMIdentifierType);
@@ -2502,8 +2504,6 @@ public class GeneratorXML {
 			StringWriter st = new StringWriter();
 			marshaller.marshal(jaxbElement, st);
 
-			validateSchemaXSD(st.toString(), reportExecution, aifmXSDResource);
-
 			// return
 			// st.toString().replace("    ","<pre>\t</pre>").replace("\n",
 			// "<br>");
@@ -2544,15 +2544,18 @@ public class GeneratorXML {
 
 	/**
 	 * Validate a aifmdXML string with his XSD schema, create reportErrors in
-	 * reportExecution
+	 * reportExecution. Return true if XSD is valid, false otherwise
 	 * 
 	 * @param aifmdXML
 	 * @param reportExecution
 	 * @param xsdResource
+	 * @return boolean
 	 */
-	public void validateSchemaXSD(String aifmdXML,
+	public boolean validateSchemaXSD(String aifmdXML,
 			ReportExecution reportExecution, String xsdResource) {
 
+		boolean result = false;
+		
 		// http://stackoverflow.com/questions/15732/whats-the-best-way-to-validate-an-xml-file-against-an-xsd-file
 
 		Source xmlFile = new StreamSource(new StringReader(aifmdXML));
@@ -2568,7 +2571,10 @@ public class GeneratorXML {
 			Validator validator = schema.newValidator();
 
 			validator.validate(xmlFile);
+			
 			System.out.println("DEBUG_" + "CREATION - XML is valid.");
+			result = true;
+			
 			ReportingErrorManager.disableReportError(applicationContext,
 					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
 					"FAIL");
@@ -2589,7 +2595,8 @@ public class GeneratorXML {
 					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
 					"FAIL", "Error validating XML " + e.getLocalizedMessage());
 		}
-
+		
+		return result;
 	}
 
 	// public void generateXMLAIFM_OLD(ReportExecution reportExecution) {

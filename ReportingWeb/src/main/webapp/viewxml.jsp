@@ -38,6 +38,28 @@
 	</c:choose>
 </div>
 
+<!-- XML is Valid -->
+<div class="box-content alerts">
+	<c:choose>
+		<c:when test="${isvalid != true}">
+			<div class="alert alert-error">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<strong>Error:</strong>
+				XML has failed XSD validation. Check errors before sent XML file.
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="alert alert-success">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<strong>Success:</strong>
+				XML has passed XSD validation.
+			</div>
+		</c:otherwise>
+	</c:choose>
+</div>
+
+
+
 <!-- XML output -->
 <div class="row-fluid sortable">
 	<div class="box span12">

@@ -60,8 +60,12 @@ public class ViewXMLController {
 		GeneratorXML generatorXML = new GeneratorXML(applicationContext);
 		String outputXML = generatorXML.generateXML(reportExecution);
 
+		boolean isValid = generatorXML.validateSchemaXSD(outputXML,
+				reportExecution, generatorXML.aifmXSDResource);
+
 		model.addAttribute("report", reportExecution);
 		model.addAttribute("outputXML", outputXML);
+		model.addAttribute("isvalid", isValid);
 
 		return "viewxml";
 	}
