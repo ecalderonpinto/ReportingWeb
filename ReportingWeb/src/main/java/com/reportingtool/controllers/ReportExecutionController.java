@@ -336,9 +336,9 @@ public class ReportExecutionController {
 				for (int i = 1; i <= count; i++) {
 					block = Integer.toString(i);
 					// if this field + block doesn't exist, we add it
-					if (ReportUtilities.searchData(reportDatas,
-							reportField.getReportFieldName(),
-							reportField.getReportFieldNum().toString(), block) == null) {
+					if (ReportUtilities.searchData(reportDatas, reportField
+							.getReportFieldName(), reportField
+							.getReportFieldNum().toString(), block) == null) {
 
 						ReportData reportDataTemp = new ReportData(null,
 								reportField, reportExecution, null, null, "",
@@ -509,4 +509,5 @@ public class ReportExecutionController {
 
 		return result;
 	}
+
 }

@@ -17,13 +17,21 @@
 </ul>
 <!-- end: Breadcrumb -->
 
+<!-- Download Help -->
+<!-- <div class="box-content">
+	<p>
+		<a href="downloadAIFMHelp.do"><i
+			class="glyphicons-icon circle_question_mark" title="Download Help"></i></a>
+	</p>
+</div> -->
+
 <!-- errors link -->
 <div class="box-content">
 	<c:choose>
 		<c:when test="${reportexecution.hasErrors == true}">
 			<a class="btn btn-small btn-danger"
-				href="<c:url value="reportError.do?id=${reportexecution.id}" />"> Errors
-			</a>
+				href="<c:url value="reportError.do?id=${reportexecution.id}" />">
+				Errors </a>
 		</c:when>
 		<c:otherwise>
 			<span class="label label-success">No errors</span>
@@ -43,7 +51,9 @@
 							href="#" class="btn-minimize">${section}</a>
 					</h2>
 					<div class="box-icon">
-						<a href="#" class="btn-minimize"><i
+						<a href="downloadAIFMHelp.do" class="btn-setting"> <i
+							class="halflings-icon question-sign" title="Download Help"></i></a> <a
+							href="#" class="btn-minimize"><i
 							class="halflings-icon chevron-down"></i></a>
 					</div>
 				</div>
@@ -74,8 +84,8 @@
 												<div class="control-group error">
 													<label class="control-label" for="inputError">
 														${reportData.reportField.reportFieldNum}.
-														${reportData.reportField.reportFieldName} 
-														<c:if test="${reportData.reportDataBlock != null}"> 
+														${reportData.reportField.reportFieldName} <c:if
+															test="${reportData.reportDataBlock != null}"> 
 														- [${reportData.reportDataBlock}] </c:if>
 													</label>
 													<div class="controls">
@@ -136,10 +146,10 @@
 											<c:otherwise>
 												<!-- Normal Field -->
 												<div class="control-group">
-													<label class="control-label" for="disabledInput">
-														<span title="${reportData.reportField.reportFieldName}">${reportData.reportField.reportFieldNum}.
-														${reportData.reportField.reportFieldName}</span>
-														<c:if test="${reportData.reportDataBlock != null}"> 
+													<label class="control-label" for="disabledInput"> <span
+														title="${reportData.reportField.reportFieldName}">${reportData.reportField.reportFieldNum}.
+															${reportData.reportField.reportFieldName}</span> <c:if
+															test="${reportData.reportDataBlock != null}"> 
 														- [${reportData.reportDataBlock}] </c:if>
 													</label>
 													<div class="controls">

@@ -107,8 +107,8 @@ public class ViewXMLController {
 		try {
 
 			ServletOutputStream out = response.getOutputStream();
+			
 			StringBuffer sb = new StringBuffer(outputXML);
-
 			InputStream in = new ByteArrayInputStream(sb.toString().getBytes(
 					"UTF-8"));
 
