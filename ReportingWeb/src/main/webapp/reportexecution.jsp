@@ -51,7 +51,7 @@
 							href="#" class="btn-minimize">${section}</a>
 					</h2>
 					<div class="box-icon">
-						<a href="downloadAIFMHelp.do" class="btn-setting"> <i
+						<a href="downloadAIFMHelp.do"> <i
 							class="halflings-icon question-sign" title="Download Help"></i></a> <a
 							href="#" class="btn-minimize"><i
 							class="halflings-icon chevron-down"></i></a>
