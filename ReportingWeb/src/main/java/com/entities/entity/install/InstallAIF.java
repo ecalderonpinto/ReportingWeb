@@ -359,17 +359,17 @@ public class InstallAIF {
 					null, versionAdmin);
 			reportFieldDAO.create(reportField30);
 
-			// (31) <ReportingMemberState>
+			// (31) <Old_ReportingMemberState>
 			ReportField reportField31 = new ReportField(reportCatalog,
-					reportFieldx7, "A", "ReportingMemberState", new BigInteger(
+					reportFieldx7, "A", "Old_ReportingMemberState", new BigInteger(
 							"31"), ".{2}", "", "Complete Description",
 					"CountryCodeType", "03.031", "0,1", versionField, null,
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportField31);
 
-			// (32) <AIFNationalCode>
+			// (32) <Old_AIFNationalCode>
 			ReportField reportField32 = new ReportField(reportCatalog,
-					reportFieldx7, "A", "AIFNationalCode",
+					reportFieldx7, "A", "Old_AIFNationalCode",
 					new BigInteger("32"), ".{30}", "", "Complete Description",
 					"AIFMNationalCodeType", "03.032", "0,1", versionField, null,
 					null, null, versionAdmin);
@@ -503,7 +503,7 @@ public class InstallAIF {
 
 			ReportField reportFieldx12 = new ReportField(reportCatalog,
 					reportFieldx9, "X", "PrimeBrokers", new BigInteger("0"),
-					null, "", null, null, "1.1.18.1", "0n", versionField, null,
+					null, "", null, null, "06.1", "0,n", versionField, null,
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx12);
 			ReportField reportFieldx13 = new ReportField(reportCatalog,
@@ -1210,7 +1210,7 @@ public class InstallAIF {
 			// (103) <Ranking>
 			ReportField reportField103 = new ReportField(reportCatalog,
 					reportFieldx34, "N", "Ranking", new BigInteger("103"),
-					"[0-9]{1}", "", "Most Important Concentration",
+					"[0-9]{1}", "", "Portfolio Concentration",
 					"FiveRankingType", "15.103", "5,5", versionField, null,
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportField103);
@@ -1218,7 +1218,7 @@ public class InstallAIF {
 			// (104) <AssetType>
 			ReportField reportField104 = new ReportField(reportCatalog,
 					reportFieldx34, "A", "AssetType", new BigInteger("104"),
-					".{7}", "", "Most Important Concentration",
+					".{7}", "", "Portfolio Concentration",
 					"AssetTypeType", "15.104", "5,5", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField104);
@@ -1226,7 +1226,7 @@ public class InstallAIF {
 			// (105) <PositionType>
 			ReportField reportField105 = new ReportField(reportCatalog,
 					reportFieldx34, "A", "PositionType", new BigInteger("105"),
-					".{1}", "", "Most Important Concentration",
+					".{1}", "", "Portfolio Concentration",
 					"PositionTypeType", "15.105", "0,5", versionField, null,
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportField105);
@@ -1241,7 +1241,7 @@ public class InstallAIF {
 			ReportField reportField106 = new ReportField(reportCatalog,
 					reportFieldx35, "A", "MarketCodeType",
 					new BigInteger("106"), ".{3}", "",
-					"Most Important Concentration",
+					"Portfolio Concentration",
 					"MarketCodeTypeWithoutNOTType", "15.106", "0,5",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField106);
@@ -1249,7 +1249,7 @@ public class InstallAIF {
 			// (107) <MarketCode>
 			ReportField reportField107 = new ReportField(reportCatalog,
 					reportFieldx35, "A", "MarketCode", new BigInteger("107"),
-					".{4}", "", "Most Important Concentration", "MICCodeType",
+					".{4}", "", "Portfolio Concentration", "MICCodeType",
 					"15.107", "0,5", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField107);
@@ -1258,7 +1258,7 @@ public class InstallAIF {
 			ReportField reportField108 = new ReportField(reportCatalog,
 					reportFieldx34, "N", "AggregatedValueAmount",
 					new BigInteger("108"), "[0-9]{0,15}?", "",
-					"Most Important Concentration", "NUMBER", "15.108", "0,5",
+					"Portfolio Concentration", "NUMBER", "15.108", "0,5",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField108);
 
@@ -1266,7 +1266,7 @@ public class InstallAIF {
 			ReportField reportField109 = new ReportField(reportCatalog,
 					reportFieldx34, "N", "AggregatedValueRate", new BigInteger(
 							"109"), "[0-9]{1,3}(\\.[0-9]{1,2})?", "",
-					"Most Important Concentration", "PERCENT", "15.109", "0,5",
+					"Portfolio Concentration", "PERCENT", "15.109", "0,5",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField109);
 
@@ -1279,7 +1279,7 @@ public class InstallAIF {
 			// (110) <EntityName>
 			ReportField reportField110 = new ReportField(reportCatalog,
 					reportFieldx36, "Z", "EntityName", new BigInteger("110"),
-					".{0,300}", "", "Most Important Concentration", "NAME",
+					".{0,300}", "", "Portfolio Concentration", "NAME",
 					"15.110", "0,5", versionField, null, null, null,
 					versionAdmin);
 			reportFieldDAO.create(reportField110);
@@ -1288,7 +1288,7 @@ public class InstallAIF {
 			ReportField reportField111 = new ReportField(reportCatalog,
 					reportFieldx36, "A", "EntityIdentificationLEI",
 					new BigInteger("111"), ".{20}", "",
-					"Most Important Concentration", "LEICodeType", "15.111",
+					"Portfolio Concentration", "LEICodeType", "15.111",
 					"0,5", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField111);
 
@@ -1296,7 +1296,7 @@ public class InstallAIF {
 			ReportField reportField112 = new ReportField(reportCatalog,
 					reportFieldx36, "A", "EntityIdentificationBIC",
 					new BigInteger("112"), ".{11}", "",
-					"Most Important Concentration", "BICCodeType", "15.112",
+					"Portfolio Concentration", "BICCodeType", "15.112",
 					"0,5", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField112);
 
@@ -3292,10 +3292,10 @@ public class InstallAIF {
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportField303);
 
-			// (303) <CancelledAIFMNationalCode>
+			// (304) <CancelledAIFMNationalCode>
 			ReportField reportField304 = new ReportField(reportCatalog,
 					reportFieldx105, "Z", "CancelledAIFMNationalCode",
-					new BigInteger("303"), ".{0,30}", "", "Cancellation Info",
+					new BigInteger("304"), ".{0,30}", "", "Cancellation Info",
 					"AIFMNationalCodeType", "43.304", "0,1", versionField,
 					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField304);
