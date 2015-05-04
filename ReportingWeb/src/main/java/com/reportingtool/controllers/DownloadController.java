@@ -17,6 +17,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.reportingtool.creation.GeneratorXML;
 
@@ -29,25 +30,34 @@ public class DownloadController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(DownloadController.class);
 
-	@RequestMapping(value = "/downloadAIFMHelp.do", method = RequestMethod.GET)
-	protected void downloadHelp(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	@RequestMapping(value = "/downloadAIFMDHelp.do", method = RequestMethod.GET)
+	protected void downloadHelp(@RequestParam("id") String id,
+			HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		System.out.println("download .xls with help");
+		System.out.println("download resource.xls with help");
 
 		GeneratorXML generatorXML = new GeneratorXML(applicationContext);
 
+		String resource = "";
+
+		if (id.equals("AIF")) {
+			resource = generatorXML.aifXLSHelp;
+		} else {
+			resource = generatorXML.aifmXLSHelp;
+		}
+
 		response.setContentType("application/octet-stream");
 		response.setHeader("Content-Disposition", "attachment;filename="
-				+ generatorXML.aifmXLSHelp);
+				+ resource);
 
 		try {
 			ClassLoader classLoader = getClass().getClassLoader();
-			File file = new File(classLoader.getResource(generatorXML.aifmXLSHelp)
-					.getFile());
-			
+			File file = new File(classLoader.getResource(
+					generatorXML.aifmXLSHelp).getFile());
+
 			FileInputStream in = new FileInputStream(file);
-			
+
 			ServletOutputStream out = response.getOutputStream();
 
 			IOUtils.copy(in, out);

@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.entities.dao.reportingtool.CompanyDAO;
 import com.entities.dao.reportingtool.FundDAO;
 import com.entities.dao.reportingtool.ReportCatalogDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
+import com.entities.dictionary.ReportExecutionStatusEnum;
 import com.entities.entity.reportingtool.Company;
 import com.entities.entity.reportingtool.Fund;
 import com.entities.entity.reportingtool.ReportCatalog;
@@ -35,7 +37,7 @@ public class ReportExecutionFundDetailController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(ReportExecutionDetailController.class);
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String ReportExecutionFundDetailControllerPre(
 			@RequestParam("id") String id, Model model) {
@@ -44,10 +46,9 @@ public class ReportExecutionFundDetailController {
 
 		try {
 
-			FundDAO fundDAO = (FundDAO) applicationContext
-					.getBean("fundDAO");
+			FundDAO fundDAO = (FundDAO) applicationContext.getBean("fundDAO");
 			Fund fund = fundDAO.findById(Long.parseLong(id));
-			
+
 			Company company = fund.getCompany();
 
 			ReportCatalog reportCatalog = new ReportCatalog();
@@ -61,17 +62,20 @@ public class ReportExecutionFundDetailController {
 			reportExecution.setReportCatalog(reportCatalog);
 			reportExecution.setCompany(company);
 			reportExecution.setFund(fund);
+			reportExecution.setReportStatus(ReportExecutionStatusEnum.EMPTY
+					.getReportExecutionStatus());
 			reportExecution.setVersionAuditor(new VersionAuditor("report"));
 
 			System.out.println("new report: " + company.getCompanyName() + " "
-					+ reportCatalog.getReportCatalogName() + " - " + fund.getFundName());
+					+ reportCatalog.getReportCatalogName() + " - "
+					+ fund.getFundName());
 
 			model.addAttribute("company", company);
 			model.addAttribute("fund", fund);
 			model.addAttribute("catalog", reportCatalog);
 			model.addAttribute("reportexecutiondetail", reportExecution);
-			
-			//model.addAttribute("result", "");
+
+			// model.addAttribute("result", "");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,26 +94,31 @@ public class ReportExecutionFundDetailController {
 				+ reportExecution.getReportExecutionName());
 
 		String resultMessage;
-		
+
 		if (reportExecution.getReportExecutionName() != null
-				&& !reportExecution.getReportExecutionName().isEmpty() &&
-				reportExecution.getReportPeriodType() != null
-				&& !reportExecution.getReportPeriodType().isEmpty() &&
-				reportExecution.getReportPeriodYear() != null
-				&& !reportExecution.getReportPeriodYear().isEmpty() ) {
-			
+				&& !reportExecution.getReportExecutionName().isEmpty()
+				&& reportExecution.getReportPeriodType() != null
+				&& !reportExecution.getReportPeriodType().isEmpty()
+				&& reportExecution.getReportPeriodYear() != null
+				&& !reportExecution.getReportPeriodYear().isEmpty()) {
+
 			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) this.applicationContext
 					.getBean("reportExecutionDAO");
 			reportExecutionDAO.create(reportExecution);
-			
+
 			resultMessage = "Report Execution Fund created";
-			
+
 		} else {
 			resultMessage = "Report Execution field is missing";
 		}
-		
+
 		System.out.println("result: " + resultMessage);
-		
-		return "companyreports";
+
+		// refresh Company to display after new reportExecution
+		FundDAO fundDAO = (FundDAO) applicationContext.getBean("fundDAO");
+		Fund fund = fundDAO.findById(reportExecution.getFund().getId());
+		model.addAttribute("fund", fund);
+
+		return "fundreports";
 	}
 }

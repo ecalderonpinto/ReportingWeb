@@ -93,15 +93,15 @@
 							items="${fund.reportExecutions}">
 							<tr>
 								<!-- <td><input type="checkbox" id="export1" value="export1"></td> -->
-								<td>${report.reportCatalog.reportCatalogName}</td>
+								<td>${report.reportExecutionName}</td>
 								<td>${report.reportPeriodType}</td>
 								<td>${report.reportStatus}</td>
 								<td><a class="btn btn-small btn-primary"
-									href="<c:url value="reportExecution.do?id=${reportexecution.id}" />">
+									href="<c:url value="reportExecution.do?id=${report.id}" />">
 										Detail </a> <a class="btn btn-small btn-warning"
-									href="<c:url value="loadsAssignToReport.do?id=${reportexecution.id}" />">
+									href="<c:url value="loadsAssignToReport.do?id=${report.id}" />">
 										Load Assig</a> <a class="btn btn-small btn-success"
-									href="<c:url value="viewXML.do?id=${reportexecution.id}" />">
+									href="<c:url value="viewXML.do?id=${report.id}" />">
 										View XML </a></td>
 							</tr>
 						</c:forEach>

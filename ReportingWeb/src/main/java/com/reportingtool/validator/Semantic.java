@@ -8,8 +8,9 @@ import org.springframework.context.ApplicationContext;
 
 import bsh.Interpreter;
 
-import com.entities.dao.reportingtool.ReportSemanticDAO;
+import com.entities.dao.reportingtool.ReportCatalogDAO;
 import com.entities.dictionary.ErrorTypeEnum;
+import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportSemantic;
 import com.reportingtool.utilities.ReportingErrorManager;
@@ -42,15 +43,14 @@ public class Semantic {
 
 		System.out.println("Start Semantic analisys");
 
-		ReportSemanticDAO reportSemanticDAO = (ReportSemanticDAO) applicationContext
-				.getBean("reportSemanticDAO");
+		ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
+				.getBean("reportCatalogDAO");
 
-		ReportSemantic reportSemanticExample = new ReportSemantic();
-		reportSemanticExample.setReportCatalog(reportExecution
-				.getReportCatalog());
+		ReportCatalog reportCatalog = reportCatalogDAO.findById(reportExecution
+				.getReportCatalog().getId());
 
-		List<ReportSemantic> reportSemantics = reportSemanticDAO
-				.findByExample(reportSemanticExample);
+		List<ReportSemantic> reportSemantics = reportCatalog
+				.getReportSemantics();
 
 		for (ReportSemantic reportSemantic : reportSemantics) {
 			// execute semantic rule and delete/create error

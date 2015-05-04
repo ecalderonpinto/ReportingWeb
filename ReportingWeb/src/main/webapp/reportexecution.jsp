@@ -51,10 +51,21 @@
 							href="#" class="btn-minimize">${section}</a>
 					</h2>
 					<div class="box-icon">
-						<a href="downloadAIFMHelp.do"> <i
-							class="halflings-icon question-sign" title="Download Help"></i></a> <a
-							href="#" class="btn-minimize"><i
-							class="halflings-icon chevron-down"></i></a>
+						<c:choose>
+							<c:when
+								test="${reportexecution.reportCatalog.reportLevel == 'COMPANY'}">
+								<a href="downloadAIFMDHelp.do?id=AIFM"> <i
+									class="halflings-icon question-sign" title="Download Help"></i></a>
+								<a href="#" class="btn-minimize"><i
+									class="halflings-icon chevron-down"></i></a>
+							</c:when>
+							<c:otherwise>
+								<a href="downloadAIFMDHelp.do?id=AIF"> <i
+									class="halflings-icon question-sign" title="Download Help"></i></a>
+								<a href="#" class="btn-minimize"><i
+									class="halflings-icon chevron-down"></i></a>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<div class="box-content" style="display: none;">

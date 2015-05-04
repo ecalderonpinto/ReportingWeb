@@ -283,13 +283,12 @@ public class ReportExecutionController {
 				// + reportData.getReportDataText());
 				if (reportData.getReportField().equals(reportField)) {
 					// reportData already exists
-					System.out.println("yes reportField, adding reportData of "
-							+ reportField.getReportFieldName() + "-"
-							+ reportField.getReportFieldNum().toString()
-							+ " content: " + reportData.getReportDataText());
+//					System.out.println("yes reportField, adding reportData of "
+//							+ reportField.getReportFieldName() + "-"
+//							+ reportField.getReportFieldNum().toString()
+//							+ " content: " + reportData.getReportDataText());
 					reportDatas.add(reportData);
 					flagField = true;
-					// System.out.println("reportData added");
 				}
 			}
 			if (flagField == false) {
@@ -304,9 +303,9 @@ public class ReportExecutionController {
 					reportDataTemp.setReportDataBlock("1");
 				}
 
-				System.out.println("no reportField, adding reportData of "
-						+ reportField.getReportFieldName() + "-"
-						+ reportField.getReportFieldNum().toString());
+//				System.out.println("no reportField, adding reportData of "
+//						+ reportField.getReportFieldName() + "-"
+//						+ reportField.getReportFieldNum().toString());
 				reportDatas.add(reportDataTemp);
 
 			}
@@ -316,9 +315,9 @@ public class ReportExecutionController {
 			if (ReportUtilities.reportFieldIsRepe(reportField)) {
 				int count = ReportUtilities.reportFieldNumberRepe(reportField);
 
-				System.out.println("exists field and is repeated "
-						+ reportField.getReportFieldName() + " "
-						+ reportField.getReportFieldRepe());
+//				System.out.println("exists field and is repeated "
+//						+ reportField.getReportFieldName() + " "
+//						+ reportField.getReportFieldRepe());
 
 				List<String> blockList = ReportUtilities.searchBlockList(
 						reportExecution.getReportDatas(), reportField
@@ -346,14 +345,14 @@ public class ReportExecutionController {
 
 						reportDataTemp.setReportDataBlock(block);
 
-						System.out
-								.println("yes reportField and repeated, adding reportData of "
-										+ reportField.getReportFieldName()
-										+ "-"
-										+ reportField.getReportFieldNum()
-												.toString()
-										+ " with Block "
-										+ block);
+//						System.out
+//								.println("yes reportField and repeated, adding reportData of "
+//										+ reportField.getReportFieldName()
+//										+ "-"
+//										+ reportField.getReportFieldNum()
+//												.toString()
+//										+ " with Block "
+//										+ block);
 						reportDatas.add(reportDataTemp);
 						if (count == 99) {
 							break;
