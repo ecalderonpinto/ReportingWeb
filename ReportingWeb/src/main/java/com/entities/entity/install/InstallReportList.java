@@ -40,6 +40,14 @@ public class InstallReportList {
 		reportFieldList.add(new ReportFieldList("BOOLEAN", "false", "false",
 				versionAdmin));
 		
+		
+		reportFieldList.add(new ReportFieldList("ThreeRankingType",
+				"1", "1", versionAdmin));
+		reportFieldList.add(new ReportFieldList("ThreeRankingType",
+				"2", "2", versionAdmin));
+		reportFieldList.add(new ReportFieldList("ThreeRankingType",
+				"3", "3", versionAdmin));
+		
 		reportFieldList.add(new ReportFieldList("FiveRankingType",
 				"1", "1", versionAdmin));
 		reportFieldList.add(new ReportFieldList("FiveRankingType",
@@ -50,6 +58,27 @@ public class InstallReportList {
 				"4", "4", versionAdmin));
 		reportFieldList.add(new ReportFieldList("FiveRankingType",
 				"5", "5", versionAdmin));
+		
+		reportFieldList.add(new ReportFieldList("TenRankingType",
+				"1", "1", versionAdmin));
+		reportFieldList.add(new ReportFieldList("TenRankingType",
+				"2", "2", versionAdmin));
+		reportFieldList.add(new ReportFieldList("TenRankingType",
+				"3", "3", versionAdmin));
+		reportFieldList.add(new ReportFieldList("TenRankingType",
+				"4", "4", versionAdmin));
+		reportFieldList.add(new ReportFieldList("TenRankingType",
+				"5", "5", versionAdmin));
+		reportFieldList.add(new ReportFieldList("TenRankingType",
+				"6", "6", versionAdmin));
+		reportFieldList.add(new ReportFieldList("TenRankingType",
+				"7", "7", versionAdmin));
+		reportFieldList.add(new ReportFieldList("TenRankingType",
+				"8", "8", versionAdmin));
+		reportFieldList.add(new ReportFieldList("TenRankingType",
+				"9", "9", versionAdmin));
+		reportFieldList.add(new ReportFieldList("TenRankingType",
+				"10", "10", versionAdmin));
 
 		reportFieldList.add(new ReportFieldList("AIFMasterFeederStatusType",
 				"MASTER", "MASTER", versionAdmin));

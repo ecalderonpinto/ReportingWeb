@@ -112,7 +112,7 @@ import com.reportingtool.xml.SubAssetTypeType;
 import com.reportingtool.xml.TypicalPositionSizeType;
 
 /**
- * Class to generate in XMl string a reportExecution
+ * Class to generate XML string from a reportExecution
  * 
  * @author alberto.olivan
  *
