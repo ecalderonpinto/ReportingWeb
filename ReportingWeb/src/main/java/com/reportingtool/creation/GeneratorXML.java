@@ -59,15 +59,19 @@ import com.reportingtool.xml.ComplexAIFPrincipalInfoType;
 import com.reportingtool.xml.ComplexAIFPrincipalMarketsType;
 import com.reportingtool.xml.ComplexAIFRecordInfoType;
 import com.reportingtool.xml.ComplexAUMGeographicalFocusType;
+import com.reportingtool.xml.ComplexAllCounterpartyCollateralType;
 import com.reportingtool.xml.ComplexAssetTypeExposuresType;
 import com.reportingtool.xml.ComplexAssetTypeTurnoversType;
 import com.reportingtool.xml.ComplexAssumptionType;
 import com.reportingtool.xml.ComplexAssumptionsType;
 import com.reportingtool.xml.ComplexBaseCurrencyDescriptionType;
 import com.reportingtool.xml.ComplexBorrowingSourceType;
+import com.reportingtool.xml.ComplexCCPExposureType;
+import com.reportingtool.xml.ComplexCCPExposuresType;
 import com.reportingtool.xml.ComplexCancellationAIFMRecordInfoType;
 import com.reportingtool.xml.ComplexCancellationAIFRecordInfoType;
 import com.reportingtool.xml.ComplexCompaniesDominantInfluenceType;
+import com.reportingtool.xml.ComplexControlledStructureType;
 import com.reportingtool.xml.ComplexControlledStructuresType;
 import com.reportingtool.xml.ComplexCounterpartyRiskProfileType;
 import com.reportingtool.xml.ComplexCurrencyExposuresType;
@@ -75,6 +79,7 @@ import com.reportingtool.xml.ComplexFinancialInstrumentBorrowingType;
 import com.reportingtool.xml.ComplexFivePrincipalMarketType;
 import com.reportingtool.xml.ComplexFundOfFundsInvestmentStrategiesType;
 import com.reportingtool.xml.ComplexHedgeFundInvestmentStrategiesType;
+import com.reportingtool.xml.ComplexHistoricalRiskProfileType;
 import com.reportingtool.xml.ComplexIndividualExposureType;
 import com.reportingtool.xml.ComplexInvestorConcentrationType;
 import com.reportingtool.xml.ComplexLeverageAIFType;
@@ -343,6 +348,9 @@ public class GeneratorXML {
 
 			ComplexShareClassIdentificationType complexShareClassIdentificationType = objectFactoryAIF
 					.createComplexShareClassIdentificationType();
+
+			ComplexAllCounterpartyCollateralType complexAllCounterpartyCollateralType = objectFactoryAIF
+					.createComplexAllCounterpartyCollateralType();
 
 			// /////////////////////////////////////////////////////////////////
 			// <AifReportingInfo>
@@ -650,41 +658,41 @@ public class GeneratorXML {
 
 			List<ComplexShareClassIdentifierType> complexShareClassIdentifierTypeList = complexShareClassIdentificationType
 					.getShareClassIdentifier();
-			
+
 			// (33) <ShareClassFlag>
-						if (ReportUtilities.searchData(reportDatas, "ShareClassFlag", "33",
-								null) != null)
-							complexAIFPrincipalInfoType.setShareClassFlag(Boolean
-									.parseBoolean(ReportUtilities.searchData(reportDatas,
-											"ShareClassFlag", "33", null)));
-						
-			// TODO bucle for tantas share como haya
-			ComplexShareClassIdentifierType complexShareClassIdentifierType = objectFactoryAIF.createComplexShareClassIdentifierType();
-			
+			if (ReportUtilities.searchData(reportDatas, "ShareClassFlag", "33",
+					null) != null)
+				complexAIFPrincipalInfoType.setShareClassFlag(Boolean
+						.parseBoolean(ReportUtilities.searchData(reportDatas,
+								"ShareClassFlag", "33", null)));
+
+			// TODO bucle for tantas share como haya pero cada field es 0,n
+			ComplexShareClassIdentifierType complexShareClassIdentifierType = objectFactoryAIF
+					.createComplexShareClassIdentifierType();
+
 			// (34) <ShareClassNationalCode>
 			complexShareClassIdentifierType.setShareClassNationalCode("");
-			
+
 			// (35) <ShareClassIdentifierISIN>
 			complexShareClassIdentifierType.setShareClassIdentifierISIN("");
-			
+
 			// (36) <ShareClassIdentifierSEDOL>
 			complexShareClassIdentifierType.setShareClassIdentifierSEDOL("");
-			
+
 			// (37) <ShareClassIdentifierCUSIP>
 			complexShareClassIdentifierType.setShareClassIdentifierCUSIP("");
-			
+
 			// (38) <ShareClassIdentifierTicker>
 			complexShareClassIdentifierType.setShareClassIdentifierTicker("");
-			
+
 			// (39) <ShareClassIdentifierRIC>
 			complexShareClassIdentifierType.setShareClassIdentifierRIC("");
-			
+
 			// (40) <ShareClassName>
 			complexShareClassIdentifierType.setShareClassName("");
-			
-			complexShareClassIdentifierTypeList.add(complexShareClassIdentifierType);
 
-			
+			complexShareClassIdentifierTypeList
+					.add(complexShareClassIdentifierType);
 
 			complexAIFPrincipalInfoType
 					.setShareClassIdentification(complexShareClassIdentificationType);
@@ -1035,6 +1043,36 @@ public class GeneratorXML {
 			// /////////////////////////////////////////////////////////////////
 			// <InvestorConcentration>
 
+			// (118) <MainBeneficialOwnersRate>
+			if (ReportUtilities.searchData(reportDatas,
+					"MainBeneficialOwnersRate", "118", null) != null)
+				complexInvestorConcentrationType
+						.setMainBeneficialOwnersRate(new BigDecimal(
+								ReportUtilities
+										.searchData(reportDatas,
+												"MainBeneficialOwnersRate",
+												"118", null)));
+
+			// (119) <ProfessionalInvestorConcentrationRate>
+			if (ReportUtilities.searchData(reportDatas,
+					"ProfessionalInvestorConcentrationRate", "119", null) != null)
+				complexInvestorConcentrationType
+						.setProfessionalInvestorConcentrationRate(new BigDecimal(
+								ReportUtilities
+										.searchData(
+												reportDatas,
+												"ProfessionalInvestorConcentrationRate",
+												"119", null)));
+
+			// (120) <RetailInvestorConcentrationRate>
+			if (ReportUtilities.searchData(reportDatas,
+					"RetailInvestorConcentrationRate", "120", null) != null)
+				complexInvestorConcentrationType
+						.setRetailInvestorConcentrationRate(new BigDecimal(
+								ReportUtilities.searchData(reportDatas,
+										"RetailInvestorConcentrationRate",
+										"120", null)));
+
 			complexMostImportantConcentrationType
 					.setInvestorConcentration(complexInvestorConcentrationType);
 
@@ -1075,14 +1113,149 @@ public class GeneratorXML {
 
 			// TODO:RT populate this class
 
+			// (137) <AnnualInvestmentReturnRate>
+			if (ReportUtilities.searchData(reportDatas,
+					"AnnualInvestmentReturnRate", "137", null) != null)
+				complexMarketRiskProfileType
+						.setAnnualInvestmentReturnRate(ReportUtilities
+								.searchData(reportDatas,
+										"AnnualInvestmentReturnRate", "137",
+										null));
+
+			// complexMarketRiskProfileType.setMarketRiskMeasures(ComplexMarketRiskMeasuresType);
+
+			// ComplexMarketRiskMeasuresType complexMarketRiskMeasuresType =
+			// objectFactoryAIF.createComplexMarketRiskMeasuresType();
+			//
+			// List<ComplexMarketRiskMeasureType>
+			// complexMarketRiskMeasureTypeList =
+			// complexMarketRiskMeasuresType.getMarketRiskMeasure();
+			//
+			// ComplexMarketRiskMeasureType complexMarketRiskMeasureType =
+			// objectFactoryAIF.createComplexMarketRiskMeasureType();
+			// complexMarketRiskMeasureType.setBucketRiskMeasureValues(ComplexBucketRiskMeasureValuesType);
+			//
+			// complexMarketRiskMeasureTypeList.add(complexMarketRiskMeasureType);
+			//
+			// complexMarketRiskMeasureType.set(int i = 0,
+			// complexMarketRiskMeasureType);
+			//
+			// complexMarketRiskProfileType.setMarketRiskMeasures(complexMarketRiskMeasuresType);
+
 			complexRiskProfileType
 					.setMarketRiskProfile(complexMarketRiskProfileType);
+
+			// /////////////////////////////////////////////////////////////////
+			// <Counterparty Risk Profile>
+
+			// (148) <RegulatedMarketRate>
+			// if (ReportUtilities.searchData(reportDatas,
+			// "AnnualInvestmentReturnRate", "137", null) != null)
+
+			ComplexCCPExposuresType complexCCPExposuresType = objectFactoryAIF
+					.createComplexCCPExposuresType();
+
+			List<ComplexCCPExposureType> complexCCPExposureTypeList = complexCCPExposuresType
+					.getCCPExposure();
+
+			ComplexCCPExposureType complexCCPExposureType = objectFactoryAIF
+					.createComplexCCPExposureType();
+
+			// complexCCPExposureType.setRanking(new BigInteger());
+			// complexCCPExposureType.setCCPExposureValue(new BigInteger());
+			// complexCCPExposureType.setCCPIdentification(ComplexEntityIdentificationType);
+
+			// ?
+			
+			complexCCPExposureTypeList.add(complexCCPExposureType);
+
+			complexCounterpartyRiskProfileType
+					.setCCPExposures(complexCCPExposuresType);
+
+			// (149) <OTCRate>
+
+			// (150) <RegulatedMarketRate>
+
+			// (151) <OTCRate>
+
+			// (152) <CCPRate>
+
+			// (153) <BilateralClearingRate>
+
+			// (154) <CCPRate>
+
+			// (155) <BilateralClearingRate>
+
+			// (156) <TriPartyRepoClearingRate>
 
 			complexRiskProfileType
 					.setCounterpartyRiskProfile(complexCounterpartyRiskProfileType);
 
+			// /////////////////////////////////////////////////////////////////
+			// <AllCounterpartyCollateral>
+
+			// (157) <AllCounterpartyCollateralCash>
+			if (ReportUtilities.searchData(reportDatas,
+					"AllCounterpartyCollateralCash", "157", null) != null)
+				complexAllCounterpartyCollateralType
+						.setAllCounterpartyCollateralCash(new BigInteger(
+								ReportUtilities.searchData(reportDatas,
+										"AllCounterpartyCollateralCash", "157",
+										null)));
+
+			// (158) <AllCounterpartyCollateralSecurities>
+			if (ReportUtilities.searchData(reportDatas,
+					"AllCounterpartyCollateralSecurities", "158", null) != null)
+				complexAllCounterpartyCollateralType
+						.setAllCounterpartyCollateralSecurities(new BigInteger(
+								ReportUtilities.searchData(reportDatas,
+										"AllCounterpartyCollateralSecurities",
+										"158", null)));
+
+			// (159) <AllCounterpartyOtherCollateralPosted>
+			if (ReportUtilities.searchData(reportDatas,
+					"AllCounterpartyOtherCollateralPosted", "159", null) != null)
+				complexAllCounterpartyCollateralType
+						.setAllCounterpartyOtherCollateralPosted(new BigInteger(
+								ReportUtilities.searchData(reportDatas,
+										"AllCounterpartyOtherCollateralPosted",
+										"159", null)));
+
+			complexCounterpartyRiskProfileType
+					.setAllCounterpartyCollateral(complexAllCounterpartyCollateralType);
+
+			// /////////////////////////////////////////////////////////////////
+			// <LiquidityRiskProfile>
+
+			// TODO class
+
 			complexRiskProfileType
 					.setLiquidityRiskProfile(complexLiquidityRiskProfileType);
+
+			ComplexHistoricalRiskProfileType complexHistoricalRiskProfileType = objectFactoryAIF
+					.createComplexHistoricalRiskProfileType();
+
+			// complexHistoricalRiskProfileType
+			// .setGrossInvestmentReturnsRate(ComplexSignedRateMonthPeriodType);
+			// complexHistoricalRiskProfileType
+			// .setNAVChangeRate(ComplexSignedRateMonthPeriodType);
+			// complexHistoricalRiskProfileType
+			// .setNetInvestmentReturnsRate(ComplexSignedRateMonthPeriodType);
+			// complexHistoricalRiskProfileType
+			// .setRedemption(ComplexQuantityMonthPeriodType);
+			// complexHistoricalRiskProfileType
+			// .setSubscription(ComplexQuantityMonthPeriodType);
+
+			complexOperationalRiskType
+					.setHistoricalRiskProfile(complexHistoricalRiskProfileType);
+
+			// (218) <TotalOpenPositions>
+			if (ReportUtilities.searchData(reportDatas, "TotalOpenPositions",
+					"218", null) != null)
+				complexOperationalRiskType
+						.setTotalOpenPositions(new BigInteger(ReportUtilities
+								.searchData(reportDatas, "TotalOpenPositions",
+										"218", null)));
 
 			complexRiskProfileType
 					.setOperationalRisk(complexOperationalRiskType);
@@ -1137,7 +1310,42 @@ public class GeneratorXML {
 			// /////////////////////////////////////////////////////////////////
 			// <SecuritiesCashBorrowing>
 
-			// TODO:RT populate this class
+			// (283) <UnsecuredBorrowingAmount>
+			if (ReportUtilities.searchData(reportDatas,
+					"UnsecuredBorrowingAmount", "283", null) != null)
+				complexSecuritiesCashBorrowingType
+						.setUnsecuredBorrowingAmount(new BigInteger(
+								ReportUtilities
+										.searchData(reportDatas,
+												"UnsecuredBorrowingAmount",
+												"283", null)));
+
+			// (284) <SecuredBorrowingPrimeBrokerageAmount>
+			if (ReportUtilities.searchData(reportDatas,
+					"SecuredBorrowingPrimeBrokerageAmount", "284", null) != null)
+				complexSecuritiesCashBorrowingType
+						.setSecuredBorrowingPrimeBrokerageAmount(new BigInteger(
+								ReportUtilities.searchData(reportDatas,
+										"SecuredBorrowingPrimeBrokerageAmount",
+										"284", null)));
+
+			// (285) <SecuredBorrowingReverseRepoAmount>
+			if (ReportUtilities.searchData(reportDatas,
+					"SecuredBorrowingReverseRepoAmount", "285", null) != null)
+				complexSecuritiesCashBorrowingType
+						.setSecuredBorrowingReverseRepoAmount(new BigInteger(
+								ReportUtilities.searchData(reportDatas,
+										"SecuredBorrowingReverseRepoAmount",
+										"285", null)));
+
+			// (286) <SecuredBorrowingOtherAmount>
+			if (ReportUtilities.searchData(reportDatas,
+					"SecuredBorrowingOtherAmount", "286", null) != null)
+				complexSecuritiesCashBorrowingType
+						.setSecuredBorrowingOtherAmount(new BigInteger(
+								ReportUtilities.searchData(reportDatas,
+										"SecuredBorrowingOtherAmount", "286",
+										null)));
 
 			complexAIFLeverageArticle242Type
 					.setSecuritiesCashBorrowing(complexSecuritiesCashBorrowingType);
@@ -1145,10 +1353,24 @@ public class GeneratorXML {
 			// /////////////////////////////////////////////////////////////////
 			// <FinancialInstrumentBorrowing>
 
-			// TODO:RT populate this class
+			// (287) <ExchangedTradedDerivativesExposureValue>
+			if (ReportUtilities.searchData(reportDatas,
+					"ExchangedTradedDerivativesExposureValue", "287", null) != null)
+				complexFinancialInstrumentBorrowingType
+						.setExchangedTradedDerivativesExposureValue(new BigInteger(
+								ReportUtilities
+										.searchData(
+												reportDatas,
+												"ExchangedTradedDerivativesExposureValue",
+												"287", null)));
 
-			complexAIFLeverageArticle242Type
-					.setFinancialInstrumentBorrowing(complexFinancialInstrumentBorrowingType);
+			// (288) <OTCDerivativesAmount>
+			if (ReportUtilities.searchData(reportDatas, "OTCDerivativesAmount",
+					"288", null) != null)
+				complexFinancialInstrumentBorrowingType
+						.setExchangedTradedDerivativesExposureValue(new BigInteger(
+								ReportUtilities.searchData(reportDatas,
+										"OTCDerivativesAmount", "288", null)));
 
 			// (289) <ShortPositionBorrowedSecuritiesValue>
 			if (ReportUtilities.searchData(reportDatas,
@@ -1159,10 +1381,16 @@ public class GeneratorXML {
 										"ShortPositionBorrowedSecuritiesValue",
 										"289", null)));
 
+			complexAIFLeverageArticle242Type
+					.setFinancialInstrumentBorrowing(complexFinancialInstrumentBorrowingType);
+
 			// /////////////////////////////////////////////////////////////////
 			// <ControlledStructure>
 
 			// TODO:RT populate this class
+
+			List<ComplexControlledStructureType> complexControlledStructureTypeList = complexControlledStructuresType
+					.getControlledStructure();
 
 			complexAIFLeverageArticle242Type
 					.setControlledStructures(complexControlledStructuresType);
@@ -1170,7 +1398,19 @@ public class GeneratorXML {
 			// /////////////////////////////////////////////////////////////////
 			// <LeverageAIF>
 
-			// TODO:RT populate this class
+			// (294) <GrossMethodRate>
+			if (ReportUtilities.searchData(reportDatas, "GrossMethodRate",
+					"294", null) != null)
+				complexLeverageAIFType.setGrossMethodRate(new BigDecimal(
+						ReportUtilities.searchData(reportDatas,
+								"GrossMethodRate", "294", null)));
+
+			// (295) <CommitmentMethodRate>
+			if (ReportUtilities.searchData(reportDatas, "CommitmentMethodRate",
+					"295", null) != null)
+				complexLeverageAIFType.setCommitmentMethodRate(new BigDecimal(
+						ReportUtilities.searchData(reportDatas,
+								"CommitmentMethodRate", "295", null)));
 
 			complexAIFLeverageArticle242Type
 					.setLeverageAIF(complexLeverageAIFType);
