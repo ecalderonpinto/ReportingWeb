@@ -33,6 +33,7 @@ import org.xml.sax.SAXException;
 import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
+import com.reportingtool.controllers.forms.GenerateXMLForm;
 import com.reportingtool.utilities.ReportUtilities;
 import com.reportingtool.utilities.ReportingErrorManager;
 import com.reportingtool.utilities.XMLGregorianCalendarConverter;
@@ -148,9 +149,9 @@ public class GeneratorXML {
 	 * @param reportExecution
 	 * @return xml report in string
 	 */
-	public String generateXML(ReportExecution reportExecution) {
+	public GenerateXMLForm generateXML(ReportExecution reportExecution) {
 
-		String result = null;
+		GenerateXMLForm result = null;
 
 		System.out.println("DEBUG_" + "GeneratorXML: starting XML with report "
 				+ reportExecution.getReportCatalog().getReportLevel() + " "
@@ -181,7 +182,7 @@ public class GeneratorXML {
 	 * @param reportExecution
 	 * @return aifXML string
 	 */
-	public String generateXMLAIF(ReportExecution reportExecution) {
+	public GenerateXMLForm generateXMLAIF(ReportExecution reportExecution) {
 
 		System.out.println("DEBUG_" + "GeneratorXML: starting XML generation ");
 
@@ -1166,7 +1167,7 @@ public class GeneratorXML {
 			// complexCCPExposureType.setCCPIdentification(ComplexEntityIdentificationType);
 
 			// ?
-			
+
 			complexCCPExposureTypeList.add(complexCCPExposureType);
 
 			complexCounterpartyRiskProfileType
@@ -1564,10 +1565,13 @@ public class GeneratorXML {
 			StringWriter st = new StringWriter();
 			marshaller.marshal(jaxbElement, st);
 
-			// validateSchemaXSD(st.toString(), reportExecution,
-			// aifXSDResource);
+			GenerateXMLForm result = new GenerateXMLForm();
+			result.setOutputXML(st.toString());
+			result.setReportExecution(reportExecution);
+			result.setValid(validateSchemaXSD(st.toString(), reportExecution,
+					aifXSDResource));
 
-			return st.toString();
+			return result;
 
 		} catch (JAXBException e) {
 			e.printStackTrace();
@@ -1596,7 +1600,7 @@ public class GeneratorXML {
 	 * @param reportExecution
 	 * @return aifmXML string
 	 */
-	public String generateXMLAIFM(ReportExecution reportExecution) {
+	public GenerateXMLForm generateXMLAIFM(ReportExecution reportExecution) {
 
 		System.out.println("DEBUG_" + "GeneratorXML: starting XML generation ");
 
@@ -2160,7 +2164,13 @@ public class GeneratorXML {
 			StringWriter st = new StringWriter();
 			marshaller.marshal(jaxbElement, st);
 
-			return st.toString();
+			GenerateXMLForm result = new GenerateXMLForm();
+			result.setOutputXML(st.toString());
+			result.setReportExecution(reportExecution);
+			result.setValid(validateSchemaXSD(st.toString(), reportExecution,
+					aifmXSDResource));
+
+			return result;
 
 			// // need a styler.xsl to transform XML to HTML
 			// StringReader reader = new StringReader(st.toString());
@@ -2192,7 +2202,6 @@ public class GeneratorXML {
 		}
 
 		return null;
-
 	}
 
 	/**

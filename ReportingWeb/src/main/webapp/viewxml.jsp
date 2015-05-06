@@ -16,10 +16,9 @@
 <!-- end: Breadcrumb -->
 
 <!-- Download button -->
-<form:form method="POST" commandName="reportXML">
+<form:form method="POST" commandName="generateXML">
 	<div class="box-content">
-		<input type="hidden" name="reportid" value="${report.id}" /> <input
-			type="submit" value="Download XML"
+		<input type="submit" value="Download XML"
 			class="btn btn-important btn-success">
 	</div>
 </form:form>
@@ -27,10 +26,10 @@
 <!-- errors link -->
 <div class="box-content">
 	<c:choose>
-		<c:when test="${report.hasErrors == true}">
+		<c:when test="${generateXML.reportExecution.hasErrors == true}">
 			<a class="btn btn-small btn-danger"
-				href="<c:url value="reportError.do?id=${report.id}" />"> Errors
-			</a>
+				href="<c:url value="reportError.do?id=${generateXML.reportExecution.id}" />">
+				Errors </a>
 		</c:when>
 		<c:otherwise>
 			<span class="label label-success">No errors</span>
@@ -41,18 +40,17 @@
 <!-- XML is Valid -->
 <div class="box-content alerts">
 	<c:choose>
-		<c:when test="${isvalid != true}">
+		<c:when test="${isValid != true}">
 			<div class="alert alert-error">
 				<button type="button" class="close" data-dismiss="alert">×</button>
-				<strong>Error:</strong>
-				XML has failed XSD validation. Check errors before sent XML file.
+				<strong>Error:</strong> XML has failed XSD validation. Check errors
+				before sent XML file.
 			</div>
 		</c:when>
 		<c:otherwise>
 			<div class="alert alert-success">
 				<button type="button" class="close" data-dismiss="alert">×</button>
-				<strong>Success:</strong>
-				XML has passed XSD validation.
+				<strong>Success:</strong> XML has passed XSD validation.
 			</div>
 		</c:otherwise>
 	</c:choose>
@@ -73,7 +71,7 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<c:out value="${outputXML}"></c:out>
+			<c:out value="${generateXML.outputXML}"></c:out>
 		</div>
 	</div>
 	<!--/span-->

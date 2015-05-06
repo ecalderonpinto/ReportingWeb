@@ -28,17 +28,22 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.dictionary.ErrorTypeEnum;
 import com.entities.entity.reportingtool.ReportExecution;
+import com.reportingtool.controllers.forms.GenerateXMLForm;
 import com.reportingtool.creation.GeneratorXML;
 import com.reportingtool.utilities.ReportUtilities;
 import com.reportingtool.utilities.ReportingErrorManager;
 
 @Controller
 @RequestMapping(value = "/viewXML.do")
-@SessionAttributes("report")
+@SessionAttributes("generateXML")
 public class ViewXMLController {
 
 	@Autowired
 	ApplicationContext applicationContext;
+
+	// variable with reportExecution and outputXML, filled in GET, used in
+	// POST to generate file.xml
+	private GenerateXMLForm generateXMLForm = null;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(ViewXMLController.class);
@@ -55,44 +60,32 @@ public class ViewXMLController {
 		ReportExecution reportExecution = reportExecutionDAO.findById(Long
 				.parseLong(id));
 
+		GeneratorXML generatorXML = new GeneratorXML(applicationContext);
+
+		generateXMLForm = generatorXML.generateXML(reportExecution);
+
+		// this form has reportExecution with new potential errors to check
+		reportExecution = generateXMLForm.getReportExecution();
 		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
 
-		GeneratorXML generatorXML = new GeneratorXML(applicationContext);
-		String outputXML = generatorXML.generateXML(reportExecution);
-
-		boolean isValid = generatorXML.validateSchemaXSD(outputXML,
-				reportExecution, generatorXML.aifmXSDResource);
-
-		model.addAttribute("report", reportExecution);
-		model.addAttribute("outputXML", outputXML);
-		model.addAttribute("isvalid", isValid);
+		model.addAttribute("generateXML", generateXMLForm);
 
 		return "viewxml";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	protected void exportXML(@RequestParam("reportid") String id,
-			HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void exportXML(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("donwload XML report");
-
-		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
-				.getBean("reportExecutionDAO");
-
-		ReportExecution reportExecution = reportExecutionDAO.findById(Long
-				.parseLong(id));
-
-		GeneratorXML generatorXML = new GeneratorXML(applicationContext);
-		String outputXML = generatorXML.generateXML(reportExecution);
+		System.out.println("download XML report");
 
 		DateFormat dateFormat = new SimpleDateFormat(
 				ReportUtilities.datePattern);
 		Date today = Calendar.getInstance().getTime();
 		String creationDate = dateFormat.format(today);
 
-		String reportName = reportExecution.getReportExecutionName() + "_"
-				+ creationDate + ".xml";
+		String reportName = generateXMLForm.getReportExecution()
+				.getReportExecutionName() + "_" + creationDate + ".xml";
 
 		// firefox does not recognize format of file if there are spaces in the
 		// name: 'name report DATE.xml' -> is replaced 'name_report_DATE.xml'
@@ -107,8 +100,8 @@ public class ViewXMLController {
 		try {
 
 			ServletOutputStream out = response.getOutputStream();
-			
-			StringBuffer sb = new StringBuffer(outputXML);
+
+			StringBuffer sb = new StringBuffer(generateXMLForm.getOutputXML());
 			InputStream in = new ByteArrayInputStream(sb.toString().getBytes(
 					"UTF-8"));
 
@@ -120,8 +113,9 @@ public class ViewXMLController {
 			e.getMessage();
 			// e.printStackTrace();
 			ReportingErrorManager.createReportError(applicationContext,
-					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
-					"FAIL", "Error when dowload XML " + e.getMessage());
+					ErrorTypeEnum.GENERATION.getErrorType(),
+					generateXMLForm.getReportExecution(), "FAIL",
+					"Error when download XML " + e.getMessage());
 		}
 
 	}
