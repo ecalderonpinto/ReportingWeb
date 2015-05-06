@@ -40,20 +40,29 @@ public class LoadXML {
 
 	// http://java.dzone.com/articles/using-jaxb-generate-java
 
-	public ReportExecution loadAIFFile(File file, Fund fund) {
+	/**
+	 * Function receive a File and AIF reportExecution, read this File to add
+	 * reportDatas from XML file
+	 * 
+	 * @param file
+	 * @param reportExecution
+	 * @return reportExecution with reportDatas from file
+	 */
+	public ReportExecution loadAIFFile(File file,
+			ReportExecution reportExecution) {
 
-		ReportExecution reportExecution = null;
+		// TODO similar to AIFM
 
 		return reportExecution;
 	}
 
 	/**
-	 * Function receive a File and Company, read this File to create a new
-	 * ReportExecution
+	 * Function receive a File and AIFM reportExecution, read this File to add
+	 * reportDatas from XML file
 	 * 
 	 * @param file
-	 * @param company
-	 * @return reportExecution from File, linked with Company
+	 * @param reportExecution
+	 * @return reportExecution with reportDatas from file
 	 */
 	public ReportExecution loadAIFMFile(File file,
 			ReportExecution reportExecution) throws Exception {
@@ -91,19 +100,20 @@ public class LoadXML {
 
 		}
 
-		// with object aifmReportingInfo we find for every reportField to
-		// create all reportData and added to reportExecution
+		// Process inverse of GenerateXML, the class aifmReportingInfo contains
+		// all objects inside and we unmarshal creating reportDatas, searching
+		// of every reportFields and add to reportExecution if not exists
 
 		VersionAuditor user = new VersionAuditor("loader");
 
 		ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
 				.getBean("reportCatalogDAO");
-		
+
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
-		
+
 		reportExecution = reportExecutionDAO.findById(reportExecution.getId());
-		
+
 		List<ReportData> reportDatas = reportExecution.getReportDatas();
 
 		ReportField reportField = new ReportField();
@@ -120,11 +130,10 @@ public class LoadXML {
 				&& aifmReportingInfo.getReportingMemberState() != null
 				&& !aifmReportingInfo.getReportingMemberState().isEmpty()
 				&& ReportUtilities.searchData(reportDatas,
-						"ReportingMemberState", "1", null) == null) 
+						"ReportingMemberState", "1", null) == null)
 			reportDatas.add(new ReportData(null, reportField, reportExecution,
 					null, null, aifmReportingInfo.getReportingMemberState(),
 					null, null, user));
-		
 
 		// TODO all fields
 
@@ -140,17 +149,17 @@ public class LoadXML {
 		if (reportField != null
 				&& complexAIFMRecordInfoType.getAIFMContentType() != null
 				&& !complexAIFMRecordInfoType.getAIFMContentType().isEmpty()
-				&& ReportUtilities.searchData(reportDatas,
-						"AIFMContentType", "5", null) == null) 
+				&& ReportUtilities.searchData(reportDatas, "AIFMContentType",
+						"5", null) == null)
 			reportDatas.add(new ReportData(null, reportField, reportExecution,
 					null, null, complexAIFMRecordInfoType.getAIFMContentType(),
 					null, null, user));
 
 		// (6) <ReportingPeriodStartDate>
-		
+
 		// ...
 
-		System.out.println("Datos cargados de XML: ");
+		System.out.println("Datos finales de XML: ");
 		for (ReportData reportData1 : reportDatas) {
 			System.out.println(reportData1.getReportField()
 					.getReportFieldName()
