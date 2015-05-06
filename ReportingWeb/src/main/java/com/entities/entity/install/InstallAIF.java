@@ -256,7 +256,7 @@ public class InstallAIF {
 			ReportField reportField20 = new ReportField(reportCatalog,
 					reportFieldx2, "A", "AIFReportingCode",
 					new BigInteger("20"), ".{2}", "", "General Info",
-					"CountryCodeType", "01.020", "1,1", versionField, null,
+					"AIFReportingCodeType", "01.020", "1,1", versionField, null,
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportField20);
 

@@ -147,7 +147,7 @@ public class GeneratorXML {
 	 * AIF or AIFM generator.
 	 * 
 	 * @param reportExecution
-	 * @return xml report in string
+	 * @return GenerateXMLForm: outputXML and reportExecution
 	 */
 	public GenerateXMLForm generateXML(ReportExecution reportExecution) {
 
@@ -481,7 +481,9 @@ public class GeneratorXML {
 						.parseBoolean(ReportUtilities.searchData(reportDatas,
 								"LastReportingFlag", "13", null)));
 
+			// /////////////////////////////////////////////////////////////////
 			// <Assumptions>
+			
 			List<ComplexAssumptionType> complexAssumptionTypeList = complexAssumptionsType
 					.getAssumption();
 			List<Integer> assumptionCounts = new ArrayList<Integer>();
@@ -522,6 +524,8 @@ public class GeneratorXML {
 			}
 			complexAIFRecordInfoType.setAssumptions(complexAssumptionsType);
 
+			// /////////////////////////////////////////////////////////////////
+			
 			// (16) <AIFMNationalCode>
 			if (ReportUtilities.searchData(reportDatas, "AIFMNationalCode",
 					"16", null) != null)
@@ -1547,7 +1551,7 @@ public class GeneratorXML {
 
 			// create JAXBContext which will be used to update writer
 			JAXBContext context = JAXBContext
-					.newInstance(AIFMReportingInfo.class);
+					.newInstance(AIFReportingInfo.class);
 
 			// Create a String writer object which will be
 			// used to write jaxbElment XML to string
@@ -1793,6 +1797,7 @@ public class GeneratorXML {
 						.parseBoolean(ReportUtilities.searchData(reportDatas,
 								"LastReportingFlag", "13", null)));
 
+			// /////////////////////////////////////////////////////////////////
 			// <Assumptions>
 			List<ComplexAssumptionType> complexAssumptionTypeList = complexAssumptionsType
 					.getAssumption();
@@ -1833,7 +1838,9 @@ public class GeneratorXML {
 						+ " " + assumptionDescription);
 			}
 			complexAIFMRecordInfoType.setAssumptions(complexAssumptionsType);
-
+			
+			// /////////////////////////////////////////////////////////////////
+			
 			// (16) <AIFMReportingCode>
 			if (ReportUtilities.searchData(reportDatas, "AIFMReportingCode",
 					"16", null) != null)
@@ -2064,6 +2071,7 @@ public class GeneratorXML {
 										"FXEUROtherReferenceRateDescription",
 										"38", null));
 
+			// (24) (25)
 			if (ReportUtilities.searchData(reportDatas,
 					"Old_ReportingMemberState", "24", null) != null
 					&& ReportUtilities.searchData(reportDatas,
