@@ -9,6 +9,7 @@
 	<li><a href="#">Loads</a></li>
 </ul>
 <!-- end: Breadcrumb -->
+
 <div class="row-fluid sortable">
 	<div class="box span12">
 		<div class="box-header">
@@ -61,7 +62,7 @@
 						<form:select path="selectFileConfigs" items="${selectFileConfigs}"></form:select>
 					</div>
 				</div>
-				<input type="submit" value="Load">
+				<input type="submit" class="btn btn-primary" value="Load">
 			</form:form>
 		</div>
 	</div>

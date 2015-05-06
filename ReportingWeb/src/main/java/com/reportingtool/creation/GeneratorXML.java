@@ -2125,10 +2125,10 @@ public class GeneratorXML {
 			// /////////////////////////////////////////////////////////////////
 			// create list of root elements:
 			// AIFMRecordInfo and CancellationAIFMRecordInfo
-			List<Object> listAIFMRepoting = aifmReportingInfo
+			List<Object> listAIFMReporting = aifmReportingInfo
 					.getCancellationAIFMRecordInfoOrAIFMRecordInfo();
-			listAIFMRepoting.add(complexAIFMRecordInfoType);
-			listAIFMRepoting.add(complexCancellationAIFMRecordInfoType);
+			listAIFMReporting.add(complexAIFMRecordInfoType);
+			listAIFMReporting.add(complexCancellationAIFMRecordInfoType);
 
 			// GENERATING XML WITH JAXB
 

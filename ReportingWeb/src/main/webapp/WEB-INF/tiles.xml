@@ -137,6 +137,12 @@
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 	
+	<definition name="loadxmltoreport" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - Load XML" />
+		<put-attribute name="mainContent" value="/loadxml.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
 	<definition name="loads" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - Loads" />
 		<put-attribute name="mainContent" value="/loads.jsp" />

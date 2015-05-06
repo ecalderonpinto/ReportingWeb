@@ -32,7 +32,7 @@ public class ReportUtilities {
 	public static final String dateTimePattern = "yyyy-MM-dd HH:mm:ss";
 	public static final String datePattern = "yyyy-MM-dd";
 	public static final String yearPattern = "yyyy";
-	
+
 	public static final String reportVersion = "1.2";
 
 	/**
@@ -200,8 +200,8 @@ public class ReportUtilities {
 			reportField = reportFieldDAO.findByExample(reportField).get(0);
 
 			ReportData reportData = new ReportData(null, reportField,
-					reportExecution, null, null, reportingPeriodYear, null, null,
-					new VersionAuditor("utilities"));
+					reportExecution, null, null, reportingPeriodYear, null,
+					null, new VersionAuditor("utilities"));
 
 			// save new reportData
 			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
@@ -213,6 +213,37 @@ public class ReportUtilities {
 			System.out.println("creating <Version>");
 		}
 
+	}
+
+	/**
+	 * Function to search a ReportField from List<ReportField> with
+	 * reportFieldName and reportFieldNumber
+	 * 
+	 * @param reportFields
+	 * @param reportFieldName
+	 * @param reportFieldNum
+	 * @return ReportField
+	 */
+	public static ReportField searchField(List<ReportField> reportFields,
+			String reportFieldName, String reportFieldNum) {
+
+		ReportField result = null;
+
+		for (ReportField reportField : reportFields) {
+			if (reportField.getReportFieldName().equals(reportFieldName)
+					&& reportField.getReportFieldNum().equals(
+							new BigInteger(reportFieldNum))) {
+				result = reportField;
+				break;
+			}
+		}
+
+		if (result == null) {
+			System.out.println("ERROR ReportUtilities: field does not exists "
+					+ reportFieldName + " (" + reportFieldNum + ")");
+		}
+
+		return result;
 	}
 
 	/**

@@ -36,7 +36,7 @@ ${resultMessage}
 						<tr>
 							<td>Report Name <b>(*)</b></td>
 							<td><form:input path="reportExecutionName"
-									cssClass="input-xlarge" required="required"/></td>
+									cssClass="input-xlarge" required="required" /></td>
 							<td>Report Description</td>
 							<td><form:input path="reportExecutionDesc"
 									cssClass="input-xlarge" /></td>
@@ -44,10 +44,10 @@ ${resultMessage}
 						<tr>
 							<td>Period Type <b>(*)</b></td>
 							<td><form:input path="reportPeriodType"
-									cssClass="input-xlarge" required="required"/></td>
+									cssClass="input-xlarge" required="required" /></td>
 							<td>Period Year <b>(*)</b></td>
 							<td><form:input path="reportPeriodYear"
-									cssClass="input-xlarge" required="required"/></td>
+									cssClass="input-xlarge" required="required" /></td>
 						</tr>
 					</tbody>
 				</table>
@@ -69,8 +69,7 @@ ${resultMessage}
 			<div class="box-content">
 				<fieldset>
 					<div class="form-actions">
-						<button type="submit" class="btn btn-danger">Save
-							changes</button>
+						<button type="submit" class="btn btn-danger">Save changes</button>
 						<button class="btn">Cancel</button>
 					</div>
 				</fieldset>
@@ -83,4 +82,5 @@ ${resultMessage}
 
 </form:form>
 
-<a href="companyReports.do?id=${company.id}"><span class="btn btn-important">Back</span></a>
+<a href="companyReports.do?id=${company.id}"><span
+	class="btn btn-important">Back</span></a>
