@@ -24,6 +24,8 @@ import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.controllers.forms.AlertToView;
 import com.reportingtool.controllers.forms.LoadXMLFileForm;
 import com.reportingtool.creation.LoadXML;
+import com.reportingtool.validator.Semantic;
+import com.reportingtool.validator.Syntactic;
 
 @Controller
 @RequestMapping(value = "/loadXMLToReport.do")
@@ -88,7 +90,16 @@ public class LoadXMLToReport {
 
 				ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 						.getBean("reportExecutionDAO");
-
+				
+				// Syntactic analysis
+				Syntactic syntactic = new Syntactic(applicationContext);
+				syntactic.validReportExecution(reportExecution);
+				
+				// Semantic analysis
+				Semantic semantic = new Semantic(applicationContext);
+				semantic.checkSemantic(reportExecution);
+				
+				// save reportExecution
 				reportExecutionDAO.edit(reportExecution);
 				System.out.println("saved changes of reportExecution "
 						+ reportExecution.getReportExecutionName());

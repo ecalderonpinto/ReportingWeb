@@ -130,11 +130,12 @@ public class ReportExecutionController {
 		// load reportExecution from id to have all this child entities
 		reportExecution = reportExecutionDAO.findById(reportExecution.getId());
 
-		// check syntactic and semantic
+		// Syntactic analysis
 		Syntactic syntactic = new Syntactic(applicationContext);
-		Semantic semantic = new Semantic(applicationContext);
-
 		syntactic.validReportExecution(reportExecution);
+		
+		// Semantic analysis
+		Semantic semantic = new Semantic(applicationContext);
 		semantic.checkSemantic(reportExecution);
 
 		// save changes

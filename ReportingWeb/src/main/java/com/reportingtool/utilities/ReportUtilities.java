@@ -73,7 +73,34 @@ public class ReportUtilities {
 		List<ReportData> reportDatas = new ArrayList<ReportData>(
 				reportExecution.getReportDatas());
 
-		// <CreationDateAndTime>
+		// (2) <Version>
+		if (searchData(reportDatas, "Version", "2", null) == null) {
+
+			ReportField reportField = new ReportField();
+			reportField.setReportCatalog(reportExecution.getReportCatalog());
+			reportField.setReportFieldName("Version");
+			reportField.setReportFieldNum(new BigInteger("2"));
+			reportField.setReportFieldEditable(true);
+
+			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
+					.getBean("reportFieldDAO");
+			reportField = reportFieldDAO.findByExample(reportField).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, versionNum, null, null,
+					new VersionAuditor("utilities"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+
+			reportExecution.getReportDatas().add(reportData);
+
+			System.out.println("creating <Version>");
+		}
+
+		// (3) <CreationDateAndTime>
 		if (searchData(reportDatas, "CreationDateAndTime", "3", null) == null) {
 
 			ReportField reportField = new ReportField();
@@ -110,34 +137,7 @@ public class ReportUtilities {
 			System.out.println("creating <CreationDateAndTime>");
 		}
 
-		// <Version>
-		if (searchData(reportDatas, "Version", "2", null) == null) {
-
-			ReportField reportField = new ReportField();
-			reportField.setReportCatalog(reportExecution.getReportCatalog());
-			reportField.setReportFieldName("Version");
-			reportField.setReportFieldNum(new BigInteger("2"));
-			reportField.setReportFieldEditable(true);
-
-			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
-					.getBean("reportFieldDAO");
-			reportField = reportFieldDAO.findByExample(reportField).get(0);
-
-			ReportData reportData = new ReportData(null, reportField,
-					reportExecution, null, null, versionNum, null, null,
-					new VersionAuditor("utilities"));
-
-			// save new reportData
-			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
-					.getBean("reportDataDAO");
-			reportDataDAO.create(reportData);
-
-			reportExecution.getReportDatas().add(reportData);
-
-			System.out.println("creating <Version>");
-		}
-
-		// <FillingType>
+		// (4) <FillingType>
 		if (searchData(reportDatas, "FilingType", "4", null) == null) {
 
 			ReportField reportField = new ReportField();
@@ -187,7 +187,7 @@ public class ReportUtilities {
 			reportExecution.getReportDatas().add(reportData);
 		}
 
-		// <ReportingPeriodYear>
+		// (9) <ReportingPeriodYear>
 		if (searchData(reportDatas, "ReportingPeriodYear", "9", null) == null) {
 
 			ReportField reportField = new ReportField();
@@ -210,7 +210,7 @@ public class ReportUtilities {
 
 			reportExecution.getReportDatas().add(reportData);
 
-			System.out.println("creating <Version>");
+			System.out.println("creating <ReportingPeriodYear>");
 		}
 
 	}
