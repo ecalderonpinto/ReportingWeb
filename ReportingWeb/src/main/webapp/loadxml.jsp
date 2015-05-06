@@ -82,3 +82,6 @@
 	</div>
 	<!--/row-->
 </form:form>
+
+<a href="companyReports.do?id=${company.id}"><span
+	class="btn btn-important">Back</span></a>

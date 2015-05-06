@@ -2160,9 +2160,6 @@ public class GeneratorXML {
 			StringWriter st = new StringWriter();
 			marshaller.marshal(jaxbElement, st);
 
-			// return
-			// st.toString().replace("    ","<pre>\t</pre>").replace("\n",
-			// "<br>");
 			return st.toString();
 
 			// // need a styler.xsl to transform XML to HTML

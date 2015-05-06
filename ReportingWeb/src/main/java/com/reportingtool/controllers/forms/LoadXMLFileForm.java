@@ -9,20 +9,20 @@ public class LoadXMLFileForm {
 	private MultipartFile inputFile;
 	private ReportExecution reportExecution;
 
-	public ReportExecution getReportExecution() {
-		return reportExecution;
-	}
-
-	public void setReportExecution(ReportExecution reportExecution) {
-		this.reportExecution = reportExecution;
-	}
-
 	public MultipartFile getInputFile() {
 		return inputFile;
 	}
 
 	public void setInputFile(MultipartFile inputFile) {
 		this.inputFile = inputFile;
+	}
+	
+	public ReportExecution getReportExecution() {
+		return reportExecution;
+	}
+
+	public void setReportExecution(ReportExecution reportExecution) {
+		this.reportExecution = reportExecution;
 	}
 
 }

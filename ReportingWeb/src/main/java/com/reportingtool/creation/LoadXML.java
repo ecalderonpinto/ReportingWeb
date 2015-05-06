@@ -24,6 +24,12 @@ import com.reportingtool.xml.AIFMReportingInfo;
 import com.reportingtool.xml.ComplexAIFMRecordInfoType;
 import com.reportingtool.xml.ComplexCancellationAIFMRecordInfoType;
 
+/**
+ * Class to load a XML file and convert to reportExecution
+ * 
+ * @author alberto.olivan
+ *
+ */
 public class LoadXML {
 
 	private ApplicationContext applicationContext;
@@ -141,6 +147,7 @@ public class LoadXML {
 					null, null, user));
 
 		// (6) <ReportingPeriodStartDate>
+		
 		// ...
 
 		System.out.println("Datos cargados de XML: ");
