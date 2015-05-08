@@ -98,6 +98,9 @@
 														${reportData.reportField.reportFieldName} <c:if
 															test="${reportData.reportDataBlock != null}"> 
 														- [${reportData.reportDataBlock}] </c:if>
+														<c:if test="${reportData.reportField.reportFieldMandatory == true}">
+														<b>(*)</b>
+														</c:if>
 													</label>
 													<div class="controls">
 														<!-- Search if is dropdown and set it -->
@@ -162,6 +165,9 @@
 															${reportData.reportField.reportFieldName}</span> <c:if
 															test="${reportData.reportDataBlock != null}"> 
 														- [${reportData.reportDataBlock}] </c:if>
+														<c:if test="${reportData.reportField.reportFieldMandatory == true}">
+														<b>(*)</b>
+														</c:if>
 													</label>
 													<div class="controls">
 														<!-- Search if is dropdown and set it -->

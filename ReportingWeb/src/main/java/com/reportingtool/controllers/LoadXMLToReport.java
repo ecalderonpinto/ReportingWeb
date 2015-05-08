@@ -2,6 +2,7 @@ package com.reportingtool.controllers;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Scanner;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +24,7 @@ import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.reportingtool.controllers.forms.AlertToView;
 import com.reportingtool.controllers.forms.LoadXMLFileForm;
+import com.reportingtool.creation.GeneratorXML;
 import com.reportingtool.creation.LoadXML;
 import com.reportingtool.validator.Semantic;
 import com.reportingtool.validator.Syntactic;
@@ -78,7 +80,17 @@ public class LoadXMLToReport {
 			fos.write(loadXMLFileForm.getInputFile().getBytes());
 			fos.close();
 
-			if (file.exists()) {
+			// before load file, check if XML isValid
+			GeneratorXML generatorXML = new GeneratorXML(applicationContext);
+
+			// String text = new Scanner(file).useDelimiter("\\A").next();
+			// with XSD, is not going to load if is incomplete
+			// boolean isValid = generatorXML.validateSchemaXSD(text, null,
+			// generatorXML.aifmXSDResource);
+
+			boolean isValid = generatorXML.validateXMLWellFormed(file);
+
+			if (isValid) {
 				System.out.println("llega fichero xml " + file.getPath());
 
 				LoadXML loadXML = new LoadXML(applicationContext);
@@ -90,19 +102,24 @@ public class LoadXMLToReport {
 
 				ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 						.getBean("reportExecutionDAO");
-				
+
 				// Syntactic analysis
 				Syntactic syntactic = new Syntactic(applicationContext);
 				syntactic.validReportExecution(reportExecution);
-				
+
 				// Semantic analysis
 				Semantic semantic = new Semantic(applicationContext);
 				semantic.checkSemantic(reportExecution);
-				
+
 				// save reportExecution
 				reportExecutionDAO.edit(reportExecution);
 				System.out.println("saved changes of reportExecution "
 						+ reportExecution.getReportExecutionName());
+			} else {
+				alert.setError(true);
+				// alert.setMessage("XML File has failed XSD validation. It is not loaded.");
+				alert.setMessage("File " + file.getPath()
+						+ " entered is not XML well formed, it is ignored.");
 			}
 
 		} catch (Exception e) {
@@ -111,6 +128,8 @@ public class LoadXMLToReport {
 			e.printStackTrace();
 		}
 
+		model.addAttribute("loadXML", loadXMLFileForm);
+		
 		model.addAttribute("alerts", true);
 		model.addAttribute("alert", alert);
 

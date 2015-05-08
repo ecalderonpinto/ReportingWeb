@@ -86,6 +86,92 @@ public class InstallReportList {
 				"FEEDER", "FEEDER", versionAdmin));
 		reportFieldList.add(new ReportFieldList("AIFMasterFeederStatusType",
 				"NONE", "NONE", versionAdmin));
+		
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"1", "1", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"2", "2", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"3", "3", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"4", "4", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"5", "5", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"6", "6", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"7", "7", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"8", "8", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"9", "9", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"10", "10", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"11", "11", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"12", "12", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"13", "13", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"14", "14", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"15", "15", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"16", "16", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"17", "17", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"18", "18", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"19", "19", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"20", "20", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"21", "21", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"22", "22", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"23", "23", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"24", "24", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"25", "25", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"26", "26", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"27", "27", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"28", "28", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"29", "29", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"30", "30", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"31", "31", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"32", "32", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"33", "33", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"34", "34", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"35", "35", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"36", "36", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"37", "37", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"38", "38", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"39", "39", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"40", "40", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"41", "41", versionAdmin));
+		reportFieldList.add(new ReportFieldList("QUESTION_AIFM",
+				"42", "42", versionAdmin));
+		
 
 		reportFieldList.add(new ReportFieldList("AIFTypeType", "HFND", "HFND",
 				versionAdmin));
@@ -187,8 +273,8 @@ public class InstallReportList {
 
 		reportFieldList.add(new ReportFieldList("CancelledRecordFlagType", "C",
 				"C", versionAdmin));
-		reportFieldList.add(new ReportFieldList("CancelledRecordFlagType", "D",
-				"D", versionAdmin));
+//		reportFieldList.add(new ReportFieldList("CancelledRecordFlagType", "D",
+//				"D", versionAdmin));
 
 		reportFieldList.add(new ReportFieldList("FilingTypeType", "AMND",
 				"AMND", versionAdmin));

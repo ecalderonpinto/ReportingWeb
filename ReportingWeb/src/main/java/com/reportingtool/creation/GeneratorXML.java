@@ -1,6 +1,7 @@
 package com.reportingtool.creation;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigDecimal;
@@ -21,6 +22,9 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
@@ -28,6 +32,7 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
 import org.springframework.context.ApplicationContext;
+import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import com.entities.dictionary.ErrorTypeEnum;
@@ -483,7 +488,7 @@ public class GeneratorXML {
 
 			// /////////////////////////////////////////////////////////////////
 			// <Assumptions>
-			
+
 			List<ComplexAssumptionType> complexAssumptionTypeList = complexAssumptionsType
 					.getAssumption();
 			List<Integer> assumptionCounts = new ArrayList<Integer>();
@@ -525,7 +530,7 @@ public class GeneratorXML {
 			complexAIFRecordInfoType.setAssumptions(complexAssumptionsType);
 
 			// /////////////////////////////////////////////////////////////////
-			
+
 			// (16) <AIFMNationalCode>
 			if (ReportUtilities.searchData(reportDatas, "AIFMNationalCode",
 					"16", null) != null)
@@ -1838,9 +1843,9 @@ public class GeneratorXML {
 						+ " " + assumptionDescription);
 			}
 			complexAIFMRecordInfoType.setAssumptions(complexAssumptionsType);
-			
+
 			// /////////////////////////////////////////////////////////////////
-			
+
 			// (16) <AIFMReportingCode>
 			if (ReportUtilities.searchData(reportDatas, "AIFMReportingCode",
 					"16", null) != null)
@@ -2255,15 +2260,60 @@ public class GeneratorXML {
 		} catch (SAXException e) {
 			System.out.println("DEBUG_" + "CREATION - XML NOT is valid: "
 					+ e.getLocalizedMessage());
+
 			ReportingErrorManager.createReportError(applicationContext,
 					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
 					"XML Incomplete", "Validating process detect some issues: "
 							+ e.getLocalizedMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
+
 			ReportingErrorManager.createReportError(applicationContext,
 					ErrorTypeEnum.GENERATION.getErrorType(), reportExecution,
 					"FAIL", "Error validating XML " + e.getLocalizedMessage());
+		}
+
+		return result;
+	}
+
+	/**
+	 * Validate a aifmdXML string if is a XML well formed format. Return true if
+	 * it is XML, false otherwise.
+	 * 
+	 * @param aifmdXML
+	 * @return boolean
+	 */
+	public boolean validateXMLWellFormed(File file) {
+		boolean result = false;
+
+		// http://www.edankert.com/validate.html
+
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory
+					.newInstance();
+			factory.setValidating(false);
+			factory.setNamespaceAware(true);
+
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			builder.setErrorHandler(new SimpleErrorHandler());
+			
+			builder.parse(file);
+
+			result = true;
+
+		} catch (ParserConfigurationException e) {
+			System.out
+					.println("Parser error when validating XML is well formed. "
+							+ e.getMessage());
+			//e.printStackTrace();
+		} catch (SAXException e) {
+			System.out.println("SAX error when validating XML is well formed. "
+					+ e.getMessage());
+			//e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("IO error when validating XML is well formed. "
+					+ e.getMessage());
+			//e.printStackTrace();
 		}
 
 		return result;

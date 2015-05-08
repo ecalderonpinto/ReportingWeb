@@ -32,6 +32,8 @@ public class ReportUtilities {
 	public static final String dateTimePattern = "yyyy-MM-dd HH:mm:ss";
 	public static final String datePattern = "yyyy-MM-dd";
 	public static final String yearPattern = "yyyy";
+	
+	public static final String dateXMLGregorianPattern = "EEE MMM dd zzz HH:mm:ss yyyy";
 
 	public static final String reportVersion = "1.2";
 

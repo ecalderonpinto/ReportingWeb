@@ -100,6 +100,7 @@ public class InstallAIFM {
 							"1"), ".{2}", "", "General Info",
 					"CountryCodeType", "1.01", "1,1", versionField, null, null,
 					null, versionAdmin);
+			reportField1.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField1);
 
 			// (2) <Version>
@@ -108,6 +109,7 @@ public class InstallAIFM {
 					"([0-9])+\\.([0-9])+", "", "General Info", "VERSION",
 					"1.02", "1,1", versionField, null, null, null, versionAdmin);
 			reportField2.setReportFieldEditable(true);
+			reportField2.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField2);
 
 			// (3) <CreationDateAndTime>
@@ -118,6 +120,7 @@ public class InstallAIFM {
 					"", "General Info", "DATETIME", "1.03", "1,1", versionField,
 					null, null, null, versionAdmin);
 			reportField3.setReportFieldEditable(true);
+			reportField3.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField3);
 
 			ReportField reportFieldx2 = new ReportField(reportCatalog,
@@ -131,6 +134,7 @@ public class InstallAIFM {
 					reportFieldx2, "A", "FilingType", new BigInteger("4"),
 					".{4}", "", "General Info", "FilingTypeType", "1.04", "1,1",
 					versionField, null, null, null, versionAdmin);
+			reportField4.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField4);
 
 			// (5) <AIFMContentType>
@@ -138,6 +142,7 @@ public class InstallAIFM {
 					reportFieldx2, "N", "AIFMContentType", new BigInteger("5"),
 					"[0-9]{1}", "", "General Info", "AIFMContentTypeType",
 					"1.05", "1,1", versionField, null, null, null, versionAdmin);
+			reportField5.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField5);
 
 			// (6) <ReportingPeriodStartDate>
@@ -146,6 +151,7 @@ public class InstallAIFM {
 					new BigInteger("6"), "[0-9]{4}-[0-9]{2}-[0-9]{2}", "",
 					"General Info", "DATE", "1.06", "1,1", versionField, null,
 					null, null, versionAdmin);
+			reportField6.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField6);
 
 			// (7) <ReportingPeriodEndDate>
@@ -154,6 +160,7 @@ public class InstallAIFM {
 					new BigInteger("7"), "[0-9]{4}-[0-9]{2}-[0-9]{2}", "",
 					"General Info", "DATE", "1.07", "1,1", versionField, null,
 					null, null, versionAdmin);
+			reportField7.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField7);
 
 			// (8) <ReportingPeriodType>
@@ -162,6 +169,7 @@ public class InstallAIFM {
 							"8"), ".{2}", "", "General Info",
 					"ReportingPeriodTypeType", "1.08", "1,1", versionField,
 					null, null, null, versionAdmin);
+			reportField8.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField8);
 
 			// (9) <ReportingPeriodYear>
@@ -169,6 +177,7 @@ public class InstallAIFM {
 					reportFieldx2, "N", "ReportingPeriodYear", new BigInteger(
 							"9"), "[0-9]{4}", "", "General Info", "YEAR",
 					"1.09", "1,1", versionField, null, null, null, versionAdmin);
+			reportField9.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField9);
 
 			// (10) <AIFMReportingObligationChangeFrequencyCode>
@@ -202,6 +211,7 @@ public class InstallAIFM {
 					reportFieldx2, "B", "LastReportingFlag", new BigInteger(
 							"13"), "true|false", "", "General Info", "BOOLEAN",
 					"1.13", "1,1", versionField, null, null, null, versionAdmin);
+			reportField13.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField13);
 
 			ReportField reportFieldx3 = new ReportField(reportCatalog,
@@ -218,7 +228,7 @@ public class InstallAIFM {
 			// (14) <QuestionNumber>
 			ReportField reportField14 = new ReportField(reportCatalog,
 					reportFieldx4, "N", "QuestionNumber", new BigInteger("14"),
-					"[0-9]{0,3}", "", "Assumptions", "QUESTION", "2.14", "0,n",
+					"[0-9]{0,3}", "", "Assumptions", "QUESTION_AIFM", "2.14", "0,n",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField14);
 
@@ -236,6 +246,7 @@ public class InstallAIFM {
 							"16"), ".{1}", "", "General Info",
 					"AIFMReportingCodeType", "1.16", "1,1", versionField, null,
 					null, null, versionAdmin);
+			reportField16.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField16);
 
 			// (17) <AIFMJurisdiction>
@@ -244,6 +255,7 @@ public class InstallAIFM {
 					new BigInteger("17"), ".{2}", "", "General Info",
 					"CountryCodeType", "1.17", "1,1", versionField, null, null,
 					null, versionAdmin);
+			reportField17.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField17);
 
 			// (18) <AIFMNationalCode>
@@ -252,6 +264,7 @@ public class InstallAIFM {
 					new BigInteger("18"), ".{0,30}", "", "General Info",
 					"AIFMNationalCodeType", "1.18", "1,1", versionField, null,
 					null, null, versionAdmin);
+			reportField18.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField18);
 
 			// (19) <AIFMName>
@@ -259,6 +272,7 @@ public class InstallAIFM {
 					reportFieldx2, "Z", "AIFMName", new BigInteger("19"),
 					".{0,300}", "", "General Info", "AIFM_NAME", "1.19", "1,1",
 					versionField, null, null, null, versionAdmin);
+			reportField19.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField19);
 
 			// (20) <AIFMEEAFlag>
@@ -266,6 +280,7 @@ public class InstallAIFM {
 					reportFieldx2, "B", "AIFMEEAFlag", new BigInteger("20"),
 					"true|false", "", "General Info", "BOOLEAN", "1.20", "1,1",
 					versionField, null, null, null, versionAdmin);
+			reportField20.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField20);
 
 			// (21) <AIFMNoReportingFlag>
@@ -273,6 +288,7 @@ public class InstallAIFM {
 					reportFieldx2, "B", "AIFMNoReportingFlag", new BigInteger(
 							"21"), "true|false", "", "General Info", "BOOLEAN",
 					"1.21", "1,1", versionField, null, null, null, versionAdmin);
+			reportField21.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField21);
 
 			ReportField reportFieldx5 = new ReportField(reportCatalog,
@@ -334,6 +350,7 @@ public class InstallAIFM {
 					reportFieldx8, "N", "Ranking", new BigInteger("26"),
 					"[0-9]{1}", "", "Principal Markets", "FiveRankingType",
 					"4.26", "5,5", versionField, null, null, null, versionAdmin);
+			reportField26.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField26);
 
 			ReportField reportFieldx9 = new ReportField(reportCatalog,
@@ -348,6 +365,7 @@ public class InstallAIFM {
 					".{3,4}", "", "Principal Markets",
 					"MarketCodeTypeWithNOTType", "4.27", "5,5", versionField,
 					null, null, null, versionAdmin);
+			reportField27.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField27);
 
 			// (28) <MarketCode>
@@ -381,6 +399,7 @@ public class InstallAIFM {
 					reportFieldx11, "N", "Ranking", new BigInteger("30"),
 					"[0-9]{1}", "", "Principal Instruments", "FiveRankingType",
 					"5.30", "5,5", versionField, null, null, null, versionAdmin);
+			reportField30.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField30);
 
 			// (31) <SubAssetType>
@@ -388,6 +407,7 @@ public class InstallAIFM {
 					reportFieldx11, "A", "SubAssetType", new BigInteger("31"),
 					".{1,12}", "", "Principal Instruments", "SubAssetTypeType",
 					"5.31", "5,5", versionField, null, null, null, versionAdmin);
+			reportField31.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField31);
 
 			// (32) <AggregatedValueAmount>
@@ -404,6 +424,7 @@ public class InstallAIFM {
 					new BigInteger("33"), "[0-9]{0,15}?", "",
 					"Complete Description", "NUMBER", "3.33", "1,1",
 					versionField, null, null, null, versionAdmin);
+			reportField33.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField33);
 
 			// (34) <AUMAmountInBaseCurrency>
