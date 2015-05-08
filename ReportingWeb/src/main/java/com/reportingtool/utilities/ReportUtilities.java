@@ -6,13 +6,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
 
 import com.entities.dao.reportingtool.ReportDataDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
+import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
@@ -32,7 +35,7 @@ public class ReportUtilities {
 	public static final String dateTimePattern = "yyyy-MM-dd HH:mm:ss";
 	public static final String datePattern = "yyyy-MM-dd";
 	public static final String yearPattern = "yyyy";
-	
+
 	public static final String dateXMLGregorianPattern = "EEE MMM dd zzz HH:mm:ss yyyy";
 
 	public static final String reportVersion = "1.2";
@@ -75,18 +78,26 @@ public class ReportUtilities {
 		List<ReportData> reportDatas = new ArrayList<ReportData>(
 				reportExecution.getReportDatas());
 
+		System.out.println("Creating default fields of catalog "
+				+ reportExecution.getReportCatalog().getReportCatalogName());
+
+		ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
+				.getBean("reportFieldDAO");
+
 		// (2) <Version>
 		if (searchData(reportDatas, "Version", "2", null) == null) {
 
 			ReportField reportField = new ReportField();
-			reportField.setReportCatalog(reportExecution.getReportCatalog());
-			reportField.setReportFieldName("Version");
-			reportField.setReportFieldNum(new BigInteger("2"));
-			reportField.setReportFieldEditable(true);
 
-			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
-					.getBean("reportFieldDAO");
-			reportField = reportFieldDAO.findByExample(reportField).get(0);
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("Version", "2",
+							reportExecution.getReportCatalog())).get(0);
+
+			// reportField.setReportCatalog(reportExecution.getReportCatalog());
+			// reportField.setReportFieldName("Version");
+			// reportField.setReportFieldNum(new BigInteger("2"));
+			// reportField.setReportFieldEditable(true);
+			// reportField = reportFieldDAO.findByExample(reportField).get(0);
 
 			ReportData reportData = new ReportData(null, reportField,
 					reportExecution, null, null, versionNum, null, null,
@@ -106,14 +117,16 @@ public class ReportUtilities {
 		if (searchData(reportDatas, "CreationDateAndTime", "3", null) == null) {
 
 			ReportField reportField = new ReportField();
-			reportField.setReportCatalog(reportExecution.getReportCatalog());
-			reportField.setReportFieldName("CreationDateAndTime");
-			reportField.setReportFieldNum(new BigInteger("3"));
-			reportField.setReportFieldEditable(true);
 
-			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
-					.getBean("reportFieldDAO");
-			reportField = reportFieldDAO.findByExample(reportField).get(0);
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("CreationDateAndTime", "3",
+							reportExecution.getReportCatalog())).get(0);
+
+			// reportField.setReportCatalog(reportExecution.getReportCatalog());
+			// reportField.setReportFieldName("CreationDateAndTime");
+			// reportField.setReportFieldNum(new BigInteger("3"));
+			// reportField.setReportFieldEditable(true);
+			// reportField = reportFieldDAO.findByExample(reportField).get(0);
 
 			DateFormat dateFormat = new SimpleDateFormat(
 					ReportUtilities.dateTimePattern);
@@ -143,13 +156,15 @@ public class ReportUtilities {
 		if (searchData(reportDatas, "FilingType", "4", null) == null) {
 
 			ReportField reportField = new ReportField();
-			reportField.setReportCatalog(reportExecution.getReportCatalog());
-			reportField.setReportFieldName("FilingType");
-			reportField.setReportFieldNum(new BigInteger("4"));
 
-			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
-					.getBean("reportFieldDAO");
-			reportField = reportFieldDAO.findByExample(reportField).get(0);
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("FilingType", "4",
+							reportExecution.getReportCatalog())).get(0);
+
+			// reportField.setReportCatalog(reportExecution.getReportCatalog());
+			// reportField.setReportFieldName("FilingType");
+			// reportField.setReportFieldNum(new BigInteger("4"));
+			// reportField = reportFieldDAO.findByExample(reportField).get(0);
 
 			String fillingType = "INIT";
 			// if the reportExecution is new in this year/period -> INIT
@@ -159,11 +174,14 @@ public class ReportUtilities {
 			String period = reportExecution.getReportPeriodType();
 
 			ReportExecution reportExecutionExample = new ReportExecution();
+			reportExecutionExample.setReportExecutionName(reportExecution
+					.getReportExecutionName());
 			reportExecutionExample.setReportPeriodType(period);
 			reportExecutionExample.setReportPeriodYear(year);
 			reportExecutionExample.setReportCatalog(reportExecution
 					.getReportCatalog());
 			reportExecutionExample.setCompany(reportExecution.getCompany());
+			// TODO puede fallar ya que no considera catalog ni company
 
 			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 					.getBean("reportExecutionDAO");
@@ -193,13 +211,15 @@ public class ReportUtilities {
 		if (searchData(reportDatas, "ReportingPeriodYear", "9", null) == null) {
 
 			ReportField reportField = new ReportField();
-			reportField.setReportCatalog(reportExecution.getReportCatalog());
-			reportField.setReportFieldName("ReportingPeriodYear");
-			reportField.setReportFieldNum(new BigInteger("9"));
 
-			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
-					.getBean("reportFieldDAO");
-			reportField = reportFieldDAO.findByExample(reportField).get(0);
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("ReportingPeriodYear", "9",
+							reportExecution.getReportCatalog())).get(0);
+
+			// reportField.setReportCatalog(reportExecution.getReportCatalog());
+			// reportField.setReportFieldName("ReportingPeriodYear");
+			// reportField.setReportFieldNum(new BigInteger("9"));
+			// reportField = reportFieldDAO.findByExample(reportField).get(0);
 
 			ReportData reportData = new ReportData(null, reportField,
 					reportExecution, null, null, reportingPeriodYear, null,
@@ -215,6 +235,37 @@ public class ReportUtilities {
 			System.out.println("creating <ReportingPeriodYear>");
 		}
 
+	}
+
+	/**
+	 * Function used to find a reportField like findByExmaple using
+	 * reportCatalog, because hibernate does not consider it.
+	 * 
+	 * @param reportFieldName
+	 * @param reportFieldNum
+	 * @param reportCatalog
+	 * @return List to used in reportExecutionDAO.findByProperty(list)
+	 */
+	public static List<Map<String, Object>> findReportFieldDAO(
+			String reportFieldName, String reportFieldNum,
+			ReportCatalog reportCatalog) {
+
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+
+		HashMap<String, Object> mMap = new HashMap<String, Object>();
+		mMap.put("propertyName", "reportFieldName");
+		mMap.put("value", reportFieldName);
+		list.add(mMap);
+		HashMap<String, Object> mMap2 = new HashMap<String, Object>();
+		mMap2.put("propertyName", "reportFieldNum");
+		mMap2.put("value", new BigInteger(reportFieldNum));
+		list.add(mMap2);
+		HashMap<String, Object> mMap3 = new HashMap<String, Object>();
+		mMap3.put("propertyName", "reportCatalog");
+		mMap3.put("value", reportCatalog);
+		list.add(mMap3);
+
+		return list;
 	}
 
 	/**

@@ -29,6 +29,9 @@ import com.entities.utilities.hibernate.VersionAuditor;
  */
 public class ReportingErrorManager {
 
+	// TODO tener cuidado que findByExample puede ignorar el set(parent) por lo
+	// que habría que usar findAllByProperty
+
 	/**
 	 * Function to create if not exists and reportDataError and add it to
 	 * reportData
@@ -193,7 +196,7 @@ public class ReportingErrorManager {
 					+ reportErrorText);
 			reportErrorText = reportErrorText.substring(0, 512);
 		}
-		
+
 		System.out.println("DEBUG_" + typeError + " Creating reportError: ("
 				+ reportExecution.getReportExecutionName() + ") " + typeError
 				+ " " + reportErrorType + " " + reportErrorText);
@@ -309,7 +312,7 @@ public class ReportingErrorManager {
 					+ loadErrorText);
 			loadErrorText = loadErrorText.substring(0, 512);
 		}
-		
+
 		System.out.println("* Creating loadError: " + typeError + " "
 				+ loadErrorType + " " + loadErrorText);
 

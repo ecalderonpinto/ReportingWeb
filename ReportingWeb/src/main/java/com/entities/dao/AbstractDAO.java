@@ -76,7 +76,8 @@ public abstract class AbstractDAO<T extends VersionableAdapter> {
 	}
 
 	@Transactional
-	public List<T> findAllByProperty(List<Map> list) throws Exception {
+	//public List<T> findAllByProperty(List<Map> list) throws Exception {
+	public List<T> findAllByProperty(List<Map<String, Object>> list) {
 
 		DetachedCriteria criteria = createDetachedCriteria();
 		for (int i = 0; i < list.size(); i++) {

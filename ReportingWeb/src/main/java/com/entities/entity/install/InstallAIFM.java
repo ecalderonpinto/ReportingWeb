@@ -467,7 +467,7 @@ public class InstallAIFM {
 			// (38) <FXEUROtherReferenceRateDescription>
 			ReportField reportField38 = new ReportField(reportCatalog,
 					reportFieldx12, "Z", "FXEUROtherReferenceRateDescription",
-					new BigInteger("38"), ".{0,300}", "",
+					new BigInteger("38"), ".{0,30}", "",
 					"Complete Description", "DESCRIPTION", "3.38", "0,1",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField38);

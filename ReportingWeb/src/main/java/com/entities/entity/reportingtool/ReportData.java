@@ -182,7 +182,8 @@ public class ReportData implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportData")
-	@Cascade({ CascadeType.SAVE_UPDATE })
+	//@Cascade({ CascadeType.SAVE_UPDATE })
+	@Cascade({ CascadeType.ALL })
 	public List<ReportDataError> getReportDataErrors() {
 		return this.reportDataErrors;
 	}

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.entities.dao.reportingtool.ReportDataDAO;
+import com.entities.dao.reportingtool.ReportDataErrorDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.dao.reportingtool.ReportFieldListDAO;
 import com.entities.entity.reportingtool.ReportData;
@@ -82,8 +83,12 @@ public class ReportExecutionController {
 		// add all reportDatas empty when are not populated yet
 		reportExecution = addReportDatas(reportExecution);
 
+		// showReportDatas(reportExecution);
+
 		// get all visual sections of the report
 		List<String> sections = getSections(reportExecution);
+
+		// showReportDatas(reportExecution);
 
 		// order reportDatas to display correctly
 		reportExecution = reportExecutionOrder(reportExecution);
@@ -193,6 +198,7 @@ public class ReportExecutionController {
 	 */
 	public void showReportDatas(ReportExecution reportExecution) {
 		int count = 0;
+		System.out.println(" *** showReportDatas *** ");
 		for (ReportData reportData : reportExecution.getReportDatas()) {
 			System.out.println(count + ": "
 					+ reportData.getReportField().getReportFieldName() + "("
@@ -213,12 +219,25 @@ public class ReportExecutionController {
 
 		ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
 				.getBean("reportDataDAO");
+
+		ReportDataErrorDAO reportDataErrorDAO = (ReportDataErrorDAO) applicationContext
+				.getBean("reportDataErrorDAO");
+
 		for (ReportData reportData : reportExecution.getReportDatas()) {
 			if ((reportData.getReportDataText() == null || reportData
 					.getReportDataText().isEmpty()) && reportData.getId() > 0) {
 				// System.out.println("deleting "
 				// + reportData.getReportField().getReportFieldName());
+
+				List<ReportDataError> reportDataErrorList = reportData
+						.getReportDataErrors();
+
+				for (ReportDataError reportDataError : reportDataErrorList) {
+					reportDataErrorDAO.delete(reportDataError);
+				}
+
 				reportDataDAO.delete(reportData);
+
 			}
 		}
 
@@ -327,6 +346,7 @@ public class ReportExecutionController {
 				reportExecution.getReportCatalog().getReportFields());
 
 		boolean flagField = false;
+		boolean repeAdded = false;
 		for (ReportField reportField : reportFields) {
 			// is field without content
 			if (reportField.getReportFieldSection() == null) {
@@ -336,7 +356,19 @@ public class ReportExecutionController {
 			// + reportField.getReportFieldName());
 			for (ReportData reportData : reportExecution.getReportDatas()) {
 				// System.out.println("reportData "
-				// + reportData.getReportDataText());
+				// + reportData.getReportDataText()
+				// + " -> "
+				// + reportData.getReportField().getReportCatalog()
+				// .getReportCatalogName() + " <> "
+				// + reportField.getReportCatalog().getReportCatalogName()
+				// + " "
+				// + reportData.getReportField().getReportFieldName()
+				// + " <> " + reportField.getReportFieldName() + " "
+				// + reportData.getReportField().getReportFieldNum()
+				// + " <> " + reportField.getReportFieldNum() + " "
+				// + reportData.getReportField().getReportFieldType()
+				// + " <> " + reportField.getReportFieldType()
+				// );
 				if (reportData.getReportField().equals(reportField)) {
 					// reportData already exists
 					// System.out.println("yes reportField, adding reportData of "
@@ -357,6 +389,7 @@ public class ReportExecutionController {
 				// if is a field repeated and doesn't exist, we set block = "1"
 				if (ReportUtilities.reportFieldIsRepe(reportField)) {
 					reportDataTemp.setReportDataBlock("1");
+					repeAdded = true;
 				}
 
 				// System.out.println("no reportField, adding reportData of "
@@ -410,6 +443,11 @@ public class ReportExecutionController {
 						// + " with Block "
 						// + block);
 
+						// n repe already added, we skip
+						if (count == 99 && repeAdded) {
+							break;
+						}
+
 						reportDatas.add(reportDataTemp);
 
 						// n repes only one added
@@ -422,6 +460,7 @@ public class ReportExecutionController {
 			}
 
 			flagField = false;
+			repeAdded = false;
 		}
 
 		reportExecution.setReportDatas(reportDatas);

@@ -137,7 +137,8 @@ public class InstallReportSemantic {
 						reportCatalog,
 						"Field(14) is mandatory",
 						"if (ReportUtilities.dependencyRepeData(reportDatas, \"QuestionNumber\", \"14\", \"AssumptionDescription\", \"15\")) "
-								+ "\n result = \"ok\"", null,
+								+ "\n result = \"ok\"",
+						null,
 						"Fill field(14) is mandatory when field(15) has content.",
 						versionAdmin));
 
@@ -147,7 +148,8 @@ public class InstallReportSemantic {
 						reportCatalog,
 						"Field(15) is mandatory",
 						"if (ReportUtilities.dependencyRepeData(reportDatas, \"AssumptionDescription\", \"15\", \"QuestionNumber\", \"14\")) "
-								+ "\n result = \"ok\"", null,
+								+ "\n result = \"ok\"",
+						null,
 						"Fill field(15) is mandatory when field(14) has content.",
 						versionAdmin));
 
@@ -211,9 +213,9 @@ public class InstallReportSemantic {
 						reportCatalog,
 						"Field(25) is mandatory",
 						"if ( "
-								+ "(ReportUtilities.searchData(reportDatas, \"ReportingMemberState\", \"24\", null) != null"
-								+ " && ReportUtilities.searchData(reportDatas, \"AIFMNationalCode\", \"25\", null) != null)"
-								+ " || ReportUtilities.searchData(reportDatas, \"ReportingMemberState\", \"24\", null) == null) "
+								+ "(ReportUtilities.searchData(reportDatas, \"Old_ReportingMemberState\", \"24\", null) != null"
+								+ " && ReportUtilities.searchData(reportDatas, \"Old_AIFMNationalCode\", \"25\", null) != null)"
+								+ " || ReportUtilities.searchData(reportDatas, \"Old_ReportingMemberState\", \"24\", null) == null) "
 								+ "\n result = \"ok\"", null,
 						"Fill field(25) if field(24) has content", versionAdmin));
 
@@ -279,10 +281,10 @@ public class InstallReportSemantic {
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(32) is mandatory",
-						"if (ReportUtilities.dependencyRepeDataExist(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\")) "
+						"if (!ReportUtilities.dependencyRepeDataExist(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\")) "
 								+ "\n result = \"ok\"",
 						null,
-						"Fill field(32) is mandatory when field(31) = NTA_NTA_NOTA.",
+						"Fill field(32) is mandatory when field(31) not NTA_NTA_NOTA.",
 						versionAdmin));
 
 		// (33) <AUMAmountInEuro>
@@ -364,6 +366,66 @@ public class InstallReportSemantic {
 								+ " && ReportUtilities.searchData(reportDatas, \"FXEUROtherReferenceRateDescription\", \"38\", null) == null)"
 								+ " result = \"ok\"; " + " }" + "}", null,
 						"Fill field(38) only when field(36) is OTH",
+						versionAdmin));
+
+		// (39) <CancelledAIFMNationalCode>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(39) mandatory",
+						"if ( "
+								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
+								+ " ReportUtilities.searchData(reportDatas, \"CancelledAIFMNationalCode\", \"39\", null) != null) "
+								+ "||"
+								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"INIT\") && "
+								+ "ReportUtilities.searchData(reportDatas, \"CancelledAIFMNationalCode\", \"39\", null) == null)"
+								+ ") " + "\n result = \"ok\"", null,
+						"Fill field(39) only when field(4) = AMND",
+						versionAdmin));
+
+		// (40) <CancelledReportingPeriodType>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(39) mandatory",
+						"if ( "
+								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
+								+ " ReportUtilities.searchData(reportDatas, \"CancelledReportingPeriodType\", \"40\", null) != null) "
+								+ "||"
+								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"INIT\") && "
+								+ "ReportUtilities.searchData(reportDatas, \"CancelledReportingPeriodType\", \"40\", null) == null)"
+								+ ") " + "\n result = \"ok\"", null,
+						"Fill field(40) only when field(4) = AMND",
+						versionAdmin));
+
+		// (41) <CancelledReportingPeriodYear>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(39) mandatory",
+						"if ( "
+								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
+								+ " ReportUtilities.searchData(reportDatas, \"CancelledReportingPeriodYear\", \"41\", null) != null) "
+								+ "||"
+								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"INIT\") && "
+								+ "ReportUtilities.searchData(reportDatas, \"CancelledReportingPeriodYear\", \"41\", null) == null)"
+								+ ") " + "\n result = \"ok\"", null,
+						"Fill field(41) only when field(4) = AMND",
+						versionAdmin));
+
+		// (42) <CancelledRecordFlag>
+		reportSemantics
+				.add(new ReportSemantic(
+						reportCatalog,
+						"Field(39) mandatory",
+						"if ( "
+								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
+								+ " ReportUtilities.searchData(reportDatas, \"CancelledRecordFlag\", \"42\", null) != null) "
+								+ "||"
+								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"INIT\") && "
+								+ "ReportUtilities.searchData(reportDatas, \"CancelledRecordFlag\", \"42\", null) == null)"
+								+ ") " + "\n result = \"ok\"", null,
+						"Fill field(42) only when field(4) = AMND",
 						versionAdmin));
 
 		ReportSemanticDAO reportSemanticDAO = (ReportSemanticDAO) applicationContext
