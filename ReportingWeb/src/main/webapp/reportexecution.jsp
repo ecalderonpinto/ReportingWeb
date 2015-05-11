@@ -97,9 +97,9 @@
 														${reportData.reportField.reportFieldNum}.
 														${reportData.reportField.reportFieldName} <c:if
 															test="${reportData.reportDataBlock != null}"> 
-														- [${reportData.reportDataBlock}] </c:if>
-														<c:if test="${reportData.reportField.reportFieldMandatory == true}">
-														<b>(*)</b>
+														- [${reportData.reportDataBlock}] </c:if> <c:if
+															test="${reportData.reportField.reportFieldMandatory == true}">
+															<div class="mandatory-mark">(*)</div>
 														</c:if>
 													</label>
 													<div class="controls">
@@ -164,10 +164,18 @@
 														title="${reportData.reportField.reportFieldName}">${reportData.reportField.reportFieldNum}.
 															${reportData.reportField.reportFieldName}</span> <c:if
 															test="${reportData.reportDataBlock != null}"> 
-														- [${reportData.reportDataBlock}] </c:if>
-														<c:if test="${reportData.reportField.reportFieldMandatory == true}">
-														<b>(*)</b>
-														</c:if>
+														- [${reportData.reportDataBlock}] </c:if> <!--  field mandatory -->
+														<c:if
+															test="${reportData.reportField.reportFieldMandatory == true}">
+															<c:choose>
+																<c:when test="${empty reportData.reportDataText}">
+																	<div class="mandatory-red">(*)</div>
+																</c:when>
+																<c:otherwise>
+																	<div class="mandatory-mark">(*)</div>
+																</c:otherwise>
+															</c:choose>
+														</c:if> <!--  /field mandatory -->
 													</label>
 													<div class="controls">
 														<!-- Search if is dropdown and set it -->

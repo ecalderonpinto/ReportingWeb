@@ -382,6 +382,17 @@ input[type="checkbox"][readonly] {
   background-color: transparent;
 }
 
+.mandatory-mark {
+display: inline;
+font-weight: bold;
+}
+
+.mandatory-red {
+color: #b94a48;
+display: inline;
+font-weight:bold;
+}
+
 .control-group.warning .control-label,
 .control-group.warning .help-block,
 .control-group.warning .help-inline {
