@@ -242,9 +242,11 @@ public class InstallReportSemantic {
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(28) is mandatory",
-						"if (ReportUtilities.dependencyRepeDataExist(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\")) "
-								+ "\n result = \"ok\"", null,
-						"Fill field(28) is mandatory when field(27) = MIC.",
+						"if ( ReportUtilities.dependencyRepeDataExist(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\")"
+								+ "&& ReportUtilities.dependencyRepeDataDiffEmpty(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\")"
+								+ ") " + "\n result = \"ok\"",
+						null,
+						"Fill field(28) is mandatory when field(27) = MIC, forbidden otherwise.",
 						versionAdmin));
 
 		// (29) <AggregatedValueAmount>
@@ -252,10 +254,11 @@ public class InstallReportSemantic {
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(29) is mandatory",
-						"if (ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\")) "
-								+ "\n result = \"ok\"",
+						"if ( ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\")"
+								+ "&& ReportUtilities.dependencyRepeDataEmpty(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\") "
+								+ ") " + "\n result = \"ok\"",
 						null,
-						"Fill field(29) is mandatory when field(27) different NOT.",
+						"Fill field(29) is mandatory when field(27) different NOT, forbidden otherwise.",
 						versionAdmin));
 
 		// (30) <Ranking>
@@ -281,10 +284,11 @@ public class InstallReportSemantic {
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(32) is mandatory",
-						"if (!ReportUtilities.dependencyRepeDataExist(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\")) "
-								+ "\n result = \"ok\"",
+						"if ( ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\")"
+								+ "&& ReportUtilities.dependencyRepeDataEmpty(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\") "
+								+ ")" + "\n result = \"ok\"",
 						null,
-						"Fill field(32) is mandatory when field(31) not NTA_NTA_NOTA.",
+						"Fill field(32) is mandatory when field(31) not NTA_NTA_NOTA, forbidden otherwise.",
 						versionAdmin));
 
 		// (33) <AUMAmountInEuro>
@@ -387,7 +391,7 @@ public class InstallReportSemantic {
 		reportSemantics
 				.add(new ReportSemantic(
 						reportCatalog,
-						"Field(39) mandatory",
+						"Field(40) mandatory",
 						"if ( "
 								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
 								+ " ReportUtilities.searchData(reportDatas, \"CancelledReportingPeriodType\", \"40\", null) != null) "
@@ -402,7 +406,7 @@ public class InstallReportSemantic {
 		reportSemantics
 				.add(new ReportSemantic(
 						reportCatalog,
-						"Field(39) mandatory",
+						"Field(41) mandatory",
 						"if ( "
 								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
 								+ " ReportUtilities.searchData(reportDatas, \"CancelledReportingPeriodYear\", \"41\", null) != null) "
@@ -417,7 +421,7 @@ public class InstallReportSemantic {
 		reportSemantics
 				.add(new ReportSemantic(
 						reportCatalog,
-						"Field(39) mandatory",
+						"Field(42) mandatory",
 						"if ( "
 								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
 								+ " ReportUtilities.searchData(reportDatas, \"CancelledRecordFlag\", \"42\", null) != null) "

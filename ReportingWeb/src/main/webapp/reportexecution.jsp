@@ -136,13 +136,13 @@
 																		<!-- Date -->
 																		<form:input
 																			path="reportDatas[${status.index}].reportDataText"
-																			cssClass="input-xlarge datepicker" />
+																			cssClass="input-xlarge datepicker" maxlength="300"/>
 																	</c:when>
 																	<c:otherwise>
 																		<!-- Text -->
 																		<form:input
 																			path="reportDatas[${status.index}].reportDataText"
-																			cssClass="input-xlarge" />
+																			cssClass="input-xlarge" maxlength="300"/>
 																	</c:otherwise>
 																</c:choose>
 															</c:otherwise>
@@ -211,13 +211,13 @@
 																		<!-- Date -->
 																		<form:input
 																			path="reportDatas[${status.index}].reportDataText"
-																			cssClass="input-xlarge datepicker" />
+																			cssClass="input-xlarge datepicker" maxlength="300"/>
 																	</c:when>
 																	<c:otherwise>
 																		<!-- Text -->
 																		<form:input
 																			path="reportDatas[${status.index}].reportDataText"
-																			cssClass="input-xlarge" />
+																			cssClass="input-xlarge" maxlength="300"/>
 																	</c:otherwise>
 																</c:choose>
 															</c:otherwise>

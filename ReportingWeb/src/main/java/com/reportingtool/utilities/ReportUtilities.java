@@ -455,6 +455,89 @@ public class ReportUtilities {
 
 	/**
 	 * Function receive two repeatable fields and check comparing blocks, check
+	 * if in second has different reportDataText2, the first is empty in all
+	 * cases. See semantic rules of AIFM field(28). Similar to
+	 * dependencyRepeData()
+	 * 
+	 * @param reportDatas
+	 * @param reportFieldName1
+	 * @param reportFieldNum1
+	 * @param reportFieldName2
+	 * @param reportFieldNum2
+	 * @param reportDataText2
+	 * @return boolean
+	 */
+	public static boolean dependencyRepeDataDiffEmpty(
+			List<ReportData> reportDatas, String reportFieldName1,
+			String reportFieldNum1, String reportFieldName2,
+			String reportFieldNum2, String reportDataText2) {
+
+		boolean result = true;
+
+		// Example: field2(27) <> MIC, field1(28) has to be empty.
+		// We find all field2(27) matching block number with field1(28) and
+		// check if this rule works
+
+		List<String> listField2 = searchBlockList(reportDatas,
+				reportFieldName2, reportFieldNum2);
+		for (String blockNum : listField2) {
+			if (!searchData(reportDatas, reportFieldName2, reportFieldNum2,
+					blockNum).equals(reportDataText2)) {
+				// field2 has the content expected, we find in field1 is exists
+				if (searchData(reportDatas, reportFieldName1, reportFieldNum1,
+						blockNum) != null) {
+					// if one fail, the rule is not satisfied
+					result = false;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Function receive two repeatable fields and check comparing blocks, check
+	 * if in second has reportDataText2, the first is empty in all cases. See
+	 * semantic rules of AIFM field(28). Similar to dependencyRepeData()
+	 * 
+	 * @param reportDatas
+	 * @param reportFieldName1
+	 * @param reportFieldNum1
+	 * @param reportFieldName2
+	 * @param reportFieldNum2
+	 * @param reportDataText2
+	 * @return boolean
+	 */
+	public static boolean dependencyRepeDataEmpty(List<ReportData> reportDatas,
+			String reportFieldName1, String reportFieldNum1,
+			String reportFieldName2, String reportFieldNum2,
+			String reportDataText2) {
+
+		boolean result = true;
+
+		// Example: field2(27) == NOT, field1(28) has to be empty.
+		// We find all field2(27) matching block number with field1(28) and
+		// check if this rule works
+
+		List<String> listField2 = searchBlockList(reportDatas,
+				reportFieldName2, reportFieldNum2);
+		for (String blockNum : listField2) {
+			if (searchData(reportDatas, reportFieldName2, reportFieldNum2,
+					blockNum).equals(reportDataText2)) {
+				// field2 has the content expected, we find in field1 is exists
+				if (searchData(reportDatas, reportFieldName1, reportFieldNum1,
+						blockNum) != null) {
+					// if one fail, the rule is not satisfied
+					result = false;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Function receive two repeatable fields and check comparing blocks, check
 	 * if in second not has reportDataText2, the first exists in all cases. See
 	 * semantic rules of AIFM field(29). Similar to dependencyRepeDataExist()
 	 * 
