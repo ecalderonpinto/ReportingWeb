@@ -93,7 +93,7 @@ public class UserRol implements VersionableAdapter {
 		this.rolDesc = rolDesc;
 	}
 
-	@Column(name = "ROL_WEIGHT", nullable = false, precision = 22, scale = 0)
+	@Column(name = "ROL_WEIGHT", precision = 22, scale = 0)
 	public BigDecimal getRolWeight() {
 		return this.rolWeight;
 	}

@@ -3,16 +3,26 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:annotation-config />
 
 	<context:component-scan base-package="com" />
-	
+
 	<bean id="errorDAO" class="com.entities.dao.common.ErrorDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
+	<bean id="userDAO" class="com.entities.dao.usermanager.UserDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="userRolDAO" class="com.entities.dao.usermanager.UserRolDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="userRolPermissionDAO" class="com.entities.dao.usermanager.UserRolPermissionDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
 	<bean id="fileColumDAO" class="com.entities.dao.loader.FileColumDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -34,7 +44,7 @@
 	<bean id="loadRawDataDAO" class="com.entities.dao.loader.LoadRawDataDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 	<bean id="companyDAO" class="com.entities.dao.reportingtool.CompanyDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -77,9 +87,9 @@
 	<bean id="reportSemanticDAO" class="com.entities.dao.reportingtool.ReportSemanticDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	
-	
+
+
+
 	<!-- org.apache.commons.dbcp.BasicDataSource -->
 	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -134,12 +144,12 @@
 		</property>
 	</bean>
 
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory">
 			<ref local="sessionFactory" />
 		</property>
 	</bean>
-	
+
 </beans>
