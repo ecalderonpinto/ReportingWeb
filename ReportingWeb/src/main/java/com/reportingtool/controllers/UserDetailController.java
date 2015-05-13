@@ -111,6 +111,8 @@ public class UserDetailController {
 			user.setUserRol(userRol);
 			user.setVersionAuditor(versionAdmin);
 
+			// if id=0 new User, else we edit User
+			
 			if (userDetailForm.getUserId().equals("0")) {
 				userDAO.create(user);
 				alert.setMessage("User created.");

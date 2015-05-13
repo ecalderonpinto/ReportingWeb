@@ -2,7 +2,9 @@ package com.entities.entity.usermanager;
 
 // Generated 11-feb-2015 16:49:54 by Hibernate Tools 4.0.0
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -14,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -37,6 +40,7 @@ public class User implements VersionableAdapter {
 	private String userMail;
 	private boolean enabled;
 	private Date lastLoginTms;
+	private List<UserControl> userControls = new ArrayList<UserControl>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -125,7 +129,7 @@ public class User implements VersionableAdapter {
 		this.enabled = enabled;
 	}
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "LAST_LOGIN_TMS", length = 7)
 	public Date getLastLoginTms() {
 		return this.lastLoginTms;
@@ -133,6 +137,15 @@ public class User implements VersionableAdapter {
 
 	public void setLastLoginTms(Date lastLoginTms) {
 		this.lastLoginTms = lastLoginTms;
+	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public List<UserControl> getUserControls() {
+		return this.userControls;
+	}
+
+	public void setUserControls(List<UserControl> userControls) {
+		this.userControls = userControls;
 	}
 
 	public int getVersion() {

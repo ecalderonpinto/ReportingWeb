@@ -15,10 +15,13 @@ import org.springframework.context.ApplicationContext;
 import com.entities.dao.reportingtool.ReportDataDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
+import com.entities.dao.usermanager.UserControlDAO;
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.entity.reportingtool.ReportField;
+import com.entities.entity.usermanager.User;
+import com.entities.entity.usermanager.UserControl;
 import com.entities.utilities.hibernate.VersionAuditor;
 
 /**
@@ -238,7 +241,7 @@ public class ReportUtilities {
 	}
 
 	/**
-	 * Function used to find a reportField like findByExmaple using
+	 * Function used to find a reportField like findByExample using
 	 * reportCatalog, because hibernate does not consider it.
 	 * 
 	 * @param reportFieldName
@@ -264,6 +267,30 @@ public class ReportUtilities {
 		mMap3.put("propertyName", "reportCatalog");
 		mMap3.put("value", reportCatalog);
 		list.add(mMap3);
+
+		return list;
+	}
+
+	/**
+	 * Function used to find a user like findByExample
+	 * 
+	 * @param userName
+	 * @param userPassword
+	 * @return List to used in userDAO.findByProperty(list)
+	 */
+	public static List<Map<String, Object>> findUserDAO(String userName,
+			String userPass) {
+
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+
+		HashMap<String, Object> mMap = new HashMap<String, Object>();
+		mMap.put("propertyName", "userName");
+		mMap.put("value", userName);
+		list.add(mMap);
+		HashMap<String, Object> mMap2 = new HashMap<String, Object>();
+		mMap2.put("propertyName", "userPass");
+		mMap2.put("value", userPass);
+		list.add(mMap2);
 
 		return list;
 	}
@@ -653,6 +680,29 @@ public class ReportUtilities {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Function to create in database a UserControl
+	 * 
+	 * @param applicationContext
+	 * @param user
+	 * @param message
+	 * @param alert
+	 */
+	public static void createUserControl(ApplicationContext applicationContext,
+			User user, String message, boolean alert) {
+		try {
+			UserControlDAO userControlDAO = (UserControlDAO) applicationContext
+					.getBean("userControlDAO");
+			UserControl userControl = new UserControl(user, message, alert,
+					new VersionAuditor("utility"));
+			userControlDAO.create(userControl);
+			
+		} catch (Exception e) {
+			System.out.println("Error when creating UserControl: "
+					+ e.getMessage());
+		}
 	}
 
 	/**

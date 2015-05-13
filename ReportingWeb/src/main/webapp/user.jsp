@@ -61,8 +61,63 @@
 							<td>${user.lastLoginTms}</td>
 							<td>${user.enabled}</td>
 							<td><a class="btn btn-small"
-								href="<c:url value="userDetail.do?id=${user.id}" />">
-									detail </a></td>
+								href="<c:url value="userDetail.do?id=${user.id}" />"> detail
+							</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<div class="box-content">
+			<fieldset>
+				<div class="form-actions">
+					<a href="userDetail.do?id=0"> <span class="btn btn-danger">Create
+							User</span></a>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<!--/span-->
+</div>
+<!--/row-->
+
+
+<div class="row-fluid sortable">
+	<div class="box span12">
+		<div class="box-header">
+			<h2>
+				<i class="halflings-icon align-justify"></i> <span class="break">User
+					Control</span>
+			</h2>
+			<div class="box-icon">
+				<a href="#" class="btn-minimize"><i
+					class="halflings-icon chevron-up"></i></a>
+			</div>
+		</div>
+		<div class="box-content">
+			<table class="table table-striped table-bordered table-condensed">
+				<thead>
+					<tr>
+						<th>User</th>
+						<th>Date</th>
+						<th>Message</th>
+						<th>Is alert?</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="usercontrol" items="${usercontrols}">
+						<tr>
+							<td>${usercontrol.user.userName}</td>
+							<td>${usercontrol.versionAuditor.creationDate}</td>
+							<td>${usercontrol.message}</td>
+							<td><c:choose>
+									<c:when test="${usercontrol.alert == true}">
+										<span class="label label-success">No</span>
+									</c:when>
+									<c:otherwise>
+										<span class="label label-important">Yes</span>
+									</c:otherwise>
+								</c:choose></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -73,27 +128,5 @@
 </div>
 <!--/row-->
 
-<!-- FormActions -->
-<div class="row-fluid sortable">
-	<div class="box span12">
-		<div class="box-header" data-original-title>
-			<h2>
-				<i class="halflings-icon edit"></i><span class="break"></span>Actions
-			</h2>
-			<div class="box-icon"></div>
-		</div>
-		<div class="box-content">
-			<fieldset>
-				<div class="form-actions">
-					<a href="userDetail.do?id=0"> <span class="btn btn-danger">Create
-							User</span></a>
-				</div>
-			</fieldset>
-
-		</div>
-	</div>
-	<!--/span-->
-</div>
-<!-- /FormActions -->
 
 <a href="index.do"><span class="btn btn-important">Back</span></a>

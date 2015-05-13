@@ -5,6 +5,9 @@
 	<!-- start: Meta -->
 	<meta charset="utf-8">
 	<title>Reporting System</title>
+	
+	<!-- REDIRECCIONA A login.do -->
+	<meta http-equiv="refresh" content="0; url=login.do" />
 	<!-- end: Meta -->
 	
 	<!-- start: CSS -->
@@ -68,7 +71,7 @@
 							-->
 							<div class="button-login">	
 								<!--<button type="submit" class="btn btn-primary">Login</button>-->
-								<a class="btn btn-primary" href="<c:url value="index.do" />">Login</a>
+								<a class="btn btn-primary" href="<c:url value="login.do" />">Login</a>
 							</div>
 							<div class="clearfix"></div>
 						</fieldset>

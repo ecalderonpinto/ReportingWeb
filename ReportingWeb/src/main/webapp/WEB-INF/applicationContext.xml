@@ -13,6 +13,9 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+	<bean id="userControlDAO" class="com.entities.dao.usermanager.UserControlDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean id="userDAO" class="com.entities.dao.usermanager.UserDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -130,6 +133,7 @@
 				<value>com.entities.entity.usermanager.User</value>
 				<value>com.entities.entity.usermanager.UserRol</value>
 				<value>com.entities.entity.usermanager.UserRolPermission</value>
+				<value>com.entities.entity.usermanager.UserControl</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

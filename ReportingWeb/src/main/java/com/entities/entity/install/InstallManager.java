@@ -22,6 +22,7 @@ import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.dao.reportingtool.ReportFieldListDAO;
 import com.entities.dao.reportingtool.ReportSemanticDAO;
+import com.entities.dao.usermanager.UserControlDAO;
 import com.entities.dao.usermanager.UserDAO;
 import com.entities.dao.usermanager.UserRolDAO;
 import com.entities.dao.usermanager.UserRolPermissionDAO;
@@ -58,7 +59,7 @@ public class InstallManager {
 		// error
 		InstallError installError = new InstallError(applicationContext);
 		installError.install();
-		
+
 		// user
 		InstallUser installUser = new InstallUser(applicationContext);
 		installUser.install();
@@ -70,6 +71,10 @@ public class InstallManager {
 	 * @param applicationContext
 	 */
 	public void deleteAll() {
+
+		UserControlDAO userControlDAO = (UserControlDAO) applicationContext
+				.getBean("userControlDAO");
+		userControlDAO.deleteAll();
 
 		UserDAO userDAO = (UserDAO) applicationContext.getBean("userDAO");
 		userDAO.deleteAll();
