@@ -158,6 +158,9 @@
 								<li><a class="submenu" href="admin.do"><i
 										class="icon-cogs"></i><span class="hidden-tablet">
 											General Admin</span></a></li>
+								<li><a class="submenu" href="user.do"><i
+										class="icon-user"></i><span class="hidden-tablet">
+											User Manager</span></a></li>
 								<li><a class="submenu" href="fileConfig.do"><i
 										class="icon-file-alt"></i><span class="hidden-tablet">
 											File Config</span></a></li>

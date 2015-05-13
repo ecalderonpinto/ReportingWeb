@@ -35,6 +35,7 @@ public class User implements VersionableAdapter {
 	private String userName;
 	private String userPass;
 	private String userMail;
+	private boolean enabled;
 	private Date lastLoginTms;
 
 	@Embedded
@@ -56,11 +57,12 @@ public class User implements VersionableAdapter {
 	}
 
 	public User(UserRol userRol, String userName, String userPass,
-			String userMail, Date lastLoginTms, VersionAuditor versionAuditor) {
+			String userMail,  boolean enabled, Date lastLoginTms, VersionAuditor versionAuditor) {
 		this.userRol = userRol;
 		this.userName = userName;
 		this.userPass = userPass;
 		this.userMail = userMail;
+		this.enabled = enabled;
 		this.lastLoginTms = lastLoginTms;
 		this.versionAuditor = versionAuditor;
 	}
@@ -112,6 +114,15 @@ public class User implements VersionableAdapter {
 
 	public void setUserMail(String userMail) {
 		this.userMail = userMail;
+	}
+	
+	@Column(name = "USER_ENABLED", nullable = false)
+	public boolean isEnabled() {
+		return this.enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Temporal(TemporalType.DATE)

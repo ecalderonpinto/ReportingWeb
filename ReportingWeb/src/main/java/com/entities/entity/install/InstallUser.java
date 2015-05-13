@@ -32,9 +32,9 @@ public class InstallUser {
 		//UserRolPermission userRolPermission1 = new UserRolPermission(userRolUser, "user", "user", null, versionAdmin);
 		//UserRolPermission userRolPermission2 = new UserRolPermission(UserRol, "admin", "admin", null, versionAdmin);
 				
-		User user = new User(userRolUser, "user", "user", "user@company.com", null, versionAdmin);
-		User userSupervisor = new User(userRolSupervisor, "supervisor", "supervisor", "supervisor@company.com", null, versionAdmin);
-		User userAdmin = new User(userRolAdmin, "admin", "admin", "admin@lynxspa.com", null, versionAdmin);
+		User user = new User(userRolUser, "user", "user", "user@company.com", true, null, versionAdmin);
+		User userSupervisor = new User(userRolSupervisor, "supervisor", "supervisor", "supervisor@company.com", true ,null, versionAdmin);
+		User userAdmin = new User(userRolAdmin, "admin", "admin", "admin@lynxspa.com", true, null, versionAdmin);
 		
 		UserDAO userDAO = (UserDAO) applicationContext.getBean("userDAO");
 		userDAO.create(user);

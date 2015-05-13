@@ -23,6 +23,18 @@
 		<put-attribute name="modalWindow" value="" />
 	</definition>
 	
+	<definition name="user" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - User Manager" />
+		<put-attribute name="mainContent" value="/user.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
+	<definition name="userdetail" extends="base.template">
+		<put-attribute name="headerTitle" value="RT - User Detail" />
+		<put-attribute name="mainContent" value="/userdetail.jsp" />
+		<put-attribute name="modalWindow" value="" />
+	</definition>
+	
 	<definition name="datamanager" extends="base.template">
 		<put-attribute name="headerTitle" value="RT - Data Manager" />
 		<put-attribute name="mainContent" value="/datamanager.jsp" />
