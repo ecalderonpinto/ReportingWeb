@@ -54,12 +54,12 @@ public class InstallAIF {
 			ReportCatalog reportCatalog = new ReportCatalog(versionField,
 					"FUND", "AIF 2014", "", null, null, null, versionAdmin);
 
-			String str1 = "2014-01-01";
-			String str2 = "2014-12-31";
-			DateFormat format = new SimpleDateFormat(
-					ReportUtilities.datePattern);
-			Date date1 = format.parse(str1);
-			Date date2 = format.parse(str2);
+//			String str1 = "2014-01-01";
+//			String str2 = "2014-12-31";
+//			DateFormat format = new SimpleDateFormat(
+//					ReportUtilities.datePattern);
+//			Date date1 = format.parse(str1);
+//			Date date2 = format.parse(str2);
 
 			// ReportExecution reportExecution = new ReportExecution(
 			// reportCatalog, company, fund1, "Prueba AIF fund3 2014", "",

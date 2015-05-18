@@ -46,20 +46,32 @@ public class InstallAIFM {
 
 			String versionField = ReportUtilities.reportVersion;
 
-			Company company = new Company("Santander Asset Manager", "Spain",
+			Company company1 = new Company("Santander Asset Manager", "Spain",
 					"SAM", "", versionAdmin);
+			
+			Company company2 = new Company("Santander Private Banking", "Spain",
+					"SPB", "", versionAdmin);
+			
+			Company company3 = new Company("Santander Funds Administration (COFER)", "Spain",
+					"SPBF", "", versionAdmin);
 
-			Department department = new Department(company, "Risk department",
-					"RISK", "", "Spain", new VersionAuditor("admin"));
+			Department department1 = new Department(company1, "SAM Operation department",
+					"SAM", "", "Spain", new VersionAuditor("admin"));
+			
+			Department department2 = new Department(company2, "SPB Operation department",
+					"SPB", "", "Spain", new VersionAuditor("admin"));
+			
+			Department department3 = new Department(company3, "SPBF Operation department",
+					"SPBF", "", "Spain", new VersionAuditor("admin"));
 
-			Fund fund1 = new Fund(company, "SAM fund 1", "ES000001", "FUND1",
-					"", null, versionAdmin);
-
-			Fund fund2 = new Fund(company, "SAM fund 2", "ES000002", "FUND2",
-					"", null, versionAdmin);
-
-			FundGroup fundGroup = new FundGroup(fund1, department,
-					"RISK FUNDS", "", versionAdmin);
+//			Fund fund1 = new Fund(company3, "SAM fund 1", "ES000001", "FUND1",
+//					"", null, versionAdmin);
+//
+//			Fund fund2 = new Fund(company3, "SAM fund 2", "ES000002", "FUND2",
+//					"", null, versionAdmin);
+//
+//			FundGroup fundGroup = new FundGroup(fund1, department,
+//					"RISK FUNDS", "", versionAdmin);
 
 			ReportCatalog reportCatalog = new ReportCatalog(versionField,
 					"COMPANY", "AIFM 2014", "", null, null, null, versionAdmin);
@@ -78,8 +90,6 @@ public class InstallAIFM {
 			// ReportExecutionStatusEnum.CREATION
 			// .getReportExecutionStatus(), null, null, null,
 			// null, null, null, null, null, null, null, versionAdmin);
-
-			// report Fields de AIFM
 
 			ReportFieldDAO reportFieldDAO = (ReportFieldDAO) applicationContext
 					.getBean("reportFieldDAO");
@@ -510,7 +520,7 @@ public class InstallAIFM {
 					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField42);
 
-			FileConfig fileConfig0 = new FileConfig(department, "AIFM",
+			FileConfig fileConfig0 = new FileConfig(null, "AIFM",
 					"AIFM2014_QUESTIONS", ";", "SIMPLE", "*", null, true, null,
 					null, versionAdmin);
 
@@ -523,7 +533,7 @@ public class InstallAIFM {
 					"format", null, null, versionAdmin);
 			fileColum02.setColumBlock(ReportUtilities.fileColumBlockRepeatable);
 
-			FileConfig fileConfig = new FileConfig(department, "AIFM",
+			FileConfig fileConfig = new FileConfig(null, "AIFM",
 					"AIFM2014_GENERAL", ";", "SIMPLE", "*", null, true, null,
 					null, versionAdmin);
 
@@ -1022,19 +1032,23 @@ public class InstallAIFM {
 
 			CompanyDAO companyDAO = (CompanyDAO) applicationContext
 					.getBean("companyDAO");
-			companyDAO.create(company);
+			companyDAO.create(company1);
+			companyDAO.create(company2);
+			companyDAO.create(company3);
 
 			DepartmentDAO departmentDAO = (DepartmentDAO) applicationContext
 					.getBean("departmentDAO");
-			departmentDAO.create(department);
-
-			FundDAO fundDAO = (FundDAO) applicationContext.getBean("fundDAO");
-			fundDAO.create(fund1);
-			fundDAO.create(fund2);
-
-			FundGroupDAO fundGroupDAO = (FundGroupDAO) applicationContext
-					.getBean("fundGroupDAO");
-			fundGroupDAO.create(fundGroup);
+			departmentDAO.create(department1);
+			departmentDAO.create(department2);
+			departmentDAO.create(department3);
+//
+//			FundDAO fundDAO = (FundDAO) applicationContext.getBean("fundDAO");
+//			fundDAO.create(fund1);
+//			fundDAO.create(fund2);
+//
+//			FundGroupDAO fundGroupDAO = (FundGroupDAO) applicationContext
+//					.getBean("fundGroupDAO");
+//			fundGroupDAO.create(fundGroup);
 
 			// ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO)
 			// applicationContext

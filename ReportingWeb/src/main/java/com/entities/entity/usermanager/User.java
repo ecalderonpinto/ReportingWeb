@@ -23,6 +23,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import com.entities.entity.reportingtool.Company;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -41,6 +42,7 @@ public class User implements VersionableAdapter {
 	private boolean enabled;
 	private Date lastLoginTms;
 	private List<UserControl> userControls = new ArrayList<UserControl>();
+	private Company company;
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -61,13 +63,14 @@ public class User implements VersionableAdapter {
 	}
 
 	public User(UserRol userRol, String userName, String userPass,
-			String userMail,  boolean enabled, Date lastLoginTms, VersionAuditor versionAuditor) {
+			String userMail,  boolean enabled, Date lastLoginTms, Company company, VersionAuditor versionAuditor) {
 		this.userRol = userRol;
 		this.userName = userName;
 		this.userPass = userPass;
 		this.userMail = userMail;
 		this.enabled = enabled;
 		this.lastLoginTms = lastLoginTms;
+		this.company = company;
 		this.versionAuditor = versionAuditor;
 	}
 
@@ -146,6 +149,16 @@ public class User implements VersionableAdapter {
 
 	public void setUserControls(List<UserControl> userControls) {
 		this.userControls = userControls;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "COMPANY_ID", foreignKey = @ForeignKey(name = "T_USER_FK_COMPANY"))
+	public Company getCompany() {
+		return this.company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 	public int getVersion() {

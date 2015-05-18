@@ -47,6 +47,7 @@
 						<th>User Name</th>
 						<th>User Rol</th>
 						<th>User Mail</th>
+						<th>Company</th>
 						<th>Last login</th>
 						<th>Enabled</th>
 						<th>Detail</th>
@@ -58,6 +59,7 @@
 							<td>${user.userName}</td>
 							<td>${user.userRol.rolName}</td>
 							<td>${user.userMail}</td>
+							<td>${user.company.companyName}</td>
 							<td>${user.lastLoginTms}</td>
 							<td>${user.enabled}</td>
 							<td><a class="btn btn-small"

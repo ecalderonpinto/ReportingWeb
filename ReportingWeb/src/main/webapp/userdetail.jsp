@@ -37,8 +37,8 @@
 						</tr>
 						<tr>
 							<td>User Password <b>(*)</b></td>
-							<td><form:input path="user.userPass"
-									cssClass="input-xlarge" required="required" maxlength="128" /></td>
+							<td><form:input path="user.userPass" cssClass="input-xlarge"
+									required="required" maxlength="128" /></td>
 							<td>User Rol <b>(*)</b></td>
 							<td><form:select path="selectUserRol" required="required">
 									<form:options items="${userRolDrop}" />
@@ -48,6 +48,10 @@
 							<td>User Enabled <b>(*)</b></td>
 							<td><form:select path="selectEnabled" required="required">
 									<form:options items="${userEnabledDrop}" />
+								</form:select></td>
+							<td>Company</td>
+							<td><form:select path="selectCompany">
+									<form:options items="${userCompany}" />
 								</form:select></td>
 						</tr>
 						<form:hidden path="userId" />

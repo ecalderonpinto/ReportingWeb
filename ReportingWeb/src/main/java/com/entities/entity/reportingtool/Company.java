@@ -17,6 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.entities.entity.usermanager.User;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -36,6 +37,7 @@ public class Company implements VersionableAdapter {
 	private List<Fund> funds = new ArrayList<Fund>();
 	private List<Department> departments = new ArrayList<Department>();
 	private List<ReportCustom> reportCustoms = new ArrayList<ReportCustom>();
+	private List<User> users = new ArrayList<User>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -145,6 +147,15 @@ public class Company implements VersionableAdapter {
 
 	public void setReportCustoms(List<ReportCustom> reportCustoms) {
 		this.reportCustoms = reportCustoms;
+	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
+	public List<User> getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	public int getVersion() {

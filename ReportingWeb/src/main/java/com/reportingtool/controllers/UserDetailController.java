@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.entities.dao.reportingtool.CompanyDAO;
 import com.entities.dao.usermanager.UserDAO;
 import com.entities.dao.usermanager.UserRolDAO;
+import com.entities.entity.reportingtool.Company;
 import com.entities.entity.usermanager.User;
 import com.entities.entity.usermanager.UserRol;
 import com.entities.utilities.hibernate.VersionAuditor;
@@ -55,19 +57,31 @@ public class UserDetailController {
 			user = userDAO.findById(Long.parseLong(id));
 		}
 
+		// list of Company
+		CompanyDAO companyDAO = (CompanyDAO) applicationContext
+				.getBean("companyDAO");
+		List<Company> companyList = companyDAO.findAll();
+		List<String> userCompany = new ArrayList<String>();
+		userCompany.add("--SELECT--");
+		for (Company company : companyList) {
+			userCompany.add(company.getCompanyName());
+		}
+
+		// list of UserRol
 		UserRolDAO userRolDAO = (UserRolDAO) applicationContext
 				.getBean("userRolDAO");
 		List<UserRol> userRolList = userRolDAO.findAll();
-
 		List<String> userRolDrop = new ArrayList<String>();
 		for (UserRol userRol : userRolList) {
 			userRolDrop.add(userRol.getRolName());
 		}
 
+		// enabled: true/false
 		List<String> userEnabledDrop = new ArrayList<String>();
 		userEnabledDrop.add("true");
 		userEnabledDrop.add("false");
 
+		// User form
 		UserDetailForm userDetailForm = new UserDetailForm();
 		userDetailForm.setUser(user);
 		userDetailForm.setSelectUserRol(user.getUserRol().getRolName());
@@ -76,6 +90,7 @@ public class UserDetailController {
 
 		model.addAttribute("userRolDrop", userRolDrop);
 		model.addAttribute("userEnabledDrop", userEnabledDrop);
+		model.addAttribute("userCompany", userCompany);
 		model.addAttribute("userdetail", userDetailForm);
 
 		return "userdetail";
@@ -93,6 +108,11 @@ public class UserDetailController {
 
 		UserDAO userDAO = (UserDAO) applicationContext.getBean("userDAO");
 
+		// CompanyDAO
+		CompanyDAO companyDAO = (CompanyDAO) applicationContext
+				.getBean("companyDAO");
+
+		// UserRolDAO
 		UserRolDAO userRolDAO = (UserRolDAO) applicationContext
 				.getBean("userRolDAO");
 
@@ -102,17 +122,29 @@ public class UserDetailController {
 
 			User user = userDetailForm.getUser();
 
+			// Company
+			Company companyExample = new Company();
+			Company company = null;
+			if (!userDetailForm.getSelectCompany().equals("--SELECT--")) {
+				companyExample
+						.setCompanyName(userDetailForm.getSelectCompany());
+				company = new Company();
+				company = companyDAO.findByExample(companyExample).get(0);
+			}
+
+			// UserRol
 			UserRol userRolExample = new UserRol();
 			userRolExample.setRolName(userDetailForm.getSelectUserRol());
 			UserRol userRol = userRolDAO.findByExample(userRolExample).get(0);
 
 			user.setEnabled(Boolean.parseBoolean(userDetailForm
 					.getSelectEnabled()));
+			user.setCompany(company);
 			user.setUserRol(userRol);
 			user.setVersionAuditor(versionAdmin);
 
 			// if id=0 new User, else we edit User
-			
+
 			if (userDetailForm.getUserId().equals("0")) {
 				userDAO.create(user);
 				alert.setMessage("User created.");

@@ -6,6 +6,7 @@ public class UserDetailForm {
 
 	private String selectUserRol;
 	private String selectEnabled;
+	private String selectCompany;
 	private String userId;
 	private User user;
 
@@ -39,6 +40,14 @@ public class UserDetailForm {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getSelectCompany() {
+		return selectCompany;
+	}
+
+	public void setSelectCompany(String selectCompany) {
+		this.selectCompany = selectCompany;
 	}
 
 }
