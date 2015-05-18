@@ -114,13 +114,11 @@
 										</a>
 									</c:when>
 									<c:otherwise>
-										<span
-											class="label label-success">Loaded</span>
+										<span class="label label-success">Loaded</span>
 									</c:otherwise>
-								</c:choose>
-							</td>
-							<td><a class="btn btn-small" href="loadDetail.do?id=${load.id}">Detail</a>
-							</td>
+								</c:choose></td>
+							<td><a class="btn btn-small"
+								href="loadDetail.do?id=${load.id}">Detail</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

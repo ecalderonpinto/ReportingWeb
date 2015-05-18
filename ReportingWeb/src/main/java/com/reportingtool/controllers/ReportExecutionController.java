@@ -224,7 +224,8 @@ public class ReportExecutionController {
 				.getBean("reportDataErrorDAO");
 
 		for (ReportData reportData : reportExecution.getReportDatas()) {
-			if ((reportData.getReportDataText() == null || reportData
+			if ((reportData.getReportDataText().equals(ReportUtilities.emptySelect)
+					|| reportData.getReportDataText() == null || reportData
 					.getReportDataText().isEmpty()) && reportData.getId() > 0) {
 				// System.out.println("deleting "
 				// + reportData.getReportField().getReportFieldName());
@@ -484,7 +485,7 @@ public class ReportExecutionController {
 		for (ReportData reportData : reportExecution.getReportDatas()) {
 			if (reportData.getReportDataText() != null
 					&& !reportData.getReportDataText().isEmpty()
-					&& !reportData.getReportDataText().equals("--SELECT--")) {
+					&& !reportData.getReportDataText().equals(ReportUtilities.emptySelect)) {
 				reportDatas.add(reportData);
 				// System.out.println("adding reportData "
 				// + reportData.getReportDataText() + " from "

@@ -9,16 +9,12 @@ import com.entities.dao.loader.FileColumDAO;
 import com.entities.dao.loader.FileConfigDAO;
 import com.entities.dao.reportingtool.CompanyDAO;
 import com.entities.dao.reportingtool.DepartmentDAO;
-import com.entities.dao.reportingtool.FundDAO;
-import com.entities.dao.reportingtool.FundGroupDAO;
 import com.entities.dao.reportingtool.ReportCatalogDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileConfig;
 import com.entities.entity.reportingtool.Company;
 import com.entities.entity.reportingtool.Department;
-import com.entities.entity.reportingtool.Fund;
-import com.entities.entity.reportingtool.FundGroup;
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportField;
 import com.entities.utilities.hibernate.VersionAuditor;
@@ -50,19 +46,19 @@ public class InstallAIFM {
 					"SAM", "", versionAdmin);
 			
 			Company company2 = new Company("Santander Private Banking", "Spain",
-					"SPB", "", versionAdmin);
-			
-			Company company3 = new Company("Santander Funds Administration (COFER)", "Spain",
 					"SPBF", "", versionAdmin);
+			
+			Company company3 = new Company("Santander Funds Administration (COFFER)", "Spain",
+					"SDF", "", versionAdmin);
 
 			Department department1 = new Department(company1, "SAM Operation department",
 					"SAM", "", "Spain", new VersionAuditor("admin"));
 			
-			Department department2 = new Department(company2, "SPB Operation department",
-					"SPB", "", "Spain", new VersionAuditor("admin"));
-			
-			Department department3 = new Department(company3, "SPBF Operation department",
+			Department department2 = new Department(company2, "SPBF Operation department",
 					"SPBF", "", "Spain", new VersionAuditor("admin"));
+			
+			Department department3 = new Department(company3, "SDF Operation department",
+					"SDF", "", "Spain", new VersionAuditor("admin"));
 
 //			Fund fund1 = new Fund(company3, "SAM fund 1", "ES000001", "FUND1",
 //					"", null, versionAdmin);

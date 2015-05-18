@@ -27,6 +27,7 @@ import com.entities.entity.usermanager.UserRol;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.reportingtool.controllers.forms.AlertToView;
 import com.reportingtool.controllers.forms.UserDetailForm;
+import com.reportingtool.utilities.ReportUtilities;
 
 @Controller
 public class UserDetailController {
@@ -62,7 +63,7 @@ public class UserDetailController {
 				.getBean("companyDAO");
 		List<Company> companyList = companyDAO.findAll();
 		List<String> userCompany = new ArrayList<String>();
-		userCompany.add("--SELECT--");
+		userCompany.add(ReportUtilities.emptySelect);
 		for (Company company : companyList) {
 			userCompany.add(company.getCompanyName());
 		}
@@ -125,7 +126,7 @@ public class UserDetailController {
 			// Company
 			Company companyExample = new Company();
 			Company company = null;
-			if (!userDetailForm.getSelectCompany().equals("--SELECT--")) {
+			if (!userDetailForm.getSelectCompany().equals(ReportUtilities.emptySelect)) {
 				companyExample
 						.setCompanyName(userDetailForm.getSelectCompany());
 				company = new Company();

@@ -16,6 +16,7 @@ import com.entities.dao.reportingtool.ReportDataDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
 import com.entities.dao.usermanager.UserControlDAO;
+import com.entities.entity.reportingtool.Company;
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportData;
 import com.entities.entity.reportingtool.ReportExecution;
@@ -40,6 +41,8 @@ public class ReportUtilities {
 	public static final String yearPattern = "yyyy";
 
 	public static final String dateXMLGregorianPattern = "EEE MMM dd zzz HH:mm:ss yyyy";
+
+	public static final String emptySelect = "--SELECT--";
 
 	public static final String reportVersion = "1.2";
 
@@ -96,12 +99,6 @@ public class ReportUtilities {
 					findReportFieldDAO("Version", "2",
 							reportExecution.getReportCatalog())).get(0);
 
-			// reportField.setReportCatalog(reportExecution.getReportCatalog());
-			// reportField.setReportFieldName("Version");
-			// reportField.setReportFieldNum(new BigInteger("2"));
-			// reportField.setReportFieldEditable(true);
-			// reportField = reportFieldDAO.findByExample(reportField).get(0);
-
 			ReportData reportData = new ReportData(null, reportField,
 					reportExecution, null, null, versionNum, null, null,
 					new VersionAuditor("utilities"));
@@ -124,12 +121,6 @@ public class ReportUtilities {
 			reportField = reportFieldDAO.findAllByProperty(
 					findReportFieldDAO("CreationDateAndTime", "3",
 							reportExecution.getReportCatalog())).get(0);
-
-			// reportField.setReportCatalog(reportExecution.getReportCatalog());
-			// reportField.setReportFieldName("CreationDateAndTime");
-			// reportField.setReportFieldNum(new BigInteger("3"));
-			// reportField.setReportFieldEditable(true);
-			// reportField = reportFieldDAO.findByExample(reportField).get(0);
 
 			DateFormat dateFormat = new SimpleDateFormat(
 					ReportUtilities.dateTimePattern);
@@ -164,11 +155,6 @@ public class ReportUtilities {
 					findReportFieldDAO("FilingType", "4",
 							reportExecution.getReportCatalog())).get(0);
 
-			// reportField.setReportCatalog(reportExecution.getReportCatalog());
-			// reportField.setReportFieldName("FilingType");
-			// reportField.setReportFieldNum(new BigInteger("4"));
-			// reportField = reportFieldDAO.findByExample(reportField).get(0);
-
 			String fillingType = "INIT";
 			// if the reportExecution is new in this year/period -> INIT
 			// if already exists other reportExecution -> AMND
@@ -176,21 +162,13 @@ public class ReportUtilities {
 			String year = reportExecution.getReportPeriodYear();
 			String period = reportExecution.getReportPeriodType();
 
-			ReportExecution reportExecutionExample = new ReportExecution();
-			reportExecutionExample.setReportExecutionName(reportExecution
-					.getReportExecutionName());
-			reportExecutionExample.setReportPeriodType(period);
-			reportExecutionExample.setReportPeriodYear(year);
-			reportExecutionExample.setReportCatalog(reportExecution
-					.getReportCatalog());
-			reportExecutionExample.setCompany(reportExecution.getCompany());
-			// TODO puede fallar ya que no considera catalog ni company
-
 			ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 					.getBean("reportExecutionDAO");
 
 			List<ReportExecution> reportExecutionList = reportExecutionDAO
-					.findByExample(reportExecutionExample);
+					.findAllByProperty(findReportExecutionDAO(period, year,
+							reportExecution.getReportCatalog(),
+							reportExecution.getCompany()));
 
 			if (reportExecutionList.size() > 1) {
 				fillingType = "AMND";
@@ -219,11 +197,6 @@ public class ReportUtilities {
 					findReportFieldDAO("ReportingPeriodYear", "9",
 							reportExecution.getReportCatalog())).get(0);
 
-			// reportField.setReportCatalog(reportExecution.getReportCatalog());
-			// reportField.setReportFieldName("ReportingPeriodYear");
-			// reportField.setReportFieldNum(new BigInteger("9"));
-			// reportField = reportFieldDAO.findByExample(reportField).get(0);
-
 			ReportData reportData = new ReportData(null, reportField,
 					reportExecution, null, null, reportingPeriodYear, null,
 					null, new VersionAuditor("utilities"));
@@ -236,6 +209,236 @@ public class ReportUtilities {
 			reportExecution.getReportDatas().add(reportData);
 
 			System.out.println("creating <ReportingPeriodYear>");
+		}
+
+		// (26) <Ranking> [1]
+		if (searchData(reportDatas, "Ranking", "26", "1") == null) {
+
+			ReportField reportField = new ReportField();
+
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("Ranking", "26",
+							reportExecution.getReportCatalog())).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, "1", "1", null,
+					new VersionAuditor("utilities"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+
+			reportExecution.getReportDatas().add(reportData);
+
+			System.out.println("creating (26) <Ranking> [1]");
+		}
+
+		// (26) <Ranking> [2]
+		if (searchData(reportDatas, "Ranking", "26", "2") == null) {
+
+			ReportField reportField = new ReportField();
+
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("Ranking", "26",
+							reportExecution.getReportCatalog())).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, "2", "2", null,
+					new VersionAuditor("utilities"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+
+			reportExecution.getReportDatas().add(reportData);
+
+			System.out.println("creating (26) <Ranking> [2]");
+		}
+
+		// (26) <Ranking> [3]
+		if (searchData(reportDatas, "Ranking", "26", "3") == null) {
+
+			ReportField reportField = new ReportField();
+
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("Ranking", "26",
+							reportExecution.getReportCatalog())).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, "3", "3", null,
+					new VersionAuditor("utilities"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+
+			reportExecution.getReportDatas().add(reportData);
+
+			System.out.println("creating (26) <Ranking> [3]");
+		}
+
+		// (26) <Ranking> [4]
+		if (searchData(reportDatas, "Ranking", "26", "4") == null) {
+
+			ReportField reportField = new ReportField();
+
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("Ranking", "26",
+							reportExecution.getReportCatalog())).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, "4", "4", null,
+					new VersionAuditor("utilities"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+
+			reportExecution.getReportDatas().add(reportData);
+
+			System.out.println("creating (26) <Ranking> [4]");
+		}
+
+		// (26) <Ranking> [5]
+		if (searchData(reportDatas, "Ranking", "26", "5") == null) {
+
+			ReportField reportField = new ReportField();
+
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("Ranking", "26",
+							reportExecution.getReportCatalog())).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, "5", "5", null,
+					new VersionAuditor("utilities"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+
+			reportExecution.getReportDatas().add(reportData);
+
+			System.out.println("creating (26) <Ranking> [5]");
+		}
+
+		// (30) <Ranking> [1]
+		if (searchData(reportDatas, "Ranking", "30", "1") == null) {
+
+			ReportField reportField = new ReportField();
+
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("Ranking", "30",
+							reportExecution.getReportCatalog())).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, "1", "1", null,
+					new VersionAuditor("utilities"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+
+			reportExecution.getReportDatas().add(reportData);
+
+			System.out.println("creating (30) <Ranking> [1]");
+		}
+
+		// (30) <Ranking> [2]
+		if (searchData(reportDatas, "Ranking", "30", "2") == null) {
+
+			ReportField reportField = new ReportField();
+
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("Ranking", "30",
+							reportExecution.getReportCatalog())).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, "2", "2", null,
+					new VersionAuditor("utilities"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+
+			reportExecution.getReportDatas().add(reportData);
+
+			System.out.println("creating (30) <Ranking> [2]");
+		}
+
+		// (30) <Ranking> [3]
+		if (searchData(reportDatas, "Ranking", "30", "3") == null) {
+
+			ReportField reportField = new ReportField();
+
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("Ranking", "30",
+							reportExecution.getReportCatalog())).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, "3", "3", null,
+					new VersionAuditor("utilities"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+
+			reportExecution.getReportDatas().add(reportData);
+
+			System.out.println("creating (30) <Ranking> [3]");
+		}
+
+		// (30) <Ranking> [4]
+		if (searchData(reportDatas, "Ranking", "30", "4") == null) {
+
+			ReportField reportField = new ReportField();
+
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("Ranking", "30",
+							reportExecution.getReportCatalog())).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, "4", "4", null,
+					new VersionAuditor("utilities"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+
+			reportExecution.getReportDatas().add(reportData);
+
+			System.out.println("creating (30) <Ranking> [4]");
+		}
+
+		// (30) <Ranking> [5]
+		if (searchData(reportDatas, "Ranking", "30", "5") == null) {
+
+			ReportField reportField = new ReportField();
+
+			reportField = reportFieldDAO.findAllByProperty(
+					findReportFieldDAO("Ranking", "30",
+							reportExecution.getReportCatalog())).get(0);
+
+			ReportData reportData = new ReportData(null, reportField,
+					reportExecution, null, null, "5", "5", null,
+					new VersionAuditor("utilities"));
+
+			// save new reportData
+			ReportDataDAO reportDataDAO = (ReportDataDAO) applicationContext
+					.getBean("reportDataDAO");
+			reportDataDAO.create(reportData);
+
+			reportExecution.getReportDatas().add(reportData);
+
+			System.out.println("creating (30) <Ranking> [5]");
 		}
 
 	}
@@ -267,6 +470,32 @@ public class ReportUtilities {
 		mMap3.put("propertyName", "reportCatalog");
 		mMap3.put("value", reportCatalog);
 		list.add(mMap3);
+
+		return list;
+	}
+
+	public static List<Map<String, Object>> findReportExecutionDAO(
+			String reportPeriodType, String reportPeriodYear,
+			ReportCatalog reportCatalog, Company company) {
+
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+
+		HashMap<String, Object> mMap = new HashMap<String, Object>();
+		mMap.put("propertyName", "reportPeriodType");
+		mMap.put("value", reportPeriodType);
+		list.add(mMap);
+		HashMap<String, Object> mMap2 = new HashMap<String, Object>();
+		mMap2.put("propertyName", "reportPeriodYear");
+		mMap2.put("value", reportPeriodYear);
+		list.add(mMap2);
+		HashMap<String, Object> mMap3 = new HashMap<String, Object>();
+		mMap3.put("propertyName", "reportCatalog");
+		mMap3.put("value", reportCatalog);
+		list.add(mMap3);
+		HashMap<String, Object> mMap4 = new HashMap<String, Object>();
+		mMap4.put("propertyName", "company");
+		mMap4.put("value", company);
+		list.add(mMap4);
 
 		return list;
 	}
@@ -698,7 +927,7 @@ public class ReportUtilities {
 			UserControl userControl = new UserControl(user, message, alert,
 					new VersionAuditor("utility"));
 			userControlDAO.create(userControl);
-			
+
 		} catch (Exception e) {
 			System.out.println("Error when creating UserControl: "
 					+ e.getMessage());

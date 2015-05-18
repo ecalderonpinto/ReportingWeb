@@ -377,7 +377,8 @@ public class InstallReportSemantic {
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(39) mandatory",
-						"if ( "
+						"if(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null) != null)"
+								+ "if ( "
 								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
 								+ " ReportUtilities.searchData(reportDatas, \"CancelledAIFMNationalCode\", \"39\", null) != null) "
 								+ "||"
@@ -392,7 +393,8 @@ public class InstallReportSemantic {
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(40) mandatory",
-						"if ( "
+						"if(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null) != null)"
+								+ "if ( "
 								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
 								+ " ReportUtilities.searchData(reportDatas, \"CancelledReportingPeriodType\", \"40\", null) != null) "
 								+ "||"
@@ -407,7 +409,8 @@ public class InstallReportSemantic {
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(41) mandatory",
-						"if ( "
+						"if(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null) != null)"
+								+ "if ( "
 								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
 								+ " ReportUtilities.searchData(reportDatas, \"CancelledReportingPeriodYear\", \"41\", null) != null) "
 								+ "||"
@@ -422,7 +425,8 @@ public class InstallReportSemantic {
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(42) mandatory",
-						"if ( "
+						"if(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null) != null)"
+								+ "if ( "
 								+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
 								+ " ReportUtilities.searchData(reportDatas, \"CancelledRecordFlag\", \"42\", null) != null) "
 								+ "||"

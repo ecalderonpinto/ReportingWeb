@@ -2,7 +2,6 @@ package com.reportingtool.controllers;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.Scanner;
 
 import javax.servlet.http.HttpSession;
 

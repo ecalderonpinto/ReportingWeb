@@ -19,13 +19,13 @@
 			</h2>
 		</div>
 		<div class="box-content">
-			<a class="quick-button span2" onclick="loading();" href="generateDB.do"> <i class="icon-cogs"></i>
-				<br>Generate Schema
-			</a> <a class="quick-button span2" href="installTestData.do"> <i class="icon-cogs"></i>
-				<br>Install Data
-			</a>
-			<a class="quick-button span2" href="cleanData.do"> <i class="icon-cogs"></i>
-				<br>Clean Datas
+			<a class="quick-button span2" onclick="loading();"
+				href="generateDB.do"> <i class="icon-cogs"></i> <br>Generate
+				Schema
+			</a> <a class="quick-button span2" href="installTestData.do"> <i
+				class="icon-cogs"></i> <br>Install Data
+			</a> <a class="quick-button span2" href="cleanData.do"> <i
+				class="icon-cogs"></i> <br>Clean Datas
 			</a>
 			<div class="clearfix"></div>
 		</div>
@@ -39,7 +39,8 @@
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
-				<i class="halflings-icon align-justify"></i> <span class="break">Report Catalogs</span>
+				<i class="halflings-icon align-justify"></i> <span class="break">Report
+					Catalogs</span>
 			</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-minimize"><i
@@ -64,11 +65,9 @@
 							<td>${reportcatalog.reportLevel}</td>
 							<td>${reportcatalog.reportVersion}</td>
 							<td>${reportcatalog.reportCatalogDesc}</td>
-							<td>
-								<a class="btn btn-small" href="<c:url value="reportCatalogDetail.do?id=${reportcatalog.id}" />" >
-									detail
-								</a>
-							</td>
+							<td><a class="btn btn-small"
+								href="<c:url value="reportCatalogDetail.do?id=${reportcatalog.id}" />">
+									detail </a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -79,5 +78,4 @@
 </div>
 <!--/row-->
 
-<a href="index.do"><span
-	class="btn btn-important">Back</span></a>
+<a href="index.do"><span class="btn btn-important">Back</span></a>

@@ -13,7 +13,7 @@
 </ul>
 <!-- end: Breadcrumb -->
 
-<!-- Filter Box -->
+<%-- <!-- Filter Box -->
 <div class="row-fluid sortable">
 	<div class="box span12">
 		<div class="box-header">
@@ -58,10 +58,9 @@
 			</form>
 		</div>
 	</div>
-	<!--/span-->
 </div>
 <!--/row-->
-<!-- /Filter Box -->
+<!-- /Filter Box --> --%>
 
 <form:form method="POST" commandName="company">
 	<div class="row-fluid sortable">
@@ -131,7 +130,6 @@
 				</table>
 			</div>
 		</div>
-		<!--/span-->
 	</div>
 	<!--/row-->
 

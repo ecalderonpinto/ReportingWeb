@@ -62,12 +62,29 @@ public class ViewXMLController {
 
 		GeneratorXML generatorXML = new GeneratorXML(applicationContext);
 
-		generateXMLForm = generatorXML.generateXML(reportExecution);
+		try {
+			generateXMLForm = generatorXML.generateXML(reportExecution);
 
-		// this form has reportExecution with new potential errors to check
-		reportExecution = generateXMLForm.getReportExecution();
-		ReportingErrorManager.checkReportExecutionHasErrors(reportExecution);
+			// this form has reportExecution with new potential errors to check
+			reportExecution = generateXMLForm.getReportExecution();
+			ReportingErrorManager
+					.checkReportExecutionHasErrors(reportExecution);
 
+		} catch (Exception e) {
+			System.out.println("DEBUG:_"
+					+ "XML Generator, Error when generating XML: "
+					+ e.getMessage());
+		}
+
+		// can be null if XML has errors
+		if (generateXMLForm == null) {
+			generateXMLForm = new GenerateXMLForm();
+			generateXMLForm.setHasErrors(true);
+			generateXMLForm.setOutputXML("");
+			generateXMLForm.setReportExecution(reportExecution);
+			generateXMLForm.setValid(false);
+		}
+		
 		model.addAttribute("generateXML", generateXMLForm);
 
 		return "viewxml";
