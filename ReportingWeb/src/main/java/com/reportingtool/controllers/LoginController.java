@@ -94,6 +94,8 @@ public class LoginController {
 			ReportUtilities.createUserControl(applicationContext, userLogin,
 					"User access correctly of " + loginForm.getUser(), false);
 			
+			//model.addAttribute("user", userLogin);
+			
 			resultModel = "dashboard";
 		}
 

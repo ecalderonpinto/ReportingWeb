@@ -86,31 +86,31 @@ public class InstallReportList {
 		reportFieldList.add(new ReportFieldList("AIFMasterFeederStatusType",
 				"NONE", "NONE", versionAdmin));
 
-		reportFieldList.add(new ReportFieldList("AIFMContentTypeType", "1", "1",
-				versionAdmin));
-		reportFieldList.add(new ReportFieldList("AIFMContentTypeType", "2", "2",
-				versionAdmin));
-		reportFieldList.add(new ReportFieldList("AIFMContentTypeType", "3", "3",
-				versionAdmin));
+		reportFieldList.add(new ReportFieldList("AIFMContentTypeType", "1",
+				"1", versionAdmin));
+		reportFieldList.add(new ReportFieldList("AIFMContentTypeType", "2",
+				"2", versionAdmin));
+		reportFieldList.add(new ReportFieldList("AIFMContentTypeType", "3",
+				"3", versionAdmin));
 
-		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "1", "1",
-				versionAdmin));
-		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "2", "2",
-				versionAdmin));
-		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "3", "3",
-				versionAdmin));
-		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "4", "4",
-				versionAdmin));
-		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "5", "5",
-				versionAdmin));
-		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "6", "6",
-				versionAdmin));
-		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "7", "7",
-				versionAdmin));
-		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "8", "8",
-				versionAdmin));
-		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "9", "9",
-				versionAdmin));
+		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "1",
+				"1", versionAdmin));
+		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "2",
+				"2", versionAdmin));
+		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "3",
+				"3", versionAdmin));
+		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "4",
+				"4", versionAdmin));
+		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "5",
+				"5", versionAdmin));
+		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "6",
+				"6", versionAdmin));
+		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "7",
+				"7", versionAdmin));
+		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "8",
+				"8", versionAdmin));
+		reportFieldList.add(new ReportFieldList("AIFMReportingCodeType", "9",
+				"9", versionAdmin));
 
 		reportFieldList.add(new ReportFieldList("QUESTION_AIFM", "1", "1",
 				versionAdmin));
@@ -787,6 +787,245 @@ public class InstallReportList {
 				versionAdmin));
 		reportFieldList.add(new ReportFieldList(
 				"VARCalculationMethodCodeTypeType", "PARAM", "PARAM",
+				versionAdmin));
+
+		// MIC
+
+		reportFieldList.add(new ReportFieldList("MICCodeType", "ASEX", "ASEX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "BMEX", "BMEX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "BOVM", "BOVM",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "BVCA", "BVCA",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "BVMF", "BVMF",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "DIFX", "DIFX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "EUCH", "EUCH",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "FNSE", "FNSE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "FRAA", "FRAA",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "HKME", "HKME",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "IFED", "IFED",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "MERF", "MERF",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "MUNC", "MUNC",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "NURD", "NURD",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "OOTC", "OOTC",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "PLDX", "PLDX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "RTSL", "RTSL",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "SHSC", "SHSC",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "WDER", "WDER",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XAEX", "XAEX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XAMM", "XAMM",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XAMS", "XAMS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XASE", "XASE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XASX", "XASX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XBAR", "XBAR",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XBCL", "XBCL",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XBER", "XBER",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XBIL", "XBIL",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XBKK", "XBKK",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XBOG", "XBOG",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XBOM", "XBOM",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XBRU", "XBRU",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XBUD", "XBUD",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XBUE", "XBUE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XCAI", "XCAI",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XCAS", "XCAS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XCBO", "XCBO",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XCBT", "XCBT",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XCME", "XCME",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XCOL", "XCOL",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XCSE", "XCSE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XDMI", "XDMI",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XDPA", "XDPA",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XDRF", "XDRF",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XDUB", "XDUB",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XDUS", "XDUS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XETA", "XETA",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XEUR", "XEUR",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XFRA", "XFRA",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XHAM", "XHAM",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XHEL", "XHEL",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XHKF", "XHKF",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XICE", "XICE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XIDX", "XIDX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XIMM", "XIMM",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XIOM", "XIOM",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XIST", "XIST",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XISX", "XISX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XJAS", "XJAS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XJSE", "XJSE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XKAR", "XKAR",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XKAZ", "XKAZ",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XKFE", "XKFE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XKLS", "XKLS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XKOS", "XKOS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XKRX", "XKRX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XLAT", "XLAT",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XLDX", "XLDX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XLIM", "XLIM",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XLIS", "XLIS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XLJU", "XLJU",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XLON", "XLON",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XLUX", "XLUX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XMAD", "XMAD",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XMCE", "XMCE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XMEV", "XMEV",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XMEX", "XMEX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XMIL", "XMIL",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XMLI", "XMLI",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XMOD", "XMOD",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XMON", "XMON",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XMOS", "XMOS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XMRV", "XMRV",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XNDX", "XNDX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XNGO", "XNGO",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XNGS", "XNGS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XNLI", "XNLI",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XNMS", "XNMS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XNSE", "XNSE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XNYF", "XNYF",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XNYS", "XNYS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XNZE", "XNZE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XOSE", "XOSE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XOSL", "XOSL",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XOTC", "XOTC",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XPAR", "XPAR",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XPHL", "XPHL",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XPHS", "XPHS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XPRA", "XPRA",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XSCO", "XSCO",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XSES", "XSES",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XSGO", "XSGO",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XSHE", "XSHE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XSHG", "XSHG",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XSIM", "XSIM",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XSTU", "XSTU",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XSWX", "XSWX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XTAE", "XTAE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XTAI", "XTAI",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XTAL", "XTAL",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XTFF", "XTFF",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XTKS", "XTKS",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XTSE", "XTSE",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XTSX", "XTSX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XVAL", "XVAL",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XVTX", "XVTX",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XWAR", "XWAR",
+				versionAdmin));
+		reportFieldList.add(new ReportFieldList("MICCodeType", "XWBO", "XWBO",
 				versionAdmin));
 
 		// country codes

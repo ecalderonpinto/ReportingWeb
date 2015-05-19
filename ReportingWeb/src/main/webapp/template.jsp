@@ -57,19 +57,19 @@
 		$('#loading').show();
 	}
 	$(document).ready(function() {
-		 $('.datepicker').each(function(i){ 
+		$('.datepicker').each(function(i) {
 			var temp = $('.datepicker')[i].value;
-			$( this ).datepicker( 'option', 'dateFormat', 'yy-mm-dd' );
-			$( this ).datepicker( 'option', 'firstDay', 1 );
+			$(this).datepicker('option', 'dateFormat', 'yy-mm-dd');
+			$(this).datepicker('option', 'firstDay', 1);
 			if (temp) {
-				$( this ).datepicker( 'setDate', new Date(temp) );
+				$(this).datepicker('setDate', new Date(temp));
 			} else {
-				$( this ).datepicker( 'setDate', '' );
+				$(this).datepicker('setDate', '');
 			}
-			$( this ).datepicker( 'option', 'showOn', 'both' );
-			$( this ).datepicker( 'option', 'buttonImageOnly', true );
-			$( this ).datepicker( 'option', 'buttonImage', 'img/calendar.png' );
-		 }); 
+			$(this).datepicker('option', 'showOn', 'both');
+			$(this).datepicker('option', 'buttonImageOnly', true);
+			$(this).datepicker('option', 'buttonImage', 'img/calendar.png');
+		});
 	});
 </script>
 <!-- end: JavaScript -->
@@ -159,8 +159,8 @@
 										class="icon-cogs"></i><span class="hidden-tablet">
 											General Admin</span></a></li>
 								<li><a class="submenu" href="user.do"><i
-										class="icon-user"></i><span class="hidden-tablet">
-											User Manager</span></a></li>
+										class="icon-user"></i><span class="hidden-tablet"> User
+											Manager</span></a></li>
 								<li><a class="submenu" href="fileConfig.do"><i
 										class="icon-file-alt"></i><span class="hidden-tablet">
 											File Config</span></a></li>
