@@ -180,8 +180,10 @@ public class Format {
 		// ##% -> 25% => 25
 		// http://docs.oracle.com/javase/tutorial/java/data/numberformat.html
 
-		// only acept format #.# removing spaces, characters and ',' '.' of
+		// only accept format #.# removing spaces, characters and ',' '.' of
 		// thousands
+		
+		// see example in (37) FXEURRate -> FileColum
 		String numberFormat = fileColum.getColumFormat();
 
 		try {
@@ -189,21 +191,22 @@ public class Format {
 			int comma = numberFormat.indexOf(",");
 			if (dot > comma) {
 				// dot before comma -> #.# || ###,###.## => remove ','
-				number.replace(",", "");
+				number = number.replace(",", "");
 			} else {
 				// dot after comma -> #,# || ###.###,## => remove '.' change ','
 				// ->
 				// '.'
-				number.replace(".", "");
-				number.replace(",", ".");
+				number = number.replace(".", "");
+				number = number.replace(",", ".");
 			}
 
 			// clean all not digit characters except '.'
 			// http://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
-			number.replaceAll("[\\D+&&[^\\.]]", "");
+
+			number = number.replaceAll("[\\D+&&[^\\.]]", "");
 
 			System.out.println("DEBUG_" + "FormatNumber Orig: "
-					+ loadRawData.getLoadRawDataText() + " New" + number);
+					+ loadRawData.getLoadRawDataText() + " New " + number);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// create loadError
@@ -216,7 +219,6 @@ public class Format {
 							+ loadRawData.getLoadRawDataText() + " "
 							+ fileColum.getColumFormat());
 		}
-		// TODO:RT check if it is ok
 
 		// set the final number
 		loadRawData.setLoadRawDataText(number);

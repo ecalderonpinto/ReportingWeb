@@ -516,7 +516,7 @@ public class InstallAIFM {
 					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField42);
 
-			FileConfig fileConfig0 = new FileConfig(null, "AIFM",
+			FileConfig fileConfig0 = new FileConfig(department1, "AIFM",
 					"AIFM2014_QUESTIONS", ";", "SIMPLE", "*", null, true, null,
 					null, versionAdmin);
 
@@ -529,7 +529,7 @@ public class InstallAIFM {
 					"format", null, null, versionAdmin);
 			fileColum02.setColumBlock(ReportUtilities.fileColumBlockRepeatable);
 
-			FileConfig fileConfig = new FileConfig(null, "AIFM",
+			FileConfig fileConfig = new FileConfig(department1, "AIFM",
 					"AIFM2014_GENERAL", ";", "SIMPLE", "*", null, true, null,
 					null, versionAdmin);
 
@@ -998,7 +998,7 @@ public class InstallAIFM {
 					"type", new BigDecimal(59), "FXEURReferenceRateType", "",
 					"format", null, null, versionAdmin);
 			FileColum fileColum60 = new FileColum(reportField37, fileConfig,
-					"type", new BigDecimal(60), "FXEURRate", "", "format",
+					"NUMBER", new BigDecimal(60), "FXEURRate", "", "#,#",
 					null, null, versionAdmin);
 			FileColum fileColum61 = new FileColum(reportField38, fileConfig,
 					"type", new BigDecimal(61),
