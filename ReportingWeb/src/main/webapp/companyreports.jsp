@@ -77,15 +77,15 @@
 			</div>
 
 			<div class="box-content">
-				<table
+				<table id="myTable" 
 					class="table table-striped table-bordered table-condensed datatable">
 					<thead>
 						<tr>
 							<!-- <th>Export</th> -->
-							<th>Name</th>
-							<th>Type</th>
-							<th>Year</th>
-							<th>Status</th>
+							<th>Name <i class="icon-sort"></i></th>
+							<th>Type <i class="icon-sort"></i></th>
+							<th>Year <i class="icon-sort"></i></th>
+							<th>Status <i class="icon-sort"></i></th>
 							<th></th>
 						</tr>
 					</thead>

@@ -72,14 +72,14 @@
 		<div class="box-content">
 			<!-- table table-bordered table-striped table-condensed table table-striped table-bordered bootstrap-datatable datatable-->
 			<form name="repform" action="Report">
-				<table
+				<table id="myTable" 
 					class="table table-striped table-bordered table-condensed">
 					<thead>
 						<tr>
 							<!-- <th></th> -->
-							<th>Line Nº</th>
-							<th>Type</th>
-							<th>Status</th>
+							<th>Line Nº <i class="icon-sort"></i></th>
+							<th>Type <i class="icon-sort"></i></th>
+							<th>Status <i class="icon-sort"></i></th>
 							<th>Colums</th>
 						</tr>
 					</thead>

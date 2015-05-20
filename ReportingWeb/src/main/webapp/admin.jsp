@@ -71,13 +71,13 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<table class="table table-striped table-bordered table-condensed">
+			<table id="myTable" class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
-						<th>Report Name</th>
-						<th>Level</th>
-						<th>Version</th>
-						<th>Description</th>
+						<th>Report Name <i class="icon-sort"></i></th>
+						<th>Level <i class="icon-sort"></i></th>
+						<th>Version <i class="icon-sort"></i></th>
+						<th>Description <i class="icon-sort"></i></th>
 						<th>Details</th>
 					</tr>
 				</thead>

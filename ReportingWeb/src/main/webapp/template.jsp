@@ -48,6 +48,7 @@
 <script src="js/jquery.masonry.min.js"></script>
 <script src="js/jquery.knob.modified.js"></script>
 <script src="js/jquery.sparkline.min.js"></script>
+<script src="js/jquery.tablesorter.js"></script>
 <script src="js/counter.js"></script>
 <script src="js/retina.js"></script>
 <script src="js/custom.js"></script>
@@ -71,6 +72,18 @@
 			$(this).datepicker('option', 'buttonImage', 'img/calendar.png');
 		});
 	});
+	
+	$(document).ready(function() 
+		    { 
+		        $("#myTable").tablesorter(); 
+		    } 
+		); 
+	$(document).ready(function() 
+		    { 
+		        $("#myTable2").tablesorter(); 
+		    } 
+		); 
+	
 </script>
 <!-- end: JavaScript -->
 

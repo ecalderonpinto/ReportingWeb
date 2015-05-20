@@ -21,16 +21,16 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<table class="table table-striped table-bordered table-condensed">
+			<table id="myTable" class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
-						<th>Department name</th>
-						<th>Name</th>
-						<th>Type</th>
-						<th>Separator</th>
-						<th>Format line</th>
-						<th>Cron</th>
-						<th>Path</th>
+						<th>Department name <i class="icon-sort"></i></th>
+						<th>Name <i class="icon-sort"></i></th>
+						<th>Type <i class="icon-sort"></i></th>
+						<th>Separator <i class="icon-sort"></i></th>
+						<th>Format line <i class="icon-sort"></i></th>
+						<th>Cron <i class="icon-sort"></i></th>
+						<th>Path <i class="icon-sort"></i></th>
 						<th>Detail</th>
 					</tr>
 				</thead>

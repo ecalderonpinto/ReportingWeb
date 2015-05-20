@@ -62,16 +62,16 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<table class="table table-striped table-bordered table-condensed">
+			<table id="myTable" class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
-						<th>Field Name</th>
-						<th>Type</th>
-						<th>Number</th>
+						<th>Field Name <i class="icon-sort"></i></th>
+						<th>Type <i class="icon-sort"></i></th>
+						<th>Number <i class="icon-sort"></i></th>
 						<!-- <th>Format</th> -->
 						<!-- <th>Description</th> -->
 						<!-- <th>Mask</th> -->
-						<th>Section</th>
+						<th>Section <i class="icon-sort"></i></th>
 						<th>Detail</th>
 					</tr>
 				</thead>

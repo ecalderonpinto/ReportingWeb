@@ -66,13 +66,14 @@
 					</div>
 				</div>
 				<div class="box-content">
-					<table class="table table-striped table-bordered table-condensed">
+					<table id="myTable"
+						class="table table-striped table-bordered table-condensed">
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>Code</th>
-								<th>Description</th>
-								<th>Country</th>
+								<th>Name <i class="icon-sort"></i></th>
+								<th>Code <i class="icon-sort"></i></th>
+								<th>Description <i class="icon-sort"></i></th>
+								<th>Country <i class="icon-sort"></i></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -106,14 +107,15 @@
 					</div>
 				</div>
 				<div class="box-content">
-					<table class="table table-striped table-bordered table-condensed">
+					<table id="myTable2"
+						class="table table-striped table-bordered table-condensed">
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>Isin</th>
-								<th>Code</th>
-								<th>Description</th>
-								<th>Class</th>
+								<th>Name <i class="icon-sort"></i></th>
+								<th>Isin <i class="icon-sort"></i></th>
+								<th>Code <i class="icon-sort"></i></th>
+								<th>Description <i class="icon-sort"></i></th>
+								<th>Class <i class="icon-sort"></i></th>
 								<th>Reports</th>
 							</tr>
 						</thead>

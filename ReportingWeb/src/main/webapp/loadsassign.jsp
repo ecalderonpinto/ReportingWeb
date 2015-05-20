@@ -103,12 +103,12 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<table class="table table-striped table-bordered table-condensed">
+			<table id="myTable" class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
-						<th>Report Catalog</th>
-						<th>Report Name</th>
-						<th>File name</th>
+						<th>Report Catalog <i class="icon-sort"></i></th>
+						<th>Report Name <i class="icon-sort"></i></th>
+						<th>File name <i class="icon-sort"></i></th>
 					</tr>
 				</thead>
 				<tbody>

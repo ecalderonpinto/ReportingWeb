@@ -41,15 +41,15 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<table class="table table-striped table-bordered table-condensed">
+			<table id="myTable" class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
-						<th>User Name</th>
-						<th>User Rol</th>
-						<th>User Mail</th>
-						<th>Company</th>
-						<th>Last login</th>
-						<th>Enabled</th>
+						<th>User Name <i class="icon-sort"></i></th>
+						<th>User Rol <i class="icon-sort"></i></th>
+						<th>User Mail <i class="icon-sort"></i></th>
+						<th>Company <i class="icon-sort"></i></th>
+						<th>Last login <i class="icon-sort"></i></th>
+						<th>Enabled <i class="icon-sort"></i></th>
 						<th>Detail</th>
 					</tr>
 				</thead>
@@ -97,13 +97,13 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<table class="table table-striped table-bordered table-condensed">
+			<table id="myTable2" class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
-						<th>User</th>
-						<th>Date</th>
-						<th>Message</th>
-						<th>Is alert?</th>
+						<th>User <i class="icon-sort"></i></th>
+						<th>Date <i class="icon-sort"></i></th>
+						<th>Message <i class="icon-sort"></i></th>
+						<th>Is alert? <i class="icon-sort"></i></th>
 					</tr>
 				</thead>
 				<tbody>

@@ -84,16 +84,16 @@
 		</div>
 		<div class="box-content">
 			<!-- table table-bordered table-striped table-condensed table table-striped table-bordered bootstrap-datatable datatable-->
-			<table
+			<table id="myTable" 
 				class="table table-striped table-bordered table-condensed datatable">
 				<thead>
 					<tr>
 						<!-- <th></th> -->
-						<th>Name</th>
-						<th>Config</th>
-						<th>Date</th>
-						<th>Registers</th>
-						<th>Status</th>
+						<th>Name <i class="icon-sort"></i></th>
+						<th>Config <i class="icon-sort"></i></th>
+						<th>Date <i class="icon-sort"></i></th>
+						<th>Registers< <i class="icon-sort"></i>/th>
+						<th>Status <i class="icon-sort"></i></th>
 						<th>Registers</th>
 					</tr>
 				</thead>

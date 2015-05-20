@@ -21,12 +21,12 @@
 			</div>
 		</div>
 		<div class="box-content">
-			<table class="table table-striped table-bordered table-condensed">
+			<table id="myTable" class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
-						<th>List</th>
-						<th>Value</th>
-						<th>Description</th>
+						<th>List <i class="icon-sort"></i></th>
+						<th>Value <i class="icon-sort"></i></th>
+						<th>Description <i class="icon-sort"></i></th>
 						<!-- <th>Detail</th> -->
 					</tr>
 				</thead>

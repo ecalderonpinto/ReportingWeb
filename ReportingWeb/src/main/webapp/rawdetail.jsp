@@ -67,12 +67,12 @@
 		</div>
 		<div class="box-content">
 			<!-- table table-bordered table-striped table-condensed table table-striped table-bordered bootstrap-datatable datatable-->
-			<table class="table table-striped table-bordered table-condensed bootstrap-datatable datable">
+			<table id="myTable" class="table table-striped table-bordered table-condensed bootstrap-datatable datable">
 				<thead>
 					<tr>
-						<th>File Column</th>
-						<th>Column Num</th>
-						<th>Data</th>
+						<th>File Column <i class="icon-sort"></i></th>
+						<th>Column Num <i class="icon-sort"></i></th>
+						<th>Data <i class="icon-sort"></i></th>
 					</tr>
 				</thead>
 				<tbody>

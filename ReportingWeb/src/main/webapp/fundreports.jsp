@@ -13,7 +13,7 @@
 </ul>
 <!-- end: Breadcrumb -->
 
-<!-- Filter Box -->
+<%-- <!-- Filter Box -->
 <div class="row-fluid sortable">
 	<div class="box span12">
 		<div class="box-header">
@@ -61,7 +61,7 @@
 	<!--/span-->
 </div>
 <!--/row-->
-<!-- /Filter Box -->
+<!-- /Filter Box --> --%>
 
 <form:form method="POST" commandName="fund">
 	<div class="row-fluid sortable">
@@ -77,14 +77,14 @@
 				</div>
 			</div>
 			<div class="box-content">
-				<table
+				<table id="myTable" 
 					class="table table-striped table-bordered table-condensed datatable">
 					<thead>
 						<tr>
 							<!-- <th>Export</th> -->
-							<th>Name</th>
-							<th>Type</th>
-							<th>Status</th>
+							<th>Name <i class="icon-sort"></i></th>
+							<th>Type <i class="icon-sort"></i></th>
+							<th>Status <i class="icon-sort"></i></th>
 							<th></th>
 						</tr>
 					</thead>
