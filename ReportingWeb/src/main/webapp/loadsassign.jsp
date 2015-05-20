@@ -15,6 +15,29 @@
 </ul>
 <!-- end: Breadcrumb -->
 
+<!-- message success / fail from load file -->
+<c:if test="${alerts}">
+	<div class="box-content alerts">
+		<c:choose>
+			<c:when test="${alert.error}">
+				<div class="alert alert-error">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<strong>Error:</strong>
+					<c:out value="${alert.message}" />
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<strong>Success:</strong>
+					<c:out value="${alert.message}" />
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</div>
+</c:if>
+<!-- / message success / fail from load file -->
+
 <form:form method="POST" commandName="reportassign">
 	<div class="row-fluid sortable">
 		<div class="box span12">
@@ -58,7 +81,8 @@
 					</tbody>
 				</table>
 
-				<input type="submit" value="Save" class="btn btn-important btn-danger">
+				<input type="submit" value="Save"
+					class="btn btn-important btn-danger">
 			</div>
 		</div>
 		<!--/span-->

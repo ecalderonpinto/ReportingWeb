@@ -46,19 +46,19 @@ public class InstallAIFM {
 					"SAM", "", versionAdmin);
 			
 			Company company2 = new Company("Santander Private Banking", "Spain",
-					"SPBF", "", versionAdmin);
+					"SPBG", "", versionAdmin);
 			
 			Company company3 = new Company("Santander Funds Administration (COFFER)", "Spain",
-					"SDF", "", versionAdmin);
+					"SFA", "", versionAdmin);
 
 			Department department1 = new Department(company1, "SAM Operation department",
 					"SAM", "", "Spain", new VersionAuditor("admin"));
 			
-			Department department2 = new Department(company2, "SPBF Operation department",
-					"SPBF", "", "Spain", new VersionAuditor("admin"));
+			Department department2 = new Department(company2, "SPBG Operation department",
+					"SPBG", "", "Spain", new VersionAuditor("admin"));
 			
-			Department department3 = new Department(company3, "SDF Operation department",
-					"SDF", "", "Spain", new VersionAuditor("admin"));
+			Department department3 = new Department(company3, "SFA Operation department",
+					"SFA", "", "Spain", new VersionAuditor("admin"));
 
 //			Fund fund1 = new Fund(company3, "SAM fund 1", "ES000001", "FUND1",
 //					"", null, versionAdmin);
@@ -311,7 +311,7 @@ public class InstallAIFM {
 			// (22) <AIFMIdentifierLEI>
 			ReportField reportField22 = new ReportField(reportCatalog,
 					reportFieldx6, "A", "AIFMIdentifierLEI", new BigInteger(
-							"22"), ".{20}", "", "Complete Description",
+							"22"), "[0-9a-zA-Z]{18}[0-9]{2}", "", "Complete Description",
 					"LEICodeType", "3.22", "0,1", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField22);

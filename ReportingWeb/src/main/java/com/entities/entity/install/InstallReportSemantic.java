@@ -171,6 +171,16 @@ public class InstallReportSemantic {
 								+ "\n result = \"ok\"", null, "Fill field(17)",
 						versionAdmin));
 
+		// (17) <AIFMJurisdiction>
+		// reportSemantics
+		// .add(new ReportSemantic(
+		// reportCatalog,
+		// "Field(17) mandatory",
+		// "if ( ReportUtilities.searchData(reportDatas, \"AIFMJurisdiction\", \"17\", null) != null) "
+		// + "\n result = \"ok\"; else problem=\"(17)\"", null,
+		// "Fill field(17)",
+		// versionAdmin));
+
 		// (18) <AIFMNationalCode>
 		reportSemantics
 				.add(new ReportSemantic(
@@ -238,25 +248,63 @@ public class InstallReportSemantic {
 						"Fill field(27) has 5 occurences.", versionAdmin));
 
 		// (28) <MarketCode>
+		// reportSemantics
+		// .add(new ReportSemantic(
+		// reportCatalog,
+		// "Field(28) is mandatory",
+		// "if ( ReportUtilities.dependencyRepeDataExist(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\")"
+		// +
+		// "&& ReportUtilities.dependencyRepeDataDiffEmpty(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\")"
+		// + ") " + "\n result = \"ok\"",
+		// null,
+		// "Fill field(28) is mandatory when field(27) = MIC, forbidden otherwise.",
+		// versionAdmin));
+
+		// (28) <MarketCode>
 		reportSemantics
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(28) is mandatory",
-						"if ( ReportUtilities.dependencyRepeDataExist(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\")"
-								+ "&& ReportUtilities.dependencyRepeDataDiffEmpty(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\")"
-								+ ") " + "\n result = \"ok\"",
+						"if ( ReportUtilities.dependencyRepeDataExist1(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\") == null "
+								+ "&& ReportUtilities.dependencyRepeDataDiffEmpty1(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\")  == null "
+								+ ") "
+								+ "\n result = \"ok\"; \n else {"
+								+ "\n if (ReportUtilities.dependencyRepeDataExist1(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\") != null)"
+								+ "\n problem = ReportUtilities.dependencyRepeDataExist1(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\");"
+								+ "\n if (ReportUtilities.dependencyRepeDataDiffEmpty1(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\") != null)"
+								+ "\n problem = ReportUtilities.dependencyRepeDataDiffEmpty1(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\");"
+								+ "}",
 						null,
 						"Fill field(28) is mandatory when field(27) = MIC, forbidden otherwise.",
 						versionAdmin));
+
+		// (29) <AggregatedValueAmount>
+		// reportSemantics
+		// .add(new ReportSemantic(
+		// reportCatalog,
+		// "Field(29) is mandatory",
+		// "if ( ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\")"
+		// +
+		// "&& ReportUtilities.dependencyRepeDataEmpty(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\") "
+		// + ") " + "\n result = \"ok\"",
+		// null,
+		// "Fill field(29) is mandatory when field(27) different NOT, forbidden otherwise.",
+		// versionAdmin));
 
 		// (29) <AggregatedValueAmount>
 		reportSemantics
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(29) is mandatory",
-						"if ( ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\")"
-								+ "&& ReportUtilities.dependencyRepeDataEmpty(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\") "
-								+ ") " + "\n result = \"ok\"",
+						"if ( ReportUtilities.dependencyRepeDataNot1(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\") == null"
+								+ "&& ReportUtilities.dependencyRepeDataEmpty1(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\") == null"
+								+ ") "
+								+ "\n result = \"ok\"; \n else {"
+								+ "\n if (ReportUtilities.dependencyRepeDataNot1(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\") != null)"
+								+ "\n problem = ReportUtilities.dependencyRepeDataNot1(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\");"
+								+ "\n if (ReportUtilities.dependencyRepeDataEmpty1(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\") != null) "
+								+ "\n problem = ReportUtilities.dependencyRepeDataEmpty1(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\");"
+								+ "}",
 						null,
 						"Fill field(29) is mandatory when field(27) different NOT, forbidden otherwise.",
 						versionAdmin));
@@ -280,13 +328,32 @@ public class InstallReportSemantic {
 						"Fill field(31) has 5 occurences.", versionAdmin));
 
 		// (32) <AggregatedValueAmount>
+		// reportSemantics
+		// .add(new ReportSemantic(
+		// reportCatalog,
+		// "Field(32) is mandatory",
+		// "if ( ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\")"
+		// +
+		// "&& ReportUtilities.dependencyRepeDataEmpty(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\") "
+		// + ")" + "\n result = \"ok\"",
+		// null,
+		// "Fill field(32) is mandatory when field(31) not NTA_NTA_NOTA, forbidden otherwise.",
+		// versionAdmin));
+
+		// (32) <AggregatedValueAmount>
 		reportSemantics
 				.add(new ReportSemantic(
 						reportCatalog,
 						"Field(32) is mandatory",
-						"if ( ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\")"
-								+ "&& ReportUtilities.dependencyRepeDataEmpty(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\") "
-								+ ")" + "\n result = \"ok\"",
+						"if ( ReportUtilities.dependencyRepeDataNot1(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\") == null "
+								+ "&& ReportUtilities.dependencyRepeDataEmpty1(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\") == null "
+								+ ")"
+								+ "\n result = \"ok\"; \n else {"
+								+ "\n if (ReportUtilities.dependencyRepeDataNot1(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\") != null)"
+								+ "\n problem = ReportUtilities.dependencyRepeDataNot1(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\");"
+								+ "\n if (ReportUtilities.dependencyRepeDataEmpty1(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\") != null)"
+								+ "\n problem = ReportUtilities.dependencyRepeDataEmpty1(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\");"
+								+ "}",
 						null,
 						"Fill field(32) is mandatory when field(31) not NTA_NTA_NOTA, forbidden otherwise.",
 						versionAdmin));

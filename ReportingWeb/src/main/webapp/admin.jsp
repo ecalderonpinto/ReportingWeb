@@ -10,6 +10,29 @@
 </ul>
 <!-- end: Breadcrumb -->
 
+<!-- message success / fail from load file -->
+<c:if test="${alerts}">
+	<div class="box-content alerts">
+		<c:choose>
+			<c:when test="${alert.error}">
+				<div class="alert alert-error">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<strong>Error:</strong>
+					<c:out value="${alert.message}" />
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<strong>Success:</strong>
+					<c:out value="${alert.message}" />
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</div>
+</c:if>
+<!-- / message success / fail from load file -->
+
 <div class="row-fluid sortable">
 	<div class="box blue span12">
 		<div class="box-header">

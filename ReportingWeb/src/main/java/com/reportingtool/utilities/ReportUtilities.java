@@ -708,6 +708,34 @@ public class ReportUtilities {
 
 		return result;
 	}
+	
+	public static String dependencyRepeDataExist1(List<ReportData> reportDatas,
+			String reportFieldName1, String reportFieldNum1,
+			String reportFieldName2, String reportFieldNum2,
+			String reportDataText2) {
+
+		String result = null;
+
+		// Example: field2(27) = MIC, field1(28) has to have content.
+		// We find all field2(27) matching block number with field1(28) and
+		// check if this rule works
+
+		List<String> listField2 = searchBlockList(reportDatas,
+				reportFieldName2, reportFieldNum2);
+		for (String blockNum : listField2) {
+			if (searchData(reportDatas, reportFieldName2, reportFieldNum2,
+					blockNum).equals(reportDataText2)) {
+				// field2 has the content expected, we find in field1 is exists
+				if (searchData(reportDatas, reportFieldName1, reportFieldNum1,
+						blockNum) == null) {
+					// if one fail, the rule is not satisfied
+					result = " Check [" + blockNum + "], should not be empty.";
+				}
+			}
+		}
+
+		return result;
+	}
 
 	/**
 	 * Function receive two repeatable fields and check comparing blocks, check
@@ -744,6 +772,34 @@ public class ReportUtilities {
 						blockNum) != null) {
 					// if one fail, the rule is not satisfied
 					result = false;
+				}
+			}
+		}
+
+		return result;
+	}
+	
+	public static String dependencyRepeDataDiffEmpty1(
+			List<ReportData> reportDatas, String reportFieldName1,
+			String reportFieldNum1, String reportFieldName2,
+			String reportFieldNum2, String reportDataText2) {
+
+		String result = null;
+
+		// Example: field2(27) <> MIC, field1(28) has to be empty.
+		// We find all field2(27) matching block number with field1(28) and
+		// check if this rule works
+
+		List<String> listField2 = searchBlockList(reportDatas,
+				reportFieldName2, reportFieldNum2);
+		for (String blockNum : listField2) {
+			if (!searchData(reportDatas, reportFieldName2, reportFieldNum2,
+					blockNum).equals(reportDataText2)) {
+				// field2 has the content expected, we find in field1 is exists
+				if (searchData(reportDatas, reportFieldName1, reportFieldNum1,
+						blockNum) != null) {
+					// if one fail, the rule is not satisfied
+					result = " Check [" + blockNum + "], should be empty.";
 				}
 			}
 		}
@@ -791,6 +847,34 @@ public class ReportUtilities {
 
 		return result;
 	}
+	
+	public static String dependencyRepeDataEmpty1(List<ReportData> reportDatas,
+			String reportFieldName1, String reportFieldNum1,
+			String reportFieldName2, String reportFieldNum2,
+			String reportDataText2) {
+
+		String result = null;
+
+		// Example: field2(27) == NOT, field1(28) has to be empty.
+		// We find all field2(27) matching block number with field1(28) and
+		// check if this rule works
+
+		List<String> listField2 = searchBlockList(reportDatas,
+				reportFieldName2, reportFieldNum2);
+		for (String blockNum : listField2) {
+			if (searchData(reportDatas, reportFieldName2, reportFieldNum2,
+					blockNum).equals(reportDataText2)) {
+				// field2 has the content expected, we find in field1 is exists
+				if (searchData(reportDatas, reportFieldName1, reportFieldNum1,
+						blockNum) != null) {
+					// if one fail, the rule is not satisfied
+					result =  " Check [" + blockNum + "], should be empty.";
+				}
+			}
+		}
+
+		return result;
+	}
 
 	/**
 	 * Function receive two repeatable fields and check comparing blocks, check
@@ -826,6 +910,34 @@ public class ReportUtilities {
 						blockNum) == null) {
 					// if one fail, the rule is not satisfied
 					result = false;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public static String dependencyRepeDataNot1(List<ReportData> reportDatas,
+			String reportFieldName1, String reportFieldNum1,
+			String reportFieldName2, String reportFieldNum2,
+			String reportDataText2) {
+
+		String result = null;
+
+		// Example: field2(27) <> NOT, field1(29) has to have content.
+		// We find all field2(27) matching block number with field1(28) and
+		// check if this rule works
+
+		List<String> listField2 = searchBlockList(reportDatas,
+				reportFieldName2, reportFieldNum2);
+		for (String blockNum : listField2) {
+			if (!searchData(reportDatas, reportFieldName2, reportFieldNum2,
+					blockNum).equals(reportDataText2)) {
+				// field2 has the content expected, we find in field1 is exists
+				if (searchData(reportDatas, reportFieldName1, reportFieldNum1,
+						blockNum) == null) {
+					// if one fail, the rule is not satisfied
+					result = " Check [" + blockNum + "], should not be empty.";
 				}
 			}
 		}

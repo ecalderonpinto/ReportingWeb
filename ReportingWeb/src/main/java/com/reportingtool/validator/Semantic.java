@@ -107,7 +107,14 @@ public class Semantic {
 			beanshellContext.set("result", result);
 
 			beanshellContext.eval(initialScript.toString());
+			// return result=ok if rule ok, null otherwise
 			result = (String) beanshellContext.get("result");
+			
+			// return where the semantic problem is
+			String problem = "";
+			problem = (String) beanshellContext.get("problem");
+			if (problem != null)
+				System.out.println("SEMANTIC Problem: " + problem);
 
 			if (result == null) {
 				// error
@@ -122,7 +129,7 @@ public class Semantic {
 						"Semantic Rule "
 								+ reportSemantic.getReportingSemanticName()
 								+ " unfulfilled. Suggestion: "
-								+ reportSemantic.getReportingSemanticSugg());
+								+ reportSemantic.getReportingSemanticSugg() + " " + problem);
 			} else {
 				// ok
 				System.out.println("DEBUG_" + "Semantic: Ok, result " + result

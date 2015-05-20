@@ -302,7 +302,7 @@ public class InstallAIF {
 			// (24) <AIFIdentifierLEI>
 			ReportField reportField24 = new ReportField(reportCatalog,
 					reportFieldx7, "A", "AIFIdentifierLEI",
-					new BigInteger("24"), ".{20}", "", "Complete Description",
+					new BigInteger("24"), "[0-9a-zA-Z]{18}[0-9]{2}", "", "Complete Description",
 					"AIFIdentification", "03.024", "0,1", versionField, null,
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportField24);
@@ -519,7 +519,7 @@ public class InstallAIF {
 			// (46) <EntityIdentificationLEI>
 			ReportField reportField46 = new ReportField(reportCatalog,
 					reportFieldx13, "A", "EntityIdentificationLEI",
-					new BigInteger("46"), ".{20}", "", "Prime Brokers",
+					new BigInteger("46"), "[0-9a-zA-Z]{18}[0-9]{2}", "", "Prime Brokers",
 					"LEICodeType", "06.046", "0,n", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField46);
@@ -1173,7 +1173,7 @@ public class InstallAIF {
 			// (101) <EntityIdentificationLEI>
 			ReportField reportField101 = new ReportField(reportCatalog,
 					reportFieldx31, "A", "EntityIdentificationLEI",
-					new BigInteger("101"), ".{20}", "", "Principal Exposures",
+					new BigInteger("101"), "[0-9a-zA-Z]{18}[0-9]{2}", "", "Principal Exposures",
 					"LEICodeType", "14.101", "0,10", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField101);
@@ -1284,7 +1284,7 @@ public class InstallAIF {
 			// (111) <EntityIdentificationLEI>
 			ReportField reportField111 = new ReportField(reportCatalog,
 					reportFieldx36, "A", "EntityIdentificationLEI",
-					new BigInteger("111"), ".{20}", "",
+					new BigInteger("111"), "[0-9a-zA-Z]{18}[0-9]{2}", "",
 					"Portfolio Concentration", "LEICodeType", "15.111",
 					"0,5", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField111);
@@ -1551,7 +1551,7 @@ public class InstallAIF {
 			// (132) <EntityIdentificationLEI>
 			ReportField reportField132 = new ReportField(reportCatalog,
 					reportFieldx51, "A", "EntityIdentificationLEI",
-					new BigInteger("132"), ".{20}", "",
+					new BigInteger("132"), "[0-9a-zA-Z]{18}[0-9]{2}", "",
 					"Companies Dominant Influence", "LEICodeType", "22.132",
 					"0,n", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField132);
@@ -1916,7 +1916,7 @@ public class InstallAIF {
 			// (163) <EntityIdentificationLEI>
 			ReportField reportField163 = new ReportField(reportCatalog,
 					reportFieldx68, "A", "EntityIdentificationLEI",
-					new BigInteger("163"), ".{20}", "",
+					new BigInteger("163"), "[0-9a-zA-Z]{18}[0-9]{2}", "",
 					"Fund To Counterparty Exposures", "LEICodeType", "26.163",
 					"0,5", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField163);
@@ -1981,7 +1981,7 @@ public class InstallAIF {
 			// (169) <EntityIdentificationLEI>
 			ReportField reportField169 = new ReportField(reportCatalog,
 					reportFieldx71, "A", "EntityIdentificationLEI",
-					new BigInteger("169"), ".{20}", "",
+					new BigInteger("169"), "[0-9a-zA-Z]{18}[0-9]{2}", "",
 					"Fund To Counterparty Exposures", "LEICodeType", "26.169",
 					"0,5", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField169);
@@ -2047,7 +2047,7 @@ public class InstallAIF {
 			// (175) <EntityIdentificationLEI>
 			ReportField reportField175 = new ReportField(reportCatalog,
 					reportFieldx74, "A", "EntityIdentificationLEI",
-					new BigInteger("175"), ".{20}", "", "CCP Exposures",
+					new BigInteger("175"), "[0-9a-zA-Z]{18}[0-9]{2}", "", "CCP Exposures",
 					"LEICodeType", "27.175", "0,3", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField175);
@@ -3161,7 +3161,7 @@ public class InstallAIF {
 			// (291) <EntityIdentificationLEI>
 			ReportField reportField291 = new ReportField(reportCatalog,
 					reportFieldx100, "A", "EntityIdentificationLEI",
-					new BigInteger("291"), ".{20}", "",
+					new BigInteger("291"), "[0-9a-zA-Z]{18}[0-9]{2}", "",
 					"Controlled Structures", "LEICodeType", "40.291", "0,n",
 					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField291);
@@ -3252,7 +3252,7 @@ public class InstallAIF {
 			// (299) <EntityIdentificationLEI>
 			ReportField reportField299 = new ReportField(reportCatalog,
 					reportFieldx104, "A", "EntityIdentificationLEI",
-					new BigInteger("299"), ".{20}", "", "Borrowing Source",
+					new BigInteger("299"), ".[0-9a-zA-Z]{18}[0-9]{2}", "", "Borrowing Source",
 					"LEICodeType", "42.299", "0,5", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField299);

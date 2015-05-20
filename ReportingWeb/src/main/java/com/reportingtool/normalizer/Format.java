@@ -99,6 +99,17 @@ public class Format {
 		System.out.println("DEBUG_" + "FormatDate Orig: " + dateText + " New "
 				+ newstring);
 
+		// if result is empty, we do not change and show error
+		if (newstring.length() == 0) {
+			newstring = loadRawData.getLoadRawDataText();
+			// create loadError
+			ReportingErrorManager.createLoadError(applicationContext,
+					ErrorTypeEnum.FORMAT.getErrorType(), loadRawData
+							.getLoadRaw().getLoadFile(), "FORMAT",
+					"INVALID DATE FORMAT: " + loadRawData.getLoadRawDataText()
+							+ " " + fileColum.getColumFormat());
+		}
+
 		// set final date
 		loadRawData.setLoadRawDataText(newstring);
 
@@ -150,6 +161,20 @@ public class Format {
 		System.out.println("DEBUG_" + "FormatDateTime Orig: " + dateText
 				+ " New" + newstring);
 
+		// if result is empty, we do not change and show error
+		if (newstring.length() == 0) {
+			newstring = loadRawData.getLoadRawDataText();
+			// create loadError
+			ReportingErrorManager.createLoadError(
+					applicationContext,
+					ErrorTypeEnum.FORMAT.getErrorType(),
+					loadRawData.getLoadRaw().getLoadFile(),
+					"FORMAT",
+					"INVALID DATETIME FORMAT: "
+							+ loadRawData.getLoadRawDataText() + " "
+							+ fileColum.getColumFormat());
+		}
+
 		// set final date
 		loadRawData.setLoadRawDataText(newstring);
 
@@ -182,7 +207,7 @@ public class Format {
 
 		// only accept format #.# removing spaces, characters and ',' '.' of
 		// thousands
-		
+
 		// see example in (37) FXEURRate -> FileColum
 		String numberFormat = fileColum.getColumFormat();
 
@@ -207,6 +232,7 @@ public class Format {
 
 			System.out.println("DEBUG_" + "FormatNumber Orig: "
 					+ loadRawData.getLoadRawDataText() + " New " + number);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			// create loadError
@@ -220,7 +246,21 @@ public class Format {
 							+ fileColum.getColumFormat());
 		}
 
-		// set the final number
+		// if has only characters after formatting, we do not change
+		if (number.length() == 0) {
+			number = loadRawData.getLoadRawDataText();
+			// create loadError
+			ReportingErrorManager.createLoadError(
+					applicationContext,
+					ErrorTypeEnum.FORMAT.getErrorType(),
+					loadRawData.getLoadRaw().getLoadFile(),
+					"FORMAT",
+					"ERROR When formating number: "
+							+ loadRawData.getLoadRawDataText() + " "
+							+ fileColum.getColumFormat());
+		}
+
+		// set the final number, only if is not empty
 		loadRawData.setLoadRawDataText(number);
 
 		LoadRawDataDAO loadRawDataDAO = (LoadRawDataDAO) applicationContext

@@ -24,6 +24,7 @@ import com.entities.dao.loader.LoadFileDAO;
 import com.entities.dao.reportingtool.ReportExecutionDAO;
 import com.entities.entity.loader.LoadFile;
 import com.entities.entity.reportingtool.ReportExecution;
+import com.reportingtool.controllers.forms.AlertToView;
 import com.reportingtool.controllers.forms.ReportAssignLoadsForm;
 import com.reportingtool.validator.RawData;
 import com.reportingtool.validator.Semantic;
@@ -47,7 +48,7 @@ public class LoadsAsignToReportsController {
 	public String DataManagerControllerPre(@RequestParam("id") String id,
 			Model model) {
 
-		System.out.println("Form controller");
+		System.out.println("Load assign controller");
 
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
 				.getBean("reportExecutionDAO");
@@ -62,6 +63,7 @@ public class LoadsAsignToReportsController {
 		
 		model.addAttribute("reportassign", reportAssign);
 		model.addAttribute("loadfiles", reportExecution.getLoadFiles());
+		model.addAttribute("alerts", false);
 
 		return "loadsassigntoreport";
 	}
@@ -72,6 +74,8 @@ public class LoadsAsignToReportsController {
 			BindingResult result, Model model, SessionStatus status,
 			HttpSession session) {
 
+		AlertToView alert = new AlertToView(false, "All were success");
+		
 		LoadFileDAO loadFileDAO = (LoadFileDAO) applicationContext
 				.getBean("loadFileDAO");
 		ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO) applicationContext
@@ -105,6 +109,9 @@ public class LoadsAsignToReportsController {
 		model.addAttribute("reportassign", reportAssign);
 		// refresh reportExecution to display after loading
 		model.addAttribute("loadfiles", reportAssign.getReportExecution().getLoadFiles());
+		
+		model.addAttribute("alerts", true);
+		model.addAttribute("alert", alert);
 		
 		return "loadsassigntoreport";
 	}

@@ -50,6 +50,8 @@ public class LoadsController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String DataManagerControllerPre(Locale locale, Model model) {
 
+		System.out.println("- Loads Controller -");
+		
 		LoadFileDAO loadFileDao = (LoadFileDAO) applicationContext
 				.getBean("loadFileDAO");
 		List<LoadFile> loads = loadFileDao.findAll();
@@ -61,7 +63,6 @@ public class LoadsController {
 		model.addAttribute("loads", loads);
 		model.addAttribute("loadFile", form);
 		model.addAttribute("alerts", false);
-		System.out.println("- Loads Controller -");
 		
 		return "loads";
 	}

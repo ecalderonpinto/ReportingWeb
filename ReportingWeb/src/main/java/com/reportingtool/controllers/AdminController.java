@@ -22,6 +22,7 @@ import com.entities.entity.install.InstallManager;
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportField;
 import com.entities.entity.reportingtool.ReportFieldList;
+import com.reportingtool.controllers.forms.AlertToView;
 
 @Controller
 public class AdminController {
@@ -38,14 +39,14 @@ public class AdminController {
 	@RequestMapping(value = "/admin.do", method = RequestMethod.GET)
 	public String reportCatalogController(Locale locale, Model model) {
 
+		System.out.println("Report Catalog Controller - preForm");
+		
 		ReportCatalogDAO reportCatalogDAO = (ReportCatalogDAO) applicationContext
 				.getBean("reportCatalogDAO");
 		List<ReportCatalog> reportCatalogs = reportCatalogDAO.findAll();
 
-		System.out.println(reportCatalogs.size() + " reportCatalogs");
 		model.addAttribute("reportcatalogs", reportCatalogs);
-
-		System.out.println("Report Catalog Controller - preForm");
+		model.addAttribute("alerts", false);
 		
 		return "admin";
 	}
@@ -96,6 +97,10 @@ public class AdminController {
 		
 		System.out.println("Controller admin/generateDB");
 		
+		AlertToView alert = new AlertToView(false, "Generation of DB complete");
+		model.addAttribute("alerts", true);
+		model.addAttribute("alert", alert);
+		
 		return "admin";
 	}
 	
@@ -127,8 +132,11 @@ public class AdminController {
 				.getBean("reportCatalogDAO");
 		List<ReportCatalog> reportCatalogs = reportCatalogDAO.findAll();
 
-		System.out.println(reportCatalogs.size() + " reportCatalogs");
+		AlertToView alert = new AlertToView(false, "Install data correct");
+		
 		model.addAttribute("reportcatalogs", reportCatalogs);
+		model.addAttribute("alerts", true);
+		model.addAttribute("alert", alert);
 		
 		return "admin";
 	}
@@ -145,8 +153,11 @@ public class AdminController {
 				.getBean("reportCatalogDAO");
 		List<ReportCatalog> reportCatalogs = reportCatalogDAO.findAll();
 
-		System.out.println(reportCatalogs.size() + " reportCatalogs");
+		AlertToView alert = new AlertToView(false, "Delete all data");
+		
 		model.addAttribute("reportcatalogs", reportCatalogs);
+		model.addAttribute("alerts", true);
+		model.addAttribute("alert", alert);
 		
 		return "admin";
 	}
