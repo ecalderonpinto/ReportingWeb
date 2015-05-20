@@ -2,6 +2,8 @@ package com.entities.entity.install;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 
@@ -11,12 +13,14 @@ import com.entities.dao.reportingtool.CompanyDAO;
 import com.entities.dao.reportingtool.DepartmentDAO;
 import com.entities.dao.reportingtool.ReportCatalogDAO;
 import com.entities.dao.reportingtool.ReportFieldDAO;
+import com.entities.dao.reportingtool.ReportSemanticDAO;
 import com.entities.entity.loader.FileColum;
 import com.entities.entity.loader.FileConfig;
 import com.entities.entity.reportingtool.Company;
 import com.entities.entity.reportingtool.Department;
 import com.entities.entity.reportingtool.ReportCatalog;
 import com.entities.entity.reportingtool.ReportField;
+import com.entities.entity.reportingtool.ReportSemantic;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.reportingtool.utilities.ReportUtilities;
 
@@ -44,30 +48,36 @@ public class InstallAIFM {
 
 			Company company1 = new Company("Santander Asset Manager", "Spain",
 					"SAM", "", versionAdmin);
-			
-			Company company2 = new Company("Santander Private Banking", "Spain",
-					"SPBG", "", versionAdmin);
-			
-			Company company3 = new Company("Santander Funds Administration (COFFER)", "Spain",
-					"SFA", "", versionAdmin);
 
-			Department department1 = new Department(company1, "SAM Operation department",
-					"SAM", "", "Spain", new VersionAuditor("admin"));
-			
-			Department department2 = new Department(company2, "SPBG Operation department",
-					"SPBG", "", "Spain", new VersionAuditor("admin"));
-			
-			Department department3 = new Department(company3, "SFA Operation department",
-					"SFA", "", "Spain", new VersionAuditor("admin"));
+			Company company2 = new Company("Santander Private Banking",
+					"Spain", "SPBG", "", versionAdmin);
 
-//			Fund fund1 = new Fund(company3, "SAM fund 1", "ES000001", "FUND1",
-//					"", null, versionAdmin);
-//
-//			Fund fund2 = new Fund(company3, "SAM fund 2", "ES000002", "FUND2",
-//					"", null, versionAdmin);
-//
-//			FundGroup fundGroup = new FundGroup(fund1, department,
-//					"RISK FUNDS", "", versionAdmin);
+			Company company3 = new Company(
+					"Santander Funds Administration (COFFER)", "Spain", "SFA",
+					"", versionAdmin);
+
+			Department department1 = new Department(company1,
+					"SAM Operation department", "SAM", "", "Spain",
+					new VersionAuditor("admin"));
+
+			Department department2 = new Department(company2,
+					"SPBG Operation department", "SPBG", "", "Spain",
+					new VersionAuditor("admin"));
+
+			Department department3 = new Department(company3,
+					"SFA Operation department", "SFA", "", "Spain",
+					new VersionAuditor("admin"));
+
+			// Fund fund1 = new Fund(company3, "SAM fund 1", "ES000001",
+			// "FUND1",
+			// "", null, versionAdmin);
+			//
+			// Fund fund2 = new Fund(company3, "SAM fund 2", "ES000002",
+			// "FUND2",
+			// "", null, versionAdmin);
+			//
+			// FundGroup fundGroup = new FundGroup(fund1, department,
+			// "RISK FUNDS", "", versionAdmin);
 
 			ReportCatalog reportCatalog = new ReportCatalog(versionField,
 					"COMPANY", "AIFM 2014", "", null, null, null, versionAdmin);
@@ -123,23 +133,23 @@ public class InstallAIFM {
 					reportFieldx1, "D", "CreationDateAndTime", new BigInteger(
 							"3"),
 					"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}",
-					"", "General Info", "DATETIME", "1.03", "1,1", versionField,
-					null, null, null, versionAdmin);
+					"", "General Info", "DATETIME", "1.03", "1,1",
+					versionField, null, null, null, versionAdmin);
 			reportField3.setReportFieldEditable(true);
 			reportField3.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField3);
 
 			ReportField reportFieldx2 = new ReportField(reportCatalog,
 					reportFieldx1, "X", "AIFMRecordInfo", new BigInteger("0"),
-					null, "", null, null, "1.", "1,1", versionField, null, null,
-					null, versionAdmin);
+					null, "", null, null, "1.", "1,1", versionField, null,
+					null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx2);
 
 			// (4) <FilingType>
 			ReportField reportField4 = new ReportField(reportCatalog,
 					reportFieldx2, "A", "FilingType", new BigInteger("4"),
-					".{4}", "", "General Info", "FilingTypeType", "1.04", "1,1",
-					versionField, null, null, null, versionAdmin);
+					".{4}", "", "General Info", "FilingTypeType", "1.04",
+					"1,1", versionField, null, null, null, versionAdmin);
 			reportField4.setReportFieldMandatory(true);
 			reportFieldDAO.create(reportField4);
 
@@ -191,8 +201,8 @@ public class InstallAIFM {
 					reportFieldx2, "A",
 					"AIFMReportingObligationChangeFrequencyCode",
 					new BigInteger("10"), ".{2}", "", "General Info",
-					"ReportingObligationChangeFrequencyCodeType", "1.10", "0,1",
-					versionField, null, null, null, versionAdmin);
+					"ReportingObligationChangeFrequencyCodeType", "1.10",
+					"0,1", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField10);
 
 			// (11) <AIFMReportingObligationChangeContentsCode>
@@ -222,20 +232,20 @@ public class InstallAIFM {
 
 			ReportField reportFieldx3 = new ReportField(reportCatalog,
 					reportFieldx2, "X", "Assumptions", new BigInteger("0"),
-					null, "", null, null, "2.", "0,1", versionField, null, null,
-					null, versionAdmin);
+					null, "", null, null, "2.", "0,1", versionField, null,
+					null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx3);
 			ReportField reportFieldx4 = new ReportField(reportCatalog,
 					reportFieldx3, "X", "Assumption", new BigInteger("0"),
-					null, "", null, null, "2.", "0,n", versionField, null, null,
-					null, versionAdmin);
+					null, "", null, null, "2.", "0,n", versionField, null,
+					null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx4);
 
 			// (14) <QuestionNumber>
 			ReportField reportField14 = new ReportField(reportCatalog,
 					reportFieldx4, "N", "QuestionNumber", new BigInteger("14"),
-					"[0-9]{0,3}", "", "Assumptions", "QUESTION_AIFM", "2.14", "0,n",
-					versionField, null, null, null, versionAdmin);
+					"[0-9]{0,3}", "", "Assumptions", "QUESTION_AIFM", "2.14",
+					"0,n", versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField14);
 
 			// (15) <AssumptionDescription>
@@ -304,16 +314,16 @@ public class InstallAIFM {
 			reportFieldDAO.create(reportFieldx5);
 			ReportField reportFieldx6 = new ReportField(reportCatalog,
 					reportFieldx5, "X", "AIFMIdentifier", new BigInteger("0"),
-					null, "", null, null, "3.", "0,1", versionField, null, null,
-					null, versionAdmin);
+					null, "", null, null, "3.", "0,1", versionField, null,
+					null, null, versionAdmin);
 			reportFieldDAO.create(reportFieldx6);
 
 			// (22) <AIFMIdentifierLEI>
 			ReportField reportField22 = new ReportField(reportCatalog,
 					reportFieldx6, "A", "AIFMIdentifierLEI", new BigInteger(
-							"22"), "[0-9a-zA-Z]{18}[0-9]{2}", "", "Complete Description",
-					"LEICodeType", "3.22", "0,1", versionField, null, null,
-					null, versionAdmin);
+							"22"), "[0-9a-zA-Z]{18}[0-9]{2}", "",
+					"Complete Description", "LEICodeType", "3.22", "0,1",
+					versionField, null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField22);
 
 			// (23) <AIFMIdentifierBIC>
@@ -326,16 +336,16 @@ public class InstallAIFM {
 
 			// (24) <Old_ReportingMemberState>
 			ReportField reportField24 = new ReportField(reportCatalog,
-					reportFieldx6, "A", "Old_ReportingMemberState", new BigInteger(
-							"24"), ".{2}", "", "General Info",
+					reportFieldx6, "A", "Old_ReportingMemberState",
+					new BigInteger("24"), ".{2}", "", "General Info",
 					"CountryCodeType", "1.24", "0,1", versionField, null, null,
 					null, versionAdmin);
 			reportFieldDAO.create(reportField24);
 
 			// (25) <Old_AIFMNationalCode>
 			ReportField reportField25 = new ReportField(reportCatalog,
-					reportFieldx6, "Z", "Old_AIFMNationalCode",
-					new BigInteger("25"), ".{0,30}", "", "General Info",
+					reportFieldx6, "Z", "Old_AIFMNationalCode", new BigInteger(
+							"25"), ".{0,30}", "", "General Info",
 					"AIFMNationalCodeType", "1.25", "0,1", versionField, null,
 					null, null, versionAdmin);
 			reportFieldDAO.create(reportField25);
@@ -516,6 +526,591 @@ public class InstallAIFM {
 					null, null, null, versionAdmin);
 			reportFieldDAO.create(reportField42);
 
+			// SEMANTIC RULES
+
+			List<ReportSemantic> reportSemantics = new ArrayList<ReportSemantic>();
+
+			// (1) <ReportingMemberState>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField1,
+							reportField1.getReportFieldName()
+							+ " ("
+							+ reportField1.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"ReportingMemberState\", \"1\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(1)", versionAdmin));
+
+			// (2) <Version>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField2,
+							reportField2.getReportFieldName()
+									+ " ("
+									+ reportField2.getReportFieldNum()
+											.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"Version\", \"2\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(2)", versionAdmin));
+
+			// (3) <CreationDateAndTime>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField3,
+							reportField3.getReportFieldName()
+							+ " ("
+							+ reportField3.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"CreationDateAndTime\", \"3\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(3)", versionAdmin));
+
+			// (4) <FilingType>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField4,
+							reportField4.getReportFieldName()
+							+ " ("
+							+ reportField4.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(4)", versionAdmin));
+
+			// (5) <AIFMContentType>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField5,
+							reportField5.getReportFieldName()
+							+ " ("
+							+ reportField5.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"AIFMContentType\", \"5\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(5)", versionAdmin));
+
+			// (6) <ReportingPeriodStartDate>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField6,
+							reportField6.getReportFieldName()
+							+ " ("
+							+ reportField6.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"ReportingPeriodStartDate\", \"6\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(6)", versionAdmin));
+
+			// (7) <ReportingPeriodEndDate>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField7,
+							reportField7.getReportFieldName()
+							+ " ("
+							+ reportField7.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"ReportingPeriodEndDate\", \"7\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(7)", versionAdmin));
+
+			// (8) <ReportingPeriodType>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField8,
+							reportField8.getReportFieldName()
+							+ " ("
+							+ reportField8.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"ReportingPeriodType\", \"8\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(8)", versionAdmin));
+
+			// (9) <ReportingPeriodYear>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField9,
+							reportField9.getReportFieldName()
+							+ " ("
+							+ reportField9.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"ReportingPeriodYear\", \"9\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(9)", versionAdmin));
+
+			// (12) <AIFMReportingObligationChangeQuarter>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField12,
+							reportField12.getReportFieldName()
+							+ " ("
+							+ reportField12.getReportFieldNum()
+									.toString() + ")",
+							"if( "
+									+ "\n ( ( ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeFrequencyCode\", \"10\", null) != null "
+									+ "\n || ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeContentsCode\", \"11\", null) != null "
+									+ "\n ) && ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeQuarter\", \"12\", null) != null )"
+									+ "\n || (ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeFrequencyCode\", \"10\", null) == null "
+									+ "\n && ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeContentsCode\", \"11\", null) == null "
+									+ "\n &&  ReportUtilities.searchData(reportDatas, \"AIFMReportingObligationChangeQuarter\", \"12\", null) == null)"
+									+ ")" + "\n result = \"ok\"",
+							null,
+							"Fill field(12) only when field(10) or field(11) have content.",
+							versionAdmin));
+
+			// (13) <LastReportingFlag>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField13,
+							reportField13.getReportFieldName()
+							+ " ("
+							+ reportField13.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"LastReportingFlag\", \"13\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(13)", versionAdmin));
+
+			// (14) <QuestionNumber>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField14,
+							reportField14.getReportFieldName()
+							+ " ("
+							+ reportField14.getReportFieldNum()
+									.toString() + ")",
+							"if (ReportUtilities.dependencyRepeData(reportDatas, \"QuestionNumber\", \"14\", \"AssumptionDescription\", \"15\")) "
+									+ "\n result = \"ok\"",
+							null,
+							"Fill field(14) is mandatory when field(15) has content.",
+							versionAdmin));
+
+			// (15) <AssumptionDescription>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField15,
+							reportField15.getReportFieldName()
+							+ " ("
+							+ reportField15.getReportFieldNum()
+									.toString() + ")",
+							"if (ReportUtilities.dependencyRepeData(reportDatas, \"AssumptionDescription\", \"15\", \"QuestionNumber\", \"14\")) "
+									+ "\n result = \"ok\"",
+							null,
+							"Fill field(15) is mandatory when field(14) has content.",
+							versionAdmin));
+
+			// (16) <AIFMReportingCode>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField16,
+							reportField16.getReportFieldName()
+							+ " ("
+							+ reportField16.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"AIFMReportingCode\", \"16\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(16)", versionAdmin));
+
+			// (17) <AIFMJurisdiction>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField17,
+							reportField17.getReportFieldName()
+							+ " ("
+							+ reportField17.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"AIFMJurisdiction\", \"17\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(17)", versionAdmin));
+
+			// (18) <AIFMNationalCode>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField18,
+							reportField18.getReportFieldName()
+							+ " ("
+							+ reportField18.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"AIFMNationalCode\", \"18\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(18)", versionAdmin));
+
+			// (19) <AIFMName>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField19,
+							reportField19.getReportFieldName()
+							+ " ("
+							+ reportField19.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"AIFMName\", \"19\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(19)", versionAdmin));
+
+			// (20) <AIFMEEAFlag>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField20,
+							reportField20.getReportFieldName()
+							+ " ("
+							+ reportField20.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"AIFMEEAFlag\", \"20\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(20)", versionAdmin));
+
+			// (21) <AIFMNoReportingFlag>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField21,
+							reportField21.getReportFieldName()
+							+ " ("
+							+ reportField21.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"AIFMNoReportingFlag\", \"21\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(21)", versionAdmin));
+
+			// (25) <AIFMNationalCode>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField25,
+							reportField25.getReportFieldName()
+							+ " ("
+							+ reportField25.getReportFieldNum()
+									.toString() + ")",
+							"if ( "
+									+ "(ReportUtilities.searchData(reportDatas, \"Old_ReportingMemberState\", \"24\", null) != null"
+									+ " && ReportUtilities.searchData(reportDatas, \"Old_AIFMNationalCode\", \"25\", null) != null)"
+									+ " || ReportUtilities.searchData(reportDatas, \"Old_ReportingMemberState\", \"24\", null) == null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(25) if field(24) has content",
+							versionAdmin));
+
+			// (26) <Ranking>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField26,
+							reportField26.getReportFieldName()
+							+ " ("
+							+ reportField26.getReportFieldNum()
+									.toString() + ")",
+							"if (ReportUtilities.searchBlockList(reportDatas, \"Ranking\", \"26\").size() == 5) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(26) has 5 occurences.", versionAdmin));
+
+			// (27) <MarketCodeType>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField27,
+							reportField27.getReportFieldName()
+							+ " ("
+							+ reportField27.getReportFieldNum()
+									.toString() + ")",
+							"if (ReportUtilities.searchBlockList(reportDatas, \"MarketCodeType\", \"27\").size() == 5) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(27) has 5 occurences.", versionAdmin));
+
+			// (28) <MarketCode>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField28,
+							reportField28.getReportFieldName()
+							+ " ("
+							+ reportField28.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.dependencyRepeDataExist(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\") == null "
+									+ "&& ReportUtilities.dependencyRepeDataDiffEmpty(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\")  == null "
+									+ ") "
+									+ "\n result = \"ok\"; \n else {"
+									+ "\n if (ReportUtilities.dependencyRepeDataExist(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\") != null)"
+									+ "\n problem = ReportUtilities.dependencyRepeDataExist(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\");"
+									+ "\n if (ReportUtilities.dependencyRepeDataDiffEmpty(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\") != null)"
+									+ "\n problem = ReportUtilities.dependencyRepeDataDiffEmpty(reportDatas, \"MarketCode\", \"28\", \"MarketCodeType\", \"27\", \"MIC\");"
+									+ "}",
+							null,
+							"Fill field(28) is mandatory when field(27) = MIC, forbidden otherwise.",
+							versionAdmin));
+
+			// (29) <AggregatedValueAmount>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField29,
+							reportField29.getReportFieldName()
+							+ " ("
+							+ reportField29.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\") == null"
+									+ "&& ReportUtilities.dependencyRepeDataEmpty(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\") == null"
+									+ ") "
+									+ "\n result = \"ok\"; \n else {"
+									+ "\n if (ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\") != null)"
+									+ "\n problem = ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\");"
+									+ "\n if (ReportUtilities.dependencyRepeDataEmpty(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\") != null) "
+									+ "\n problem = ReportUtilities.dependencyRepeDataEmpty(reportDatas, \"AggregatedValueAmount\", \"29\", \"MarketCodeType\", \"27\", \"NOT\");"
+									+ "}",
+							null,
+							"Fill field(29) is mandatory when field(27) different NOT, forbidden otherwise.",
+							versionAdmin));
+
+			// (30) <Ranking>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField30,
+							reportField30.getReportFieldName()
+							+ " ("
+							+ reportField30.getReportFieldNum()
+									.toString() + ")",
+							"if (ReportUtilities.searchBlockList(reportDatas, \"Ranking\", \"30\").size() == 5) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(30) has 5 occurences.", versionAdmin));
+
+			// (31) <SubAssetType>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField31,
+							reportField31.getReportFieldName()
+							+ " ("
+							+ reportField31.getReportFieldNum()
+									.toString() + ")",
+							"if (ReportUtilities.searchBlockList(reportDatas, \"SubAssetType\", \"31\").size() == 5) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(31) has 5 occurences.", versionAdmin));
+
+			// (32) <AggregatedValueAmount>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField32,
+							reportField32.getReportFieldName()
+							+ " ("
+							+ reportField32.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\") == null "
+									+ "&& ReportUtilities.dependencyRepeDataEmpty(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\") == null "
+									+ ")"
+									+ "\n result = \"ok\"; \n else {"
+									+ "\n if (ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\") != null)"
+									+ "\n problem = ReportUtilities.dependencyRepeDataNot(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\");"
+									+ "\n if (ReportUtilities.dependencyRepeDataEmpty(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\") != null)"
+									+ "\n problem = ReportUtilities.dependencyRepeDataEmpty(reportDatas, \"AggregatedValueAmount\", \"32\", \"SubAssetType\", \"31\", \"NTA_NTA_NOTA\");"
+									+ "}",
+							null,
+							"Fill field(32) is mandatory when field(31) not NTA_NTA_NOTA, forbidden otherwise.",
+							versionAdmin));
+
+			// (33) <AUMAmountInEuro>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField33,
+							reportField33.getReportFieldName()
+							+ " ("
+							+ reportField33.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"AUMAmountInEuro\", \"33\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(33)", versionAdmin));
+
+			// (34) <AUMAmountInBaseCurrency>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField34,
+							reportField34.getReportFieldName()
+							+ " ("
+							+ reportField34.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"AUMAmountInBaseCurrency\", \"34\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(34)", versionAdmin));
+
+			// (35) <BaseCurrency>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField35,
+							reportField35.getReportFieldName()
+							+ " ("
+							+ reportField35.getReportFieldNum()
+									.toString() + ")",
+							"if ( ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null) != null) "
+									+ "\n result = \"ok\"", null,
+							"Fill field(35)", versionAdmin));
+
+			// (36) <FXEURReferenceRateType>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField36,
+							reportField36.getReportFieldName()
+							+ " ("
+							+ reportField36.getReportFieldNum()
+									.toString() + ")",
+							"if (ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null) == null) {"
+									+ "  result = \"ok\"; "
+									+ "} else {"
+									+ " if (ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null).equals(\"EUR\")"
+									+ " &&  ReportUtilities.searchData(reportDatas, \"FXEURReferenceRateType\", \"36\", null) == null) {"
+									+ " result = \"ok\"; "
+									+ " } else {"
+									+ "  if (!ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null).equals(\"EUR\")"
+									+ " && ReportUtilities.searchData(reportDatas, \"FXEURReferenceRateType\", \"36\", null) != null)"
+									+ " result = \"ok\"; " + " }" + "}", null,
+							"Fill field(36) only when field(35) not EUR",
+							versionAdmin));
+
+			// (37) <FXEURRate>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField37,
+							reportField37.getReportFieldName()
+							+ " ("
+							+ reportField37.getReportFieldNum()
+									.toString() + ")",
+							"if (ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null) == null) {"
+									+ "  result = \"ok\"; "
+									+ "} else {"
+									+ " if (ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null).equals(\"EUR\")"
+									+ " &&  ReportUtilities.searchData(reportDatas, \"FXEURRate\", \"37\", null) == null) {"
+									+ " result = \"ok\"; "
+									+ " } else {"
+									+ "  if (!ReportUtilities.searchData(reportDatas, \"BaseCurrency\", \"35\", null).equals(\"EUR\")"
+									+ " && ReportUtilities.searchData(reportDatas, \"FXEURRate\", \"37\", null) != null)"
+									+ " result = \"ok\"; " + " }" + "}", null,
+							"Fill field(37) only when field(35) not EUR",
+							versionAdmin));
+
+			// (38) <FXEUROtherReferenceRateDescription>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField38,
+							reportField38.getReportFieldName()
+							+ " ("
+							+ reportField38.getReportFieldNum()
+									.toString() + ")",
+							"if (ReportUtilities.searchData(reportDatas, \"FXEURReferenceRateType\", \"36\", null) == null) {"
+									+ "  result = \"ok\"; "
+									+ "} else {"
+									+ " if (ReportUtilities.searchData(reportDatas, \"FXEURReferenceRateType\", \"36\", null).equals(\"OTH\")"
+									+ " &&  ReportUtilities.searchData(reportDatas, \"FXEUROtherReferenceRateDescription\", \"38\", null) != null) {"
+									+ " result = \"ok\"; "
+									+ " } else {"
+									+ "  if (!ReportUtilities.searchData(reportDatas, \"FXEURReferenceRateType\", \"36\", null).equals(\"OTH\")"
+									+ " && ReportUtilities.searchData(reportDatas, \"FXEUROtherReferenceRateDescription\", \"38\", null) == null)"
+									+ " result = \"ok\"; " + " }" + "}", null,
+							"Fill field(38) only when field(36) is OTH",
+							versionAdmin));
+
+			// (39) <CancelledAIFMNationalCode>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField39,
+							reportField39.getReportFieldName()
+							+ " ("
+							+ reportField39.getReportFieldNum()
+									.toString() + ")",
+							"if(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null) != null)"
+									+ "if ( "
+									+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
+									+ " ReportUtilities.searchData(reportDatas, \"CancelledAIFMNationalCode\", \"39\", null) != null) "
+									+ "||"
+									+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"INIT\") && "
+									+ "ReportUtilities.searchData(reportDatas, \"CancelledAIFMNationalCode\", \"39\", null) == null)"
+									+ ") " + "\n result = \"ok\"", null,
+							"Fill field(39) only when field(4) = AMND",
+							versionAdmin));
+
+			// (40) <CancelledReportingPeriodType>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField40,
+							reportField40.getReportFieldName()
+							+ " ("
+							+ reportField40.getReportFieldNum()
+									.toString() + ")",
+							"if(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null) != null)"
+									+ "if ( "
+									+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
+									+ " ReportUtilities.searchData(reportDatas, \"CancelledReportingPeriodType\", \"40\", null) != null) "
+									+ "||"
+									+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"INIT\") && "
+									+ "ReportUtilities.searchData(reportDatas, \"CancelledReportingPeriodType\", \"40\", null) == null)"
+									+ ") " + "\n result = \"ok\"", null,
+							"Fill field(40) only when field(4) = AMND",
+							versionAdmin));
+
+			// (41) <CancelledReportingPeriodYear>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField41,
+							reportField41.getReportFieldName()
+							+ " ("
+							+ reportField41.getReportFieldNum()
+									.toString() + ")",
+							"if(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null) != null)"
+									+ "if ( "
+									+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
+									+ " ReportUtilities.searchData(reportDatas, \"CancelledReportingPeriodYear\", \"41\", null) != null) "
+									+ "||"
+									+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"INIT\") && "
+									+ "ReportUtilities.searchData(reportDatas, \"CancelledReportingPeriodYear\", \"41\", null) == null)"
+									+ ") " + "\n result = \"ok\"", null,
+							"Fill field(41) only when field(4) = AMND",
+							versionAdmin));
+
+			// (42) <CancelledRecordFlag>
+			reportSemantics
+					.add(new ReportSemantic(
+							reportCatalog,
+							reportField42,
+							reportField42.getReportFieldName()
+							+ " ("
+							+ reportField42.getReportFieldNum()
+									.toString() + ")",
+							"if(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null) != null)"
+									+ "if ( "
+									+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"AMND\") &&"
+									+ " ReportUtilities.searchData(reportDatas, \"CancelledRecordFlag\", \"42\", null) != null) "
+									+ "||"
+									+ "(ReportUtilities.searchData(reportDatas, \"FilingType\", \"4\", null).equals(\"INIT\") && "
+									+ "ReportUtilities.searchData(reportDatas, \"CancelledRecordFlag\", \"42\", null) == null)"
+									+ ") " + "\n result = \"ok\"", null,
+							"Fill field(42) only when field(4) = AMND",
+							versionAdmin));
+
+			// fileConfig AIFM QUESTIONS
+
 			FileConfig fileConfig0 = new FileConfig(department1, "AIFM",
 					"AIFM2014_QUESTIONS", ";", "SIMPLE", "*", null, true, null,
 					null, versionAdmin);
@@ -529,250 +1124,11 @@ public class InstallAIFM {
 					"format", null, null, versionAdmin);
 			fileColum02.setColumBlock(ReportUtilities.fileColumBlockRepeatable);
 
+			// fileConfig AIFM GENERAL
+
 			FileConfig fileConfig = new FileConfig(department1, "AIFM",
 					"AIFM2014_GENERAL", ";", "SIMPLE", "*", null, true, null,
 					null, versionAdmin);
-
-			// FileConfig fileConfig = new FileConfig(department, "AIFM",
-			// "AIFM2014", ";", "SIMPLE", "*", null, false, null, null,
-			// versionAdmin);
-			// FileColum fileColum0 = new FileColum(null, fileConfig, "type",
-			// new BigDecimal(0), "type", "", "format", null, null,
-			// versionAdmin);
-			// FileColum fileColum1 = new FileColum(null, fileConfig, "type",
-			// new BigDecimal(1), "ID_GESTORA", "", "format", null, null,
-			// versionAdmin);
-			// FileColum fileColum2 = new FileColum(null, fileConfig, "type",
-			// new BigDecimal(2), "DATE_REPORT", "", "format", null, null,
-			// versionAdmin);
-			// FileColum fileColum3 = new FileColum(reportField1, fileConfig,
-			// "type", new BigDecimal(3), "ReportingMemberState", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum4 = new FileColum(reportField4, fileConfig,
-			// "type", new BigDecimal(4), "FilingType", "", "format",
-			// null, null, versionAdmin);
-			// FileColum fileColum5 = new FileColum(reportField5, fileConfig,
-			// "type", new BigDecimal(5), "AIFMContentType", "", "format",
-			// null, null, versionAdmin);
-			// FileColum fileColum6 = new FileColum(reportField6, fileConfig,
-			// "type", new BigDecimal(6), "ReportingPeriodStartDate", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum7 = new FileColum(reportField7, fileConfig,
-			// "type", new BigDecimal(7), "ReportingPeriodEndDate", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum8 = new FileColum(reportField8, fileConfig,
-			// "type", new BigDecimal(8), "ReportingPeriodType", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum9 = new FileColum(reportField9, fileConfig,
-			// "type", new BigDecimal(9), "ReportingPeriodYear", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum10 = new FileColum(reportField10, fileConfig,
-			// "type", new BigDecimal(10),
-			// "AIFMReportingObligationChangeFrequencyCode", "", "format",
-			// null, null, versionAdmin);
-			// FileColum fileColum11 = new FileColum(reportField12, fileConfig,
-			// "type", new BigDecimal(11),
-			// "AIFMReportingObligationChangeQuarter", "", "format", null,
-			// null, versionAdmin);
-			// FileColum fileColum12 = new FileColum(reportField13, fileConfig,
-			// "type", new BigDecimal(12), "LastReportingFlag", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum13 = new FileColum(reportField16, fileConfig,
-			// "type", new BigDecimal(13), "AIFMReportingCode", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum14 = new FileColum(reportField17, fileConfig,
-			// "type", new BigDecimal(14), "AIFMJurisdiction", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum15 = new FileColum(reportField18, fileConfig,
-			// "type", new BigDecimal(15), "AIFMNationalCode", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum16 = new FileColum(reportField19, fileConfig,
-			// "type", new BigDecimal(16), "AIFMName", "", "format", null,
-			// null, versionAdmin);
-			// FileColum fileColum17 = new FileColum(reportField20, fileConfig,
-			// "type", new BigDecimal(17), "AIFMEEAFlag", "", "format",
-			// null, null, versionAdmin);
-			// FileColum fileColum18 = new FileColum(reportField21, fileConfig,
-			// "type", new BigDecimal(18), "AIFMNoReportingFlag", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum19 = new FileColum(reportField22, fileConfig,
-			// "type", new BigDecimal(19), "AIFMIdentifierLEI", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum20 = new FileColum(reportField23, fileConfig,
-			// "type", new BigDecimal(20), "AIFMIdentifierBIC", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum21 = new FileColum(reportField26, fileConfig,
-			// "type", new BigDecimal(21), "AIFMFivePrincipalMarket1", "",
-			// "format", null, null, versionAdmin);
-			// fileColum18.setColumBlock("1");
-			// FileColum fileColum22 = new FileColum(reportField27, fileConfig,
-			// "type", new BigDecimal(22), "MarketCodeType1", "",
-			// "format", null, null, versionAdmin);
-			// fileColum19.setColumBlock("1");
-			// FileColum fileColum23 = new FileColum(reportField28, fileConfig,
-			// "type", new BigDecimal(23), "MarketCode1", "", "format",
-			// null, null, versionAdmin);
-			// fileColum20.setColumBlock("1");
-			// FileColum fileColum24 = new FileColum(reportField29, fileConfig,
-			// "type", new BigDecimal(24), "MarketAggregatedValueAmount1",
-			// "", "format", null, null, versionAdmin);
-			// fileColum21.setColumBlock("1");
-			// FileColum fileColum25 = new FileColum(reportField26, fileConfig,
-			// "type", new BigDecimal(25), "AIFMFivePrincipalMarket2", "",
-			// "format", null, null, versionAdmin);
-			// fileColum22.setColumBlock("2");
-			// FileColum fileColum26 = new FileColum(reportField27, fileConfig,
-			// "type", new BigDecimal(26), "MarketCodeType2", "",
-			// "format", null, null, versionAdmin);
-			// fileColum23.setColumBlock("2");
-			// FileColum fileColum27 = new FileColum(reportField28, fileConfig,
-			// "type", new BigDecimal(27), "MarketCode2", "", "format",
-			// null, null, versionAdmin);
-			// fileColum24.setColumBlock("2");
-			// FileColum fileColum28 = new FileColum(reportField29, fileConfig,
-			// "type", new BigDecimal(28), "MarketAggregatedValueAmount2",
-			// "", "format", null, null, versionAdmin);
-			// fileColum25.setColumBlock("2");
-			// FileColum fileColum29 = new FileColum(reportField26, fileConfig,
-			// "type", new BigDecimal(29), "AIFMFivePrincipalMarket3", "",
-			// "format", null, null, versionAdmin);
-			// fileColum26.setColumBlock("3");
-			// FileColum fileColum30 = new FileColum(reportField27, fileConfig,
-			// "type", new BigDecimal(30), "MarketCodeType3", "",
-			// "format", null, null, versionAdmin);
-			// fileColum27.setColumBlock("3");
-			// FileColum fileColum31 = new FileColum(reportField28, fileConfig,
-			// "type", new BigDecimal(31), "MarketCode3", "", "format",
-			// null, null, versionAdmin);
-			// fileColum28.setColumBlock("3");
-			// FileColum fileColum32 = new FileColum(reportField29, fileConfig,
-			// "type", new BigDecimal(32), "MarketAggregatedValueAmount3",
-			// "", "format", null, null, versionAdmin);
-			// fileColum29.setColumBlock("3");
-			// FileColum fileColum33 = new FileColum(reportField26, fileConfig,
-			// "type", new BigDecimal(33), "AIFMFivePrincipalMarket4", "",
-			// "format", null, null, versionAdmin);
-			// fileColum30.setColumBlock("4");
-			// FileColum fileColum34 = new FileColum(reportField27, fileConfig,
-			// "type", new BigDecimal(34), "MarketCodeType4", "",
-			// "format", null, null, versionAdmin);
-			// fileColum31.setColumBlock("4");
-			// FileColum fileColum35 = new FileColum(reportField28, fileConfig,
-			// "type", new BigDecimal(35), "MarketCode4", "", "format",
-			// null, null, versionAdmin);
-			// fileColum32.setColumBlock("4");
-			// FileColum fileColum36 = new FileColum(reportField29, fileConfig,
-			// "type", new BigDecimal(36), "MarketAggregatedValueAmount4",
-			// "", "format", null, null, versionAdmin);
-			// fileColum33.setColumBlock("4");
-			// FileColum fileColum37 = new FileColum(reportField26, fileConfig,
-			// "type", new BigDecimal(37), "AIFMFivePrincipalMarket5", "",
-			// "format", null, null, versionAdmin);
-			// fileColum34.setColumBlock("5");
-			// FileColum fileColum38 = new FileColum(reportField27, fileConfig,
-			// "type", new BigDecimal(38), "MarketCodeType5", "",
-			// "format", null, null, versionAdmin);
-			// fileColum35.setColumBlock("5");
-			// FileColum fileColum39 = new FileColum(reportField28, fileConfig,
-			// "type", new BigDecimal(39), "MarketCode5", "", "format",
-			// null, null, versionAdmin);
-			// fileColum36.setColumBlock("5");
-			// FileColum fileColum40 = new FileColum(reportField29, fileConfig,
-			// "type", new BigDecimal(40), "MarketAggregatedValueAmount5",
-			// "", "format", null, null, versionAdmin);
-			// fileColum37.setColumBlock("5");
-			// FileColum fileColum41 = new FileColum(reportField30, fileConfig,
-			// "type", new BigDecimal(41), "AIFMPrincipalInstrument1", "",
-			// "format", null, null, versionAdmin);
-			// fileColum38.setColumBlock("1");
-			// FileColum fileColum42 = new FileColum(reportField31, fileConfig,
-			// "type", new BigDecimal(42), "SubAssetType1", "", "format",
-			// null, null, versionAdmin);
-			// fileColum39.setColumBlock("1");
-			// FileColum fileColum43 = new FileColum(reportField32, fileConfig,
-			// "type", new BigDecimal(43),
-			// "InstrumentAggregatedValueAmount1", "", "format", null,
-			// null, versionAdmin);
-			// fileColum40.setColumBlock("1");
-			// FileColum fileColum44 = new FileColum(reportField30, fileConfig,
-			// "type", new BigDecimal(44), "AIFMPrincipalInstrument2", "",
-			// "format", null, null, versionAdmin);
-			// fileColum41.setColumBlock("2");
-			// FileColum fileColum45 = new FileColum(reportField31, fileConfig,
-			// "type", new BigDecimal(45), "SubAssetType2", "", "format",
-			// null, null, versionAdmin);
-			// fileColum42.setColumBlock("2");
-			// FileColum fileColum46 = new FileColum(reportField32, fileConfig,
-			// "type", new BigDecimal(46),
-			// "InstrumentAggregatedValueAmount2", "", "format", null,
-			// null, versionAdmin);
-			// fileColum43.setColumBlock("2");
-			// FileColum fileColum47 = new FileColum(reportField30, fileConfig,
-			// "type", new BigDecimal(47), "AIFMPrincipalInstrument3", "",
-			// "format", null, null, versionAdmin);
-			// fileColum44.setColumBlock("3");
-			// FileColum fileColum48 = new FileColum(reportField31, fileConfig,
-			// "type", new BigDecimal(48), "SubAssetType3", "", "format",
-			// null, null, versionAdmin);
-			// fileColum45.setColumBlock("3");
-			// FileColum fileColum49 = new FileColum(reportField32, fileConfig,
-			// "type", new BigDecimal(49),
-			// "InstrumentAggregatedValueAmount3", "", "format", null,
-			// null, versionAdmin);
-			// fileColum46.setColumBlock("3");
-			// FileColum fileColum50 = new FileColum(reportField30, fileConfig,
-			// "type", new BigDecimal(50), "AIFMPrincipalInstrument4", "",
-			// "format", null, null, versionAdmin);
-			// fileColum47.setColumBlock("4");
-			// FileColum fileColum51 = new FileColum(reportField31, fileConfig,
-			// "type", new BigDecimal(51), "SubAssetType4", "", "format",
-			// null, null, versionAdmin);
-			// fileColum48.setColumBlock("4");
-			// FileColum fileColum52 = new FileColum(reportField32, fileConfig,
-			// "type", new BigDecimal(52),
-			// "InstrumentAggregatedValueAmount4", "", "format", null,
-			// null, versionAdmin);
-			// fileColum49.setColumBlock("4");
-			// FileColum fileColum53 = new FileColum(reportField30, fileConfig,
-			// "type", new BigDecimal(53), "AIFMPrincipalInstrument5", "",
-			// "format", null, null, versionAdmin);
-			// fileColum50.setColumBlock("5");
-			// FileColum fileColum54 = new FileColum(reportField31, fileConfig,
-			// "type", new BigDecimal(54), "SubAssetType5", "", "format",
-			// null, null, versionAdmin);
-			// fileColum51.setColumBlock("5");
-			// FileColum fileColum55 = new FileColum(reportField32, fileConfig,
-			// "type", new BigDecimal(55),
-			// "InstrumentAggregatedValueAmount5", "", "format", null,
-			// null, versionAdmin);
-			// fileColum52.setColumBlock("5");
-			// FileColum fileColum56 = new FileColum(reportField33, fileConfig,
-			// "type", new BigDecimal(56), "AUMAmountInEuro", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum57 = new FileColum(reportField35, fileConfig,
-			// "type", new BigDecimal(57), "BaseCurrency", "", "format",
-			// null, null, versionAdmin);
-			// FileColum fileColum58 = new FileColum(reportField36, fileConfig,
-			// "type", new BigDecimal(58), "AUMAmountInBaseCurrency", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum59 = new FileColum(reportField37, fileConfig,
-			// "type", new BigDecimal(59), "FXEURReferenceRateType", "",
-			// "format", null, null, versionAdmin);
-			// FileColum fileColum60 = new FileColum(reportField38, fileConfig,
-			// "type", new BigDecimal(60), "FXEURRate", "", "format",
-			// null, null, versionAdmin);
-			// FileColum fileColum61 = new FileColum(reportField39, fileConfig,
-			// "type", new BigDecimal(61), "CancelledAIFMNationalCode",
-			// "", "format", null, null, versionAdmin);
-			// FileColum fileColum62 = new FileColum(reportField40, fileConfig,
-			// "type", new BigDecimal(62), "CancelledReportingPeriodType",
-			// "", "format", null, null, versionAdmin);
-			// FileColum fileColum63 = new FileColum(reportField41, fileConfig,
-			// "type", new BigDecimal(63), "CancelledReportingPeriodYear",
-			// "", "format", null, null, versionAdmin);
-			// FileColum fileColum64 = new FileColum(reportField42, fileConfig,
-			// "type", new BigDecimal(64), "CancelledRecordFlag", "",
-			// "format", null, null, versionAdmin);
 
 			FileColum fileColum0 = new FileColum(reportField1, fileConfig,
 					"type", new BigDecimal(0), "ReportingMemberState", "",
@@ -998,8 +1354,8 @@ public class InstallAIFM {
 					"type", new BigDecimal(59), "FXEURReferenceRateType", "",
 					"format", null, null, versionAdmin);
 			FileColum fileColum60 = new FileColum(reportField37, fileConfig,
-					"NUMBER", new BigDecimal(60), "FXEURRate", "", "#,#",
-					null, null, versionAdmin);
+					"NUMBER", new BigDecimal(60), "FXEURRate", "", "#,#", null,
+					null, versionAdmin);
 			FileColum fileColum61 = new FileColum(reportField38, fileConfig,
 					"type", new BigDecimal(61),
 					"FXEUROtherReferenceRateDescription", "", "format", null,
@@ -1037,24 +1393,34 @@ public class InstallAIFM {
 			departmentDAO.create(department1);
 			departmentDAO.create(department2);
 			departmentDAO.create(department3);
-//
-//			FundDAO fundDAO = (FundDAO) applicationContext.getBean("fundDAO");
-//			fundDAO.create(fund1);
-//			fundDAO.create(fund2);
-//
-//			FundGroupDAO fundGroupDAO = (FundGroupDAO) applicationContext
-//					.getBean("fundGroupDAO");
-//			fundGroupDAO.create(fundGroup);
+			//
+			// FundDAO fundDAO = (FundDAO)
+			// applicationContext.getBean("fundDAO");
+			// fundDAO.create(fund1);
+			// fundDAO.create(fund2);
+			//
+			// FundGroupDAO fundGroupDAO = (FundGroupDAO) applicationContext
+			// .getBean("fundGroupDAO");
+			// fundGroupDAO.create(fundGroup);
 
 			// ReportExecutionDAO reportExecutionDAO = (ReportExecutionDAO)
 			// applicationContext
 			// .getBean("reportExecutionDAO");
 			// reportExecutionDAO.create(reportExecution);
 
+			ReportSemanticDAO reportSemanticDAO = (ReportSemanticDAO) applicationContext
+					.getBean("reportSemanticDAO");
+
+			for (ReportSemantic reportSemanticExample : reportSemantics) {
+				reportSemanticDAO.create(reportSemanticExample);
+			}
+
 			FileConfigDAO fileConfigDAO = (FileConfigDAO) applicationContext
 					.getBean("fileConfigDAO");
 			fileConfigDAO.create(fileConfig);
 			fileConfigDAO.create(fileConfig0);
+			
+			System.out.println("fole config: ");
 
 			FileColumDAO fileColumDAO = (FileColumDAO) applicationContext
 					.getBean("fileColumDAO");

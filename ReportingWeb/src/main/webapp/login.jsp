@@ -51,7 +51,7 @@ body {
 			<div class="row-fluid">
 				<div class="login-box">
 					<div style="text-align: center; margin-bottom: 50px;">
-						<h1>Reporting Tool v01</h1>
+						<h1>Reporting Tool v1.0</h1>
 					</div>
 					<!--
 					<div class="icons">

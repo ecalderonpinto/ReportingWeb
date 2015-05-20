@@ -92,7 +92,7 @@ public class Format {
 			ReportingErrorManager.createLoadError(applicationContext,
 					ErrorTypeEnum.FORMAT.getErrorType(), loadRawData
 							.getLoadRaw().getLoadFile(), "FORMAT",
-					"INVALID DATE FORMAT: " + loadRawData.getLoadRawDataText()
+					"Invalid date format: " + loadRawData.getLoadRawDataText()
 							+ " " + fileColum.getColumFormat());
 		}
 
@@ -106,7 +106,7 @@ public class Format {
 			ReportingErrorManager.createLoadError(applicationContext,
 					ErrorTypeEnum.FORMAT.getErrorType(), loadRawData
 							.getLoadRaw().getLoadFile(), "FORMAT",
-					"INVALID DATE FORMAT: " + loadRawData.getLoadRawDataText()
+					"Invalid date format: " + loadRawData.getLoadRawDataText()
 							+ " " + fileColum.getColumFormat());
 		}
 
@@ -153,7 +153,7 @@ public class Format {
 					ErrorTypeEnum.FORMAT.getErrorType(),
 					loadRawData.getLoadRaw().getLoadFile(),
 					"FORMAT",
-					"INVALID DATETIME FORMAT: "
+					"Invalid datetime format: "
 							+ loadRawData.getLoadRawDataText() + " "
 							+ fileColum.getColumFormat());
 		}
@@ -170,7 +170,7 @@ public class Format {
 					ErrorTypeEnum.FORMAT.getErrorType(),
 					loadRawData.getLoadRaw().getLoadFile(),
 					"FORMAT",
-					"INVALID DATETIME FORMAT: "
+					"Invalid datetime format: "
 							+ loadRawData.getLoadRawDataText() + " "
 							+ fileColum.getColumFormat());
 		}
@@ -241,7 +241,7 @@ public class Format {
 					ErrorTypeEnum.FORMAT.getErrorType(),
 					loadRawData.getLoadRaw().getLoadFile(),
 					"FORMAT",
-					"ERROR When formating number: "
+					"Error in number format: "
 							+ loadRawData.getLoadRawDataText() + " "
 							+ fileColum.getColumFormat());
 		}
@@ -255,7 +255,7 @@ public class Format {
 					ErrorTypeEnum.FORMAT.getErrorType(),
 					loadRawData.getLoadRaw().getLoadFile(),
 					"FORMAT",
-					"ERROR When formating number: "
+					"Error in number format: "
 							+ loadRawData.getLoadRawDataText() + " "
 							+ fileColum.getColumFormat());
 		}

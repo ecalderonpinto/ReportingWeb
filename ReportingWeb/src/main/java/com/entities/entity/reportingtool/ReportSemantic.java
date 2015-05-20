@@ -27,6 +27,7 @@ public class ReportSemantic implements VersionableAdapter {
 	private String reportingSemanticRule;
 	private String reportingSemanticDesc;
 	private String reportingSemanticSugg;
+	private ReportField reportField;
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -47,11 +48,12 @@ public class ReportSemantic implements VersionableAdapter {
 		this.versionAuditor = versionAuditor;
 	}
 
-	public ReportSemantic(ReportCatalog reportCatalog,
+	public ReportSemantic(ReportCatalog reportCatalog, ReportField reportField,
 			String reportingSemanticName, String reportingSemanticRule,
 			String reportingSemanticDesc, String reportingSemanticSugg,
 			VersionAuditor versionAuditor) {
 		this.reportCatalog = reportCatalog;
+		this.reportField = reportField;
 		this.reportingSemanticName = reportingSemanticName;
 		this.reportingSemanticRule = reportingSemanticRule;
 		this.reportingSemanticDesc = reportingSemanticDesc;
@@ -80,8 +82,18 @@ public class ReportSemantic implements VersionableAdapter {
 	public void setReportCatalog(ReportCatalog reportCatalog) {
 		this.reportCatalog = reportCatalog;
 	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "REPORT_FIELD_ID", foreignKey = @ForeignKey(name = "T_REPORT_SEM_FK_FIELD"))
+	public ReportField getReportField() {
+		return reportField;
+	}
 
-	@Column(name = "REPORT_SEMANTIC_NAME", nullable = false, length=40)
+	public void setReportField(ReportField reportField) {
+		this.reportField = reportField;
+	}
+
+	@Column(name = "REPORT_SEMANTIC_NAME", nullable = false, length=100)
 	public String getReportingSemanticName() {
 		return reportingSemanticName;
 	}

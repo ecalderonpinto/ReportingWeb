@@ -102,7 +102,7 @@ public class ReportError implements VersionableAdapter {
 		this.reportExecution = reportExecution;
 	}
 
-	@Column(name = "REPORT_ERROR_TYPE", nullable = false, length = 40)
+	@Column(name = "REPORT_ERROR_TYPE", nullable = false, length = 60)
 	public String getReportErrorType() {
 		return this.reportErrorType;
 	}

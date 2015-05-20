@@ -102,7 +102,7 @@ public class Syntactic {
 			// create a message of error
 			ReportingErrorManager.createReportDataError(applicationContext,
 					ErrorTypeEnum.SYNTAXIS.getErrorType(), reportData, "VALUE",
-					"NOT IN VALUE LIST: " + reportData.getReportDataText());
+					"Value not present in list: " + reportData.getReportDataText());
 		}
 	}
 
@@ -154,7 +154,7 @@ public class Syntactic {
 				ReportingErrorManager.createReportDataError(applicationContext,
 						ErrorTypeEnum.SYNTAXIS.getErrorType(), reportData,
 						"REGEX",
-						"BAD REGEX FOUND: "
+						"Syntactic fail: "
 								+ reportData.getReportDataText()
 								+ " <> "
 								+ reportData.getReportField()

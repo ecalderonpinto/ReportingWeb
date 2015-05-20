@@ -29,7 +29,7 @@
 						<th>Field</th>
 						<th>Error</th>
 						<th>Type</th>
-						<th>Text</th>
+						<th>Detail</th>
 						<th>Status</th>
 					</tr>
 				</thead>

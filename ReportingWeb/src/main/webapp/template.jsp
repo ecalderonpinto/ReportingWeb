@@ -132,8 +132,8 @@
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="index.do"><i class="icon-bar-chart"></i><span
-								class="hidden-tablet"> Dashboard</span></a></li>
+						<!-- <li><a href="index.do"><i class="icon-bar-chart"></i><span
+								class="hidden-tablet"> Dashboard</span></a></li> -->
 						<li><a href="dataManager.do"><i class="icon-pencil"></i><span
 								class="hidden-tablet"> Data Manager</span></a></li>
 						<li><a class="dropmenu" href="#"><i
@@ -146,9 +146,9 @@
 								<li><a class="submenu" href="reportError.do?id="><i
 										class="icon-warning-sign"></i><span class="hidden-tablet">
 											Report Errors</span></a></li>
-								<li><a class="submenu" href="reportDataError.do"><i
+								<!-- <li><a class="submenu" href="reportDataError.do"><i
 										class="icon-warning-sign"></i><span class="hidden-tablet">
-											Report Data Errors</span></a></li>
+											Report Data Errors</span></a></li> -->
 							</ul></li>
 						<li><a href="loads.do"><i class="icon-file-alt"></i><span
 								class="hidden-tablet"> Loads</span></a></li>

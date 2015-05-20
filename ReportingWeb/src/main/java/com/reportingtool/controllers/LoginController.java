@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.entities.dao.reportingtool.CompanyDAO;
 import com.entities.dao.usermanager.UserDAO;
+import com.entities.entity.reportingtool.Company;
 import com.entities.entity.usermanager.User;
 import com.reportingtool.controllers.forms.AlertToView;
 import com.reportingtool.controllers.forms.LoginForm;
@@ -93,20 +95,28 @@ public class LoginController {
 
 			ReportUtilities.createUserControl(applicationContext, userLogin,
 					"User access correctly of " + loginForm.getUser(), false);
-			
-			//model.addAttribute("user", userLogin);
-			
-			resultModel = "dashboard";
+
+			// model.addAttribute("user", userLogin);
+
+			// resultModel = "dashboard";
+			resultModel = "datamanager";
 		}
 
 		return resultModel;
 	}
 
-
 	@RequestMapping(value = "index.do", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) {
 
 		System.out.println("Login Controller - index");
-		return "dashboard";
+		
+		CompanyDAO companyDao = (CompanyDAO)applicationContext.getBean("companyDAO");
+		List<Company> companies = companyDao.findAll();
+		
+		System.out.println(companies.size() + " companies");
+		model.addAttribute("companies", companies);
+		
+		// return "dashboard";
+		return "datamanager";
 	}
 }

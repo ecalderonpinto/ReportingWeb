@@ -32,7 +32,6 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
 import org.springframework.context.ApplicationContext;
-import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import com.entities.dictionary.ErrorTypeEnum;

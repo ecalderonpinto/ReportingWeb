@@ -51,6 +51,7 @@ public class ReportField implements VersionableAdapter {
 	private List<FileColum> fileColums = new ArrayList<FileColum>();
 	private List<ReportData> reportDatas = new ArrayList<ReportData>();
 	private List<ReportCustom> reportCustoms = new ArrayList<ReportCustom>();
+	private List<ReportSemantic> reportSemantics = new ArrayList<ReportSemantic>();
 
 	@Embedded
 	private VersionAuditor versionAuditor;
@@ -273,6 +274,19 @@ public class ReportField implements VersionableAdapter {
 	public List<ReportCustom> getReportCustoms() {
 		return this.reportCustoms;
 	}
+	
+	public void setReportCustoms(List<ReportCustom> reportCustoms) {
+		this.reportCustoms = reportCustoms;
+	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reportField")
+	public List<ReportSemantic> getReportSemantics() {
+		return this.reportSemantics;
+	}
+	
+	public void setReportSemantics(List<ReportSemantic> reportSemantics) {
+		this.reportSemantics = reportSemantics;
+	}
 
 	@Column(name = "REPORT_FIELD_MANDATORY")
 	public boolean isReportFieldMandatory() {
@@ -291,10 +305,7 @@ public class ReportField implements VersionableAdapter {
 	public void setReportFieldEditable(boolean reportFieldEditable) {
 		this.reportFieldEditable = reportFieldEditable;
 	}
-
-	public void setReportCustoms(List<ReportCustom> reportCustoms) {
-		this.reportCustoms = reportCustoms;
-	}
+	
 
 	public int getVersion() {
 		return version;

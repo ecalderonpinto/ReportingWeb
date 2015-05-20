@@ -76,7 +76,7 @@ public class Translate {
 						ErrorTypeEnum.TRANSLATE.getErrorType(),
 						loadRawData.getLoadRaw().getLoadFile(),
 						"VALUE",
-						"NOT IN TRANSLATE LIST: "
+						"Value not in translate list: "
 								+ loadRawData.getLoadRawDataText());
 			} else {
 				// save new value
