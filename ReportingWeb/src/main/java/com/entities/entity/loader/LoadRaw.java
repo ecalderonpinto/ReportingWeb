@@ -144,7 +144,8 @@ public class LoadRaw implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loadRaw")
-	@Cascade({ CascadeType.SAVE_UPDATE })
+	//@Cascade({ CascadeType.SAVE_UPDATE })
+	@Cascade({ CascadeType.ALL })
 	@OrderBy("fileColum ASC")
 	public List<LoadRawData> getLoadRawDatas() {
 		return this.loadRawDatas;

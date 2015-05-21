@@ -123,8 +123,10 @@ public class FileLoader {
 				// Split line;
 				String separator = fileConfig.getFileSeparator();
 				String[] columns = record.split(separator, -1);
+				
+				System.out.println("split columns " + columns.length + " vs  fileColum: " + fileConfig.getFileColums().size());
 
-				if (columns.length - 1 == fileConfig.getFileColums().size()) {
+				if (columns.length == fileConfig.getFileColums().size()) {
 					// Create LoadRawDatas Objects;
 					for (FileColum fileColum : fileConfig.getFileColums()) {
 						String columText = columns[fileColum.getColumNumber()
@@ -166,7 +168,7 @@ public class FileLoader {
 							ErrorTypeEnum.LOADER.getErrorType(), loadFile,
 							"INVALID ROW",
 							"Row with different columns or separator [row " + i
-									+ "] -> " + (columns.length - 1)
+									+ "] -> " + (columns.length)
 									+ " diferent of "
 									+ fileConfig.getFileColums().size());
 				}

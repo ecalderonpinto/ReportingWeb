@@ -130,7 +130,8 @@ public class LoadFile implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loadFile")
-	@Cascade({ CascadeType.SAVE_UPDATE })
+	//@Cascade({ CascadeType.SAVE_UPDATE })
+	@Cascade({ CascadeType.ALL })
 	public List<LoadError> getLoadErrors() {
 		return this.loadErrors;
 	}
@@ -140,7 +141,8 @@ public class LoadFile implements VersionableAdapter {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loadFile")
-	@Cascade({ CascadeType.SAVE_UPDATE })
+	//@Cascade({ CascadeType.SAVE_UPDATE })
+	@Cascade({ CascadeType.ALL })
 	@OrderBy("loadLineNumber ASC")
 	public List<LoadRaw> getLoadRaws() {
 		return this.loadRaws;

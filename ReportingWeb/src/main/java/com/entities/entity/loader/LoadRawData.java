@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.entities.entity.reportingtool.ReportExecution;
 import com.entities.utilities.hibernate.VersionAuditor;
 import com.entities.utilities.hibernate.VersionableAdapter;
 
@@ -98,7 +99,7 @@ public class LoadRawData implements VersionableAdapter {
 		this.loadRaw = loadRaw;
 	}
 
-	@Column(name = "LOAD_RAW_DATA_TEXT", length = 400, nullable=false)
+	@Column(name = "LOAD_RAW_DATA_TEXT", length = 400, nullable = false)
 	public String getLoadRawDataText() {
 		return this.loadRawDataText;
 	}
@@ -149,15 +150,40 @@ public class LoadRawData implements VersionableAdapter {
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof LoadRawData) {
-			return ((LoadRawData) object).getFileColum().equals(this.fileColum)
+			// return ((LoadRawData)
+			// object).getFileColum().equals(this.fileColum)
+			// && ((LoadRawData) object).getLoadRawDataType().equals(
+			// this.loadRawDataType)
+			// && ((LoadRawData) object).getLoadRawDataText().equals(
+			// this.loadRawDataText)
+			// && ((LoadRawData) object).getLoadRawDataBlock().equals(
+			// this.loadRawDataBlock)
+			// && ((LoadRawData) object).getLoadRaw().equals(this.loadRaw);
+			boolean ret = ((LoadRawData) object).getFileColum().equals(
+					this.fileColum)
 					&& ((LoadRawData) object).getLoadRawDataType().equals(
 							this.loadRawDataType)
 					&& ((LoadRawData) object).getLoadRawDataText().equals(
 							this.loadRawDataText)
-					&& ((LoadRawData) object).getLoadRawDataBlock().equals(
-							this.loadRawDataBlock)
 					&& ((LoadRawData) object).getLoadRaw().equals(this.loadRaw);
-
+			if (this.loadRawDataBlock == null
+					&& ((LoadRawData) object).getLoadRawDataBlock() == null) {
+				// return ret
+			} else {
+				// one or two loadRawDataBlock can be null
+				if (this.loadRawDataBlock == null
+						&& ((LoadRawData) object).getLoadRawDataBlock() != null) {
+					ret = false;
+					if (this.loadRawDataBlock != null
+							&& ((LoadRawData) object).getLoadRawDataBlock() == null) {
+						ret = false;
+					} else {
+						ret = ret
+								&& ((LoadRawData) object).getLoadRawDataBlock()
+										.equals(this.loadRawDataBlock);
+					}
+				}
+			}
 		}
 		return false;
 	}

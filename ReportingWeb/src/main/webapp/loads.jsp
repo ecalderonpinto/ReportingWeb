@@ -84,7 +84,7 @@
 		</div>
 		<div class="box-content">
 			<!-- table table-bordered table-striped table-condensed table table-striped table-bordered bootstrap-datatable datatable-->
-			<table id="myTable" 
+			<table id="myTable"
 				class="table table-striped table-bordered table-condensed datatable">
 				<thead>
 					<tr>
@@ -92,9 +92,10 @@
 						<th>Name <i class="icon-sort"></i></th>
 						<th>Config <i class="icon-sort"></i></th>
 						<th>Date <i class="icon-sort"></i></th>
-						<th>Registers< <i class="icon-sort"></i>/th>
+						<th>Registers <i class="icon-sort"></i></th>
 						<th>Status <i class="icon-sort"></i></th>
 						<th>Registers</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -119,6 +120,8 @@
 								</c:choose></td>
 							<td><a class="btn btn-small"
 								href="loadDetail.do?id=${load.id}">Detail</a></td>
+							<td><a href="loadDelete.do?id=${load.id}"><i
+									class="halflings-icon trash"></i></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -98,10 +98,11 @@ public class LoginController {
 
 			// model.addAttribute("user", userLogin);
 
-			// resultModel = "dashboard";
+			//resultModel = "dashboard";
 			resultModel = "datamanager";
 		}
 
+		System.out.println("resultModel " + resultModel);
 		return resultModel;
 	}
 

@@ -117,7 +117,7 @@ public class LoadsAsignToReportsController {
 	}
 
 	@ModelAttribute("selectLoads")
-	public Map<String, String> populateJavaSkillList() {
+	public Map<String, String> populateFileConfigSelect() {
 
 		System.out.println("preLoad select");
 
