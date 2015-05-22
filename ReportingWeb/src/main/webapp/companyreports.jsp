@@ -71,13 +71,16 @@
 					- Reports
 				</h2>
 				<div class="box-icon">
-					<a href="#" class="btn-minimize"><i
+					<a href="#"
+						onclick="$('#myTable').tableExport({type:'excel',escape:'false'});">
+						<img src="img/xls.png" width="20px">
+					</a> <a href="#" class="btn-minimize"><i
 						class="halflings-icon chevron-up"></i></a>
 				</div>
 			</div>
 
 			<div class="box-content">
-				<table id="myTable" 
+				<table id="myTable"
 					class="table table-striped table-bordered table-condensed datatable">
 					<thead>
 						<tr>
@@ -102,17 +105,13 @@
 									<td>${reportexecution.reportStatus}</td>
 									<td><a class="btn btn-small btn-primary"
 										href="<c:url value="reportExecution.do?id=${reportexecution.id}" />">
-											Detail </a> 
-										<a class="btn btn-small btn-warning"
+											Detail </a> <a class="btn btn-small btn-warning"
 										href="<c:url value="loadsAssignToReport.do?id=${reportexecution.id}" />">
-											Add file</a>
-										<a class="btn btn-small btn-warning"
+											Add file</a> <a class="btn btn-small btn-warning"
 										href="<c:url value="loadXMLToReport.do?id=${reportexecution.id}" />">
-											Add XML</a>
-										<a class="btn btn-small btn-success"
+											Add XML</a> <a class="btn btn-small btn-success"
 										href="<c:url value="viewXML.do?id=${reportexecution.id}" />">
-											View XML </a> 
-										<c:choose>
+											View XML </a> <c:choose>
 											<c:when test="${reportexecution.hasErrors == true}">
 												<a class="btn btn-small btn-danger"
 													href="<c:url value="reportError.do?id=${reportexecution.id}" />">
@@ -121,8 +120,7 @@
 											<c:otherwise>
 												<span class="label label-success">No errors</span>
 											</c:otherwise>
-										</c:choose>
-									</td>
+										</c:choose></td>
 								</tr>
 							</c:if>
 						</c:forEach>

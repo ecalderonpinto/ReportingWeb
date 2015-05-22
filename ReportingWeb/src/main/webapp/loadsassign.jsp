@@ -98,12 +98,16 @@
 					Assign files to Report</span>
 			</h2>
 			<div class="box-icon">
-				<a href="#" class="btn-minimize"><i
+				<a href="#"
+					onclick="$('#myTable').tableExport({type:'excel',escape:'false'});">
+					<img src="img/xls.png" width="20px">
+				</a> <a href="#" class="btn-minimize"><i
 					class="halflings-icon chevron-up"></i></a>
 			</div>
 		</div>
 		<div class="box-content">
-			<table id="myTable" class="table table-striped table-bordered table-condensed">
+			<table id="myTable"
+				class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
 						<th>Report Catalog <i class="icon-sort"></i></th>

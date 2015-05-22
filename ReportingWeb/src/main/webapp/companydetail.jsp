@@ -61,7 +61,10 @@
 						<i class="halflings-icon align-justify"></i> <span class="break">Departments</span>
 					</h2>
 					<div class="box-icon">
-						<a href="#" class="btn-minimize"><i
+						<a href="#"
+							onclick="$('#myTable').tableExport({type:'excel',escape:'false'});">
+							<img src="img/xls.png" width="20px">
+						</a> <a href="#" class="btn-minimize"><i
 							class="halflings-icon chevron-up"></i></a>
 					</div>
 				</div>
@@ -102,7 +105,10 @@
 						<i class="halflings-icon align-justify"></i> <span class="break">Funds</span>
 					</h2>
 					<div class="box-icon">
-						<a href="#" class="btn-minimize"><i
+						<a href="#"
+							onclick="$('#myTable2').tableExport({type:'excel',escape:'false'});">
+							<img src="img/xls.png" width="20px">
+						</a> <a href="#" class="btn-minimize"><i
 							class="halflings-icon chevron-up"></i></a>
 					</div>
 				</div>

@@ -72,12 +72,15 @@
 					- Reports
 				</h2>
 				<div class="box-icon">
-					<a href="#" class="btn-minimize"><i
+					<a href="#"
+						onclick="$('#myTable').tableExport({type:'excel',escape:'false'});">
+						<img src="img/xls.png" width="20px">
+					</a> <a href="#" class="btn-minimize"><i
 						class="halflings-icon chevron-up"></i></a>
 				</div>
 			</div>
 			<div class="box-content">
-				<table id="myTable" 
+				<table id="myTable"
 					class="table table-striped table-bordered table-condensed datatable">
 					<thead>
 						<tr>
@@ -101,8 +104,8 @@
 										Detail </a> <a class="btn btn-small btn-warning"
 									href="<c:url value="loadsAssignToReport.do?id=${report.id}" />">
 										Load Assig</a> <a class="btn btn-small btn-success"
-									href="<c:url value="viewXML.do?id=${report.id}" />">
-										View XML </a></td>
+									href="<c:url value="viewXML.do?id=${report.id}" />"> View
+										XML </a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -140,4 +143,5 @@
 	<!-- /Actions Box -->
 </form:form>
 
-<a href="companyDetail.do?id=${company.id}"><span class="btn btn-important">Back</span></a>
+<a href="companyDetail.do?id=${company.id}"><span
+	class="btn btn-important">Back</span></a>

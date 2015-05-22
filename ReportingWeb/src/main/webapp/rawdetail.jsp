@@ -7,7 +7,8 @@
 	<li><i class="icon-home"></i> <a href="index.do">Home</a> <i
 		class="icon-angle-right"></i></li>
 	<li><a href="loads.do">Loads</a> <i class="icon-angle-right"></i></li>
-	<li><a href="loadDetail.do?id=${loadRaw.loadFile.id}">Load Detail</a> <i class="icon-angle-right"></i></li>
+	<li><a href="loadDetail.do?id=${loadRaw.loadFile.id}">Load
+			Detail</a> <i class="icon-angle-right"></i></li>
 	<li><a href="#">Colum Detail</a>
 </ul>
 <!-- end: Breadcrumb -->
@@ -57,17 +58,21 @@
 		<div class="box-header">
 			<h2>
 				<i class="halflings-icon align-justify"></i> <span class="break"></span>
-				File ${loadRaw.loadFile.loadFileName} - Line ${loadRaw.loadLineNumber +1}
+				File ${loadRaw.loadFile.loadFileName} - Line
+				${loadRaw.loadLineNumber +1}
 			</h2>
 			<div class="box-icon">
-				<a href="#" class="btn-minimize"><i
-					class="halflings-icon chevron-up"></i></a> <a href="#"
-					class="btn-close"><i class="halflings-icon remove"></i></a>
+				<a href="#"
+					onclick="$('#myTable').tableExport({type:'excel',escape:'false'});">
+					<img src="img/xls.png" width="20px">
+				</a> <a href="#" class="btn-minimize"><i
+					class="halflings-icon chevron-up"></i></a>
 			</div>
 		</div>
 		<div class="box-content">
 			<!-- table table-bordered table-striped table-condensed table table-striped table-bordered bootstrap-datatable datatable-->
-			<table id="myTable" class="table table-striped table-bordered table-condensed bootstrap-datatable datable">
+			<table id="myTable"
+				class="table table-striped table-bordered table-condensed bootstrap-datatable datable">
 				<thead>
 					<tr>
 						<th>File Column <i class="icon-sort"></i></th>

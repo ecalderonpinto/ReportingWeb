@@ -52,6 +52,8 @@
 <script src="js/counter.js"></script>
 <script src="js/retina.js"></script>
 <script src="js/custom.js"></script>
+<script src="js/tableExport.js"></script>
+<script src="js/jquery.base64.js"></script>
 
 <script type="text/javascript">
 	function loading() {

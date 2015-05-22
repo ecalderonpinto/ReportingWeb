@@ -13,15 +13,20 @@
 	<div class="box span12">
 		<div class="box-header">
 			<h2>
-				<i class="halflings-icon align-justify"></i> <span class="break">Report Data Error</span>
+				<i class="halflings-icon align-justify"></i> <span class="break">Report
+					Data Error</span>
 			</h2>
 			<div class="box-icon">
-				<a href="#" class="btn-minimize"><i
+				<a href="#"
+					onclick="$('#myTable').tableExport({type:'excel',escape:'false'});">
+					<img src="img/xls.png" width="20px">
+				</a> <a href="#" class="btn-minimize"><i
 					class="halflings-icon chevron-up"></i></a>
 			</div>
 		</div>
 		<div class="box-content">
-			<table id="myTable" class="table table-striped table-bordered table-condensed">
+			<table id="myTable"
+				class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
 						<th>Report <i class="icon-sort"></i></th>
@@ -39,13 +44,13 @@
 							<td>${reportdataerror.reportData.reportExecution.reportExecutionName}</td>
 							<td>${reportdataerror.reportData.reportDataText}</td>
 							<td>${reportdataerror.reportData.reportField.reportFieldName}
-								(${reportdataerror.reportData.reportField.reportFieldNum})
-							</td>
+								(${reportdataerror.reportData.reportField.reportFieldNum})</td>
 							<td>${reportdataerror.error.errorType}</td>
 							<td>${reportdataerror.reportDataErrorType}</td>
 							<td>${reportdataerror.reportDataErrorText}</td>
 							<td><c:choose>
-									<c:when test="${reportdataerror.versionAuditor.deleted == true}">
+									<c:when
+										test="${reportdataerror.versionAuditor.deleted == true}">
 										<span class="label label-success">Solved</span>
 									</c:when>
 									<c:otherwise>
